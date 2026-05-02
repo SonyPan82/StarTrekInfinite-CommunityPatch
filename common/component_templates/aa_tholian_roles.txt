@@ -1,0 +1,168 @@
+@cost0 = 0
+@cost1 = 5
+@cost2 = 10
+@cost3 = 20
+
+@power0 = -5
+@power1 = -10
+@power2 = -15
+@power3 = -25
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT_THOLIANCORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_escort"
+	icon_frame = 1
+
+	power = @power0
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost0
+		}
+	}
+	ship_behavior = "hrb_escort"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_1" }
+
+	size_restriction = {
+		tholiancorvette
+		tholiandestroyer
+		tholianbattleship
+	}
+	
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_ESCORT_BASIC_THOLIANCORVETTE"
+	
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.05
+		ship_shield_mult = 0.15
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_THOLIANCORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_interceptor"
+	icon_frame = 1
+
+	power = @power0
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost0
+		}
+	}
+	ship_behavior = "hrb_interceptor"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_1" }
+	
+	# HRB_TODO: no restriction for now
+	size_restriction = {
+		tholiancorvette
+		tholiandestroyer
+		tholianbattleship
+	}
+
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_INTERCEPTOR_BASIC"
+	
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.05
+		ship_speed_mult = 0.10
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ESCORT_BASIC_THOLIANCORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_escort"
+	icon_frame = 1
+
+	power = @power1
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+	ship_behavior = "hrb_escort"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+	
+	# HRB_TODO: no restriction for now
+	size_restriction = {
+		tholiancorvette
+		tholiandestroyer
+		tholianbattleship
+	}
+	
+	component_set = "combat_computers"
+
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.10
+		ship_shield_mult = 0.20
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_INTERCEPTOR_BASIC_THOLIANCORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_interceptor"
+	icon_frame = 1
+
+	power = @power1
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+	ship_behavior = "hrb_interceptor"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+	
+	# HRB_TODO: no restriction for now
+	size_restriction = {
+		tholiancorvette
+		tholiandestroyer
+		tholianbattleship
+	}
+	
+	component_set = "combat_computers"
+
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.10
+		ship_speed_mult = 0.20
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}

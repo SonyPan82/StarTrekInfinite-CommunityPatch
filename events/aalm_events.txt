@@ -1,0 +1,77 @@
+namespace = aa_lm
+
+event = {
+	id = aa_lm.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = moon_luna
+			}
+			change_pc = pc_barren_cold_d_luna
+			set_planet_entity = {
+				entity = cold_barren_planet_luna_entity
+				picture = pc_luna
+			}
+			clear_deposits = yes
+			add_deposit = d_underworld_caverns
+			add_deposit = d_ore_rich_slopes
+
+			create_colony = {
+				owner = event_target:ufop_country
+			}
+			
+			create_pop = { species = owner_main_species }
+			create_pop = { species = owner_main_species }
+			create_pop = { species = owner_main_species }
+			set_planet_flag = research_habitat
+			remove_building = building_colony_shelter
+			add_building = building_capital
+			add_district = district_city
+		}
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = planet_mars
+			}
+			save_event_target_as = et_planetmars
+			change_pc = pc_barren_cold_d_mars
+			set_planet_entity = {
+				entity = barren_planet_mars_entity
+				picture = pc_mars
+			}
+			clear_deposits = yes
+			add_deposit = d_underworld_caverns
+			add_deposit = d_underworld_caverns
+			add_deposit = d_high_winds
+			add_deposit = d_frozen_lakes
+			add_deposit = d_infertile_land
+			add_deposit = d_ore_rich_slopes
+			
+			create_colony = {
+				owner = event_target:ufop_country
+			}
+			
+			create_pop = { species = owner_main_species }
+			create_pop = { species = owner_main_species }
+			create_pop = { species = owner_main_species }
+			create_pop = { species = owner_main_species }
+			set_planet_flag = mining_habitat
+			remove_building = building_colony_shelter
+			add_building = building_capital
+			add_district = district_industrial
+			add_district = district_city
+			
+			solar_system = {
+				spawn_megastructure = {
+					type = "planitia_shipyard"
+					planet = event_target:et_planetmars
+					owner = event_target:ufop_country
+					orbit_distance = 2
+					orbit_angle = 20
+				}
+			}
+		}
+	}
+}

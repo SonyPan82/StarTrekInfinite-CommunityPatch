@@ -1,0 +1,128 @@
+
+@power_1 = -40
+@power_2 = -60
+@power_3 = -80
+@power_4 = -100
+@power_5 = -120
+
+@cost1 = 12
+@cost2 = 24
+@cost3 = 36
+@cost4 = 48
+@cost5 = 60
+
+@operative_officers1 = 10
+
+utility_component_template = {
+	key = "CRUISER_IMPULSE_ENGINE_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_impulse_engine"
+	icon_frame = 1
+	power = @power_1
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+	
+	modifier = {
+	}
+		
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { ambassador }
+	upgrades_to = "CRUISER_ADVANCED_IMPULSE_ENGINE_AMBASSADOR"
+	
+	ai_weight = {
+		weight = 1
+	}
+}
+
+
+utility_component_template = {
+	key = "CRUISER_ADVANCED_IMPULSE_ENGINE_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @power_2
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost2
+		}
+	}
+	
+	modifier = {
+		ship_base_speed_mult = 0.33
+		ship_evasion_add = 3
+	}
+		
+	prerequisites = { "tech_engine_2" }
+	component_set = "thruster_components"
+	size_restriction = { ambassador }
+	upgrades_to = "CRUISER_HIGH_ENERGY_IMPULSE_ENGINE_AMBASSADOR"
+	
+	ai_weight = {
+		weight = 2
+	}
+}
+
+
+utility_component_template = {
+	key = "CRUISER_HIGH_ENERGY_IMPULSE_ENGINE_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_high_energy_impulse_engine"
+	icon_frame = 1
+	power = @power_3
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost3
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 0.66
+		ship_evasion_add = 6
+	}
+
+	prerequisites = { "tech_engine_3" }
+	component_set = "thruster_components"
+	size_restriction = { ambassador }
+	upgrades_to = "CRUISER_OMEGA_ENGINE_AMBASSADOR"
+	
+	ai_weight = {
+		weight = 3
+	}
+}
+
+
+utility_component_template = {
+	key = "CRUISER_OMEGA_ENGINE_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_omega_engine"
+	icon_frame = 1
+	power = @power_4
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost4
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 1.0
+		ship_evasion_add = 9
+	}
+
+	prerequisites = { "tech_engine_4" }
+	component_set = "thruster_components"
+	size_restriction = { ambassador }
+	
+	ai_weight = {
+		weight = 4
+	}
+}

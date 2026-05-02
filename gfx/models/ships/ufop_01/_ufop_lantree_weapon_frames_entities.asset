@@ -1,0 +1,4 @@
+entity = {
+	name = "lantree_slots_entity"
+	pdxmesh = "lantree_slots_mesh"
+}

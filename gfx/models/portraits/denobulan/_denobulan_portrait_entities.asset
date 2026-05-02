@@ -1,0 +1,112 @@
+#FEMALE
+	
+	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	
+	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#
+	
+@denobulanscale = 0.84
+
+entity = {
+	name = "portrait_denobulan_female_01_entity"
+	pdxmesh = "portrait_denobulan_female_01_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0.45 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+
+entity = {
+	name = "portrait_denobulan_female_02_entity"
+	pdxmesh = "portrait_denobulan_female_02_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0.45 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+
+entity = {
+	name = "portrait_denobulan_female_03_entity"
+	pdxmesh = "portrait_denobulan_female_03_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0.45 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+entity = {
+	name = "portrait_denobulan_female_04_entity"
+	pdxmesh = "portrait_denobulan_female_04_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0.45 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+
+entity = {
+	name = "portrait_denobulan_female_05_entity"
+	pdxmesh = "portrait_denobulan_female_05_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0.45 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+
+
+#MALE
+	
+	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	
+	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#
+
+
+entity = {
+	name = "portrait_denobulan_male_01_entity"
+	pdxmesh = "portrait_denobulan_male_01_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0.45 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+entity = {
+	name = "portrait_denobulan_male_02_entity"
+	pdxmesh = "portrait_denobulan_male_02_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+
+
+
+entity = {
+	name = "portrait_denobulan_male_03_entity"
+	pdxmesh = "portrait_denobulan_male_03_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0.1 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+
+entity = {
+	name = "portrait_denobulan_male_04_entity"
+	pdxmesh = "portrait_denobulan_male_04_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0.1 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}
+
+
+entity = {
+	name = "portrait_denobulan_male_05_entity"
+	pdxmesh = "portrait_denobulan_male_05_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"       animation = "idle"    animation_blend_time = 0 chance = 3.0 looping = no next_state = idle}
+	scale = @denobulanscale
+}

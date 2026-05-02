@@ -1,0 +1,147 @@
+utility_component_template = {
+	key = "CORVETTE_FUSION_REACTOR_CONSTELLATION"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = 140
+	operative_officers = 10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.10
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.01
+		}
+	}
+
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { constellation }
+	upgrades_to = "CORVETTE_MATTER_ANTIMATTER_REACTOR_CONSTELLATION"
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "CORVETTE_MATTER_ANTIMATTER_REACTOR_CONSTELLATION"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = 180
+	operative_officers = 10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 13
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.13
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.013
+		}
+	}
+
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { constellation }
+	upgrades_to = "CORVETTE_TETRYON_REACTOR_CONSTELLATION"
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+
+utility_component_template = {
+	key = "CORVETTE_TETRYON_REACTOR_CONSTELLATION"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = 240
+	operative_officers = 10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 17
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.17
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.017
+		}
+	}
+
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { constellation }
+	#upgrades_to = "CORVETTE_ANTI_TETRYON_REACTOR_CONSTELLATION"
+
+	ai_weight = {
+		weight = 3
+	}
+}

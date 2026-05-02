@@ -1,0 +1,18 @@
+AAGORN = {
+	archetype = BIOLOGICAL
+
+	portraits = {
+		"rep12"
+		"rep14"
+	}
+
+	non_randomized_portraits = {
+		"rep12"
+		"rep14"
+    }
+	
+	graphical_culture = gorn_01
+	move_pop_sound_effect = "reptilian_pops_move"
+
+	resources = {}
+}

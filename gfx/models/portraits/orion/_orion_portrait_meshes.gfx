@@ -1,0 +1,101 @@
+objectTypes = {		
+	pdxmesh = {
+		name = "portrait_orion_female_01_mesh"
+		file = "gfx/models/portraits/betazoid/betazoid_female_01_portrait.mesh"
+		animation = { id = "idle"	type = "betazoid_female_01_happy_animation" }
+		scale = 1.0
+		
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/orion/orion_female_body01.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+		
+	pdxmesh = {
+		name = "portrait_orion_female_02_mesh"
+		file = "gfx/models/portraits/betazoid/betazoid_female_02_portrait.mesh"
+		animation = { id = "idle"	type = "betazoid_female_02_happy_animation" }
+		scale = 1.0
+		
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/orion/orion_female_body02.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+
+	pdxmesh = {
+		name = "portrait_orion_female_03_mesh"
+		file = "gfx/models/portraits/betazoid/betazoid_female_03_portrait.mesh"
+		animation = { id = "idle"	type = "betazoid_female_03_happy_animation" }
+		scale = 1.0
+		
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/orion/orion_female_body03.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+		
+	pdxmesh = {
+		name = "portrait_orion_male_01_mesh"
+		file = "gfx/models/portraits/betazoid/betazoid_male_01_portrait.mesh"
+		animation = { id = "idle"	type = "betazoid_male_01_happy_animation" }
+
+		scale = 1.0
+		
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/orion/orion_male_body01.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+				
+	pdxmesh = {
+		name = "portrait_orion_male_02_mesh"
+		file = "gfx/models/portraits/betazoid/betazoid_male_02_portrait.mesh"
+		animation = { id = "idle"	type = "betazoid_male_02_happy_animation" }
+
+		scale = 1.0
+		
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/orion/orion_male_body02.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}
+
+	pdxmesh = {
+		name = "portrait_orion_male_03_mesh"
+		file = "gfx/models/portraits/betazoid/betazoid_male_03_portrait.mesh"
+		animation = { id = "idle"	type = "betazoid_male_03_happy_animation" }
+
+		scale = 1.0
+		
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/orion/orion_male_body03.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}
+	
+}

@@ -1,0 +1,4 @@
+entity = {
+	name = "orion_raider_slots_entity"
+	pdxmesh = "orion_raider_slots_mesh"
+}

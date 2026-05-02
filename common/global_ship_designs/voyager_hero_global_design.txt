@@ -1,0 +1,92 @@
+# Voyager
+ship_design = {
+	name = "NAME_Voyager"
+	ship_size = voyager
+	is_event_design = yes
+
+	section = {
+		template = "VOYAGER_MID"
+		slot = "mid"
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PHASER_ARRAY"
+		}
+		
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "MEDIUM_PHASER_ARRAY"
+		}
+
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "PHOTON_TORPEDOES"
+		}
+
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "SMALL_PHASER_ARRAY"
+		}
+		
+		component = {
+			slot = "SMALL_GUN_03"
+			template = "SMALL_PHASER_ARRAY"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_METAPHASIC_SHIELDS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_METAPHASIC_SHIELDS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_METAPHASIC_SHIELDS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_NEUTRONIUM_HULLS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_5"
+			template = "LARGE_NEUTRONIUM_HULLS"
+		}
+		
+		component = {
+			slot = "LARGE_UTILITY_6"
+			template = "LARGE_METAPHASIC_SHIELDS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "COMPUTER_ASSISTED_TARGETING"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "ADVANCED_AUXILIARY_IMPULSE_ENGINE"
+		}
+		
+		component = {
+			slot = "AUX_UTILITY_3"
+			template = "SHIELD_BOOSTER"
+		}
+	}
+
+	required_component = "BATTLESHIP_MATTER_ANTIMATTER_REACTOR"
+	required_component = "WARP_DRIVE_3"
+	required_component = "BATTLESHIP_ADVANCED_IMPULSE_ENGINE"
+	required_component = "MULTIPHASIC_SENSORS"
+	required_component = "COMBAT_COMPUTER_HRB_BOMBER_DEFAULT"
+}

@@ -1,0 +1,13 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_ufop_military_ambassador"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_military_bg_UFOP_ambassador.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	
+	spriteType = {
+		name = "GFX_ship_image_ambassador"
+		texturefile = "gfx/interface/ship_designer/designs/ambassador.dds"
+	}
+}

@@ -1,0 +1,344 @@
+namespace = aa_orion_game_start
+
+event = {
+	id = aa_orion_game_start.120
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				has_star_flag = orion_anchor
+			}
+			spawn_orion_system = yes
+			last_created_system = {
+				setup_orion_capital =  yes
+				every_neighbor_system = {
+					limit = { 
+						is_not_used_space = yes 
+					}	
+					setup_orion_territory = yes				
+				}
+				random_neighbor_system = {
+					spawn_verex_system = yes			
+				}
+				last_created_system = {
+					setup_verex_colony =  yes
+				}	
+			}
+		}
+		
+		every_system = {
+			limit = {
+				has_star_flag = orion_anchor
+			}
+			setup_orion_territory = yes	
+		}
+
+		if = {
+			limit = { 
+				not = { exists = event_target:orion_country }
+			}	
+			# Need more candidates
+			random_galaxy_planet = {
+				limit = {
+					has_planet_flag = planet_rura_penthe
+				}
+				solar_system = {
+					every_neighbor_system = {
+						limit = { is_not_used_space = yes }
+						set_star_flag = sf_orioncandidate1
+						set_star_flag = sf_orioncandidatex
+					}
+					while = {
+						count = 2
+						random_neighbor_system = {
+							limit = { is_not_used_space = yes }
+							spawn_close_system = yes
+							last_created_system = {
+								set_star_flag = sf_orioncandidate1
+								set_star_flag = sf_orioncandidatex
+							}
+							spawn_mid_system = yes
+							last_created_system = {
+								set_star_flag = sf_orioncandidate1
+								set_star_flag = sf_orioncandidatex
+							}
+						}
+					}				
+				}
+			}
+			every_system = {
+				limit = {
+					is_inside_border = event_target:klingon_country
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_orioncandidate1 }
+					}
+					set_star_flag = sf_orioncandidate2
+					set_star_flag = sf_orioncandidatex
+				}
+			}
+			every_system = {
+				limit = {
+					has_star_flag = sf_orioncandidate1
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_orioncandidate1 }
+						not = { has_star_flag = sf_orioncandidate2 }
+					}
+					set_star_flag = sf_orioncandidate3
+				}
+			}		
+			every_system = {
+				limit = {
+					has_star_flag = sf_orioncandidate2
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_orioncandidate2 }
+					}
+					set_star_flag = sf_orioncandidate4
+				}
+			}
+			every_system = {
+				limit = {
+					has_star_flag = sf_orioncandidate3
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_orioncandidate3 }
+						not = { has_star_flag = sf_orioncandidate4 }
+					}
+					set_star_flag = sf_orioncandidate5
+				}
+			}
+			every_system = {
+				limit = {
+					has_star_flag = sf_orioncandidate4
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_orioncandidate3 }
+						not = { has_star_flag = sf_orioncandidate4 }
+					}
+					set_star_flag = sf_orioncandidate6
+				}
+			}
+			
+			random_system = {
+				limit = {
+					has_star_flag = sf_orioncandidate5
+					has_star_flag = sf_orioncandidate6
+					not = { has_star_flag = sf_orioncandidate1 }
+					not = { has_star_flag = sf_orioncandidate2 }
+					not = { has_star_flag = sf_orioncandidatex }
+				}
+				spawn_orion_system = yes
+				last_created_system = {
+					setup_orion_capital =  yes
+					while = {
+						count = 2
+						spawn_mid_system = yes	
+						last_created_system = {
+							setup_orion_territory = yes
+						}
+					}
+					every_neighbor_system = {
+						limit = { 
+							is_not_used_space = yes 
+							not = { has_star_flag = sf_orioncandidatex }
+						}	
+						setup_orion_territory = yes				
+					}
+					random_neighbor_system = {
+						spawn_verex_system = yes			
+					}
+					last_created_system = {
+						setup_verex_colony =  yes
+					}				
+				}
+			}
+		}
+
+		### No Orions? Try again ###
+		if = {
+			limit = { 
+				not = { exists = event_target:orion_country }
+			}				
+			random_system = {
+				limit = {
+					or = {
+						and = {
+							has_star_flag = sf_orioncandidate5
+							has_star_flag = sf_orioncandidate6
+						}
+						and = {
+							has_star_flag = sf_orioncandidate3
+							has_star_flag = sf_orioncandidate4
+						}
+						and = {
+							has_star_flag = sf_orioncandidate5
+							has_star_flag = sf_orioncandidate4
+						}
+						and = {
+							has_star_flag = sf_orioncandidate3
+							has_star_flag = sf_orioncandidate6
+						}
+					}
+					not = { has_star_flag = sf_orioncandidatex }
+				}
+				spawn_orion_system = yes
+				last_created_system = {
+					setup_orion_capital = yes
+					while = {
+						count = 2
+						spawn_mid_system = yes	
+						last_created_system = {
+							setup_orion_territory = yes
+						}
+					}					
+					every_neighbor_system = {
+						limit = { is_not_used_space = yes }		
+						setup_orion_territory = yes				
+					}
+					random_neighbor_system = {	
+						spawn_verex_system = yes			
+					}
+					last_created_system = {
+						setup_verex_colony =  yes
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = { 
+				not = { exists = event_target:orion_country }
+			}				
+			random_system = {
+				limit = {
+					or = {
+						has_star_flag = sf_orioncandidate5
+						has_star_flag = sf_orioncandidate6
+					}
+					not = { has_star_flag = sf_orioncandidatex }
+				}
+				spawn_orion_system = yes
+				last_created_system = {
+					setup_orion_capital = yes
+					while = {
+						count = 2
+						spawn_mid_system = yes	
+						last_created_system = {
+							setup_orion_territory = yes
+						}
+					}					
+					every_neighbor_system = {
+						limit = { is_not_used_space = yes }		
+						setup_orion_territory = yes				
+					}
+					random_neighbor_system = {	
+						spawn_verex_system = yes			
+					}
+					last_created_system = {
+						setup_verex_colony =  yes
+					}
+				}
+			}
+		}
+	
+		if = {
+			limit = {
+				exists = event_target:orion_country
+			}
+				event_target:orion_country = {
+					set_adjective = "Orion"
+					give_technology = { tech = tech_destroyer_unlock message = no }
+					give_technology = { tech = tech_cruiser_unlock message = no }
+				create_civilian_fleet = yes
+				
+				every_planet_within_border = {
+					limit = {
+						has_deposit_for = shipclass_mining_station
+						has_mining_station = no
+					}
+					create_mining_station = {
+						owner = event_target:orion_country
+					}
+				}
+				
+				# Military
+				create_fleet = {
+					set_take_point = yes
+					effect = {
+						set_owner = event_target:orion_country
+
+						while = {
+							count = 4
+							create_ship = {
+								name = random
+								random_existing_design = orioncorvette
+								initial_officers_perc = 0.6
+							}
+						}
+						while = {
+							count = 3
+							create_ship = {
+								name = random
+								random_existing_design = oriondestroyer
+								initial_officers_perc = 0.15
+							}
+						}
+						create_ship = {
+							name = random
+							random_existing_design = orionbattleship
+							initial_officers_perc = 0.1
+						}
+						
+						set_location = prev.capital_star
+					}
+				}
+				
+				#create_fleet = {
+				#	effect = {
+				#		set_owner = event_target:orion_country
+				#		while = {
+				#			count = 4
+				#			create_ship = {
+				#				name = random
+				#				design = "NAME_Small_Nausicaan"
+				#				graphical_culture = nausicaan_01
+				#				initial_officers_perc = 0.4
+				#			}
+				#		}
+				#		while = {
+				#			count = 2
+				#			create_ship = {
+				#				name = random
+				#				design = "NAME_Medium_Nausicaan"
+				#				graphical_culture = nausicaan_01
+				#				initial_officers_perc = 0.25
+				#			}
+				#		}
+				#		create_ship = {
+				#			name = random
+				#			design = "NAME_Large_Nausicaan"
+				#			graphical_culture = nausicaan_01
+				#			initial_officers_perc = 0.1
+				#		}
+				#		set_location = prev.capital_scope.star
+				#	}
+				#}
+			}
+		}
+	}	
+}

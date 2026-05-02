@@ -1,0 +1,9 @@
+gov_social_autocracy_breen = {
+	ruler_title = RT_SOVEREIGN
+	ruler_title_female = RT_SOVEREIGN_FEMALE
+	
+	should_force_rename = yes
+
+	possible = { has_authority = auth_dictatorial_breen }
+	weight = { base = 10000 }
+}

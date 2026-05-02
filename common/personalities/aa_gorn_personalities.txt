@@ -1,0 +1,57 @@
+hegemonic_imperialists_gorn = {
+	aggressiveness = 3.0
+	trade_willingness = 0.1
+	bravery = 2.0
+	combat_bravery = 2.0
+
+	military_spending = 1.5
+	colony_spending = 0.5
+
+	federation_acceptance = -999
+	nap_acceptance = -999
+	commercial_pact_acceptance = -999
+	research_agreement_acceptance = -999
+	share_warp_agreement_acceptance = -999
+	defensive_pact_acceptance = -999
+	migration_pact_acceptance = -999
+
+	advanced_start_chance = 50
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.75
+	shields_ratio = 0.25
+	hull_ratio = 0.0
+
+	threat_modifier = 2.0
+	threat_others_modifier = 1.5
+	friction_modifier = 2.0
+	claims_modifier = 2.0
+
+	behaviour = {
+		conqueror = yes
+		subjugator = no
+		liberator = no
+		opportunist = no
+		slaver = no
+		uplifter = no
+		purger = yes
+		displacer = yes
+		dominator = yes
+		infiltrator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = yes
+		multispecies = no
+		crisis_fighter = yes
+	}
+
+
+	allow = {
+		is_country_type = contender
+		has_country_id = "gorn"
+	}
+
+	weight_modifier = {
+		weight = 10000
+	}
+}

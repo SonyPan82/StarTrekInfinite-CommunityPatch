@@ -1,0 +1,193 @@
+ship_design = {
+	name = "NAME_OrionCorvette"
+	ship_size = orioncorvette
+	is_event_design = yes
+
+	section = {
+		template = "ORIONCORVETTE_MID"
+		slot = "mid"
+
+		#WEAPONS
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "SMALL_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "SMALL_PHASER_CANNON"
+		}
+		
+		component = {
+			slot = "SMALL_GUN_03"
+			template = "SMALL_PHASER_CANNON"
+		}
+		
+		# ARMOR (UTILITIES)
+		component = {
+			slot = "SMALL_UTILITY_1"
+			template = "SMALL_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "SMALL_UTILITY_2"
+			template = "SMALL_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "SMALL_UTILITY_3"
+			template = "SMALL_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "SMALL_UTILITY_4"
+			template = "SMALL_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "SHIELD_BOOSTER"
+		}
+	}
+
+	required_component = "CORVETTE_FUSION_REACTOR"
+	required_component = "WARP_DRIVE_1"
+	required_component = "CORVETTE_IMPULSE_ENGINE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT"
+}
+
+ship_design = {
+	name = "NAME_OrionDestroyer"
+	ship_size = oriondestroyer
+	is_event_design = yes
+
+	section = {
+		template = "ORIONDESTROYER_MID"
+		slot = "mid"
+
+		#WEAPONS
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "SMALL_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "SMALL_PHASER_CANNON"
+		}
+		
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+		
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+		
+		# ARMOR (UTILITIES)
+		component = {
+			slot = "SMALL_UTILITY_1"
+			template = "SMALL_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "SMALL_UTILITY_2"
+			template = "SMALL_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "SMALL_UTILITY_3"
+			template = "SMALL_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "SMALL_UTILITY_4"
+			template = "SMALL_TRITANIUM_HULLS"
+		}
+		
+		component = {
+			slot = "MEDIUM_UTILITY_1"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "SHIELD_BOOSTER"
+		}
+	}
+
+	required_component = "DESTROYER_FUSION_REACTOR"
+	required_component = "WARP_DRIVE_1"
+	required_component = "DESTROYER_IMPULSE_ENGINE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT"
+}
+
+ship_design = {
+	name = "NAME_OrionBattleship"
+	ship_size = orionbattleship
+	is_event_design = yes
+
+	section = {
+		template = "ORIONBATTLESHIP_MID"
+		slot = "mid"
+
+		#WEAPONS		
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}		
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}	
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_PHASER_CANNON"
+		}		
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_PHASER_CANNON"
+		}
+		
+		# ARMOR (UTILITIES)		
+		component = {
+			slot = "MEDIUM_UTILITY_1"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+		component = {
+			slot = "MEDIUM_UTILITY_2"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+		component = {
+			slot = "MEDIUM_UTILITY_3"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "SHIELD_BOOSTER"
+		}
+	}
+
+	required_component = "BATTLESHIP_FUSION_REACTOR"
+	required_component = "WARP_DRIVE_1"
+	required_component = "BATTLESHIP_IMPULSE_ENGINE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT"
+}

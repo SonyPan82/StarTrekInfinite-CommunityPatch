@@ -1,0 +1,61 @@
+pc_barren_cold_d_mars = {
+	entity = "barren_planet_mars"
+	entity_scale = @planet_standard_scale
+	icon_frame = 9
+	picture = "pc_mars"
+
+	atmosphere_color 		= hsv { 0.55 0.3 0.75 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+
+	min_distance_from_sun = 100
+	max_distance_from_sun = 160
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 8 max = 12 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = yes
+	district_set = standard
+	show_city = no
+
+	planet_subclass = {
+		psc_class_d = 100
+	}
+}
+
+pc_barren_cold_d_luna = {
+	entity = "cold_barren_planet_luna"
+	entity_scale = @planet_standard_scale
+	icon_frame = 9
+	picture = "pc_luna"
+
+	atmosphere_color 		= hsv { 0.55 0.3 0.75 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+
+	min_distance_from_sun = 100
+	max_distance_from_sun = 160
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 8 max = 12 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = yes
+	district_set = standard
+	show_city = no
+
+	planet_subclass = {
+		psc_class_d = 100
+	}
+}

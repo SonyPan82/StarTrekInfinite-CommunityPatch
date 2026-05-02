@@ -1,0 +1,102 @@
+@base_operative_officers = 20
+@base_officers_escape_perc = 15
+@intrepid_formation_priority = 10
+@intrepid_speed = 112
+@intrepid_collision_radius = 2.5
+@intrepid_build_time = 120
+@intrepid_upkeep_deuterium = 0.2
+@intrepid_upkeep_alloys = 0.2
+@excelsior_hp = 1600
+@excelsior_evasion = 36
+@excelsior_upkeep_deuterium = 0.4
+@excelsior_upkeep_alloys = 0.4
+@no_admiral_fire_rate_mult = -0.1
+@no_admiral_shield_mult = -0.1
+@no_admiral_shield_damage_mult = -0.1
+@no_admiral_shield_penetration_mult = -0.1
+@no_admiral_tracking_mult = -0.1
+@enterprise_formation_priority = 50
+
+
+### Voyager
+
+voyager = {
+	formation_priority = @enterprise_formation_priority
+	max_speed = @intrepid_speed
+	acceleration = 0.35
+	rotation_speed = 0.3
+	collision_radius = @intrepid_collision_radius
+	max_hitpoints = 7000
+	operative_officers = @base_operative_officers
+	officers_escape_perc = @base_officers_escape_perc
+	fleet_view_background = "military_intrepid"
+
+	ship_modifier = {
+		ship_evasion_add = 48
+		#ship_piracy_suppression_add = 10
+	}
+
+	size_multiplier = 3
+	fleet_slot_size = 4
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = 7
+	base_buildtime = @intrepid_build_time
+	can_have_federation_design = yes
+	enable_default_design = no
+	can_also_survey = yes
+	is_destroyable = no
+	ignores_warp_range = yes
+	
+	default_behavior = "hrb_interceptor"
+
+	prerequisites = { }
+
+	potential_country = {
+		has_country_id = ufop
+	}
+
+	combat_disengage_chance = 1.00
+
+	class = shipclass_military
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	is_designable = no
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @intrepid_upkeep_deuterium
+		}
+		
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+
+		upkeep = {
+			alloys = @intrepid_upkeep_alloys
+		}
+	}
+}

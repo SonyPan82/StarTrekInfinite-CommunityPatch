@@ -1,0 +1,181 @@
+breen_system_initializer = {
+	name = "Breenus"
+	class = "rl_all_stars"
+	flags = { breen breen_system breen_home_system capital }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+
+		init_effect = {
+			change_pc = pc_k_star
+		}
+	}
+	
+	change_orbit = 30
+	
+	planet = {
+		count = 1
+		orbit_distance = 12
+		size = 4
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 10
+		size = 5
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		name = "Breenus Prime"
+		count = 1
+		class = pc_arctic
+		subclass = psc_class_l
+		size = 16
+		orbit_distance = 18
+		home_planet = yes
+		flags = { mapo_colony breen_capital }
+		
+		init_effect = {
+			prevent_anomaly = yes
+			if = {
+				limit = {
+					NOT = { has_built_species = "Breen" }
+				}
+		
+				create_species = {
+					class = "AABREEN"
+					portrait = "breen"
+					name = "Breen"
+					plural = "Breen"
+					adjective = "Breen"
+					name_list = "NAUS"
+					traits = {
+						trait = "trait_strong" 
+						trait = "trait_militaristic_life"
+						trait = "trait_combative_acamarian"
+					}
+				}
+			}
+
+			create_country = {
+				species = "Breen"
+				country_id = "breen"
+				type = contender
+				contact_rule = always
+				ship_prefix = "BRS"
+				name_list = "NAUS"
+				authority = auth_dictatorial_breen
+				civics = { civic = civic_breen_exploitation }
+				civics = { civic = civic_breen_slavedrivers }
+				origin = "origin_default"
+				flag = {
+					icon= {
+						category = "emblem"
+						file = "flag_breen.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors={
+						"black"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				ethos = {
+					ethic = ethic_militarist
+					ethic = ethic_xenophobe
+					ethic = ethic_authoritarian
+				}
+				ignore_initial_colony_error = yes
+			}
+			last_created_country = {
+				set_name = "Breen Confederacy"
+				set_graphical_culture = breen_01
+				save_global_event_target_as = breen_country
+				set_country_flag = breen
+				set_country_flag = breen_empire
+				create_ship_design = { design = "NAME_BreenCorvette" }
+				add_ship_design = last_created_design
+				create_ship_design = { design = "NAME_BreenDestroyer" }
+				add_ship_design = last_created_design
+				create_ship_design = { design = "NAME_BreenBattleship" }
+				add_ship_design = last_created_design
+				set_custom_capital_location = prev
+
+				create_leader = {
+					class = ruler
+					species = this
+					name = "Malus"
+					skill = 3
+				}
+				set_leader = last_created_leader
+			}
+		}
+		
+		late_init_effect = {
+			create_colony = {
+				owner = event_target:breen_country
+			}
+			add_modifier = {
+				modifier = home_planet
+				days = -1
+			}			
+		}
+	}
+	
+	planet = {
+		name = "Breenus Secundus"
+		count = 1
+		orbit_distance = 25
+		size = 8
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_tundra
+		subclass = psc_class_m
+		home_planet = no
+		flags = { mapo_colony breenus_secundus }
+		
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		
+		late_init_effect = {
+			create_colony = {
+				owner = event_target:breen_country
+			}
+		}
+	}
+	
+	init_effect = {
+		generate_home_system_resources = yes
+		every_country = {
+			if = {
+				limit = {
+					has_country_flag = breen
+				}
+
+				save_global_event_target_as = breen_country
+			}
+		}
+	}
+
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:breen_country
+		}
+	}
+}

@@ -1,0 +1,25 @@
+objectTypes = {
+	pdxmesh = {
+		name="new_orleans_ship_mesh"
+		file = "gfx/models/ships/ufop_01_neworleans_ship.mesh"
+		scale = 0.7
+		
+		animation = { id = "idle"				type = "medium_idle_animation" }
+
+		animation = { id = "death"				type = "medium_death_animation" }
+
+		animation = { id = "warp_01"			type = "medium_warp_01_animation" }
+
+		animation = { id = "warp_02"			type = "medium_warp_02_animation" }
+
+		animation = { id = "warp_03"			type = "medium_warp_03_animation" }
+	}
+}
+
+objectTypes = {
+	pdxmesh = {
+		name = "neworleans_slots_mesh"
+		file = "gfx/models/ships/neworleans_slots.mesh"
+		scale = 0.7
+	}
+}

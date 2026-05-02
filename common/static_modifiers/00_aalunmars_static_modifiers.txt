@@ -1,0 +1,18 @@
+lunar_one_colony = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_research_grants.dds"
+	pop_amenities_usage_mult = 0.25
+	pop_growth_speed = -0.5
+	job_researcher_add = 2
+	planet_housing_add = 2
+	planet_jobs_specialist_produces_mult = 0.2
+	planet_jobs_worker_produces_mult = -0.2
+}
+
+utopia_planitia_shipyard = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_boomplanet.dds"
+	pop_amenities_usage_mult = 0.1
+	pop_growth_speed = -0.25
+	job_foundry_add = 2
+	planet_housing_add = 2
+	planet_jobs_specialist_produces_mult = 0.1
+}

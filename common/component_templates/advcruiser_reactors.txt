@@ -1,0 +1,210 @@
+@operative_officers1 = 10
+
+@cruiser_power_1 = 350
+@cruiser_power_2 = 450
+@cruiser_power_3 = 600
+@cruiser_power_4 = 775
+@cruiser_power_5 = 1000
+@cruiser_power_6 = 1288
+
+@cruiser_cost_1 = 50
+@cruiser_cost_2 = 65
+@cruiser_cost_3 = 85
+@cruiser_cost_4 = 110
+@cruiser_cost_5 = 140
+@cruiser_cost_6 = 185
+
+utility_component_template = {
+	key = "CRUISER_FUSION_REACTOR_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @cruiser_power_1
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cruiser_cost_1
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.40
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.04
+		}
+	}
+
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { ambassador }
+	upgrades_to = "CRUISER_MATTER_ANTIMATTER_REACTOR_AMBASSADOR"
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "CRUISER_MATTER_ANTIMATTER_REACTOR_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = @cruiser_power_2
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cruiser_cost_2
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.52
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.052
+		}
+	}
+
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { ambassador }
+	upgrades_to = "CRUISER_TETRYON_REACTOR_AMBASSADOR"
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+utility_component_template = {
+	key = "CRUISER_TETRYON_REACTOR_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = @cruiser_power_3
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cruiser_cost_3
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.68
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.068
+		}
+	}
+
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { ambassador }
+	upgrades_to = "CRUISER_ANTI_TETRYON_REACTOR_AMBASSADOR"
+
+	ai_weight = {
+		weight = 3
+	}
+}
+
+utility_component_template = {
+	key = "CRUISER_ANTI_TETRYON_REACTOR_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = @cruiser_power_4
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cruiser_cost_4
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.88
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.088
+		}
+	}
+
+	prerequisites = { "tech_reactor_4" }
+	component_set = "power_core"
+	size_restriction = { ambassador }
+
+	ai_weight = {
+		weight = 4
+	}
+}

@@ -1,0 +1,153 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+portraits = {
+
+	# orion
+	orion_female_01 = {	entity = "portrait_orion_female_01_entity"	clothes_selector = "orion_female_clothes_01" hair_selector = "orion_female_hair_01"	greeting_sound = "orion_female_greetings_01"
+		character_textures = {
+			"gfx/models/portraits/orion/orion_female_body01.dds"
+		}
+	}
+	orion_female_02 = {	entity = "portrait_orion_female_02_entity"	clothes_selector = "orion_female_clothes_01" hair_selector = "orion_female_hair_02"	greeting_sound = "orion_female_greetings_01"
+		character_textures = {
+			"gfx/models/portraits/orion/orion_female_body02.dds"
+		}
+	}
+	orion_female_03 = {	entity = "portrait_orion_female_03_entity"	clothes_selector = "orion_female_clothes_01" hair_selector = "orion_female_hair_03"	greeting_sound = "orion_female_greetings_01"
+		character_textures = {
+			"gfx/models/portraits/orion/orion_female_body03.dds"
+		}
+	}
+	orion_male_01 = {	entity = "portrait_orion_male_01_entity"	clothes_selector = "orion_male_clothes_01" hair_selector = "orion_male_hair_01"	greeting_sound = "orion_male_greetings_01" 
+		character_textures = {
+			"gfx/models/portraits/orion/orion_male_body01.dds"
+		}
+	}
+	orion_male_02 = {	entity = "portrait_orion_male_02_entity"	clothes_selector = "orion_male_clothes_01" hair_selector = "orion_male_hair_02"	greeting_sound = "orion_male_greetings_01" 
+		character_textures = {
+			"gfx/models/portraits/orion/orion_male_body02.dds"
+		}
+	}
+	orion_male_03 = {	entity = "portrait_orion_male_03_entity"	clothes_selector = "orion_male_clothes_01" hair_selector = "orion_male_hair_03"	greeting_sound = "orion_male_greetings_01" 
+		character_textures = {
+			"gfx/models/portraits/orion/orion_male_body03.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	orion = {
+		default = orion_male_01
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = {
+					ruler = { gender = male }
+				}
+				portraits = {
+					orion_male_01
+					orion_male_02
+					orion_male_03
+				}
+			}
+			add = {
+				trigger = {
+					ruler = { gender = female }
+				}
+				portraits = {
+					orion_female_01
+					orion_female_02
+					orion_female_03
+				}
+			}
+			#set = {
+			#	trigger = { ... }
+			#	portraits = { ... }
+			#	#using "set =" instead of "add" will first clear any portraits already added
+			#}
+		}
+		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					orion_female_01
+					orion_female_02
+					orion_female_03
+					orion_male_01
+					orion_male_02
+					orion_male_03
+				}
+			}
+		}		
+		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					orion_female_01
+					orion_female_02
+					orion_female_03
+					orion_male_01
+					orion_male_02
+					orion_male_03
+				}
+			}
+		}
+		
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					orion_female_01
+					orion_female_02
+					orion_female_03			
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					orion_male_01
+					orion_male_02
+					orion_male_03
+				}
+			}
+		}
+			
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					orion_female_01
+					orion_female_02
+					orion_female_03				
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					orion_male_01
+					orion_male_02
+					orion_male_03
+				}
+			}
+		}
+	}
+}

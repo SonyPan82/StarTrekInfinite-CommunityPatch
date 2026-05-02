@@ -1,0 +1,115 @@
+spawn_orion_system = {
+	spawn_system = {
+		min_jumps = 1
+		max_jumps = 3
+		min_distance = 1
+		max_distance = 30
+		initializer = orion_system_initializer
+		hyperlane = yes
+		is_discovered = no
+	}
+}
+
+spawn_verex_system = {
+	spawn_system = {
+		min_jumps = 1
+		max_jumps = 3
+		min_distance = 1
+		max_distance = 30
+		initializer = verex_system_initializer
+		hyperlane = yes
+		is_discovered = no
+	}
+}
+
+setup_orion_capital = {
+	if = {
+		limit = {
+			exists = event_target:orion_country
+		}
+			random_system_planet = {
+				limit = {
+					has_planet_flag = orion_capital
+				}
+				add_deposit = d_ore_rich_slopes
+				add_deposit = d_rich_mountain
+				add_deposit = d_bountiful_plains
+				add_deposit = d_hot_springs
+				add_deposit = d_geothermal_vent
+				while = {
+					count = 20
+					create_pop = { species = "Orion" }
+			}
+			create_pop = { species = "Tellarite" }
+			create_pop = { species = "Klingon" }
+			create_pop = { species = "Andorian" }
+			clear_blockers = yes
+			add_district = district_city
+			add_district = district_city
+			add_district = district_mining
+			add_district = district_mining
+			add_district = district_industrial
+			add_district = district_generator
+			add_district = district_orion_market
+			add_district = district_orion_market
+			add_district = district_farming
+			add_district = district_farming
+			remove_building = building_colony_shelter
+			add_building = building_capital
+		}
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:orion_country
+			module = shipyard
+			building = crew_quarters
+		}
+	}
+}
+
+setup_verex_colony = {
+	if = {
+		limit = {
+			exists = event_target:orion_country
+		}
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:orion_country
+		}
+		random_system_planet = {
+			limit = {
+				has_planet_flag = orion_colony
+			}
+			create_colony = {
+				owner = event_target:orion_country
+			}
+			while = {
+				count = 10
+				create_pop = { species = "Orion" }
+			}
+			clear_blockers = yes
+			add_district = district_city
+			add_district = district_mining
+			add_district = district_industrial
+			add_district = district_generator
+			add_district = district_orion_market
+			add_district = district_orion_market
+			add_district = district_farming
+			remove_building = building_colony_shelter
+			add_building = building_capital
+			set_name = "Verex III"
+		}
+	}
+}
+
+setup_orion_territory = {
+	if = {
+		limit = {
+			exists = event_target:orion_country
+		}
+		set_surveyed = { surveyed = yes surveyor = event_target:orion_country }
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:orion_country
+		}
+	}
+}

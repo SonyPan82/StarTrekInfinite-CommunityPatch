@@ -1,0 +1,64 @@
+utility_component_template = {
+	key = "STARBASE_BASIC_REACTOR"
+	size = large
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = 500
+	operative_officers = 50
+
+	component_set = "power_core"
+	class_restriction = { shipclass_starbase }
+	size_restriction = {
+		starbase_outpost
+		starbase_starport
+		starbase_starhold
+		starbase_starfortress
+	}
+
+	ai_weight = {
+		weight = 0.1
+	}
+}
+
+utility_component_template = {
+	key = "PLATFORM_BASIC_REACTOR"
+	size = large
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = 400
+	operative_officers = 25
+
+	component_set = "power_core"
+	class_restriction = { shipclass_military_station }
+	size_restriction = {
+		military_station_small
+		military_station_medium
+		military_station_large
+	}
+
+	ai_weight = {
+		weight = 0.1
+	}
+}
+
+utility_component_template = {
+	key = "BASIC_FUSION_REACTOR"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = 250
+	operative_officers = 1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+		}
+	}
+
+	component_set = "power_core"
+	size_restriction = { colonizer lithoid_colonizer lithoid_colonizer sponsored_colonizer constructor science spy_ship governor_ship transport }
+
+	ai_weight = {
+		weight = 0.1
+	}
+}

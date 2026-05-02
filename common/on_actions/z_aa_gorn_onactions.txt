@@ -1,0 +1,5 @@
+on_game_start = {
+	events = {
+		aa_gorn_game_start.120
+	}
+}

@@ -1,0 +1,167 @@
+﻿### Klingon
+
+KLG1 = {
+	category = "Humanoid"
+	randomized = no
+	alias = "Federated"
+
+	ship_names = {
+		generic = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
+			Malpara Gr'oth K'Tanco Par'tok 
+		}
+
+		constructor = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
+			Malpara Gr'oth K'Tanco Par'tok 
+		}
+		
+		colonizer = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+		}
+
+		sponsored_colonizer = { # needed when there are no generic names
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+		}
+
+		science = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+		}
+		
+		governor_ship = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+		}
+
+
+		spy_ship = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+		}
+
+		transport = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+		}
+
+		bulk_carrier = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+		}
+
+		military_station_small = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+		}
+
+		bird_of_prey = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
+			Malpara Gr'oth K'Tanco Par'tok 
+		}
+		
+		warbird = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
+			Malpara Gr'oth K'Tanco Par'tok 
+		}
+		
+		ktinga = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
+			Malpara Gr'oth K'Tanco Par'tok 
+		}
+		
+		vorcha = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
+			Malpara Gr'oth K'Tanco Par'tok 
+		}
+		
+		neghvar = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
+			Malpara Gr'oth K'Tanco Par'tok 
+		}
+	}
+
+	fleet_names = {
+		sequential_name = "%O% Fleet"
+	}
+	
+	army_names = {
+
+		machine_defense = {
+			sequential_name = "%O% Planetary Guard"
+		}
+		
+		machine_assault_1 = {
+			sequential_name = "%O% Expeditionary Force"
+		}
+	
+		defense_army = {
+			sequential_name = "%O% Planetary Guard"
+		}
+
+		assault_army = {
+			sequential_name = "%O% Expeditionary Force"
+		}
+		
+		clone_army = { 
+			sequential_name = "%O% Clone Army"
+		}
+		
+		undead_army = {
+			sequential_name = "%O% Dread Commando"
+		}
+
+		robotic_army = {
+			sequential_name = "%O% Hunter-Killer Group"
+		}
+
+		robotic_defense_army = {
+			sequential_name = "%O% Ground Defense Matrix"
+		}
+		
+		gene_warrior_army = {
+			random_names = {
+				"SARC-A 'Gladiators'" "SARC-B 'Widowmakers'" "SARC-C 'Immortals'" "SARC-D 'Berserkers'" "SARC-E 'Assassins'"
+				"SARC-F 'Reapers'" "SARC-G 'Nighthawks'" "SARC-H 'Desperados'" "SARC-I 'Grey Knights'" "SARC-J 'Roughnecks'" 
+			}
+			sequential_name = "%O% Bio-Engineered Squadron"
+		}
+
+		occupation_army = {
+			sequential_name = "%O% Garrison Force"
+		}
+
+		robotic_occupation_army = {
+			sequential_name = "%O% Mechanized Garrison"
+		}
+
+		primitive_army = {
+			sequential_name = "Primitive Army %C%"
+		}
+		industrial_army = {
+			sequential_name = "Industrial Army %C%"
+		}
+		postatomic_army = {
+			sequential_name = "Post-Atomic Army %C%"
+		}
+	}
+
+
+
+
+	### CHARACTERS
+
+	character_names = {
+
+		names1 = {
+			weight = 40
+			full_names_male = {
+				T'Kar T'Greth Ch'Targh Thopok Ch'Req Wograth Kahrek Nur'Eq Bo'ran Mowrok 
+			}
+			full_names_female = {
+				Gi'ral Miral L'Naan Krelik Ch'Rega Sirella Vilka Karak Makara K'Ehlanna 
+			}
+		}
+	}
+}

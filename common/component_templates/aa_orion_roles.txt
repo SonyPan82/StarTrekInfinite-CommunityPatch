@@ -1,0 +1,142 @@
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT_ORIONCORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_escort"
+	icon_frame = 1
+
+	power = -5
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 5
+		}
+	}
+	ship_behavior = "hrb_escort"
+	class_restriction = { shipclass_military }
+
+	size_restriction = {
+		oriondestroyer
+	}
+	
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_ESCORT_BASIC_ORIONCORVETTE"
+	
+	ship_modifier = {
+		ship_shield_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_ORIONCORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_interceptor"
+	icon_frame = 1
+
+	power = -5
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 5
+		}
+	}
+	ship_behavior = "hrb_interceptor"
+	class_restriction = { shipclass_military }
+
+	size_restriction = {
+		orioncorvette
+		oriondestroyer
+		orionbattleship
+	}
+
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_INTERCEPTOR_BASIC"
+
+	ship_modifier = {
+		ship_speed_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ESCORT_BASIC_ORIONCORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_escort"
+	icon_frame = 1
+
+	power = -10
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+		}
+	}
+	ship_behavior = "hrb_escort"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+
+	size_restriction = {
+		orioncorvette
+		oriondestroyer
+		orionbattleship
+	}
+	
+	component_set = "combat_computers"
+
+	ship_modifier = {
+		ship_fire_rate_mult = 0.10
+		ship_shield_mult = 0.20
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_INTERCEPTOR_BASIC_ORIONCORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_interceptor"
+	icon_frame = 1
+
+	power = -10
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 10
+		}
+	}
+	ship_behavior = "hrb_interceptor"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+	
+	size_restriction = {
+		orioncorvette
+		oriondestroyer
+		orionbattleship
+	}
+	
+	component_set = "combat_computers"
+
+	ship_modifier = {
+		ship_fire_rate_mult = 0.10
+		ship_speed_mult = 0.20
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}

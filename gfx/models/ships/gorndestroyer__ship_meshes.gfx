@@ -1,0 +1,27 @@
+objectTypes = {
+	pdxmesh = {
+		name="gorndestroyer_ship_mesh"
+		file = "gfx/models/ships/molluscoid_01/molluscoid_01_corvette_frame.mesh"
+
+		animation = { id = "idle"				type = "molluscoid_01_corvette_frame_idle_animation" }
+		animation = { id = "death"				type = "molluscoid_01_corvette_frame_death_animation" }		
+		
+		scale = 1.8
+	}
+}
+
+objectTypes = {
+	pdxmesh = {
+		name = "gorndestroyer_slots_mesh"
+		file = "gfx/models/ships/arthropoid_01/arthropoid_01_corvette_M1S1.mesh"
+
+		animation = { id = "idle"				type = "arthropoid_01_corvette_M1S1_idle_animation" }
+		animation = { id = "death"				type = "arthropoid_01_corvette_M1S1_death_animation" }
+		
+		scale = 1.8
+		
+		meshsettings = {
+			shader = "PdxMeshShip"
+		}
+	}
+}

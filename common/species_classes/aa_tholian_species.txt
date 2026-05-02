@@ -1,0 +1,19 @@
+AATHOLIAN = {
+	archetype = BIOLOGICAL
+
+	portraits = {
+		"lith11"
+		"lith13"
+	}
+
+	# These should not be used for randomly generated species
+	non_randomized_portraits = {
+		"lith11"
+		"lith13"
+    }
+
+	graphical_culture = tholian_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+
+	resources = {}
+}

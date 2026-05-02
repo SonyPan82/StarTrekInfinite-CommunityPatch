@@ -1,0 +1,15 @@
+version="1"
+tags={
+	"Ships"
+	"Scripting"
+	"Events"
+	"Economy"
+	"Diplomacy"
+	"Planets"
+	"Romulan"
+	"UI"
+}
+name="Community Patch 2026"
+picture="thumbnail.png"
+supported_version="1.0.7"
+remote_file_id="3717921693"

@@ -1,0 +1,24 @@
+# BREEN
+civic_breen_slavedrivers = {	
+	potential = {
+		always = no
+	}
+	description = "civic_breen_slavers_effect_desc"
+
+	modifier = {
+		planet_crime_mult = -0.25
+		planet_jobs_slave_produces_mult = 0.2
+		planet_jobs_ruler_produces_mult = -0.05
+	}
+}
+
+civic_breen_exploitation = {
+	potential = {
+		always = no
+	}
+	description = "civic_breen_exploitation_effect_desc"
+
+	modifier = {
+		station_gatherers_produces_mult = 0.5
+	}
+}

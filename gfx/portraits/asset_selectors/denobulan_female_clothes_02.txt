@@ -1,0 +1,56 @@
+# This is a template which multiple species can use. 
+
+denobulan_female_clothes_02 = {
+	default = "gfx/models/portraits/cardassian/outfits/cardassian_m_female_captain.dds"
+	
+	game_setup = {#will run with a limited country scope. species and government is set but the country does not actually exist
+		default = "gfx/models/portraits/cardassian/outfits/cardassian_m_female_captain.dds"
+	}
+	
+	#species scope
+	species = { #generic portrait for a species
+		default = "gfx/models/portraits/cardassian/outfits/cardassian_m_female_popworker.dds"
+	}
+	
+	#pop scope
+	pop = { #for a specific pop
+		default = "gfx/models/portraits/cardassian/outfits/cardassian_m_female_popworker.dds"
+		
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_popworker.dds" 	= { OR = { is_pop_category = worker is_pop_category = slave is_pop_category = simple_drone }  }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_popspecialist.dds" 	= { OR = { is_pop_category = specialist is_pop_category = complex_drone } }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_popruler.dds" 	= { is_pop_category = ruler }
+	}
+	#leader scope
+	leader = { #scientists, generals, admirals, governor
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_admiral.dds" = { leader_class = admiral }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_captain.dds" = { leader_class = general }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_scientist.dds" = { leader_class = scientist }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_envoy.dds" = { leader_class = envoy }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_general.dds" = { leader_class = general }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_governor.dds" = { leader_class = governor }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_spy.dds" = { leader_class = spy }
+	}
+
+	#leader scope 
+	ruler = { #for rulers
+		default = "gfx/models/portraits/cardassian/outfits/cardassian_m_female_ruler.dds"
+
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_ruler.dds" = { owner = { has_generic_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_ruler.dds" = { owner = { has_militarist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_ruler.dds" = { owner = { has_spiritualist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_ruler.dds" = { owner = { has_pacifist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_ruler.dds" = { owner = { has_primitive_government = yes  NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_ruler.dds" = { owner = { has_materialist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/cardassian/outfits/cardassian_m_female_ruler.dds" = { owner = { has_authority = auth_imperial } }
+	}
+}
+
+denobulan_female_hair_1 = { 
+	default = "gfx/models/portraits/cardassian/cardassian_female_hair01.dds"
+	
+	ruler = {
+	default = "gfx/models/portraits/cardassian/cardassian_female_hair01.dds"
+	
+		"gfx/models/portraits/cardassian/cardassian_female_hair01.dds" = { owner = { has_militarist_government = yes } }
+	}
+}

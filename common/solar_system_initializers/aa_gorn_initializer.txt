@@ -1,0 +1,330 @@
+galdonterre_system_initializer = {
+	name = "Galdonterre"
+	class = "rl_all_stars"
+	flags = { gorn_system }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+		
+		init_effect = {
+			change_pc = pc_k_star
+		}
+	}
+	
+	change_orbit = 30
+	
+	planet = {
+		count = 1
+		orbit_distance = 12
+		size = 4
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 10
+		size = 5
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 30
+		size = 9
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_desert
+		subclass = psc_class_l
+		home_planet = no
+	}
+	
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:gorn_country
+		}
+	}
+}
+
+cestus_system_initializer = {
+	name = "Cestus"
+	class = "rl_all_stars"
+	flags = { gorn_system }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+		
+		init_effect = {
+			change_pc = pc_k_star
+		}
+	}
+	
+	change_orbit = 30
+	
+	planet = {
+		count = 1
+		orbit_distance = 12
+		size = 4
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_barren
+		home_planet = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 10
+		size = 5
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_barren_cold
+		home_planet = no
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 30
+		size = 13
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_arid
+		subclass = psc_class_m
+		home_planet = no
+	}
+	
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:gorn_country
+		}
+	}
+}
+
+finibus_system_initializer = {
+	name = "Finibus"
+	class = "rl_all_stars"
+	flags = { gorn_system }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+		
+		init_effect = {
+			change_pc = pc_black_hole
+		}
+	}
+	
+	change_orbit = 30
+	
+	planet = {
+		count = 1
+		orbit_distance = 12
+		size = 4
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 10
+		size = 5
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+	
+	planet = {
+		name = "Finibus III"
+		count = 1
+		orbit_distance = 30
+		size = 12
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_continental
+		subclass = psc_class_m
+		home_planet = no
+	}
+	
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:gorn_country
+		}
+	}
+}
+
+gorn_system_initializer = {
+	name = "Tau Lacertae"
+	class = "rl_all_stars"
+	flags = { gornus gornia gorn_system gorn_home_system capital }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+		
+		init_effect = {
+			change_pc = pc_k_star
+		}
+	}
+	
+	change_orbit = 30
+	
+	planet = {
+		count = 1
+		orbit_distance = 12
+		size = 4
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 10
+		size = 5
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		name = "Gornar"
+		count = 1
+		class = pc_tropical
+		subclass = psc_class_m
+		size = 18
+		orbit_distance = 18
+		home_planet = yes
+		flags = { mapo_colony gorn_capital }
+		
+		init_effect = {
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = home_planet
+				days = -1
+			}
+			if = {
+				limit = {
+					NOT = { has_built_species = "Gorn" }
+				}
+		
+				create_species = {
+					class = "AAGORN"
+					portrait = "rep14"
+					name = "Gorn"
+					plural = "Gorn"
+					adjective = "Gorn"
+					name_list = "REP2"
+					traits = {
+						trait = "trait_strong" 
+						trait = "trait_militaristic_life"
+						trait = "trait_combative_acamarian"
+					}
+				}
+			}
+
+			create_country = {
+				species = "Gorn"
+				country_id = "gorn"
+				type = contender
+				contact_rule = always
+				ship_prefix = "GHS"
+				name_list = "REP2"
+				authority = auth_dictatorial_gorn
+				civics = { civic = civic_gorn_predatory }
+				civics = { civic = civic_gorn_supremacy }
+				origin = "origin_default"
+				flag = {
+					icon= {
+						category = "emblem"
+						file = "flag_gorn.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors={
+						"black"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				ethos = {
+					ethic = ethic_fanatic_militarist
+					ethic = ethic_xenophobe
+				}
+				ignore_initial_colony_error = yes				
+			}
+			last_created_country = {
+				set_name = "Gorn Hegemony"
+				set_graphical_culture = gorn_01
+				save_global_event_target_as = gorn_country
+				set_country_flag = gorn
+				set_country_flag = gorn_empire
+				set_custom_capital_location = prev
+
+				create_leader = {
+					class = ruler
+					species = this
+					name = random
+					skill = 4
+				}
+				set_leader = last_created_leader
+			}
+		}
+		
+		late_init_effect = {
+			create_colony = {
+				owner = event_target:gorn_country
+			}
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 25
+		size = 12
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_tropical
+		subclass = psc_class_m
+		home_planet = no
+	}
+	
+	init_effect = {
+		generate_home_system_resources = yes
+		every_country = {
+			if = {
+				limit = {
+					has_country_flag = gorn
+				}
+				save_global_event_target_as = gorn_country
+			}
+		}
+	}
+
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:gorn_country
+		}
+	}
+}

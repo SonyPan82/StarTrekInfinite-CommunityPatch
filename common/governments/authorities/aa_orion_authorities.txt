@@ -1,0 +1,36 @@
+auth_dictatorial_orion = {
+	icon = "gfx/interface/icons/governments/authorities/auth_dictatorial.dds"
+	has_heir = yes
+	has_agendas = yes
+
+	possible = {
+		ethics = {
+			NOR = {
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+			}
+		}
+	}
+
+	country_modifier = {
+		trade_value_mult = 0.2
+	}
+
+	potential = {
+		country_id = {
+			NOT = {
+				value = "ufop"
+				value = "romulan"
+				value = "cardassian"
+				value = "klingon"
+				value = "breen"
+				value = "gorn"
+				value = "tholian"
+			}
+		}
+	}
+
+	tags = {
+		AUTHORITY_HAS_HEIR
+	}
+}

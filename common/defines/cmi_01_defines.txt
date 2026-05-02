@@ -1,0 +1,4 @@
+NGameplay = 
+{	
+		UFOP_ASSIMILATION_LIKENESS_BASE = 3.0
+}

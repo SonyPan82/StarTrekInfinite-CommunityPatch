@@ -1,0 +1,855 @@
+# Icons set here are the ones show in the actual slot. The reason is so that we can support different icons for different sizes. 
+
+#Updated Range on these
+
+# DEFAULT VALUES:
+# is_missile = no
+# is_beam = no
+# is_point_defence = no
+
+@missile_speed = 5
+
+# ####################
+#  Missiles
+# ####################
+
+# ### Missile Launcher
+# weapon_component_template = {
+# 	key = "MISSILE_1"
+# 	#size = torpedo # HRB_TODO: Components Rework
+# 	size = small  
+	
+# 	icon = "GFX_ship_part_missile_1"
+# 	icon_frame = 1
+# 	type = missile
+	
+# 	prerequisites = { "tech_missiles_1" }
+# 	component_set = "MISSILE_1"
+# 	projectile_gfx = "small_missile"
+# 	tags = { weapon_type_explosive }
+# 	ai_tags = { weapon_role_artillery }
+# 	ai_tag_weight = 0
+# 	upgrades_to = "MISSILE_2"
+# 	resources = {
+# 		category = ship_components
+# 		cost = {
+# 			alloys = @m_t1_cost
+# 		}
+# 		upkeep = {
+# 			trigger = {
+# 				exists = FROM
+# 				FROM = { NOT = { has_country_id = romulan } }
+# 			}
+# 			deuterium = @m_t1_upkeep_deuterium
+# 		}
+# 		upkeep = {
+# 			alloys = @m_t1_upkeep_alloys
+# 		}
+# 	}
+# }
+
+# ### Missile Launcher
+
+# ### Advanced Missile Launcher
+# weapon_component_template = {
+# 	key = "MISSILE_2"
+# 	#size = torpedo # HRB_TODO: Components Rework
+# 	size = small
+	
+# 	icon = "GFX_ship_part_missile_2"
+# 	icon_frame = 1
+# 	type = missile
+	
+# 	prerequisites = { "tech_missiles_2" }
+# 	component_set = "MISSILE_2"
+# 	projectile_gfx = "small_missile"
+# 	tags = { weapon_type_explosive }
+# 	ai_tags = { weapon_role_artillery }
+# 	ai_tag_weight = 0
+# 	upgrades_to = "MISSILE_3"
+# 	resources = {
+# 		category = ship_components
+# 		cost = {
+# 			alloys = @m_t2_cost
+# 		}
+# 		upkeep = {
+# 			trigger = {
+# 				exists = FROM
+# 				FROM = { NOT = { has_country_id = romulan } }
+# 			}
+# 			deuterium = @m_t2_upkeep_deuterium
+# 		}
+# 		upkeep = {
+# 			alloys = @m_t2_upkeep_alloys
+# 		}
+# 	}
+# }
+
+# ### Strike Missile Launcher
+# weapon_component_template = {
+# 	key = "MISSILE_3"
+# 	#size = torpedo # HRB_TODO: Components Rework
+# 	size = small
+	
+# 	icon = "GFX_ship_part_missile_3"
+# 	icon_frame = 1
+# 	type = missile
+	
+# 	prerequisites = { "tech_missiles_3" }
+# 	component_set = "MISSILE_3"
+# 	projectile_gfx = "small_missile"
+# 	tags = { weapon_type_explosive }
+# 	ai_tags = { weapon_role_artillery }
+# 	ai_tag_weight = 0
+# 	upgrades_to = "MISSILE_4"
+# 	resources = {
+# 		category = ship_components
+# 		cost = {
+# 			alloys = @m_t3_cost
+# 		}
+# 		upkeep = {
+# 			trigger = {
+# 				exists = FROM
+# 				FROM = { NOT = { has_country_id = romulan } }
+# 			}
+# 			deuterium = @m_t3_upkeep_deuterium
+# 		}
+# 		upkeep = {
+# 			alloys = @m_t3_upkeep_alloys
+# 		}
+# 	}
+# }
+
+# ### Heavy Missile Launcher
+# weapon_component_template = {
+# 	key = "MISSILE_4"
+# 	#size = torpedo # HRB_TODO: Components Rework
+# 	size = small
+	
+# 	icon = "GFX_ship_part_missile_4"
+# 	icon_frame = 1
+# 	type = missile
+	
+# 	prerequisites = { "tech_missiles_4" }
+# 	component_set = "MISSILE_4"
+# 	projectile_gfx = "small_missile"
+# 	tags = { weapon_type_explosive }
+# 	ai_tags = { weapon_role_artillery }
+# 	ai_tag_weight = 0
+# 	upgrades_to = "MISSILE_5"
+# 	resources = {
+# 		category = ship_components
+# 		cost = {
+# 			alloys = @m_t4_cost
+# 			tetryons = @m_t4_rare
+# 		}
+# 		upkeep = {
+# 			trigger = {
+# 				exists = FROM
+# 				FROM = { NOT = { has_country_id = romulan } }
+# 			}
+# 			deuterium = @m_t4_upkeep_deuterium
+# 		}
+# 		upkeep = {
+# 			alloys = @m_t4_upkeep_alloys
+# 		}
+# 	}
+
+# 	ai_weight = {
+# 		weight = 1
+# 		modifier = {
+# 			factor = 0.0
+# 			no_resource_for_component = { RESOURCE = tetryons }
+# 		}
+# 	}
+# }
+
+# ### Advanced Heavy Missile Launcher
+# weapon_component_template = {
+# 	key = "MISSILE_5"
+# 	#size = torpedo # HRB_TODO: Components Rework
+# 	size = small
+	
+# 	icon = "GFX_ship_part_missile_5"
+# 	icon_frame = 1
+# 	type = missile
+	
+# 	prerequisites = { "tech_missiles_5" }
+# 	component_set = "MISSILE_5"
+# 	projectile_gfx = "small_missile"
+# 	tags = { weapon_type_explosive }
+# 	ai_tags = { weapon_role_artillery }
+# 	ai_tag_weight = 0
+# 	resources = {
+# 		category = ship_components
+# 		cost = {
+# 			alloys = @m_t5_cost
+# 			tetryons = @m_t5_rare
+# 		}
+# 		upkeep = {
+# 			trigger = {
+# 				exists = FROM
+# 				FROM = { NOT = { has_country_id = romulan } }
+# 			}
+# 			deuterium = @m_t5_upkeep_deuterium
+# 		}
+# 		upkeep = {
+# 			alloys = @m_t5_upkeep_alloys
+# 		}
+# 	}
+
+# 	ai_weight = {
+# 		weight = 1
+# 		modifier = {
+# 			factor = 0.0
+# 			no_resource_for_component = { RESOURCE = tetryons }
+# 		}
+# 	}
+# }
+
+# ####################
+#  	Swarmer Missiles
+# ####################
+
+### Swarmer Missile Launcher
+weapon_component_template = {
+	key = "PHOTON_TORPEDOES"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = small
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_photon_torpedoes"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_torpedo_1" }
+	component_set = "PHOTON_TORPEDOES"
+	projectile_gfx = "photon_torpedoes_s"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_artillery }
+	ai_tag_weight = 0
+	upgrades_to = "QUANTUM_TORPEDOES"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t3_cost
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t3_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t3_upkeep_alloys
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "MEDIUM_PHOTON_TORPEDOES_1"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = medium
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_photon_torpedoes"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_torpedo_1" }
+	component_set = "PHOTON_TORPEDOES"
+	projectile_gfx = "photon_torpedoes_m"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_artillery }
+	ai_tag_weight = 0
+	upgrades_to = "MEDIUM_PHOTON_TORPEDOES_2"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t3_cost
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t3_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t3_upkeep_alloys
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "LARGE_PHOTON_TORPEDOES_1"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = large
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_photon_torpedoes"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_torpedo_1" }
+	component_set = "PHOTON_TORPEDOES"
+	projectile_gfx = "photon_torpedoes_l"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_artillery }
+	ai_tag_weight = 0
+	upgrades_to = "LARGE_PHOTON_TORPEDOES_2"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t3_cost
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t3_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t3_upkeep_alloys
+		}
+	}
+}
+
+### Advanced Swarmer Missile Launcher
+weapon_component_template = {
+	key = "QUANTUM_TORPEDOES"
+	size = small
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_quantum_torpedoes"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_torpedo_2" }
+	component_set = "QUANTUM_TORPEDOES"
+	projectile_gfx = "quantum_torpedoes_s"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_artillery }
+	ai_tag_weight = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t5_cost
+			tetryons = @m_t5_rare
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t5_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t5_upkeep_alloys
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = tetryons }
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "MEDIUM_PHOTON_TORPEDOES_2"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = medium
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_quantum_torpedoes"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_torpedo_2" }
+	component_set = "QUANTUM_TORPEDOES"
+	projectile_gfx = "quantum_torpedoes_m"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_artillery }
+	ai_tag_weight = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t5_cost
+			tetryons = @m_t5_rare
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t5_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t5_upkeep_alloys
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "LARGE_PHOTON_TORPEDOES_2"
+	size = large
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_quantum_torpedoes"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_torpedo_2" }
+	component_set = "QUANTUM_TORPEDOES"
+	projectile_gfx = "quantum_torpedoes_l"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_artillery }
+	ai_tag_weight = 0
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t5_cost
+			tetryons = @m_t5_rare
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t5_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t5_upkeep_alloys
+		}
+	}
+}
+
+# ####################
+# Torpedos
+# ####################
+
+### Plasma Charge
+weapon_component_template = {
+	key = "PLASMA_CHARGE"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = small
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_plasma_charge"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_big_bomb_1" }
+	component_set = "PLASMA_CHARGE"
+	projectile_gfx = "plasma_charge_t1_s"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_anti_shield }
+	upgrades_to = "VARUVIAN_BOMBS"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t3_cost
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t3_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t3_upkeep_alloys
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "MEDIUM_PLASMA_CHARGE"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = medium
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_plasma_charge"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_big_bomb_1" }
+	component_set = "PLASMA_CHARGE"
+	projectile_gfx = "plasma_charge_t1_m"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_anti_shield }
+	upgrades_to = "MEDIUM_VARUVIAN_BOMBS"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t3_cost
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t3_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t3_upkeep_alloys
+		}
+	}
+}
+
+### Armored Torpedoes
+weapon_component_template = {
+	key = "VARUVIAN_BOMBS"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = small
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_varuavian_bombs"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_big_bomb_2" }
+	component_set = "VARUVIAN_BOMBS"
+	projectile_gfx = "plasma_charge_t2_s"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_anti_shield }
+	upgrades_to = "TRICOBALT_MINES"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t4_cost
+			tetryons = @m_t4_rare
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t4_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t4_upkeep_alloys
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = tetryons }
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "MEDIUM_VARUVIAN_BOMBS"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = medium
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_varuavian_bombs"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_big_bomb_2" }
+	component_set = "VARUVIAN_BOMBS"
+	projectile_gfx = "plasma_charge_t2_m"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_anti_shield }
+	upgrades_to = "MEDIUM_TRICOBALT_MINES"
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t4_cost
+			tetryons = @m_t4_rare
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t4_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t4_upkeep_alloys
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = tetryons }
+		}
+	}
+}
+
+### Devastator Torpedoes
+weapon_component_template = {
+	key = "TRICOBALT_MINES"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = small
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_tricobalt_mines"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_big_bomb_3" }
+	component_set = "TRICOBALT_MINES"
+	projectile_gfx = "plasma_charge_t3_s"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_anti_shield }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t5_cost
+			tetryons = @m_t5_rare
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t5_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t5_upkeep_alloys
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = tetryons }
+		}
+	}
+}
+
+weapon_component_template = {
+	key = "MEDIUM_TRICOBALT_MINES"
+	#size = torpedo # HRB_TODO: Components Rework
+	size = medium
+	entity = "invisible_turret_entity"
+	
+	icon = "GFX_ship_weapon_tricobalt_mines"
+	icon_frame = 1
+	type = missile
+	
+	prerequisites = { "tech_big_bomb_3" }
+	component_set = "TRICOBALT_MINES"
+	projectile_gfx = "plasma_charge_t3_m"
+	tags = { weapon_type_explosive }
+	ai_tags = { weapon_role_anti_shield }
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @m_t5_cost
+			tetryons = @m_t5_rare
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @m_t5_upkeep_deuterium
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = @m_t5_upkeep_alloys
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0.0
+			no_resource_for_component = { RESOURCE = tetryons }
+		}
+	}
+}

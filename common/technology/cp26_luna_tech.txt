@@ -1,0 +1,55 @@
+tech_luna_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_ufop = yes
+		}
+		title = tech_luna
+		desc = tech_luna_desc
+		icon = tech_galaxy
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_LUNA_CONSTRUCTION_TITLE
+				desc = tech_luna_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1
+			years_passed < 12
+		}
+		modifier = {
+			factor = 8
+			years_passed > 13
+		}
+		modifier = {
+			factor = 5
+			any_neighbor_country = {
+				has_technology = tech_cruiser_unlock
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}

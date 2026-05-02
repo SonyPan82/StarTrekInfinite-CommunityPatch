@@ -1,0 +1,360 @@
+namespace = aa_tholian_game_start
+
+event = {
+	id = aa_tholian_game_start.110
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				has_star_flag = tholian_anchor
+			}
+			spawn_tholian_system = yes
+			last_created_system = {
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+				setup_tholian_capital = yes
+				spawn_berellium_system = yes
+			}
+			last_created_system = {
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+				setup_tholian_territory = yes
+				every_neighbor_system = {
+					limit = { is_not_used_space = yes }	
+					setup_tholian_territory = yes				
+				}
+			}			
+		}
+		
+		every_system = {
+			limit = {
+				has_star_flag = tholian_anchor
+			}
+			setup_tholian_territory = yes	
+		}
+
+		if = {
+			limit = { not = { exists = event_target:tholian_country }}			
+			every_system = {
+				limit = {
+					exists = space_owner
+					or = {
+						is_inside_border = event_target:ufop_country
+						is_inside_border = event_target:betazoid_country
+					}
+				}
+				every_neighbor_system = {
+					limit = { is_not_used_space = yes }
+					set_star_flag = sf_tholiancandidate1
+					set_star_flag = sf_tholiancandidatex
+				}
+			}
+			every_system = {
+				limit = {
+					exists = space_owner
+					or = {
+						is_inside_border = event_target:cardassian_country
+						is_inside_border = event_target:bajoran_country
+					}
+				}
+				every_neighbor_system = {
+					limit = { is_not_used_space = yes }
+					set_star_flag = sf_tholiancandidate2
+					set_star_flag = sf_tholiancandidatex
+				}
+			}
+			# Need more candidates
+			random_system = {
+				limit = {
+					has_star_flag = sf_tholiancandidate2
+					has_star_flag = sf_tholiancandidate1
+				}
+				spawn_close_system = yes	
+				last_created_system = {
+					set_star_flag = sf_tholiancandidate2
+				}				
+			}
+			random_system = {
+				limit = {
+					has_star_flag = sf_tholiancandidate2
+					has_star_flag = sf_tholiancandidate1
+				}
+				spawn_close_system = yes	
+				last_created_system = {
+					set_star_flag = sf_tholiancandidate1
+				}				
+			}
+			
+			every_system = {
+				limit = {
+					is_inside_border = event_target:bajoran_country
+				}
+				while = {
+					count = 2
+					random_neighbor_system = {
+						limit = { is_not_used_space = yes }
+						spawn_mid_system = yes	
+						last_created_system = {
+							set_star_flag = sf_tholiancandidate2
+							set_star_flag = sf_tholiancandidatex
+						}
+					}
+					random_neighbor_system = {
+						limit = { is_not_used_space = yes }
+						spawn_close_system = yes	
+						last_created_system = {
+							set_star_flag = sf_tholiancandidate2
+							set_star_flag = sf_tholiancandidatex
+						}
+					}
+				}
+			}
+			
+			every_system = {
+				limit = {
+					has_star_flag = sf_tholiancandidate1
+				}
+				every_neighbor_system = {
+					limit = { is_not_used_space = yes }
+					set_star_flag = sf_tholiancandidate3
+					set_star_flag = sf_tholiancandidatex
+				}
+			}
+			
+			every_system = {
+				limit = {
+					has_star_flag = sf_tholiancandidate2
+				}
+				every_neighbor_system = {
+					limit = { is_not_used_space = yes }
+					set_star_flag = sf_tholiancandidate4
+					set_star_flag = sf_tholiancandidatex
+				}
+			}
+			
+			random_system = {
+				limit = {
+					has_star_flag = sf_tholiancandidate3
+					has_star_flag = sf_tholiancandidate4
+					not = { has_star_flag = sf_tholiancandidate2 }
+					not = { has_star_flag = sf_tholiancandidate1 }
+				}
+				spawn_tholian_system = yes
+				last_created_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+					setup_tholian_capital = yes
+					spawn_berellium_system = yes
+				}
+				last_created_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+					setup_tholian_territory = yes
+				}
+				spawn_mid_system = yes	
+				last_created_system = {
+					setup_tholian_territory = yes
+				}
+				spawn_close_system = yes
+				last_created_system = {
+					setup_tholian_territory = yes				
+				}				
+				random_neighbor_system = {
+					limit = {
+						not = { has_star_flag = sf_tholiancandidate1 }
+						not = { has_star_flag = sf_tholiancandidate2 }
+						is_not_used_space = yes
+					}	
+					setup_tholian_territory = yes				
+				}
+				random_neighbor_system = {
+					limit = {
+						not = { has_star_flag = sf_tholiancandidatex }	
+						is_not_used_space = yes				
+					}
+					setup_tholian_territory = yes
+					spawn_close_system = yes
+					last_created_system = {
+						setup_tholian_territory = yes
+						random_neighbor_system = {
+							limit = {
+								not = { has_star_flag = sf_tholiancandidatex }	
+								is_not_used_space = yes						
+							}
+							spawn_mid_system = yes
+							last_created_system = {
+								setup_tholian_territory = yes
+							}
+						}
+					}		
+				}
+			}
+		}
+
+		### No Tholians? Try again ###
+		if = {
+			limit = { not = { exists = event_target:tholian_country }}	
+			random_system = {
+				limit = {
+					or = {
+						and = {
+							has_star_flag = sf_tholiancandidate3
+							has_star_flag = sf_tholiancandidate4
+						}
+						and = {
+							has_star_flag = sf_tholiancandidate1
+							has_star_flag = sf_tholiancandidate2
+						}
+						and = {
+							has_star_flag = sf_tholiancandidate1
+							has_star_flag = sf_tholiancandidate3
+						}
+						and = {
+							has_star_flag = sf_tholiancandidate2
+							has_star_flag = sf_tholiancandidate4
+						}
+					}
+					not = { has_star_flag = sf_tholiancandidatex }
+				}
+				spawn_tholian_system = yes
+				last_created_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+					setup_tholian_capital = yes
+					spawn_berellium_system = yes
+				}
+				last_created_system = {
+					setup_tholian_territory = yes
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+				}
+				spawn_mid_system = yes	
+				last_created_system = {
+					setup_tholian_territory = yes
+				}
+				spawn_close_system = yes
+				last_created_system = {
+					setup_tholian_territory = yes				
+				}				
+				random_neighbor_system = {
+					limit = {
+						not = { has_star_flag = sf_tholiancandidate1 }
+						not = { has_star_flag = sf_tholiancandidate2 }
+						is_not_used_space = yes
+					}	
+					setup_tholian_territory = yes				
+				}
+				random_neighbor_system = {
+					limit = {
+						not = { has_star_flag = sf_tholiancandidatex }	
+						is_not_used_space = yes				
+					}
+					setup_tholian_territory = yes
+					spawn_close_system = yes
+					last_created_system = {
+						setup_tholian_territory = yes
+						random_neighbor_system = {
+							limit = {
+								not = { has_star_flag = sf_tholiancandidatex }	
+								is_not_used_space = yes						
+							}
+							spawn_mid_system = yes
+							last_created_system = {
+								setup_tholian_territory = yes
+							}
+						}
+					}		
+				}
+			}
+		}
+		
+		every_country = {
+			limit = { is_major = yes }
+			establish_contact = { who = event_target:tholian_country hidden = yes }
+			establish_communications_no_message = event_target:tholian_country
+		}
+
+		event_target:cardassian_country = {
+			add_intel = { amount = 35 who = event_target:tholian_country }
+		}		
+		event_target:ufop_country = {
+			add_intel = { amount = 35 who = event_target:tholian_country }
+		}
+
+		event_target:tholian_country = {
+			set_adjective = "Tholian"
+			set_policy = { 
+				policy = diplomatic_stance
+				option = diplo_stance_feisty
+				cooldown = yes
+			}
+				give_technology = { tech = tech_reactor_1 message = no }
+				give_technology = { tech = tech_reactor_2 message = no }
+				give_technology = { tech = tech_destroyer_unlock message = no }
+				give_technology = { tech = tech_cruiser_unlock message = no }
+				establish_contact = { who = event_target:ufop_country hidden = yes }
+			establish_communications_no_message = event_target:ufop_country
+			establish_contact = { who = event_target:cardassian_country hidden = yes }
+			establish_communications_no_message = event_target:cardassian_country
+			establish_contact = { who = event_target:romulan_country hidden = yes }
+			establish_communications_no_message = event_target:romulan_country
+			establish_contact = { who = event_target:klingon_country hidden = yes }
+			establish_communications_no_message = event_target:klingon_country
+			set_truce = {
+				target = event_target:ufop_country
+				type = none
+				start_date = 2345.06.03
+			}		
+			add_opinion_modifier = {
+				who = event_target:ufop_country
+				modifier = opinion_insult
+			}
+			every_planet_within_border = {
+				limit = {
+					has_deposit_for = shipclass_mining_station
+					has_mining_station = no
+				}
+				create_mining_station = {
+					owner = event_target:tholian_country
+				}
+			}
+			
+			create_civilian_fleet = yes
+
+			# Military
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							random_existing_design = tholiancorvette
+							initial_officers_perc = 0.4
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							random_existing_design = tholiandestroyer
+							initial_officers_perc = 0.15
+						}
+					}
+					create_ship = {
+						name = random
+						random_existing_design = tholianbattleship
+						initial_officers_perc = 0.1
+					}
+					
+					set_location = prev.capital_star
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,60 @@
+###########################################
+### Lantree ###
+###########################################
+
+@ufop_section_cost = 0
+
+################################################
+# This section template is for test ships only
+################################################
+
+
+ship_section_template = {
+	key = "LANTREE_MID"
+	ship_size = lantree
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "lantree_slots_entity"
+	icon = "GFX_ship_part_core_mid"
+	
+	prerequisites = { tech_big_bomb_1 }
+	
+	ai_weight = {
+		modifier = {
+			factor = 10.0
+			is_preferred_weapons = weapon_type_explosive
+		}
+		modifier = {
+			factor = 0.1
+			NOT = { is_preferred_weapons = weapon_type_explosive }
+		}		
+	}
+	
+	component_slot = {
+		name = "MEDIUM_GUN_01"
+		template = "invisible_medium_turret"
+		locatorname = "small_gun_01"
+	}
+	
+	component_slot = {
+		name = "MEDIUM_GUN_02"
+		template = "invisible_medium_turret"
+		locatorname = "small_gun_02"
+	}
+	
+	component_slot = {
+		name = "SMALL_GUN_01"
+		template = "invisible_small_turret"
+		locatorname = "small_gun_03"
+	}
+
+	small_utility_slots = 3
+	aux_utility_slots = 1
+	
+	resources = {
+		category = ship_sections
+		cost = {
+			alloys = @ufop_section_cost
+		}
+	}
+}

@@ -1,0 +1,197 @@
+##############################################################
+###	PORTRAITS SETTINGS
+###
+### Which portraits are used is set in 
+### common\species_classes\00_species_classes.txt
+###
+###	This file configures how portraits and planet backgrounds are built.
+###	Default position orientation is lower left.
+##############################################################
+
+portraits = {
+
+	# denobulan
+	denobulan_female_01 = {	entity = "portrait_denobulan_female_01_entity"	clothes_selector = "denobulan_female_clothes_04" hair_selector = "denobulan_female_hair_01"	greeting_sound = "denobulan_female_greetings_01"
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_female_body01.dds"
+		}
+	}
+	denobulan_female_02 = {	entity = "portrait_denobulan_female_02_entity"	clothes_selector = "denobulan_female_clothes_04" hair_selector = "denobulan_female_hair_02"	greeting_sound = "denobulan_female_greetings_01"
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_female_body02.dds"
+		}
+	}
+	denobulan_female_03 = {	entity = "portrait_denobulan_female_03_entity"	clothes_selector = "denobulan_female_clothes_04" hair_selector = "denobulan_female_hair_03"	greeting_sound = "denobulan_female_greetings_01"
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_female_body03.dds"
+		}
+	}
+	denobulan_female_04 = {	entity = "portrait_denobulan_female_04_entity"	clothes_selector = "denobulan_female_clothes_04" 	hair_selector = "denobulan_female_hair_04"	greeting_sound = "denobulan_female_greetings_01"
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_female_body04.dds"
+		}
+	}
+	denobulan_female_05 = {	entity = "portrait_denobulan_female_05_entity"	clothes_selector = "denobulan_female_clothes_04" 	hair_selector = "denobulan_female_hair_05"	greeting_sound = "denobulan_female_greetings_01"
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_female_body05.dds"
+		}
+	}
+	denobulan_male_01 = {	entity = "portrait_denobulan_male_01_entity"	clothes_selector = "denobulan_male_clothes_04" hair_selector = "no_texture"	greeting_sound = "denobulan_male_greetings_01" 
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_male_body01.dds"
+		}
+	}
+	denobulan_male_02 = {	entity = "portrait_denobulan_male_02_entity"	clothes_selector = "denobulan_male_clothes_04" hair_selector = "no_texture"	greeting_sound = "denobulan_male_greetings_01" 
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_male_body02.dds"
+		}
+	}
+	denobulan_male_03 = {	entity = "portrait_denobulan_male_03_entity"	clothes_selector = "denobulan_male_clothes_04" hair_selector = "denobulan_male_hair_03"	greeting_sound = "denobulan_male_greetings_01" 
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_male_body03.dds"
+		}
+	}
+	denobulan_male_04 = {	entity = "portrait_denobulan_male_04_entity"	clothes_selector = "denobulan_male_clothes_04" 	hair_selector = "no_texture"	greeting_sound = "denobulan_male_greetings_01" 
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_male_body04.dds"
+		}
+	}
+	denobulan_male_05 = {	entity = "portrait_denobulan_male_05_entity"	clothes_selector = "denobulan_male_clothes_04" 	hair_selector = "denobulan_male_hair_05"	greeting_sound = "denobulan_male_greetings_01" 
+		character_textures = {
+				"gfx/models/portraits/denobulan/denobulan_male_body05.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	denobulan = {
+		default = denobulan_male_01
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = {
+					ruler = { gender = male }
+				}
+				portraits = {
+					denobulan_male_01
+					denobulan_male_02
+					denobulan_male_03
+					denobulan_male_04
+					denobulan_male_05
+				}
+			}
+			add = {
+				trigger = {
+					ruler = { gender = female }
+				}
+				portraits = {
+					denobulan_female_01
+					denobulan_female_02
+					denobulan_female_03
+					denobulan_female_04
+					denobulan_female_05
+				}
+			}
+			#set = {
+			#	trigger = { ... }
+			#	portraits = { ... }
+			#	#using "set =" instead of "add" will first clear any portraits already added
+			#}
+		}
+		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					denobulan_female_01
+					denobulan_female_02
+					denobulan_female_03
+					denobulan_female_04
+					denobulan_female_05
+					denobulan_male_01
+					denobulan_male_02
+					denobulan_male_03
+					denobulan_male_04
+					denobulan_male_05
+				}
+			}
+		}
+		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					denobulan_female_01
+					denobulan_female_02
+					denobulan_female_03
+					denobulan_female_04
+					denobulan_female_05
+					denobulan_male_01
+					denobulan_male_02
+					denobulan_male_03
+					denobulan_male_04
+					denobulan_male_05
+
+				}
+			}
+		}
+		
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					denobulan_female_01
+					denobulan_female_02
+					denobulan_female_03
+					denobulan_female_04
+					denobulan_female_05
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					denobulan_male_01
+					denobulan_male_02
+					denobulan_male_03
+					denobulan_male_04
+					denobulan_male_05
+
+				}
+			}
+		}
+
+			
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					denobulan_female_01
+					denobulan_female_02
+					denobulan_female_03
+					denobulan_female_04
+					denobulan_female_05
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					denobulan_male_01
+					denobulan_male_02
+					denobulan_male_03
+					denobulan_male_04
+					denobulan_male_05
+
+				}
+			}
+		}
+	}
+}

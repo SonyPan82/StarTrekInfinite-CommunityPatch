@@ -1,0 +1,141 @@
+california = {
+	formation_priority = 10
+	entity = california_entity
+	max_speed = 160
+	acceleration = 0.35
+	rotation_speed = 0.3
+	collision_radius = 2.0
+	max_hitpoints = 400
+	operative_officers = 20
+	officers_escape_perc = 15
+	fleet_view_background = "military_california"
+
+	ship_modifier = {
+		ship_evasion_add = 48
+		ship_fire_rate_mult = -0.1
+		ship_shield_mult = -0.1
+		ship_shield_damage_mult = -0.1
+		ship_shield_penetration_mult = -0.1
+		ship_tracking_mult = -0.1
+	}
+
+	size_multiplier = 1
+	fleet_slot_size = 4
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+
+	is_designable = no
+	auto_upgrade = yes
+	enable_default_design = yes
+	is_civilian = yes
+	components_add_to_cost = no
+	num_target_locators = 2
+	is_space_station = no
+	base_buildtime = 60
+	can_have_federation_design = yes
+	enable_3dview_in_ship_browser = yes
+	can_also_survey = yes
+	is_california_class = yes
+	ignores_warp_range = yes
+	default_behavior = "hrb_war_bird"
+
+	prerequisites = { "tech_cp26_california_unlock" }
+
+	potential_country = {
+		has_country_id = ufop
+	}
+
+	potential_construction = {
+		owner = {
+			has_technology = tech_cp26_california_unlock
+		}
+	}
+
+	combat_disengage_chance = 1.00
+	class = shipclass_military
+	construction_type = starbase_shipyard
+
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		cost = {
+			alloys = 80
+		}
+		upkeep = {
+			deuterium = 0.2
+		}
+		upkeep = {
+			alloys = 0.2
+		}
+	}
+}
+
+california_hero = {
+	formation_priority = 10
+	entity = california_hero_entity
+	max_speed = 160
+	acceleration = 0.35
+	rotation_speed = 0.3
+	collision_radius = 2.0
+	max_hitpoints = 400
+	operative_officers = 20
+	officers_escape_perc = 15
+	fleet_view_background = "military_california"
+
+	ship_modifier = {
+		ship_evasion_add = 48
+		ship_fire_rate_mult = -0.1
+		ship_shield_mult = 0.9
+		ship_shield_damage_mult = -0.1
+		ship_shield_penetration_mult = -0.1
+		ship_tracking_mult = -0.1
+		ship_speed_mult = 1
+	}
+
+	size_multiplier = 1
+	fleet_slot_size = 4
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+
+	is_designable = no
+	enable_default_design = no
+	auto_upgrade = yes
+	is_civilian = no
+	components_add_to_cost = no
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = 12
+	base_buildtime = 60
+	can_have_federation_design = yes
+	enable_3dview_in_ship_browser = yes
+	can_also_survey = yes
+	is_destroyable = no
+	is_california_class = yes
+	ignores_warp_range = yes
+	default_behavior = "hrb_war_bird"
+
+	prerequisites = { }
+
+	potential_country = {
+		has_country_id = ufop
+	}
+
+	potential_construction = {
+		always = no
+	}
+
+	combat_disengage_chance = 1.00
+	class = shipclass_military
+	construction_type = starbase_shipyard
+
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+}

@@ -1,0 +1,2298 @@
+
+#########################
+#    SPECIAL PROJECTS   #
+#########################
+
+#########################
+# Borg Crisis Projects  #
+#########################
+
+# HRB_TODO Vertical Slice Borg Crisis content? Remove?
+
+# Scan Borg Cube
+special_project = {
+	key = "SCAN_BORG_CUBE"
+	event_chain = "borg_cube_chain"
+	cost = 0
+	days_to_research = 1 #HRB_TODO Change
+	tech_department = engineering_technology
+	picture = GFX_evt_borg_cube_shadow	#HRB_TODO_IMAGE PLACEHOLDER
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_military = 1
+	}
+	
+	on_success = {
+		OWNER = { country_event = { id = country.8025 } }
+	}
+	
+	on_fail = { }
+}
+
+### Borg Cube Assimilation
+special_project = {
+	key = "BORG_CUBE_EARTH_ASSIMILATION"
+	event_chain = "borg_cube_earth_assimilation"
+	cost = 0
+	days_to_research = 7
+	timelimit = 180
+	tech_department = engineering_technology
+	picture = GFX_evt_borg_cube	#HRB_TODO_IMAGE PLACEHOLDER
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_military = 1
+	}
+	
+	# Not used, if the Ship is destroyed the event chain ends
+	on_success = {
+	}
+	
+	on_fail = {
+		OWNER = { country_event = { id = country.8036 } }
+	}
+}
+
+#########################
+# Minor Powers Missions #
+#########################
+
+# VESSEL ADRIFT
+special_project = {
+	key = "RESCUE_MINOR_SHIP"
+	event_chain = "ship_in_peril_mission_chain"
+	cost = 0
+	days_to_research = 30
+	timelimit = 360
+	tech_department = society_technology
+	picture = GFX_evt_space_distress_ship_minor
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.16 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.17 } }
+		}
+	}
+}
+
+# REPAIRING THE DAMAGED STARBASE
+special_project = {
+	key = "REPAIR_MINOR_STARBASE"
+	cost = 0
+	days_to_research = 30
+	timelimit = 360
+	tech_department = engineering_technology
+	picture = GFX_evt_pc_k_star_sky
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.25 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.26 } }
+		}
+	}
+}
+
+# BUILDING HOUSING
+special_project = {
+	key = "BUILD_MINOR_HOUSING"
+	cost = 0
+	days_to_research = 60
+	timelimit = 360
+	tech_department = engineering_technology
+	picture = GFX_evt_underground_civilization
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.34 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.35 } }
+		}
+	}
+}
+
+# RESEARCHING BACTERIA
+special_project = {
+	key = "RESEARCH_BACTERIA_MINOR"
+	cost = 2000
+	# days_to_research = 60
+	timelimit = 360
+	tech_department = society_technology
+	location = no
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_lab_research_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_lab_research_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_lab_research_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_lab_research_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_abandoned_laboratory_test_tubes
+	
+	event_scope = country_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.43 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.44 } }
+		}
+	}
+}
+
+# RESEARCHING GRAVITY
+special_project = {
+	key = "RESEARCH_MINOR_STAR_GRAVITY"
+	cost = 0
+	days_to_research = 30
+	timelimit = 360
+	tech_department = physics_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_space_enterprise_travel_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_space_vorcha_travel_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_space_valdore_travel_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_space_keldon_travel_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_pc_pulsar_sky
+
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.54 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.55 } }
+		}
+	}
+}
+
+# CLEANING THE MINING STATION
+special_project = {
+	key = "CLEAN_MINOR_MINING_STATION"
+	cost = 0
+	days_to_research = 60
+	timelimit = 360
+	tech_department = engineering_technology
+	picture = GFX_evt_space_distress_ship_minor
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.65 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.66 } }
+		}
+	}
+}
+
+# DEFEATING A REBELLION
+special_project = {
+	key = "DEFEAT_MINOR_REBELLION"
+	cost = 0
+	days_to_research = 30
+	timelimit = 720
+	tech_department = society_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_empire_fleet_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_empire_fleet_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_ship_base_pirates
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 1
+		shipclass_transport = 2
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.74 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.75 } }
+		}
+	}
+}
+
+# BIG STICK DIPLOMACY
+special_project = {
+	key = "BIG_STICK_MINOR"
+	cost = 0
+	days_to_research = 30
+	timelimit = 720
+	tech_department = society_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_empire_fleet_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_empire_fleet_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_ship_base_pirates	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 5
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.84 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.86 } }
+		}
+	}
+}
+
+# DE-ESCALATION WITH A SWORD
+special_project = {
+	key = "ESCALATION_MINOR"
+	cost = 0
+	days_to_research = 30
+	timelimit = 720
+	tech_department = society_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_empire_fleet_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_empire_fleet_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_ship_base_pirates	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 5
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.85 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.86 } }
+		}
+	}
+}
+
+# MINOR EVENTS PROJECT - WAR GAMES 1
+special_project = {
+	key = "MINOR_WAR_GAMES"
+	cost = 0
+	days_to_research = 30
+	timelimit = 720
+	tech_department = society_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_empire_fleet_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_empire_fleet_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_galactic_peace_summit_minor
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 2
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.94 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.95 } }
+		}
+	}
+}
+
+# MINOR EVENTS PROJECT - NOT-SO-SECRET WEAPONS 1
+special_project = {
+	key = "NOT_SO_SECRET_WEAPONS"
+	cost = 0
+	days_to_research = 30
+	timelimit = 360
+	tech_department = society_technology
+
+	# Dynamic Images (Major Power variants)
+	# SCOPES: THIS = PLANET, FROM = COUNTRY
+	picture = {
+		trigger = { owner = { is_ufop = yes } }
+		picture = GFX_evt_orbital_research_barren_world
+	}
+	picture = {
+		trigger = { owner = { is_klingon = yes } }
+		picture = GFX_evt_orbital_research_barren_world_klingon
+	}
+	picture = {
+		trigger = { owner = { is_romulan = yes } }
+		picture = GFX_evt_orbital_research_barren_world_romulan
+	}
+	picture = {
+		trigger = { owner = { is_cardassian = yes } }
+		picture = GFX_evt_orbital_research_barren_world_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_orbital_research_barren_world	
+
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_spy_ship = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			random_list = {
+				8 = { OWNER = { country_event = { id = mission.104 } } }
+				2 = { OWNER = { country_event = { id = mission.105 } } }
+			}
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.106 } }
+		}
+	}
+}
+
+# MINOR EVENTS PROJECT - ASSASSINATION_ATTEMPT_1
+special_project = {
+	key = "ASSASSINATION_ATTEMPT"
+	cost = 0
+	days_to_research = 30
+	timelimit = 360
+	tech_department = society_technology
+
+	# Dynamic Images (Major Power variants)
+	# SCOPES: THIS = PLANET, FROM = COUNTRY
+	picture = {
+		trigger = { owner = { is_ufop = yes } }
+		picture = GFX_evt_spy_mission_ufop
+	}
+	picture = {
+		trigger = { owner = { is_klingon = yes } }
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = { owner = { is_romulan = yes } }
+		picture = GFX_evt_spy_mission_romulan
+	}
+	picture = {
+		trigger = { owner = { is_cardassian = yes } }
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_pc_barren_sky
+
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_spy_ship = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.114 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.115 } }
+		}
+	}
+}
+
+# MINOR EVENTS PROJECT - NEVER KNOW WHO'S LISTENING 1
+special_project = {
+	key = "NEVER_KNOW_WHOS_LISTENING"
+	cost = 0
+	days_to_research = 30
+	timelimit = 360
+	tech_department = society_technology
+
+	# Dynamic Images (Major Power variants)
+	# SCOPES: THIS = PLANET, FROM = COUNTRY
+	picture = {
+		trigger = { owner = { is_ufop = yes } }
+		picture = GFX_evt_moon_space_enterprise_ufop
+	}
+	picture = {
+		trigger = { owner = { is_klingon = yes } }
+		picture = GFX_evt_moon_space_vorcha_klingon
+	}
+	picture = {
+		trigger = { owner = { is_romulan = yes } }
+		picture = GFX_evt_moon_space_valdore_romulan
+	}
+	picture = {
+		trigger = { owner = { is_cardassian = yes } }
+		picture = GFX_evt_moon_space_keldon_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_pc_luna_sky
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_spy_ship = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.124 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.125 } }
+		}
+	}
+}
+
+# DIPLOMATIC STAY
+special_project = {
+	key = "DIPLOMATIC_STAY"
+	cost = 0
+	days_to_research = 180
+	timelimit = 360
+	tech_department = society_technology
+	picture = GFX_evt_space_garden_landscape
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_governor_ship = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.134 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.135 } }
+		}
+	}
+}
+
+# GALACTIC PEACE SUMMIT: PEACE CONFERENCE
+special_project = {
+	key = "PEACE_CONFERENCE"
+	cost = 0
+	days_to_research = 30
+	timelimit = 360
+	tech_department = society_technology
+	picture = GFX_evt_galactic_peace_summit_minor
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_governor_ship = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.144 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.145 } }
+		}
+	}
+}
+
+# FIXING THE SUPPLY CHAIN
+special_project = {
+	key = "MINOR_FOOD_SHIPMENT"
+	cost = 0
+	days_to_research = 180
+	timelimit = 360
+	tech_department = society_technology
+	picture = GFX_evt_barren_forest_civilization_landscape
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_governor_ship = 1
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.1541 } } #30
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.156 } }
+		}
+	}
+}
+
+# PHYSICS HOMEWORK
+special_project = {
+	key = "PHYSICS_101_MINOR"
+	cost = 2000
+	# days_to_research = 60
+	timelimit = 360
+	tech_department = physics_technology
+	location = no
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_abandoned_laboratory_test_tubes
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_abandoned_laboratory_test_tubes
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_abandoned_laboratory_test_tubes
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_abandoned_laboratory_test_tubes
+	}
+	# Default Image
+	picture = GFX_evt_abandoned_laboratory_test_tubes
+	
+	event_scope = country_event
+	
+	delete_on_finish = yes
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.193 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.194 } }
+		}
+	}
+}
+
+# TECH SUPPORT
+special_project = {
+	key = "TECH_SUPPORT"
+	cost = 0
+	days_to_research = 30
+	timelimit = 720
+	tech_department = engineering_technology
+	location = yes
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_starbase_background_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_starbase_background_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_starbase_background_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_starbase_background_cardassian
+	}
+
+	# Default Image
+	picture = GFX_evt_abandoned_laboratory_test_tubes
+
+	event_scope = ship_event
+
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.203 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { country_event = { id = mission.204 } }
+		}
+	}
+}
+
+# GALACTIC PEACE SUMMIT: PEACE CONFERENCE
+special_project = {
+	key = "ESCORT_MISSION"
+	cost = 0
+	days_to_research = 30
+	timelimit = 720
+	tech_department = society_technology
+	picture = GFX_evt_pc_black_hole_sky
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+	on_success = {
+		if = {
+			limit = { 
+				exists = OWNER
+			}
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.214 } }
+		}
+	}
+	
+	on_fail = {
+		if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = { 
+				set_country_flag = dignitary_declined
+				country_event = { id = mission.215 } }
+		}
+	}
+}
+
+####################
+# Original Project #
+####################
+
+# # Rescue Minor Ship
+# special_project = {
+# 	key = "RESCUE_MINOR_SHIP_1"
+# 	event_chain = "ship_in_peril_mission_chain"
+# 	cost = 0
+# 	days_to_research = 14
+# 	timelimit = 360
+# 	tech_department = society_technology
+# 	picture = GFX_evt_space_distress_ship_minor #HRB_TODO change to own image
+	
+# 	event_scope = ship_event
+	
+# 	delete_on_finish = yes
+
+# 	requirements = {
+# 		shipclass_science_ship = 1
+# 	}
+	
+# 	on_success = {
+# 		if = {
+# 			limit = { 
+# 				exists = OWNER
+# 			}
+# 			OWNER = { country_event = { id = mission.6 } }
+# 		}
+# 	}
+	
+# 	on_fail = {
+# 		if = {
+# 			limit = {
+# 				exists = OWNER
+# 			}
+# 			OWNER = { country_event = { id = mission.7 } }
+# 		}
+# 	}
+# }
+
+
+#########################
+# Terraforming Projects #
+#########################
+
+### Over Terraforming
+special_project = {
+	key = "OVER_TERRAFORMATION"
+	cost = 2000
+	tech_department = society_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+	picture = GFX_evt_terraforming_planet
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_terraforming_planet_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_terraforming_planet_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_terraforming_planet_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_terraforming_planet
+
+	event_scope = planet_event
+	
+	requirements = {
+		resources = { research = 2000 }
+	}
+	
+	on_success = {
+		space_owner = {
+			country_event = { id = terraform.73 }	
+		}
+	}
+}
+
+### Terraforming the Impossible
+special_project = {
+	key = "TERRAFORMING_IMPOSSIBLE"
+	cost = 0
+	days_to_research = 180
+	timelimit = 1800
+	tech_department = society_technology
+	location = yes
+
+	delete_on_finish = yes
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+	picture = GFX_evt_terraforming_planet
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_terraforming_planet_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_terraforming_planet_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_terraforming_planet_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_terraforming_planet
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+	on_success = {
+		event_target:tomb_world_terraform = {
+			add_modifier = {
+				modifier = terraforming_candidate days = -1
+			}
+			set_planet_flag = tomb_terraform_enabled
+		}
+		
+		owner = {
+			country_event = { id = terraform.52 }	
+		}
+	}
+}
+
+##################################
+# Anomaly Event Special Projects #
+##################################
+
+#########################################################################
+# Garak Garden (SP-GARAK20)
+# Create Special Project on Romulus
+#
+# Enabled by:
+# Elim Garak (GARAK55)
+# anomaly.7415, anomaly.7416
+# GD_TAG: 2 STEP Original / Lore
+#########################################################################
+
+### Garak Garden
+special_project = {
+	key = "GARAK_GARDEN"
+	cost = 0
+	days_to_research = 360 						
+	tech_department = society_technology
+	picture = GFX_evt_spy_mission_cardassian
+	timelimit = 720
+	location = yes
+	
+	event_scope = ship_event
+	
+	requirements = {
+		leader = spy
+		has_trait = leader_trait_garak
+		shipclass_spy_ship = 1
+	}
+	
+ 	on_success = {
+		OWNER = { country_event = { id = country.9010 } } # Triggers Elim Gardener Success
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = country.9011 } } # Triggers Elim Gardener Fail
+	}
+}
+
+#########################################################################
+# TAN ZHEKRAN (SP-TAN21) 
+#
+# Note: This project works differently from most, as it does not need a 
+# researcher to travel somewhere, has no research in days, and requirements, 
+# and no location.
+#
+# Enabled by:
+# Tan Zhekran Puzzle (TAN59)
+# anomaly.7435, country.9015, country.9016
+# GD_TAG: 3 STEP Original
+#########################################################################
+
+### Tan Zhekran
+special_project = {
+	key = "TAN_ZHEKRAN"
+	cost = 2000 #HRB_TODO Check value
+	tech_department = society_technology		# HRB_TODO: Tech
+	picture = GFX_evt_rocky_planet_pod_loot_romulan
+	timelimit = 360
+	location = no
+
+	requirements = {
+		resources = { research = 2000 }
+	}
+	
+	event_scope = country_event
+	
+	on_success = {
+		OWNER = { country_event = { id = country.9015 } } # Triggers Tan Zhekran Prize (Success)
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = country.9016 } } # Triggers Tan Zhekran Poison (Fail)
+	}
+}
+
+#########################################################################
+# QUANTUM FIELD
+# Investigate the Cosmic String.
+#
+# Enabled by:
+# A Crack In Spacetime
+# anomaly.7515, anomaly.7516, anomaly.7517, anomaly.7518, anomaly.7519
+# GD_TAG: 5 STEP Original / Lore
+#########################################################################
+
+### Quantum Field
+special_project = {
+	key = "QUANTUM_FIELD"
+	cost = 0
+	days_to_research = 30
+	timelimit = 1800
+	tech_department = society_technology		# HRB_TODO: Tech
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	location = yes
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+		
+	on_success = {
+		OWNER = { country_event = { id = anomaly.7518 } } # Triggers Two-Dimensional Characters (Success)
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = anomaly.7519 } } # Triggers An Infinite Loose Thread (Fail)
+	}
+}
+
+#########################################################################
+# Rapid Evolution
+# Investigate the faster timeflow.
+#
+# Enabled by:
+# Time Change
+# anomaly.7520, anomaly.7521, anomaly.7522, anomaly.7523, anomaly.7524 
+# GD_TAG: 5 STEP Original / Lore
+#########################################################################
+
+### Rapid Evolution
+special_project = {
+	key = "RAPID_EVOLUTION"
+	cost = 0
+	days_to_research = 30 						# HRB_TODO: Define
+	tech_department = society_technology
+	picture = GFX_evt_plantlife_planet_animals_jungle
+	timelimit = 1800
+	location = yes
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+ 	on_success = {
+		OWNER = { country_event = { id = anomaly.7522 days = 30 } } # Triggers Anti-Time Eruption
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = anomaly.7523 days = 30 } } # Triggers Bad Times Around the Bend
+	}
+}
+
+#########################################################################
+# UNKNOWN COORDINATES
+# Investigate the coordinates.
+#
+# Enabled by:
+# Chaotic Space
+# anomaly.7610, anomaly.7611, anomaly.7612, anomaly.7613 
+# GD_TAG: 5 STEP Original / Lore
+#########################################################################
+
+### Unknown Coordinates
+special_project = {
+	key = "UNKNOWN_COORDINATES"
+	cost = 0
+	days_to_research = 30 						# HRB_TODO: Define
+	tech_department = society_technology
+	timelimit = 1800
+	location = yes
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_star_chart_meeting_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_star_chart_meeting_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+ 	on_success = {
+		OWNER = { country_event = { id = anomaly.7612 days = 30 } } # Triggers New Star System Discovered (Hidden)
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = anomaly.7614 days = 30 } } # Triggers Dead-End
+	}
+}
+
+#########################################################################
+# Piece of Cake (SP_POC23)
+#
+# Enabled by:
+# Peace Out
+# anomaly.7630, country.7631
+# GD_TAG: 2 STEP Generic Original, with Special Project
+#########################################################################
+
+### Piece of Cake
+
+special_project = {
+	key = "PIECE_OF_CAKE"
+	cost = 2000 #HRB_TODO Check value
+	tech_department = society_technology		# HRB_TODO: Tech
+	timelimit = 360
+	location = no
+
+	requirements = {
+		resources = { research = 2000 }
+	}
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_space_enterprise_travel_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_space_vorcha_travel_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_space_valdore_travel_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_space_keldon_travel_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = country_event
+	
+	on_success = {
+		OWNER = { country_event = { id = country.7631 } } # Triggers Make Peace
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = country.7631 } } # Triggers Make Peace
+	}
+}
+
+##################################
+# Country Event Special Projects #
+##################################
+
+
+##################################################
+### FEDERATION SPECIAL PROJECTS - FROM COUNTRY ###
+##################################################
+
+#########################################################################
+# MIND PROGRAM (SP-MIND24)
+# Create Special Project on Denobula I
+#
+# Enabled by:
+# Memory Alpha (MEMORY97)
+# country.8090, country.8091, country.8092
+# GD_TAG: 2 STEP Federation Exclusive Original
+#########################################################################
+
+### Mind Program
+special_project = {
+	key = "MIND_PROGRAM"
+	cost = 0
+	days_to_research = 360
+	timelimit = 360
+	tech_department = society_technology		# HRB_TODO: Tech
+	picture = GFX_evt_memory_planet_space_enterprise_ufop
+	location = yes
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+		
+	on_success = {
+		OWNER = { country_event = { id = country.8092 } } # Triggers Memory Planet Mind Program
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = country.8093 } } # Triggers Memory Planet Misses Out
+	}
+}
+
+#################################################
+#### KLINGON SPECIAL PROJECTS - FROM COUNTRY ####
+#################################################
+
+#########################################################################
+# TEA FOR COURAGE (SP-TEA22)
+# Create Special Project on the Klingon Colony with the least pops
+#
+# Enabled by:
+# Poison Makes Perfect (TEA61)
+# country.8050, country.8051, country.8052, country.8053
+# GD_TAG: 3 STEP Original / Lore
+#########################################################################
+
+### Tea for Courage
+special_project = {
+	key = "TEATIME"
+	cost = 0
+	days_to_research = 720
+	timelimit = 720
+	tech_department = society_technology		# HRB_TODO: Tech
+	picture = GFX_evt_colony_women_klingon
+	location = yes
+	
+	event_scope = ship_event
+	
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		shipclass_transport = 3
+	}
+		
+	on_success = {
+		OWNER = { country_event = { id = country.8052 } } # Triggers Tea for Courage (Success)
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = country.8053 } } # Triggers No Time for Tea (Fail)
+	}
+}
+
+
+# ##########################################
+# # Mission Node (Formerly Quest) Projects #
+# ##########################################
+
+special_project = {
+	key = "UPGRADE_ENTERPRISE"
+	cost = 0
+	days_to_research = 10 # HRB_TODO: Define
+	tech_department = society_technology
+	picture = GFX_evt_highway_ftl_travel_ufop
+	
+	event_scope = ship_event
+	requirements = {
+		has_fleet_flag = enterprise
+		resources = {
+			alloys = 2300
+			dilithium = 15
+		}
+	}
+
+	on_start = {
+	}
+	on_success = {
+		OWNER = { 
+			country_event = { id = quest.80 }
+		}
+		if = {
+			limit = { exists = event_target:ufop_country }
+
+			event_target:ufop_country = {
+				add_resource = { alloys = -2300 }	
+				add_resource = { dilithium = -15 }		
+			}
+		}
+	}
+
+	on_cancel = {
+	}
+
+	on_fail = {
+	}
+}
+
+special_project = {
+	key = "IMMEDIATE_EVACUATION"
+	days_to_research = 30 # 1 month
+	timelimit = 3600 # 10 years
+	tech_department = engineering_technology
+	picture = GFX_evt_supernova_escape_romulan
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_transport_special = 1
+	}
+	
+	on_success = {
+		owner = {
+			every_owned_fleet = {
+				limit = {
+					is_ship_size = bulk_carrier
+				}
+				
+				delete_fleet = {
+					target = THIS
+					destroy_template = yes
+				}
+			}
+
+			remove_country_flag = bulk_carrier_flag
+			set_country_flag = send_bulk_carrier_activated
+			upgrade_ship_designs = yes
+
+			if = {
+				limit = {
+					exists = event_target:romulan_country
+				}
+
+				event_target:romulan_country = {
+					set_country_flag = send_bulk_carrier_activated
+				}
+			}
+		}
+
+		event_target:romulan_homeworld = {
+			while = {
+				count = 10
+				random_owned_pop = {
+					resettle_pop = {
+						pop = this
+						random = yes
+					}
+				}
+			}
+		}
+	}
+	
+	on_fail = { 
+		hidden_effect = {
+			owner = {
+				set_country_flag = immediate_evacuation_fail
+				remove_country_flag = bulk_carrier_flag
+			}
+		}
+	}
+	on_cancel = {
+		hidden_effect = {
+			owner = {
+				remove_country_flag = bulk_carrier_flag
+			}
+		}
+	}
+}
+
+#######################################
+# CRYSTALLINE ENTITY SPECIAL PROJECTS #
+#######################################
+
+### Research about the colony devastated by the Crystalline Entity
+special_project = {
+	key = "CRYSTALLINE_ENTITY_RESEARCH_DEVASTATED_COLONY"
+	cost = 0
+	days_to_research = 60
+	timelimit = 1800
+	tech_department = physics_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_barren_planet_space_enterprise_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_barren_planet_space_vorcha_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_barren_planet_space_valdore_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_barren_planet_space_keldon_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_pc_barren_sky
+
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+	on_success = {
+		OWNER = {
+			country_event = { id = crystalline.12 }
+		}
+	}
+	
+	on_fail = {
+		OWNER = { country_event = { id = crystalline.11 } }
+	}
+}
+
+### Crystalline Entity communication research
+special_project = {
+	key = "CRYSTALLINE_ENTITY_PLANET_2"
+	cost = 0
+	days_to_research = 5 # HRB_TODO: 60
+	timelimit = 1800
+	tech_department = physics_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_barren_planet_space_enterprise_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_barren_planet_space_vorcha_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_barren_planet_space_valdore_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_barren_planet_space_keldon_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+	on_success = {
+		OWNER = { country_event = { id = crystalline.40 } }
+	}
+	
+	on_fail = {
+		OWNER = { country_event = { id = crystalline.32 } }
+	}
+}
+
+### Crystalline Entity energy recollection
+special_project = {
+	key = "CRYSTALLINE_ENTITY_ENERGY_RECOLLECTION"
+	cost = 0
+	days_to_research = 60
+	timelimit = 1800
+	tech_department = physics_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_crystalline_entity_encounter_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_crystalline_entity_encounter_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_crystalline_entity_encounter_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_crystalline_entity_encounter_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_pc_barren_sky
+
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+	on_success = {
+		log = "Energy Recollection Success"
+		random_list = {
+			4 = { OWNER = { country_event = { id = crystalline.51 days = 1 } } }
+			1 = { OWNER = { country_event = { id = crystalline.54 days = 1 } } }
+		}
+		
+	}
+	
+	on_fail = {
+		log = "Energy Recollection Fail"
+		OWNER = { country_event = { id = crystalline.53 days = 1 } }
+	}
+}
+
+### SPECIAL PROJECT (2A): CRYSTAL COSMOZOAN 
+special_project = {
+	key = "CRYSTAL_COSMOZOAN"
+	cost = 0
+	days_to_research = 60
+	timelimit = 720
+	tech_department = physics_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_crystalline_entity_encounter_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_crystalline_entity_encounter_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_crystalline_entity_encounter_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_crystalline_entity_encounter_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_pc_barren_sky
+
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = crystalline.80 } }
+	}
+
+	on_success = {
+		OWNER = { country_event = { id = crystalline.81 } }
+	}
+}
+
+### SPECIAL PROJECT (2B): HOME OF THE CRYSTALLINE ENTITIES
+special_project = {
+	key = "CRYSTALLINE_ENTITY_HOMEWORLD"
+	cost = 0
+	days_to_research = 60
+	timelimit = 3600
+	tech_department = physics_technology
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_crystal_nursery_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_crystal_nursery_ufop
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_crystal_nursery_ufop
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_crystal_nursery_ufop
+	}
+	# Default Image
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_fail = {
+		OWNER = { country_event = { id = crystalline.90 } }
+	}
+
+	on_success = {
+		OWNER = { country_event = { id = crystalline.91 } }
+	}
+}
+
+#############################
+# Governor Mission Projects #
+#############################
+
+# Investigating the Past
+special_project = {
+	key = "INVESTIGATING_THE_PAST"
+	cost = 0
+	days_to_research = 180
+	timelimit = 3600 # 10 years
+	tech_department = society_technology
+	location = yes
+
+	# Dynamic Images (Major Power variants)
+	# SCOPES: THIS = PLANET, FROM = COUNTRY
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_spy_mission_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_spy_mission_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		leader = governor
+		has_trait = leader_trait_governor_past_investigator
+		shipclass_governor_ship = 1
+	}
+	
+	on_success = {
+		event_target:crimes_of_the_past_country = { country_event = { id = mission.161 days = 30 } }
+	}
+	
+	on_fail = {
+		event_target:crimes_of_the_past_country = { country_event = { id = mission.162 days = 30 } }
+	}
+}
+
+# Hard Stance on Crime
+special_project = {
+	key = "HARD_STANCE_ON_CRIME"
+	cost = 0
+	days_to_research = 180
+	timelimit = 3600 # 10 years
+	tech_department = society_technology
+	location = yes
+
+	# Dynamic Images (Major Power variants)
+	# SCOPES: THIS = PLANET, FROM = COUNTRY
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_spy_mission_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_spy_mission_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		leader = governor
+		has_trait = leader_trait_governor_disorder_investigator
+		shipclass_governor_ship = 1
+	}
+	
+	on_success = {
+		event_target:disorder_on_colony_country = { country_event = { id = mission.166 days = 30 } }
+	}
+	
+	on_fail = {
+		event_target:disorder_on_colony_country = { country_event = { id = mission.167 days = 30 } }
+	}
+}
+
+# Inequality Gap
+special_project = {
+	key = "INEQUALITY_GAP"
+	cost = 0
+	days_to_research = 180
+	timelimit = 3600 # 10 years
+	tech_department = society_technology
+	location = yes
+
+	# Dynamic Images (Major Power variants)
+	# SCOPES: THIS = PLANET, FROM = COUNTRY
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_spy_mission_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_spy_mission_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		leader = governor
+		has_trait = leader_trait_governor_inequality_investigator
+		shipclass_governor_ship = 1
+	}
+	
+	on_success = {
+		event_target:addressing_inequality_country = { country_event = { id = mission.171 days = 30 } }
+	}
+	
+	on_fail = {
+		event_target:addressing_inequality_country = { country_event = { id = mission.172 days = 30 } }
+	}
+}
+
+# Planetary Inauguration
+special_project = {
+	key = "INAUGURATION_PARTY"
+	cost = 0
+	days_to_research = 180
+	timelimit = 3600 # 10 years
+	tech_department = society_technology
+	location = yes
+
+	# Dynamic Images (Major Power variants)
+	# SCOPES: THIS = PLANET, FROM = COUNTRY
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_spy_mission_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_spy_mission_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		leader = governor
+		has_trait = leader_trait_governor_inauguration_investigator
+		shipclass_governor_ship = 1
+	}
+	
+	on_success = {
+		event_target:planetary_inauguration_country = { country_event = { id = mission.176 days = 30 } }
+	}
+	
+	on_fail = {
+		event_target:planetary_inauguration_country = { country_event = { id = mission.177 days = 30 } }
+	}
+}
+
+# Too Many Blockers
+special_project = {
+	key = "DIFFICULT_TERRAIN"
+	cost = 0
+	days_to_research = 180
+	timelimit = 3600 # 10 years
+	tech_department = society_technology
+	location = yes
+
+	# Dynamic Images (Major Power variants)
+	# SCOPES: THIS = PLANET, FROM = COUNTRY
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_spy_mission_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_spy_mission_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_pc_barren_sky
+	
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		leader = governor
+		has_trait = leader_trait_governor_blockers_investigator
+		shipclass_governor_ship = 1
+	}
+	
+	on_success = {
+		event_target:too_many_blockers_country = { country_event = { id = mission.181 days = 30 } }
+	}
+	
+	on_fail = {
+		event_target:too_many_blockers_country = { country_event = { id = mission.182 days = 30 } }
+	}
+}
+
+
+##################################
+# PLANET MODIFIER EVENTS
+##################################
+
+### Volcanic Eruptions Research
+special_project = {
+	key = "VOLCANIC_ERUPTIONS_RESEARCH"
+	cost = 0
+	days_to_research = 30
+	tech_department = society_technology
+	picture = GFX_evt_pc_molten_sky
+	timelimit = 720
+	location = yes
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+ 	on_success = {
+		owner = { country_event = { id = hrb_planet_modifier.12 } } # The Gas Discovery
+	}
+
+	on_fail = {
+		owner = { country_event = { id = hrb_planet_modifier.16 } } # Fail Popup - Close Event Chain
+	}
+}
+
+### Sabotage Investigation Committee
+special_project = {
+	key = "SABOTAGE_INVESTIGATION_COMMITTEE"
+	cost = 0
+	days_to_research = 360
+	tech_department = society_technology
+	picture = GFX_evt_facility_capsules_androids_ai_alert
+	timelimit = 360
+	location = yes
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+	
+ 	on_success = {
+		owner = { country_event = { id = hrb_planet_modifier.32 } } # Microbrains
+	}
+
+	on_fail = {
+		owner = { country_event = { id = hrb_planet_modifier.33 } } # A Silent Scream
+	}
+}
+
+### SPECIAL PROJECT: THE KHITOMER LOGS
+special_project = {
+	key = "KHITOMER_LOGS"
+	cost = 5000
+	# days_to_research = 60
+	# timelimit = 90 # 1 Year
+	tech_department = society_technology
+	picture = GFX_evt_galactic_trial_klingon
+	location = no
+	
+	event_scope = country_event
+	delete_on_finish = yes
+	
+	requirements = {
+		resources = {
+			research = 5000
+			energy = 2000
+		}
+	}
+
+	on_start = {
+		if = {
+			limit = { exists = event_target:klingon_country }
+
+			event_target:klingon_country = {
+				add_resource = { energy = -2000 }
+			}
+		}
+	}
+
+	on_success = {
+		OWNER = { 
+			country_event = { id = country.2822 }
+		}
+	}
+
+	on_cancel = {
+		if = {
+			limit = { exists = event_target:klingon_country }
+			
+			event_target:klingon_country = {
+				add_resource = { energy = 2000 }
+			}
+		}
+	}
+
+	on_fail = {
+	}
+}
+
+### Sabotage Investigation Committee
+special_project = {
+	key = "CARDASSIAN_OCCUPATION_TIER_1"
+	cost = 0
+	days_to_research = 180
+	tech_department = society_technology
+	picture = GFX_evt_combat_onboard_cardassian
+	timelimit = 1080
+	location = yes
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_transport = 5
+	}
+	
+	abort_trigger = {
+		NAND = {
+			exists = event_target:current_war_scope
+			event_target:conquered_planet_scope = {
+				is_occupied_flag = yes
+			}
+			event_target:conquered_planet_scope = {
+				is_controlled_by = event_target:new_owner_scope
+			}
+
+			# exists = event_target:conquered_planet_scope
+			# exists = event_target:former_owner_scope
+			# exists = event_target:new_owner_scope
+		}
+	}
+	
+ 	on_success = {
+		#Re-trigger the Special Project
+		owner = { country_event = { id = country.4010 } }
+
+		#Grant War Gains to Attacker
+		if = {
+			limit = {
+				exists = event_target:current_war_scope
+			}
+			event_target:current_war_scope = {
+				add_static_war_gains = {
+					target = event_target:new_owner_scope
+					amount = 20
+				}
+			}
+		}
+
+
+		#Destroy Ships
+		ship_event = {
+			id = country.4020
+		}
+	}
+
+	on_fail = {
+		#Re-trigger the Special Project
+		owner = { country_event = { id = country.4010 } }
+
+		#Grant War Gains to Defender
+		if = {
+			limit = {
+				exists = event_target:current_war_scope
+			}
+			event_target:current_war_scope = {
+				add_static_war_gains = {
+					target = event_target:former_owner_scope
+					amount = 20
+				}
+			}
+		}
+	}
+}
+
+special_project = {
+	key = "MIPO_ASSIMILATION_PROJECT"
+	cost = 0
+	days_to_research = 360
+	tech_department = society_technology
+	picture = GFX_evt_spy_mission_romulan
+	timelimit = 1800
+	location = yes
+	
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_spy_ship = 1
+	}
+	
+	abort_trigger = {
+		event_target:mipo_to_be_assimilated = {
+			is_subject = no
+		}
+	}
+
+ 	on_success = {
+		owner = { country_event = { id = country.3120 } }
+	}
+
+	on_fail = {
+		# Liberate the subject
+		event_target:mipo_to_be_assimilated = { country_event = { id = country.3130 days = 1 } }
+
+		# Tell the Romulans
+		owner = { country_event = { id = country.3140 days = 2 } }
+	}
+}

@@ -1,0 +1,43 @@
+tech_lantree_unlock = {
+	cost = @tier1cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 1
+	start_tech = no
+	prerequisites = { tech_corvette_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_lantree		
+		desc = tech_lantree_desc		
+		icon = tech_miranda # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_LANTREE_CONSTRUCTION_TITLE
+				desc = tech_lantree_desc
+			}	
+		}		
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 5
+			years_passed > 1
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+	}
+
+	ai_weight = {
+		factor = 3
+	}
+}

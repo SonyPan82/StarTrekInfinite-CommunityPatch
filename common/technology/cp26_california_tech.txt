@@ -1,0 +1,55 @@
+tech_cp26_california_unlock = {
+	cost = @tier1cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 1
+	start_tech = no
+	prerequisites = { tech_corvette_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_ufop = yes
+		}
+		title = tech_cp26_california_unlock
+		desc = tech_cp26_california_unlock_desc
+		icon = tech_california_unlock
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_CALIFORNIA_CONSTRUCTION_TITLE
+				desc = tech_cp26_california_unlock_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1
+			years_passed < 9
+		}
+		modifier = {
+			factor = 6
+			years_passed > 10
+		}
+		modifier = {
+			factor = 4
+			any_neighbor_country = {
+				has_communications = ROOT
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 3
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}

@@ -1,0 +1,39 @@
+auth_dictatorial_tholian = {
+	election_type = oligarchic
+	max_election_candidates = 2
+	icon = "gfx/interface/icons/governments/authorities/auth_dictatorial.dds"
+
+	has_agendas = yes
+
+	possible = {
+		ethics = {
+			NOR = {
+				value = ethic_egalitarian
+				value = ethic_fanatic_egalitarian
+			}
+		}
+	}
+
+	country_modifier = {
+		planet_crime_mult = -0.5
+		country_officers_produces_mult = 0.25
+	}
+
+	potential = {
+		country_id = {
+			NOT = {
+				value = "ufop"
+				value = "romulan"
+				value = "cardassian"
+				value = "klingon"
+				value = "breen"
+				value = "gorn"
+				value = "orion"
+			}
+		}
+	}
+
+	tags = {
+		AUTHORITY_ELECTION_ON_RULER_DEATH
+	}
+}

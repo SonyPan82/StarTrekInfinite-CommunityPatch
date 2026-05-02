@@ -1,0 +1,79 @@
+spriteTypes = {
+	# rooms
+	spriteType = {
+		name = "GFX_ST_empty_room_gorn"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_capital_empty_room_gorn"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_empty_room_Gorn_loadgame"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	
+	# flags
+	spriteType = {
+		name = "GFX_flag_gorn_icon"
+		texturefile = "flags/emblem/bottombar/flag_gorn.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_gorn_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_gorn.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	
+	# ships
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_gorncorvette"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_military_bg_gorn_corvette.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}	
+	spriteType = {
+		name = "GFX_ship_image_gorncorvette"
+		texturefile = "gfx/interface/ship_designer/designs/gorncorvette.dds"
+	}
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_gorndestroyer"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_military_bg_gorn_destroyer.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}	
+	spriteType = {
+		name = "GFX_ship_image_gorndestroyer"
+		texturefile = "gfx/interface/ship_designer/designs/gorndestroyer.dds"
+	}
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_gornbattleship"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_military_bg_gorn_battleship.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}	
+	spriteType = {
+		name = "GFX_ship_image_gornbattleship"
+		texturefile = "gfx/interface/ship_designer/designs/gornbattleship.dds"
+	}
+	
+	spriteType = {
+		 name = "GFX_species_gorn_bg_1"
+		 texturefile = "gfx/portraits/species/gorn/species_gorn_01_bg.dds"
+	}
+	spriteType = {
+		 name = "GFX_species_gorn_bg_2"
+		 texturefile = "gfx/portraits/species/gorn/species_gorn_02_bg.dds"
+	}
+	spriteType = {
+		 name = "GFX_species_gorn_bg_3"
+		 texturefile = "gfx/portraits/species/gorn/species_gorn_03_bg.dds"
+	}
+	spriteType = {
+		 name = "GFX_species_gorn_bg_4"
+		 texturefile = "gfx/portraits/species/gorn/species_gorn_04_bg.dds"
+	}
+}

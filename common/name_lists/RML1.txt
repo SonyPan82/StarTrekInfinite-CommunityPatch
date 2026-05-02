@@ -1,0 +1,172 @@
+﻿### Romulan
+
+RML1 = {
+	category = "Humanoid"
+	randomized = no
+	alias = "Federated"
+
+	ship_names = {
+		generic = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+			Generix Belak Makar Temet Devoras Terix Haakona Dividices Khazara Valdore Pi Genorex T'Met D'ridthau Kodorex Gasko Shaenor Talvath Tomal
+		}
+
+		constructor = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+		
+		colonizer = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+
+		sponsored_colonizer = { # needed when there are no generic names
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+
+		science = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+		
+		governor_ship = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+
+
+		spy_ship = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+
+		transport = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+
+		bulk_carrier = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+
+		military_station_small = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+		}
+
+		ferrax = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+			Generix Belak Makar Temet Devoras Terix Haakona Dividices Khazara Valdore Pi Genorex T'Met D'ridthau Kodorex Gasko Shaenor Talvath Tomal
+			Ferrax
+			Varderex Ortaim M'sarr Vauthil Eisn Sharrdar 
+			Imderia Korvix Lattem Llemni Makluan Maricus Marilon Marrus Raffish Ra'kholh Soren S'tema Sulvian Suran Syrinx Trennis T'vrixis T'Vir
+		}
+
+		vindius = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+			Generix Belak Makar Temet Devoras Terix Haakona Dividices Khazara Valdore Pi Genorex T'Met D'ridthau Kodorex Gasko Shaenor Talvath Tomal
+			Vindius
+			Imperix Impavidus Irese Irixidon Jaridix Keterix Meret Octius Onus Pacestius Sistius Tridonius Trocus T'seren Vilus Visis
+		}
+
+		valdore = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+			Generix Belak Temet Devoras Terix Haakona Dividices Khazara Valdore Pi Genorex T'Met D'ridthau Kodorex Gasko Shaenor Talvath Tomal
+			Valdore
+			Aethra Zdenia Esemar Aj'rmr Areinnye Bloodfire Elieth Fraire Keras Koval Makar Simis Taseiv Tyrava Lykara Orudain Pecassia Pellecia Raptor Ravon Shalyar Venkar Vencus Vattilius Vrelnec Visidix
+		}
+
+		dderidex = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+			Generix Belak Makar Temet Devoras Terix Haakona Dividices Khazara Valdore Pi Genorex T'Met D'ridthau Kodorex Gasko Shaenor Talvath Tomal
+			D'Deridex
+			Calaf Intrakhu Ishae Khnial Rea Sithesh Solius Xatos Temanna Deihu Ar'hael 
+			Adjacian Albius Alidar Antius Araram Arien Ar'kalid Averek Belak Bochral Cacivus Cathex Calam Chairo Clania Clenos Crolvius 
+			Deranas Desmus Destrix D'kalam Draco D'relix D'ressa Horax Irix J'pax Javlek Kormoran Kormorex Lacrius Lahai Lhorakis Ludelvius Menvutus Mereidex Rovaran Rucorius Sakti S'varan Votanius Vicilius Vastara Zokoras
+		}
+
+		majestus = {
+			Decius Narada Valhaer Faemaifv Havran Tehsmaerai Iaehhs Hhvaeh D'vastam Tal'vath Silvestrix Valverada Adriakar Kordero T'Yos Monrokel Erelak Varidex T'Ivoras Braxitar Naridex P'ter Shadeb Lomzara Faenor Nunorex Rikona Dev'jae Rialla Luzora 
+			Generix Belak Makar Temet Devoras Terix Haakona Dividices Khazara Valdore Pi Genorex T'Met D'ridthau Kodorex Gasko Shaenor Talvath Tomal
+			Majestus
+			Remus Rilidam Rom'drex Septral Serrola Tellus Torelan Veletan Vathos
+		}
+	}
+
+	fleet_names = {
+		sequential_name = "%O% Fleet"
+	}
+	
+	army_names = {
+
+		machine_defense = {
+			sequential_name = "%O% Planetary Guard"
+		}
+		
+		machine_assault_1 = {
+			sequential_name = "%O% Expeditionary Force"
+		}
+	
+		defense_army = {
+			sequential_name = "%O% Planetary Guard"
+		}
+
+		assault_army = {
+			sequential_name = "%O% Expeditionary Force"
+		}
+
+		clone_army = { 
+			sequential_name = "%O% Clone Army"
+		}
+		
+		undead_army = {
+			sequential_name = "%O% Dread Commando"
+		}
+
+		robotic_army = {
+			sequential_name = "%O% Hunter-Killer Group"
+		}
+
+		robotic_defense_army = {
+			sequential_name = "%O% Ground Defense Matrix"
+		}
+		
+		gene_warrior_army = {
+			random_names = {
+				"SARC-A 'Gladiators'" "SARC-B 'Widowmakers'" "SARC-C 'Immortals'" "SARC-D 'Berserkers'" "SARC-E 'Assassins'"
+				"SARC-F 'Reapers'" "SARC-G 'Nighthawks'" "SARC-H 'Desperados'" "SARC-I 'Grey Knights'" "SARC-J 'Roughnecks'" 
+			}
+			sequential_name = "%O% Bio-Engineered Squadron"
+		}
+
+		occupation_army = {
+			sequential_name = "%O% Garrison Force"
+		}
+
+		robotic_occupation_army = {
+			sequential_name = "%O% Mechanized Garrison"
+		}
+
+		primitive_army = {
+			sequential_name = "Primitive Army %C%"
+		}
+		industrial_army = {
+			sequential_name = "Industrial Army %C%"
+		}
+		postatomic_army = {
+			sequential_name = "Post-Atomic Army %C%"
+		}
+	}
+
+
+
+
+	### CHARACTERS
+
+	character_names = {
+
+		names1 = {
+			weight = 40
+			full_names_male = {
+				Parem Tarqan Konsab Colius Almak Valkor Pem Zenak Vreenor Telnor 
+			}
+			full_names_female = {
+				Livara Pel Ramdha Parla Yenra Qitara Kidna Xera Vela Zarissa 
+			}
+		}
+	}
+}

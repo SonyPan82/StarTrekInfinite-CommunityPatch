@@ -1,0 +1,55 @@
+namespace = aa_coldenob
+
+event = {
+	id = aa_coldenob.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_species = {
+			class = "AADENOB"
+			portrait = "denobulan"
+			name = "Denobulan"
+			plural = "Denobulans"
+			adjective = "Denobula"
+			name_list = "BETA"
+			traits = {
+				trait = "trait_denob_communal"
+				trait = "trait_denob_polyamorous"
+				trait = "trait_denob_family"
+			}
+			effect = {
+				save_global_event_target_as = denobulan_species
+			}
+		}
+		
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = planet_denobula
+			}
+			create_colony = {
+				owner = event_target:ufop_country
+			}
+		}
+
+		event_target:ufop_country = {
+			random_owned_planet = {
+				limit = {
+					has_planet_flag = planet_denobula
+				}
+					while = {
+						count = 12
+						create_pop = { species = "Denobulan" }
+					}
+					add_deposit = d_bountiful_plains
+					add_deposit = d_hot_springs
+						add_deposit = d_geothermal_vent
+						add_district = district_farming
+						add_district = district_generator
+					remove_building = building_colony_shelter
+					add_building = building_capital
+					add_building = building_clinic
+			}
+		}
+	}
+}

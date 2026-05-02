@@ -1,0 +1,172 @@
+objectTypes = {
+
+#FEMALE
+	
+	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	
+	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#
+	
+	
+	pdxmesh = {
+		name = "portrait_denobulan_female_01_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_female_01_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_female_01_happy_animation" }
+		scale = 1.0
+		
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_female_body01.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+		
+
+	pdxmesh = {
+		name = "portrait_denobulan_female_02_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_female_02_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_female_02_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_female_body02.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+	
+	
+	pdxmesh = {
+		name = "portrait_denobulan_female_03_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_female_03_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_female_03_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_female_body03.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}		
+	
+	pdxmesh = {
+		name = "portrait_denobulan_female_04_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_female_04_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_female_04_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_female_body04.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+	
+	
+	pdxmesh = {
+		name = "portrait_denobulan_female_05_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_female_05_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_female_05_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_female_body05.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}
+	
+
+
+#MALE
+	
+#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	
+#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#	#
+	
+		
+	pdxmesh = {
+		name = "portrait_denobulan_male_01_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_male_01_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_male_01_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_male_body01.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+		
+	pdxmesh = {
+		name = "portrait_denobulan_male_02_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_male_02_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_male_02_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_male_body02.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+		
+	pdxmesh = {
+		name = "portrait_denobulan_male_03_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_male_03_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_male_03_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_male_body03.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}	
+	
+	pdxmesh = {
+		name = "portrait_denobulan_male_04_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_male_04_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_male_04_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_male_body04.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}
+	
+	
+	pdxmesh = {
+		name = "portrait_denobulan_male_05_mesh"
+		file = "gfx/models/portraits/cardassian/cardassian_male_05_portrait.mesh"
+		animation = { id = "idle"	type = "cardassian_male_05_happy_animation" }
+		scale = 1.0
+		meshsettings = {
+			name = "body1Shape"
+			index = 0
+			texture_diffuse = "gfx/models/portraits/denobulan/denobulan_male_body05.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshPortrait"
+		}
+	}
+
+}

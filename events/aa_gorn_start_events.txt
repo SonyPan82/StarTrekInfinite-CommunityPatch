@@ -1,0 +1,429 @@
+namespace = aa_gorn_game_start
+
+event = {
+	id = aa_gorn_game_start.120
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				has_star_flag = gorn_anchor
+			}
+			spawn_gorn_system = yes
+			last_created_system = {
+				setup_gorn_capital =  yes
+			}
+			random_neighbor_system = {
+				spawn_finibus_system = yes
+				last_created_system = {
+					set_name = "Finibus"
+					setup_gorn_territory = yes
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+			}
+			random_neighbor_system = {
+				spawn_galdonterre_system = yes
+				last_created_system = {
+					setup_gorn_territory = yes
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+			}
+			random_neighbor_system = {
+				spawn_cestus_system = yes
+				last_created_system = {
+					setup_gorn_territory = yes
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+			}
+			random_neighbor_system = {
+				limit = { 
+					is_not_used_space = yes 
+				}	
+				setup_gorn_territory = yes				
+			}			
+		}	
+
+		every_system = {
+			limit = {
+				has_star_flag = gorn_anchor
+			}
+			setup_gorn_territory = yes	
+		}		
+		
+		if = {
+			limit = { not = { exists = event_target:gorn_country }}		
+			# Need more candidates
+			every_system = {
+				limit = {
+					is_inside_border = event_target:betazoid_country
+				}
+				while = {
+					count = 2
+					random_neighbor_system = {
+						limit = { is_not_used_space = yes }
+						spawn_close_system = yes
+						last_created_system = {
+							set_star_flag = sf_gorncandidate2
+							set_star_flag = sf_gorncandidatex
+						}
+						spawn_mid_system = yes	
+						last_created_system = {
+							set_star_flag = sf_gorncandidate2
+							set_star_flag = sf_gorncandidatex
+						}
+					}
+				}
+			}
+			random_galaxy_planet = {
+				limit = {
+					has_planet_flag = planet_rura_penthe
+				}
+				solar_system = {
+					every_neighbor_system = {
+						limit = { is_not_used_space = yes }
+						set_star_flag = sf_gorncandidate1
+						set_star_flag = sf_gorncandidatex
+					}
+					while = {
+						count = 2
+						random_neighbor_system = {
+							limit = { is_not_used_space = yes }
+							spawn_close_system = yes
+							last_created_system = {
+								set_star_flag = sf_gorncandidate1
+								set_star_flag = sf_gorncandidatex
+							}
+							spawn_mid_system = yes
+							last_created_system = {
+								set_star_flag = sf_gorncandidate1
+								set_star_flag = sf_gorncandidatex
+							}
+						}
+					}				
+				}
+			}
+			every_system = {
+				limit = { is_inside_border = event_target:bajoran_country }
+				every_neighbor_system = {
+					limit = { is_not_used_space = yes }
+					set_star_flag = sf_gorncandidatex
+				}
+			}
+			every_system = {
+				limit = { is_inside_border = event_target:ufop_country }
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_gorncandidate2 }
+					}
+					set_star_flag = sf_gorncandidatex
+				}
+			}
+			every_system = {
+				limit = {
+					is_inside_border = event_target:betazoid_country
+				}
+				every_neighbor_system = {
+					limit = { is_not_used_space = yes }
+					set_star_flag = sf_gorncandidate2
+					set_star_flag = sf_gorncandidatex
+				}
+			}
+			
+			every_system = {
+				limit = {
+					has_star_flag = sf_gorncandidate1
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_gorncandidate1 }
+						not = { has_star_flag = sf_gorncandidate2 }
+					}
+					set_star_flag = sf_gorncandidate3
+				}
+			}		
+			every_system = {
+				limit = {
+					has_star_flag = sf_gorncandidate2
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_gorncandidate2 }
+					}
+					set_star_flag = sf_gorncandidate4
+				}
+			}
+			every_system = {
+				limit = {
+					has_star_flag = sf_gorncandidate3
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_gorncandidate3 }
+						not = { has_star_flag = sf_gorncandidate4 }
+					}
+					set_star_flag = sf_gorncandidate5
+				}
+			}
+			every_system = {
+				limit = {
+					has_star_flag = sf_gorncandidate4
+				}
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						not = { has_star_flag = sf_gorncandidate3 }
+						not = { has_star_flag = sf_gorncandidate4 }
+					}
+					set_star_flag = sf_gorncandidate6
+				}
+			}
+			
+			random_system = {
+				limit = {
+					or = {
+						and = {
+							has_star_flag = sf_gorncandidate5
+							has_star_flag = sf_gorncandidate6
+						}
+						and = {
+							has_star_flag = sf_gorncandidate3
+							has_star_flag = sf_gorncandidate6
+						}
+						and = {
+							has_star_flag = sf_gorncandidate4
+							has_star_flag = sf_gorncandidate5
+						}
+					}
+					not = { has_star_flag = sf_gorncandidate1 }
+					not = { has_star_flag = sf_gorncandidate2 }
+					not = { has_star_flag = sf_gorncandidatex }
+				}
+				spawn_gorn_system = yes
+				last_created_system = {
+					setup_gorn_capital =  yes
+					while = {
+						count = 2
+						spawn_mid_system = yes	
+						last_created_system = {
+							setup_gorn_territory = yes
+						}
+					}
+					every_neighbor_system = {
+						limit = { 
+							is_not_used_space = yes 
+							not = { has_star_flag = sf_gorncandidatex }
+						}	
+						setup_gorn_territory = yes				
+					}				
+				}
+			}
+			random_system = {
+				limit = {
+					or = {
+						and = {
+							has_star_flag = sf_gorncandidate5
+							has_star_flag = sf_gorncandidate6
+						}
+						and = {
+							has_star_flag = sf_gorncandidate3
+							has_star_flag = sf_gorncandidate4
+						}
+					}
+				}
+				spawn_finibus_system = yes
+			}
+			last_created_system = {
+				set_name = "Finibus"
+				setup_gorn_territory = yes
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				spawn_galdonterre_system = yes
+			}
+			last_created_system = {
+				setup_gorn_territory = yes
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				spawn_cestus_system = yes
+			}
+			last_created_system = {
+				setup_gorn_territory = yes
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+			}
+		}
+
+		### No Gorn? Try again ###
+		if = {
+			limit = { not = { exists = event_target:gorn_country }}				
+			random_system = {
+				limit = {
+					or = {
+						has_star_flag = sf_gorncandidate5
+						has_star_flag = sf_gorncandidate6
+					}
+					not = { has_star_flag = sf_gorncandidatex }
+				}
+				spawn_gorn_system = yes
+				last_created_system = {
+					setup_gorn_capital = yes
+					while = {
+						count = 2
+						spawn_mid_system = yes	
+						last_created_system = {
+							setup_gorn_territory = yes
+						}
+					}					
+					every_neighbor_system = {
+						limit = { is_not_used_space = yes }		
+						setup_gorn_territory = yes				
+					}
+					last_created_system = {
+						setup_gorn_territory = yes	
+					}
+				}
+			}
+			random_system = {
+				limit = {
+					or = {
+						and = {
+							has_star_flag = sf_gorncandidate5
+							has_star_flag = sf_gorncandidate6
+						}
+						and = {
+							has_star_flag = sf_gorncandidate3
+							has_star_flag = sf_gorncandidate4
+						}
+					}
+				}
+				spawn_finibus_system = yes
+			}
+			last_created_system = {
+				set_name = "Finibus"
+				setup_gorn_territory = yes
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				spawn_galdonterre_system = yes
+			}
+			last_created_system = {
+				setup_gorn_territory = yes
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				spawn_cestus_system = yes
+			}
+			last_created_system = {
+				setup_gorn_territory = yes
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+			}			
+		}
+
+		every_country = {
+			limit = { is_major = yes }
+			establish_contact = { who = event_target:gorn_country hidden = yes }
+			establish_communications_no_message = event_target:gorn_country
+		}
+		
+		event_target:ufop_country = {		
+			add_intel = { amount = 35 who = event_target:gorn_country }
+		}
+
+			event_target:gorn_country = {
+				set_adjective = "Gorn"
+				give_technology = { tech = tech_destroyer_unlock message = no }
+				give_technology = { tech = tech_cruiser_unlock message = no }
+				establish_contact = { who = event_target:ufop_country hidden = yes }
+			establish_communications_no_message = event_target:ufop_country
+			establish_contact = { who = event_target:cardassian_country hidden = yes }
+			establish_communications_no_message = event_target:cardassian_country
+			establish_contact = { who = event_target:romulan_country hidden = yes }
+			establish_communications_no_message = event_target:romulan_country
+			establish_contact = { who = event_target:klingon_country hidden = yes }
+			establish_communications_no_message = event_target:klingon_country
+
+			set_truce = {
+				target = event_target:ufop_country
+				type = none
+				start_date = 2340.06.03
+			}
+			add_opinion_modifier = {
+				who = event_target:ufop_country
+				modifier = opinion_insult
+			}
+			add_intel = { amount = 35 who = event_target:ufop_country }
+			create_civilian_fleet = yes
+			
+			every_planet_within_border = {
+				limit = {
+					has_deposit_for = shipclass_mining_station
+					has_mining_station = no
+				}
+				create_mining_station = {
+					owner = event_target:gorn_country
+				}
+			}
+			
+			# Military
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = event_target:gorn_country
+
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							random_existing_design = gorncorvette
+							initial_officers_perc = 0.6
+						}
+					}
+					while = {
+						count = 3
+						create_ship = {
+							name = random
+							random_existing_design = gorndestroyer
+							initial_officers_perc = 0.15
+						}
+					}
+					create_ship = {
+						name = random
+						random_existing_design = gornbattleship
+						initial_officers_perc = 0.1
+					}
+					
+					set_location = prev.capital_star
+				}
+			}
+			
+			#create_fleet = {
+			#	effect = {
+			#		set_owner = event_target:gorn_country
+			#		while = {
+			#			count = 4
+			#			create_ship = {
+			#				name = random
+			#				design = "NAME_Small_Nausicaan"
+			#				graphical_culture = nausicaan_01
+			#				initial_officers_perc = 0.4
+			#			}
+			#		}
+			#		while = {
+			#			count = 2
+			#			create_ship = {
+			#				name = random
+			#				design = "NAME_Medium_Nausicaan"
+			#				graphical_culture = nausicaan_01
+			#				initial_officers_perc = 0.25
+			#			}
+			#		}
+			#		create_ship = {
+			#			name = random
+			#			design = "NAME_Large_Nausicaan"
+			#			graphical_culture = nausicaan_01
+			#			initial_officers_perc = 0.1
+			#		}
+			#		set_location = prev.capital_scope.star
+			#	}
+			#}
+		}
+	}	
+}

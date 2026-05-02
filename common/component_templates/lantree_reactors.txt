@@ -1,0 +1,170 @@
+@lantree_power_1 = 75
+@lantree_power_2 = 100
+@lantree_power_3 = 130
+@lantree_power_4 = 170
+@lantree_power_5 = 220
+@lantree_power_6 = 285
+
+@corvette_cost_1 = 10
+@corvette_cost_2 = 13
+@corvette_cost_3 = 17
+@corvette_cost_4 = 22
+@corvette_cost_5 = 28
+@corvette_cost_6 = 37
+
+@operative_officers1 = 10
+
+@corvette_power_1 = 75
+@corvette_power_2 = 100
+@corvette_power_3 = 130
+@corvette_power_4 = 170
+@corvette_power_5 = 220
+@corvette_power_6 = 285
+
+utility_component_template = {
+	key = "CORVETTE_FUSION_REACTOR_LANTREE"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @corvette_power_1
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @corvette_cost_1
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.10
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.01
+		}
+	}
+
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { lantree }
+	upgrades_to = "CORVETTE_MATTER_ANTIMATTER_REACTOR_LANTREE"
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "CORVETTE_MATTER_ANTIMATTER_REACTOR_LANTREE"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = @corvette_power_2
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @corvette_cost_2
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.13
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.013
+		}
+	}
+
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { lantree }
+	upgrades_to = "CORVETTE_TETRYON_REACTOR_LANTREE"
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+
+utility_component_template = {
+	key = "CORVETTE_TETRYON_REACTOR_LANTREE"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = @corvette_power_3
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @corvette_cost_3
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.17
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.017
+		}
+	}
+
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { lantree }
+	#upgrades_to = "CORVETTE_ANTI_TETRYON_REACTOR_LANTREE"
+
+	ai_weight = {
+		weight = 3
+	}
+}

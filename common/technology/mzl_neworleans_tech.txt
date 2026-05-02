@@ -1,0 +1,63 @@
+
+tech_mzl_neworleans_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_corvette_unlock }
+	weight = @specialhullweight #@tier2weight2
+
+	potential = {
+		is_ufop = yes	
+	}
+
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_neworleans		
+		desc = tech_neworleans_desc		
+		icon = tech_galaxy # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_NEWORLEANS_CONSTRUCTION_TITLE
+				desc = tech_neworleans_desc
+			}	
+		}		
+	}
+		
+	weight_modifier = {
+		modifier = {
+			factor = 1
+			years_passed < 5
+		}
+		modifier = {
+			factor = 8
+			years_passed > 6
+		}
+		modifier = {
+			factor = 8
+			any_neighbor_country = {
+				has_technology = tech_destroyer_unlock
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+	}
+	ai_weight = {
+		factor = 4 # Hulls are good
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}

@@ -1,0 +1,662 @@
+CP26 Dominion War Design
+Star Trek: Infinite - Community Patch 2026
+
+Purpose
+-------
+Create a major dynamic Dominion War arc for Star Trek: Infinite.
+
+The goal is not to force the exact Deep Space Nine timeline every game, but to
+build a living strategic crisis around the Bajoran Wormhole, Dominion
+infiltration, Cardassian instability, Deep Space 9, the Federation Alliance,
+the Romulan entry into the war, the Breen intervention, and the final fate of
+Cardassia.
+
+This should become one of CP26's major narrative systems, alongside the
+Synthetic Crisis arc.
+
+
+Core Fantasy
+------------
+The Dominion War should feel like the Alpha Quadrant being slowly pulled into a
+conflict it does not fully understand until it is almost too late.
+
+Early game:
+    Rumors, exploration, Gamma Quadrant signals, diplomatic pressure,
+    unexplained incidents, changeling infiltration.
+
+Mid game:
+    Cardassia weakens, the Dominion offers protection, DS9 and the wormhole
+    become the center of strategic tension.
+
+War phase:
+    The Dominion and Cardassians push into the Alpha Quadrant. The Federation
+    must build an alliance, hold the wormhole, and survive.
+
+Late war:
+    Romulans may enter, Breen may join the Dominion, Cardassian resistance may
+    rise, and the war can end in surrender, devastation, negotiated peace, or
+    Dominion victory.
+
+
+Main System Variables
+---------------------
+cp26_dominion_tension
+    General Alpha Quadrant tension with the Dominion.
+    Rises through border incidents, Dominion convoys, wormhole disputes,
+    Federation militarization, and Cardassian alignment.
+
+cp26_changeling_infiltration
+    Represents Founder agents operating inside Alpha Quadrant governments.
+    High infiltration can cause false-flag events, diplomatic breakdown,
+    paranoia, coups, or bad strategic choices.
+
+cp26_wormhole_control
+    Represents strategic control over the Bajoran Wormhole / DS9.
+    Positive values favor the Federation Alliance.
+    Negative values favor the Dominion.
+
+cp26_cardassian_instability
+    Represents Cardassian weakness, political frustration, military collapse,
+    and willingness to accept Dominion protection.
+
+cp26_alpha_quadrant_readiness
+    Represents Federation/Klingon/Romulan preparation for full-scale war.
+    High readiness improves outcomes in DS9, Operation Return, and the final
+    war phase.
+
+cp26_dominion_foothold
+    Represents Dominion military infrastructure in the Alpha Quadrant.
+    Increases if wormhole convoys are ignored or Cardassia joins the Dominion.
+
+cp26_cardassian_resistance
+    Represents Damar-style resistance against Dominion rule.
+    Rises if Dominion pressure on Cardassia becomes brutal or if Allied
+    support reaches Cardassian dissidents.
+
+cp26_breen_threat
+    Represents the chance and strength of Breen intervention.
+    Increases during late war if the Dominion is losing or if diplomatic
+    isolation pushes the Breen toward the Dominion.
+
+
+Phase 1 - Dominion Cold War
+---------------------------
+This phase begins before open war.
+
+Possible triggers:
+
+- Bajoran Wormhole exists
+- Federation has contact with Bajor / DS9 area
+- Cardassia exists
+- Gamma Quadrant/Dominion content has been initialized
+- Year/progression threshold if needed
+
+Event themes:
+
+1. Gamma Quadrant Rumors
+    Traders and explorers report a power called the Dominion.
+
+2. Missing Ships
+    Federation, Klingon, or Cardassian ships vanish near the Gamma Quadrant.
+
+3. Jem'Hadar Warning
+    A direct warning tells Alpha Quadrant powers to stay out of Dominion space.
+
+4. Changeling Fear
+    Reports of shapeshifter infiltration create political paranoia.
+
+5. Antwerp-Style Security Panic
+    A terrorist incident or false flag raises security pressure inside the
+    Federation.
+
+6. Klingon-Cardassian Tension
+    Klingons suspect Cardassia has been compromised by the Founders.
+
+7. Federation Mediation
+    The Federation can support Cardassia diplomatically, side with Klingons,
+    or attempt neutrality.
+
+8. Obsidian Order Collapse / Cardassian Weakness
+    Cardassia becomes politically unstable and vulnerable to Dominion influence.
+
+Gameplay effects:
+
+- Tension rises gradually.
+- Infiltration can push powers toward bad wars.
+- Federation can invest in readiness or diplomacy.
+- Cardassia can be saved, isolated, or pushed into Dominion arms.
+
+
+Phase 2 - Bajor, DS9, And The Wormhole
+--------------------------------------
+The wormhole should be the center of the Dominion War system.
+
+Strategic states:
+
+Federation-controlled DS9
+    Federation detects Dominion movement earlier.
+    Can mine the wormhole.
+    Can launch Operation Return if station is lost.
+
+Neutral / Bajoran-controlled DS9
+    Lower military readiness.
+    More diplomatic options.
+    Higher risk if Bajor signs non-aggression pact.
+
+Cardassian / Dominion-controlled DS9
+    Dominion foothold grows.
+    Wormhole convoys can arrive.
+    Federation Alliance must plan recapture.
+
+Possible mechanics:
+
+- Decision: Fortify Deep Space 9
+- Decision: Mine The Wormhole
+- Special project: Self-Replicating Minefield
+- Modifier: Wormhole Blockaded
+- Event: Dominion Convoys Enter The Alpha Quadrant
+- Event: Bajor Signs Non-Aggression Pact
+
+Minefield effects:
+
+If active:
+    Dominion reinforcements from Gamma Quadrant are blocked.
+    Dominion tension rises sharply.
+    Open war becomes likely.
+
+If destroyed or absent:
+    Dominion foothold increases.
+    Jem'Hadar fleets can spawn in or near Cardassian/Dominion space.
+
+
+Phase 3 - Cardassia Joins The Dominion
+--------------------------------------
+Cardassia is the hinge of the war.
+
+Trigger conditions:
+
+- cp26_cardassian_instability high
+- Cardassia weakened by Klingons, Federation, Maquis, or internal collapse
+- Dominion tension high
+- Dominion contact established
+
+Major event:
+
+cp26_dominion.300 - Cardassia Seeks Protection
+
+Cardassian choices:
+
+1. Join the Dominion
+    Cardassia gains massive military support.
+    Jem'Hadar fleets appear.
+    Dominion foothold increases greatly.
+    Federation/Klingon alliance likely reforms.
+
+2. Reject the Dominion
+    Cardassia remains independent.
+    Internal instability continues.
+    Dominion may attempt infiltration or coup.
+
+3. Seek Federation mediation
+    Opens non-canon diplomatic path.
+    Can prevent full Dominion War but weakens Cardassian militarists.
+
+4. Military hardline
+    Cardassia tries to stand alone.
+    High risk of collapse or later forced Dominion alliance.
+
+If Cardassia joins Dominion:
+
+- Dukat-style leadership can appear as event flavor.
+- Cardassian fleets receive Dominion support modifiers.
+- Maquis/DMZ content can be suppressed.
+- Dominion War countdown begins.
+
+
+Phase 4 - Call To Arms
+----------------------
+The open war begins around DS9 and the wormhole.
+
+Possible triggers:
+
+- Federation mines the wormhole
+- Dominion demands removal of the minefield
+- Dominion attacks DS9
+- Dominion foothold high
+- Cardassia joined Dominion
+- Dominion convoys ignored for too long
+
+Major event:
+
+cp26_dominion.400 - Call To Arms
+
+Federation choices:
+
+1. Mine the wormhole
+    Blocks reinforcements.
+    Guarantees Dominion hostility.
+    Improves long-term war odds if DS9 survives or is recaptured.
+
+2. Reinforce DS9
+    Increases chance DS9 holds.
+    Costs resources and fleet readiness.
+
+3. Evacuate and prepare counterattack
+    DS9 likely falls.
+    Operation Return becomes available.
+    Lower immediate casualties.
+
+4. Seek diplomatic delay
+    Reduces immediate war risk.
+    Dominion foothold may increase.
+
+Possible outcomes:
+
+- DS9 holds
+- DS9 falls but minefield activates
+- DS9 falls and wormhole remains open
+- Dominion foothold surges
+
+
+Phase 5 - Operation Return
+--------------------------
+If DS9 falls, the Federation Alliance can attempt to recapture it.
+
+Special project / situation:
+
+cp26_operation_return
+
+Requirements:
+
+- DS9 lost to Dominion/Cardassia
+- Federation still active
+- Klingons allied or available
+- Enough readiness or fleet strength
+
+Inputs:
+
+- cp26_alpha_quadrant_readiness
+- cp26_wormhole_control
+- Klingon support
+- Dominion foothold
+- Minefield status
+- Changeling infiltration
+
+Outcomes:
+
+1. Decisive Allied Victory
+    DS9 recaptured.
+    Dominion retreats to Cardassian space.
+    Wormhole control shifts to Federation.
+    Dominion foothold reduced.
+
+2. Costly Victory
+    DS9 recaptured but fleets suffer losses.
+    Federation war exhaustion rises.
+    Dominion remains dangerous.
+
+3. Failed Offensive
+    DS9 remains occupied.
+    Dominion reinforcements increase.
+    Federation Alliance morale drops.
+
+4. Prophets Intervention / Wormhole Event
+    Optional rare/canon-inspired outcome.
+    Gamma Quadrant reinforcements disappear.
+    Strong narrative event, should be used carefully.
+
+
+Phase 6 - Federation Alliance
+-----------------------------
+The Federation should not win alone easily.
+
+Alliance members:
+
+- Federation
+- Klingon Empire
+- Romulan Star Empire later
+- Cardassian rebels later
+- Minor powers optionally
+
+Klingon support:
+
+- May be weakened if Federation-Klingon relations were damaged earlier.
+- Can arrive during Operation Return.
+- Can become essential after Breen weapon appears.
+
+Romulan support:
+
+Romulans begin neutral or with non-aggression pact.
+
+Event chain:
+
+cp26_dominion.600 - Romulan Neutrality
+cp26_dominion.610 - Evidence Against The Dominion
+cp26_dominion.620 - Romulus Enters The War
+
+Possible routes:
+
+1. Honest diplomacy
+    Harder, slower, lower scandal risk.
+
+2. Intelligence operation
+    Faster, higher risk.
+    Inspired by In the Pale Moonlight.
+
+3. Shared threat
+    Romulans join if Dominion foothold gets too high.
+
+4. Failure
+    Romulans stay neutral or hostile.
+
+
+Phase 7 - Breen Intervention
+----------------------------
+Late-war escalation.
+
+Trigger conditions:
+
+- Dominion losing or stalled
+- War has lasted long enough
+- Breen exist
+- cp26_breen_threat high
+
+Major event:
+
+cp26_dominion.700 - The Breen Join The Dominion
+
+Effects:
+
+- Breen-Dominion Alliance formed
+- Allied fleets receive temporary combat penalty
+- Breen energy dampener modifier active
+- Chin'toka-style defeat event possible
+
+Modifier:
+
+modifier_cp26_breen_energy_dampener
+    Federation and Romulan ship combat penalty
+    Klingon ships less affected or recover faster
+
+Countermeasure project:
+
+cp26_breen_weapon_countermeasure
+
+Outcomes:
+
+- Klingon adaptation discovered quickly
+- Federation/Romulan countermeasure developed later
+- If ignored, Dominion counteroffensive becomes devastating
+
+
+Phase 8 - Cardassian Rebellion
+------------------------------
+If Dominion control over Cardassia becomes brutal, resistance rises.
+
+Variable:
+
+cp26_cardassian_resistance
+
+Increases when:
+
+- Dominion sacrifices Cardassian fleets
+- Cardassian worlds suffer devastation
+- Damar-style events occur
+- Federation supports dissidents
+- Dominion loses trust
+
+Major events:
+
+cp26_dominion.800 - Cardassian Discontent
+cp26_dominion.810 - Damar's Rebellion
+cp26_dominion.820 - Cardassian Liberation Front
+
+Effects:
+
+- Dominion shipbuilding disrupted
+- Cardassian fleets may defect
+- Dominion foothold decreases
+- Final attack on Cardassia becomes possible
+
+Player choices:
+
+- Arm the rebels
+- Protect civilians
+- Use rebellion as military diversion
+- Promise post-war Cardassian sovereignty
+- Ignore them and focus on military victory
+
+
+Phase 9 - Battle Of Cardassia
+-----------------------------
+Final phase of the war.
+
+Trigger conditions:
+
+- Dominion weakened
+- Federation Alliance active
+- Cardassian resistance active or Dominion foothold low
+- Breen countermeasure developed or Breen threat contained
+
+Major event:
+
+cp26_dominion.900 - The Battle Of Cardassia
+
+Inputs:
+
+- Federation readiness
+- Klingon support
+- Romulan support
+- Cardassian resistance
+- Dominion foothold
+- Breen threat
+- War exhaustion
+
+Outcomes:
+
+1. Dominion Surrender
+    War ends.
+    Dominion leaves Alpha Quadrant.
+    Peace treaty signed at DS9 or equivalent.
+
+2. Pyrrhic Allied Victory
+    Cardassia devastated.
+    Heavy civilian casualties.
+    Federation Alliance wins but suffers long-term trauma.
+
+3. Negotiated Settlement
+    Dominion withdraws but remains intact.
+    Cardassia survives with reduced devastation.
+    Less decisive but more stable.
+
+4. Dominion Holds Cardassia
+    War continues or ends in cold peace.
+    Alpha Quadrant remains militarized.
+
+5. Dominion Victory
+    Rare failure outcome.
+    DS9/wormhole lost.
+    Federation Alliance collapses or accepts harsh peace.
+
+
+Post-War Effects
+----------------
+Federation victory:
+
+- Unity and diplomatic bonus
+- War exhaustion recovery period
+- Ship losses / rebuilding need
+- Stronger alliance with Klingons and Romulans if they joined
+
+Cardassia devastated:
+
+- Cardassian rebuilding event chain
+- Refugees and humanitarian aid
+- Damar legacy / Cardassian reform
+
+Dominion withdrawal:
+
+- Wormhole restricted
+- Dominion no longer spawns reinforcements
+- Possible later diplomatic contact with the Great Link
+
+Federation militarized:
+
+- Stronger fleets
+- Lower exploration/diplomatic focus
+- Potential connection to later Picard-era defensive Starfleet
+
+
+Integration With CP26 Content
+-----------------------------
+Added civilizations:
+
+Breen Confederacy
+    Can join the Dominion late-war.
+    Should not be forced every game, but should have a strong event path.
+
+Gorn Hegemony
+    Could remain neutral, opportunistic, or provide limited support.
+
+Orion Empire
+    Can be involved through smuggling, intelligence, or Dominion plots.
+
+Tholian Assembly
+    Can sign non-aggression pact with Dominion or stay isolationist.
+
+Remans / Romulans
+    Remans can be referenced if Romulans join the war.
+    Shinzon/Reman assault troops can be optional later flavor.
+
+Mars/Luna/Utopia Planitia
+    Dominion War shipbuilding demands can interact with Mars industry.
+    Later Synthetic Crisis can be made more likely if wartime production pressure
+    pushes the Federation toward synthetic labor.
+
+Synthetic Crisis connection:
+
+If Dominion War caused heavy losses:
+    Synthetic Labor Program should become more attractive.
+    Federation may seek industrial shortcuts.
+    This creates a natural bridge from DS9-era trauma to Picard-era Mars.
+
+No Pirates option:
+    No direct connection needed.
+
+Galaxy size:
+    Large map helps Dominion War feel larger, but fleet spawns must be careful
+    to avoid performance crashes.
+
+
+Implementation Files
+--------------------
+Suggested files:
+
+common/on_actions/cp26_dominion_on_actions.txt
+events/cp26_dominion_events.txt
+common/situations/cp26_dominion_situations.txt, if situations are usable
+common/special_projects/cp26_dominion_projects.txt
+common/static_modifiers/cp26_dominion_modifiers.txt
+common/scripted_effects/cp26_dominion_effects.txt
+common/scripted_triggers/cp26_dominion_triggers.txt
+common/diplomatic_actions/cp26_dominion_actions.txt, optional
+localisation/english/cp26_dominion_l_english.yml
+localisation/french/cp26_dominion_l_french.yml
+
+If situations are not stable in Star Trek: Infinite, use event chains and
+special projects instead.
+
+
+Version 1 Scope
+---------------
+Keep version 1 focused.
+
+Implement:
+
+- Dominion tension variable
+- Changeling infiltration variable
+- Cardassian instability variable
+- Wormhole control variable
+- 8 cold war events
+- Cardassia joins Dominion event
+- Call to Arms event
+- DS9 / wormhole control event
+- Operation Return project/event
+- Romulan entry event chain
+- Breen intervention event
+- Cardassian rebellion event chain
+- Battle of Cardassia finale
+- English and French localization
+
+Avoid in version 1:
+
+- Huge automatic fleet spawns
+- Full AI strategic war planner rewrite
+- Overly complex occupation mechanics
+- Forced canon if player prevents conditions
+- Unstable wormhole map edits before testing
+
+
+Design Principles
+-----------------
+1. The war should build gradually.
+    The player should feel the Alpha Quadrant sliding toward disaster.
+
+2. DS9 and the wormhole must matter.
+    Whoever controls the wormhole controls the pace of the war.
+
+3. Cardassia should not be a simple villain switch.
+    Cardassian instability, pride, fear, and survival should drive the alliance
+    with the Dominion.
+
+4. Diplomacy should matter.
+    Klingon, Romulan, Bajoran, Breen, and minor power choices should change the
+    course of the war.
+
+5. Multiple endings should be valid.
+    Canon victory, negotiated peace, Cardassian survival, Dominion foothold, and
+    catastrophic defeat should all be possible.
+
+6. Performance must be protected.
+    Use modifiers, events, and limited fleets before adding massive battle
+    spawns.
+
+7. Connect to later CP26 arcs.
+    A brutal Dominion War can naturally push the Federation toward the Synthetic
+    Labor Program and the later Mars Crisis.
+
+
+Open Questions
+--------------
+1. Does CP26 currently have a reliable DS9/Bajor/wormhole representation?
+
+2. Should the Dominion exist as a full playable/AI country, or as scripted
+   crisis fleets and event targets in version 1?
+
+3. Should Cardassia be allowed to avoid joining the Dominion?
+
+4. Should Bajor be able to sign a non-aggression pact and stay out of the war?
+
+5. Should Operation Return include a rare Prophets intervention outcome?
+
+6. Should the Breen always appear late-war, or only if the Dominion is losing?
+
+7. How much should the war affect post-war Federation ethics and shipbuilding?
+
+
+Recommended First Implementation
+--------------------------------
+Start with a safe, event-driven version:
+
+1. Add variables and startup initialization.
+2. Add cold war events that raise tension and infiltration.
+3. Add Cardassian instability and Dominion alliance event.
+4. Add wormhole control as a variable, not map surgery at first.
+5. Add Call to Arms and Operation Return as events/projects.
+6. Add Romulan and Breen event branches.
+7. Add Cardassian Rebellion and Battle of Cardassia outcome.
+8. Only after stability testing, add more visible fleets, map changes, and AI
+   behaviors.
+
+This gives CP26 a large Dominion War narrative without risking crashes from too
+many scripted fleet spawns too early.

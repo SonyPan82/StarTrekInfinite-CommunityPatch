@@ -1,0 +1,127 @@
+
+@power_1 = -10
+@power_2 = -15
+@power_3 = -20
+@power_4 = -25
+@power_5 = -30
+
+@cost1 = 3
+@cost2 = 6
+@cost3 = 9
+@cost4 = 12
+@cost5 = 15
+
+@operative_officers1 = 10
+
+utility_component_template = {
+	key = "CORVETTE_IMPULSE_ENGINE_LANTREE"
+	size = small
+	icon = "GFX_ship_part_impulse_engine"
+	icon_frame = 1
+	power = @power_1
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+	
+	modifier = {
+	}
+		
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { lantree }
+	upgrades_to = "CORVETTE_ADVANCED_IMPULSE_ENGINE_LANTREE"
+	
+	ai_weight = {
+		weight = 1
+	}
+}
+
+
+utility_component_template = {
+	key = "CORVETTE_ADVANCED_IMPULSE_ENGINE_LANTREE"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @power_2
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost2
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 0.25
+		ship_evasion_add = 5
+	}
+
+	prerequisites = { "tech_engine_2" }
+	component_set = "thruster_components"
+	size_restriction = { lantree }
+	upgrades_to = "CORVETTE_HIGH_ENERGY_IMPULSE_ENGINE_LANTREE"
+	
+	ai_weight = {
+		weight = 2
+	}
+}
+
+
+utility_component_template = {
+	key = "CORVETTE_HIGH_ENERGY_IMPULSE_ENGINE_LANTREE"
+	size = small
+	icon = "GFX_ship_part_high_energy_impulse_engine"
+	icon_frame = 1
+	power = @power_3
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost3
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 0.50
+		ship_evasion_add = 10
+	}
+
+	prerequisites = { "tech_engine_3" }
+	component_set = "thruster_components"
+	size_restriction = { lantree }
+	upgrades_to = "CORVETTE_OMEGA_ENGINE_LANTREE"
+	
+	ai_weight = {
+		weight = 3
+	}
+}
+
+
+utility_component_template = {
+	key = "CORVETTE_OMEGA_ENGINE_LANTREE"
+	size = small
+	icon = "GFX_ship_part_omega_engine"
+	icon_frame = 1
+	power = @power_4
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost4
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 0.75
+		ship_evasion_add = 15
+	}
+
+	prerequisites = { "tech_engine_4" }
+	component_set = "thruster_components"
+	size_restriction = { lantree }
+	
+	ai_weight = {
+		weight = 4
+	}
+}

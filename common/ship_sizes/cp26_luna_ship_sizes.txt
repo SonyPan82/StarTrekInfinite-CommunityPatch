@@ -1,0 +1,100 @@
+@luna_formation_priority = 10
+@luna_speed = 118
+@luna_collision_radius = 3.0
+@luna_build_time = 160
+@luna_hp = 1500
+@luna_evasion = 34
+@luna_upkeep_deuterium = 0.35
+@luna_upkeep_alloys = 0.35
+@no_admiral_fire_rate_mult = -0.1
+@no_admiral_shield_mult = -0.1
+@no_admiral_shield_damage_mult = -0.1
+@no_admiral_shield_penetration_mult = -0.1
+@no_admiral_tracking_mult = -0.1
+
+luna = {
+	formation_priority = @luna_formation_priority
+	entity = luna_entity
+	max_speed = @luna_speed
+	acceleration = 0.30
+	rotation_speed = 0.25
+	collision_radius = @luna_collision_radius
+	max_hitpoints = @luna_hp
+	operative_officers = 25
+	officers_escape_perc = 15
+	fleet_view_background = "military_excelsior"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @no_admiral_fire_rate_mult
+		ship_shield_mult = @no_admiral_shield_mult
+		ship_shield_damage_mult = @no_admiral_shield_damage_mult
+		ship_shield_penetration_mult = @no_admiral_shield_penetration_mult
+		ship_tracking_mult = @no_admiral_tracking_mult
+		ship_evasion_add = @luna_evasion
+		ship_anomaly_research_speed_mult = 0.10
+	}
+
+	size_multiplier = 5
+	fleet_slot_size = 3
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = 3
+	base_buildtime = @luna_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+
+	default_behavior = "hrb_bomber"
+
+	prerequisites = { "tech_luna_unlock" }
+
+	potential_country = {
+		has_country_id = ufop
+	}
+
+	combat_disengage_chance = 1.65
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @luna_upkeep_deuterium
+		}
+
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+
+		upkeep = {
+			alloys = @luna_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}

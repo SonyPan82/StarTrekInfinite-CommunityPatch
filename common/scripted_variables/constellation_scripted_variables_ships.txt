@@ -1,0 +1,17 @@
+##################
+# CONSTELLATION
+##################
+
+@constellation_speed = 160
+
+@constellation_collision_radius = 2.5
+@constellation_formation_priority = 10
+
+@constellation_hp = 1000
+@constellation_evasion = 48
+@constellation_build_time = 120
+
+@constellation_upkeep_energy = 0.7
+@constellation_upkeep_deuterium = 0.3
+@constellation_upkeep_alloys = 0.3
+@constellation_upkeep_minerals = 0.4

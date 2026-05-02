@@ -1,0 +1,50 @@
+namespace = aa_colrisa
+
+event = {
+	id = aa_colrisa.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_species = {
+			class = "HRB"
+			portrait = "betazoid"
+			name = "Risan"
+			plural = "Risans"
+			adjective = "Risan"
+			name_list = "BETA"
+			traits = {
+				trait = "trait_risan_altruistic"
+				trait = "trait_risan_nurturing"
+				trait = "trait_risan_sedentary"
+			}
+			effect = {
+				save_global_event_target_as = risan_species
+			}
+		}
+		
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = planet_risa
+			}
+			create_colony = {
+				owner = event_target:ufop_country
+			}
+		}
+
+		event_target:ufop_country = {
+			random_owned_planet = {
+				limit = {
+					has_planet_flag = planet_risa
+				}
+				while = {
+					count = 5
+					create_pop = { species = "Risan" }
+				}
+				add_district = district_city
+				add_district = district_farming
+				set_colony_type = col_pleasure
+			}
+		}
+	}
+}

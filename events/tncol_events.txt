@@ -1,0 +1,49 @@
+namespace = tn_col
+
+event = {
+	id = tn_col.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ufop_country = {	
+			random_galaxy_planet = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				spawn_system = {
+					min_jumps = 1
+					max_jumps = 3
+					min_distance = 40
+					max_distance = 45
+					initializer = terra_nova_initializer
+					hyperlane = yes
+					is_discovered = yes
+					}	
+			}
+			last_created_system = {
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				create_starbase = {
+					size = starbase_outpost # We can use any Starbase size. The sizes are located on "game\common\starbase_types"
+					owner = event_target:ufop_country # Using the event_target saved on ufop_system_initializer
+				 }
+				random_system_planet = {
+					limit = {
+						has_planet_flag = terra_nova_planet
+					}
+					
+					create_colony = {
+						owner = event_target:ufop_country
+					}
+					
+					while = {
+						count = 4
+						create_pop = { species = "Human" }
+					}
+					add_district = district_city
+					add_district = district_generator
+				}
+			}
+		}
+	}
+}

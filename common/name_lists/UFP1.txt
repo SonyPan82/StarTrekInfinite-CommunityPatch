@@ -1,0 +1,249 @@
+﻿### United Nations of Earth
+
+UFP1 = {
+	category = "Humanoid"
+	randomized = no
+	alias = "Federated"
+
+	ship_names = {
+		generic = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+		}
+		constructor = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+			Archimedes Mason Citadel 
+		}
+		
+		colonizer = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother 
+		}
+
+		sponsored_colonizer = { # needed when there are no generic names
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother 
+		}
+
+		science = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+			Raman Cochrane Copernicus Tsiolkovsky Yosemite Oberth Biko Olympia Bonestell Pasteur Nobel Olympic
+		}
+		
+		governor_ship = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother 
+		}
+
+		spy_ship = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother 
+		}
+
+		transport = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother 
+		}
+
+		bulk_carrier = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother 
+		}
+
+		military_station_small = {
+			Al-Batani Angelou Billings Chicago Challenger Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother 
+		}
+
+		miranda = {
+			Angelou Billings Chicago Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+			Discovery Pathfinder Destiny Equinox Unity Mission Tolstoy Kyoto Vigilant Defender Devotion Horizon Defiance Pegasus Andromeda Aegis 
+			Polaris Aurora Excalibur Zephyr Pioneer Arcadia Vanguard Nimbus Serendipity Elysium Centaur Aldebaran Seraphim Valhalla Acheron Celestial Titan Serenity Cortez Thunderchild Appalachia Yeager Essex 
+			Manchester Mekong Heroic Alita Rutledge Firebrand Kyushu London Edinburgh Liverpool Bristol Texas York "San Francisco" Paris Lyon Amsterdam Stockholm Sarajevo Renown 
+			Churchill Budapest Zhukov Beijing Harbin Chengdu Delhi "Cape Town" Syndey Moscow Rome Istanbul Mumbai Toronto Athens Seoul Virtue Honour Courage Wisdom Integrity Resilient Valour Bastion Harmony Fortitude Grace Humility Benevolence 
+			Gratitude Charity Yorktown Arctic Dragonfly Quest Perseus Explorer Footage Armstrong Archer Stewart Newton Einstein Copernicus Hawking Turing Lyra "Shangri-La" Avalon Olymups Camelot Icarus Hyperion Troy Egypt England Missouri
+			Indiana Riyadh Canberra Washington Seattle Vienna Oslo Manila Prague Lisbon Madrid Copenhagen Tripoli Accra California Alaska Hawaii Arizona Colorado Nevada Montana Vermont Oregon Daedalus Florida Idaho Tennessee Oklahoma Georgetown Reykjavik Marrakech 
+			Apollo Artemis Poseidon Athena Olympus Gaia Minerva Thebes Achilles Jupiter Diana Janus Juno Vesta Fortuna Hercules Pluto Roma Castor Pollux Caelus Libertas Victoria Ambassador Diplomat Royal Regent Imperial Crown Monarch 
+			Concord Amity Accord Seyetek Daystrom Cochrane Surak April Earhart Akira Helios Masaka Rabin Spector Wersching Adelphi Exeter Gandhi Horatio Valdemar Yamaguchi Drake Yorkshire Agamemnon Ajax Clement Gage Bradbury Buran Kearsarge Portland Constance 
+			Constellation Gettysburg Hathaway Stargazer Victory Gihlan Eagle Kongo "New Jersey" Republic Curry Archon Mestral Ariel Callisto Charon Europa Ganymede Io Luna Oberon Rhea Triton Renegade Wellington Princeton "Rhode Island" 
+			Pasteur Nobel Drexler Eaves Hokkaido Akagi Forrest Hanson Pearson Yellowstone Bozeman Chekov Hypatia Jenolan Nightingale Fleming Denver Freedom
+			Miranda
+			Antares Hermes Soyuz Brattain Lantree Majestic Nautilus Reliant Saratoga ShirKahr Sitak "Tian An Men" Trial
+		}
+
+		defiant = {
+			Angelou Billings Chicago Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+			Discovery Pathfinder Destiny Equinox Unity Mission Tolstoy Kyoto Vigilant Defender Devotion Horizon Defiance Pegasus Andromeda Aegis 
+			Polaris Aurora Excalibur Zephyr Pioneer Arcadia Vanguard Nimbus Serendipity Elysium Centaur Aldebaran Seraphim Valhalla Acheron Celestial Titan Serenity Cortez Thunderchild Appalachia Yeager Essex 
+			Manchester Mekong Heroic Alita Rutledge Firebrand Kyushu London Edinburgh Liverpool Bristol Texas York "San Francisco" Paris Lyon Amsterdam Stockholm Sarajevo Renown 
+			Churchill Budapest Zhukov Beijing Harbin Chengdu Delhi "Cape Town" Syndey Moscow Rome Istanbul Mumbai Toronto Athens Seoul Virtue Honour Courage Wisdom Integrity Resilient Valour Bastion Harmony Fortitude Grace Humility Benevolence 
+			Gratitude Charity Yorktown Arctic Dragonfly Quest Perseus Explorer Footage Armstrong Archer Stewart Newton Einstein Copernicus Hawking Turing Lyra "Shangri-La" Avalon Olymups Camelot Icarus Hyperion Troy Egypt England Missouri
+			Indiana Riyadh Canberra Washington Seattle Vienna Oslo Manila Prague Lisbon Madrid Copenhagen Tripoli Accra California Alaska Hawaii Arizona Colorado Nevada Montana Vermont Oregon Daedalus Florida Idaho Tennessee Oklahoma Georgetown Reykjavik Marrakech 
+			Apollo Artemis Poseidon Athena Olympus Gaia Minerva Thebes Achilles Jupiter Diana Janus Juno Vesta Fortuna Hercules Pluto Roma Castor Pollux Caelus Libertas Victoria Ambassador Diplomat Royal Regent Imperial Crown Monarch 
+			Concord Amity Accord Seyetek Daystrom Cochrane Surak April Earhart Akira Helios Masaka Rabin Spector Wersching Adelphi Exeter Gandhi Horatio Valdemar Yamaguchi Drake Yorkshire Agamemnon Ajax Clement Gage Bradbury Buran Kearsarge Portland Constance 
+			Constellation Gettysburg Hathaway Stargazer Victory Gihlan Eagle Kongo "New Jersey" Republic Curry Archon Mestral Ariel Callisto Charon Europa Ganymede Io Luna Oberon Rhea Triton Renegade Wellington Princeton "Rhode Island" 
+			Pasteur Nobel Drexler Eaves Hokkaido Akagi Forrest Hanson Pearson Yellowstone Bozeman Chekov Hypatia Jenolan Nightingale Fleming Denver Freedom
+			Defiant
+			"Sao Paulo" Valiant
+		}
+
+		intrepid = {
+			Angelou Billings Chicago Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+			Discovery Pathfinder Destiny Equinox Unity Mission Tolstoy Kyoto Vigilant Defender Devotion Horizon Defiance Pegasus Andromeda Aegis 
+			Polaris Aurora Excalibur Zephyr Pioneer Arcadia Vanguard Nimbus Serendipity Elysium Centaur Aldebaran Seraphim Valhalla Acheron Celestial Titan Serenity Cortez Thunderchild Appalachia Yeager Essex 
+			Manchester Mekong Heroic Alita Rutledge Firebrand Kyushu London Edinburgh Liverpool Bristol Texas York "San Francisco" Paris Lyon Amsterdam Stockholm Sarajevo Renown 
+			Churchill Budapest Zhukov Beijing Harbin Chengdu Delhi "Cape Town" Syndey Moscow Rome Istanbul Mumbai Toronto Athens Seoul Virtue Honour Courage Wisdom Integrity Resilient Valour Bastion Harmony Fortitude Grace Humility Benevolence 
+			Gratitude Charity Yorktown Arctic Dragonfly Quest Perseus Explorer Footage Armstrong Archer Stewart Newton Einstein Copernicus Hawking Turing Lyra "Shangri-La" Avalon Olymups Camelot Icarus Hyperion Troy Egypt England Missouri
+			Indiana Riyadh Canberra Washington Seattle Vienna Oslo Manila Prague Lisbon Madrid Copenhagen Tripoli Accra California Alaska Hawaii Arizona Colorado Nevada Montana Vermont Oregon Daedalus Florida Idaho Tennessee Oklahoma Georgetown Reykjavik Marrakech 
+			Apollo Artemis Poseidon Athena Olympus Gaia Minerva Thebes Achilles Jupiter Diana Janus Juno Vesta Fortuna Hercules Pluto Roma Castor Pollux Caelus Libertas Victoria Ambassador Diplomat Royal Regent Imperial Crown Monarch 
+			Concord Amity Accord Seyetek Daystrom Cochrane Surak April Earhart Akira Helios Masaka Rabin Spector Wersching Adelphi Exeter Gandhi Horatio Valdemar Yamaguchi Drake Yorkshire Agamemnon Ajax Clement Gage Bradbury Buran Kearsarge Portland Constance 
+			Constellation Gettysburg Hathaway Stargazer Victory Gihlan Eagle Kongo "New Jersey" Republic Curry Archon Mestral Ariel Callisto Charon Europa Ganymede Io Luna Oberon Rhea Triton Renegade Wellington Princeton "Rhode Island" 
+			Pasteur Nobel Drexler Eaves Hokkaido Akagi Forrest Hanson Pearson Yellowstone Bozeman Chekov Hypatia Jenolan Nightingale Fleming Denver Freedom
+			Intrepid
+		}
+
+		excelsior = {
+			Angelou Billings Chicago Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+			Discovery Pathfinder Destiny Equinox Unity Mission Tolstoy Kyoto Vigilant Defender Devotion Horizon Defiance Pegasus Andromeda Aegis 
+			Polaris Aurora Excalibur Zephyr Pioneer Arcadia Vanguard Nimbus Serendipity Elysium Centaur Aldebaran Seraphim Valhalla Acheron Celestial Titan Serenity Cortez Thunderchild Appalachia Yeager Essex 
+			Manchester Mekong Heroic Alita Rutledge Firebrand Kyushu London Edinburgh Liverpool Bristol Texas York "San Francisco" Paris Lyon Amsterdam Stockholm Sarajevo Renown 
+			Churchill Budapest Zhukov Beijing Harbin Chengdu Delhi "Cape Town" Syndey Moscow Rome Istanbul Mumbai Toronto Athens Seoul Virtue Honour Courage Wisdom Integrity Resilient Valour Bastion Harmony Fortitude Grace Humility Benevolence 
+			Gratitude Charity Yorktown Arctic Dragonfly Quest Perseus Explorer Footage Armstrong Archer Stewart Newton Einstein Copernicus Hawking Turing Lyra "Shangri-La" Avalon Olymups Camelot Icarus Hyperion Troy Egypt England Missouri
+			Indiana Riyadh Canberra Washington Seattle Vienna Oslo Manila Prague Lisbon Madrid Copenhagen Tripoli Accra California Alaska Hawaii Arizona Colorado Nevada Montana Vermont Oregon Daedalus Florida Idaho Tennessee Oklahoma Georgetown Reykjavik Marrakech 
+			Apollo Artemis Poseidon Athena Olympus Gaia Minerva Thebes Achilles Jupiter Diana Janus Juno Vesta Fortuna Hercules Pluto Roma Castor Pollux Caelus Libertas Victoria Ambassador Diplomat Royal Regent Imperial Crown Monarch 
+			Concord Amity Accord Seyetek Daystrom Cochrane Surak April Earhart Akira Helios Masaka Rabin Spector Wersching Adelphi Exeter Gandhi Horatio Valdemar Yamaguchi Drake Yorkshire Agamemnon Ajax Clement Gage Bradbury Buran Kearsarge Portland Constance 
+			Constellation Gettysburg Hathaway Stargazer Victory Gihlan Eagle Kongo "New Jersey" Republic Curry Archon Mestral Ariel Callisto Charon Europa Ganymede Io Luna Oberon Rhea Triton Renegade Wellington Princeton "Rhode Island" 
+			Pasteur Nobel Drexler Eaves Hokkaido Akagi Forrest Hanson Pearson Yellowstone Bozeman Chekov Hypatia Jenolan Nightingale Fleming Denver Freedom
+			Excelsior
+			Al-Batani Berlin Cairo Charleston "Crazy Horse" Crockett Fearless Frederickson Gorkon Grissom Hood Lakota Livingston Malinche Melbourne Lexington Okinawa Potemkin Repulse Roosevelt Tecumseh "Valley Forge"
+		}
+
+		### Format is Generic, Galaxy Specific, Galaxy, Nebula Specific
+		galaxy = {
+			Angelou Billings Chicago Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+			Discovery Pathfinder Destiny Equinox Unity Mission Tolstoy Kyoto Vigilant Defender Devotion Horizon Defiance Pegasus Andromeda Aegis 
+			Polaris Aurora Excalibur Zephyr Pioneer Arcadia Vanguard Nimbus Serendipity Elysium Centaur Aldebaran Seraphim Valhalla Acheron Celestial Titan Serenity Cortez Thunderchild Appalachia Yeager Essex 
+			Manchester Mekong Heroic Alita Rutledge Firebrand Kyushu London Edinburgh Liverpool Bristol Texas York "San Francisco" Paris Lyon Amsterdam Stockholm Sarajevo Renown 
+			Churchill Budapest Zhukov Beijing Harbin Chengdu Delhi "Cape Town" Syndey Moscow Rome Istanbul Mumbai Toronto Athens Seoul Virtue Honour Courage Wisdom Integrity Resilient Valour Bastion Harmony Fortitude Grace Humility Benevolence 
+			Gratitude Charity Yorktown Arctic Dragonfly Quest Perseus Explorer Footage Armstrong Archer Stewart Newton Einstein Copernicus Hawking Turing Lyra "Shangri-La" Avalon Olymups Camelot Icarus Hyperion Troy Egypt England Missouri
+			Indiana Riyadh Canberra Washington Seattle Vienna Oslo Manila Prague Lisbon Madrid Copenhagen Tripoli Accra California Alaska Hawaii Arizona Colorado Nevada Montana Vermont Oregon Daedalus Florida Idaho Tennessee Oklahoma Georgetown Reykjavik Marrakech 
+			Apollo Artemis Poseidon Athena Olympus Gaia Minerva Thebes Achilles Jupiter Diana Janus Juno Vesta Fortuna Hercules Pluto Roma Castor Pollux Caelus Libertas Victoria Ambassador Diplomat Royal Regent Imperial Crown Monarch 
+			Concord Amity Accord Seyetek Daystrom Cochrane Surak April Earhart Akira Helios Masaka Rabin Spector Wersching Adelphi Exeter Gandhi Horatio Valdemar Yamaguchi Drake Yorkshire Agamemnon Ajax Clement Gage Bradbury Buran Kearsarge Portland Constance 
+			Constellation Gettysburg Hathaway Stargazer Victory Gihlan Eagle Kongo "New Jersey" Republic Curry Archon Mestral Ariel Callisto Charon Europa Ganymede Io Luna Oberon Rhea Triton Renegade Wellington Princeton "Rhode Island" 
+			Pasteur Nobel Drexler Eaves Hokkaido Akagi Forrest Hanson Pearson Yellowstone Bozeman Chekov Hypatia Jenolan Nightingale Fleming Denver Freedom
+			Galaxy
+			Challenger Magellan Odyssey Syracuse Venture Yamato Ross Dauntless
+			Nebula
+			Bellerophon Bonchune Endeavour Farragut Hera Honshu Leeds Lexington Melbourne Merrimack Monitor Phoenix Prometheus Proxima Sutherland T'Kumbra Ulysses
+		}
+
+		sovereign = {
+			Angelou Billings Chicago Curie Gallico "Le Guin" Sentinel Silversides Valorous Ervolina Lionheart Kahlo Nova Mikita Resolute Oyama Legionnaire Burton Hanley Rue Nimble Walters Eliel Riegel Alexandria Strother
+			Discovery Pathfinder Destiny Equinox Unity Mission Tolstoy Kyoto Vigilant Defender Devotion Horizon Defiance Pegasus Andromeda Aegis 
+			Polaris Aurora Excalibur Zephyr Pioneer Arcadia Vanguard Nimbus Serendipity Elysium Centaur Aldebaran Seraphim Valhalla Acheron Celestial Titan Serenity Cortez Thunderchild Appalachia Yeager Essex 
+			Manchester Mekong Heroic Alita Rutledge Firebrand Kyushu London Edinburgh Liverpool Bristol Texas York "San Francisco" Paris Lyon Amsterdam Stockholm Sarajevo Renown 
+			Churchill Budapest Zhukov Beijing Harbin Chengdu Delhi "Cape Town" Syndey Moscow Rome Istanbul Mumbai Toronto Athens Seoul Virtue Honour Courage Wisdom Integrity Resilient Valour Bastion Harmony Fortitude Grace Humility Benevolence 
+			Gratitude Charity Yorktown Arctic Dragonfly Quest Perseus Explorer Footage Armstrong Archer Stewart Newton Einstein Copernicus Hawking Turing Lyra "Shangri-La" Avalon Olymups Camelot Icarus Hyperion Troy Egypt England Missouri
+			Indiana Riyadh Canberra Washington Seattle Vienna Oslo Manila Prague Lisbon Madrid Copenhagen Tripoli Accra California Alaska Hawaii Arizona Colorado Nevada Montana Vermont Oregon Daedalus Florida Idaho Tennessee Oklahoma Georgetown Reykjavik Marrakech 
+			Apollo Artemis Poseidon Athena Olympus Gaia Minerva Thebes Achilles Jupiter Diana Janus Juno Vesta Fortuna Hercules Pluto Roma Castor Pollux Caelus Libertas Victoria Ambassador Diplomat Royal Regent Imperial Crown Monarch 
+			Concord Amity Accord Seyetek Daystrom Cochrane Surak April Earhart Akira Helios Masaka Rabin Spector Wersching Adelphi Exeter Gandhi Horatio Valdemar Yamaguchi Drake Yorkshire Agamemnon Ajax Clement Gage Bradbury Buran Kearsarge Portland Constance 
+			Constellation Gettysburg Hathaway Stargazer Victory Gihlan Eagle Kongo "New Jersey" Republic Curry Archon Mestral Ariel Callisto Charon Europa Ganymede Io Luna Oberon Rhea Triton Renegade Wellington Princeton "Rhode Island" 
+			Pasteur Nobel Drexler Eaves Hokkaido Akagi Forrest Hanson Pearson Yellowstone Bozeman Chekov Hypatia Jenolan Nightingale Fleming Denver Freedom
+			Sovereign
+			"Ark Royal" Arsinoe Gilgamesh Glasgow Hutchinson Igraine Inaieu "Jaresh-Inyo" Okuda Musashi Pachacuti Valkyrie Venture Warspite
+		}
+
+		enterprise = {
+			Enterprise
+		}
+
+		enterprise_sovereign = {
+			Enterprise
+		}
+
+		california = {
+			Cerritos Artesia Bell Bellflower Commerce Compton Downey "La Mirada" Lakewood "Pico Rivera" Paramount Montebello Maywood Lynwood "Long Beach" "Santa Fe" "Signal Hill"
+			Vernon Whittier Avalon "San Diego" Alhambra Anaheim Burbank Carlsbad "Culver City" Eureka Fresno Inglewood Merced "Mount Shasta" Oakland Redding Riverside Rubidoux Solvang "San Jose" "Santa Monica"
+			Vacaville Vallejo "West Covina" "San Clemente" Sacramento
+		}
+	}
+
+	fleet_names = {
+		sequential_name = "%O% Fleet"
+	}
+	
+	army_names = {
+
+		machine_defense = {
+			sequential_name = "%O% Planetary Guard"
+		}
+		
+		machine_assault_1 = {
+			sequential_name = "%O% Expeditionary Force"
+		}
+	
+		defense_army = {
+			sequential_name = "%O% Planetary Guard"
+		}
+
+		assault_army = {
+			sequential_name = "%O% Expeditionary Force"
+		}
+		
+		clone_army = { 
+			sequential_name = "%O% Clone Army"
+		}
+		
+		undead_army = {
+			sequential_name = "%O% Dread Commando"
+		}
+
+		robotic_army = {
+			sequential_name = "%O% Hunter-Killer Group"
+		}
+
+		robotic_defense_army = {
+			sequential_name = "%O% Ground Defense Matrix"
+		}
+		
+		gene_warrior_army = {
+			random_names = {
+				"SARC-A 'Gladiators'" "SARC-B 'Widowmakers'" "SARC-C 'Immortals'" "SARC-D 'Berserkers'" "SARC-E 'Assassins'"
+				"SARC-F 'Reapers'" "SARC-G 'Nighthawks'" "SARC-H 'Desperados'" "SARC-I 'Grey Knights'" "SARC-J 'Roughnecks'" 
+			}
+			sequential_name = "%O% Bio-Engineered Squadron"
+		}
+
+		occupation_army = {
+			sequential_name = "%O% Garrison Force"
+		}
+
+		robotic_occupation_army = {
+			sequential_name = "%O% Mechanized Garrison"
+		}
+
+		primitive_army = {
+			sequential_name = "Primitive Army %C%"
+		}
+		industrial_army = {
+			sequential_name = "Industrial Army %C%"
+		}
+		postatomic_army = {
+			sequential_name = "Post-Atomic Army %C%"
+		}
+	}
+
+
+
+
+	### CHARACTERS
+
+	character_names = {
+
+		names1 = {
+			weight = 40
+			first_names_male = {
+				Jean-Marc Anders Kwame Omar Yahya Sean Josue Krzysztof Deitrich Ezequiel Akash Takoda Misael Joep John Germán Giovanni José
+			}
+			first_names_female = {
+				Susanna Marie-Claude Nadia Cecilia Aabria Priyanka Hilary Iwona Azul Berenika Heidi Afia Catalina Teresa Paula Micaela Isabella Lucila 
+			}
+			second_names = {
+				Atkins Brenner Chandra Chen Huang Patel García Silvestro Gomez Krin Connor Vincent Rodriguez Martinez Rasmussen Hassan Carbone Johnson Mulligan Mercer 
+				Williams Mbeki Kamara Abebe Floyd Mortensen Nuzzo Okorafor Achebe Nayeli Nkosi Singh Leroux Conan Zhang Gates Jones
+			}
+		}
+	}
+}

@@ -1,0 +1,16 @@
+##################
+# LANTREE
+##################
+
+@lantree_speed = 160
+
+@lantree_collision_radius = 2.0
+@lantree_formation_priority = 20
+
+@lantree_hp = 750
+@lantree_evasion = 50
+@lantree_build_time = 60
+
+@lantree_upkeep_energy = 0.3
+@lantree_upkeep_deuterium = 0.1
+@lantree_upkeep_alloys = 0.1

@@ -1,0 +1,8 @@
+objectTypes = {
+		pdxmesh = {
+		name = "ddraig_slots_mesh"
+		file = "gfx/models/ships/gorn/gorn_ddraig_slots.mesh"
+		scale = 1.0
+	}
+
+}

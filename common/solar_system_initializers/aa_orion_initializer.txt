@@ -1,0 +1,222 @@
+orion_system_initializer = {
+	name = "Orion"
+	class = "rl_all_stars"
+	flags = { orion orion_system orion_home_system capital }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+		
+		init_effect = {
+			change_pc = pc_k_star
+		}
+	}
+	
+	change_orbit = 30
+	
+	planet = {
+		count = 1
+		orbit_distance = 12
+		size = 4
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 10
+		size = 5
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		name = "Free Orion"
+		count = 1
+		class = pc_continental
+		subclass = psc_class_m
+		size = 20
+		orbit_distance = 18
+		home_planet = yes
+		flags = { mapo_colony orion_capital }
+		
+		init_effect = {
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = home_planet
+				days = -1
+			}
+			if = {
+				limit = {
+					NOT = { has_built_species = "Orion" }
+				}
+		
+				create_species = {
+					class = "AAORION"
+					portrait = "orion"
+					name = "Orion"
+					plural = "Orions"
+					adjective = "Orion"
+					name_list = "MAM1"
+					traits = {
+						trait = "trait_thrifty"
+						trait = "trait_charismatic"
+						trait = "trait_deviants"
+					}
+				}
+			}
+
+			create_country = {
+				species = "Orion"
+				country_id = "orion"
+				type = contender
+				contact_rule = always
+				ship_prefix = "ORS"
+				name_list = "MAM1"
+				authority = auth_dictatorial_orion
+				civics = { civic = civic_orion_competition }
+				civics = { civic = civic_orion_matriarchs }
+				origin = "origin_default"
+				flag = {
+					icon= {
+						category = "emblem"
+						file = "flag_orion.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors={
+						"black"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				ethos = {
+					ethic = ethic_militarist
+					ethic = ethic_egalitarian
+					ethic = ethic_materialist
+				}
+				ignore_initial_colony_error = yes				
+			}
+			last_created_country = {
+				set_name = "Orion Empire"
+				set_graphical_culture = orion_01
+				save_global_event_target_as = orion_country
+				set_country_flag = orion
+				set_country_flag = orion_empire
+				set_custom_capital_location = prev
+
+				create_leader = {
+					class = ruler
+					species = this
+					name = random
+					skill = 3
+				}
+				set_leader = last_created_leader
+			}
+		}
+		
+		late_init_effect = {
+			create_colony = {
+				owner = event_target:orion_country
+			}
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 25
+		size = 12
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_arid
+		subclass = psc_class_m
+		home_planet = no
+	}
+	
+	init_effect = {
+		generate_home_system_resources = yes
+		every_country = {
+			if = {
+				limit = {
+					has_country_flag = orion
+				}
+				save_global_event_target_as = orion_country
+			}
+		}
+	}
+
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:orion_country
+		}
+	}
+}
+
+verex_system_initializer = {
+	name = "Verex"
+	class = "rl_all_stars"
+	flags = { orion_system }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+		
+		init_effect = {
+			change_pc = pc_m_star
+		}
+	}
+	
+	change_orbit = 25
+	
+	planet = {
+		count = 1
+		orbit_distance = 12
+		size = 4
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_barren
+		home_planet = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 10
+		size = 5
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		name = "Verex III"
+		count = 1
+		class = pc_arid
+		subclass = psc_class_l
+		size = 12
+		orbit_distance = 21
+		flags = { mapo_colony orion_colony }
+		
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:orion_country
+		}
+	}
+}

@@ -1,0 +1,1827 @@
+#################
+# LEADER TRAITS #
+#################
+
+leader_trait_aggressive = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_fire_rate_mult = 0.05
+        ship_speed_mult = 0.1 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_cautious = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_weapon_range_mult = 0.2 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_engineer = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_hull_regen_add_perc = 0.5
+        ship_shield_regen_add_perc = 0.5 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_fleet_logistician = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ships_upkeep_mult = -0.1 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_gale_speed = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_evasion_mult = 0.05
+        ship_speed_mult = 0.2 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_trickster = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_emergency_ftl_mult = -0.15
+        ship_disengage_chance_mult = 0.25 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = yes
+    randomized = yes
+    opposites = { leader_trait_lethargic }
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_unyielding = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_hull_mult = 0.1
+        ship_weapon_damage = 0.05
+        ship_disengage_chance_mult = -0.33 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = no
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_lethargic = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_evasion_mult = -0.05
+        ship_speed_mult = -0.2 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = no
+    randomized = yes
+    opposites = { leader_trait_trickster }
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_nervous = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_fire_rate_mult = 0.05 
+    }
+
+    leader_trait = { admiral }
+    leader_class = { admiral }
+    initial = no
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+# # Needs custom implementation
+# leader_trait_adaptable = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         species_leader_exp_gain = 0.25 
+#     }
+
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = yes
+#     randomized = yes
+#     opposites = { leader_trait_stubborn }
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_eager = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         leaders_cost_mult = -0.5
+#         leaders_upkeep_mult = -0.5 
+#     }
+
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_resilient = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         leader_age = 25 
+#     }
+
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = yes
+#     randomized = yes
+#     opposites = { leader_trait_substance_abuser }
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_arrested_development = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         leader_skill_levels = -2 
+#     }
+
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_stubborn = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         species_leader_exp_gain = -0.25 
+#     }
+
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = yes
+#     randomized = yes
+#     opposites = { leader_trait_adaptable }
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_substance_abuser = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         leader_age = -20 
+#     }
+
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = yes
+#     randomized = yes
+#     opposites = { leader_trait_resilient }
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_army_logistician = {
+
+    cost = 1
+    
+    
+    modifier = {
+        armies_upkeep_mult = -0.2 
+    }
+
+    leader_trait = { general }
+    leader_class = { general }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_butcher = {
+
+    cost = 1
+    
+    
+    modifier = {
+        army_damage_mult = 0.1
+        army_collateral_damage_mult = 0.33 
+    }
+
+    leader_trait = { general }
+    leader_class = { general }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_restrained = {
+
+    cost = 1
+    
+    
+    modifier = {
+        army_disengage_chance_mult = 0.2
+        army_collateral_damage_mult = -0.33 
+    }
+
+    leader_trait = { general }
+    leader_class = { general }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_charismatic = {
+
+    cost = 1
+    
+    
+    modifier = {
+        army_morale = 0.25 
+    }
+
+    leader_trait = { general }
+    leader_class = { general }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_glory_seeker = {
+
+    cost = 1
+    
+    
+    modifier = {
+        army_morale = 0.1
+        army_damage_mult = 0.05 
+    }
+
+    leader_trait = { general }
+    leader_class = { general }
+    initial = yes
+    randomized = yes
+    opposites = { leader_trait_armchair_commander }
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_demoralizer = {
+
+    cost = 1
+    
+    
+    modifier = {
+        army_morale_damage_mult = 0.3 
+    }
+
+    leader_trait = { general }
+    leader_class = { general }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_armchair_commander = {
+
+    cost = 1
+    
+    
+    modifier = {
+        army_morale = -0.1
+        army_damage_mult = -0.1 
+    }
+
+    leader_trait = { general }
+    leader_class = { general }
+    initial = no
+    randomized = yes
+    opposites = { leader_trait_charismatic }
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_environmental_engineer = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+    custom_tooltip_with_modifiers = leader_trait_environmental_engineer_effect_desc
+}
+
+
+leader_trait_intellectual = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_intellectual_effect_desc
+}
+
+
+leader_trait_agrarian_upbringing = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_agrarian_upbringing_effect_desc
+}
+
+
+leader_trait_architectural_interest = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_architectural_interest_effect_desc
+}
+
+
+leader_trait_army_veteran = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_army_veteran_effect_desc
+}
+
+
+leader_trait_unifier = {
+
+    cost = 1
+
+    modifier = {
+        # Re-educate pops mission works +25% better
+        leader_reeducate_pops_mission_effectiveness_mult = 0.25
+    }
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_unifier_effect_desc
+}
+
+
+leader_trait_iron_fist = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_iron_fist_effect_desc
+}
+
+
+leader_trait_retired_fleet_officer = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_retired_fleet_officer_effect_desc
+}
+
+
+leader_trait_righteous = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_righteous_effect_desc
+}
+
+
+leader_trait_corrupt = {
+
+    cost = 1
+    
+    leader_trait = { governor }
+    leader_class = { governor }
+    initial = no
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_corrupt_effect_desc
+}
+
+
+leader_trait_architectural_sense = {
+
+    cost = 1
+    
+    
+    modifier = {
+        planet_buildings_cost_mult = -0.1
+        planet_districts_cost_mult = -0.1
+        planet_building_build_speed_mult = 0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+# # Needs custom implementation
+# leader_trait_champion_people = {
+
+#     cost = 1
+#     
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_deep_connections = {
+
+#     cost = 1
+#     
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_expansionist = {
+
+    cost = 1
+    
+    
+    modifier = {
+        starbase_outpost_cost_mult = -0.15
+        country_starbase_influence_cost_mult = -0.15 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_explorer = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_science_cost_mult = -0.25
+        ship_anomaly_research_speed_mult = 0.33 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_fertility_preacher = {
+
+    cost = 1
+    
+    
+    modifier = {
+        planet_jobs_food_produces_mult = 0.1
+        pop_growth_speed = 0.05 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_fleet_organizer = {
+
+    cost = 1
+    
+    
+    modifier = {
+        starbase_shipyard_build_speed_mult = 0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_fortifier = {
+
+    cost = 1
+    
+    
+    modifier = {
+        starbase_upgrade_cost_mult = -0.1
+        ship_military_station_small_cost_mult = -0.33 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_from_ranks = {
+
+    cost = 1
+    
+    
+    modifier = {
+        army_morale = 0.2
+        army_experience_gain_mult = 0.33 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_frontier_spirit = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_colonizer_cost_mult = -0.35
+        planet_colony_development_speed_mult = 0.25 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_home_sky = {
+
+    cost = 1
+    
+    
+    modifier = {
+        starbase_modules_cost_mult = -0.2
+        starbase_upgrade_cost_mult = -0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_industrialist = {
+
+    cost = 1
+    
+    
+    modifier = {
+        country_minerals_produces_mult = 0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_investor = {
+
+    cost = 1
+    
+    
+    modifier = {
+        trade_value_mult = 0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_logistic_understanding = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ships_upkeep_mult = -0.05
+        armies_upkeep_mult = -0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_military_pioneer = {
+
+    cost = 1
+    
+    
+    modifier = {
+        country_ship_upgrade_cost_mult = -0.1
+        starbase_shipyard_build_cost_mult = -0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_recruiter = {
+
+    cost = 1
+    
+    
+    modifier = {
+        planet_army_build_speed_mult = 0.5
+        armies_cost_mult = -0.2 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_reformer = {
+
+    cost = 1
+    
+    
+    modifier = {
+        country_unity_produces_mult = 0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_space_miner = {
+
+    cost = 1
+    
+    
+    modifier = {
+        station_gatherers_produces_mult = 0.1
+        station_gatherers_cost_mult = -0.25 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_warlike = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_weapon_damage = 0.05
+        army_damage_mult = 0.1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_world_shaper = {
+
+    cost = 1
+    
+    
+    modifier = {
+        terraform_speed_mult = 0.25
+        deposit_blockers_cost_mult = -0.15 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+# # Needs custom implementation
+# leader_trait_corvette_focus = {
+
+#     cost = 1
+#     
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_destroyer_focus = {
+
+#     cost = 1
+#     
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_cruiser_focus = {
+
+#     cost = 1
+#     
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_battleship_focus = {
+
+#     cost = 1
+#     
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_adored = {
+
+    cost = 1
+    
+    
+    modifier = {
+        country_edict_cap_add = 1 
+    }
+
+    leader_trait = { ruler }
+    leader_class = { ruler }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+# # Needs custom implementation
+# leader_trait_eye_talent_governor = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         governor_skill_levels = 1
+#         governors_cap_add = 1 
+#     }
+
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+# # Needs custom implementation
+# leader_trait_eye_talent_spy = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         spy_skill_levels = 1
+#         spies_cap_add = 1 
+#     }
+
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+# # Needs custom implementation
+# leader_trait_eye_talent_scientist = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         scientist_skill_levels = 1
+#         scientists_cap_add = 1 
+#     }
+
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+# # Needs custom implementation
+# leader_trait_eye_talent_admiral = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         admiral_skill_levels = 1
+#         admirals_cap_add = 1 
+#     }
+
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+# # Needs custom implementation
+# leader_trait_eye_talent_general = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         general_skill_levels = 1
+#         generals_cap_add = 1 
+#     }
+
+#     leader_trait = { ruler }
+#     leader_class = { ruler }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+# # Needs custom implementation
+# leader_trait_archaeologist = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         category_statecraft_research_speed_mult = 0.15 
+#     }
+
+#     leader_trait = { scientist }
+#     leader_class = { scientist }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_roamer = {
+
+    cost = 1
+    icon = gfx/interface/icons/traits/leader_traits/leader_trait_expertise_propulsion.dds
+    icon_background = GFX_traits_category_tech
+    
+    
+    modifier = {
+        science_ship_survey_speed = 0.25
+        category_propulsion_research_speed_mult = 0.15 
+    }
+
+    leader_trait = { scientist }
+    leader_class = { scientist }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_carefree = {
+
+    cost = 1
+    icon = gfx/interface/icons/traits/leader_traits/leader_trait_expertise_new_worlds.dds
+    icon_background = GFX_traits_category_tech
+    
+    
+    modifier = {
+        ship_anomaly_research_speed_mult = 0.35
+        category_new_worlds_research_speed_mult = 0.15 
+    }
+
+    leader_trait = { scientist }
+    leader_class = { scientist }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_meticulous = {
+
+    cost = 1
+    icon = gfx/interface/icons/traits/leader_traits/leader_trait_expertise_computing.dds
+    icon_background = GFX_traits_category_tech
+    
+    
+    modifier = {
+        ship_anomaly_generation_chance_mult = 0.1
+        category_computing_research_speed_mult = 0.15 
+    }
+
+    leader_trait = { scientist }
+    leader_class = { scientist }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+# # Needs custom implementation
+# leader_trait_maniacal = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         category_military_theory_research_speed_mult = 0.15 
+#     }
+
+#     leader_trait = { scientist }
+#     leader_class = { scientist }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_spark_genius = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         category_industry_research_speed_mult = 0.15 
+#     }
+
+#     leader_trait = { scientist }
+#     leader_class = { scientist }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_custom_ai_assistant = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         category_materials_research_speed_mult = 0.15 
+#     }
+
+#     leader_trait = { scientist }
+#     leader_class = { scientist }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_sapient_ai_assistant = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         category_field_manipulation_research_speed_mult = 0.15 
+#     }
+
+#     leader_trait = { scientist }
+#     leader_class = { scientist }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_researcher = {
+
+    cost = 1
+    icon = gfx/interface/icons/traits/leader_traits/leader_trait_expertise_voidcraft.dds
+    icon_background = GFX_traits_category_tech
+    
+    
+    modifier = {
+        all_technology_research_speed = 0.05
+        category_voidcraft_research_speed_mult = 0.15 
+    }
+
+    leader_trait = { scientist }
+    leader_class = { scientist }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+# # Needs custom implementation
+# leader_trait_pathologist = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         category_biology_research_speed_mult = 0.15 
+#     }
+
+#     leader_trait = { scientist }
+#     leader_class = { scientist }
+#     initial = yes
+#     randomized = yes
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_scout = {
+
+    cost = 1
+    icon = gfx/interface/icons/traits/leader_traits/leader_trait_expertise_particles.dds
+    icon_background = GFX_traits_category_tech
+    
+    
+    modifier = {
+        ship_speed_mult = 0.5
+        category_particles_research_speed_mult = 0.15 
+    }
+
+    leader_trait = { scientist }
+    leader_class = { scientist }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_recognition = {
+
+    cost = 1
+    
+    leader_trait = { spy }
+    leader_class = { spy }
+
+    modifier = {
+		ship_speed_mult = 0.5
+        ship_warp_speed_mult = 0.5
+	}
+
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+leader_trait_hacker = {
+
+    cost = 1
+    
+    leader_trait = { spy }
+    leader_class = { spy }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_hacker_effect_desc
+}
+
+
+leader_trait_infiltrator = {
+
+    cost = 1
+
+    modifier = {
+        # Propaganda Mission is more effective (works as if spy was 2 levels higher)
+        leader_propaganda_mission_leader_level_add = 2
+    }
+    
+    leader_trait = { spy }
+    leader_class = { spy }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_infiltrator_effect_desc
+}
+
+
+leader_trait_commitment = {
+
+    cost = 1
+    
+    modifier = {
+        # "Positive Effect: -2 to enemy counter-espionage rolls"
+        leader_enemy_counter_espionage_roll_add = -2
+    }
+
+    leader_trait = { spy }
+    leader_class = { spy }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_commitment_effect_desc
+}
+
+leader_trait_patient = {
+
+    cost = 1
+    
+    modifier = {
+        leader_spy_rolls_bonus_add = 1
+        # Slowest approach on spy situations is free
+    }
+
+    leader_trait = { spy }
+    leader_class = { spy }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_patient_effect_desc
+}
+
+
+leader_trait_stealth_pilot = {
+
+    cost = 1
+    
+    leader_trait = { spy }
+    leader_class = { spy }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_stealth_pilot_effect_desc
+}
+
+
+leader_trait_self_reliance = {
+
+    cost = 1
+    
+    leader_trait = { spy }
+    leader_class = { spy }
+    initial = yes
+    randomized = yes
+    ai_weight = {
+        weight = 100
+    }
+
+    custom_tooltip_with_modifiers = leader_trait_self_reliance_effect_desc
+}
+
+
+# # Needs custom implementation
+# leader_trait_deanna_troi = {
+
+#     cost = 1
+#     
+#     leader_trait = { envoy }
+#     leader_class = { envoy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_advocate = {
+
+    cost = 1
+    
+    
+    modifier = {
+        ship_anomaly_generation_chance_mult = 0.1 
+    }
+
+    leader_trait = { admiral general governor scientist spy }
+    leader_class = { admiral general governor scientist spy }
+    initial = no
+    randomized = no
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+# # Needs custom implementation
+# admiral_trait_bold_admiral = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_diseased = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_hivemind_scar = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_cardassian_leader = {
+
+    cost = 1
+    
+    
+    modifier = {
+        #army_damage_mult = 0.1
+        #army_collateral_damage_mult = 0.33 
+		species_leader_exp_gain = 0.25
+		leader_skill_levels = 1		
+    }
+
+    leader_trait = { admiral general governor scientist spy }
+    leader_class = { admiral general governor scientist spy }
+    initial = no
+    randomized = no
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+# # Needs custom implementation
+# leader_trait_klingon_leader = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# leader_trait_hugh = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         all_technology_research_speed = 0.1
+#         category_voidcraft_research_speed_mult = 0.15 
+#     }
+
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_janeway = {
+
+    cost = 1
+    
+    
+    modifier = {
+        all_technology_research_speed = 0.1
+        science_ship_survey_speed = 0.15
+        ship_anomaly_research_speed_mult = 0.15 
+    }
+
+    leader_trait = { admiral general governor scientist spy }
+    leader_class = { admiral general governor scientist spy }
+    initial = no
+    randomized = no
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+# # Needs custom implementation
+# leader_trait_picard = {
+
+#     cost = 1
+#     
+    
+#     modifier = {
+#         ship_evasion_mult = 0.05
+#         ship_speed_mult = 0.2
+#         ship_hull_mult = 0.1 
+#     }
+
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+leader_trait_romulan_leader = {
+
+    cost = 1
+    
+    
+    modifier = {
+        #army_disengage_chance_mult = 0.2
+        #army_collateral_damage_mult = -0.33 
+		species_leader_exp_gain = 0.25
+		leader_skill_levels = 1				
+    }
+
+    leader_trait = { admiral general governor scientist spy }
+    leader_class = { admiral general governor scientist spy }
+    initial = no
+    randomized = no
+    ai_weight = {
+        weight = 100
+    }
+}
+
+
+# # Needs custom implementation
+# leader_trait_governor_past_investigator = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# truthseeker = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# crimefighter = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# producer = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# party_animal = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+
+
+# # Needs custom implementation
+# trailblazer = {
+
+#     cost = 1
+#     
+#     leader_trait = { admiral general governor scientist spy }
+#     leader_class = { admiral general governor scientist spy }
+#     initial = no
+#     randomized = no
+#     ai_weight = {
+#         weight = 100
+#     }
+# }
+

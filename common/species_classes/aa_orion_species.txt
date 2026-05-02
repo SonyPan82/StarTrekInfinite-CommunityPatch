@@ -1,0 +1,16 @@
+AAORION = {
+	archetype = BIOLOGICAL
+
+	portraits = {
+		"orion"
+	}
+
+	non_randomized_portraits = {
+		"orion"
+    }
+	
+	graphical_culture = orion_01
+	move_pop_sound_effect = "reptilian_pops_move"
+
+	resources = {}
+}

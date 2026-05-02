@@ -1,0 +1,21 @@
+civic_orion_matriarchs = {
+	potential = {
+		always = no
+	}
+
+	modifier = {
+ 		planet_stability_add = 10
+	}
+}
+
+civic_orion_competition = {
+	potential = {
+		always = no
+	}
+
+	modifier = {
+		country_unity_produces_mult = -0.1
+ 		planet_jobs_specialist_produces_mult = 0.15
+		planet_crime_mult = 0.1
+	}
+}

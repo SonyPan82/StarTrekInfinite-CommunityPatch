@@ -1,0 +1,8 @@
+
+#objectTypes = {
+#	pdxmesh = {
+#	name = "fed_ambassador_slots_mesh"
+#	file = "gfx/models/ships/ufop_01/fed_ambassador_slots.mesh"
+#	scale = 0.15
+#	}
+#}

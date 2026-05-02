@@ -1,0 +1,494 @@
+CP26 Synthetic Crisis Design
+Star Trek: Infinite - Community Patch 2026
+
+Purpose
+-------
+Create an optional narrative and gameplay system around synthetic workers in the
+Federation, inspired by Star Trek: Picard season 1.
+
+The goal is not to add generic Stellaris robots, but to create a Star Trek
+system about industrial dependence, synthetic rights, fear, sabotage, Mars,
+Utopia Planitia, and the political consequences of artificial life.
+
+The system should be optional and player-driven. The Picard-style crisis should
+not be forced in every campaign. It should emerge from research choices,
+planetary decisions, and accumulated risk.
+
+
+Core Fantasy
+------------
+The Federation can develop and deploy A500-style synthetic laborers to support
+shipbuilding and industrial expansion, especially around Mars and Utopia
+Planitia.
+
+At first, the program is useful and rational:
+
+- Faster ship construction
+- Stronger industrial output
+- Engineering research bonuses
+- Better recovery from workforce shortages
+
+Over time, the Federation must answer a larger question:
+
+Are synths tools, workers, citizens, or people?
+
+The answer changes the future of the Federation.
+
+
+Main System Variables
+---------------------
+These variables should drive the arc.
+
+cp26_synth_dependency
+    Represents how much the Federation depends on synthetic labor.
+    Increases when synths are deployed or industrial expansion is accelerated.
+    High dependency increases industrial power but raises crisis risk.
+
+cp26_synth_security
+    Represents Starfleet and Daystrom safeguards.
+    Increases through security choices, inspections, and restrictions.
+    High security lowers crisis risk but reduces economic output.
+
+cp26_synth_rights
+    Represents the political and ethical recognition of synthetic life.
+    Increases through reformist choices and rights-focused events.
+    High rights lowers unrest and long-term danger but can reduce immediate
+    industrial efficiency.
+
+cp26_zhat_vash_infiltration
+    Represents hidden sabotage and anti-synthetic manipulation.
+    Increases slowly if Romulan actors exist, if security is low, or if the
+    Federation ignores suspicious incidents.
+    High infiltration can trigger the Mars Crisis.
+
+
+Phase 1 - Technology
+--------------------
+Technology:
+
+tech_cp26_synthetic_labor_program
+    Name: Synthetic Labor Program
+    Faction: Federation only at first
+    Department: Engineering or Society
+    Role: Unlocks the synthetic labor arc
+
+Possible prerequisites:
+
+- Industrial or engineering tech
+- Mars / Luna / Sol exists
+- Utopia Planitia or Federation shipbuilding infrastructure exists
+- Year threshold if needed for pacing
+
+Effects:
+
+- Unlocks planetary decision: Deploy Synthetic Workforce
+- Starts the Synthetic Question event chain
+- Adds first small amount of cp26_synth_dependency
+
+
+Phase 2 - Synthetic Pops
+------------------------
+Create a scripted synthetic species:
+
+Species name:
+    A500 Synth
+
+Suggested traits:
+
+trait_cp26_synthetic_laborer
+    Industrial output bonus
+    Reduced political weight
+    No natural growth
+    Cannot migrate freely at first
+
+trait_cp26_positronic_limited
+    Engineering output bonus
+    Reduced happiness or amenities usage
+    Represents early limited synthetic cognition
+
+Implementation options:
+
+Option A - True synthetic species
+    Create an actual species by event and spawn A500 pops.
+    More immersive, but requires careful testing.
+
+Option B - Organic placeholder with synthetic trait
+    Use a custom species class/portrait if possible, but avoid full robot rules.
+    Safer for Star Trek: Infinite if robot systems are unstable or hidden.
+
+Option C - Planet modifier only for version 1
+    No actual pops at first. Use modifiers and events to simulate synth labor.
+    Very safe, but less satisfying.
+
+Recommended version 1:
+    Use true or placeholder A500 pops only after testing that pop creation,
+    jobs, rights, and migration do not break the economy.
+
+
+Phase 3 - Deployment
+--------------------
+Planetary decision:
+
+decision_cp26_deploy_synthetic_workforce
+    Name: Deploy Synthetic Workforce
+
+Available on:
+
+- Mars
+- Luna
+- Sol industrial worlds
+- Federation industrial colonies
+- Worlds with shipyard, forge, industrial district, or major construction site
+
+Effects:
+
+- Creates 1 to 3 A500 Synth pops
+- Adds local modifier: Synthetic Workforce
+- Increases cp26_synth_dependency
+- May reduce stability slightly
+- May increase cp26_zhat_vash_infiltration if security is weak
+
+Local modifier:
+
+modifier_cp26_synthetic_workforce
+    Ship build speed bonus
+    Engineering research bonus
+    Industrial output bonus
+    Small stability penalty
+
+
+Phase 4 - Tension Events
+------------------------
+After synths are deployed, random events begin.
+
+Event examples:
+
+1. Routine Deviation
+    A minor behavioral anomaly is detected in an A500 unit.
+
+    Choices:
+    - Run full diagnostics: +security, -output
+    - Ignore it: +dependency, +infiltration
+    - Ask Daystrom to investigate: +rights, +security
+
+2. Worker Protest
+    Organic workers on Mars protest synthetic replacement.
+
+    Choices:
+    - Protect organic labor: -dependency, +stability, -output
+    - Expand synthetic labor: +dependency, -stability, +output
+    - Create mixed labor protections: +rights, +stability
+
+3. Daystrom Petition
+    Researchers argue the A500s show signs of emergent self-awareness.
+
+    Choices:
+    - Approve limited study: +rights, +engineering
+    - Shut it down: +security, -rights
+    - Commercialize the breakthrough: +dependency, +risk
+
+4. Security Audit
+    Starfleet Security requests deeper access to synthetic command routines.
+
+    Choices:
+    - Grant full audit: +security, -output
+    - Limited audit: small +security
+    - Deny request: +dependency, +infiltration
+
+5. Romulan Warning
+    A Romulan source warns that synthetic life is more dangerous than it seems.
+
+    Choices:
+    - Treat it as propaganda: +infiltration
+    - Investigate quietly: +security
+    - Open diplomatic inquiry: +rights, diplomacy tension
+
+6. The Synthetic Question
+    Federation Council debate over whether synths are equipment or persons.
+
+    Choices:
+    - Tools of industry: +dependency, -rights
+    - Protected workers: +rights, +stability
+    - Dangerous technology: +security, possible ban path
+
+
+Phase 5 - Mars Crisis
+---------------------
+The Mars Crisis should be possible, not guaranteed.
+
+Possible trigger conditions:
+
+- Federation exists
+- Mars or Utopia Planitia exists
+- Synthetic Labor Program researched
+- At least one A500 deployment happened
+- cp26_synth_dependency is high
+- cp26_synth_security is low, or cp26_zhat_vash_infiltration is high
+- Optional year pacing around 2384-2385 equivalent
+
+Major event:
+
+cp26_synth.1000 - First Contact Day Incident
+
+Description:
+    On First Contact Day, Starfleet receives reports of synchronized anomalies
+    across A500 labor units at Mars and Utopia Planitia. Security systems begin
+    responding to unauthorized commands. The Federation has minutes to act.
+
+Choices:
+
+1. Cut the network immediately
+    Requires decent security.
+    High chance to contain the crisis.
+    Destroys some synth pops.
+    Adds temporary production penalty.
+
+2. Save Utopia Planitia first
+    Attempts to preserve shipbuilding infrastructure.
+    Risk depends on security and infiltration.
+    Can prevent total disaster but may increase casualties.
+
+3. Blame the synthetics
+    Moves toward Synth Ban.
+    Reduces future risk.
+    Large ethical and diplomatic consequences.
+
+4. Launch an investigation
+    Requires high rights or high security.
+    Can reveal outside manipulation.
+    Risky if infiltration is already too high.
+
+5. Militarize Mars
+    Strong control response.
+    Preserves some industry.
+    Increases authoritarian pressure and unrest.
+
+
+Mars Crisis Outcomes
+--------------------
+Outcome A - Crisis Contained
+    Mars survives.
+    Some synth pops are shut down.
+    Federation gains security lessons.
+    Synthetic program continues under restrictions.
+
+Outcome B - Partial Attack
+    Utopia Planitia is damaged.
+    Mars receives a strong negative modifier.
+    Shipbuilding is reduced for several years.
+    Federation must choose ban, reform, or militarized control.
+
+Outcome C - Attack on Mars
+    Major catastrophe.
+    Mars is devastated or heavily modified.
+    Utopia Planitia destroyed or disabled.
+    Synthetic life is banned.
+    Exploration and shipbuilding penalties.
+    Possible Picard/Raffi narrative hooks later.
+
+Outcome D - Conspiracy Exposed
+    The Federation discovers outside manipulation.
+    Zhat Vash / anti-synth infiltration is exposed.
+    Synth ban can be avoided.
+    Romulan diplomatic consequences.
+    Synthetic rights path opens.
+
+
+Phase 6 - Aftermath Paths
+-------------------------
+Path 1 - Synth Ban
+------------------
+The Federation bans synthetic lifeforms.
+
+Effects:
+
+- Disable Deploy Synthetic Workforce
+- Remove or deactivate A500 pops
+- Add country modifier: Synthetic Ban
+- Reduce shipbuilding and engineering output
+- Increase security and political stability in the short term
+- Reduce Federation idealism or unity in the long term
+
+Possible modifier:
+
+modifier_cp26_synth_ban
+    Ship build speed penalty
+    Engineering research penalty
+    Stability bonus
+    Intel/security bonus
+
+
+Path 2 - Synthetic Rights Accord
+--------------------------------
+The Federation recognizes synthetic personhood or protected legal status.
+
+Effects:
+
+- A500 pops become protected workers or citizens
+- Synthetic unrest and crisis risk drop
+- Engineering and unity bonuses
+- Immediate industrial output lower than forced labor path
+- Diplomatic tension with anti-synth factions
+
+Possible modifier:
+
+modifier_cp26_synthetic_rights_accord
+    Engineering research bonus
+    Stability bonus
+    Unity bonus
+    Lower industrial exploitation bonus
+
+
+Path 3 - Militarized Control
+----------------------------
+The Federation keeps synth labor but under strict command restrictions.
+
+Effects:
+
+- Synthetic deployment remains available
+- Strong output continues
+- Stability penalty
+- Rights stay low
+- Future crisis can return if infiltration is not solved
+
+Possible modifier:
+
+modifier_cp26_synth_control_protocols
+    Industrial output bonus
+    Ship build speed bonus
+    Stability penalty
+    Espionage/security upkeep cost
+
+
+Path 4 - Daystrom Reform
+------------------------
+A middle path focused on science, ethics, and oversight.
+
+Effects:
+
+- Synthetic labor continues on limited worlds
+- Crisis risk reduced
+- Research bonus
+- Slower deployment
+- Opens future positronic technology
+
+
+Integration with Existing CP26 Content
+--------------------------------------
+Mars and Luna mod content:
+    Mars should be the primary location for the Synthetic Labor Program.
+    If Mars has CP26 modifiers, the synth arc should interact with them.
+
+Utopia Planitia:
+    If represented by building, modifier, starbase, or shipyard, it should gain
+    special bonuses and crisis vulnerability.
+
+Romulan Supernova:
+    The Mars Crisis can be linked to the Romulan rescue effort.
+    More rescue fleet preparation means more synth dependency and higher stakes.
+
+Picard-era narrative:
+    Optional later hooks:
+    - Picard resignation
+    - Raffi dismissal
+    - Daystrom restrictions
+    - Synthetic ban repeal
+    - Zhat Vash exposure
+
+No Pirates option:
+    No direct interaction required.
+
+Added civilizations:
+    Romulan-adjacent powers may react differently to synthetic research.
+    Tholians, Breen, Gorn, and Orion should probably not use the system in v1.
+
+
+Implementation Files
+--------------------
+Suggested files:
+
+common/technology/cp26_synth_tech.txt
+common/traits/cp26_synth_traits.txt
+common/species_classes/cp26_synth_species.txt
+common/decisions/cp26_synth_decisions.txt
+common/static_modifiers/cp26_synth_modifiers.txt
+common/on_actions/cp26_synth_on_actions.txt
+events/cp26_synth_events.txt
+localisation/english/cp26_synth_l_english.yml
+localisation/french/cp26_synth_l_french.yml
+
+
+Version 1 Scope
+---------------
+Keep version 1 focused and safe.
+
+Implement:
+
+- 1 technology
+- 1 synthetic species or simulated pop system
+- 1 planetary decision
+- 4 variables
+- 6 tension events
+- 1 Mars Crisis event
+- 3 aftermath paths: Ban, Rights Accord, Militarized Control
+- English and French localization
+
+Avoid in version 1:
+
+- Full robot empire mechanics
+- Complex species rights rewrites
+- AI use of synth deployment
+- Huge economy rebalance
+- Forced canon timeline for every game
+
+
+Design Principles
+-----------------
+1. Optional
+    The player should choose to enter the synth arc.
+
+2. Star Trek first
+    The system should be about ethics, politics, and consequences, not only
+    production bonuses.
+
+3. Risk should be readable
+    The player should understand that dependency without security is dangerous.
+
+4. Multiple valid endings
+    Ban, reform, and rights should all be playable.
+
+5. Compatible with CP26
+    The system must avoid breaking startup scripts, added civilizations, or
+    existing Mars/Luna content.
+
+
+Open Questions
+--------------
+1. Should synth pops be real pops in version 1, or simulated by modifiers first?
+
+2. Should the Mars Crisis be tied to the year 2385, or to player progression?
+
+3. Should the Romulans/Zhat Vash be explicitly named, or kept as hidden
+   infiltration until late events?
+
+4. Should the Synth Ban be a Federation-only policy, or a broader galactic
+   diplomatic action?
+
+5. Should Mars be permanently damaged in the worst outcome, or recoverable via
+   a long reconstruction project?
+
+
+Recommended First Implementation
+--------------------------------
+Start with a safe version:
+
+1. Add the technology.
+2. Add the planetary decision on Mars and industrial Federation worlds.
+3. Use planet modifiers first.
+4. Track dependency, security, rights, and infiltration.
+5. Add tension events.
+6. Add the Mars Crisis.
+7. Only after this is stable, add true A500 pops.
+
+This keeps the first release stable while preserving the full design direction.
+

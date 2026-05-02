@@ -1,0 +1,13 @@
+@constellation_power_1 = 140
+@constellation_power_2 = 180
+@constellation_power_3 = 240
+@constellation_power_4 = 320
+@constellation_power_5 = 430
+@constellation_power_6 = 550
+
+@constellation_cost_1 = 20
+@constellation_cost_2 = 26
+@constellation_cost_3 = 34
+@constellation_cost_4 = 44
+@constellation_cost_5 = 56
+@constellation_cost_6 = 74

@@ -1,0 +1,57 @@
+hegemonic_imperialists_breen = {
+	aggressiveness = 1.2
+	trade_willingness = 1.1
+	bravery = 0.8
+	combat_bravery = 0.75
+
+	military_spending = 1.1
+	colony_spending = 0.9
+
+	federation_acceptance = -75
+	nap_acceptance = 25
+	commercial_pact_acceptance = 10
+	research_agreement_acceptance = -25
+	share_warp_agreement_acceptance = -25
+	defensive_pact_acceptance = -90
+	migration_pact_acceptance = -75
+
+	advanced_start_chance = 50
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.75
+	shields_ratio = 0.25
+	hull_ratio = 0.0
+
+	threat_modifier = 1.0
+	threat_others_modifier = 0.5
+	friction_modifier = 1.2
+	claims_modifier = 1.2
+
+	behaviour = {
+		conqueror = no
+		subjugator = yes
+		liberator = no
+		opportunist = yes
+		slaver = yes
+		uplifter = no
+		purger = no
+		displacer = yes
+		dominator = yes
+		infiltrator = yes
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = yes
+		multispecies = no
+		crisis_fighter = yes
+	}
+
+
+	allow = {
+		is_country_type = contender
+		has_country_id = "breen"
+	}
+
+	weight_modifier = {
+		weight = 10000
+	}
+}

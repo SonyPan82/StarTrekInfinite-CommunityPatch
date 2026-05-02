@@ -1,0 +1,79 @@
+spriteTypes = {
+	# rooms
+	spriteType = {
+		name = "GFX_ST_empty_room_tholian"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_tholian.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_capital_empty_room_tholian"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_tholian.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_empty_room_Tholian_loadgame"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_tholian.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	
+	# flags
+	spriteType = {
+		name = "GFX_flag_tholian_icon"
+		texturefile = "flags/emblem/bottombar/flag_tholian.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_tholian_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_tholian.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	
+	# ships
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_tholiancorvette"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_military_bg_tholian_corvette.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}	
+	spriteType = {
+		name = "GFX_ship_image_tholiancorvette"
+		texturefile = "gfx/interface/ship_designer/designs/tholiancorvette.dds"
+	}
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_tholiandestroyer"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_military_bg_tholian_destroyer.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}	
+	spriteType = {
+		name = "GFX_ship_image_tholiandestroyer"
+		texturefile = "gfx/interface/ship_designer/designs/tholiandestroyer.dds"
+	}
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_tholianbattleship"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_military_bg_tholian_battleship.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}	
+	spriteType = {
+		name = "GFX_ship_image_tholianbattleship"
+		texturefile = "gfx/interface/ship_designer/designs/tholianbattleship.dds"
+	}
+	
+	spriteType = {
+		 name = "GFX_species_tholian_bg_1"
+		 texturefile = "gfx/portraits/species/tholian/species_tholian_01_bg.dds"
+	}
+	spriteType = {
+		 name = "GFX_species_tholian_bg_2"
+		 texturefile = "gfx/portraits/species/tholian/species_tholian_02_bg.dds"
+	}
+	spriteType = {
+		 name = "GFX_species_tholian_bg_3"
+		 texturefile = "gfx/portraits/species/tholian/species_tholian_03_bg.dds"
+	}
+	spriteType = {
+		 name = "GFX_species_tholian_bg_4"
+		 texturefile = "gfx/portraits/species/tholian/species_tholian_04_bg.dds"
+	}
+}

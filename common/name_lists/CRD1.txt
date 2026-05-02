@@ -1,0 +1,188 @@
+﻿### Cardassian
+
+CRD1 = {
+	category = "Humanoid"
+	randomized = no
+	alias = "Federated"
+
+	ship_names = {
+		generic = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek
+			Groumal Prakesh Kornaire Ravinok
+			Aenmi Agiadon Agrilet Agrorn Akar Alant Antharn Ardryl Belor Birim Birmuk Burthorn Calingrorn Charak Canar Cilig Chelphrae Crovax Diirahc Deisgan Danasket Dratrak Draxon Drilga Dromell Drossorn Duran Enwlar Entek Eldrak Eigar Efrei 
+			Fariant Fodrad Forgard Forkith Fura Garad-Dalar Galandar Galfrek Ganweir Glareon Glorg Glydno Hartheon Hjal Imsarir Irak Ilfari Ishmak Itheon Jorrene Kadrorn Kagrand Kamal Kappet Kablause Khalan Kyria Kovat
+			Loronil Larvard Lagriom Lostli Malothorn Meldrarg Miral Mirarg Mongrak Morark Myrgan Naram Nalan Nirkar Olius Orkalay Prellak Quave Rajan Rysta Selian Sirguma Taldresh Tarathorn Thoneon Thulgar Torand Veridon Varmuk Varmir Vari
+			Vor Yaro Wolithra Zurul Zala
+		}
+
+		constructor = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+		
+		colonizer = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+
+		sponsored_colonizer = { # needed when there are no generic names
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+		
+		science = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+
+		spy_ship = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+		
+		governor_ship = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+
+		transport = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+
+		bulk_carrier = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+
+		military_station_small = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek 
+		}
+
+		hideki = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek
+			Groumal Prakesh Kornaire Ravinok
+			Hideki
+			Aenmi Agiadon Agrilet Agrorn Akar Alant Antharn Ardryl Belor Birim Birmuk Burthorn Calingrorn Charak Canar Cilig Chelphrae Crovax Diirahc Deisgan Danasket Dratrak Draxon Drilga Dromell Drossorn Duran Enwlar Entek Eldrak Eigar Efrei 
+			Fariant Fodrad Forgard Forkith Fura Garad-Dalar Galandar Galfrek Ganweir Glareon Glorg Glydno Hartheon Hjal Imsarir Irak Ilfari Ishmak Itheon Jorrene Kadrorn Kagrand Kamal Kappet Kablause Khalan Kyria Kovat
+			Loronil Larvard Lagriom Lostli Malothorn Meldrarg Miral Mirarg Mongrak Morark Myrgan Naram Nalan Nirkar Olius Orkalay Prellak Quave Rajan Rysta Selian Sirguma Taldresh Tarathorn Thoneon Thulgar Torand Veridon Varmuk Varmir Vari
+			Vor Yaro Wolithra Zurul Zala
+		}
+
+		galor = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek
+			Groumal Prakesh Kornaire Ravinok
+			Galor
+			Aenmi Agiadon Agrilet Agrorn Akar Alant Antharn Ardryl Belor Birim Birmuk Burthorn Calingrorn Charak Canar Cilig Chelphrae Crovax Diirahc Deisgan Danasket Dratrak Draxon Drilga Dromell Drossorn Duran Enwlar Entek Eldrak Eigar Efrei 
+			Fariant Fodrad Forgard Forkith Fura Garad-Dalar Galandar Galfrek Ganweir Glareon Glorg Glydno Hartheon Hjal Imsarir Irak Ilfari Ishmak Itheon Jorrene Kadrorn Kagrand Kamal Kappet Kablause Khalan Kyria Kovat
+			Loronil Larvard Lagriom Lostli Malothorn Meldrarg Miral Mirarg Mongrak Morark Myrgan Naram Nalan Nirkar Olius Orkalay Prellak Quave Rajan Rysta Selian Sirguma Taldresh Tarathorn Thoneon Thulgar Torand Veridon Varmuk Varmir Vari
+			Vor Yaro Wolithra Zurul Zala
+		}
+
+		keldon = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek
+			Groumal Prakesh Kornaire Ravinok
+			Keldon
+			Aenmi Agiadon Agrilet Agrorn Akar Alant Antharn Ardryl Belor Birim Birmuk Burthorn Calingrorn Charak Canar Cilig Chelphrae Crovax Diirahc Deisgan Danasket Dratrak Draxon Drilga Dromell Drossorn Duran Enwlar Entek Eldrak Eigar Efrei 
+			Fariant Fodrad Forgard Forkith Fura Garad-Dalar Galandar Galfrek Ganweir Glareon Glorg Glydno Hartheon Hjal Imsarir Irak Ilfari Ishmak Itheon Jorrene Kadrorn Kagrand Kamal Kappet Kablause Khalan Kyria Kovat
+			Loronil Larvard Lagriom Lostli Malothorn Meldrarg Miral Mirarg Mongrak Morark Myrgan Naram Nalan Nirkar Olius Orkalay Prellak Quave Rajan Rysta Selian Sirguma Taldresh Tarathorn Thoneon Thulgar Torand Veridon Varmuk Varmir Vari
+			Vor Yaro Wolithra Zurul Zala
+		}
+
+		kazikai = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek
+			Groumal Prakesh Kornaire Ravinok
+			Kazikai
+			Aenmi Agiadon Agrilet Agrorn Akar Alant Antharn Ardryl Belor Birim Birmuk Burthorn Calingrorn Charak Canar Cilig Chelphrae Crovax Diirahc Deisgan Danasket Dratrak Draxon Drilga Dromell Drossorn Duran Enwlar Entek Eldrak Eigar Efrei 
+			Fariant Fodrad Forgard Forkith Fura Garad-Dalar Galandar Galfrek Ganweir Glareon Glorg Glydno Hartheon Hjal Imsarir Irak Ilfari Ishmak Itheon Jorrene Kadrorn Kagrand Kamal Kappet Kablause Khalan Kyria Kovat
+			Loronil Larvard Lagriom Lostli Malothorn Meldrarg Miral Mirarg Mongrak Morark Myrgan Naram Nalan Nirkar Olius Orkalay Prellak Quave Rajan Rysta Selian Sirguma Taldresh Tarathorn Thoneon Thulgar Torand Veridon Varmuk Varmir Vari
+			Vor Yaro Wolithra Zurul Zala
+		}
+
+		nokoram = {
+			Aldara Koranak Kraxon Reklar Trager Vetar Lucianok Vilar'Nor Riverox Bretara Bok'Var Kemall Ranak Lanaire Uraxon Zekesh Prodol Gavinok Semklar Dorara Heptar Seleger Krotar Yadara Krenares Oran Poldon Kadeki Sek'Nor Ratamma Karzek
+			Groumal Prakesh Kornaire Ravinok
+			Nokoram
+			Aenmi Agiadon Agrilet Agrorn Akar Alant Antharn Ardryl Belor Birim Birmuk Burthorn Calingrorn Charak Canar Cilig Chelphrae Crovax Diirahc Deisgan Danasket Dratrak Draxon Drilga Dromell Drossorn Duran Enwlar Entek Eldrak Eigar Efrei 
+			Fariant Fodrad Forgard Forkith Fura Garad-Dalar Galandar Galfrek Ganweir Glareon Glorg Glydno Hartheon Hjal Imsarir Irak Ilfari Ishmak Itheon Jorrene Kadrorn Kagrand Kamal Kappet Kablause Khalan Kyria Kovat
+			Loronil Larvard Lagriom Lostli Malothorn Meldrarg Miral Mirarg Mongrak Morark Myrgan Naram Nalan Nirkar Olius Orkalay Prellak Quave Rajan Rysta Selian Sirguma Taldresh Tarathorn Thoneon Thulgar Torand Veridon Varmuk Varmir Vari
+			Vor Yaro Wolithra Zurul Zala
+		}
+	}
+
+	fleet_names = {
+		sequential_name = "%O% Fleet"
+	}
+	
+	army_names = {
+
+		machine_defense = {
+			sequential_name = "%O% Planetary Guard"
+		}
+		
+		machine_assault_1 = {
+			sequential_name = "%O% Expeditionary Force"
+		}
+	
+		defense_army = {
+			sequential_name = "%O% Planetary Guard"
+		}
+
+		assault_army = {
+			sequential_name = "%O% Expeditionary Force"
+		}
+
+		clone_army = { 
+			sequential_name = "%O% Clone Army"
+		}
+		
+		undead_army = {
+			sequential_name = "%O% Dread Commando"
+		}
+
+		robotic_army = {
+			sequential_name = "%O% Hunter-Killer Group"
+		}
+
+		robotic_defense_army = {
+			sequential_name = "%O% Ground Defense Matrix"
+		}
+		
+		gene_warrior_army = {
+			random_names = {
+				"SARC-A 'Gladiators'" "SARC-B 'Widowmakers'" "SARC-C 'Immortals'" "SARC-D 'Berserkers'" "SARC-E 'Assassins'"
+				"SARC-F 'Reapers'" "SARC-G 'Nighthawks'" "SARC-H 'Desperados'" "SARC-I 'Grey Knights'" "SARC-J 'Roughnecks'" 
+			}
+			sequential_name = "%O% Bio-Engineered Squadron"
+		}
+
+		occupation_army = {
+			sequential_name = "%O% Garrison Force"
+		}
+
+		robotic_occupation_army = {
+			sequential_name = "%O% Mechanized Garrison"
+		}
+
+		primitive_army = {
+			sequential_name = "Primitive Army %C%"
+		}
+		industrial_army = {
+			sequential_name = "Industrial Army %C%"
+		}
+		postatomic_army = {
+			sequential_name = "Post-Atomic Army %C%"
+		}
+	}
+
+
+
+
+	### CHARACTERS
+
+	character_names = {
+
+		names1 = {
+			weight = 40
+			full_names_male = {
+				Porania Yaltar Prenar Russol Rukat Grekor Armet Morsar Fardan Erkat 
+			}
+
+			full_names_female = {
+				Tora Asha Mila Orra Jil Natima Farula Nareema Kereya Gwerenda 
+			}
+		}
+	}
+}

@@ -1,0 +1,5 @@
+on_game_start = {
+	events = {
+		aa_tholian_game_start.110
+	}
+}

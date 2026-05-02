@@ -1,0 +1,226 @@
+@cost0 = 0
+@cost1 = 5
+@cost2 = 10
+@cost3 = 20
+
+@power0 = -5
+@power1 = -10
+@power2 = -15
+@power3 = -25
+
+@operative_officers1 = 10
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_line"
+	icon_frame = 1
+
+	power = @power0
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost0
+		}
+	}
+	# ship_behavior = "hrb_line"
+	ship_behavior = "hrb_line"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_1" }
+	
+	size_restriction = { ambassador }
+	
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_LINE_BASIC_AMBASSADOR"
+
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.10
+		ship_accuracy_add = 10
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_LINE_BASIC_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_line"
+	icon_frame = 1
+
+	power = @power1
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+	ship_behavior = "hrb_line"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+	
+	size_restriction = { ambassador }
+
+	component_set = "combat_computers"
+
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.25
+		ship_accuracy_add = 25
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_BOMBER_DEFAULT_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_bomber"
+	icon_frame = 1
+
+	power = @power0
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost0
+		}
+	}
+	ship_behavior = "hrb_bomber"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_1" }
+	
+	# HRB_TODO: no restriction for now
+	size_restriction = { ambassador }
+
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_BOMBER_BASIC_AMBASSADOR"
+
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.05
+		ship_tracking_add = 10
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_BOMBER_BASIC_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_bomber"
+	icon_frame = 1
+
+	power = @power1
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+	ship_behavior = "hrb_bomber"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+	
+	# HRB_TODO: no restriction for now
+	size_restriction = { ambassador }
+	
+	component_set = "combat_computers"
+
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.20
+		ship_tracking_add = 20
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ARTILLERY_DEFAULT_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_artillery"
+	icon_frame = 1
+	power = @power0
+
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost0
+		}
+	}
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_1" }
+	
+	size_restriction = { ambassador }
+	
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_ARTILLERY_BASIC_AMBASSADOR"
+
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.10
+		ship_weapon_range_mult = 0.10
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ARTILLERY_BASIC_AMBASSADOR"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_artillery"
+	icon_frame = 1
+
+	power = @power1
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @cost1
+		}
+	}
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+	
+	size_restriction = { ambassador }
+
+	component_set = "combat_computers"
+
+	# HRB_TODO: balance ship modifiers
+	ship_modifier = {
+		ship_fire_rate_mult = 0.20
+		ship_weapon_range_mult = 0.20
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}

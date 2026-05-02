@@ -1,0 +1,169 @@
+# This is a template which multiple species can use.
+  
+denobulan_male_hair_05 = {
+	default = "gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+	
+	game_setup = {#will run with a limited country scope. species and government is set but the country does not actually exist
+		default = "gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+	}
+	
+	#species scope
+	species = { #generic portrait for a species
+		default = "gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+	}
+	
+	#pop scope
+	pop = { #for a specific pop
+	
+		default = "gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+
+		random = {
+			list = {
+				"gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair02.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair03.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair04.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair05.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair06.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair07.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair08.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair09.dds"
+
+			}
+		}
+	}
+
+
+
+
+	#leader scope
+	leader = { #scientists, generals, admirals, governor
+	
+		random = {
+			trigger = { leader_class = general }
+			list = {
+				"gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair02.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair03.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair04.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair05.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair06.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair07.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair08.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair09.dds"
+
+					
+			}
+		}
+		
+		random = {
+			trigger = { leader_class = admiral }
+			list = {
+				
+				"gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair02.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair03.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair04.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair05.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair06.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair07.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair08.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair09.dds"
+
+			}
+		}
+		
+		random = {
+			trigger = { leader_class = scientist }
+			list = {
+				"gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair02.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair03.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair04.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair05.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair06.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair07.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair08.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair09.dds"
+
+
+			}
+		}
+		
+		random = {
+			trigger = { leader_class = governor }
+			list = {
+				"gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair02.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair03.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair04.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair05.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair06.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair07.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair08.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair09.dds"
+
+			}
+		}
+	}
+
+	#leader scope
+	ruler = { #for rulers
+		#default = "gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+		
+		random = {
+			trigger = {
+				owner = { has_militarist_government = yes }
+			}
+				
+			list = {
+
+				"gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair02.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair03.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair04.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair05.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair06.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair07.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair08.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair09.dds"
+
+			}
+		}
+		
+		random = {
+			trigger = {
+				owner = { has_spiritualist_government = yes }
+			}
+			
+			list = {
+				"gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				owner = {
+					OR = {
+						has_primitive_government = yes
+						has_materialist_government = yes
+						has_pacifist_government = yes
+					}
+				}
+			}
+			
+			list = {
+				"gfx/models/portraits/cardassian/cardassian_male_hair01.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair02.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair03.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair04.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair05.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair06.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair07.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair08.dds"
+				"gfx/models/portraits/cardassian/cardassian_male_hair09.dds"
+
+			}
+		}
+	}
+}

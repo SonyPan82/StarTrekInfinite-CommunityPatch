@@ -1,0 +1,53 @@
+entity = {
+	name = "cold_barren_planet_luna_xx_entity"
+	pdxmesh = "planet_no_pole_no_clouds_mesh"
+	
+	meshsettings = {
+	name = "planet_geosphereShape"
+	texture_diffuse = "moon_01_diffuse.dds"
+	texture_normal = "moon_01_normal.dds"
+	texture_specular = "moon_01_specular.dds"
+	}
+	
+	# ##pole texture override
+	# meshsettings = {
+	# name = "polesShape"
+	# texture_diffuse = "luna_poles_barren_2_diffuse.dds"
+	# texture_normal = "luna_poles_barren_2_normal.dds"
+	# texture_specular = "cold_barren_04_specular.dds"
+	# }
+	
+	default_state = "idle"
+	playback_rate = 1.0 # Animation speed 0 - The Moon is tidally locked to Earth
+	state = { name = "idle" animation = "idle" time_offset = { 15 0 } animation_speed = 0
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+}
+
+entity = {
+ 	name = "barren_planet_mars_xx_entity"
+	 pdxmesh = "planet_no_pole_no_clouds_mesh"
+	
+	meshsettings = {
+	name = "planet_geosphereShape"
+	texture_diffuse = "mars_01_diffuse.dds"
+	texture_normal = "mars_01_normal.dds"
+	texture_specular = "mars_01_specular.dds"
+	}
+	
+	# ##pole texture override
+	# meshsettings = {
+	# name = "polesShape"
+	# texture_diffuse = "poles_barren_1_diffuse.dds"
+	# texture_normal = "poles_barren_1_normal.dds"
+	# texture_specular = "poles_barren_1_specular.dds"
+	# }
+	
+	default_state = "idle"
+	playback_rate = -1.0 # Rotation is reversed
+ 	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+}

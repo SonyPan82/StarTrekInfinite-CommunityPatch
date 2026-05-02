@@ -1,0 +1,9 @@
+objectTypes = {
+
+pdxmesh = {
+	name = "constellation_slots_mesh"
+	file = "gfx/models/ships/ufop_01/constellation_slots.mesh"
+	scale = 0.80
+}
+
+}

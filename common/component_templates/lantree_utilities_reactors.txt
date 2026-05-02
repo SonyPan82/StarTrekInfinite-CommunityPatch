@@ -1,0 +1,13 @@
+@lantree_power_1 = 75
+@lantree_power_2 = 100
+@lantree_power_3 = 130
+@lantree_power_4 = 170
+@lantree_power_5 = 220
+@lantree_power_6 = 285
+
+@lantree_cost_1 = 10
+@lantree_cost_2 = 13
+@lantree_cost_3 = 17
+@lantree_cost_5 = 28
+@lantree_cost_4 = 22
+@lantree_cost_6 = 37

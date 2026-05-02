@@ -1,0 +1,144 @@
+planet_vega_initializer = {
+	name = "Vega"
+	class = "rl_all_stars"
+	usage = static_system_init
+	flags = { ufop ufop_system colony vega_planet_system}
+
+	planet = {
+		name = "Vega"
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+		size = 72
+		has_ring = no		
+		init_effect = {
+			set_planet_flag = ignore_startup_effect
+			change_pc = pc_a_star
+			set_deposit = d_deuterium_5
+		}
+
+		planet = {
+			name = "Vega I"
+			orbit_distance = 10
+			size = 8
+			class = pc_molten
+			has_ring = no
+			init_effect = {
+				set_deposit = d_energy_2
+			}
+		}
+		
+		planet = {
+			name = "Vega II"
+			orbit_distance = 13
+			size = 12
+			class = pc_molten
+			has_ring = no
+		}
+		
+		planet = {
+			name = "Vega III"
+			orbit_distance = 16
+			size = 7
+			class = pc_barren
+			has_ring = no
+		}
+		
+		planet = {
+			name = "Vega IV"
+			orbit_distance = 20
+			size = 15
+			class = pc_barren
+			has_ring = no
+			init_effect = {
+				set_deposit = d_minerals_4
+			}
+		}
+		
+		planet = {
+			name = "Vega V"
+			orbit_distance = 23
+			size = 85
+			class = pc_gas_giant
+			subclass = psc_class_j
+			has_ring = yes
+			init_effect = {
+				set_deposit = d_deuterium_2
+			}
+		}
+		
+		planet = {
+			name = "Vega VI"
+			orbit_distance = 28
+			size = 72
+			class = pc_gas_giant
+			subclass = psc_class_t
+			has_ring = no
+			init_effect = {
+				set_deposit = d_deuterium_3
+			}
+		}
+		
+		planet = {
+			name = "Vega VII"
+			orbit_distance = 28
+			size = 21
+			class = pc_frozen
+			has_ring = yes
+		}
+		
+		planet = {
+			name = "Vega VIII"
+			orbit_distance = 32
+			size = 7
+			class = pc_barren
+			has_ring = no
+		}
+		
+		planet = {
+			name = "Vega IX"
+			orbit_distance = 35
+			class = pc_continental
+			subclass = psc_class_m
+			size = 18
+			deposit_blockers = none
+			has_ring = no
+			flags = { mapo_colony planet_vega vega_planet vega_ix_planet}
+	
+			init_effect = {
+				prevent_anomaly = yes
+				save_global_event_target_as = planet_vega
+			}
+		}
+		
+		planet = {
+			#name = "Vega X"
+			orbit_distance = 40
+			size = 25
+			class = pc_ice
+			subclass = psc_class_g
+			has_ring = no
+			init_effect = {
+				set_deposit = d_minerals_3
+			}
+		}
+		
+		late_init_effect = {
+			create_mining_station = {
+				owner = event_target:ufop_country
+			}
+		}
+	}
+	
+	#init_effect = {
+	#	every_neighbor_system = { set_star_flag = empire_cluster }
+	#}
+
+	#late_init_effect = {
+	#	create_starbase = {
+	#		size = starbase_outpost # We can use any Starbase size. The sizes are located on "game\common\starbase_types"
+	#		owner = event_target:ufop_country # Using the event_target saved on ufop_system_initializer
+	#	}
+	#}
+}

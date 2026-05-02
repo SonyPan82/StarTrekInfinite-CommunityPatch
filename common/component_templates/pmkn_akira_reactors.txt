@@ -1,0 +1,214 @@
+@corvette_cost_1 = 20
+
+@akira_power_1 = 140
+@akira_power_2 = 180
+@akira_power_3 = 240
+@akira_power_4 = 320
+@akira_power_5 = 430
+@akira_power_6 = 550
+
+@destroyer_cost_1 = 20
+@destroyer_cost_2 = 26
+@destroyer_cost_3 = 34
+@destroyer_cost_4 = 44
+@destroyer_cost_5 = 56
+@destroyer_cost_6 = 74
+
+@operative_officers1 = 10
+
+utility_component_template = {
+	key = "DESTROYER_FUSION_REACTOR_AKIRA"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @akira_power_1
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @corvette_cost_1
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.20
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.02
+		}
+	}
+
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { akira }
+	upgrades_to = "DESTROYER_MATTER_ANTIMATTER_REACTOR_AKIRA"
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_MATTER_ANTIMATTER_REACTOR_AKIRA"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = @akira_power_2
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @destroyer_cost_2
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.26
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.026
+		}
+	}
+
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { akira }
+	upgrades_to = "DESTROYER_TETRYON_REACTOR_AKIRA"
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+
+utility_component_template = {
+	key = "DESTROYER_TETRYON_REACTOR_AKIRA"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = @akira_power_3
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @destroyer_cost_3
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.34
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.034
+		}
+	}
+
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { akira }
+	upgrades_to = "DESTROYER_ANTI_TETRYON_REACTOR_AKIRA"
+
+	ai_weight = {
+		weight = 3
+	}
+}
+
+
+utility_component_template = {
+	key = "DESTROYER_ANTI_TETRYON_REACTOR_AKIRA"
+	size = small
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = @akira_power_4
+	operative_officers = @operative_officers1
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @destroyer_cost_4
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.44
+		}
+						
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		
+		upkeep = {
+			alloys = 0.044
+		}
+	}
+
+	prerequisites = { "tech_reactor_4" }
+	component_set = "power_core"
+	size_restriction = { akira }
+
+	ai_weight = {
+		weight = 4
+	}
+}

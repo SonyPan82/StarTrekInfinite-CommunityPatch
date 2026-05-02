@@ -1,0 +1,196 @@
+@janeway_project_days_to_research = 30
+@probe_defenses_timelimit = 720
+@counteract_measures_timelimit = 720
+
+
+#########################################################################
+# Probe Defenses (BC-SP-PROBE7)
+#
+# Enabled by:
+# Return of the USS Voyager (BC-VOYAGER9)
+# borg_crisis.351, borg_crisis.360, borg_crisis.370, borg_crisis.380, 
+# borg_crisis.382, borg_crisis.386, borg_crisis.390, borg_crisis.391,
+# borg_crisis.392
+# GD_TAG: 9 STEP Lore
+#########################################################################
+
+### Probe Defenses
+special_project = {
+	key = "PROBE_DEFENSES"
+	#event_chain = "borg_crisis_end"
+	tech_department = engineering_technology
+	picture = GFX_evt_borg_cube
+	days_to_research = @janeway_project_days_to_research
+	timelimit = @probe_defenses_timelimit
+
+	delete_on_finish = yes
+
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_military = 3
+		leader = admiral
+		has_trait = leader_trait_janeway
+	}
+
+	on_start = {
+		# Note: prev in this context is the Country, owner won't work
+		prev = {
+			# HRB_TODO: tweak
+			country_event = { id = borg_crisis.382 } # Set Borg as hostile
+		}
+	}
+
+	# on_progress_50 = {
+	# 	# Note: prev in this context is the Country, owner won't work
+	# 	prev = {
+	# 		# HRB_TODO: tweak
+	# 		country_event = { id = borg_crisis.382 } # Start borg cube waves
+	# 	}
+	# }
+	
+	on_success = {
+		prev = {
+			# HRB_TODO: tweak
+			country_event = { id = borg_crisis.383 } # Start borg cube waves
+			country_event = { id = borg_crisis.388 } # Tell the player
+
+			enable_special_project = {
+				# HRB_TODO: change to next SP phase
+				name = "COUNTERACT_MEASURES" 
+				location = event_target:crisis_borg_queen_fleet
+				owner = this
+			}
+		}
+	}
+
+	# Conditions: Timeout or Janeway died
+	on_fail = {
+		owner = {
+			country_event = { id = borg_crisis.390 } #Triggers Fail state
+		}
+	}
+}
+
+#########################################################################
+# Counteract Security Measures (BC-SP-SECURITY8)
+#
+# Enabled by:
+# Return of the USS Voyager (BC-VOYAGER9)
+# borg_crisis.351, borg_crisis.360, borg_crisis.370, borg_crisis.380, 
+# borg_crisis.382, borg_crisis.386, borg_crisis.390, borg_crisis.391,
+# borg_crisis.392
+# GD_TAG: 9 STEP Lore
+#########################################################################
+
+### Counteract Security Measures
+special_project = {
+	key = "COUNTERACT_MEASURES"
+	#event_chain = "borg_crisis_end"
+	tech_department = engineering_technology
+	picture = GFX_evt_borg_crisis_cube_combat_drones
+	days_to_research = @janeway_project_days_to_research
+	timelimit = @counteract_measures_timelimit
+
+        delete_on_finish = yes
+
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_military = 3
+		leader = admiral
+		has_trait = leader_trait_janeway
+	}
+
+	on_start = {
+	}
+	
+	on_success = {
+		prev = {
+			# HRB_TODO: tweak
+			country_event = { id = borg_crisis.384 } # Second borg cube waves
+			country_event = { id = borg_crisis.389 } # Tell the player
+			
+			enable_special_project = {
+				# HRB_TODO: change to next SP phase
+				name = "DELIVERANCE" 
+				location = event_target:crisis_borg_queen_fleet
+				owner = this
+			}
+		}
+	}
+
+	# Conditions: Timeout or Janeway died
+	on_fail = {
+		owner = {
+			country_event = { id = borg_crisis.390 } #Triggers Fail state
+		}
+	}
+}
+
+#########################################################################
+# Deliverance (BC-SP-DELIVER9)
+#
+# Enabled by:
+# Return of the USS Voyager (BC-VOYAGER9)
+# borg_crisis.351, borg_crisis.360, borg_crisis.370, borg_crisis.380, 
+# borg_crisis.382, borg_crisis.386, borg_crisis.390, borg_crisis.391,
+# borg_crisis.392
+# GD_TAG: 9 STEP Lore
+#########################################################################
+
+### Deliverance
+special_project = {
+	key = "DELIVERANCE"
+	#event_chain = "borg_crisis_end"
+	tech_department = engineering_technology
+	days_to_research = @janeway_project_days_to_research
+	timelimit = @counteract_measures_timelimit
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_highway_ftl_travel_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_highway_ftl_travel_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_borg_cube
+
+	event_scope = ship_event
+	
+	requirements = {
+		shipclass_military = 3
+
+		leader = admiral
+		has_trait = leader_trait_janeway
+	}
+
+	on_start = {
+	}
+	
+	on_success = {
+		prev = {
+			# HRB_TODO: tweak
+			country_event = { id = borg_crisis.391 } 
+		}
+	}
+
+	# Conditions: Timeout or Janeway died
+	on_fail = {
+		owner = {
+			country_event = { id = borg_crisis.390 } #Triggers Fail state
+		}
+	}
+}

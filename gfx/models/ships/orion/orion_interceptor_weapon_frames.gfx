@@ -1,0 +1,8 @@
+objectTypes = {
+		pdxmesh = {
+		name = "orion_interceptor_slots_mesh"
+		file = "gfx/models/ships/orion/orion_interceptor_slots.mesh"
+		scale = 1.0
+	}
+
+}

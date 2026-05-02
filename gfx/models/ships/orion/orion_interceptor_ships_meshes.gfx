@@ -1,0 +1,18 @@
+objectTypes = {
+	pdxmesh = {
+		name = "orion_interceptor_ship_mesh"
+		file = "gfx/models/ships/orion/orion_interceptor_ship.mesh"
+		scale = 1.0
+
+		animation = { id = "idle"			type = "small_idle_animation" }
+
+		animation = { id = "death"			type = "small_death_animation" }
+
+		animation = { id = "warp_01"			type = "small_warp_01_animation" }
+
+		animation = { id = "warp_02"			type = "small_warp_02_animation" }
+
+		animation = { id = "warp_03"			type = "small_warp_03_animation" }
+
+	}
+}

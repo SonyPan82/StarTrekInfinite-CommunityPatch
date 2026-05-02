@@ -1,0 +1,17 @@
+AADENOB = {
+	archetype = BIOLOGICAL
+
+	portraits = {
+		"denobulan"
+	}
+
+	# These should not be used for randomly generated species
+	non_randomized_portraits = {
+		"denobulan"
+    }
+
+	graphical_culture = ufop_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+
+	resources = {}
+}

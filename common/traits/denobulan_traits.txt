@@ -1,0 +1,33 @@
+trait_denob_communal = {
+	cost = 4
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_housing_usage_mult = -0.25
+		pop_amenities_usage_mult = -0.1
+		planet_pops_energy_upkeep_mult = -0.5
+	}
+}
+
+trait_denob_polyamorous = {
+	cost = 4
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_growth_speed = 0.15
+		leader_age = 120
+	}
+}
+
+trait_denob_family = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_strong" "trait_very_strong" }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	modifier = {
+		pop_growth_from_immigration = -0.5
+		species_leader_exp_gain = -0.5
+	}
+}

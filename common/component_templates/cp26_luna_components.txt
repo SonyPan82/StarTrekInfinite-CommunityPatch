@@ -1,0 +1,167 @@
+@cp26_luna_officers = 10
+@cp26_luna_reactor_power_1 = 350
+@cp26_luna_reactor_power_2 = 450
+@cp26_luna_reactor_power_3 = 600
+@cp26_luna_reactor_power_4 = 775
+@cp26_luna_engine_power_1 = -40
+@cp26_luna_engine_power_2 = -60
+@cp26_luna_engine_power_3 = -80
+@cp26_luna_engine_power_4 = -100
+@cp26_luna_computer_power_0 = -5
+@cp26_luna_computer_power_1 = -10
+
+utility_component_template = {
+	key = "CRUISER_FUSION_REACTOR_LUNA"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @cp26_luna_reactor_power_1
+	operative_officers = @cp26_luna_officers
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { luna }
+	upgrades_to = "CRUISER_MATTER_ANTIMATTER_REACTOR_LUNA"
+	resources = { category = ship_components cost = { alloys = 50 } upkeep = { deuterium = 0.40 } upkeep = { alloys = 0.04 } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "CRUISER_MATTER_ANTIMATTER_REACTOR_LUNA"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = @cp26_luna_reactor_power_2
+	operative_officers = @cp26_luna_officers
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { luna }
+	upgrades_to = "CRUISER_TETRYON_REACTOR_LUNA"
+	resources = { category = ship_components cost = { alloys = 65 } upkeep = { deuterium = 0.52 } upkeep = { alloys = 0.052 } }
+	ai_weight = { weight = 2 }
+}
+
+utility_component_template = {
+	key = "CRUISER_TETRYON_REACTOR_LUNA"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = @cp26_luna_reactor_power_3
+	operative_officers = @cp26_luna_officers
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { luna }
+	upgrades_to = "CRUISER_ANTI_TETRYON_REACTOR_LUNA"
+	resources = { category = ship_components cost = { alloys = 85 } upkeep = { deuterium = 0.68 } upkeep = { alloys = 0.068 } }
+	ai_weight = { weight = 3 }
+}
+
+utility_component_template = {
+	key = "CRUISER_ANTI_TETRYON_REACTOR_LUNA"
+	size = small
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = @cp26_luna_reactor_power_4
+	operative_officers = @cp26_luna_officers
+	prerequisites = { "tech_reactor_4" }
+	component_set = "power_core"
+	size_restriction = { luna }
+	resources = { category = ship_components cost = { alloys = 110 } upkeep = { deuterium = 0.88 } upkeep = { alloys = 0.088 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "CRUISER_IMPULSE_ENGINE_LUNA"
+	size = small
+	icon = "GFX_ship_part_impulse_engine"
+	icon_frame = 1
+	power = @cp26_luna_engine_power_1
+	operative_officers = @cp26_luna_officers
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { luna }
+	upgrades_to = "CRUISER_ADVANCED_IMPULSE_ENGINE_LUNA"
+	resources = { category = ship_components cost = { alloys = 12 } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "CRUISER_ADVANCED_IMPULSE_ENGINE_LUNA"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @cp26_luna_engine_power_2
+	operative_officers = @cp26_luna_officers
+	modifier = { ship_base_speed_mult = 0.33 ship_evasion_add = 3 }
+	prerequisites = { "tech_engine_2" }
+	component_set = "thruster_components"
+	size_restriction = { luna }
+	upgrades_to = "CRUISER_HIGH_ENERGY_IMPULSE_ENGINE_LUNA"
+	resources = { category = ship_components cost = { alloys = 24 } }
+	ai_weight = { weight = 2 }
+}
+
+utility_component_template = {
+	key = "CRUISER_HIGH_ENERGY_IMPULSE_ENGINE_LUNA"
+	size = small
+	icon = "GFX_ship_part_high_energy_impulse_engine"
+	icon_frame = 1
+	power = @cp26_luna_engine_power_3
+	operative_officers = @cp26_luna_officers
+	modifier = { ship_base_speed_mult = 0.66 ship_evasion_add = 6 }
+	prerequisites = { "tech_engine_3" }
+	component_set = "thruster_components"
+	size_restriction = { luna }
+	upgrades_to = "CRUISER_OMEGA_ENGINE_LUNA"
+	resources = { category = ship_components cost = { alloys = 36 } }
+	ai_weight = { weight = 3 }
+}
+
+utility_component_template = {
+	key = "CRUISER_OMEGA_ENGINE_LUNA"
+	size = small
+	icon = "GFX_ship_part_omega_engine"
+	icon_frame = 1
+	power = @cp26_luna_engine_power_4
+	operative_officers = @cp26_luna_officers
+	modifier = { ship_base_speed_mult = 1.0 ship_evasion_add = 9 }
+	prerequisites = { "tech_engine_4" }
+	component_set = "thruster_components"
+	size_restriction = { luna }
+	resources = { category = ship_components cost = { alloys = 48 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_BOMBER_DEFAULT_LUNA"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_bomber"
+	icon_frame = 1
+	power = @cp26_luna_computer_power_0
+	operative_officers = @cp26_luna_officers
+	ship_behavior = "hrb_bomber"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	size_restriction = { luna }
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_BOMBER_BASIC_LUNA"
+	ship_modifier = { ship_fire_rate_mult = 0.05 ship_tracking_add = 10 }
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_BOMBER_BASIC_LUNA"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_bomber"
+	icon_frame = 1
+	power = @cp26_luna_computer_power_1
+	operative_officers = @cp26_luna_officers
+	ship_behavior = "hrb_bomber"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_2" }
+	size_restriction = { luna }
+	component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.20 ship_tracking_add = 20 }
+	resources = { category = ship_components cost = { alloys = 5 } }
+	ai_weight = { weight = 2 }
+}

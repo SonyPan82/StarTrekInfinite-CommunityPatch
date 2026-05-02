@@ -1,0 +1,67 @@
+spawn_close_system = {
+	spawn_system = {
+		min_jumps = 1
+		max_jumps = 1
+		min_distance = 3
+		max_distance = 14
+		initializer = basic_init_04
+		hyperlane = yes
+		is_discovered = no
+	}	
+}
+
+spawn_mid_system = {
+	spawn_system = {
+		min_jumps = 1
+		max_jumps = 1
+		min_distance = 4
+		max_distance = 16
+		initializer = basic_init_04
+		hyperlane = yes
+		is_discovered = yes
+	}
+}
+
+create_civilian_fleet = {
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+
+			set_fleet_stance = evasive
+			set_location = prev.capital_scope.star
+
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
+
+	# Constructor
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = prev.capital_star
+		}
+	}
+
+	# Spy ships
+	create_spy_and_ship = yes
+}

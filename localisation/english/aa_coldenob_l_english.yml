@@ -1,0 +1,9 @@
+﻿l_english:   
+ trait_denob_communal: "Communal"
+ trait_denob_communal_desc: "Living together amicably with little need for space or privacy."
+ trait_denob_polyamorous: "Polyamorous"
+ trait_denob_polyamorous_desc: "Multiple spouses who have multiple spouses."
+ trait_denob_family: "Family at Home"
+ trait_denob_family_desc: "Large extended families, on Denobula."
+ 
+ AADENOB: "Humanoid"

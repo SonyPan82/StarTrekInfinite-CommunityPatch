@@ -1,0 +1,63 @@
+tech_ambassador_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_ambassador		
+		desc = tech_ambassador_desc		
+		icon = tech_miranda # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_AMBASSADOR_CONSTRUCTION_TITLE
+				desc = tech_ambassador_desc
+			}	
+		}		
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1
+			years_passed < 8
+		}
+		modifier = {
+			factor = 8
+			years_passed > 10
+		}
+		modifier = {
+			factor = 5
+			any_neighbor_country = {
+				has_technology = tech_cruiser_unlock
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+} 

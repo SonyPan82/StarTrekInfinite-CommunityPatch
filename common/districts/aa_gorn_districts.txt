@@ -1,0 +1,66 @@
+@base_cost = 300
+@city_cost = 500
+
+district_gorn_hunting = {
+	base_buildtime = 360
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = { is_country_type = contender }
+		owner = { has_country_id = gorn }
+	}
+
+	show_on_uncolonized = {
+		is_colonizable = yes
+		uses_district_set = standard
+		from = { is_country_type = contender }
+		from = { has_country_id = gorn }
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @city_cost
+		}
+		upkeep = {
+			energy = 1
+			minerals = 1
+		}
+		produces = {
+			food = 10
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_city
+		district_industrial
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+		planet_amenities_add = 5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_country_id = gorn }
+		}
+		modifier = {
+			job_soldier_add = 1
+			job_enforcer_add = 1
+			job_culture_worker_add = 1
+			pop_growth_speed = 0.05
+		}
+	}
+
+	ai_resource_production = {
+		trigger = {
+			always = yes
+		 }
+		 food = 8
+		 unity = 3
+	}
+}

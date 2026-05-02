@@ -1,0 +1,54 @@
+spawn_janeway_and_ship = {
+
+	hidden_effect = {
+		country_event = { id = voyager_hero_events.2 } 
+	}
+
+
+#	create_leader = {
+#		name = "NAME_Janeway"
+#		class = admiral
+#		species = ROOT.owner_species
+#		skill = 5
+#		traits = {
+#			trait = leader_trait_janeway
+#		}
+#		portrait = "unique_21" 	# Kathryn Janeway portrait
+#		event_leader = yes
+#		immortal = no
+#		gender = female
+#		set_age = 40
+#	}
+#
+#	create_fleet = {
+#		name = "NAME_Voyager_Fleet"
+#		effect = {
+#			create_ship = {
+#					name = "NAME_Voyager"
+#					design = NAME_Voyager
+#					initial_officers_perc = 1
+#				}
+#			
+#			set_owner = ROOT
+#			assign_leader = last_created_leader
+#			set_location = {
+#				target = event_target:current_player_primary_star
+#				distance = 370
+#				angle = 45
+#			}
+#		}
+#		settings = {
+#			can_upgrade = no
+#			#can_change_composition = no
+#			can_disband = no
+#		}
+#	}
+#
+#	last_created_leader = {
+#		save_global_event_target_as = crisis_leader_janeway
+#	}
+#
+#	last_created_fleet = {
+#		save_global_event_target_as = crisis_janeway_fleet
+#	}
+}
