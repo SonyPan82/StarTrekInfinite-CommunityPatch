@@ -27,9 +27,15 @@ event = {
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			set_planet_flag = research_habitat
+			add_modifier = {
+				modifier = lunar_one_colony
+				days = -1
+			}
 			remove_building = building_colony_shelter
 			add_building = building_capital
-			add_district = district_city
+			add_district_and_planet_size_if_needed_effect = {
+				district = district_city
+			}
 		}
 		random_galaxy_planet = {
 			limit = {
@@ -58,10 +64,18 @@ event = {
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			set_planet_flag = mining_habitat
+			add_modifier = {
+				modifier = utopia_planitia_shipyard
+				days = -1
+			}
 			remove_building = building_colony_shelter
 			add_building = building_capital
-			add_district = district_industrial
-			add_district = district_city
+			add_district_and_planet_size_if_needed_effect = {
+				district = district_industrial
+			}
+			add_district_and_planet_size_if_needed_effect = {
+				district = district_city
+			}
 			
 			solar_system = {
 				spawn_megastructure = {

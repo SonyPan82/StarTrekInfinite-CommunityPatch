@@ -20,17 +20,17 @@ setup_breen_capital = {
 			create_pop = { species = "Breen" }
 		}
 		clear_blockers = yes
-		add_district = district_city
-		add_district = district_city
-		add_district = district_mining
-		add_district = district_mining
-		add_district = district_industrial
-		add_district = district_generator
-		add_district = district_generator
-		add_district = district_farming
-		add_district = district_farming
-		add_district = district_farming
-		add_district = district_civil_forum_breen
+		add_district_and_planet_size_if_needed_effect = { district = district_city }
+		add_district_and_planet_size_if_needed_effect = { district = district_city }
+		add_district_and_planet_size_if_needed_effect = { district = district_mining }
+		add_district_and_planet_size_if_needed_effect = { district = district_mining }
+		add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+		add_district_and_planet_size_if_needed_effect = { district = district_generator }
+		add_district_and_planet_size_if_needed_effect = { district = district_generator }
+		add_district_and_planet_size_if_needed_effect = { district = district_farming }
+		add_district_and_planet_size_if_needed_effect = { district = district_farming }
+		add_district_and_planet_size_if_needed_effect = { district = district_farming }
+		add_district_and_planet_size_if_needed_effect = { district = district_civil_forum_breen }
 		remove_building = building_colony_shelter
 		add_building = building_capital	
 	}
@@ -45,9 +45,9 @@ setup_breen_capital = {
 		add_deposit = d_ore_rich_slopes
 		clear_blockers = yes
 		
-		add_district = district_city
-		add_district = district_labor_camp_breen
-		add_district = district_labor_camp_breen
+		add_district_and_planet_size_if_needed_effect = { district = district_city }
+		add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
+		add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
 		remove_building = building_colony_shelter
 		add_building = building_capital	
 		

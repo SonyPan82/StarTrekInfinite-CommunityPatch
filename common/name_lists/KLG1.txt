@@ -103,6 +103,18 @@ KLG1 = {
 		assault_army = {
 			sequential_name = "%O% Expeditionary Force"
 		}
+
+		klingon_defense_army = {
+			sequential_name = "%O% Defense Force"
+		}
+
+		klingon_assault_army = {
+			sequential_name = "%O% Warrior Battalion"
+		}
+
+		klingon_elite_assault_army = {
+			sequential_name = "%O% Honor Guard"
+		}
 		
 		clone_army = { 
 			sequential_name = "%O% Clone Army"

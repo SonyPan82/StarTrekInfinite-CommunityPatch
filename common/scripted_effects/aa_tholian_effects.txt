@@ -40,16 +40,16 @@ setup_tholian_capital = {
 				create_pop = { species = "Tholian" }
 			}
 			clear_blockers = yes
-			add_district = district_city_tholian
-			add_district = district_city
-			add_district = district_city
-			add_district = district_generator
-			add_district = district_generator
-			add_district = district_mining
-			add_district = district_mining
-			add_district = district_industrial
-			add_district = district_industrial
-			add_district = district_farming
+			add_district_and_planet_size_if_needed_effect = { district = district_city_tholian }
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			remove_building = building_colony_shelter
 			add_building = building_capital
 		}

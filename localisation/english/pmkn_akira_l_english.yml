@@ -44,12 +44,11 @@
   AKIRA_MID: "Akira"
 
   tech_akira: "Akira Schematics"
-  tech_akira_desc: "Akira-class starships§! that are powerful multi-role heavy cruisers designed for a variety of exploratory and fleet missions."
+  tech_akira_desc: "§HAkira-class starships§! are powerful multi-role heavy cruisers designed for a variety of exploratory and fleet missions."
   TECH_UNLOCK_AKIRA_CONSTRUCTION_TITLE: "§HUnlocks Ship Type:§! Akira"
 
   ## Hull Sizes
 
   akira: "Akira"
   akira_pural: "Akiras"
-
 

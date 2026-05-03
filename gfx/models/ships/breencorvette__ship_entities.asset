@@ -42,12 +42,12 @@ entity = {
 	}
 
 	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
-		event = { time = 4.46 node = "part1" particle = "reptilian_ship_explosion_s_effect" }
+		event = { time = 4.46 node = "part1" particle = "ship_explosion_particle" }
 		
 		event = { time = 0.5 node = "part1" particle = "ship_burn_particle" }
 		event = { time = 0.5 node = "part1" particle = "ship_explosion_air_vent_particle" }
 	
-		event = { time = 10.83 node = "part1" particle = "medium_reptilian_ship_explosion_effect" sound = { soundeffect = ship_destroyed } }
+		event = { time = 10.83 node = "part1" particle = "medium_ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
 	}
 
 	# HRB_TODO: this enables ship firepower (military capacity)

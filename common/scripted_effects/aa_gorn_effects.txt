@@ -58,16 +58,16 @@ setup_gorn_capital = {
 			add_deposit = d_hot_springs
 			add_deposit = d_geothermal_vent
 			clear_blockers = yes
-			add_district = district_city
-			add_district = district_city
-		add_district = district_mining
-		add_district = district_mining
-		add_district = district_industrial
-		add_district = district_generator
-		add_district = district_generator
-		add_district = district_gorn_hunting
-		add_district = district_gorn_hunting
-		add_district = district_gorn_hunting
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+		add_district_and_planet_size_if_needed_effect = { district = district_mining }
+		add_district_and_planet_size_if_needed_effect = { district = district_mining }
+		add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+		add_district_and_planet_size_if_needed_effect = { district = district_generator }
+		add_district_and_planet_size_if_needed_effect = { district = district_generator }
+		add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
+		add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
+		add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
 		remove_building = building_colony_shelter
 		add_building = building_capital	
 	}

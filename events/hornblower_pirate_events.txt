@@ -787,6 +787,9 @@ country_event = {
 	}
 
 	trigger = {
+		NOT = { has_global_flag = cp26_no_pirates }
+		exists = event_target:nausicaan_redoubt
+		exists = event_target:redoubt_spawn_system
 		FromFromFrom = {
 			is_same_value = event_target:nausicaan_redoubt
 		}
@@ -809,10 +812,13 @@ country_event = {
 				modifier = opinion_dreadnought_destroyed
 			}
 		}
-		event_target:redoubt_spawn_system = {
-			every_fleet_in_system = {
-				limit = { is_owned_by = from }
-				destroy_fleet = this
+		if = {
+			limit = { exists = event_target:redoubt_spawn_system }
+			event_target:redoubt_spawn_system = {
+				every_fleet_in_system = {
+					limit = { is_owned_by = from }
+					destroy_fleet = this
+				}
 			}
 		}
 	}

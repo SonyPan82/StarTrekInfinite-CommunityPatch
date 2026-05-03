@@ -9,7 +9,7 @@
  HIGHWAY_GALACTIC: "Transwarp Conduit"
  HIGHWAY_DESC: "This system contains a §Y$HIGHWAY_GALACTIC$§!"
  HIGHWAY_DESC_UNEXPLORED: "This system contains an §Runexplored§! §Y$HIGHWAY_GALACTIC$§!"
- HIGHWAY_COUNTRY_CANNOT_USE: "$TRIGGER_FAIL$ We do not have the means to use the §Y$HIGHWAY_GALACTIC$!."
+ HIGHWAY_COUNTRY_CANNOT_USE: "$TRIGGER_FAIL$ We do not have the means to use the §Y$HIGHWAY_GALACTIC$§!."
 
  ################################
  # Star Classes

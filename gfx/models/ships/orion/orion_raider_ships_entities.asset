@@ -9,8 +9,8 @@ entity = {
 		event = { time = 0 node = "light_locator_01" particle = "navlight_blue_pulse" trigger_once = yes keep_particle = yes }
 		event = { time = 0 node = "light_locator_02" particle = "navlight_red" trigger_once = yes keep_particle = yes }
 		event = { time = 0 node = "light_locator_03" particle = "navlight_green" trigger_once = yes keep_particle = yes }
-		event = { time = 0 node = "light_locator_04" particle = "navlight_yellow_breathe_small" trigger_once = yes keep_particle = yes }
-		event = { time = 0 node = "light_locator_05" particle = "navlight_yellow_breathe_small" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_yellow_regular_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_05" particle = "ship_light_yellow_regular_effect" trigger_once = yes keep_particle = yes }
 		event = { time = 0 node = "light_locator_06" particle = "navlight_yellow_small" trigger_once = yes keep_particle = yes }
 		event = { time = 0 node = "light_locator_07" particle = "navlight_yellow_small" trigger_once = yes keep_particle = yes }
 

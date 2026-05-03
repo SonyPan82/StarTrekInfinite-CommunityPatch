@@ -1,0 +1,55 @@
+tech_odyssey_unlock = {
+	cost = @tier3cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_titan_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_ufop = yes
+		}
+		title = tech_odyssey
+		desc = tech_odyssey_desc
+		icon = tech_sovereign
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_ODYSSEY_CONSTRUCTION_TITLE
+				desc = tech_odyssey_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.25
+			years_passed < 20
+		}
+		modifier = {
+			factor = 8
+			years_passed > 25
+		}
+		modifier = {
+			factor = 5
+			any_neighbor_country = {
+				has_technology = tech_titan_unlock
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 3
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}

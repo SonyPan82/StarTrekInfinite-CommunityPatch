@@ -39,10 +39,14 @@ event = {
 				}
 				while = {
 					count = 5
-					create_pop = { species = "Risan" }
+					create_pop = { species = event_target:risan_species }
 				}
-				add_district = district_city
-				add_district = district_farming
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_city
+				}
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_farming
+				}
 				set_colony_type = col_pleasure
 			}
 		}
