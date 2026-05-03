@@ -59,4 +59,6 @@ entity = {
 		trail_width = 0.5
 	}
 
+	locator = { name = "part1" position = { 0 0 0 } }
+
 }
