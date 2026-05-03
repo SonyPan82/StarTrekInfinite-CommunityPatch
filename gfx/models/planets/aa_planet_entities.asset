@@ -1,5 +1,5 @@
 entity = {
-	name = "cold_barren_planet_luna_xx_entity"
+	name = "cold_barren_planet_luna_01_entity"
 	pdxmesh = "planet_no_pole_no_clouds_mesh"
 	
 	meshsettings = {
@@ -26,7 +26,7 @@ entity = {
 }
 
 entity = {
- 	name = "barren_planet_mars_xx_entity"
+ 	name = "barren_planet_mars_01_entity"
 	 pdxmesh = "planet_no_pole_no_clouds_mesh"
 	
 	meshsettings = {
