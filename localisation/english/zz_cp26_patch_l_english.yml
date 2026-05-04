@@ -53,6 +53,8 @@ l_english:
  cp26_options.1.keep.tt:0 "The Nausicaan pirate crisis can appear normally."
  cp26_options.1.disable:0 "No pirates"
  cp26_options.1.disable.tt:0 "The Nausicaan pirate crisis will not spawn in this campaign."
+ cp26_ufop_core_worlds_integration:0 "Core Worlds Integration"
+ cp26_ufop_core_worlds_integration_desc:0 "Starfleet and Federation agencies are coordinating the administration of newly integrated core colonies."
  TECH_UNLOCK_AKIRA_CONSTRUCTION_TITLE:0 "§HUnlocks Ship:§! Akira"
  TECH_UNLOCK_AMBASSADOR_CONSTRUCTION_TITLE:0 "§HUnlocks Ship:§! Ambassador"
  TECH_UNLOCK_CONSTELLATION_CONSTRUCTION_TITLE:0 "§HUnlocks Ship:§! Constellation"

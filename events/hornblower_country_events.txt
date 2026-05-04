@@ -10781,15 +10781,20 @@ country_event = {
 	immediate = {
 		if = {
 			limit = { 
+				NOT = { has_country_flag = cp26_cerritos_event_fired }
 				is_tutorial_active = no
+				has_technology = tech_cp26_california_unlock
 			}
 			country_event = {
 				id = country.3200 days = 30
 			}
 		}
-		else = {
+		else_if = {
+			limit = {
+				NOT = { has_country_flag = cp26_cerritos_event_fired }
+			}
 			country_event = {
-				id = country.3199 days = 30
+				id = country.3199 days = 180
 			}
 		}
 	}
@@ -10807,6 +10812,12 @@ country_event = {
 	trigger = {
 		is_ufop = yes
 		is_tutorial_active = no
+		has_technology = tech_cp26_california_unlock
+		NOT = { has_country_flag = cp26_cerritos_event_fired }
+	}
+
+	immediate = {
+		set_country_flag = cp26_cerritos_event_fired
 	}
 
 	option = {
