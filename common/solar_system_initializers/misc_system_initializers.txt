@@ -376,7 +376,7 @@ basic_init_05_b = {
 	planet = {
 		count = { min = 6 max = 8 }
 		class = rl_unhabitable_planets
-		orbit_distance = 45
+		orbit_distance = 40
 		orbit_angle = { min = 90 max = 270 }
 
 		change_orbit = @base_moon_distance

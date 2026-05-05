@@ -1,0 +1,286 @@
+entity = {
+	name = "gorn_01_colony_ship_entity"
+	pdxmesh = "gorn_01_colony_ship_mesh"
+	scale = 0.24
+	default_state = "idle"
+	state = { name = "idle" animation_blend_time = 0.0 }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_construction_ship_entity"
+	pdxmesh = "gorn_01_constructor_mesh"
+	scale = 0.20
+	default_state = "idle"
+	state = { name = "idle" animation_blend_time = 0.0 }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_science_ship_entity"
+	pdxmesh = "gorn_01_science_ship_mesh"
+	scale = 0.22
+	default_state = "idle"
+	state = { name = "idle" animation_blend_time = 0.0 }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_transport_ship_entity"
+	pdxmesh = "gorn_01_transport_ship_mesh"
+	scale = 0.22
+	default_state = "idle"
+	state = { name = "idle" animation_blend_time = 0.0 }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_mining_station_entity"
+	pdxmesh = "gorn_01_mining_station_mesh"
+	scale = 0.35
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_mining_station_section_entity"
+	pdxmesh = "gorn_01_mining_station_mesh"
+	scale = 0.35
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_mining_station_construction_entity"
+	pdxmesh = "gorn_01_mining_station_mesh"
+	scale = 0.35
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_research_station_entity"
+	pdxmesh = "gorn_01_science_station_mesh"
+	scale = 0.32
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_research_station_section_entity"
+	pdxmesh = "gorn_01_science_station_mesh"
+	scale = 0.32
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_research_station_construction_entity"
+	pdxmesh = "gorn_01_science_station_mesh"
+	scale = 0.32
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_observation_station_entity"
+	pdxmesh = "gorn_01_science_station_mesh"
+	scale = 0.32
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_observation_station_construction_entity"
+	pdxmesh = "gorn_01_science_station_mesh"
+	scale = 0.32
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_small_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.22
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "small_gun_01" position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_medium_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.26
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "small_gun_01" position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" position = { 0 0 0 } }
+	locator = { name = "large_gun_01" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_large_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.30
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "small_gun_01" position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" position = { 0 0 0 } }
+	locator = { name = "large_gun_01" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_small_construction_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.22
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_medium_construction_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.26
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_large_construction_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.30
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_section_light_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.22
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_section_medium_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.26
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_military_station_section_heavy_entity"
+	pdxmesh = "gorn_01_defense_station_mesh"
+	scale = 0.30
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_outpost_entity"
+	pdxmesh = "gorn_01_starbase_mesh"
+	scale = 0.16
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_starport_entity"
+	pdxmesh = "gorn_01_shipyard_small_mesh"
+	scale = 0.20
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_starhold_entity"
+	pdxmesh = "gorn_01_shipyard_big_mesh"
+	scale = 0.24
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_starfortress_entity"
+	pdxmesh = "gorn_01_shipyard_big_mesh"
+	scale = 0.28
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_citadel_entity"
+	pdxmesh = "gorn_01_shipyard_big_mesh"
+	scale = 0.32
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_outpost_section_entity"
+	pdxmesh = "gorn_01_starbase_mesh"
+	scale = 0.16
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_starport_section_entity"
+	pdxmesh = "gorn_01_shipyard_small_mesh"
+	scale = 0.20
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_starhold_section_entity"
+	pdxmesh = "gorn_01_shipyard_big_mesh"
+	scale = 0.24
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_starfortress_section_entity"
+	pdxmesh = "gorn_01_shipyard_big_mesh"
+	scale = 0.28
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_01_starbase_citadel_section_entity"
+	pdxmesh = "gorn_01_shipyard_big_mesh"
+	scale = 0.32
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "part1" position = { 0 0 0 } }
+}

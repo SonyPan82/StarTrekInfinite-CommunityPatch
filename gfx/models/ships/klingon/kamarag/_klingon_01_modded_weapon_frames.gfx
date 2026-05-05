@@ -1,0 +1,8 @@
+objectTypes = {
+	pdxmesh = {
+		name = "kamarag_slots_mesh"
+		file = "gfx/models/ships/klingon_01/vorcha_slots.mesh"
+		scale = 1.15
+	}
+	
+}

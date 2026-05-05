@@ -1,4 +1,5 @@
 #Kamarag class
+@klingon_section_cost = 0
 
 ship_section_template = {
 	key = "KAMARAG_MID"

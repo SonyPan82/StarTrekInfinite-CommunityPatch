@@ -1,0 +1,25 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_01_starbase_mesh"
+        file = "gfx/models/ships/gorn/starbase/starbase.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "gstgr01"
+            index = 0
+            texture_diffuse = "gaoutpost01.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "gstgr02"
+            index = 0
+            texture_diffuse = "gaoutpost02.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

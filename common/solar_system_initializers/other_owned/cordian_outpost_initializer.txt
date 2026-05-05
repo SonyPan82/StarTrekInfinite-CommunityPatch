@@ -52,30 +52,43 @@ cordian_outpost_initializer = {
 	}
 
 	late_init_effect = {
-		every_country = {
-			if = {
-				limit = { has_country_flag = ufop }
-				save_event_target_as = cp26_ufop_country_for_athan
-			}
-		}
 		if = {
-			limit = { exists = event_target:cp26_ufop_country_for_athan }
-			create_starbase = {
-				size = starbase_outpost
-				owner = event_target:cp26_ufop_country_for_athan
-			}
-			random_system_planet = {
-				limit = { has_planet_flag = athan_prime }
-				save_event_target_as = cp26_athan_prime
+			limit = { has_star_flag = cordian_system }
+			every_country = {
+				if = {
+					limit = {
+						has_country_flag = ufop
+						NOT = { has_country_flag = cp26_fleet_museum_spawned }
+					}
+					save_event_target_as = cp26_ufop_country_for_athan
+				}
 			}
 			if = {
-				limit = { exists = event_target:cp26_athan_prime }
-				spawn_megastructure = {
-					type = "cp26_fleet_museum"
-					planet = event_target:cp26_athan_prime
+				limit = { exists = event_target:cp26_ufop_country_for_athan }
+				create_starbase = {
+					size = starbase_outpost
 					owner = event_target:cp26_ufop_country_for_athan
-					orbit_distance = 2
-					orbit_angle = 20
+				}
+				every_system_planet = {
+					limit = { has_planet_flag = athan_prime }
+					save_event_target_as = cp26_athan_prime
+				}
+				if = {
+					limit = {
+						exists = event_target:cp26_athan_prime
+						NOT = { has_star_flag = cp26_fleet_museum_spawned_system }
+					}
+					spawn_megastructure = {
+						type = "cp26_fleet_museum"
+						planet = event_target:cp26_athan_prime
+						owner = event_target:cp26_ufop_country_for_athan
+						orbit_distance = 2
+						orbit_angle = 20
+					}
+					set_star_flag = cp26_fleet_museum_spawned_system
+					event_target:cp26_ufop_country_for_athan = {
+						set_country_flag = cp26_fleet_museum_spawned
+					}
 				}
 			}
 		}

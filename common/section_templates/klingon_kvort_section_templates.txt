@@ -1,4 +1,5 @@
 #K'vort class
+@klingon_section_cost = 0
 
 ship_section_template = {
 	key = "KVORT_MID"

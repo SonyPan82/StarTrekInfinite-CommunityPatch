@@ -1,8 +1,0 @@
-objectTypes = {
-	pdxmesh = {
-		name = "kamarag_slots_mesh"
-		file = "gfx/models/ships/klingon_01/Kli_Kamarag_slots.mesh"
-		scale = 1.15
-	}
-	
-}

@@ -5,7 +5,11 @@ cp26_fleet_museum = {
 	entity_offset = { x = -4 y = 12 }
 
 	possible = {
-		always = yes
+		exists = owner
+		owner = {
+			has_country_flag = ufop
+			NOT = { has_country_flag = cp26_fleet_museum_spawned }
+		}
 	}
 
 	resources = {

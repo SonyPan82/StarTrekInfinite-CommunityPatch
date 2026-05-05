@@ -1,0 +1,13 @@
+spriteTypes = {
+	spriteType = {
+		name = "flag_gorn_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_gorn_bottombar.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+
+	spriteType = {
+		name = "GFX_flag_gorn_small"
+		texturefile = "flags/emblem/small/flag_gorn.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+}

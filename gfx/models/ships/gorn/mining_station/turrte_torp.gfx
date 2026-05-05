@@ -1,0 +1,16 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_01_mining_station_mesh"
+        file = "gfx/models/ships/gorn/mining_station/mining_station.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "turret_torp"
+            index = 0
+            texture_diffuse = "gatorpturrett.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}
