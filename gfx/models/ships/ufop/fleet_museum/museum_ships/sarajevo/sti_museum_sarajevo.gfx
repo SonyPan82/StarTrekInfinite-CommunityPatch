@@ -1,0 +1,22 @@
+objectTypes = {
+    pdxmesh = {
+        name = "sti_museum_sarajevo_mesh"
+        file = "gfx/models/ships/ufop/fleet_museum/museum_ships/sarajevo/federation_sarajevo.mesh"
+        scale = 1
+        meshsettings = { name = "sarajevo_01"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_02"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_03"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_04"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_05"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_06"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_07"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_08"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_09"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_10"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_11"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_12"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_13"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "sarajevo_14"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "small_gun_01"  index = 0  texture_diffuse = "sarajevo_hull_01.dds"  texture_normal = "sarajevo_hull_normal.dds"  texture_specular = "metal_specular.dds"  shader = "PdxMeshShip" }
+    }
+}

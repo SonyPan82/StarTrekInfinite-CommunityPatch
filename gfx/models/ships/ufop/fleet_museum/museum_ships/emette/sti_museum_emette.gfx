@@ -1,0 +1,11 @@
+objectTypes = {
+    pdxmesh = {
+        name = "sti_museum_emette_mesh"
+        file = "gfx/models/ships/ufop/fleet_museum/museum_ships/emette/fed_frigate_emette.mesh"
+        scale = 1
+        meshsettings = { name = "Neptune_Smaller_part_a:MeshShape"  index = 0  texture_diffuse = "Intrepid_Diffuse.dds"  texture_normal = "Intrepid_Normal.dds"  texture_specular = "Intrepid_Specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "Neptune_Smaller_part_b:MeshShape"  index = 0  texture_diffuse = "Intrepid_Diffuse.dds"  texture_normal = "Intrepid_Normal.dds"  texture_specular = "Intrepid_Specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "Neptune_Smaller_part_d:MeshShape"  index = 0  texture_diffuse = "Intrepid_Diffuse.dds"  texture_normal = "Intrepid_Normal.dds"  texture_specular = "Intrepid_Specular.dds"  shader = "PdxMeshShip" }
+        meshsettings = { name = "Neptune_Smaller_part_c:MeshShape"  index = 0  texture_diffuse = "Intrepid_Diffuse.dds"  texture_normal = "Intrepid_Normal.dds"  texture_specular = "Intrepid_Specular.dds"  shader = "PdxMeshShip" }
+    }
+}

@@ -1,4 +1,0 @@
-animation = {
-	name = "master_starbase_rotate_animation"
-	file = "rotateAnim.anim"
-}

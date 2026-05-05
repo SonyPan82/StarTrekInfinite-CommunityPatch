@@ -1,0 +1,99 @@
+##############################################################################
+# STI Fleet Museum — Megastructure Entities
+##############################################################################
+
+# --- Historic ship section entities ---
+
+entity = {
+	name = "sti_museum_sarajevo_entity"
+	pdxmesh = "sti_museum_sarajevo_mesh"
+	scale = 0.50
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "sti_museum_discovery_entity"
+	pdxmesh = "sti_museum_discovery_mesh"
+	scale = 0.50
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "sti_museum_emette_entity"
+	pdxmesh = "sti_museum_emette_mesh"
+	scale = 0.29
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "sti_museum_nx_section_1_entity"
+	pdxmesh = "sti_museum_nx_section_1_mesh"
+	scale = 0.36
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "sti_museum_nx_section_2_entity"
+	pdxmesh = "sti_museum_nx_section_2_mesh"
+	scale = 0.36
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "sti_museum_intrepid_entity"
+	pdxmesh = "sti_museum_intrepid_mesh"
+	scale = 0.31
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "sti_museum_brel_entity"
+	pdxmesh = "klingon_01_birdofprey_mesh"
+	scale = 0.72
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+# --- Fleet Museum station (with ships attached) ---
+
+entity = {
+	name = "sti_fleet_museum_entity"
+	pdxmesh = "sti_fleet_museum_mesh"
+	attach = { "part3" = "sti_museum_brel_entity" }
+	attach = { "part4" = "sti_museum_nx_section_1_entity" }
+	attach = { "part5" = "sti_museum_nx_section_2_entity" }
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+	scale = 0.75
+	game_data = {}
+}

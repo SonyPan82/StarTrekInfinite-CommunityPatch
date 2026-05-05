@@ -1,0 +1,144 @@
+objectTypes = {
+	pdxmesh = {
+		name = "odyssey_ship_mesh"
+		file = "gfx/models/ships/ufop/odyssey/federation_odyssey_class.mesh"
+		scale = 1
+
+		meshsettings = {
+			name = "windows_saucer"
+			index = 0
+			texture_diffuse = "glow_white_diffuse.dds"
+			texture_normal = "glows_faint_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "escape_pods_top"
+			index = 0
+			texture_diffuse = "ody_escape_pods.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "saucer_top"
+			index = 0
+			texture_diffuse = "ody_saucer_main.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "phasers_strip"
+			index = 0
+			texture_diffuse = "bronze_texture.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "nacelle_01"
+			index = 0
+			texture_diffuse = "ody_nacelle_01.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "nacelle_02"
+			index = 0
+			texture_diffuse = "ody_nacelle_01.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "forward_torps"
+			index = 0
+			texture_diffuse = "Hull_Main_TMP_yellow.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "sensor_dome"
+			index = 0
+			texture_diffuse = "ody_saucer_main.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "windows_engineering"
+			index = 0
+			texture_diffuse = "glow_white_diffuse.dds"
+			texture_normal = "glows_faint_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "impulse_engine_decals"
+			index = 0
+			texture_diffuse = "ody_saucer_main.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "saucer_bottom"
+			index = 0
+			texture_diffuse = "ody_saucer_main.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "odyssey_engineering"
+			index = 0
+			texture_diffuse = "ody_engineering_main.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_red"
+			index = 0
+			texture_diffuse = "glow_dark_red_diffuse.dds"
+			texture_normal = "glows_mid_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "impulse_engines"
+			index = 0
+			texture_diffuse = "glow_dark_red_diffuse.dds"
+			texture_normal = "glows_mid_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "deflectors"
+			index = 0
+			texture_diffuse = "deflector_02_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "bussards"
+			index = 0
+			texture_diffuse = "bussard_red_diffuse.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "warp_glow"
+			index = 0
+			texture_diffuse = "glow_warp_grid_dark_blue.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

@@ -1,0 +1,248 @@
+objectTypes = {
+    pdxmesh = {
+        name = "sti_fleet_museum_mesh"
+        file = "gfx/models/ships/ufop/fleet_museum/starbase/federation_fleet_museum.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "bigdoor"
+            index = 0
+            texture_diffuse = "ESD_BigDoor.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hangar"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hangar.001"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hangar.002"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hangar.003"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "starbase_ring_02"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "starbase_ring_02.001"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1.001"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1.002"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1.003"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2.001"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2.002"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2.003"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull3"
+            index = 0
+            texture_diffuse = "ESD_h3.dds"
+            texture_normal = "ESD_h3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull3.001"
+            index = 0
+            texture_diffuse = "ESD_h3.dds"
+            texture_normal = "ESD_h3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull3.002"
+            index = 0
+            texture_diffuse = "ESD_h3.dds"
+            texture_normal = "ESD_h3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull4"
+            index = 0
+            texture_diffuse = "ESD_h4.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull5"
+            index = 0
+            texture_diffuse = "ESD_h5.dds"
+            texture_normal = "ESD_h5_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull6"
+            index = 0
+            texture_diffuse = "ESD_h6.dds"
+            texture_normal = "ESD_h6_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull7"
+            index = 0
+            texture_diffuse = "ESD_h7.dds"
+            texture_normal = "ESD_h7_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "outer_ring"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "outer_ring.001"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "landing_ring"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "landing_ring.001"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top.002"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top.003"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "lights"
+            index = 0
+            texture_diffuse = "ESD-Lights1.dds"
+            texture_normal = "ESD-Lights1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

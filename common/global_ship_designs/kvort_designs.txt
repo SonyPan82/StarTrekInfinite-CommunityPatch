@@ -37,13 +37,13 @@ ship_design = {
 		
 		# ARMOR (UTILITIES)
 		component = {
-			slot = "LARGE_UTILITY_1"
-			template = "LARGE_DEFENSE_FIELD_SHIELDS"
+			slot = "MEDIUM_UTILITY_4"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
 		}
 
 		component = {
-			slot = "LARGE_UTILITY_2"
-			template = "LARGE_DEFENSE_FIELD_SHIELDS"
+			slot = "MEDIUM_UTILITY_5"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
 		}
 
 		component = {
