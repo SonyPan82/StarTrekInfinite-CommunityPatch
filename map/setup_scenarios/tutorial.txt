@@ -97,6 +97,8 @@ bespoke_procedural_scenario = {
 		highway_node_id = "1"
 	}
 
+	# Bajor pocket access is handled with explicit hyperlanes below.
+
 	#system = {
 		# Borg transwarp conduit
 		# Needs to be first system, before Bespoke systems
@@ -125,13 +127,52 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
+		id = "949"
 		name = "NAME_Bajor" position = { x = 64 y = 389 }
 		initializer = bajoran_bajor_initializer spawn_weight = { base = 1 } 
 	}
 
 	system = {
+		id = "950"
 		name = "NAME_Denorios" position = { x = 66 y = 390 }
 		initializer = denorios_initializer spawn_weight = { base = 1 }
+	}
+
+	# Idran pocket: isolated deep-space cluster, reachable only through the Bajoran wormhole.
+	system = {
+		id = "951"
+		name = "NAME_Idran" position = { x = -80 y = 1850 }
+		initializer = idran_initializer spawn_weight = { base = 1 }
+	}
+	system = {
+		id = "952"
+		name = "NAME_Bajoran_Pocket_2" position = { x = 0 y = 1905 }
+		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
+	}
+	system = {
+		id = "953"
+		name = "NAME_Bajoran_Pocket_3" position = { x = 70 y = 1845 }
+		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
+	}
+	system = {
+		id = "954"
+		name = "NAME_Bajoran_Pocket_4" position = { x = 25 y = 1750 }
+		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
+	}
+	system = {
+		id = "955"
+		name = "NAME_Bajoran_Pocket_5" position = { x = -125 y = 1740 }
+		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
+	}
+	system = {
+		id = "956"
+		name = "NAME_Bajoran_Pocket_6" position = { x = -175 y = 1830 }
+		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
+	}
+	system = {
+		id = "957"
+		name = "NAME_Dolly" position = { x = 20 y = 1995 }
+		initializer = lonia_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
@@ -1317,6 +1358,16 @@ bespoke_procedural_scenario = {
 		initializer = zone_rom_ufop_theta_curry_initializer spawn_weight = { base = 1 } 
 	}
 
+	# ===== Bajoran pocket forced connectivity =====
+	# Denorios is near Bajor, but the Idran pocket has no normal lane into local space.
+	add_hyperlane = { from = "949" to = "950" }
+	add_hyperlane = { from = "951" to = "952" }
+	add_hyperlane = { from = "952" to = "953" }
+	add_hyperlane = { from = "953" to = "954" }
+	add_hyperlane = { from = "954" to = "955" }
+	add_hyperlane = { from = "955" to = "956" }
+	add_hyperlane = { from = "952" to = "957" }
+
 
 
 	#--------- Bespoke Hazards ---------#
@@ -1340,8 +1391,8 @@ bespoke_procedural_scenario = {
 	{
 		camera_limit_min_x = -800
 		camera_limit_max_x = 800
-		camera_limit_min_y = -150
-		camera_limit_max_y = 800
+		camera_limit_min_y = -850
+		camera_limit_max_y = 2100
 		camera_limit_min_pitch = 40
 		camera_limit_max_pitch = 85
 	}
@@ -1350,8 +1401,8 @@ bespoke_procedural_scenario = {
 	{
 		camera_limit_min_x = -768
 		camera_limit_max_x = 768
-		camera_limit_min_y = -100
-		camera_limit_max_y = 800
+		camera_limit_min_y = -800
+		camera_limit_max_y = 2100
 		camera_limit_min_pitch = 40
 		camera_limit_max_pitch = 85
 	}
@@ -1360,8 +1411,8 @@ bespoke_procedural_scenario = {
 	{
 		camera_limit_min_x = -640
 		camera_limit_max_x = 640
-		camera_limit_min_y = -60
-		camera_limit_max_y = 750
+		camera_limit_min_y = -720
+		camera_limit_max_y = 2050
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
@@ -1370,8 +1421,8 @@ bespoke_procedural_scenario = {
 	{
 		camera_limit_min_x = -576
 		camera_limit_max_x = 576
-		camera_limit_min_y = 0
-		camera_limit_max_y = 700
+		camera_limit_min_y = -640
+		camera_limit_max_y = 2000
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
@@ -1380,8 +1431,8 @@ bespoke_procedural_scenario = {
 	{
 		camera_limit_min_x = -416
 		camera_limit_max_x = 416
-		camera_limit_min_y = 100
-		camera_limit_max_y = 592
+		camera_limit_min_y = -480
+		camera_limit_max_y = 1950
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
@@ -1390,8 +1441,8 @@ bespoke_procedural_scenario = {
 	{
 		camera_limit_min_x = -384
 		camera_limit_max_x = 384
-		camera_limit_min_y = 140
-		camera_limit_max_y = 544
+		camera_limit_min_y = -360
+		camera_limit_max_y = 1900
 		camera_limit_min_pitch = 85
 		camera_limit_max_pitch = 85
 	}
