@@ -1,0 +1,8 @@
+cp26_ufop_core_worlds_integration = {
+	icon = "gfx/interface/icons/buildings/building_bureaucratic_1.dds"
+	country_admin_cap_add = 30
+	country_energy_produces_mult = 0.05
+	country_minerals_produces_mult = 0.05
+	country_food_produces_mult = 0.05
+	country_deuterium_produces_mult = 0.05
+}

@@ -14,14 +14,48 @@ cordian_outpost_initializer = {
 	change_orbit = 50
 	
 	planet = {
-		count = { min = 3 max = 8 }
+		name = "NAME_Athan_Prime"
+		class = "pc_ocean"
+		subclass = psc_class_m
+		orbit_distance = 20
+		size = 18
+		home_planet = no
+		flags = { athan_prime }
+	}
+
+	planet = {
+		name = "NAME_Athan_II"
 		class = rl_unhabitable_planets
-		orbit_distance = { min = 20 max = 30 }
+		orbit_distance = 12
+		size = 14
+		home_planet = no
+	}
+
+	planet = {
+		name = "NAME_Athan_III"
+		class = rl_unhabitable_planets
+		orbit_distance = 12
+		size = 16
+		home_planet = no
+	}
+
+	planet = {
+		name = "NAME_Athan_IV"
+		class = rl_unhabitable_planets
+		orbit_distance = 16
+		size = 12
 		home_planet = no
 	}
 
 	init_effect = {
 		every_neighbor_system = { set_star_flag = empire_cluster }
+		random_system_planet = {
+			limit = { has_planet_flag = athan_prime }
+			create_megastructure = {
+				type = planitia_shipyard
+				owner = event_target:ufop_country
+			}
+		}
 	}
 
 	late_init_effect = {

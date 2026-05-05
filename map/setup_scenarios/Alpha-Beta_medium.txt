@@ -5,7 +5,7 @@ bespoke_procedural_scenario = {
 
 	# Everything below this line should be copied to tutorial.txt
 	num_stars = 1125
-	radius = 850
+	radius = 900
 
 	num_empires = { min = 24 max = 24 }	# HRB_NOTE: { min = 1 max = 24 }, out of this values the game may crash. Use the max value to ensure appear the 4 Mapos.
 	num_empire_default = 24		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.
@@ -598,7 +598,7 @@ bespoke_procedural_scenario = {
 
 	system = {
 		name = "NAME_Tribble" position = { x = -25 y = 480 }
-		initializer = klingon_outpost_initializer spawn_weight = { base = 1 } 
+		initializer = cp26_tribble_anchor_initializer spawn_weight = { base = 1 } 
 	}
 
 	system = {
@@ -1054,7 +1054,7 @@ bespoke_procedural_scenario = {
 
 	system = {
 		name = "NAME_Xindus" position = { x = 19 y = 460 }
-		initializer = ufop_outpost_initializer spawn_weight = { base = 1 } 
+		initializer = cp26_xindus_anchor_initializer spawn_weight = { base = 1 } 
 	}
 
 	system = {

@@ -1,7 +1,7 @@
 spawn_gorn_system = {
 	spawn_system = {
 		min_jumps = 1
-		max_jumps = 1
+		max_jumps = 2
 		min_distance = 3
 		max_distance = 7
 		initializer = gorn_system_initializer
@@ -45,37 +45,42 @@ spawn_cestus_system = {
 }
 
 setup_gorn_capital = {
-	random_system_planet = {
+	if = {
 		limit = {
-			has_planet_flag = gorn_capital				
+			exists = event_target:gorn_country
 		}
-			while = {
-				count = 20
-				create_pop = { species = "Gorn" }
+		random_system_planet = {
+			limit = {
+				has_planet_flag = gorn_capital				
 			}
-			add_deposit = d_ore_rich_slopes
-			add_deposit = d_rich_mountain
-			add_deposit = d_hot_springs
-			add_deposit = d_geothermal_vent
-			clear_blockers = yes
-			add_district_and_planet_size_if_needed_effect = { district = district_city }
-			add_district_and_planet_size_if_needed_effect = { district = district_city }
-		add_district_and_planet_size_if_needed_effect = { district = district_mining }
-		add_district_and_planet_size_if_needed_effect = { district = district_mining }
-		add_district_and_planet_size_if_needed_effect = { district = district_industrial }
-		add_district_and_planet_size_if_needed_effect = { district = district_generator }
-		add_district_and_planet_size_if_needed_effect = { district = district_generator }
-		add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
-		add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
-		add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
-		remove_building = building_colony_shelter
-		add_building = building_capital	
-	}
-	create_starbase = {
-		size = starbase_starport
-		owner = event_target:gorn_country
-		module = shipyard
-		building = crew_quarters
+				while = {
+					count = 20
+					create_pop = { species = "Gorn" }
+				}
+				add_deposit = d_ore_rich_slopes
+				add_deposit = d_rich_mountain
+				add_deposit = d_hot_springs
+				add_deposit = d_geothermal_vent
+				clear_blockers = yes
+				add_district_and_planet_size_if_needed_effect = { district = district_city }
+				add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
+			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
+			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
+			remove_building = building_colony_shelter
+			add_building = building_capital	
+		}
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:gorn_country
+			module = shipyard
+			building = crew_quarters
+		}
 	}
 }
 

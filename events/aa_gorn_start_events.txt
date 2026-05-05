@@ -7,6 +7,114 @@ event = {
 	fire_only_once = yes
 
 	immediate = {
+		# Strict anchor pass: prefer empty neighbors of Xindus/Tribble area.
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					OR = {
+						has_star_flag = cp26_xindus_anchor
+						has_star_flag = cp26_tribble_anchor
+					}
+					any_neighbor_system = { is_not_used_space = yes }
+				}
+				random_neighbor_system = {
+					limit = { is_not_used_space = yes }
+					set_star_flag = gorn_anchor
+				}
+			}
+		}
+		# Secondary strict pass: neighbor of those neighbors (still local to area).
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					OR = {
+						has_star_flag = cp26_xindus_anchor
+						has_star_flag = cp26_tribble_anchor
+					}
+					any_neighbor_system = {
+						is_not_used_space = yes
+						any_neighbor_system = { is_not_used_space = yes }
+					}
+				}
+				random_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+						any_neighbor_system = { is_not_used_space = yes }
+					}
+					random_neighbor_system = {
+						limit = { is_not_used_space = yes }
+						set_star_flag = gorn_anchor
+					}
+				}
+			}
+		}
+		# Fallback: pick FREE systems near UFOP/Klingon border anywhere.
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					is_not_used_space = yes
+					any_neighbor_system = {
+						has_star_flag = ufop_system
+					}
+					any_neighbor_system = {
+						has_star_flag = klingon_system
+					}
+				}
+				set_star_flag = gorn_anchor
+			}
+		}
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					is_not_used_space = yes
+					any_neighbor_system = {
+						has_star_flag = ufop_system
+					}
+				}
+				set_star_flag = gorn_anchor
+			}
+		}
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					is_not_used_space = yes
+					any_neighbor_system = {
+						has_star_flag = klingon_system
+					}
+				}
+				set_star_flag = gorn_anchor
+			}
+		}
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					is_not_used_space = yes
+					any_neighbor_system = {
+						has_star_flag = ufop_system
+					}
+				}
+				set_star_flag = gorn_anchor
+			}
+		}
+
 		random_system = {
 			limit = {
 				has_star_flag = gorn_anchor
