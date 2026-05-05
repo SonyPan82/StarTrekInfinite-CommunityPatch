@@ -1,6 +1,5 @@
 special_project = {
 	key = "CP26_BAJORAN_WORMHOLE_INVESTIGATION"
-	cost = 1000
 	days_to_research = 120
 	timelimit = 360
 	tech_department = physics_technology

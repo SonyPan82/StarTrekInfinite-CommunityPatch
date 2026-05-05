@@ -65,3 +65,8 @@ entity = {
 	name = "miranda_entity"
 	locator = { name = "part1" position = { 0 0 0 } }
 }
+
+entity = {
+	name = "ufop_01_spy_ship_entity"
+	locator = { name = "part1" position = { 0 0 0 } }
+}
