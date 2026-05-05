@@ -1,0 +1,98 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+    pdxmesh = {
+        name = "fed_mmv_echelon_mesh"
+        file = "gfx/models/ships/sti_federation/sagan/fed_mmv_echelon.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "STARGAZER_SECONDARY_HULL"
+            index = 0
+            texture_diffuse = "sagan_secondary_diffuse.dds"
+            texture_normal = "sagan_secondary_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_LOWER_SAUCER"
+            index = 0
+            texture_diffuse = "sagan_saucer_bottom_diffuse.dds"
+            texture_normal = "sagan_saucer_bottom_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_STRUTS"
+            index = 0
+            texture_diffuse = "sagan_struts_diffuse.dds"
+            texture_normal = "sagan_struts_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_TOP_SAUCER_PANELS"
+            index = 0
+            texture_diffuse = "sagan_saucer_top_diffuse.dds"
+            texture_normal = "sagan_saucer_top_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_REAR"
+            index = 0
+            texture_diffuse = "sagan_rear_diffuse.dds"
+            texture_normal = "sagan_rear_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_WINDOWS"
+            index = 0
+            texture_diffuse = "glow_white_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_MECH"
+            index = 0
+            texture_diffuse = "sagan_mech_diffuse.dds"
+            texture_normal = "sagan_mech_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_NACELLE"
+            index = 0
+            texture_diffuse = "sagan_nacelles_diffuse.dds"
+            texture_normal = "sagan_nacelles_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_REG_LIGHTS"
+            index = 0
+            texture_diffuse = "glow_white_diffuse.dds"
+            texture_normal = "glows_faint_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_BRIDGE_DOME"
+            index = 0
+            texture_diffuse = "sagan_bridge_dome_diffuse.dds"
+            texture_normal = "sagan_bridge_dome_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "STARGAZER_MID_HULL"
+            index = 0
+            texture_diffuse = "sagan_mid_hull_diffuse.dds"
+            texture_normal = "sagan_mid_hull_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

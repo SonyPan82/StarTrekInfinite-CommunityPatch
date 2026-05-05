@@ -1,0 +1,8 @@
+objectTypes = {
+	pdxmesh = {
+		name = "kvort_slots_mesh"
+		file = "gfx/models/ships/klingon_01/kvort_slots.mesh"
+		scale = 0.5
+	}
+	
+}

@@ -1,0 +1,41 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+	pdxmesh = {
+		name = "prometheus_lower_gamma_mesh"
+		file = "gfx/models/ships/sti_federation/prometheus/MVAM/prometheus_lower_gamma.mesh"
+		scale = 0.5
+		meshsettings = {
+			name = "lower"
+			index = 0
+			texture_diffuse = "prometheus_lower_diffuse.dds"
+			texture_normal = "prometheus_lower_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "lower_top"
+			index = 0
+			texture_diffuse = "prometheus_lower3_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "bussards"
+			index = 0
+            texture_diffuse = "bussard_red_diffuse.dds"
+            texture_normal = "bussard_red_normal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "warp_glows"
+			index = 0
+			texture_diffuse = "glow_warp_grid_blue.dds"
+            texture_normal = "glow_warp_grid_normal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

@@ -1,0 +1,7 @@
+objectTypes = {
+	pdxmesh = {
+		name = "empty_mesh"
+		file = "gfx/models/ships/reptilian_01/reptilian_01_orbital_station_frame.mesh"
+		scale = 1.0
+	}
+}

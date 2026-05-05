@@ -1,0 +1,18 @@
+objectTypes = {
+
+	
+	pdxmesh = { 
+		name = "klingon_01_birdofprey_mesh" 
+		file = "gfx/models/ships/klingon_01/klingon_01_birdofprey.mesh"
+		scale = 1.0
+
+		animation = { id = "idle"			type = "bop_idle_flight_anim" }
+		animation = { id = "combat_idle"		type = "bop_idle_combat_anim" }
+		animation = { id = "wings_up"			type = "bop_combat_flight_anim" }
+		animation = { id = "wings_down"			type = "bop_flight_combat_anim" }
+		animation = { id = "death"			type = "bop_death_combat_anim" }
+		animation = { id = "warp_flight"		type = "bop_warp_flight_anim" }
+		animation = { id = "warp_combat"		type = "bop_warp_combat_anim" }
+
+	}
+}

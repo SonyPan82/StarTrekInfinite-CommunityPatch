@@ -64,10 +64,6 @@ event = {
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			set_planet_flag = mining_habitat
-			add_modifier = {
-				modifier = utopia_planitia_shipyard
-				days = -1
-			}
 			remove_building = building_colony_shelter
 			add_building = building_capital
 			add_district_and_planet_size_if_needed_effect = {
@@ -77,15 +73,6 @@ event = {
 				district = district_city
 			}
 			
-			solar_system = {
-				spawn_megastructure = {
-					type = "planitia_shipyard"
-					planet = event_target:et_planetmars
-					owner = event_target:ufop_country
-					orbit_distance = 2
-					orbit_angle = 20
-				}
-			}
 		}
 	}
 }

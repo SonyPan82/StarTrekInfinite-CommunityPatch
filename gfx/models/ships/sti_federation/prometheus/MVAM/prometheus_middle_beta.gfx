@@ -1,0 +1,81 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+	pdxmesh = {
+		name = "prometheus_middle_beta_mesh"
+		file = "gfx/models/ships/sti_federation/prometheus/MVAM/prometheus_middle_beta.mesh"
+		scale = 0.5
+		meshsettings = {
+			name = "middle_lower"
+			index = 0
+			texture_diffuse = "prometheus_lower3_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "alpha_back"
+			index = 0
+			texture_diffuse = "prometheus_middle_beta_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "grate"
+			index = 0
+            texture_diffuse = "prometheus_middle_alpha_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "nacelle_under"
+			index = 0
+            texture_diffuse = "prometheus_nacelle_diffuse.dds"
+            texture_normal = "prometheus_nacelle_normal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "nacelle_top"
+			index = 0
+            texture_diffuse = "prometheus_nacelle_diffuse.dds"
+            texture_normal = "prometheus_nacelle_normal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "nacelle_middle"
+			index = 0
+            texture_diffuse = "prometheus_nacelle_diffuse.dds"
+            texture_normal = "prometheus_nacelle_normal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_red"
+			index = 0
+            texture_diffuse = "glow_red_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "middle_back"
+			index = 0
+            texture_diffuse = "prometheus_middle_beta_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "middle_top"
+			index = 0
+            texture_diffuse = "prometheus_middle_alpha_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

@@ -1,0 +1,130 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+    pdxmesh = {
+        name = "fed_advanced_cruiser_duderstadt_mesh"
+        file = "gfx/models/ships/sti_federation/duderstadt/federation_duderstadt.mesh"
+        scale = 1.1
+        meshsettings = {
+            name = "WarpGovernor"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Pylon_S"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Nacelle_S"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "BridgeModule"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Deflector"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Neck"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Nacelle_P"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Pylon_P"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Hull"
+            index = 0
+            texture_diffuse = "Duderstadt_Diffuse.dds"
+            texture_normal = "Duderstadt_Normal.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}
+
+objectTypes = {
+    pdxmesh = {
+        name = "fed_advanced_cruiser_duderstadt_2_mesh"
+        file = "gfx/models/ships/sti_federation/duderstadt/refit/fed_tempest_refit.mesh"
+        scale = 1.1
+        meshsettings = {
+            name = "tempest"
+            index = 0
+            texture_diffuse = "tempest_diffuse_01.dds"
+            texture_normal = "tempest_normal_01.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "tempest"
+            index = 1
+            texture_diffuse = "tempest_diffuse_02.dds"
+            texture_normal = "tempest_normal_02.dds"
+            texture_specular = "Duderstadt_Specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "tempest"
+            index = 2
+            texture_diffuse = "tempest_diffuse_03.dds"
+            texture_normal = "tempest_normal_03.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "tempest"
+            index = 3
+            texture_diffuse = "tempest_diffuse_04.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "tempest"
+            index = 4
+            texture_diffuse = "tempest_diffuse_05.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}
+

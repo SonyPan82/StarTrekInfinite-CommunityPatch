@@ -1,0 +1,91 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+    pdxmesh = {
+        name = "fed_advanced_cruiser_excelsior2_mesh"
+        file = "gfx/models/ships/sti_federation/obena/fed_excelsior_2_refit.mesh"
+        scale = 1
+      
+        meshsettings = {
+            name = "Nacelle_P.001"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Pylon_P"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Neck"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "WarpManifold"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Hull"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Deflector"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Nacelle_S.001"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Pylon_S"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Navlights"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Saucer_ex2"
+            index = 0
+            texture_diffuse = "fed_ex2_diffuse.dds"
+            texture_normal = "fed_ex2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

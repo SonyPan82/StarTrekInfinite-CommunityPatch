@@ -1,0 +1,4 @@
+entity = {
+	name = "kvort_slots_entity"
+	pdxmesh = "kvort_slots_mesh"
+}

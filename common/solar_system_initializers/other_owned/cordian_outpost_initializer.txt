@@ -49,20 +49,35 @@ cordian_outpost_initializer = {
 
 	init_effect = {
 		every_neighbor_system = { set_star_flag = empire_cluster }
-		random_system_planet = {
-			limit = { has_planet_flag = athan_prime }
-			create_megastructure = {
-				type = planitia_shipyard
-				owner = event_target:ufop_country
-			}
-		}
 	}
 
 	late_init_effect = {
-		# Creating a Starbase
-		create_starbase = {
-			size = starbase_outpost
-			owner = event_target:ufop_country
+		every_country = {
+			if = {
+				limit = { has_country_flag = ufop }
+				save_event_target_as = cp26_ufop_country_for_athan
+			}
+		}
+		if = {
+			limit = { exists = event_target:cp26_ufop_country_for_athan }
+			create_starbase = {
+				size = starbase_outpost
+				owner = event_target:cp26_ufop_country_for_athan
+			}
+			random_system_planet = {
+				limit = { has_planet_flag = athan_prime }
+				save_event_target_as = cp26_athan_prime
+			}
+			if = {
+				limit = { exists = event_target:cp26_athan_prime }
+				spawn_megastructure = {
+					type = "cp26_fleet_museum"
+					planet = event_target:cp26_athan_prime
+					owner = event_target:cp26_ufop_country_for_athan
+					orbit_distance = 2
+					orbit_angle = 20
+				}
+			}
 		}
 	}
 }

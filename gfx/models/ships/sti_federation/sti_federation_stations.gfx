@@ -1,0 +1,477 @@
+objectTypes = {
+
+    # Starbase meshes
+    pdxmesh = {
+        name = "sti_federation_outpost_mesh"
+        file = "gfx/models/ships/sti_federation/starbase/federation_outpost.mesh"
+        scale = 1
+        meshsettings = {
+            name = "hangar"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull3"
+            index = 0
+            texture_diffuse = "ESD_h3.dds"
+            texture_normal = "ESD_h3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+    pdxmesh = {
+        name = "sti_federation_starport_mesh"
+        file = "gfx/models/ships/sti_federation/starbase/federation_starport.mesh"
+        scale = 1
+        meshsettings = {
+            name = "hangar"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+    pdxmesh = {
+        name = "sti_federation_starhold_mesh"
+        file = "gfx/models/ships/sti_federation/starbase/federation_starhold.mesh"
+        scale = 1
+        meshsettings = {
+            name = "hull1"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+    pdxmesh = {
+        name = "sti_federation_starfortress_mesh"
+        file = "gfx/models/ships/sti_federation/starbase/federation_starfortress.mesh"
+        scale = 1
+        meshsettings = {
+            name = "hangar"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull3"
+            index = 0
+            texture_diffuse = "ESD_h3.dds"
+            texture_normal = "ESD_h3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+    pdxmesh = {
+        name = "sti_federation_citadel_mesh"
+        file = "gfx/models/ships/sti_federation/starbase/federation_citadel.mesh"
+        scale = 1
+        meshsettings = {
+            name = "bigdoor"
+            index = 0
+            texture_diffuse = "ESD_BigDoor.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hangar"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull3"
+            index = 0
+            texture_diffuse = "ESD_h3.dds"
+            texture_normal = "ESD_h3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull4"
+            index = 0
+            texture_diffuse = "ESD_h4.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull5"
+            index = 0
+            texture_diffuse = "ESD_h5.dds"
+            texture_normal = "ESD_h5_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull6"
+            index = 0
+            texture_diffuse = "ESD_h6.dds"
+            texture_normal = "ESD_h6_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull7"
+            index = 0
+            texture_diffuse = "ESD_h7.dds"
+            texture_normal = "ESD_h7_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "lights"
+            index = 0
+            texture_diffuse = "ESD-Lights1.dds"
+            texture_normal = "ESD-Lights1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+    # Mining station mesh
+    pdxmesh = {
+        name = "sti_federation_mining_station_mesh"
+        file = "gfx/models/ships/sti_federation/mining_station/federation_mining_station.mesh"
+        scale = 1.0
+        meshsettings = {
+            name = "mining_red"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_red_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "mining_top"
+            index = 0
+            texture_diffuse = "jupstatsauc.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "mining_solar"
+            index = 0
+            texture_diffuse = "solar.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "mining_hull_black"
+            index = 0
+            texture_diffuse = "hull_type_3_black_diffuse.dds"
+            texture_normal = "hull_type_3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "mining_escape_pods"
+            index = 0
+            texture_diffuse = "bronze_texture.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "mining_hull_gold"
+            index = 0
+            texture_diffuse = "hull_type_1_gold.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "mining_windows"
+            index = 0
+            texture_diffuse = "glow_white_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "mining_hull_white"
+            index = 0
+            texture_diffuse = "jupstatmat.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+    # Research station mesh
+    pdxmesh = {
+        name = "sti_federation_science_station_mesh"
+        file = "gfx/models/ships/sti_federation/research_station/federation_research_station.mesh"
+        scale = 1.0
+        meshsettings = {
+            name = "research_hull_red"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_red_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "research_station_top"
+            index = 0
+            texture_diffuse = "jupstatsauc.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "research_solar_panels"
+            index = 0
+            texture_diffuse = "solar.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "research_hull_black"
+            index = 0
+            texture_diffuse = "hull_type_3_black_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "research_escape_pods"
+            index = 0
+            texture_diffuse = "bronze_texture.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "research_hull_white"
+            index = 0
+            texture_diffuse = "jupstatmat.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "research_hull_gold"
+            index = 0
+            texture_diffuse = "hull_type_1_gold.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "research_windows"
+            index = 0
+            texture_diffuse = "windows_fed_tmp_1.dds"
+            texture_normal = "windows_01_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+    }
+
+    # Military station meshes (reusing starbase meshes)
+    pdxmesh = {
+        name = "sti_federation_military_station_small_mesh"
+        file = "gfx/models/ships/sti_federation/starbase/federation_outpost.mesh"
+        scale = 1
+        meshsettings = {
+            name = "hangar"
+            index = 0
+            texture_diffuse = "ESD_Hangar.dds"
+            texture_normal = "ESD_Hangar_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull1"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull3"
+            index = 0
+            texture_diffuse = "ESD_h3.dds"
+            texture_normal = "ESD_h3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+    pdxmesh = {
+        name = "sti_federation_military_station_large_mesh"
+        file = "gfx/models/ships/sti_federation/starbase/federation_starhold.mesh"
+        scale = 1
+        meshsettings = {
+            name = "hull1"
+            index = 0
+            texture_diffuse = "ESD_h1.dds"
+            texture_normal = "ESD_h1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hull2"
+            index = 0
+            texture_diffuse = "ESD_h2.dds"
+            texture_normal = "ESD_h2_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "top"
+            index = 0
+            texture_diffuse = "ESD_top1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+}

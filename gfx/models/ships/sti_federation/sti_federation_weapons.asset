@@ -1,0 +1,276 @@
+###################################################################################
+# STI Federation Shipset — Invisible Weapon Entities
+# All weapons use empty_mesh at tiny scale to hide visible turrets.
+# Projectiles/beams emit from turret_muzzle_01 at ship center.
+###################################################################################
+
+@weapon_scale = 0.01
+
+# Energy / Laser
+entity = {
+	name = "sti_federation_small_laser_gun_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_medium_laser_gun_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_large_laser_gun_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Kinetic / Projectile
+entity = {
+	name = "sti_federation_small_kinetic_gun_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_medium_kinetic_gun_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_large_kinetic_gun_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Missile / Torpedo
+entity = {
+	name = "sti_federation_turret_missile_small_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_turret_missile_medium_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_turret_missile_large_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Point Defence
+entity = {
+	name = "sti_federation_turret_point_defence_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# XL / Titanic
+entity = {
+	name = "sti_federation_turret_xl_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Strike Craft
+entity = {
+	name = "sti_federation_strike_craft_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Planet Killer
+entity = {
+	name = "sti_federation_planet_killer_gun_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Torpedo
+entity = {
+	name = "sti_federation_turret_torpedo_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Energy Torpedo
+entity = {
+	name = "sti_federation_turret_energy_torpedo_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Arc Emitter / Titan Beam
+entity = {
+	name = "sti_federation_arc_emitter_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+
+# Critter Weapons
+entity = {
+	name = "sti_federation_small_space_amoeba_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_medium_space_amoeba_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_large_space_amoeba_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_small_space_cloud_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_large_space_cloud_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_small_crystal_ship_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_medium_crystal_ship_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_large_crystal_ship_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_small_mining_drone_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_medium_mining_drone_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_small_space_whale_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_medium_space_whale_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_large_space_whale_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_small_scourge_projectile_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "sti_federation_medium_scourge_projectile_weapon_entity"
+	pdxmesh = "empty_mesh"
+	state = { name = "idle" }
+	state = { name = "attack" looping = no next_state = "idle" }
+	scale = @weapon_scale
+	locator = { name = "turret_muzzle_01" rotation = { 0 0 0 } }
+}

@@ -1,0 +1,125 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+    pdxmesh = {
+        name = "federation_fed_explorer_lamarr_mesh"
+        file = "gfx/models/ships/sti_federation/lamarr/federation_lamarr_class.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "glow_bussard"
+            index = 0
+            texture_diffuse = "bussard_red_diffuse.dds"
+            texture_normal = "bussard_red_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        
+        meshsettings = {
+            name = "glow_deflector"
+            index = 0
+            texture_diffuse = "hex_glow_blue_diffuse.dds"
+            texture_normal = "generic_01_windows_normal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "glow_red"
+            index = 0
+            texture_diffuse = "glow_red_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "glow_warp"
+            index = 0
+            texture_diffuse = "glow_warp_grid_blue.dds"
+            texture_normal = "glow_warp_grid_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_bright1"
+            index = 0
+            texture_diffuse = "Hull_Main_1_TNG.dds"
+            texture_normal = "Hull_Main_1_TMP_normal.dds"
+            texture_specular = "Hull_Main_1_TMP_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_bright2"
+            index = 0
+            texture_diffuse = "Hull_Main_2_TNG.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "Hull_Main_1_TMP_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_bright3"
+            index = 0
+            texture_diffuse = "Hull_Main_2_TNG.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "Hull_Main_1_TMP_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_dark"
+            index = 0
+            texture_diffuse = "hull_type_3_black_diffuse.dds"
+            texture_normal = "hull_type_3_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_grates"
+            index = 0
+			texture_diffuse = "grid_2_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_grey"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_yellow"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_orange_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "windows1"
+            index = 0
+			texture_diffuse = "windows_02_diffuse.dds"
+			texture_normal = "windows_01_normal.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShipTransp"
+        }
+
+        meshsettings = {
+            name = "decals"
+            index = 0
+            texture_diffuse = "FederationStripeDecal.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+    }
+}

@@ -1,0 +1,75 @@
+# K'vort Class
+
+ship_design = {
+	name = "NAME_Kvort"
+	ship_size = kvort
+	is_event_design = yes
+
+	section = {
+		template = "KVORT_MID"
+		slot = "mid"
+
+		#WEAPONS
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_PLASMA_LAUNCHER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PLASMA_LAUNCHER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+		
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "SMALL_NEGATRON_DISRUPTOR"
+		}
+		
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "SMALL_NEGATRON_DISRUPTOR"
+		}
+		
+		# ARMOR (UTILITIES)
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_1"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+		
+		component = {
+			slot = "MEDIUM_UTILITY_2"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+		
+		component = {
+			slot = "MEDIUM_UTILITY_3"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "CLOAKING_DEVICE_1"
+		}
+	}
+
+	required_component = "CRUISER_FUSION_REACTOR"
+	required_component = "WARP_DRIVE_1"
+	required_component = "CRUISER_IMPULSE_ENGINE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT"
+}

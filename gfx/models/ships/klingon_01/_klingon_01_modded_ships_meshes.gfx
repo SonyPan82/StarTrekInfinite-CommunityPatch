@@ -1,0 +1,20 @@
+objectTypes = {
+
+	pdxmesh = {
+		name = "klingon_01_kamarag_mesh"
+		file = "gfx/models/ships/klingon_01/Kli_Kamarag_ship.mesh"
+		scale = 1.15
+
+		animation = { id = "idle"			type = "large_idle_animation" }
+
+		animation = { id = "death"			type = "large_death_animation" }
+
+		animation = { id = "warp_01"			type = "large_warp_01_animation" }
+
+		animation = { id = "warp_02"			type = "large_warp_02_animation" }
+
+		animation = { id = "warp_03"			type = "large_warp_03_animation" }
+
+	}
+	
+}

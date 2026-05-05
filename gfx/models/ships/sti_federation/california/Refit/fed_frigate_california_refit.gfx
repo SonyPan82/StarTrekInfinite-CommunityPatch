@@ -1,0 +1,24 @@
+objectTypes = {
+    pdxmesh = {
+        name = "fed_frigate_california_refit_mesh"
+        file = "gfx/models/ships/sti_federation/california/Refit/fed_frigate_california_refit.mesh"
+        scale = 1.0
+        
+        meshsettings = {
+            name = "cali_refit"
+            index = 0
+            texture_diffuse = "fed_frigate_california_refit_diffuse_01.dds"
+            texture_normal = "fed_frigate_california_refit_normal_01.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "cali_refit"
+            index = 1
+            texture_diffuse = "fed_frigate_california_refit_diffuse_02.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

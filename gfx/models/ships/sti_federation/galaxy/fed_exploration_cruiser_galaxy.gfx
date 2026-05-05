@@ -1,0 +1,224 @@
+#PDG_GFX_FILE
+objectTypes = {
+    pdxmesh = {
+        name = "fed_exploration_cruiser_galaxy_mesh"
+        file = "gfx/models/ships/sti_federation/galaxy/fed_exploration_cruiser_galaxy.mesh"
+        scale = 1.1
+
+        meshsettings = {
+            name = "Galaxy_Decal_1"
+            index = 0
+            texture_diffuse = "Decale_SFLogo1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Decal_2"
+            index = 0
+            texture_diffuse = "transparent_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Decal_3"
+            index = 0
+            texture_diffuse = "transparent_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Deflector_Inner"
+            index = 0
+            texture_diffuse = "galaxy_deflector_inner_diffuse.dds"
+            texture_normal = "galaxy_deflector_inner_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Deflector_Outer"
+            index = 0
+            texture_diffuse = "galaxy_deflector_outer_diffuse.dds"
+            texture_normal = "galaxy_deflector_outer_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Detail_1"
+            index = 0
+            texture_diffuse = "galaxy_detail_1_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Detail_2"
+            index = 0
+            texture_diffuse = "galaxy_detail_2_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Engineering_Bottom_1"
+            index = 0
+            texture_diffuse = "galaxy_engineering_bottom_1_diffuse.dds"
+            texture_normal = "galaxy_engineering_bottom_1_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Engineering_Top"
+            index = 0
+            texture_diffuse = "galaxy_engineering_top_diffuse.dds"
+            texture_normal = "galaxy_engineering_top_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Glow_Engine_1"
+            index = 0
+            texture_diffuse = "galaxy_glow_engine_diffuse.dds"
+            texture_normal = "galaxy_glow_engine_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Grid"
+            index = 0
+            texture_diffuse = "galaxy_grid.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Nacelle"
+            index = 0
+            texture_diffuse = "galaxy_nacelle_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Neck"
+            index = 0
+            texture_diffuse = "galaxy_neck_diffuse.dds"
+            texture_normal = "galaxy_neck_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Rear"
+            index = 0
+            texture_diffuse = "galaxy_rear_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Saucer_Bottom"
+            index = 0
+            texture_diffuse = "galaxy_saucer_bottom_diffuse.dds"
+            texture_normal = "galaxy_saucer_bottom_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Saucer_Top"
+            index = 0
+            texture_diffuse = "galaxy_saucer_top_diffuse.dds"
+            texture_normal = "galaxy_saucer_top_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Saucer_Top_2"
+            index = 0
+            texture_diffuse = "galaxy_saucer_top_2_diffuse.dds"
+            texture_normal = "galaxy_saucer_top_2_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Galaxy_Windows_1"
+            index = 0
+            texture_diffuse = "galaxy_windows_diffuse.dds"
+            texture_normal = "galaxy_windows_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Glow_Bussard"
+            index = 0
+            texture_diffuse = "bussard_glow.dds"
+            texture_normal = "bussard_glow_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Glow_Grid_Blue"
+            index = 0
+            texture_diffuse = "glow_warp_grid_blue.dds"
+            texture_normal = "glow_warp_grid_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Glow_Red"
+            index = 0
+            texture_diffuse = "glow_red_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Solid_Copper"
+            index = 0
+            texture_diffuse = "solid_copper.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Solid_Grey"
+            index = 0
+            texture_diffuse = "solid_grey.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Solid_Light_Grey"
+            index = 0
+            texture_diffuse = "solid_light_grey.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

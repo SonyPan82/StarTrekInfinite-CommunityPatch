@@ -1,0 +1,121 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+	pdxmesh = {
+		name = "fed_heavy_escort_hestia_mesh"
+		file = "gfx/models/ships/sti_federation/prometheus/hestia/fed_heavy_escort_hestia.mesh"
+		scale = 0.5
+        meshsettings = {
+            name = "hestia_main"
+            index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hestia_8"
+            index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hestia_1"
+            index = 0
+            texture_diffuse = "hestia_diffuse_02.dds"
+            texture_normal = "hestia_normal_02.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hestia_2"
+            index = 0
+            texture_diffuse = "hestia_diffuse_02.dds"
+            texture_normal = "hestia_normal_02.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hestia_9"
+            index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hestia_10"
+            index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hestia_6"
+            index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "hestia_7"
+            index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+		meshsettings = {
+			name = "hestia_14"
+			index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hestia_13"
+			index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hestia_12"
+			index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+        meshsettings = {
+			name = "hestia_11"
+			index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+        meshsettings = {
+			name = "hestia_5"
+			index = 0
+            texture_diffuse = "hestia_diffuse_01.dds"
+            texture_normal = "hestia_normal_01.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+        meshsettings = {
+			name = "hestia_3"
+			index = 0
+            texture_diffuse = "hestia_diffuse_02.dds"
+            texture_normal = "hestia_normal_02.dds"
+            texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

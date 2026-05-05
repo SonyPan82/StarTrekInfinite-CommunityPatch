@@ -5,6 +5,3 @@
  pc_barren_cold_d_mars: "Barren (Habitable)"
  pc_barren_cold_d_mars_desc: "Thanks to sealed environments and artificial gravity plating, this normally uninhabitable planetoid can support a small population."
  
- planitia_shipyard: "Utopia Planitia Orbital"
- planitia_shipyard_DESC: "Components are transported up from Mars, for the final stages of constructing starships in this massive orbital shipyard."
- planitia_shipyard_MEGASTRUCTURE_DETAILS: "Components are transported up from a planet, for the final stages of constructing starships in this facility."

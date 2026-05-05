@@ -1,0 +1,49 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+    pdxmesh = {
+        name = "fed_explorer_neo_constitution_mesh"
+        file = "gfx/models/ships/sti_federation/neo_constitution/fed_neo_constitution.mesh"
+        scale = 1.1
+        meshsettings = {
+            name = "NC_Hull"
+            index = 0
+            texture_diffuse = "NeoConstitution_Diffuse.dds"
+            texture_normal = "NeoConstitution_Normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "NC_Saucer"
+            index = 0
+            texture_diffuse = "NeoConstitution_Diffuse.dds"
+            texture_normal = "NeoConstitution_Normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "NC_Neck"
+            index = 0
+            texture_diffuse = "NeoConstitution_Diffuse.dds"
+            texture_normal = "NeoConstitution_Normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "NC_Nacelle_P"
+            index = 0
+            texture_diffuse = "NeoConstitution_Diffuse.dds"
+            texture_normal = "NeoConstitution_Normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "NC_Nacelle_S"
+            index = 0
+            texture_diffuse = "NeoConstitution_Diffuse.dds"
+            texture_normal = "NeoConstitution_Normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}
