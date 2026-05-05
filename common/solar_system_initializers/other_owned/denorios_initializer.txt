@@ -43,10 +43,9 @@ denorios_initializer = {
 		generate_home_system_resources = yes
 		# Visual wormhole landmark near Bajor/DS9 area.
 		create_ambient_object = {
-			type = "abandoned_wormhole_station"
+			type = "cp26_bajoran_wormhole"
 		}
 		last_created_ambient_object = {
-			set_name = "NAME_Bajoran_Wormhole"
 			set_location = {
 				target = this
 				distance = 42

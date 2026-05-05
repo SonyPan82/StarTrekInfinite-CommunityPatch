@@ -89,8 +89,8 @@ breen_system_initializer = {
 						file = "00_solid.dds"
 					}
 					colors={
-						"black"
-						"black"
+						"yellow"
+						"dark_green"
 						"null"
 						"null"
 					}

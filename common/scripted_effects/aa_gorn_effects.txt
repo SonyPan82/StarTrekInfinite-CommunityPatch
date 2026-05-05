@@ -1,9 +1,9 @@
 spawn_gorn_system = {
 	spawn_system = {
 		min_jumps = 1
-		max_jumps = 2
-		min_distance = 3
-		max_distance = 7
+		max_jumps = 3
+		min_distance = 1
+		max_distance = 10
 		initializer = gorn_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -39,7 +39,7 @@ spawn_cestus_system = {
 		min_distance = 4
 		max_distance = 9
 		initializer = cestus_system_initializer
-		hyperlane = yes
+		hyperlane = no
 		is_discovered = yes
 	}
 }

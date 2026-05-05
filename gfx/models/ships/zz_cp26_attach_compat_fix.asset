@@ -40,3 +40,18 @@ entity = {
 	pdxmesh = "test_object_mesh"
 	locator = { name = "part1" position = { 0 0 0 } }
 }
+
+entity = {
+	name = "cardassian_01_starbase_starport_entity"
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "cardassian_01_governor_ship_entity"
+	locator = { name = "part1" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "hideki_entity"
+	locator = { name = "part1" position = { 0 0 0 } }
+}

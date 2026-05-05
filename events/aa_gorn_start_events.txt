@@ -124,6 +124,9 @@ event = {
 				setup_gorn_capital =  yes
 			}
 			random_neighbor_system = {
+				limit = {
+					is_not_used_space = yes
+				}
 				spawn_finibus_system = yes
 				last_created_system = {
 					set_name = "Finibus"
@@ -132,6 +135,9 @@ event = {
 				}
 			}
 			random_neighbor_system = {
+				limit = {
+					is_not_used_space = yes
+				}
 				spawn_galdonterre_system = yes
 				last_created_system = {
 					setup_gorn_territory = yes
@@ -139,6 +145,9 @@ event = {
 				}
 			}
 			random_neighbor_system = {
+				limit = {
+					is_not_used_space = yes
+				}
 				spawn_cestus_system = yes
 				last_created_system = {
 					setup_gorn_territory = yes
@@ -460,15 +469,10 @@ event = {
 			add_intel = { amount = 35 who = event_target:ufop_country }
 			create_civilian_fleet = yes
 			
-			every_planet_within_border = {
-				limit = {
-					has_deposit_for = shipclass_mining_station
-					has_mining_station = no
-				}
-				create_mining_station = {
-					owner = event_target:gorn_country
-				}
-			}
+			# Temporary crash mitigation:
+			# Creating many mining stations during game-start can leave
+			# unstable construction queue entries on some generated maps.
+			# Keep this disabled until save stability is confirmed.
 			
 			# Military
 			create_fleet = {
