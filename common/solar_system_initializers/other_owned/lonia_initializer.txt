@@ -2,7 +2,7 @@ lonia_initializer = {
 	name = "NAME_Dolly"
 	class = "rl_all_stars"
 	usage = static_system_init
-	flags = { lonia_system bajoran_pocket_system great_link_system }
+	flags = { lonia_system bajoran_pocket_system great_link_system sealed_system }
 
 	planet = {
 		count = 1

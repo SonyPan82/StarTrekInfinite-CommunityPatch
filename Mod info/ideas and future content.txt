@@ -12,13 +12,10 @@
 ########################################################
 ##########        FIXES                    #############
 ########################################################
-- Advanced galaxy, AI empire vanilla and AI add empire won't colonize, why? 
 
 ########################################################
 ##########        Empires                  #############
 ########################################################
-- Gorn Hegemony (add shipset)
-- Orion Empire (add shipset
 - Add dominion (A2)
 
 ########################################################
@@ -26,15 +23,13 @@
 ########################################################
 - Improve Galaxy size (if it’s possible)
 - Add canon equivalent systems for added empires 
-- Athan Prime (Fleet Museum) (A1)
 - Bajoran wormhole (A2)
 
 
 ########################################################
 ##########        Canon Megastructure       ############
 ########################################################
-- Fleet Museum (A1)
-- Utopia Planitia (improve)
+- Utopia Planitia
 
 
 

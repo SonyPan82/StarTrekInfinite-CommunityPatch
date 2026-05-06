@@ -1,0 +1,18 @@
+objectTypes = {
+	pdxmesh = {
+		name = "tholian_01_corvette_frame_mesh"
+		file = "gfx/models/ships/tholian_01/tholian_01_corvette_frame.mesh"
+				animation = { id = "idle"			type = "tholian_01_corvette_frame_idle_animation" }
+				animation = { id = "death"			type = "tholian_01_corvette_frame_death_animation" }
+				animation = { id = "death2"			type = "tholian_01_corvette_frame_death2_animation" }
+				animation = { id = "death3"			type = "tholian_01_corvette_frame_death3_animation" }
+				animation = { id = "attack"			type = "tholian_01_corvette_frame_idle_animation" }				
+				animation = { id = "moving"			type = "tholian_01_corvette_frame_moving_animation" }				
+		scale = 1.0
+
+		meshsettings = {
+			index = 0
+			shader = "PdxMeshShip"
+		}
+	}
+}

@@ -1,0 +1,10 @@
+message_type = {
+	key = "BYPASS_EXPLORED"
+	icon = "GFX_message_system_survey_complete"
+	icon_frame = 1
+
+	name = "MESSAGE_BYPASS_EXPLORED"
+	sound = "survey_complete"
+	ping = "ping_notification_green"
+	auto_opens = none
+}

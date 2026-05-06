@@ -14,7 +14,7 @@ cp26_fleet_museum = {
 
 	resources = {
 		upkeep = {
-			energy = 10
+			energy = 5
 		}
 	}
 

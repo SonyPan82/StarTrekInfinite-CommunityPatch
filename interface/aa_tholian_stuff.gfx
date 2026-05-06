@@ -15,7 +15,7 @@ spriteTypes = {
 		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_tholian.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}
-	
+
 	# flags
 	spriteType = {
 		name = "GFX_flag_tholian_icon"
@@ -27,7 +27,17 @@ spriteTypes = {
 		texturefile = "flags/emblem/bottombar/flag_tholian.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
-	
+	spriteType = {
+		name = "flag_tholian_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_tholian.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_tholian_small"
+		texturefile = "flags/emblem/small/flag_tholian.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+
 	# ships
 	spriteType = {
 		name = "GFX_fleet_view_main_bg_military_tholiancorvette"

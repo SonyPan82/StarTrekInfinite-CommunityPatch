@@ -2,7 +2,7 @@ idran_initializer = {
 	name = "NAME_Idran"
 	class = "rl_all_stars"
 	usage = static_system_init
-	flags = { idran_system bajoran_pocket_system }
+	flags = { idran_system bajoran_pocket_system sealed_system }
 
 	planet = {
 		count = 1

@@ -57,11 +57,16 @@ setup_orion_capital = {
 			remove_building = building_colony_shelter
 			add_building = building_capital
 		}
-		create_starbase = {
-			size = starbase_starport
-			owner = event_target:orion_country
-			module = shipyard
-			building = crew_quarters
+		if = {
+			limit = {
+				NOT = { exists = starbase }
+			}
+			create_starbase = {
+				size = starbase_starport
+				owner = event_target:orion_country
+				module = shipyard
+				building = crew_quarters
+			}
 		}
 	}
 }

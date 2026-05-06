@@ -95,7 +95,7 @@ country_event = {
 				limit = { has_star_flag = idran_system }
 				set_name = "NAME_Idran"
 				spawn_natural_wormhole = {
-					bypass_type = wormhole
+					bypass_type = cp26_bajoran_wormhole_bypass
 					random_pos = no
 					orbit_angle = 215
 				}
@@ -105,7 +105,7 @@ country_event = {
 			random_system = {
 				limit = { has_star_flag = denorios_system }
 				spawn_natural_wormhole = {
-					bypass_type = wormhole
+					bypass_type = cp26_bajoran_wormhole_bypass
 					random_pos = no
 					orbit_angle = 35
 				}
@@ -113,7 +113,7 @@ country_event = {
 			}
 		}
 
-		add_seen_bypass_type = wormhole
+		add_seen_bypass_type = cp26_bajoran_wormhole_bypass
 		random_system = {
 			limit = { has_star_flag = idran_system }
 			save_event_target_as = cp26_idran_reveal_system
@@ -161,5 +161,22 @@ country_event = {
 
 	immediate = {
 		country_event = { id = cp26_bajoran_wormhole.200 }
+	}
+}
+
+fleet_event = {
+	id = cp26_bajoran_wormhole.300
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { exists = from }
+			set_location = {
+				target = from
+				distance = 40
+				angle = random
+			}
+		}
 	}
 }

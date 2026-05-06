@@ -7,6 +7,34 @@ event = {
 	fire_only_once = yes
 
 	immediate = {
+		every_country = {
+			limit = {
+				has_country_flag = orion
+			}
+			save_global_event_target_as = orion_country
+		}
+
+		random_system = {
+			limit = {
+				has_star_flag = orion_home_system
+			}
+			set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:orion_country }
+			setup_orion_capital = yes
+			every_neighbor_system = {
+				limit = {
+					is_not_used_space = yes
+				}
+				setup_orion_territory = yes
+			}
+			random_neighbor_system = {
+				spawn_verex_system = yes
+			}
+			last_created_system = {
+				setup_verex_colony = yes
+			}
+		}
+
 		random_system = {
 			limit = {
 				has_star_flag = orion_anchor
@@ -255,11 +283,26 @@ event = {
 				}
 			}
 		}
-	
+
 		if = {
 			limit = {
 				exists = event_target:orion_country
 			}
+				every_country = {
+					limit = { is_major = yes }
+					establish_contact = { who = event_target:orion_country hidden = yes }
+					establish_communications_no_message = event_target:orion_country
+				}
+				event_target:orion_country = {
+					establish_contact = { who = event_target:ufop_country hidden = yes }
+					establish_communications_no_message = event_target:ufop_country
+					establish_contact = { who = event_target:klingon_country hidden = yes }
+					establish_communications_no_message = event_target:klingon_country
+					establish_contact = { who = event_target:romulan_country hidden = yes }
+					establish_communications_no_message = event_target:romulan_country
+					establish_contact = { who = event_target:cardassian_country hidden = yes }
+					establish_communications_no_message = event_target:cardassian_country
+				}
 				event_target:orion_country = {
 					set_adjective = "Orion"
 					give_technology = { tech = tech_destroyer_unlock message = no }

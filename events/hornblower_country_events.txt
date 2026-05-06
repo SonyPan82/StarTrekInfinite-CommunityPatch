@@ -7632,6 +7632,18 @@ country_event = {
 		text =  country.2811.cardassian.desc
 	}
 
+	desc = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		text = country.2811.other.desc
+	}
+
 	### UFP: Trusted Members
 	option = {
 		trigger = {
@@ -7762,6 +7774,18 @@ country_event = {
 		}
 	}
 
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = country.2811.z_acknowledge
+	}
+
 	after = {
 		hidden_effect = {
 			country_event = { id = country.2812 days = 30 }
@@ -7803,6 +7827,18 @@ country_event = {
 			is_cardassian = yes
 		}
 		text =  country.2812.cardassian.desc
+	}
+
+	desc = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		text = country.2812.other.desc
 	}
 
 	### UFP: We will not compromise on our ideals.
@@ -7967,6 +8003,18 @@ country_event = {
 				country = root
 			}
 		}
+	}
+
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = country.2812.z_acknowledge
 	}
 }
 

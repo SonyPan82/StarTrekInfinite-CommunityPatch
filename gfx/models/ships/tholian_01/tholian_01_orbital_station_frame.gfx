@@ -1,0 +1,43 @@
+objectTypes = {
+	pdxmesh = {
+		name = "tholian_01_orbital_station_frame_mesh"
+		file = "gfx/models/ships/tholian_01/tholian_01_orbital_station_frame.mesh"
+		scale = 1.4
+		
+        meshsettings = {
+            name = "BlueGrid"
+            index = 0
+            texture_diffuse = "hex_glow_blue_diffuse.dds"
+            texture_normal = "hex_glow_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "GoldGrid"
+            index = 0
+            texture_diffuse = "tholian_01_gold_grid_diffuse.dds"
+            texture_normal = "hex_glow_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "GreyHull"
+            index = 0
+            texture_diffuse = "hull_silver_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "RustHull"
+            index = 0
+            texture_diffuse = "hull_rust_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+	}
+}
