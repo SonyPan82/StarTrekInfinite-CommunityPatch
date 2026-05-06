@@ -72,6 +72,7 @@ cordian_outpost_initializer = {
 				every_system_planet = {
 					limit = { has_planet_flag = athan_prime }
 					save_event_target_as = cp26_athan_prime
+					save_global_event_target_as = cp26_athan_prime
 				}
 				if = {
 					limit = {

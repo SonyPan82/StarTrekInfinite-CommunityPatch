@@ -540,7 +540,7 @@ entity = {
 	}
 
 	# HRB_TODO: this enables ship firepower (military capacity)
-	# locator = { name = "part1" 			position = { 0 0 0 } }
+	locator = { name = "part1" 			position = { 0 0 0 } }
 	# locator = { name = "small_gun_01"	position = { 0 0 0 } }
 	# locator = { name = "medium_gun_01"	position = { 0 0 0 } }
 
@@ -605,7 +605,7 @@ entity = {
 	}
 
 	# HRB_TODO: this enables ship firepower (military capacity)
-	# locator = { name = "part1" 			position = { 0 0 0 } }
+	locator = { name = "part1" 			position = { 0 0 0 } }
 	# locator = { name = "small_gun_01"	position = { 0 0 0 } }
 	# locator = { name = "medium_gun_01"	position = { 0 0 0 } }
 
@@ -873,7 +873,7 @@ entity = {
 	}
 
 	# HRB_TODO: this enables ship firepower (military capacity)
-	# locator = { name = "part1" 			position = { 0 0 0 } }
+	locator = { name = "part1" 			position = { 0 0 0 } }
 	locator = { name = "large_gun_01"	position = { 0 0 0 } }
 	locator = { name = "large_gun_02"	position = { 0 0 0 } }
 	locator = { name = "large_gun_03"	position = { 0 0 0 } }
@@ -1015,7 +1015,7 @@ entity = {
 	}
 
 	# HRB_TODO: this enables ship firepower (military capacity)
-	# locator = { name = "part1" 			position = { 0 0 0 } }
+	locator = { name = "part1" 			position = { 0 0 0 } }
 	locator = { name = "large_gun_01"	position = { 0 0 0 } }
 	locator = { name = "large_gun_02"	position = { 0 0 0 } }
 	locator = { name = "large_gun_03"	position = { 0 0 0 } }
@@ -1498,4 +1498,3 @@ entity = {
 		}
 	
 		}
-

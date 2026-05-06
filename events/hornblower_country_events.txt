@@ -1723,7 +1723,7 @@ country_event = {
 					set_owner = event_target:borg_cube_country
 
 					create_ship = {
-						design = "NAME_BorgCube"
+						design = "NAME_BorgCube_large"
 						effect = { 
 							set_disabled = yes
 						}

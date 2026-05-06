@@ -606,10 +606,11 @@ trinary_init_01 = {
 
     change_orbit = 45
     
-    planet = {
-        count = { min = 2 max = 10 }
-        orbit_distance = 20
-        orbit_angle = { min = 90 max = 270 }
+	planet = {
+		count = { min = 2 max = 10 }
+		class = rl_unhabitable_planets
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
         
         change_orbit = @base_moon_distance
         

@@ -1,11 +1,13 @@
 entity = {
 	name = "odyssey_entity"
 	pdxmesh = "odyssey_ship_mesh"
-	scale = 2.1
+	scale = 2.6
 	default_state = "idle"
 
 	locator = { name = "part1" position = { 0 0 0 } }
 	locator = { name = "root" position = { 0 0 0 } }
+	locator = { name = "engine_small_01" position = { 3.1 1.8 2.6 } }
+	locator = { name = "engine_small_02" position = { -3.1 1.8 2.6 } }
 	locator = { name = "large_gun_01" position = { 0 0 0 } }
 	locator = { name = "large_gun_02" position = { 0 0 0 } }
 	locator = { name = "large_gun_03" position = { 0 0 0 } }
@@ -36,4 +38,19 @@ entity = {
 		trail_width = 1.0
 		size = 42
 	}
+}
+
+entity = {
+	name = "odyssey_slots_entity"
+	locator = { name = "large_gun_01" position = { 0 0 0 } }
+	locator = { name = "large_gun_02" position = { 0 0 0 } }
+	locator = { name = "large_gun_03" position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" position = { 0 0 0 } }
+	locator = { name = "medium_gun_03" position = { 0 0 0 } }
+	locator = { name = "medium_gun_04" position = { 0 0 0 } }
+	locator = { name = "small_gun_01" position = { 0 0 0 } }
+	locator = { name = "small_gun_02" position = { 0 0 0 } }
+	locator = { name = "small_gun_03" position = { 0 0 0 } }
+	locator = { name = "small_gun_04" position = { 0 0 0 } }
 }
