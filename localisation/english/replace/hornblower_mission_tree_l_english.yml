@@ -6,7 +6,7 @@
  qt_ufop_control_demilitarized_zone_sheva_fail_tooltip: "$TRIGGER_FAIL$ §YSheva§! System is within §HUnited Federation of Planets§! borders."
  qt_ufop_control_demilitarized_zone_sheva_possible_tooltip: "$TRIGGER_PASS$ §YSheva§! System is within §HUnited Federation of Planets§! borders."
  qt_ufop_control_demilitarized_zone_dorvan_fail_tooltip: "$TRIGGER_FAIL$ §YDorvan§! System is within §HUnited Federation of Planets§! borders."
- qt_ufop_control_demilitarized_zone_dorvan_possible_tooltip: "$TRIGGER_PASS$ §YSheva§! System is within §HUnited Federation of Planets§! borders."
+ qt_ufop_control_demilitarized_zone_dorvan_possible_tooltip: "$TRIGGER_PASS$ §YDorvan§! System is within §HUnited Federation of Planets§! borders."
  qt_ufop_control_demilitarized_zone_umoth_fail_tooltip: "$TRIGGER_FAIL$ §YUmoth§! System is within §HUnited Federation of Planets§! borders."
  qt_ufop_control_demilitarized_zone_umoth_possible_tooltip: "$TRIGGER_PASS$ §YUmoth§! System is within §HUnited Federation of Planets§! borders."
 
