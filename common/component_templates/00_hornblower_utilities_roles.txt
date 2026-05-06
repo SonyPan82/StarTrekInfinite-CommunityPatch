@@ -38,9 +38,9 @@ utility_component_template = {
 	prerequisites = { "tech_computer_1" }
 	
 	size_restriction = {
-		galaxy sovereign california_hero california # UFOP
-		vorcha neghvar # KLINGON
-		dderidex majestus # ROMULAN
+		galaxy sovereign california_hero california enterprise_sovereign # UFOP
+		vorcha neghvar kvort kamarag # KLINGON
+		dderidex dderidex_hero majestus # ROMULAN
 		kazikai nokoram # CARDASSIAN
 		small_minor medium_minor large_minor # MINORS
 		small_nausicaan medium_nausicaan large_nausicaan # Nausicaan
@@ -169,7 +169,7 @@ utility_component_template = {
 	
 	# HRB_TODO: no restriction for now
 	size_restriction = {
-		excelsior  # UFOP
+		excelsior voyager # UFOP
 		ktinga  # KLINGON
 		valdore  # ROMULAN
 		keldon # CARDASSIAN
@@ -213,8 +213,9 @@ utility_component_template = {
 	
 	# HRB_TODO: no restriction for now
 	size_restriction = {
-		miranda defiant intrepid california excelsior # UFOP
-		bird_of_prey warbird ktinga # KLINGON
+		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
+		bird_of_prey warbird ktinga kvort kamarag # KLINGON
+		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
 		small_minor medium_minor # MINORS
@@ -304,9 +305,9 @@ utility_component_template = {
 	prerequisites = { "tech_computer_2" }
 	
 	size_restriction = {
-		galaxy sovereign enterprise_sovereign enterprise # UFOP
-		vorcha neghvar # KLINGON
-		dderidex majestus # ROMULAN
+		galaxy sovereign enterprise_sovereign enterprise california_hero california # UFOP
+		vorcha neghvar kvort kamarag # KLINGON
+		dderidex dderidex_hero majestus # ROMULAN
 		kazikai nokoram # CARDASSIAN
 		small_minor medium_minor large_minor # MINORS
 		small_nausicaan medium_nausicaan large_nausicaan # Nausicaan
@@ -347,9 +348,9 @@ utility_component_template = {
 	prerequisites = { "tech_computer_3" }
 
 	size_restriction = {
-		galaxy sovereign # UFOP
-		vorcha neghvar # KLINGON
-		dderidex majestus # ROMULAN
+		galaxy sovereign enterprise_sovereign enterprise california_hero california # UFOP
+		vorcha neghvar kvort kamarag # KLINGON
+		dderidex dderidex_hero majestus # ROMULAN
 		kazikai nokoram # CARDASSIAN
 		small_minor medium_minor large_minor # MINORS
 		small_nausicaan medium_nausicaan large_nausicaan # Nausicaan
@@ -862,7 +863,7 @@ utility_component_template = {
 	
 	# HRB_TODO: no restriction for now
 	size_restriction = {
-		excelsior  # UFOP
+		excelsior voyager # UFOP
 		ktinga  # KLINGON
 		valdore  # ROMULAN
 		keldon # CARDASSIAN
@@ -906,7 +907,7 @@ utility_component_template = {
 
 	# HRB_TODO: no restriction for now
 	size_restriction = {
-		excelsior  # UFOP
+		excelsior voyager # UFOP
 		ktinga  # KLINGON
 		valdore  # ROMULAN
 		keldon # CARDASSIAN
@@ -1049,8 +1050,9 @@ utility_component_template = {
 	
 	# HRB_TODO: no restriction for now
 	size_restriction = {
-		miranda defiant intrepid california excelsior # UFOP
-		bird_of_prey warbird ktinga # KLINGON
+		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
+		bird_of_prey warbird ktinga kvort kamarag # KLINGON
+		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
 		small_minor medium_minor # MINORS
@@ -1093,8 +1095,9 @@ utility_component_template = {
 
 	# HRB_TODO: no restriction for now
 	size_restriction = {
-		miranda defiant intrepid california excelsior # UFOP
-		bird_of_prey warbird ktinga # KLINGON
+		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
+		bird_of_prey warbird ktinga kvort kamarag # KLINGON
+		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
 		small_minor medium_minor # MINORS

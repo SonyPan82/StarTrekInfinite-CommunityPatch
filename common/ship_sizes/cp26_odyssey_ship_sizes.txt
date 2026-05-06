@@ -1,7 +1,7 @@
 @odyssey_formation_priority = 14
 @odyssey_speed = 88
 @odyssey_collision_radius = 5.0
-@odyssey_build_time = 360
+@odyssey_build_time = 614
 @odyssey_hp = 4200
 @odyssey_evasion = 8
 @odyssey_upkeep_deuterium = 1.4

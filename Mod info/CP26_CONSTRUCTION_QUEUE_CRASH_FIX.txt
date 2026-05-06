@@ -1,0 +1,48 @@
+CP26 CONSTRUCTION QUEUE CRASH FIX
+Date: 2026-05-06
+
+Context
+- A crash report showed a SIGSEGV in:
+  CConstructionQueueManager::DailyUpdate(CConstructionManager&)
+- The crash happened while a Klingon game was running, with Qo'noS Station showing an active ship construction queue.
+- The AI shipyard startup fix was checked and intentionally left enabled.
+
+Cause investigated
+- New/added global ship designs can be placed in construction queues.
+- Several global ship designs required HRB combat computer components whose size_restriction blocks did not include the ship_size used by the design.
+- The most relevant Klingon examples were:
+  - kvort
+  - kamarag
+- Both used COMBAT_COMPUTER_HRB_ESCORT_DEFAULT, but kvort and kamarag were missing from that component's allowed ship sizes.
+
+Fix applied
+- File changed:
+  common/component_templates/00_hornblower_utilities_roles.txt
+- Added missing ship sizes to the relevant HRB combat computer size_restriction lists.
+- Covered the detected global-design mismatches, including:
+  - kvort and kamarag for Klingon HRB escort computers
+  - ambassador, constellation, lantree, and additional species ship sizes using the generic escort computer
+  - voyager for the generic bomber computer
+  - dderidex_hero and enterprise_sovereign for generic line computers
+
+Validation
+- A static checker was run against mod global ship designs and mod utility component templates.
+- Result after the fix:
+  component_size_issues 0
+- Brace balance check:
+  braces 254 254
+
+Additional pass: Sovereign base-design fix
+- The mod's Enterprise-E / Sovereign fix was originally loaded from:
+  common/global_ship_designs/00_aa_ent_e_design.txt
+- That kept the base game's NAME_Enterprise_Sovereign design active and added the modded design as a duplicate.
+- The fix was moved into an override copy of the base file:
+  common/global_ship_designs/hornblower_designs.txt
+- Added replace_path entries for:
+  common/global_ship_designs/hornblower_designs.txt
+- The old standalone Enterprise-E file is intentionally left as comments only, so the fix is still active through the base-file override without creating a duplicate design.
+
+Notes
+- This fix does not disable cp26_ai_shipyard.1.
+- It aims to prevent construction queues from holding designs whose required combat computer is not valid for that ship size.
+- Existing save games may still contain an already-created invalid queued item if the queue was generated before this fix.
