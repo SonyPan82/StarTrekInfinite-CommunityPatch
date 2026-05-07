@@ -57,20 +57,21 @@ orioncorvette = {
 		ship_tracking_mult = @no_admiral_tracking_mult
 		ship_evasion_add = @miranda_evasion
 		#ship_piracy_suppression_add = 15
+
 	}
-    
+
 	size_multiplier = 2
 	fleet_slot_size = 1
 	graphical_culture = no
-	
+
 	section_slots = { "mid" = { locator = "part1" } }
-	
+
 	num_target_locators = 2
 	is_space_station = no
 	icon_frame = @corvette_size_icon_frame
 	base_buildtime = @miranda_build_time
 	can_have_federation_design = yes
-	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	enable_default_design = yes
 
 	default_behavior = "hrb_escort"
 
@@ -103,7 +104,7 @@ orioncorvette = {
 			}
 			deuterium = @miranda_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {
@@ -189,7 +190,7 @@ oriondestroyer = {
 			}
 			deuterium = @intrepid_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {
@@ -229,14 +230,14 @@ orionbattleship = {
 		ship_tracking_mult = @no_admiral_tracking_mult
 		ship_evasion_add = @galaxy_evasion
 		#ship_piracy_suppression_add = 120
-	}	
+	}
 
 	size_multiplier = 8
 	fleet_slot_size = 3
 	graphical_culture = no
-	
+
 	section_slots = { "mid" = { locator = "part1" } }
-	
+
 	num_target_locators = 0
 	is_space_station = no
 	icon_frame = @battleship_size_icon_frame
@@ -275,7 +276,7 @@ orionbattleship = {
 			}
 			deuterium = @galaxy_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {

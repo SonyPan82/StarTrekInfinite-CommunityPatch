@@ -1,0 +1,426 @@
+namespace = cp26_vassalization
+
+country_event = {
+	id = cp26_vassalization.1
+	title = cp26_vassalization.1.name
+	desc = cp26_vassalization.1.desc
+	picture = GFX_evt_empire_fleet_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = cp26_vassalization_recipient
+	}
+
+	option = {
+		name = cp26_vassalization.1.accept
+		ai_chance = {
+			factor = 0
+			modifier = {
+				factor = 80
+				AND = {
+					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
+					opinion_level = { who = event_target:cp26_vassalization_actor level >= good }
+				}
+			}
+			modifier = {
+				factor = 45
+				AND = {
+					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
+					OR = {
+						opinion_level = { who = event_target:cp26_vassalization_actor level >= good }
+						has_embassy = event_target:cp26_vassalization_actor
+						trust = {
+							who = event_target:cp26_vassalization_actor
+							value >= 50
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				opinion_level = { who = event_target:cp26_vassalization_actor level < neutral }
+			}
+			modifier = {
+				factor = 0
+				is_at_war_with = event_target:cp26_vassalization_actor
+			}
+			modifier = {
+				factor = 0
+				is_in_federation_with = event_target:cp26_vassalization_actor
+			}
+		}
+
+		set_subject_of = {
+			who = event_target:cp26_vassalization_actor
+			subject_type = vassal
+		}
+		remove_country_flag = cp26_vassalization_pending_target
+		event_target:cp26_vassalization_actor = {
+			remove_country_flag = cp26_vassalization_pending_actor
+			if = {
+				limit = { is_ai = no }
+				country_event = { id = cp26_vassalization.2 }
+			}
+		}
+	}
+
+	option = {
+		name = cp26_vassalization.1.decline
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 20
+				AND = {
+					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
+					opinion_level = { who = event_target:cp26_vassalization_actor level >= good }
+				}
+			}
+			modifier = {
+				factor = 10
+				AND = {
+					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
+					OR = {
+						opinion_level = { who = event_target:cp26_vassalization_actor level >= good }
+						has_embassy = event_target:cp26_vassalization_actor
+						trust = {
+							who = event_target:cp26_vassalization_actor
+							value >= 50
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 200
+				opinion_level = { who = event_target:cp26_vassalization_actor level < neutral }
+			}
+		}
+
+		event_target:cp26_vassalization_actor = {
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_demanded_subjectization
+			}
+			add_casus_belli = {
+				type = cb_subjugation
+				who = root
+				days = 360
+			}
+			remove_country_flag = cp26_vassalization_pending_actor
+			if = {
+				limit = { is_ai = no }
+				country_event = { id = cp26_vassalization.3 }
+			}
+		}
+		remove_country_flag = cp26_vassalization_pending_target
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.2
+	title = cp26_vassalization.2.name
+	desc = cp26_vassalization.2.desc
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:cp26_vassalization_recipient
+		room = event_target:cp26_vassalization_recipient
+	}
+
+	option = {
+		name = cp26_vassalization.2.ok
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.3
+	title = cp26_vassalization.3.name
+	desc = cp26_vassalization.3.desc
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:cp26_vassalization_recipient
+		room = event_target:cp26_vassalization_recipient
+	}
+
+	option = {
+		name = cp26_vassalization.3.ok
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = cp26_vassalization_subject
+		FROM = {
+			save_event_target_as = cp26_vassalization_overlord
+		}
+
+		every_country = {
+			limit = {
+				is_ai = no
+				NOT = { is_same_value = event_target:cp26_vassalization_subject }
+				NOT = { is_same_value = event_target:cp26_vassalization_overlord }
+				has_communications = event_target:cp26_vassalization_subject
+				has_communications = event_target:cp26_vassalization_overlord
+			}
+			country_event = { id = cp26_vassalization.5 }
+		}
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.5
+	title = cp26_vassalization.5.name
+	desc = cp26_vassalization.5.desc
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:cp26_vassalization_subject
+		room = event_target:cp26_vassalization_subject
+	}
+
+	option = {
+		name = cp26_vassalization.5.ok
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.6
+	title = cp26_vassalization.6.name
+	desc = cp26_vassalization.6.desc
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:cp26_wargoal_peace_actor
+		room = event_target:cp26_wargoal_peace_actor
+	}
+
+	option = {
+		name = cp26_vassalization.6.accept
+		ai_chance = {
+			factor = 15
+			modifier = {
+				factor = 3
+				event_target:cp26_wargoal_peace_actor = {
+					relative_power = { who = root value >= superior }
+				}
+			}
+			modifier = {
+				factor = 0.25
+				root = {
+					relative_power = { who = event_target:cp26_wargoal_peace_actor value >= superior }
+				}
+			}
+		}
+
+		remove_country_flag = cp26_wargoal_peace_pending_target
+		event_target:cp26_wargoal_peace_actor = {
+			remove_country_flag = cp26_wargoal_peace_pending_actor
+			if = {
+				limit = { is_ai = no }
+				country_event = { id = cp26_vassalization.7 }
+			}
+			end_war = {
+				enemy = root
+				type = demand_surrender
+			}
+		}
+	}
+
+	option = {
+		name = cp26_vassalization.6.decline
+		ai_chance = {
+			factor = 85
+		}
+
+		remove_country_flag = cp26_wargoal_peace_pending_target
+		event_target:cp26_wargoal_peace_actor = {
+			remove_country_flag = cp26_wargoal_peace_pending_actor
+			if = {
+				limit = { is_ai = no }
+				country_event = { id = cp26_vassalization.8 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.7
+	title = cp26_vassalization.7.name
+	desc = cp26_vassalization.7.desc
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:cp26_wargoal_peace_recipient
+		room = event_target:cp26_wargoal_peace_recipient
+	}
+
+	option = {
+		name = cp26_vassalization.7.ok
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.8
+	title = cp26_vassalization.8.name
+	desc = cp26_vassalization.8.desc
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:cp26_wargoal_peace_recipient
+		room = event_target:cp26_wargoal_peace_recipient
+	}
+
+	option = {
+		name = cp26_vassalization.8.ok
+	}
+}
+
+# CP26: keep Liberation War CBs in sync for regular empires that become subjects.
+country_event = {
+	id = cp26_vassalization.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		this = {
+			is_regular_empire = yes
+			is_subject = yes
+		}
+		from = {
+			is_regular_empire = yes
+		}
+	}
+
+	immediate = {
+		every_country = {
+			limit = {
+				OR = {
+					is_major = yes
+					is_regular_empire = yes
+				}
+				NOT = { is_same_value = from }
+				NOT = { has_country_flag = liberation_war_casus_belli_on_@root }
+			}
+
+			set_country_flag = liberation_war_casus_belli_on_@root
+			add_casus_belli = {
+				type = cb_liberation_war
+				who = from
+				days = -1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.21
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		this = {
+			is_regular_empire = yes
+		}
+	}
+
+	immediate = {
+		every_country = {
+			limit = {
+				OR = {
+					is_major = yes
+					is_regular_empire = yes
+				}
+				has_country_flag = liberation_war_casus_belli_on_@root
+			}
+
+			remove_country_flag = liberation_war_casus_belli_on_@root
+			if = {
+				limit = {
+					exists = from
+				}
+				remove_casus_belli = {
+					type = cb_liberation_war
+					who = from
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				this = { is_subject = yes }
+				exists = from
+				from = { is_regular_empire = yes }
+			}
+
+			every_country = {
+				limit = {
+					OR = {
+						is_major = yes
+						is_regular_empire = yes
+					}
+					NOT = { is_same_value = from }
+				}
+
+				set_country_flag = liberation_war_casus_belli_on_@root
+				add_casus_belli = {
+					type = cb_liberation_war
+					who = from
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_vassalization.22
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		this = {
+			is_regular_empire = yes
+		}
+	}
+
+	immediate = {
+		every_country = {
+			limit = {
+				OR = {
+					is_major = yes
+					is_regular_empire = yes
+				}
+				NOT = { is_same_value = from }
+				has_country_flag = liberation_war_casus_belli_on_@root
+			}
+
+			remove_country_flag = liberation_war_casus_belli_on_@root
+			if = {
+				limit = {
+					exists = from
+				}
+				remove_casus_belli = {
+					type = cb_liberation_war
+					who = from
+				}
+			}
+		}
+	}
+}

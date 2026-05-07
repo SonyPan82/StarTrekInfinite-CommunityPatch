@@ -25,6 +25,7 @@ district_civil_forum = {
 	}
 
 	show_on_uncolonized = {
+		exists = from
 		is_colonizable = yes
 		uses_district_set = standard
 		from = { is_romulan = yes }

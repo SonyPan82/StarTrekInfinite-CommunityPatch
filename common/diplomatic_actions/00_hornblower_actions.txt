@@ -616,54 +616,340 @@ action_break_integration_process = {
 	}
 }
 
-# Starts the Puppet State process
-action_start_puppet_state_process = {
-	icon = "GFX_diplomacy_status_start_puppet_state_process"
-	auto_accepted = yes
-	require_envoy = yes
-	envoy_assignment = puppet_state_conversion
+action_cp26_offer_war_goal_peace = {
+	icon = "GFX_diplomacy_status_war"
+	is_listed = yes
 	requires_actor_independence = no
 	requires_recipient_independence = no
 	should_show_auto_accept_message_recipient = no
 	should_show_auto_accept_message_actor = no
 	should_notify_all_communications = no
 	action_type = aggressive
-	
+
 	potential = {
 		hidden_trigger = {
-			is_major_minor_relation = yes
-			THIS = { has_country_id = romulan }
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
+			from = {
+				OR = {
+					is_country_type = default
+					is_country_type = contender
+				}
+			}
 		}
 	}
 
 	possible = {
-		
 		custom_tooltip = {
-			fail_text = "NOT_A_NEUTRAL_RELATION"
-			opinion_level = { who = FROM level >= neutral }
+			fail_text = "DIPLOMACY_STATUS_WAR"
+			is_at_war_with = from
 		}
-		
 		custom_tooltip = {
-			fail_text = "PUPPET_STATE_FAILED"
-			NOT = {	
-				has_opinion_modifier = {
-					who = FROM
-					modifier = opinion_puppet_state_failed
-				}
+			fail_text = "CP26_WARGOAL_PEACE_PENDING"
+			NOT = { has_country_flag = cp26_wargoal_peace_pending_actor }
+			from = {
+				NOT = { has_country_flag = cp26_wargoal_peace_pending_target }
 			}
 		}
-		
-		FROM = {
-			NOT = { is_subject_type = puppet_state }
-		} 
-
-		is_at_war = no
 	}
 
 	proposable = {
+		always = yes
+	}
+
+	on_accept = {
+		save_event_target_as = cp26_wargoal_peace_actor
+		set_country_flag = cp26_wargoal_peace_pending_actor
+		from = {
+			save_event_target_as = cp26_wargoal_peace_recipient
+			set_country_flag = cp26_wargoal_peace_pending_target
+			country_event = { id = cp26_vassalization.6 days = 3 }
+		}
+	}
+}
+
+# CP26: allow support independence for regular vassals as well as occupied/minor subjects.
+action_support_independence = {
+	icon = "GFX_diplomacy_status_support_independence"
+	is_listed = yes
+	auto_accepted = yes
+	should_notify_all_communications = yes
+	requires_recipient_independence = no
+	action_type = positive
+
+	potential = {
+		hidden_trigger = {
+			exists = from
+			from = {
+				is_subject = yes
+				OR = {
+					is_minor = yes
+					is_regular_empire = yes
+				}
+			}
+			NOT = {
+				root = {
+					is_overlord_to = from
+				}
+			}
+		}
+		hidden_trigger = {
+			root = {
+				OR = {
+					is_major = yes
+					is_regular_empire = yes
+				}
+			}
+		}
+	}
+
+	possible = {
+	}
+
+	proposable = {
+	}
+}
+
+action_break_support = {
+	icon = "GFX_diplomacy_status_support_independence"
+	auto_accepted = yes
+	should_notify_all_communications = yes
+	should_show_auto_accept_message_recipient = yes
+	requires_recipient_independence = no
+	action_type = negative
+
+	potential = {
+		hidden_trigger = {
+			exists = from
+			from = {
+				is_subject = yes
+				OR = {
+					is_minor = yes
+					is_regular_empire = yes
+				}
+			}
+			NOT = {
+				root = {
+					is_overlord_to = from
+				}
+			}
+		}
+		hidden_trigger = {
+			root = {
+				OR = {
+					is_major = yes
+					is_regular_empire = yes
+				}
+			}
+		}
+	}
+
+	possible = {
+	}
+
+	proposable = {
+		hidden_trigger = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				resource_income_compare = {
+					resource = influence
+					value < 1
+				}
+				opinion_level = {
+					who = from
+					level < poor
+				}
+			}
+		}
+	}
+}
+
+# CP26: extend subject liberation to regular empires, not only vanilla minor subjects.
+action_request_subject_liberation = {
+	icon = "GFX_diplomacy_status_has_vassal"
+	requires_actor_independence = no
+	diplo_view_acceptance_icon = yes
+	should_notify_all_communications = yes
+	action_type = neutral
+	auto_accepted = no
+	ai_acceptance_base_value = -50
+
+	potential = {
+		hidden_trigger = {
+			OR = {
+				is_major_major_relation = yes
+				AND = {
+					is_regular_empire = yes
+					from = { is_regular_empire = yes }
+				}
+			}
+		}
+	}
+
+	possible = {
+		from = { is_overlord = yes }
+
+		custom_tooltip_fail = {
+			text = "request_liberation_cooldown"
+			NOT = {
+				has_country_flag = requested_@from
+			}
+		}
+	}
+
+	on_accept = {
+		if = {
+			limit = {
+				has_country_id = ufop
+				prev = {
+					has_country_flag = bajoran
+				}
+			}
+			set_country_flag = bajoran_liberated_by_ufop
+		}
+	}
+
+	on_decline = {
+		every_country = {
+			limit = {
+				OR = {
+					is_major = yes
+					is_regular_empire = yes
+				}
+				NOT = { is_same_value = from }
+			}
+
+			add_opinion_modifier = {
+				who = from
+				modifier = opinion_declined_liberation
+			}
+
+			set_country_flag = liberation_war_vs_@from
+		}
+
+		add_global_tension = {
+			amount = @gt_add_tier2
+			type = declined_liberation
+			country = from
+		}
+
+		set_timed_country_flag = {
+			flag = requested_@from
+			days = @request_liberation_cooldown
+		}
+
+		set_variable = {
+			which = request_liberation_cooldown_days
+			value = @request_liberation_cooldown
+		}
+	}
+}
+
+# CP26: reuse this diplomatic action slot for optional vassalization.
+action_start_puppet_state_process = {
+	icon = "GFX_diplomacy_status_has_vassal"
+	is_listed = yes
+	auto_accepted = yes
+	requires_actor_independence = yes
+	requires_recipient_independence = yes
+	should_show_auto_accept_message_recipient = no
+	should_show_auto_accept_message_actor = no
+	should_notify_all_communications = no
+	action_type = positive
+
+	potential = {
+		hidden_trigger = { cp26_vassalization_mode_allows_actor = yes }
+		hidden_trigger = {
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
+			from = {
+				OR = {
+					is_country_type = default
+					is_country_type = contender
+				}
+			}
+		}
+	}
+
+	possible = {
 		custom_tooltip = {
-			fail_text = "envoy_already_converting_puppet_state"
-			NOT = { is_conversion_puppet_state_with = FROM }
+			fail_text = "CP26_VASSALIZATION_PENDING"
+			NOT = { has_country_flag = cp26_vassalization_pending_actor }
+			from = {
+				NOT = { has_country_flag = cp26_vassalization_pending_target }
+			}
+		}
+		custom_tooltip = {
+			fail_text = "DIPLOMACY_STATUS_WAR"
+			NOT = { is_at_war_with = from }
+		}
+		custom_tooltip = {
+			fail_text = "ACTION_RECIPIENT_MUST_BE_INDEPENDENT"
+			from = { is_subject = no }
+		}
+		custom_tooltip = {
+			fail_text = "ACTION_SUBJECT_OVERLORD_IS_SUBJECT"
+			is_subject = no
+		}
+	}
+
+	proposable = {
+		hidden_trigger = {
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					NOT = { has_country_flag = cp26_vassalization_ai_cooldown }
+					relative_power = { who = from value >= superior }
+					NOT = { is_in_federation_with = from }
+					NOT = { has_defensive_pact = from }
+					NOT = { is_guaranteeing = from }
+					from = {
+						is_subject = no
+						NOT = { has_country_flag = cp26_vassalization_recent_target }
+					}
+					OR = {
+						opinion_level = { who = from level >= good }
+						has_embassy = from
+						from = {
+							trust = {
+								who = root
+								value >= 50
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_accept = {
+		save_event_target_as = cp26_vassalization_actor
+		set_country_flag = cp26_vassalization_pending_actor
+		from = {
+			set_country_flag = cp26_vassalization_pending_target
+		}
+		if = {
+			limit = { is_ai = yes }
+			set_timed_country_flag = {
+				flag = cp26_vassalization_ai_cooldown
+				days = 720
+			}
+			from = {
+				set_timed_country_flag = {
+					flag = cp26_vassalization_recent_target
+					days = 720
+				}
+			}
+		}
+		from = {
+			country_event = { id = cp26_vassalization.1 days = 3 }
 		}
 	}
 }

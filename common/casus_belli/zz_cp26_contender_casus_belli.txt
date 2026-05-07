@@ -93,3 +93,54 @@ cb_humiliation_animosity = {
 		}
 	}
 }
+
+cb_subjugation = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		OR = {
+			is_country_type = default
+			is_country_type = contender
+		}
+		NOT = { is_in_federation_with = from }
+	}
+	is_valid = {
+		has_total_war_cb = no
+		NOT = { is_overlord_to = FROM }
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+		from = {
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
+			is_subject = no
+		}
+	}
+}
+
+cb_cp26_forced_occupation = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		OR = {
+			is_country_type = default
+			is_country_type = contender
+		}
+		NOT = { is_in_federation_with = from }
+	}
+	is_valid = {
+		has_total_war_cb = no
+		NOT = { is_overlord_to = FROM }
+		is_subject = no
+		from = {
+			is_subject = no
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
+		}
+	}
+}

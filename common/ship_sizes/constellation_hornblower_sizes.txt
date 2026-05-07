@@ -31,20 +31,21 @@ constellation = {
 		ship_tracking_mult = @no_admiral_tracking_mult
 		ship_evasion_add = @constellation_evasion
 		#ship_piracy_suppression_add = 15
+
 	}
-    
+
 	size_multiplier = 3
 	fleet_slot_size = 2
 	graphical_culture = no
-	
+
 	section_slots = { "mid" = { locator = "part1" } }
-	
+
 	num_target_locators = 2
 	is_space_station = no
 	icon_frame = 3
 	base_buildtime = @constellation_build_time
 	can_have_federation_design = yes
-	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	enable_default_design = yes
 
 	default_behavior = "hrb_interceptor"
 
@@ -77,7 +78,7 @@ constellation = {
 			}
 			deuterium = @constellation_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {

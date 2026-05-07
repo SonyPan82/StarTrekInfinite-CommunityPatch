@@ -27,6 +27,7 @@ odyssey = {
 		ship_shield_mult = @odyssey_no_admiral_shield_mult
 		ship_tracking_mult = @odyssey_no_admiral_tracking_mult
 		ship_evasion_add = @odyssey_evasion
+
 	}
 
 	size_multiplier = 14

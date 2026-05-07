@@ -4,3 +4,33 @@ is_regular_empire = {
 		is_country_type = contender
 	}
 }
+
+# Backward-compatible gate for restored CP26 diplomatic actions.
+# Keep non-vassal diplomatic options available regardless of the vassalization mode.
+cp26_diplomacy_mode_allows_actor = {
+	always = yes
+}
+
+# Global gate for CP26 vassalization diplomacy.
+cp26_vassalization_mode_allows_actor = {
+	OR = {
+		AND = {
+			NOT = { has_global_flag = cp26_diplo_vassalization_disabled }
+			NOT = { has_global_flag = cp26_diplo_vassalization_enabled }
+			is_regular_empire = yes
+		}
+		AND = {
+			has_global_flag = cp26_diplo_vassalization_enabled
+			is_regular_empire = yes
+		}
+	}
+}
+
+is_cp26_major_mission_country = {
+	OR = {
+		is_ufop = yes
+		is_klingon = yes
+		is_romulan = yes
+		is_cardassian = yes
+	}
+}

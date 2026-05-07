@@ -1,0 +1,74 @@
+namespace = cp26_minor_mission
+
+country_event = {
+	id = cp26_minor_mission.43
+	title = "cp26_minor_mission.43.name"
+	desc = "cp26_minor_mission.43.desc"
+	show_sound = event_generic_success
+	location = FROM
+
+	is_triggered_only = yes
+
+	picture = GFX_evt_lab_research_ufop
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = event_target:minor_state_event_country
+				}
+				finished_major_minor_mission = {
+					minor_country = event_target:minor_state_event_country
+					finished_successfully = yes
+				}
+				if = {
+					limit = {
+						exists = event_target:minor_state_event_planet
+					}
+					event_target:minor_state_event_planet = {
+						add_modifier = {
+							modifier = cp26_minor_outbreak_contained
+							days = 720
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = cp26_minor_mission.43.a
+		custom_tooltip = cp26_minor_mission.43.a.tt
+	}
+}
+
+country_event = {
+	id = cp26_minor_mission.44
+	title = "cp26_minor_mission.44.name"
+	desc = "cp26_minor_mission.44.desc"
+	show_sound = event_the_plague
+	location = FROM
+
+	is_triggered_only = yes
+
+	picture = GFX_evt_abandoned_laboratory_test_tubes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = event_target:minor_state_event_country
+				}
+				finished_major_minor_mission = {
+					minor_country = event_target:minor_state_event_country
+					finished_successfully = no
+				}
+			}
+		}
+	}
+
+	option = {
+		name = cp26_minor_mission.44.a
+		custom_tooltip = cp26_minor_mission.44.a.tt
+	}
+}

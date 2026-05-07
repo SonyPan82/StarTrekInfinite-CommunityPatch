@@ -1,0 +1,47 @@
+tech_warp_speed_increase_2 = {
+	cost = @tier4cost1
+	area = engineering
+	category = { propulsion }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_warp_speed_increase_1 }
+	weight = @tier4weight1
+
+	triggered_config = {
+		trigger = {
+			is_ufop = yes
+		}
+		title = tech_warp_speed_increase_2
+		desc = tech_warp_speed_increase_2_desc
+		icon = tech_warp_speed_increase_2_ufop
+	}
+	triggered_config = {
+		trigger = {
+			is_klingon = yes
+		}
+		title = tech_warp_speed_increase_2
+		desc = tech_warp_speed_increase_2_desc
+		icon = tech_warp_speed_increase_2_klingon
+	}
+	triggered_config = {
+		trigger = {
+			is_romulan = yes
+		}
+		title = tech_warp_speed_increase_2
+		desc = tech_warp_speed_increase_2_desc
+		icon = tech_warp_speed_increase_2_romulan
+	}
+	triggered_config = {
+		trigger = {
+			is_cardassian = yes
+		}
+		title = tech_warp_speed_increase_2
+		desc = tech_warp_speed_increase_2_desc
+		icon = tech_warp_speed_increase_2_cardassian
+	}
+
+	modifier = {
+		# Small late-game traversal boost without collapsing the map scale.
+		ship_warp_speed_mult = 0.10
+	}
+}

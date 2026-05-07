@@ -1,0 +1,148 @@
+CP26 CRASH FIXES — 2026-05-07
+==============================
+
+Trois crashs distincts diagnostiqués et corrigés sur la version 1.0.7 du jeu.
+
+
+=============================================================================
+FIX 1 — CConstructionQueueManager::DailyUpdate (SIGSEGV)
+=============================================================================
+
+FICHIER MODIFIE :
+  common/special_projects/00_projects_hornblower.txt
+  Projet : CARDASSIAN_OCCUPATION_TIER_1
+
+SYMPTOME :
+  Crash SIGSEGV dans CConstructionQueueManager::DailyUpdate.
+  Se produit en cours de partie, typiquement quand une guerre impliquant
+  les Cardassiens se termine ou qu'une planète occupée change de statut.
+
+CAUSE :
+  Le abort_trigger du projet utilisait un bloc NAND qui accédait directement
+  aux event_targets conquered_planet_scope et new_owner_scope sans verifier
+  leur existence au prealable. Le moteur Paradox evalue TOUTES les conditions
+  d'un NAND simultanement (pas de court-circuit), donc meme si un scope est
+  null, le code tente quand meme d'y acceder — null pointer dereference.
+
+  Les guards exists avaient ete places en commentaire dans le code original :
+    # exists = event_target:conquered_planet_scope
+    # exists = event_target:former_owner_scope
+    # exists = event_target:new_owner_scope
+  Les reintegrer dans le NAND n'aurait pas suffi (meme probleme de
+  evaluation simultanee).
+
+  De plus, current_war_scope ne se sauvegarde que si la guerre utilise
+  wg_occupation (vanilla). Les nouvelles guerres CP26 (wg_cp26_forced_occupation)
+  laissent ce scope null des le debut, ce qui aurait rendu le projet inutilisable
+  si on avait conserve cette condition dans le trigger.
+
+CORRECTION :
+  Remplacement du NAND par un OR avec exists guards en premiere position.
+  L'OR court-circuite des qu'une branche est vraie, ce qui empeche
+  l'acces aux scopes nuls. current_war_scope retire du abort_trigger —
+  l'occupation est definie par l'etat de la planete, pas par la guerre active
+  (comportement plus fidele : la planete peut rester sous controle cardassien
+  apres un status quo). Les blocs on_success et on_fail gerent deja
+  current_war_scope independamment avec leurs propres guards exists.
+
+
+=============================================================================
+FIX 2 — CPlanetManager::DailyUpdate / DailyUpdateAllUnhabitableSelfDontReadOthers (SIGSEGV)
+=============================================================================
+
+FICHIERS MODIFIES :
+  common/districts/z_hornblower_romulan_districts     (district_civil_forum)
+  common/districts/10_xl_map_remus_districts.txt      (2 districts Remus)
+  common/districts/aa_breen_districts.txt             (2 districts Breen)
+  common/districts/aa_gorn_districts.txt              (district_gorn_hunting)
+  common/districts/aa_orion_districts.txt             (district_orion_market)
+
+SYMPTOME :
+  Crash SIGSEGV dans CPlanet::DailyUpdateAllUnhabitableSelfDontReadOthers,
+  appele depuis CPlanetManager::DailyUpdate. Se produit en cours de partie,
+  de facon aleatoire. Le crash peut toucher plusieurs threads simultanement
+  (traitement parallele des planetes).
+
+CAUSE :
+  Le bloc show_on_uncolonized de ces districts accede au scope from
+  (l'empire qui considere la colonisation) sans verifier son existence.
+  Ce bloc est evalue sur TOUTES les planetes inhabitables a chaque jour
+  de jeu. Dans certains contextes (evaluation en thread parallele, planetes
+  sans colonisateur potentiel), from est null — null pointer dereference.
+
+  Exemple du probleme :
+    show_on_uncolonized = {
+        is_colonizable = yes
+        from = { is_romulan = yes }   <-- crash si from est null
+    }
+
+  Le pattern correct existait deja dans aa_tholian_districts.txt mais
+  n'avait pas ete applique de facon consistante aux autres fichiers.
+
+CORRECTION :
+  Ajout de exists = from comme premiere condition dans chaque bloc
+  show_on_uncolonized concerne. L'OR court-circuite immediatement si from
+  est null, sans jamais tenter d'acceder au scope.
+
+  Exemple apres correction :
+    show_on_uncolonized = {
+        exists = from                 <-- guard en premiere position
+        is_colonizable = yes
+        from = { is_romulan = yes }
+    }
+
+  Aucun impact sur le gameplay : ces districts restent visibles exactement
+  pour les memes empires qu'avant, simplement sans crasher quand from
+  n'est pas disponible.
+
+
+=============================================================================
+FIX 3 — CConstructionQueueManager::DailyUpdate (SIGSEGV) — meme crash, autre projet
+=============================================================================
+
+FICHIER MODIFIE :
+  common/special_projects/00_projects_hornblower.txt
+  Projet : MIPO_ASSIMILATION_PROJECT
+
+SYMPTOME :
+  Identique au Fix 1 — meme fonction, meme offset (+816).
+  Se produit quand le minor power cible est detruit ou libere de sa
+  vassalisation pendant que le projet d'assimilation est actif.
+
+CAUSE :
+  Le abort_trigger accedait directement a event_target:mipo_to_be_assimilated
+  sans verifier son existence :
+    abort_trigger = {
+        event_target:mipo_to_be_assimilated = {
+            is_subject = no
+        }
+    }
+  Si le minor power est detruit (event_target null), crash SIGSEGV.
+
+CORRECTION :
+  Enveloppe dans un OR avec exists guard en premiere position :
+    abort_trigger = {
+        OR = {
+            NOT = { exists = event_target:mipo_to_be_assimilated }
+            event_target:mipo_to_be_assimilated = { is_subject = no }
+        }
+    }
+  Le projet avorte aussi si la cible n'existe plus, ce qui est le
+  comportement logique attendu.
+
+
+=============================================================================
+AUTRES ERREURS IDENTIFIES (non crashantes, non corrigees)
+=============================================================================
+
+  - relative_power { value >= superior } invalide dans zz_cp26_vassalization_events.txt
+    lignes 22 et 75 — AI vassalisation mal calculee, pas de crash.
+
+  - action_cp26_offer_war_goal_peace : token de localisation manquant.
+
+  - wg_cp26_forced_occupation : icone manquante.
+
+  - spawn_janeway_and_ship : conflit avec mod workshop mzl_voyager.
+
+  - cp26_war_access.2 declare sur on_daily_pulse_country ET
+    on_monthly_pulse_country — redondant, impact perf mineur.

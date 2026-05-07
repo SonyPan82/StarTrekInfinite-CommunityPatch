@@ -1,4 +1,8 @@
-NGameplay = 
-{	
+NGameplay =
+{
 		UFOP_ASSIMILATION_LIKENESS_BASE = 3.0
+}
+
+NShip = {
+	OUTPOST_WARP_RANGE_RADIUS = 60		# vanilla = 47, +15%
 }

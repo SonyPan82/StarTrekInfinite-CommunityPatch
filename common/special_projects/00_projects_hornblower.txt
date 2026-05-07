@@ -213,6 +213,13 @@ special_project = {
 		if = {
 			limit = { 
 				exists = OWNER
+				OWNER = { is_minor = yes }
+			}
+			OWNER = { country_event = { id = cp26_minor_mission.43 } }
+		}
+		else_if = {
+			limit = {
+				exists = OWNER
 			}
 			OWNER = { country_event = { id = mission.43 } }
 		}
@@ -220,6 +227,13 @@ special_project = {
 	
 	on_fail = {
 		if = {
+			limit = {
+				exists = OWNER
+				OWNER = { is_minor = yes }
+			}
+			OWNER = { country_event = { id = cp26_minor_mission.44 } }
+		}
+		else_if = {
 			limit = {
 				exists = OWNER
 			}
@@ -2205,18 +2219,22 @@ special_project = {
 	}
 	
 	abort_trigger = {
-		NAND = {
-			exists = event_target:current_war_scope
-			event_target:conquered_planet_scope = {
-				is_occupied_flag = yes
+		OR = {
+			NOT = { exists = event_target:conquered_planet_scope }
+			NOT = { exists = event_target:new_owner_scope }
+			AND = {
+				exists = event_target:conquered_planet_scope
+				event_target:conquered_planet_scope = { is_occupied_flag = no }
 			}
-			event_target:conquered_planet_scope = {
-				is_controlled_by = event_target:new_owner_scope
+			AND = {
+				exists = event_target:conquered_planet_scope
+				exists = event_target:new_owner_scope
+				NOT = {
+					event_target:conquered_planet_scope = {
+						is_controlled_by = event_target:new_owner_scope
+					}
+				}
 			}
-
-			# exists = event_target:conquered_planet_scope
-			# exists = event_target:former_owner_scope
-			# exists = event_target:new_owner_scope
 		}
 	}
 	
@@ -2279,8 +2297,11 @@ special_project = {
 	}
 	
 	abort_trigger = {
-		event_target:mipo_to_be_assimilated = {
-			is_subject = no
+		OR = {
+			NOT = { exists = event_target:mipo_to_be_assimilated }
+			event_target:mipo_to_be_assimilated = {
+				is_subject = no
+			}
 		}
 	}
 

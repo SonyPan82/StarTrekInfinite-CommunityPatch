@@ -51,20 +51,21 @@ neworleans = {
 		ship_shield_penetration_mult = @no_admiral_shield_penetration_mult
 		ship_tracking_mult = @no_admiral_tracking_mult
 		ship_evasion_add = @intrepid_evasion
+
 	}
-    
+
 	size_multiplier = 3
 	fleet_slot_size = 2
 	graphical_culture = no
-	
+
 	section_slots = { "mid" = { locator = "part1" } }
-	
+
 	num_target_locators = 2
 	is_space_station = no
 	icon_frame =  @destroyer_size_icon_frame
 	base_buildtime = @intrepid_build_time
 	can_have_federation_design = yes
-	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	enable_default_design = yes
 
 	default_behavior = "hrb_interceptor"
 
@@ -97,7 +98,7 @@ neworleans = {
 			}
 			deuterium = @intrepid_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {
