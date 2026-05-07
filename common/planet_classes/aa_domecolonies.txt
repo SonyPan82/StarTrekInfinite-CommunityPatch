@@ -12,6 +12,8 @@ pc_barren_cold_d_mars = {
 	max_distance_from_sun = 160
 	spawn_odds = 0
 
+	climate = "dry"
+
 	extra_orbit_size = 0
 	extra_planet_count = 0
 
@@ -42,6 +44,8 @@ pc_barren_cold_d_luna = {
 	min_distance_from_sun = 100
 	max_distance_from_sun = 160
 	spawn_odds = 0
+
+	climate = "dry"
 
 	extra_orbit_size = 0
 	extra_planet_count = 0

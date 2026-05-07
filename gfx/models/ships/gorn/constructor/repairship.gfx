@@ -1,0 +1,25 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_01_constructor_mesh"
+        file = "gfx/models/ships/gorn/constructor/constructor.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "grepgr01"
+            index = 0
+            texture_diffuse = "garep01.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "grepgr02"
+            index = 0
+            texture_diffuse = "garep02.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

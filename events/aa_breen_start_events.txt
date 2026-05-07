@@ -180,112 +180,107 @@ event = {
 			}
 		}
 	
-			if = {
+		every_country = {
+			limit = { is_major = yes }
+			establish_contact = { who = event_target:breen_country hidden = yes }
+			establish_communications_no_message = event_target:breen_country
+		}
+
+		event_target:breen_country = {
+			set_adjective = "Breen"
+			give_technology = { tech = tech_destroyer_unlock message = no }
+			give_technology = { tech = tech_cruiser_unlock message = no }
+			establish_contact = { who = event_target:ufop_country hidden = yes }
+			establish_communications_no_message = event_target:ufop_country
+			establish_contact = { who = event_target:cardassian_country hidden = yes }
+			establish_communications_no_message = event_target:cardassian_country
+			establish_contact = { who = event_target:romulan_country hidden = yes }
+			establish_communications_no_message = event_target:romulan_country
+			establish_contact = { who = event_target:klingon_country hidden = yes }
+			establish_communications_no_message = event_target:klingon_country
+			#every_first_contact = {
+			#	finish_first_contact = yes
+			#}
+			set_truce = {
+				target = event_target:cardassian_country
+				type = none
+				start_date = 2342.06.03
+			}
+			set_truce = {
+				target = event_target:romulan_country
+				type = none
+				start_date = 2343.06.03
+			}
+			add_opinion_modifier = {
+				who = event_target:romulan_country
+				modifier = opinion_insult
+			}
+			add_opinion_modifier = {
+				who = event_target:cardassian_country
+				modifier = opinion_insult
+			}
+			
+			every_planet_within_border = {
 				limit = {
-					exists = event_target:breen_country
+					has_deposit_for = shipclass_mining_station
+					has_mining_station = no
 				}
-				every_country = {
-					limit = { is_major = yes }
-					establish_contact = { who = event_target:breen_country hidden = yes }
-					establish_communications_no_message = event_target:breen_country
+				create_mining_station = {
+					owner = event_target:breen_country
 				}
+			}
+			
+			create_civilian_fleet = yes
 
-				event_target:breen_country = {
-					set_adjective = "Breen"
-					give_technology = { tech = tech_destroyer_unlock message = no }
-					give_technology = { tech = tech_cruiser_unlock message = no }
-					establish_contact = { who = event_target:ufop_country hidden = yes }
-					establish_communications_no_message = event_target:ufop_country
-					establish_contact = { who = event_target:cardassian_country hidden = yes }
-					establish_communications_no_message = event_target:cardassian_country
-					establish_contact = { who = event_target:romulan_country hidden = yes }
-					establish_communications_no_message = event_target:romulan_country
-					establish_contact = { who = event_target:klingon_country hidden = yes }
-					establish_communications_no_message = event_target:klingon_country
-					#every_first_contact = {
-					#	finish_first_contact = yes
-					#}
-					set_truce = {
-						target = event_target:cardassian_country
-						type = none
-						start_date = 2342.06.03
-					}
-					set_truce = {
-						target = event_target:romulan_country
-						type = none
-						start_date = 2343.06.03
-					}
-					add_opinion_modifier = {
-						who = event_target:romulan_country
-						modifier = opinion_insult
-					}
-					add_opinion_modifier = {
-						who = event_target:cardassian_country
-						modifier = opinion_insult
-					}
+			# Military
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
 
-					every_planet_within_border = {
-						limit = {
-							has_deposit_for = shipclass_mining_station
-							has_mining_station = no
-						}
-						create_mining_station = {
-							owner = event_target:breen_country
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							random_existing_design = breencorvette
+							initial_officers_perc = 0.6
 						}
 					}
-
-					create_civilian_fleet = yes
-
-					# Military
-					create_fleet = {
-						set_take_point = yes
-						effect = {
-							set_owner = prev
-
-							while = {
-								count = 4
-								create_ship = {
-									name = random
-									random_existing_design = breencorvette
-									initial_officers_perc = 0.6
-								}
-							}
-							while = {
-								count = 3
-								create_ship = {
-									name = random
-									random_existing_design = breendestroyer
-									initial_officers_perc = 0.15
-								}
-							}
-							create_ship = {
-								name = random
-								random_existing_design = breenbattleship
-								initial_officers_perc = 0.1
-							}
-
-							set_location = prev.capital_star
+					while = {
+						count = 3
+						create_ship = {
+							name = random
+							random_existing_design = breendestroyer
+							initial_officers_perc = 0.15
 						}
 					}
-				}
-
-				event_target:ufop_country = {
-					add_intel = { amount = 15 who = event_target:breen_country }
-				}
-				event_target:cardassian_country = {
-					add_opinion_modifier = {
-						who = event_target:breen_country
-						modifier = opinion_insult
+					create_ship = {
+						name = random
+						random_existing_design = breenbattleship
+						initial_officers_perc = 0.1
 					}
-					add_intel = { amount = 50 who = event_target:breen_country }
-				}
-				event_target:romulan_country = {
-					add_opinion_modifier = {
-						who = event_target:breen_country
-						modifier = opinion_insult
-					}
-					add_intel = { amount = 40 who = event_target:breen_country }
+					
+					set_location = prev.capital_star
 				}
 			}
 		}
-	}
+
+		event_target:ufop_country = {		
+			add_intel = { amount = 15 who = event_target:breen_country }
+		}
+		event_target:cardassian_country = {		
+			add_opinion_modifier = {
+				who = event_target:breen_country
+				modifier = opinion_insult
+			}
+			add_intel = { amount = 50 who = event_target:breen_country }
+		}
+		event_target:romulan_country = {			
+			add_opinion_modifier = {
+				who = event_target:breen_country
+				modifier = opinion_insult
+			}
+			add_intel = { amount = 40 who = event_target:breen_country }
+		}
+	}	
+}

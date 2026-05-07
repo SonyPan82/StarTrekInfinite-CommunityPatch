@@ -1,0 +1,29 @@
+
+objectTypes = {
+	pdxmesh = {
+	name = "ambassador_slots_mesh"
+	file = "gfx/models/ships/ufop/ambassador/ufop_ambassador_slots.mesh"
+	scale = 0.8
+	}
+}
+
+objectTypes = {
+
+	pdxmesh = {
+		name = "ambassador_ship_mesh"
+		file = "gfx/models/ships/ufop/ambassador/ufop_ambassador_ship.mesh"
+		scale = 0.8
+		meshsettings = {
+			texture_diffuse = "ufop_ambassador-diffuse.dds"
+			texture_normal = "ufop_ambassador-normal.dds"
+			texture_specular = "ufop_ambassador-specular.dds"
+			shader = "PdxMeshShip"
+		}
+		animation = { id = "idle"			type = "large_idle_animation" }
+		animation = { id = "death"			type = "large_death_animation" }
+		animation = { id = "warp_01"			type = "large_warp_01_animation" }
+		animation = { id = "warp_02"			type = "large_warp_02_animation" }
+		animation = { id = "warp_03"			type = "large_warp_03_animation" }
+	}
+	
+}

@@ -1,0 +1,4 @@
+entity = {
+	name = "kamarag_slots_entity"
+	pdxmesh = "kamarag_slots_mesh"
+}

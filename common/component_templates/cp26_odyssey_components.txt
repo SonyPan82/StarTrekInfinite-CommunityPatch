@@ -1,0 +1,167 @@
+@cp26_odyssey_officers = 25
+@cp26_odyssey_reactor_power_1 = 700
+@cp26_odyssey_reactor_power_2 = 900
+@cp26_odyssey_reactor_power_3 = 1200
+@cp26_odyssey_reactor_power_4 = 1550
+@cp26_odyssey_engine_power_1 = -80
+@cp26_odyssey_engine_power_2 = -120
+@cp26_odyssey_engine_power_3 = -160
+@cp26_odyssey_engine_power_4 = -210
+@cp26_odyssey_computer_power_0 = -10
+@cp26_odyssey_computer_power_1 = -20
+
+utility_component_template = {
+	key = "TITAN_FUSION_REACTOR_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @cp26_odyssey_reactor_power_1
+	operative_officers = @cp26_odyssey_officers
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { odyssey }
+	upgrades_to = "TITAN_MATTER_ANTIMATTER_REACTOR_ODYSSEY"
+	resources = { category = ship_components cost = { alloys = 125 } upkeep = { deuterium = 1.60 } upkeep = { alloys = 0.16 } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "TITAN_MATTER_ANTIMATTER_REACTOR_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = @cp26_odyssey_reactor_power_2
+	operative_officers = @cp26_odyssey_officers
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { odyssey }
+	upgrades_to = "TITAN_TETRYON_REACTOR_ODYSSEY"
+	resources = { category = ship_components cost = { alloys = 160 } upkeep = { deuterium = 2.00 } upkeep = { alloys = 0.20 } }
+	ai_weight = { weight = 2 }
+}
+
+utility_component_template = {
+	key = "TITAN_TETRYON_REACTOR_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = @cp26_odyssey_reactor_power_3
+	operative_officers = @cp26_odyssey_officers
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { odyssey }
+	upgrades_to = "TITAN_ANTI_TETRYON_REACTOR_ODYSSEY"
+	resources = { category = ship_components cost = { alloys = 210 } upkeep = { deuterium = 2.50 } upkeep = { alloys = 0.25 } }
+	ai_weight = { weight = 3 }
+}
+
+utility_component_template = {
+	key = "TITAN_ANTI_TETRYON_REACTOR_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = @cp26_odyssey_reactor_power_4
+	operative_officers = @cp26_odyssey_officers
+	prerequisites = { "tech_reactor_4" }
+	component_set = "power_core"
+	size_restriction = { odyssey }
+	resources = { category = ship_components cost = { alloys = 280 } upkeep = { deuterium = 3.10 } upkeep = { alloys = 0.31 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "TITAN_IMPULSE_ENGINE_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_impulse_engine"
+	icon_frame = 1
+	power = @cp26_odyssey_engine_power_1
+	operative_officers = @cp26_odyssey_officers
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { odyssey }
+	upgrades_to = "TITAN_ADVANCED_IMPULSE_ENGINE_ODYSSEY"
+	resources = { category = ship_components cost = { alloys = 30 } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "TITAN_ADVANCED_IMPULSE_ENGINE_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @cp26_odyssey_engine_power_2
+	operative_officers = @cp26_odyssey_officers
+	modifier = { ship_base_speed_mult = 0.25 ship_evasion_add = 2 }
+	prerequisites = { "tech_engine_2" }
+	component_set = "thruster_components"
+	size_restriction = { odyssey }
+	upgrades_to = "TITAN_HIGH_ENERGY_IMPULSE_ENGINE_ODYSSEY"
+	resources = { category = ship_components cost = { alloys = 60 } }
+	ai_weight = { weight = 2 }
+}
+
+utility_component_template = {
+	key = "TITAN_HIGH_ENERGY_IMPULSE_ENGINE_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_high_energy_impulse_engine"
+	icon_frame = 1
+	power = @cp26_odyssey_engine_power_3
+	operative_officers = @cp26_odyssey_officers
+	modifier = { ship_base_speed_mult = 0.50 ship_evasion_add = 4 }
+	prerequisites = { "tech_engine_3" }
+	component_set = "thruster_components"
+	size_restriction = { odyssey }
+	upgrades_to = "TITAN_OMEGA_ENGINE_ODYSSEY"
+	resources = { category = ship_components cost = { alloys = 90 } }
+	ai_weight = { weight = 3 }
+}
+
+utility_component_template = {
+	key = "TITAN_OMEGA_ENGINE_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_omega_engine"
+	icon_frame = 1
+	power = @cp26_odyssey_engine_power_4
+	operative_officers = @cp26_odyssey_officers
+	modifier = { ship_base_speed_mult = 0.75 ship_evasion_add = 6 }
+	prerequisites = { "tech_engine_4" }
+	component_set = "thruster_components"
+	size_restriction = { odyssey }
+	resources = { category = ship_components cost = { alloys = 120 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ARTILLERY_DEFAULT_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_artillery"
+	icon_frame = 1
+	power = @cp26_odyssey_computer_power_0
+	operative_officers = @cp26_odyssey_officers
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	size_restriction = { odyssey }
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_ARTILLERY_BASIC_ODYSSEY"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_weapon_range_mult = 0.10 }
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ARTILLERY_BASIC_ODYSSEY"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_artillery"
+	icon_frame = 1
+	power = @cp26_odyssey_computer_power_1
+	operative_officers = @cp26_odyssey_officers
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_2" }
+	size_restriction = { odyssey }
+	component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.20 ship_weapon_range_mult = 0.20 }
+	resources = { category = ship_components cost = { alloys = 10 } }
+	ai_weight = { weight = 2 }
+}

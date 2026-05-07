@@ -9,6 +9,25 @@ event = {
 	immediate = {
 		random_system = {
 			limit = {
+				has_star_flag = tholian_home_system
+			}
+			set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+			setup_tholian_capital = yes
+			spawn_berellium_system = yes
+			last_created_system = {
+				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+				setup_tholian_territory = yes
+			}
+			every_neighbor_system = {
+				limit = { is_not_used_space = yes }
+				setup_tholian_territory = yes
+			}
+		}
+
+		random_system = {
+			limit = {
 				has_star_flag = tholian_anchor
 			}
 			spawn_tholian_system = yes

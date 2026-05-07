@@ -15,14 +15,29 @@ spriteTypes = {
 		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_orion.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}
-	
+
 	# flags
 	spriteType = {
 		name = "GFX_flag_orion_icon"
 		texturefile = "flags/emblem/bottombar/flag_orion.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
-	
+	spriteType = {
+		name = "flag_orion_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_orion.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_orion_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_orion.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_orion_small"
+		texturefile = "flags/emblem/small/flag_orion.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+
 	# ships
 	spriteType = {
 		name = "GFX_fleet_view_main_bg_military_orioncorvette"

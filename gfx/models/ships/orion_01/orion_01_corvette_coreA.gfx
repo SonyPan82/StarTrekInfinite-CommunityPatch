@@ -1,0 +1,55 @@
+objectTypes = {
+	pdxmesh = {
+		name = "orion_01_corvette_coreA_mesh"
+		file = "gfx/models/ships/orion_01/orion_01_corvette_coreA.mesh"
+		
+		scale = 2.5
+
+		meshsettings = {
+            name = "BubblesRear"
+            index = 0
+            texture_diffuse = "glow_strong_yellow_diffuse_transp.dds"
+            texture_normal = "glows_faint_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshExtraDimensionalShip"
+        }
+		
+		meshsettings = {
+            name = "BubblesRearInternal"
+            index = 0
+            texture_diffuse = "glow_strong_yellow_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+			# shader = "PdxMeshWaterShip"
+			
+        }
+
+        meshsettings = {
+            name = "EngineGlow"
+            index = 0
+            texture_diffuse = "glow_green_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Hull"
+            index = 0
+            texture_diffuse = "orion_hull_01.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Windows"
+            index = 0
+            texture_diffuse = "glow_light_yellow_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+	}
+}

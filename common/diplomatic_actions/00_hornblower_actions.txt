@@ -20,6 +20,32 @@
 #  possible, trigger, root is actor, from is recipient, prev is either requester (if action is done in response to an ask_xxx counterpart) or same as root, decides if the action is still possible
 #  proposable, trigger, root is actor, from is recipient, decides if the action is proposable
 
+# Offer Membership
+#action_offer_membership = {
+#	icon = "GFX_diplomacy_improve_relation"
+#	auto_accepted = yes
+#	requires_actor_independence = no
+#	requires_recipient_independence = no
+#	action_type = positive
+#
+#	potential = {
+#		hidden_trigger = {
+#			is_country_type = default
+#			from = { is_country_type = default }
+#		}
+#
+#		hidden_trigger = {
+#			is_major = yes
+#			from = { is_minor = yes }
+#		}
+#	}
+#
+#	# Always false
+#	# possible = {
+#		
+#	# }
+#}
+
 # Send Gift
 action_send_gift = {
 	icon = "GFX_diplomacy_improve_relation"
@@ -29,7 +55,6 @@ action_send_gift = {
 	action_type = positive
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			is_country_type = default
 			from = { is_country_type = default }
@@ -74,7 +99,6 @@ action_request_mission = {
 	action_type = positive
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			is_country_type = default
 			from = { is_country_type = default }
@@ -213,7 +237,6 @@ action_intervene_in_war = {
 	action_type = positive
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			OR = {
 				from = {
@@ -382,7 +405,6 @@ action_form_protection_pact = {
 	action_type = positive
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			is_minor_major_relation = yes
 		}
@@ -413,7 +435,6 @@ action_break_protection_pact = {
 	action_type = negative
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			is_minor_major_relation = yes
 		}
@@ -429,48 +450,20 @@ action_break_protection_pact = {
 	}
 }
 
-# CP26: keep the vanilla Patronage hook hidden. The engine treats this action name
-# specially and leaves its confirmation button disabled even when scripted open.
+# This was never implemented
 action_patronage = {
-	icon = "GFX_diplomacy_status_has_vassal"
-	is_listed = no
-	auto_accepted = yes
-	should_notify_all_communications = yes
-	should_show_auto_accept_message_recipient = no
-	requires_actor_peace = yes
-	requires_recipient_peace = yes
+	icon = "GFX_diplomacy_status_protection_pact"
 	requires_recipient_independence = yes
 	requires_actor_independence = yes
-	action_type = aggressive
+	action_type = neutral
 
 	potential = {
 		always = no
 	}
 
+	# Always false
 	possible = {
-		custom_tooltip = {
-			fail_text = "DIPLOMACY_STATUS_WAR"
-			NOT = { is_at_war_with = from }
-		}
-		custom_tooltip = {
-			fail_text = "ACTION_RECIPIENT_MUST_BE_INDEPENDENT"
-			from = { is_subject = no }
-		}
-		custom_tooltip = {
-			fail_text = "ACTION_SUBJECT_OVERLORD_IS_SUBJECT"
-			is_subject = no
-		}
-	}
-
-	proposable = {
-		always = yes
-	}
-
-	on_accept = {
-		save_event_target_as = cp26_vassalization_actor
-		from = {
-			country_event = { id = cp26_vassalization.1 days = 3 }
-		}
+		
 	}
 }
 
@@ -482,7 +475,6 @@ action_ask_to_start_integration_process = {
 	action_type = neutral
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			has_country_id = "ufop"
 			from = { is_minor = yes }
@@ -556,7 +548,6 @@ action_start_integration_process = {
 	envoy_assignment = state_integration
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			has_country_id = "ufop"
 			from = { is_minor = yes }
@@ -586,7 +577,6 @@ action_request_integration_process = {
 	action_type = neutral
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			is_minor = yes
 			from = { has_country_id = "ufop" }
@@ -611,7 +601,6 @@ action_break_integration_process = {
 	action_type = negative
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			is_minor = yes
 			is_minor_major_relation = yes
@@ -627,162 +616,54 @@ action_break_integration_process = {
 	}
 }
 
-action_cp26_offer_war_goal_peace = {
-	icon = "GFX_diplomacy_status_war"
-	is_listed = yes
+# Starts the Puppet State process
+action_start_puppet_state_process = {
+	icon = "GFX_diplomacy_status_start_puppet_state_process"
 	auto_accepted = yes
+	require_envoy = yes
+	envoy_assignment = puppet_state_conversion
 	requires_actor_independence = no
 	requires_recipient_independence = no
 	should_show_auto_accept_message_recipient = no
 	should_show_auto_accept_message_actor = no
 	should_notify_all_communications = no
 	action_type = aggressive
-
+	
 	potential = {
 		hidden_trigger = {
-			OR = {
-				is_country_type = default
-				is_country_type = contender
-			}
-			from = {
-				OR = {
-					is_country_type = default
-					is_country_type = contender
-				}
-			}
+			is_major_minor_relation = yes
+			THIS = { has_country_id = romulan }
 		}
 	}
 
 	possible = {
+		
 		custom_tooltip = {
-			fail_text = "DIPLOMACY_STATUS_WAR"
-			is_at_war_with = from
+			fail_text = "NOT_A_NEUTRAL_RELATION"
+			opinion_level = { who = FROM level >= neutral }
 		}
+		
 		custom_tooltip = {
-			fail_text = "CP26_WARGOAL_PEACE_PENDING"
-			NOT = { has_country_flag = cp26_wargoal_peace_pending_actor }
-			from = {
-				NOT = { has_country_flag = cp26_wargoal_peace_pending_target }
+			fail_text = "PUPPET_STATE_FAILED"
+			NOT = {	
+				has_opinion_modifier = {
+					who = FROM
+					modifier = opinion_puppet_state_failed
+				}
 			}
 		}
+		
+		FROM = {
+			NOT = { is_subject_type = puppet_state }
+		} 
+
+		is_at_war = no
 	}
 
 	proposable = {
-		always = yes
-	}
-
-	on_accept = {
-		save_event_target_as = cp26_wargoal_peace_actor
-		set_country_flag = cp26_wargoal_peace_pending_actor
-		from = {
-			save_event_target_as = cp26_wargoal_peace_recipient
-			set_country_flag = cp26_wargoal_peace_pending_target
-			country_event = { id = cp26_vassalization.6 days = 3 }
-		}
-	}
-}
-
-# CP26: reuse this vanilla-visible diplomatic action slot for optional vassalization.
-action_start_puppet_state_process = {
-	icon = "GFX_diplomacy_status_has_vassal"
-	is_listed = yes
-	auto_accepted = yes
-	requires_actor_independence = yes
-	requires_recipient_independence = yes
-	should_show_auto_accept_message_recipient = no
-	should_show_auto_accept_message_actor = no
-	should_notify_all_communications = no
-	action_type = positive
-
-	potential = {
-		hidden_trigger = { cp26_vassalization_mode_allows_actor = yes }
-		hidden_trigger = {
-			OR = {
-				is_country_type = default
-				is_country_type = contender
-			}
-			from = {
-				OR = {
-					is_country_type = default
-					is_country_type = contender
-				}
-			}
-		}
-	}
-
-	possible = {
 		custom_tooltip = {
-			fail_text = "CP26_VASSALIZATION_PENDING"
-			NOT = { has_country_flag = cp26_vassalization_pending_actor }
-			from = {
-				NOT = { has_country_flag = cp26_vassalization_pending_target }
-			}
-		}
-		custom_tooltip = {
-			fail_text = "DIPLOMACY_STATUS_WAR"
-			NOT = { is_at_war_with = from }
-		}
-		custom_tooltip = {
-			fail_text = "ACTION_RECIPIENT_MUST_BE_INDEPENDENT"
-			from = { is_subject = no }
-		}
-		custom_tooltip = {
-			fail_text = "ACTION_SUBJECT_OVERLORD_IS_SUBJECT"
-			is_subject = no
-		}
-	}
-
-	proposable = {
-		hidden_trigger = {
-			OR = {
-				is_ai = no
-				AND = {
-					is_ai = yes
-					NOT = { has_country_flag = cp26_vassalization_ai_cooldown }
-					relative_power = { who = from value >= superior }
-					NOT = { is_in_federation_with = from }
-					NOT = { has_defensive_pact = from }
-					NOT = { is_guaranteeing = from }
-					from = {
-						is_subject = no
-						NOT = { has_country_flag = cp26_vassalization_recent_target }
-					}
-					OR = {
-						opinion_level = { who = from level >= good }
-						has_embassy = from
-						from = {
-							trust = {
-								who = root
-								value >= 50
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	on_accept = {
-		save_event_target_as = cp26_vassalization_actor
-		set_country_flag = cp26_vassalization_pending_actor
-		from = {
-			set_country_flag = cp26_vassalization_pending_target
-		}
-		if = {
-			limit = { is_ai = yes }
-			set_timed_country_flag = {
-				flag = cp26_vassalization_ai_cooldown
-				days = 720
-			}
-			from = {
-				set_timed_country_flag = {
-					flag = cp26_vassalization_recent_target
-					days = 720
-				}
-			}
-		}
-		from = {
-			country_event = { id = cp26_vassalization.1 days = 3 }
+			fail_text = "envoy_already_converting_puppet_state"
+			NOT = { is_conversion_puppet_state_with = FROM }
 		}
 	}
 }
@@ -797,7 +678,6 @@ action_start_assimilation_occupied_state = {
 	action_type = aggressive
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			is_major_minor_relation = yes
 			is_cardassian = yes
@@ -955,7 +835,6 @@ action_dissolve_neutral_zone = {
 	truce_multiplier =  @dissolve_neutral_zone_base_opinion
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			is_major_major_relation = yes
 		}
@@ -1055,7 +934,6 @@ action_form_share_warp_agreement = {
 	action_type = positive
 	
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			from = {
 				is_major = yes
@@ -1124,7 +1002,6 @@ action_break_share_warp_agreement = {
 	action_type = negative
 
 	potential = {
-		hidden_trigger = { cp26_diplomacy_mode_allows_actor = yes }
 		hidden_trigger = {
 			from = {
 				is_major = yes

@@ -44,24 +44,29 @@ setup_orion_capital = {
 			create_pop = { species = "Klingon" }
 			create_pop = { species = "Andorian" }
 			clear_blockers = yes
-			add_district = district_city
-			add_district = district_city
-			add_district = district_mining
-			add_district = district_mining
-			add_district = district_industrial
-			add_district = district_generator
-			add_district = district_orion_market
-			add_district = district_orion_market
-			add_district = district_farming
-			add_district = district_farming
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
+			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
+			add_district_and_planet_size_if_needed_effect = { district = district_farming }
+			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			remove_building = building_colony_shelter
 			add_building = building_capital
 		}
-		create_starbase = {
-			size = starbase_starport
-			owner = event_target:orion_country
-			module = shipyard
-			building = crew_quarters
+		if = {
+			limit = {
+				NOT = { exists = starbase }
+			}
+			create_starbase = {
+				size = starbase_starport
+				owner = event_target:orion_country
+				module = shipyard
+				building = crew_quarters
+			}
 		}
 	}
 }
@@ -87,13 +92,13 @@ setup_verex_colony = {
 				create_pop = { species = "Orion" }
 			}
 			clear_blockers = yes
-			add_district = district_city
-			add_district = district_mining
-			add_district = district_industrial
-			add_district = district_generator
-			add_district = district_orion_market
-			add_district = district_orion_market
-			add_district = district_farming
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
+			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
+			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			remove_building = building_colony_shelter
 			add_building = building_capital
 			set_name = "Verex III"

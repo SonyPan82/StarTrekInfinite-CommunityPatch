@@ -950,14 +950,14 @@ action_support_independence = {
 	requires_recipient_independence = no
 	action_type = positive
 	potential = {
-			hidden_trigger = {
-				exists = from
-				from = {
-					is_subject = yes
-				}
-				NOT = {
-					root = {
-						is_overlord_to = from
+		hidden_trigger = {
+			exists = from
+			from = {
+				is_subject = yes
+			}
+			NOT = {
+				root = {
+					is_overlord_to = from
 				}
 			}
 		}

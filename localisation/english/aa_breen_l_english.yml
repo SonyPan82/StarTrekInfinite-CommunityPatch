@@ -1,11 +1,11 @@
-﻿l_english: 
+﻿l_english:
  civic_breen_slavedrivers: "Slave Mastery"
- civic_breen_slavers_desc: "The unworthy will labour under the lash."
+ civic_breen_slavers_desc: "The unworthy will labor under the lash."
  civic_breen_exploitation: "Exploitation"
  civic_breen_exploitation_desc: "Take every drop. Leave nothing of value."
  
  district_labor_camp_breen: "Labour Zone"
- district_labor_camp_breen_desc: "Hard labour under hard rule."
+ district_labor_camp_breen_desc: "Hard labor under hard rule."
  district_civil_forum_breen: "Government Zone"
  district_civil_forum_breen_desc: "A labyrinth of agencies, bureaus, offices and administration."
  
@@ -16,7 +16,7 @@
  gov_social_autocracy_breen: "Council of Generals"
  gov_social_autocracy_breen_desc: "A large governing council of high ranking warriors, with a single Grand General, only replaced by a chosen successor."
  personality_hegemonic_imperialists_breen: "Breen"
- personality_hegemonic_imperialists_breen_desc: "Breen do not labour. Lesser species will do that for us."
+ personality_hegemonic_imperialists_breen_desc: "Breen do not labor. Lesser species will do that for us."
  
  breencorvette: "Dagger"
  breencorvette_plural: "Daggers"

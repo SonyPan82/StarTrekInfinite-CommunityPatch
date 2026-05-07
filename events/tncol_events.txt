@@ -40,8 +40,12 @@ event = {
 						count = 4
 						create_pop = { species = "Human" }
 					}
-					add_district = district_city
-					add_district = district_generator
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_city
+					}
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_generator
+					}
 				}
 			}
 		}

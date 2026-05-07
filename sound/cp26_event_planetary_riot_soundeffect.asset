@@ -1,0 +1,12 @@
+# Base game events (leviathans.310/312, marauder.104/105) call show_sound = event_planetary_riot
+# but Infinite ships no asset for that name. Alias to a core bank sound (no DLC path).
+
+soundeffect = {
+	name = event_planetary_riot
+	sounds = {
+		sound = event_air_raid_siren
+	}
+	volume = 0.55
+	max_audible = 1
+	max_audible_behaviour = fail
+}

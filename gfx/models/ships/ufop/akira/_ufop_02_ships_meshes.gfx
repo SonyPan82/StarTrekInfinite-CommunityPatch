@@ -1,0 +1,9 @@
+objectTypes = {	
+    pdxmesh = { 
+		name = "ufop_02_akira_mesh"
+		file = "gfx/models/ships/ufop/akira/ufop_02_akira_ship.mesh"
+		scale = 4
+
+	}
+
+}

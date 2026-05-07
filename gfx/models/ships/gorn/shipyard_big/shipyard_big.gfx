@@ -1,0 +1,25 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_01_shipyard_big_mesh"
+        file = "gfx/models/ships/gorn/shipyard_big/shipyard_big.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "ghyardgp01"
+            index = 0
+            texture_diffuse = "gahyard01.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Regroup08"
+            index = 0
+            texture_diffuse = "gahyard02.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

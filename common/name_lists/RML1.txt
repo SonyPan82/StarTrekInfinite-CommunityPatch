@@ -109,6 +109,18 @@ RML1 = {
 			sequential_name = "%O% Expeditionary Force"
 		}
 
+		romulan_defense_army = {
+			sequential_name = "%O% Planetary Defense Cohort"
+		}
+
+		romulan_assault_army = {
+			sequential_name = "%O% Expeditionary Cohort"
+		}
+
+		romulan_elite_assault_army = {
+			sequential_name = "%O% Tal Shiar Strike Cohort"
+		}
+
 		clone_army = { 
 			sequential_name = "%O% Clone Army"
 		}

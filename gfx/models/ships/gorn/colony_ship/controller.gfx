@@ -1,0 +1,25 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_01_colony_ship_mesh"
+        file = "gfx/models/ships/gorn/colony_ship/colony_ship.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "gcamap01"
+            index = 0
+            texture_diffuse = "gacargo01.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "gcamap02"
+            index = 0
+            texture_diffuse = "gacargo02.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

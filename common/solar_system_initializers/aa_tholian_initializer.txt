@@ -94,8 +94,8 @@ tholian_system_initializer = {
 						file = "00_solid.dds"
 					}
 					colors={
-						"black"
-						"black"
+						"orange"
+						"red"
 						"null"
 						"null"
 					}

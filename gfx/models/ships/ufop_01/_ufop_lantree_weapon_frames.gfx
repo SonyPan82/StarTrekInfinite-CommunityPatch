@@ -1,9 +1,0 @@
-objectTypes = {
-
-pdxmesh = {
-	name = "lantree_slots_mesh"
-	file = "gfx/models/ships/ufop_01/lantree_slots.mesh"
-	scale = 0.38
-}
-
-}

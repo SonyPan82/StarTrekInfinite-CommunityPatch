@@ -1,0 +1,34 @@
+entity = {
+	name = "luna_entity"
+	pdxmesh = "luna_ship_mesh"
+	default_state = "idle"
+
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" position = { 0 0 0 } }
+	locator = { name = "engine_small_01" position = { 3.5 -0.35 4.0 } }
+	locator = { name = "engine_small_02" position = { -3.5 -0.35 4.0 } }
+	locator = { name = "large_gun_01" position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" position = { 0 0 0 } }
+	locator = { name = "small_gun_01" position = { 0 0 0 } }
+	locator = { name = "small_gun_02" position = { 0 0 0 } }
+
+	state = { name = "idle"
+		start_event = { trigger_once = yes sound = { soundeffect = "ufop_01_intrepid_entity" } }
+	}
+
+	state = { name = "death" chance = 1 looping = no
+		event = { time = 0.5 node = "part1" particle = "ship_burn_particle" }
+		event = { time = 0.5 node = "part1" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 0.0 node = "root" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+
+	state = { name = "warping" chance = 1 looping = no
+		event = { time = 0 node = "part1" particle = "medium_warpout_effect" trigger_once = yes keep_particle = no sound = { soundeffect = "warpout_effect" } }
+	}
+
+	game_data = {
+		trail_width = 0.5
+		size = 24
+	}
+}

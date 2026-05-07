@@ -1,0 +1,16 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_01_defense_station_mesh"
+        file = "gfx/models/ships/gorn/defense_station/defense_station.mesh"
+        scale = 1
+
+        meshsettings = {
+            name = "turret_beam"
+            index = 0
+            texture_diffuse = "gapulseturret.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

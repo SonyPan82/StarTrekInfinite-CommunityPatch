@@ -31,6 +31,7 @@ This is a work in progress and will keep evolving.
 - Larger galaxy setup based on the Star Charts scenario
 - Restored California Class support
 - New Luna Class cruiser integration
+- New Odyssey Class flagship/titan integration
 - Improved ship class handling to reduce designer conflicts
 - Startup error fixes and missing definition fixes
 - Integrated community bug fixes and balance adjustments
@@ -47,6 +48,7 @@ Included or restored ship content:
 - Constellation Class
 - Luna Class
 - New Orleans Class
+- Odyssey Class
 - USS Lantree
 - USS Voyager hero ship
 - Enterprise-E fix
@@ -174,6 +176,7 @@ maintenance work:
 - Larger galaxy scenario tuning
 - California Class restoration
 - Luna Class import and technology unlock
+- Odyssey Class import and technology unlock
 - Ship designer compatibility work
 - Crash-risk reduction for imported ship assets
 

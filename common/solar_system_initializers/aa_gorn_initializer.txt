@@ -262,7 +262,7 @@ gorn_system_initializer = {
 						file = "00_solid.dds"
 					}
 					colors={
-						"black"
+						"dark_green"
 						"black"
 						"null"
 						"null"

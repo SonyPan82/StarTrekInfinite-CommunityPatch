@@ -124,6 +124,26 @@ CRD1 = {
 			sequential_name = "%O% Expeditionary Force"
 		}
 
+		cardassian_defense_army = {
+			sequential_name = "%O% Planetary Guard"
+		}
+
+		cardassian_slave_defense_army = {
+			sequential_name = "%O% Auxiliary Guard"
+		}
+
+		cardassian_assault_army = {
+			sequential_name = "%O% Order Assault Force"
+		}
+
+		cardassian_elite_assault_army = {
+			sequential_name = "%O% Order Shock Troops"
+		}
+
+		cardassian_slave_assault_army = {
+			sequential_name = "%O% Auxiliary Assault Force"
+		}
+
 		clone_army = { 
 			sequential_name = "%O% Clone Army"
 		}

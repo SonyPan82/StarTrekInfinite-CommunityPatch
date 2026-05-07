@@ -1,0 +1,24 @@
+special_project = {
+	key = "CP26_BAJORAN_WORMHOLE_INVESTIGATION"
+	days_to_research = 120
+	timelimit = 360
+	tech_department = physics_technology
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		if = {
+			limit = { exists = OWNER }
+			OWNER = { country_event = { id = cp26_bajoran_wormhole.901 } }
+		}
+	}
+
+	on_fail = {
+	}
+}

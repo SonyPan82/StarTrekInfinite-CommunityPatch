@@ -181,6 +181,18 @@ UFP1 = {
 		assault_army = {
 			sequential_name = "%O% Expeditionary Force"
 		}
+
+		ufop_defense_army = {
+			sequential_name = "%O% Starfleet Security"
+		}
+
+		ufop_assault_army = {
+			sequential_name = "%O% Starfleet Expeditionary Force"
+		}
+
+		ufop_elite_assault_army = {
+			sequential_name = "%O% Starfleet Special Operations"
+		}
 		
 		clone_army = { 
 			sequential_name = "%O% Clone Army"

@@ -1723,7 +1723,7 @@ country_event = {
 					set_owner = event_target:borg_cube_country
 
 					create_ship = {
-						design = "NAME_BorgCube"
+						design = "NAME_BorgCube_large"
 						effect = { 
 							set_disabled = yes
 						}
@@ -7632,6 +7632,18 @@ country_event = {
 		text =  country.2811.cardassian.desc
 	}
 
+	desc = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		text = country.2811.other.desc
+	}
+
 	### UFP: Trusted Members
 	option = {
 		trigger = {
@@ -7762,6 +7774,18 @@ country_event = {
 		}
 	}
 
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = country.2811.z_acknowledge
+	}
+
 	after = {
 		hidden_effect = {
 			country_event = { id = country.2812 days = 30 }
@@ -7803,6 +7827,18 @@ country_event = {
 			is_cardassian = yes
 		}
 		text =  country.2812.cardassian.desc
+	}
+
+	desc = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		text = country.2812.other.desc
 	}
 
 	### UFP: We will not compromise on our ideals.
@@ -7967,6 +8003,18 @@ country_event = {
 				country = root
 			}
 		}
+	}
+
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = country.2812.z_acknowledge
 	}
 }
 
@@ -10868,5 +10916,67 @@ country_event = {
 		event_target:ufop_country = {
 			enable_deluxe_uniform = yes
 	  	}
+	}
+}
+
+# CP26 restore: vanilla governor cleanup event referenced by on_leader_unassigned.
+leader_event = {
+	id = country.3300
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		days_passed > 1
+		leader_class = governor
+		has_leader_flag = gov_doing_mission
+	}
+
+	immediate = {
+		fleet = {
+			save_event_target_as = governor_fleet
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						OR = {
+							has_planet_flag = gov_improve_workers_planet_flag
+							has_planet_flag = gov_improve_specialists_planet_flag
+							has_planet_flag = gov_improve_stability_planet_flag
+							has_planet_flag = gov_emergency_package_leader_flag
+						}
+						any_fleet_in_orbit = {
+							is_same_value = event_target:governor_fleet
+						}
+					}
+					save_event_target_as = governor_mission_scope
+				}
+			}
+			remove_gov_improve_workers_modifier = yes
+			remove_gov_improve_specialists_modifier = yes
+			remove_gov_improve_stability_modifier = yes
+			remove_gov_emergency_package_modifier = yes
+			governor_mission_misc_effects_remove = yes
+		}
+	}
+}
+
+# CP26 restore: vanilla highway reveal event referenced by on_tech_increased.
+country_event = {
+	id = country.3400
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		last_increased_tech = tech_highway_stabilization_field
+	}
+
+	immediate = {
+		every_system = {
+			limit = {
+				is_star_class = sc_highway_node
+			}
+			set_surveyed = {
+				surveyed = yes
+			}
+		}
 	}
 }

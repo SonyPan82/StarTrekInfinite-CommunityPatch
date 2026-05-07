@@ -1,0 +1,56 @@
+namespace = cp26_ai_shipyard
+
+country_event = {
+	id = cp26_ai_shipyard.1
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = yes
+		OR = {
+			is_major = yes
+			is_minor = yes
+			is_country_type = contender
+		}
+		exists = capital_scope
+	}
+
+	immediate = {
+		capital_scope = {
+			solar_system = {
+				if = {
+					limit = { exists = starbase }
+					starbase = {
+						if = {
+							limit = { has_starbase_size = starbase_outpost }
+							set_starbase_size = starbase_starport
+						}
+						if = {
+							limit = { NOT = { has_starbase_module = shipyard } }
+							set_starbase_module = {
+								slot = 1
+								module = shipyard
+							}
+						}
+					}
+				}
+				else = {
+					create_starbase = {
+						size = starbase_starport
+						owner = root
+					}
+					if = {
+						limit = { exists = starbase }
+						starbase = {
+							set_starbase_module = {
+								slot = 1
+								module = shipyard
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

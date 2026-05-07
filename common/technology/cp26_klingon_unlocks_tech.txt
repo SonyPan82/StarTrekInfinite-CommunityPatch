@@ -1,0 +1,79 @@
+tech_cp26_kamarag_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_klingon = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_klingon = yes
+		}
+		title = tech_cp26_kamarag
+		desc = tech_cp26_kamarag_desc
+		icon = tech_big_bomb_1
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_CP26_KAMARAG_CONSTRUCTION_TITLE
+				desc = tech_cp26_kamarag_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1
+			years_passed < 8
+		}
+		modifier = {
+			factor = 6
+			years_passed > 10
+		}
+	}
+}
+
+tech_cp26_kvort_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_klingon = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_klingon = yes
+		}
+		title = tech_cp26_kvort
+		desc = tech_cp26_kvort_desc
+		icon = tech_big_bomb_1
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_CP26_KVORT_CONSTRUCTION_TITLE
+				desc = tech_cp26_kvort_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1
+			years_passed < 8
+		}
+		modifier = {
+			factor = 6
+			years_passed > 10
+		}
+	}
+}

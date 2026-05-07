@@ -1,0 +1,296 @@
+objectTypes = {
+	pdxmesh = {
+		name = "luna_ship_mesh"
+		file = "gfx/models/ships/ufop/luna/fed_exploration_cruiser_luna.mesh"
+		scale = 0.60
+
+		meshsettings = {
+			name = "botanical"
+			index = 0
+			texture_diffuse = "arboretum.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "doors"
+			index = 0
+			texture_diffuse = "hull_silver_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_blue_pylons"
+			index = 0
+			texture_diffuse = "hex_glow_blue_diffuse.dds"
+			texture_normal = "hex_glow_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_bussard"
+			index = 0
+			texture_diffuse = "bussard_glow.dds"
+			texture_normal = "bussard_glow_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_deflector"
+			index = 0
+			texture_diffuse = "deflector_02_diffuse.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_imp_big"
+			index = 0
+			texture_diffuse = "glow_warp_grid_red.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_pylon_truster"
+			index = 0
+			texture_diffuse = "hex_glow_red_diffuse.dds"
+			texture_normal = "hex_glow_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_warp_coils"
+			index = 0
+			texture_diffuse = "glow_warp_grid_blue.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_white_edgys"
+			index = 0
+			texture_diffuse = "glow_white_diffuse.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "glow_windows"
+			index = 0
+			texture_diffuse = "glow_white_diffuse.dds"
+			texture_normal = "glows_faint_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hangar"
+			index = 0
+			texture_diffuse = "Grid_Dark_TMP.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_beige"
+			index = 0
+			texture_diffuse = "hull_shingle_fawn_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_copper"
+			index = 0
+			texture_diffuse = "solid_copper.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_dark"
+			index = 0
+			texture_diffuse = "hull_type_3_black_diffuse.dds"
+			texture_normal = "hull_type_3_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_dark_plates"
+			index = 0
+			texture_diffuse = "hull_type_3_dark_grey_diffuse.dds"
+			texture_normal = "hull_type_3_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_grey"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_grey_top_copylow"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_intend_plates"
+			index = 0
+			texture_diffuse = "hull_type_3_black_diffuse.dds"
+			texture_normal = "hull_type_3_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_machine"
+			index = 0
+			texture_diffuse = "machinery_grey_diffuse.dds"
+			texture_normal = "machinery_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_main"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_roof_pylon"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_saucer_top"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_silver"
+			index = 0
+			texture_diffuse = "Hull2.dds"
+			texture_normal = "Hull2_normal.dds"
+			texture_specular = "Hull2_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_torp_1"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_white"
+			index = 0
+			texture_diffuse = "Hull2.dds"
+			texture_normal = "Hull2_normal.dds"
+			texture_specular = "Hull2_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_yellow"
+			index = 0
+			texture_diffuse = "hull_type_3_dark_yellow_diffuse.dds"
+			texture_normal = "hull_type_3_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "hull_yellow_rear"
+			index = 0
+			texture_diffuse = "hull_type_3_dark_yellow_diffuse.dds"
+			texture_normal = "hull_type_3_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "lifepod34"
+			index = 0
+			texture_diffuse = "Hull2.dds"
+			texture_normal = "Hull2_normal.dds"
+			texture_specular = "Hull2_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "lounge"
+			index = 0
+			texture_diffuse = "lounge.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "phaser"
+			index = 0
+			texture_diffuse = "hull_type_4_darker_dark_beige_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "podbase27"
+			index = 0
+			texture_diffuse = "hull_fed_type_3_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "pylons"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "redstripes.001"
+			index = 0
+			texture_diffuse = "solid_red.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "saucer_bottom"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "saucer_bulls"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "upperpod"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "hull_fed_type_1_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

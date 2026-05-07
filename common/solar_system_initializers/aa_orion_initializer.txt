@@ -93,7 +93,7 @@ orion_system_initializer = {
 						file = "00_solid.dds"
 					}
 					colors={
-						"black"
+						"light_green"
 						"black"
 						"null"
 						"null"

@@ -1,0 +1,182 @@
+namespace = cp26_bajoran_wormhole
+
+# Yearly check: if Denorios was surveyed before 2369, the project appears once the
+# date matches the DS9-era discovery window.
+country_event = {
+	id = cp26_bajoran_wormhole.110
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		years_passed > 22
+		OR = {
+			has_country_flag = cp26_denorios_surveyed
+			any_system = {
+				has_star_flag = denorios_system
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+			}
+		}
+		NOT = { has_country_flag = cp26_bajoran_wormhole_project_enabled }
+		NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created }
+	}
+
+	immediate = {
+		set_country_flag = cp26_denorios_surveyed
+		country_event = { id = cp26_bajoran_wormhole.120 }
+	}
+}
+
+# Denorios survey hook. Before 2369 it only records the discovery; from 2369
+# onward it opens the investigation in the situation log.
+country_event = {
+	id = cp26_bajoran_wormhole.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = from
+		from = { has_star_flag = denorios_system }
+		NOT = { has_country_flag = cp26_bajoran_wormhole_project_enabled }
+		NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created }
+	}
+
+	immediate = {
+		set_country_flag = cp26_denorios_surveyed
+		if = {
+			limit = { years_passed > 22 }
+			country_event = { id = cp26_bajoran_wormhole.120 }
+		}
+	}
+}
+
+country_event = {
+	id = cp26_bajoran_wormhole.120
+	title = cp26_bajoran_wormhole.120.name
+	desc = cp26_bajoran_wormhole.120.desc
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = { has_star_flag = denorios_system }
+			save_event_target_as = cp26_denorios_system
+		}
+	}
+
+	option = {
+		name = cp26_bajoran_wormhole.120.ok
+		set_country_flag = cp26_bajoran_wormhole_project_enabled
+		enable_special_project = {
+			name = "CP26_BAJORAN_WORMHOLE_INVESTIGATION"
+			location = event_target:cp26_denorios_system
+			owner = ROOT
+		}
+	}
+
+	option = {
+		name = cp26_bajoran_wormhole.120.no
+	}
+}
+
+country_event = {
+	id = cp26_bajoran_wormhole.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created } }
+			set_global_flag = cp26_bajoran_wormhole_bypass_created
+
+			random_system = {
+				limit = { has_star_flag = idran_system }
+				set_name = "NAME_Idran"
+				spawn_natural_wormhole = {
+					bypass_type = cp26_bajoran_wormhole_bypass
+					random_pos = no
+					orbit_angle = 215
+				}
+				save_event_target_as = cp26_idran_system
+			}
+
+			random_system = {
+				limit = { has_star_flag = denorios_system }
+				spawn_natural_wormhole = {
+					bypass_type = cp26_bajoran_wormhole_bypass
+					random_pos = no
+					orbit_angle = 35
+				}
+				link_wormholes = event_target:cp26_idran_system
+			}
+		}
+
+		add_seen_bypass_type = cp26_bajoran_wormhole_bypass
+		random_system = {
+			limit = { has_star_flag = idran_system }
+			save_event_target_as = cp26_idran_reveal_system
+		}
+		set_visited = event_target:cp26_idran_reveal_system
+		country_event = { id = cp26_bajoran_wormhole.2 }
+	}
+}
+
+country_event = {
+	id = cp26_bajoran_wormhole.2
+	title = cp26_bajoran_wormhole.2.name
+	desc = cp26_bajoran_wormhole.2.desc
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.2.ok
+	}
+}
+
+# Console/testing helpers. These are intentionally hidden and are not called by
+# normal gameplay.
+country_event = {
+	id = cp26_bajoran_wormhole.900
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = cp26_denorios_surveyed
+		if = {
+			limit = {
+				NOT = { has_country_flag = cp26_bajoran_wormhole_project_enabled }
+				NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created }
+			}
+			country_event = { id = cp26_bajoran_wormhole.120 }
+		}
+	}
+}
+
+country_event = {
+	id = cp26_bajoran_wormhole.901
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = cp26_bajoran_wormhole.200 }
+	}
+}
+
+fleet_event = {
+	id = cp26_bajoran_wormhole.300
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { exists = from }
+			set_location = {
+				target = from
+				distance = 40
+				angle = random
+			}
+		}
+	}
+}

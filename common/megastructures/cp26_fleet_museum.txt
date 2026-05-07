@@ -1,0 +1,24 @@
+cp26_fleet_museum = {
+	entity = "sti_fleet_museum_entity"
+	portrait = GFX_megastructure_construction_background
+	place_entity_on_planet_plane = yes
+	entity_offset = { x = -4 y = 12 }
+
+	possible = {
+		exists = owner
+		owner = {
+			has_country_flag = ufop
+			NOT = { has_country_flag = cp26_fleet_museum_spawned }
+		}
+	}
+
+	resources = {
+		upkeep = {
+			energy = 5
+		}
+	}
+
+	country_modifier = {
+		country_admin_cap_add = 60
+	}
+}

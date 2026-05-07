@@ -4,7 +4,7 @@ ship_section_template = {
 	fits_on_slot = mid
 	should_draw_components = no
 	#entity = "corvette_S3_entity"
-	entity = "arthropoid_01_corvette_S3_entity"
+	entity = "gorn_01_corvette_entity"
 	icon = "GFX_ship_part_core_mid"
 	
 	prerequisites = { tech_big_bomb_1 }
@@ -54,7 +54,7 @@ ship_section_template = {
 	ship_size = gorndestroyer
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "gorn_ddraig_ship_entity"
+	entity = "gorn_01_destroyer_entity"
 	icon = "GFX_ship_part_core_mid"
 	
 	prerequisites = { tech_big_bomb_1 }
@@ -119,7 +119,7 @@ ship_section_template = {
 	ship_size = gornbattleship
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "arthropoid_01_juggernaut_core_section_entity"
+	entity = "gorn_01_battleship_entity"
 	icon = "GFX_ship_part_core_mid"
 	
 	prerequisites = { tech_big_bomb_1 }

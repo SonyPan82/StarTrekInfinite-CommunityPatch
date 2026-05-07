@@ -84,13 +84,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.16 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.16 } }
 		}
 	}
 	
@@ -99,13 +93,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.17 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.17 } }
 		}
 	}
 }
@@ -133,13 +121,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.25 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.25 } }
 		}
 	}
 	
@@ -148,13 +130,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.26 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.26 } }
 		}
 	}
 }
@@ -182,13 +158,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.34 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.34 } }
 		}
 	}
 	
@@ -197,13 +167,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.35 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.35 } }
 		}
 	}
 }
@@ -250,17 +214,7 @@ special_project = {
 			limit = { 
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = {
-						is_cp26_major_mission_country = yes
-					}
-					country_event = { id = mission.43 }
-				}
-				else = {
-					country_event = { id = cp26_minor_mission.43 }
-				}
-			}
+			OWNER = { country_event = { id = mission.43 } }
 		}
 	}
 	
@@ -269,17 +223,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = {
-						is_cp26_major_mission_country = yes
-					}
-					country_event = { id = mission.44 }
-				}
-				else = {
-					country_event = { id = cp26_minor_mission.44 }
-				}
-			}
+			OWNER = { country_event = { id = mission.44 } }
 		}
 	}
 }
@@ -328,13 +272,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.54 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.54 } }
 		}
 	}
 	
@@ -343,13 +281,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.55 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.55 } }
 		}
 	}
 }
@@ -378,13 +310,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.65 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.65 } }
 		}
 	}
 	
@@ -393,13 +319,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.66 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.66 } }
 		}
 	}
 }
@@ -448,13 +368,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.74 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.74 } }
 		}
 	}
 	
@@ -463,13 +377,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.75 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.75 } }
 		}
 	}
 }
@@ -516,13 +424,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.84 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.84 } }
 		}
 	}
 	
@@ -531,13 +433,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.86 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.86 } }
 		}
 	}
 }
@@ -584,13 +480,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.85 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.85 } }
 		}
 	}
 	
@@ -599,13 +489,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.86 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.86 } }
 		}
 	}
 }
@@ -652,13 +536,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.94 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.94 } }
 		}
 	}
 	
@@ -667,13 +545,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.95 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.95 } }
 		}
 	}
 }
@@ -723,24 +595,8 @@ special_project = {
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
 			random_list = {
-				8 = {
-					OWNER = {
-						if = {
-							limit = { is_cp26_major_mission_country = yes }
-							country_event = { id = mission.104 }
-						}
-						else = { country_event = { id = cp26_minor_mission.100 } }
-					}
-				}
-				2 = {
-					OWNER = {
-						if = {
-							limit = { is_cp26_major_mission_country = yes }
-							country_event = { id = mission.105 }
-						}
-						else = { country_event = { id = cp26_minor_mission.100 } }
-					}
-				}
+				8 = { OWNER = { country_event = { id = mission.104 } } }
+				2 = { OWNER = { country_event = { id = mission.105 } } }
 			}
 		}
 	}
@@ -750,13 +606,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.106 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.106 } }
 		}
 	}
 }
@@ -805,13 +655,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.114 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.114 } }
 		}
 	}
 	
@@ -820,13 +664,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.115 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.115 } }
 		}
 	}
 }
@@ -874,13 +712,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.124 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.124 } }
 		}
 	}
 	
@@ -889,13 +721,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.125 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.125 } }
 		}
 	}
 }
@@ -923,13 +749,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.134 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.134 } }
 		}
 	}
 	
@@ -938,13 +758,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.135 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.135 } }
 		}
 	}
 }
@@ -972,13 +786,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.144 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.144 } }
 		}
 	}
 	
@@ -987,13 +795,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.145 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.145 } }
 		}
 	}
 }
@@ -1021,13 +823,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.1541 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.1541 } } #30
 		}
 	}
 	
@@ -1036,13 +832,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.156 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.156 } }
 		}
 	}
 }
@@ -1086,13 +876,7 @@ special_project = {
 			limit = { 
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.193 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.193 } }
 		}
 	}
 	
@@ -1101,13 +885,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.194 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.194 } }
 		}
 	}
 }
@@ -1158,13 +936,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.203 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.203 } }
 		}
 	}
 	
@@ -1173,13 +945,7 @@ special_project = {
 			limit = {
 				exists = OWNER
 			}
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.204 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+			OWNER = { country_event = { id = mission.204 } }
 		}
 	}
 }
@@ -1208,13 +974,7 @@ special_project = {
 				exists = OWNER
 			}
 			enterprise_mipo_mission_completed_success_effect = yes
-			OWNER = {
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.214 }
-				}
-				else = { country_event = { id = cp26_minor_mission.100 } }
-			}
+			OWNER = { country_event = { id = mission.214 } }
 		}
 	}
 	
@@ -1225,12 +985,7 @@ special_project = {
 			}
 			OWNER = { 
 				set_country_flag = dignitary_declined
-				if = {
-					limit = { is_cp26_major_mission_country = yes }
-					country_event = { id = mission.215 }
-				}
-				else = { country_event = { id = cp26_minor_mission.101 } }
-			}
+				country_event = { id = mission.215 } }
 		}
 	}
 }

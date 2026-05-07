@@ -1,0 +1,52 @@
+objectTypes = {
+	pdxmesh = {
+		name = "tholian_01_science_mesh"
+		file = "gfx/models/ships/tholian_01/tholian_01_saber_coreA.mesh"
+		scale = 0.7
+
+        meshsettings = {
+            name = "GreyHull"
+            index = 0
+            texture_diffuse = "hull_silver_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "Grid"
+            index = 0
+            texture_diffuse = "hex_glow_green_diffuse.dds"
+            texture_normal = "hex_glow_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "PurpleGlow"
+            index = 0
+            texture_diffuse = "PurpleGlow.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "RustHull"
+            index = 0
+            texture_diffuse = "hull_rust_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "YellowGlow"
+            index = 0
+            texture_diffuse = "glow_strong_yellow_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+	}
+}

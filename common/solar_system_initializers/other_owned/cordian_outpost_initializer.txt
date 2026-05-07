@@ -14,9 +14,36 @@ cordian_outpost_initializer = {
 	change_orbit = 50
 	
 	planet = {
-		count = { min = 3 max = 8 }
+		name = "NAME_Athan_Prime"
+		class = "pc_ocean"
+		subclass = psc_class_m
+		orbit_distance = 20
+		size = 18
+		home_planet = no
+		flags = { athan_prime }
+	}
+
+	planet = {
+		name = "NAME_Athan_II"
 		class = rl_unhabitable_planets
-		orbit_distance = { min = 20 max = 30 }
+		orbit_distance = 12
+		size = 14
+		home_planet = no
+	}
+
+	planet = {
+		name = "NAME_Athan_III"
+		class = rl_unhabitable_planets
+		orbit_distance = 12
+		size = 16
+		home_planet = no
+	}
+
+	planet = {
+		name = "NAME_Athan_IV"
+		class = rl_unhabitable_planets
+		orbit_distance = 16
+		size = 12
 		home_planet = no
 	}
 
@@ -25,10 +52,46 @@ cordian_outpost_initializer = {
 	}
 
 	late_init_effect = {
-		# Creating a Starbase
-		create_starbase = {
-			size = starbase_outpost
-			owner = event_target:ufop_country
+		if = {
+			limit = { has_star_flag = cordian_system }
+			every_country = {
+				if = {
+					limit = {
+						has_country_flag = ufop
+						NOT = { has_country_flag = cp26_fleet_museum_spawned }
+					}
+					save_event_target_as = cp26_ufop_country_for_athan
+				}
+			}
+			if = {
+				limit = { exists = event_target:cp26_ufop_country_for_athan }
+				create_starbase = {
+					size = starbase_outpost
+					owner = event_target:cp26_ufop_country_for_athan
+				}
+				every_system_planet = {
+					limit = { has_planet_flag = athan_prime }
+					save_event_target_as = cp26_athan_prime
+					save_global_event_target_as = cp26_athan_prime
+				}
+				if = {
+					limit = {
+						exists = event_target:cp26_athan_prime
+						NOT = { has_star_flag = cp26_fleet_museum_spawned_system }
+					}
+					spawn_megastructure = {
+						type = "cp26_fleet_museum"
+						planet = event_target:cp26_athan_prime
+						owner = event_target:cp26_ufop_country_for_athan
+						orbit_distance = 2
+						orbit_angle = 20
+					}
+					set_star_flag = cp26_fleet_museum_spawned_system
+					event_target:cp26_ufop_country_for_athan = {
+						set_country_flag = cp26_fleet_museum_spawned
+					}
+				}
+			}
 		}
 	}
 }

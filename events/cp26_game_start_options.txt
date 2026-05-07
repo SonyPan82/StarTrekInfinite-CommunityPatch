@@ -24,33 +24,3 @@ country_event = {
 		set_global_flag = cp26_no_pirates
 	}
 }
-
-country_event = {
-	id = cp26_options.10
-	title = cp26_options.10.name
-	desc = cp26_options.10.desc
-	picture = GFX_evt_space_travel_pirates
-	show_sound = event_space_travel
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	trigger = {
-		is_ai = no
-	}
-
-	option = {
-		name = cp26_options.10.enable
-		custom_tooltip = cp26_options.10.enable.tt
-		remove_global_flag = cp26_diplo_vassalization_disabled
-		set_global_flag = cp26_diplo_vassalization_enabled
-		set_global_flag = cp26_diplomacy_options_set
-	}
-
-	option = {
-		name = cp26_options.10.disable
-		custom_tooltip = cp26_options.10.disable.tt
-		remove_global_flag = cp26_diplo_vassalization_enabled
-		set_global_flag = cp26_diplo_vassalization_disabled
-		set_global_flag = cp26_diplomacy_options_set
-	}
-}

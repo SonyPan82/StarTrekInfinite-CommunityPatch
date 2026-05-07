@@ -40,11 +40,21 @@ event = {
 						count = 9
 						create_pop = { species = "Human" }
 					}
-					add_district = district_city
-					add_district = district_generator
-					add_district = district_generator
-					add_district = district_farming
-					add_district = district_culture
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_city
+					}
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_generator
+					}
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_generator
+					}
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_farming
+					}
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_culture
+					}
 					add_building = building_foundry_1
 				}
 			}

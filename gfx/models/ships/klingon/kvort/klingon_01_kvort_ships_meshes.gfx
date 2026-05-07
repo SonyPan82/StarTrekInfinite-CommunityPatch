@@ -1,0 +1,20 @@
+objectTypes = {
+
+	pdxmesh = {
+		name = "klingon_01_kvort_mesh"
+		file = "gfx/models/ships/klingon_01/klingon_01_warbird.mesh"
+		scale = 0.5
+
+		animation = { id = "idle"			type = "medium_idle_animation" }
+
+		animation = { id = "death"			type = "medium_death_animation" }
+
+		animation = { id = "warp_01"			type = "medium_warp_01_animation" }
+
+		animation = { id = "warp_02"			type = "medium_warp_02_animation" }
+
+		animation = { id = "warp_03"			type = "medium_warp_03_animation" }
+
+	}
+	
+}
