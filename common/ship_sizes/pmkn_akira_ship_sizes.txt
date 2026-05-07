@@ -36,26 +36,27 @@ akira = {
 		ship_tracking_mult = @no_admiral_tracking_mult
 		ship_evasion_add = @excelsior_evasion
 		#ship_piracy_suppression_add = 40
+
 	}
-    
+
 	size_multiplier = 4
 	fleet_slot_size = 3
 	graphical_culture = no
-	
+
 	section_slots = { "mid" = { locator = "part1" } }
-	
+
 	num_target_locators = 2
 	is_space_station = no
 	icon_frame = 3
 	base_buildtime = @intrepid_build_time
 	can_have_federation_design = yes
-	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
-	
+	enable_default_design = yes
+
 	default_behavior = "hrb_war_bird"
 
 	#prerequisites =	{ "tech_corvette_unlock" } #for testing purposes
 	prerequisites = { "tech_pmkn_akira_unlock" }
-	
+
 	potential_country = {
 		has_country_id = ufop
 	}
@@ -83,7 +84,7 @@ akira = {
 			}
 			deuterium = @excelsior_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {

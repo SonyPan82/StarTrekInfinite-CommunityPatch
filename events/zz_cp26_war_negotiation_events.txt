@@ -1,0 +1,294 @@
+namespace = cp26_war_negotiation
+
+country_event = {
+	id = cp26_war_negotiation.1
+	title = cp26_war_negotiation.1.name
+	desc = cp26_war_negotiation.1.desc
+	picture = GFX_evt_keldon_bridge_decision_cardassian
+	show_sound = event_default
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			remove_country_flag = cp26_war_menu_target_1
+			remove_country_flag = cp26_war_menu_target_2
+			remove_country_flag = cp26_war_menu_target_3
+			remove_country_flag = cp26_war_menu_target_4
+			remove_country_flag = cp26_war_menu_target_5
+			remove_country_flag = cp26_war_menu_target_6
+			remove_country_flag = cp26_war_menu_target_7
+			remove_country_flag = cp26_war_menu_target_8
+		}
+
+		set_variable = { which = cp26_war_menu_target_slot value = 0 }
+
+		every_country = {
+			limit = {
+				ROOT = {
+					is_at_war_with = prev
+				}
+				NOT = { is_same_value = root }
+				OR = {
+					is_country_type = default
+					is_country_type = contender
+				}
+			}
+
+			if = {
+				limit = {
+					ROOT = {
+						check_variable = {
+							which = cp26_war_menu_target_slot
+							value = 0
+						}
+					}
+				}
+				set_country_flag = cp26_war_menu_target_1
+				save_global_event_target_as = cp26_war_menu_target_1
+				ROOT = {
+					change_variable = {
+						which = cp26_war_menu_target_slot
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						check_variable = {
+							which = cp26_war_menu_target_slot
+							value = 1
+						}
+					}
+				}
+				set_country_flag = cp26_war_menu_target_2
+				save_global_event_target_as = cp26_war_menu_target_2
+				ROOT = {
+					change_variable = {
+						which = cp26_war_menu_target_slot
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						check_variable = {
+							which = cp26_war_menu_target_slot
+							value = 2
+						}
+					}
+				}
+				set_country_flag = cp26_war_menu_target_3
+				save_global_event_target_as = cp26_war_menu_target_3
+				ROOT = {
+					change_variable = {
+						which = cp26_war_menu_target_slot
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						check_variable = {
+							which = cp26_war_menu_target_slot
+							value = 3
+						}
+					}
+				}
+				set_country_flag = cp26_war_menu_target_4
+				save_global_event_target_as = cp26_war_menu_target_4
+				ROOT = {
+					change_variable = {
+						which = cp26_war_menu_target_slot
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						check_variable = {
+							which = cp26_war_menu_target_slot
+							value = 4
+						}
+					}
+				}
+				set_country_flag = cp26_war_menu_target_5
+				save_global_event_target_as = cp26_war_menu_target_5
+				ROOT = {
+					change_variable = {
+						which = cp26_war_menu_target_slot
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						check_variable = {
+							which = cp26_war_menu_target_slot
+							value = 5
+						}
+					}
+				}
+				set_country_flag = cp26_war_menu_target_6
+				save_global_event_target_as = cp26_war_menu_target_6
+				ROOT = {
+					change_variable = {
+						which = cp26_war_menu_target_slot
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						check_variable = {
+							which = cp26_war_menu_target_slot
+							value = 6
+						}
+					}
+				}
+				set_country_flag = cp26_war_menu_target_7
+				save_global_event_target_as = cp26_war_menu_target_7
+				ROOT = {
+					change_variable = {
+						which = cp26_war_menu_target_slot
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = {
+						check_variable = {
+							which = cp26_war_menu_target_slot
+							value = 7
+						}
+					}
+				}
+				set_country_flag = cp26_war_menu_target_8
+				save_global_event_target_as = cp26_war_menu_target_8
+				ROOT = {
+					change_variable = {
+						which = cp26_war_menu_target_slot
+						value = 1
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			any_country = { has_country_flag = cp26_war_menu_target_1 }
+		}
+		name = cp26_war_negotiation.1.target_1
+		hidden_effect = {
+			country_event = { id = cp26_war_negotiation.11 }
+		}
+	}
+
+	option = {
+		trigger = {
+			any_country = { has_country_flag = cp26_war_menu_target_2 }
+		}
+		name = cp26_war_negotiation.1.target_2
+		hidden_effect = {
+			country_event = { id = cp26_war_negotiation.12 }
+		}
+	}
+
+	option = {
+		trigger = {
+			any_country = { has_country_flag = cp26_war_menu_target_3 }
+		}
+		name = cp26_war_negotiation.1.target_3
+		hidden_effect = {
+			country_event = { id = cp26_war_negotiation.13 }
+		}
+	}
+
+	option = {
+		trigger = {
+			any_country = { has_country_flag = cp26_war_menu_target_4 }
+		}
+		name = cp26_war_negotiation.1.target_4
+		hidden_effect = {
+			country_event = { id = cp26_war_negotiation.14 }
+		}
+	}
+
+	option = {
+		trigger = {
+			any_country = { has_country_flag = cp26_war_menu_target_5 }
+		}
+		name = cp26_war_negotiation.1.target_5
+		hidden_effect = {
+			country_event = { id = cp26_war_negotiation.15 }
+		}
+	}
+
+	option = {
+		trigger = {
+			any_country = { has_country_flag = cp26_war_menu_target_6 }
+		}
+		name = cp26_war_negotiation.1.target_6
+		hidden_effect = {
+			country_event = { id = cp26_war_negotiation.16 }
+		}
+	}
+
+	option = {
+		trigger = {
+			any_country = { has_country_flag = cp26_war_menu_target_7 }
+		}
+		name = cp26_war_negotiation.1.target_7
+		hidden_effect = {
+			country_event = { id = cp26_war_negotiation.17 }
+		}
+	}
+
+	option = {
+		trigger = {
+			any_country = { has_country_flag = cp26_war_menu_target_8 }
+		}
+		name = cp26_war_negotiation.1.target_8
+		hidden_effect = {
+			country_event = { id = cp26_war_negotiation.18 }
+		}
+	}
+
+	option = {
+		name = cp26_war_negotiation.1.cancel
+	}
+
+	after = {
+		clear_variable = cp26_war_menu_target_slot
+	}
+}
+
+country_event = {
+	id = cp26_war_negotiation.11
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		save_global_event_target_as = cp26_wargoal_peace_actor
+		set_country_flag = cp26_wargoal_peace_pending_actor
+		event_target:cp26_war_menu_target_1 = {
+			save_global_event_target_as = cp26_wargoal_peace_recipient
+			set_country_flag = cp26_wargoal_peace_pending_target
+			country_event = { id = cp26_vassalization.6 days = 3 }
+		}
+	}
+}
+
+country_event = { id = cp26_war_negotiation.12 hide_window = yes is_triggered_only = yes immediate = { save_global_event_target_as = cp26_wargoal_peace_actor set_country_flag = cp26_wargoal_peace_pending_actor event_target:cp26_war_menu_target_2 = { save_global_event_target_as = cp26_wargoal_peace_recipient set_country_flag = cp26_wargoal_peace_pending_target country_event = { id = cp26_vassalization.6 days = 3 } } } }
+country_event = { id = cp26_war_negotiation.13 hide_window = yes is_triggered_only = yes immediate = { save_global_event_target_as = cp26_wargoal_peace_actor set_country_flag = cp26_wargoal_peace_pending_actor event_target:cp26_war_menu_target_3 = { save_global_event_target_as = cp26_wargoal_peace_recipient set_country_flag = cp26_wargoal_peace_pending_target country_event = { id = cp26_vassalization.6 days = 3 } } } }
+country_event = { id = cp26_war_negotiation.14 hide_window = yes is_triggered_only = yes immediate = { save_global_event_target_as = cp26_wargoal_peace_actor set_country_flag = cp26_wargoal_peace_pending_actor event_target:cp26_war_menu_target_4 = { save_global_event_target_as = cp26_wargoal_peace_recipient set_country_flag = cp26_wargoal_peace_pending_target country_event = { id = cp26_vassalization.6 days = 3 } } } }
+country_event = { id = cp26_war_negotiation.15 hide_window = yes is_triggered_only = yes immediate = { save_global_event_target_as = cp26_wargoal_peace_actor set_country_flag = cp26_wargoal_peace_pending_actor event_target:cp26_war_menu_target_5 = { save_global_event_target_as = cp26_wargoal_peace_recipient set_country_flag = cp26_wargoal_peace_pending_target country_event = { id = cp26_vassalization.6 days = 3 } } } }
+country_event = { id = cp26_war_negotiation.16 hide_window = yes is_triggered_only = yes immediate = { save_global_event_target_as = cp26_wargoal_peace_actor set_country_flag = cp26_wargoal_peace_pending_actor event_target:cp26_war_menu_target_6 = { save_global_event_target_as = cp26_wargoal_peace_recipient set_country_flag = cp26_wargoal_peace_pending_target country_event = { id = cp26_vassalization.6 days = 3 } } } }
+country_event = { id = cp26_war_negotiation.17 hide_window = yes is_triggered_only = yes immediate = { save_global_event_target_as = cp26_wargoal_peace_actor set_country_flag = cp26_wargoal_peace_pending_actor event_target:cp26_war_menu_target_7 = { save_global_event_target_as = cp26_wargoal_peace_recipient set_country_flag = cp26_wargoal_peace_pending_target country_event = { id = cp26_vassalization.6 days = 3 } } } }
+country_event = { id = cp26_war_negotiation.18 hide_window = yes is_triggered_only = yes immediate = { save_global_event_target_as = cp26_wargoal_peace_actor set_country_flag = cp26_wargoal_peace_pending_actor event_target:cp26_war_menu_target_8 = { save_global_event_target_as = cp26_wargoal_peace_recipient set_country_flag = cp26_wargoal_peace_pending_target country_event = { id = cp26_vassalization.6 days = 3 } } } }

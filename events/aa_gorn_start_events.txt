@@ -30,7 +30,8 @@ event = {
 			remove_star_flag = sf_gorncandidatex
 		}
 
-		# Build the Gorn pocket from the UFP/Klingon frontier, like the Tholian generator.
+		# Build a broad Gorn pocket in the lower central Federation/Klingon frontier.
+		# The goal is reliability first: any valid spawn in this zone is acceptable.
 		every_system = {
 			limit = {
 				is_not_used_space = yes
@@ -81,48 +82,6 @@ event = {
 			}
 		}
 
-		random_system = {
-			limit = {
-				OR = {
-					AND = {
-						has_star_flag = sf_gorncandidate1
-						has_star_flag = sf_gorncandidate2
-					}
-					AND = {
-						has_star_flag = sf_gorncandidate3
-						has_star_flag = sf_gorncandidate4
-					}
-					AND = {
-						has_star_flag = sf_gorncandidate1
-						has_star_flag = sf_gorncandidate4
-					}
-					AND = {
-						has_star_flag = sf_gorncandidate2
-						has_star_flag = sf_gorncandidate3
-					}
-				}
-			}
-			set_star_flag = gorn_anchor
-		}
-
-		if = {
-			limit = {
-				NOT = { any_system = { has_star_flag = gorn_anchor } }
-			}
-			random_system = {
-				limit = {
-					is_not_used_space = yes
-					any_neighbor_system = {
-						has_star_flag = ufop_system
-					}
-					any_neighbor_system = {
-						has_star_flag = klingon_system
-					}
-				}
-				set_star_flag = gorn_anchor
-			}
-		}
-
 		if = {
 			limit = {
 				NOT = { any_system = { has_star_flag = gorn_anchor } }
@@ -131,33 +90,138 @@ event = {
 				limit = {
 					has_star_flag = sf_gorncandidate3
 					has_star_flag = sf_gorncandidate4
+					NOT = { has_star_flag = sf_gorncandidate1 }
+					NOT = { has_star_flag = sf_gorncandidate2 }
 				}
 				set_star_flag = gorn_anchor
 			}
 		}
 
-		random_system = {
+		if = {
 			limit = {
-				has_star_flag = gorn_anchor
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
 			}
-			spawn_gorn_system = yes
-			last_created_system = {
-				setup_gorn_capital = yes
-
-				spawn_finibus_system = yes
-				last_created_system = {
-					set_name = "Finibus"
-					setup_gorn_territory = yes
+			random_system = {
+				limit = {
+					has_star_flag = sf_gorncandidate1
+					has_star_flag = sf_gorncandidate4
 				}
+				set_star_flag = gorn_anchor
+			}
+		}
 
-				spawn_galdonterre_system = yes
-				last_created_system = {
-					setup_gorn_territory = yes
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					has_star_flag = sf_gorncandidate2
+					has_star_flag = sf_gorncandidate3
 				}
+				set_star_flag = gorn_anchor
+			}
+		}
 
-				spawn_cestus_system = yes
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					has_star_flag = sf_gorncandidate1
+					has_star_flag = sf_gorncandidate2
+				}
+				set_star_flag = gorn_anchor
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					OR = {
+						has_star_flag = sf_gorncandidate3
+						has_star_flag = sf_gorncandidate4
+					}
+				}
+				set_star_flag = gorn_anchor
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+			}
+			random_system = {
+				limit = {
+					has_star_flag = sf_gorncandidatex
+				}
+				set_star_flag = gorn_anchor
+			}
+		}
+
+		if = {
+			limit = {
+				any_system = { has_star_flag = gorn_anchor }
+			}
+			random_system = {
+				limit = {
+					has_star_flag = gorn_anchor
+				}
+				spawn_gorn_system = yes
 				last_created_system = {
-					setup_gorn_territory = yes
+					setup_gorn_capital = yes
+
+					spawn_finibus_system = yes
+					last_created_system = {
+						set_name = "Finibus"
+						setup_gorn_territory = yes
+					}
+
+					spawn_galdonterre_system = yes
+					last_created_system = {
+						setup_gorn_territory = yes
+					}
+
+					spawn_cestus_system = yes
+					last_created_system = {
+						setup_gorn_territory = yes
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { exists = event_target:gorn_country }
+				any_system = { has_star_flag = gorn_anchor }
+			}
+			random_system = {
+				limit = {
+					has_star_flag = gorn_anchor
+				}
+				spawn_gorn_system_fallback = yes
+				last_created_system = {
+					setup_gorn_capital = yes
+
+					spawn_finibus_system = yes
+					last_created_system = {
+						set_name = "Finibus"
+						setup_gorn_territory = yes
+					}
+
+					spawn_galdonterre_system = yes
+					last_created_system = {
+						setup_gorn_territory = yes
+					}
+
+					spawn_cestus_system = yes
+					last_created_system = {
+						setup_gorn_territory = yes
+					}
 				}
 			}
 		}

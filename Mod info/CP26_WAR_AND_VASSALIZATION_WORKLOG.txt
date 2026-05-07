@@ -218,6 +218,53 @@ Context
   - local capital/side-system spawning with connected hyperlanes
 - What was removed again:
   - the older Xindus/Tribble hard-anchor map rewiring
+
+17) Warp travel study and CP26 options
+- Confirmed that Infinite exposes separate script hooks for:
+  - ship_speed_mult: local / physical ship movement
+  - ship_warp_speed_mult: interstellar warp travel speed
+  - ship_warp_cooldown_mult: delay between warp moves
+  - warp_range_add: country-level warp reach
+- Decision taken:
+  - keep early and mid game unchanged
+  - add only a small late-game traversal bonus through a final warp-speed tech layer
+  - avoid the fake "huge warp_range_add" approach for military ships
+- Implemented:
+  - restored / added tech_warp_speed_increase_2 as a light late-game warp-speed bonus
+  - changed military ships to use science-ship style warp behavior instead (`ignores_warp_range = yes` + `ship_hyperlane_range_add = 1`)
+  - removed the earlier unlimited-warp popup experiment because it could create incorrect warp-bubble behavior
+
+17) Reintroduced on the clean baseline (2026-05-07)
+- The CP26 war/vassalization layer was reintroduced cleanly on top of the sane baseline, without reusing the broken waroverview GUI hacks.
+- Restored:
+  - `cb_subjugation`
+  - `cb_cp26_forced_occupation`
+  - `wg_subjugation`
+  - `wg_cp26_forced_occupation`
+  - `action_start_puppet_state_process` as the CP26 vassalization proposal flow
+  - `action_cp26_offer_war_goal_peace` as the wartime "Demand Surrender" bypass flow
+  - `cp26_options.10` in the game-start popup and its trigger in `zz_cp26_on_game_start.txt`
+  - scripted triggers gating the diplomacy mode
+  - wartime access events and their on_actions
+- Important implementation note:
+  - this intentionally bypasses the vanilla war screen button problem
+  - surrender / war-goal acceptance is handled through a diplomatic action plus popup flow
+  - the vanilla war screen is no longer the primary dependency for this feature
+
+18) Minor empire mission.44 safety fix reintroduced (2026-05-07)
+- We confirmed vanilla still defines `mission.43` and `mission.44`.
+- Instead of replacing the vanilla major-power flow, the special project was patched so:
+  - major empires still use vanilla `mission.43` / `mission.44`
+  - minor empires are redirected to `cp26_minor_mission.43` / `.44`
+- Reason:
+  - this keeps the vanilla flavored major events intact
+  - while giving minors a safe fallback path that does not rely on the fragile vanilla assumptions
+- Related files:
+  - `common/special_projects/00_projects_hornblower.txt`
+  - `events/zz_cp26_minor_mission_events.txt`
+  - `common/static_modifiers/zz_cp26_minor_missions_static_modifiers.txt`
+  - `localisation/english/replace/zz_cp26_minor_missions_l_english.yml`
+  - `localisation/french/replace/zz_cp26_minor_missions_l_french.yml`
   - the dedicated cp26 anchor initializer file used only by that older approach
 - Practical meaning:
   - the clean baseline stays cleaner

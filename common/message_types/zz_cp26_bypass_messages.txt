@@ -8,3 +8,14 @@ message_type = {
 	ping = "ping_notification_green"
 	auto_opens = none
 }
+
+message_type = {
+	key = "DIPLO_ACTION_REQUEST_SUBJECT_LIBERATION"
+	icon = "GFX_message_request_subject_liberation"
+	icon_frame = 1
+
+	name = "MESSAGE_REQUEST_SUBJECT_LIBERATION_TITLE"
+	sound = "diplomatic_notification"
+	ping = "ping_notification_yellow"
+	auto_opens = others
+}

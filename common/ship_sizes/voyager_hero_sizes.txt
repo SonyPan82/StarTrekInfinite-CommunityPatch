@@ -34,6 +34,8 @@ voyager = {
 	ship_modifier = {
 		ship_evasion_add = 48
 		#ship_piracy_suppression_add = 10
+
+		ship_hyperlane_range_add = 1
 	}
 
 	size_multiplier = 3
@@ -51,7 +53,7 @@ voyager = {
 	can_also_survey = yes
 	is_destroyable = no
 	ignores_warp_range = yes
-	
+
 	default_behavior = "hrb_interceptor"
 
 	prerequisites = { }
@@ -84,7 +86,7 @@ voyager = {
 			}
 			deuterium = @intrepid_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {

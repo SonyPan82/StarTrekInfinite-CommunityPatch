@@ -32,6 +32,7 @@ luna = {
 		ship_tracking_mult = @no_admiral_tracking_mult
 		ship_evasion_add = @luna_evasion
 		ship_anomaly_research_speed_mult = 0.10
+
 	}
 
 	size_multiplier = 5

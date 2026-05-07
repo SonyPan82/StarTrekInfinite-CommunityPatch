@@ -17,6 +17,7 @@ california = {
 		ship_shield_damage_mult = -0.1
 		ship_shield_penetration_mult = -0.1
 		ship_tracking_mult = -0.1
+
 	}
 
 	size_multiplier = 1
@@ -95,6 +96,7 @@ california_hero = {
 		ship_shield_penetration_mult = -0.1
 		ship_tracking_mult = -0.1
 		ship_speed_mult = 1
+
 	}
 
 	size_multiplier = 1

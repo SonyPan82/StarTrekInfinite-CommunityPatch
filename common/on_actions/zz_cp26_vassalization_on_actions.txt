@@ -1,0 +1,18 @@
+on_becoming_subject = {
+	events = {
+		cp26_vassalization.4
+		cp26_vassalization.20
+	}
+}
+
+on_subject_change = {
+	events = {
+		cp26_vassalization.21
+	}
+}
+
+on_releasing_subject = {
+	events = {
+		cp26_vassalization.22
+	}
+}

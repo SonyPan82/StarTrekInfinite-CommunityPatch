@@ -1,0 +1,34 @@
+@cp26_war_negotiation_cooldown = 30
+
+cp26_open_war_negotiation = {
+	length = 1
+	cooldown = @cp26_war_negotiation_cooldown
+	icon = "GFX_edict_type_policy"
+	edict_cap_usage = 0
+
+	potential = {
+		is_ai = no
+		is_at_war = yes
+	}
+
+	allow = {
+		NOT = { has_country_flag = cp26_wargoal_peace_pending_actor }
+		any_country = {
+			ROOT = {
+				is_at_war_with = prev
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
+		}
+	}
+
+	effect = {
+		country_event = { id = cp26_war_negotiation.1 }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

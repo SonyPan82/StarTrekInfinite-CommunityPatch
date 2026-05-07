@@ -1,0 +1,5 @@
+cp26_minor_outbreak_contained = {
+	planet_stability_add = 5
+	pop_growth_speed = 0.05
+	icon = "gfx/interface/icons/planet_modifiers/pm_faith_in_science.dds"
+}

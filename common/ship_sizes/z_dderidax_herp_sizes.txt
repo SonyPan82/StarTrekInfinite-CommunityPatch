@@ -43,7 +43,7 @@ dderidex_hero = {
 	graphical_culture = no
 
 	section_slots = { "mid" = { locator = "part1" } }
-	
+
 	num_target_locators = 2
 	is_space_station = no
 	icon_frame = @battleship_size_icon_frame
@@ -83,7 +83,7 @@ dderidex_hero = {
 			}
 			deuterium = @dderidex_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {

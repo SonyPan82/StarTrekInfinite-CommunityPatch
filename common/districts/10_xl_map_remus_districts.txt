@@ -26,6 +26,7 @@ district_remus = {
 	}
 
 	show_on_uncolonized = {
+		exists = from
 		is_colonizable = yes
 		uses_district_set = reman
 		from = { is_romulan = yes }
@@ -246,6 +247,7 @@ district_remans_living = {
 	}
 
 	show_on_uncolonized = {
+		exists = from
 		is_colonizable = yes
 		uses_district_set = reman
 		from = { is_romulan = yes }

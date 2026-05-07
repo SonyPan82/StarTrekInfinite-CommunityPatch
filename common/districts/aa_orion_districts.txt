@@ -12,6 +12,7 @@ district_orion_market = {
 	}
 
 	show_on_uncolonized = {
+		exists = from
 		is_colonizable = yes
 		uses_district_set = standard
 		from = { is_country_type = contender }

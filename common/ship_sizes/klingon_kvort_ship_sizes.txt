@@ -28,13 +28,13 @@ kvort = {
 		ship_tracking_mult = @no_admiral_tracking_mult
 		ship_evasion_add = @ktinga_evasion
 	}
-    
+
 	size_multiplier = 5
 	fleet_slot_size = 3
 	graphical_culture = no
-	
+
 	section_slots = { "mid" = { locator = "part1" } }
-	
+
 	num_target_locators = 2
 	is_space_station = no
 	icon_frame = @battleship_size_icon_frame
@@ -73,7 +73,7 @@ kvort = {
 			}
 			deuterium = @galaxy_upkeep_deuterium
 		}
-		
+
 		upkeep = {
 			trigger = {
 				ROOT = {

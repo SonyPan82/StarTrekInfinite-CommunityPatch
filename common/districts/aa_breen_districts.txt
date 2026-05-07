@@ -14,6 +14,7 @@ district_labor_camp_breen = {
 	}
 
 	show_on_uncolonized = {
+		exists = from
 		is_colonizable = yes
 		uses_district_set = standard
 		from = { is_country_type = contender }
@@ -72,6 +73,7 @@ district_civil_forum_breen = {
 	}
 
 	show_on_uncolonized = {
+		exists = from
 		is_colonizable = yes
 		uses_district_set = standard
 		from = { is_country_type = contender }

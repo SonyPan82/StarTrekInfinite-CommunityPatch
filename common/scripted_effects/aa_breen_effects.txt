@@ -1,9 +1,21 @@
 spawn_breen_system = {
 	spawn_system = {
 		min_jumps = 1
-		max_jumps = 1
-		min_distance = 5
-		max_distance = 10
+		max_jumps = 2
+		min_distance = 1
+		max_distance = 18
+		initializer = breen_system_initializer
+		hyperlane = yes
+		is_discovered = yes
+	}
+}
+
+spawn_breen_system_fallback = {
+	spawn_system = {
+		min_jumps = 1
+		max_jumps = 3
+		min_distance = 1
+		max_distance = 30
 		initializer = breen_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -11,68 +23,74 @@ spawn_breen_system = {
 }
 
 setup_breen_capital = {
-	random_system_planet = {
-		limit = {
-			has_planet_flag = breen_capital				
+	if = {
+		limit = { exists = event_target:breen_country }
+		random_system_planet = {
+			limit = {
+				has_planet_flag = breen_capital
+			}
+			while = {
+				count = 22
+				create_pop = { species = "Breen" }
+			}
+			clear_blockers = yes
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_farming }
+			add_district_and_planet_size_if_needed_effect = { district = district_farming }
+			add_district_and_planet_size_if_needed_effect = { district = district_farming }
+			add_district_and_planet_size_if_needed_effect = { district = district_civil_forum_breen }
+			remove_building = building_colony_shelter
+			add_building = building_capital
 		}
-		while = {
-			count = 22
-			create_pop = { species = "Breen" }
-		}
-		clear_blockers = yes
-		add_district_and_planet_size_if_needed_effect = { district = district_city }
-		add_district_and_planet_size_if_needed_effect = { district = district_city }
-		add_district_and_planet_size_if_needed_effect = { district = district_mining }
-		add_district_and_planet_size_if_needed_effect = { district = district_mining }
-		add_district_and_planet_size_if_needed_effect = { district = district_industrial }
-		add_district_and_planet_size_if_needed_effect = { district = district_generator }
-		add_district_and_planet_size_if_needed_effect = { district = district_generator }
-		add_district_and_planet_size_if_needed_effect = { district = district_farming }
-		add_district_and_planet_size_if_needed_effect = { district = district_farming }
-		add_district_and_planet_size_if_needed_effect = { district = district_farming }
-		add_district_and_planet_size_if_needed_effect = { district = district_civil_forum_breen }
-		remove_building = building_colony_shelter
-		add_building = building_capital	
-	}
-	random_system_planet = {
-		limit = {
-			has_planet_flag = breenus_secundus
-		}
-		create_colony = {
-			owner = event_target:breen_country
-		}
-		add_deposit = d_underworld_caverns
-		add_deposit = d_ore_rich_slopes
-		clear_blockers = yes
-		
-		add_district_and_planet_size_if_needed_effect = { district = district_city }
-		add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
-		add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
-		remove_building = building_colony_shelter
-		add_building = building_capital	
-		
-		while = {
-			count = 4
-			create_pop = { species = "Breen" }
-		}
+		random_system_planet = {
+			limit = {
+				has_planet_flag = breenus_secundus
+			}
+			create_colony = {
+				owner = event_target:breen_country
+			}
+			add_deposit = d_underworld_caverns
+			add_deposit = d_ore_rich_slopes
+			clear_blockers = yes
 
-		create_pop = { species = "Bajoran" }
-		create_pop = { species = "Romulan" }
-		create_pop = { species = "Cardassian" }
-		create_pop = { species = "Klingon" }
-	}
-	create_starbase = {
-		size = starbase_starport
-		owner = event_target:breen_country
-		module = shipyard
-		building = crew_quarters
+			add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
+			add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
+			remove_building = building_colony_shelter
+			add_building = building_capital
+
+			while = {
+				count = 4
+				create_pop = { species = "Breen" }
+			}
+
+			create_pop = { species = "Bajoran" }
+			create_pop = { species = "Romulan" }
+			create_pop = { species = "Cardassian" }
+			create_pop = { species = "Klingon" }
+		}
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:breen_country
+			module = shipyard
+			building = crew_quarters
+		}
 	}
 }
 
 setup_breen_territory = {
-	set_surveyed = { surveyed = yes surveyor = event_target:breen_country }
-	create_starbase = {
-		size = starbase_outpost
-		owner = event_target:breen_country
+	if = {
+		limit = { exists = event_target:breen_country }
+		set_surveyed = { surveyed = yes surveyor = event_target:breen_country }
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:breen_country
+		}
 	}
 }
