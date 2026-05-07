@@ -118,8 +118,7 @@ Context
   - place them in the patch localisation as well as replace files when necessary
 
 8) Workshop comparison findings
-- We compared the local CP26 tree against the Workshop version:
-  /Users/yohanmbp/Library/Application Support/Steam/steamapps/workshop/content/1622900/3717921693
+- We compared the local CP26 tree against the Workshop version
 - Confirmed Workshop items that had gone missing locally and were restored:
   - events/zz_cp26_ai_shipyard_fix.txt
   - events/zz_cp26_bajoran_wormhole_events.txt
