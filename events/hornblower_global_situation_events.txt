@@ -1,0 +1,8878 @@
+##########################
+## 						##
+##########################
+
+namespace = global_situation
+
+## war_situation starts
+country_event = {
+	id = global_situation.17
+	title = "global_situation.17.name"
+	show_sound = event_generic_warfare
+	is_triggered_only = yes
+
+	trigger = {
+		always = yes
+	}
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_empire_fleet_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_empire_fleet_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "global_situation.17.ufop.desc"
+	} 
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "global_situation.17.klingon.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text = "global_situation.17.romulan.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "global_situation.17.cardassian.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_major = no
+		}
+		text = "global_situation.17.hidden.desc"
+	} 
+
+	after = {
+
+		# save_event_target_as = war_participant@situation@country
+
+		start_global_situation = {
+			type = war_situation
+
+			# No target, see divination_locus or divination_visitors for example
+			# target = root
+
+			# No extra effects for now
+			# effect = {
+			# }
+		}
+
+		hidden_effect = {
+			last_created_situation = {
+				save_event_target_as = war_situation_scope
+			}
+	
+			# Adding SITUATION PARTICIPANTS
+			fromfrom = { 
+				set_situation = event_target:war_situation_scope
+	
+				every_war_participant = {
+					event_target:war_situation_scope = {
+						add_participants_to_global_situation = {
+							who = prev
+						}
+					}
+					set_country_flag = participant_in_situation@event_target:war_situation_scope
+				}
+				every_war_participant = {
+					limit = {
+						is_war_leader = yes
+						is_war_participant = {
+							war = fromfrom
+							side = attackers
+						}
+					}
+					save_event_target_as = war_situation_attackers_leader
+					log = "war_situation_attackers_leader set"
+					set_country_flag = attacker_war_leader_flag_@event_target:war_situation_scope
+				}
+				every_war_participant = {
+					limit = {
+						is_war_leader = yes
+						is_war_participant = {
+							war = fromfrom
+							side = defenders
+						}
+					}
+					save_event_target_as = war_situation_defenders_leader
+					log = "war_situation_defenders_leader set"
+					set_country_flag = defender_war_leader_flag_@event_target:war_situation_scope
+				}
+			}
+	
+			# CP26: The vanilla third-party participant scan can lose the local
+			# war_situation_scope while evaluating every_country, producing invalid
+			# situation scope errors and save-time crashes. War leaders and direct
+			# war participants are still registered above.
+		}
+	}
+
+	### UFOP: We will fight.
+	option = { 
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = global_situation.17.a
+		custom_tooltip = global_situation.17.a.tt
+	}
+
+	### Klingon: wo'batlhvad!
+	option = { 
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = global_situation.17.b
+		custom_tooltip = global_situation.17.b.tt
+	}
+
+	### Romulan: Let them come.
+	option = { 
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = global_situation.17.c
+		custom_tooltip = global_situation.17.c.tt
+	}
+
+	### Cardassian: Mobilize forces.
+	option = { 
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = global_situation.17.d
+		custom_tooltip = global_situation.17.d.tt
+	}
+
+	### Hidden option for MiPos
+	option = { 
+
+		trigger = {
+			is_major = no
+		}
+
+		name = global_situation.17.d
+		custom_tooltip = global_situation.17.d.tt
+	}
+}
+
+## war_situation on fail
+country_event = {
+	id = global_situation.18
+	title = "global_situation.18.name"
+	desc = "global_situation.18.desc"
+	situation = this
+	is_triggered_only = yes
+	show_sound = event_generic_warfare
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_empire_fleet_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_empire_fleet_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	option = { 
+		name = global_situation.18.a 
+		owner = {
+			add_modifier = { 
+				modifier = war_situation_defensive_finisher 
+			} #Removed when war ends
+		}
+
+	}
+}
+
+## war_situation on complete
+country_event = {
+	id = global_situation.19
+	title = "global_situation.19.name"
+	desc = "global_situation.19.desc"
+	situation = this
+	is_triggered_only = yes
+	show_sound = event_generic_warfare
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_empire_fleet_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_empire_fleet_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	option = { 
+		name = global_situation.19.a
+		owner = {
+			add_modifier = { 
+				modifier = war_situation_aggresive_finisher
+			} #Removed when war ends
+		}
+	}
+}
+
+# war_situation Stage 2
+situation_event = {
+	id = global_situation.20
+	title = "global_situation.20.name"
+	desc = "global_situation.20.desc"
+	situation = this
+	is_triggered_only = yes
+	show_sound = event_generic_warfare
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_empire_fleet_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_empire_fleet_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	immediate = {
+		set_situation_flag = war_stage_2
+	}
+
+	option = { 
+		name = global_situation.20.a 
+		custom_tooltip = global_situation.20.a.tt
+
+		owner = {
+			add_modifier = {
+				modifier = "war_situation_defensive_effect"
+				days = 1600
+			}
+		}	
+	}
+
+	option = { 
+		name = global_situation.20.b 
+		custom_tooltip = global_situation.20.b.tt
+
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier3materialreward
+				min = @tier3materialmin
+				max = @tier3materialmax
+			}
+		}
+	}
+}
+
+# war_situation Stage 3
+situation_event = {
+	id = global_situation.21
+	title = "global_situation.21.name"
+	desc = "global_situation.21.desc"
+	situation = this
+	is_triggered_only = yes
+	show_sound = event_generic_warfare
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_empire_fleet_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_empire_fleet_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	option = { name = global_situation.21.a }
+}
+
+# war_situation Stage 2_alt
+situation_event = {
+	id = global_situation.22
+	title = "global_situation.22.name"
+	desc = "global_situation.22.desc"
+	situation = this
+	is_triggered_only = yes
+	show_sound = event_generic_warfare
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_empire_fleet_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_empire_fleet_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	immediate = {
+		set_situation_flag = war_stage_2_alt
+	}
+
+	option = { 
+		name = global_situation.22.a 
+		custom_tooltip = global_situation.22.a.tt
+
+		owner = {
+			add_modifier = {
+				modifier = "war_situation_offensive_effect"
+				days = 1600
+			}
+		}	
+	}
+
+	option = { 
+		name = global_situation.22.b 
+		custom_tooltip = global_situation.22.b.tt
+
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = @tier3materialreward
+				min = @tier3materialmin
+				max = @tier3materialmax
+			}
+		}
+	}
+}
+
+# war_situation Stage 3_alt
+situation_event = {
+	id = global_situation.23
+	title = "global_situation.23.name"
+	desc = "global_situation.23.desc"
+	situation = this
+	is_triggered_only = yes
+	show_sound = event_generic_warfare
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_empire_fleet_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_empire_fleet_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	option = { name = global_situation.23.a }
+}
+
+## war_situation ends and delete effect on war finished
+country_event = {
+	id = global_situation.24
+	title = "global_situation.24.name"
+	is_triggered_only = yes
+	show_sound = event_the_war_is_over
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_empire_fleet_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_empire_fleet_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_empire_fleet_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_empire_fleet_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "global_situation.24.ufop.desc"
+	} 
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "global_situation.24.klingon.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text = "global_situation.24.romulan.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "global_situation.24.cardassian.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_major = no
+		}
+		text = "global_situation.24.hidden.desc"
+	}
+
+	immediate = {
+		fromfrom = {
+			if = {
+				limit = { exists = situation }
+				destroy_situation = situation
+			}
+		}
+	}
+
+	### UFOP: We will rebuild.
+	option = { 
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = global_situation.24.a
+		custom_tooltip = global_situation.24.a.tt
+
+		owner = {
+			switch = {
+				trigger = has_modifier
+				war_situation_defensive_finisher = { remove_modifier = war_situation_defensive_finisher }
+				war_situation_aggresive_finisher = { remove_modifier = war_situation_aggresive_finisher } 
+			}
+		}
+	}
+
+	### KLINGON:  tlhIngan maH!
+	option = { 
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = global_situation.24.b
+		custom_tooltip = global_situation.24.b.tt
+
+		owner = {
+			switch = {
+				trigger = has_modifier
+				war_situation_defensive_finisher = { remove_modifier = war_situation_defensive_finisher }
+				war_situation_aggresive_finisher = { remove_modifier = war_situation_aggresive_finisher } 
+			}
+		}
+	}
+
+	### Romulan: Peace is an illusion.
+	option = { 
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = global_situation.24.c
+		custom_tooltip = global_situation.24.c.tt
+
+		owner = {
+			switch = {
+				trigger = has_modifier
+				war_situation_defensive_finisher = { remove_modifier = war_situation_defensive_finisher }
+				war_situation_aggresive_finisher = { remove_modifier = war_situation_aggresive_finisher } 
+			}
+		}
+	}
+
+	### Cardassian: Commence reconstruction.
+	option = { 
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = global_situation.24.d
+		custom_tooltip = global_situation.24.d.tt
+
+		owner = {
+			switch = {
+				trigger = has_modifier
+				war_situation_defensive_finisher = { remove_modifier = war_situation_defensive_finisher }
+				war_situation_aggresive_finisher = { remove_modifier = war_situation_aggresive_finisher } 
+			}
+		}
+	}
+
+	### Hidden option for MiPos
+	option = { 
+
+		trigger = {
+			is_major = no
+		}
+
+		name = global_situation.24.e
+		custom_tooltip = global_situation.24.e.tt
+
+		owner = {
+			switch = {
+				trigger = has_modifier
+				war_situation_defensive_finisher = { remove_modifier = war_situation_defensive_finisher }
+				war_situation_aggresive_finisher = { remove_modifier = war_situation_aggresive_finisher } 
+			}
+		}
+	}
+}
+
+### Negotiation Situation ###
+
+# negotiation_situation on_start
+situation_event = {
+	id = global_situation.100
+	title = "Negotiation Situation"
+	desc = "Negotiation Situation Description"
+	picture = GFX_evt_warscore_background
+	show_sound = event_wind_ruins
+	is_triggered_only = yes
+
+	option = { name = OK }
+}
+
+# negotiation_situation on_fail (left)
+# attacker (situation owner) loses the war
+situation_event = {
+	id = global_situation.101
+	hide_window = yes
+	is_triggered_only = yes
+
+	situation = this
+
+	immediate = {
+		owner = { save_event_target_as = attacker }
+		random_situation_participant_country = {
+			limit = { is_at_war_with = event_target:attacker }
+			this = { end_war = { enemy = event_target:attacker type = demand_surrender } }
+		}
+	}
+}
+
+# negotiation_situation on_progress_complete (right)
+# attacker (situation owner) wins the war
+situation_event = {
+	id = global_situation.102
+	hide_window = yes
+	is_triggered_only = yes
+
+	situation = this
+
+	immediate = {
+		owner = { save_event_target_as = attacker }
+		random_situation_participant_country = {
+			limit = { is_at_war_with = event_target:attacker }
+			event_target:attacker = { end_war = { enemy = prev type = demand_surrender } }
+		}
+	}
+}
+
+# on_war_ended_one_time triggered
+# Root = Loser
+# From = Winner
+# FromFrom = War
+country_event = {
+	id = global_situation.103
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_situation = {
+			limit = {
+				is_situation_type = negotiation_situation
+				target = { is_same_value = prevprev.fromfrom }
+			}
+			destroy_situation = this
+		}
+	}
+}
+
+########################
+# War Situation Events #
+########################
+
+### STAGES EVENTS - DEFENDERS		
+		
+# Defender Stage - Main Defender Event		
+country_event = {		
+	id = global_situation.200	
+	title = global_situation.200.name	
+	desc = global_situation.200.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_red_alert_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_red_alert_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_red_alert_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_red_alert_cardassian
+	}
+		
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_ship_bridge	
+	is_triggered_only = yes	
+		
+	option = {	
+
+		#Gain opinion with everyone else
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = root
+						is_same_value = event_target:main_attacker_scope
+					}
+				}
+	
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_defender_stage
+				}
+			}
+		}
+
+		name = global_situation.200.a
+		custom_tooltip = global_situation.200.a.tt
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+
+		hidden_effect = {
+			#Create Elite armies
+			if = {
+				limit = {
+					exists = this
+					is_ufop = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = ufop_elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = this
+					is_klingon = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = klingon_elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = this
+					is_romulan = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = romulan_elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = this
+					is_cardassian = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = cardassian_elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = this
+					is_minor = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+
+			#Destroy enemy assault armies
+			while = {
+				count = 10
+				event_target:main_attacker_scope = {
+					random_owned_army = {
+						limit = {
+							NOR = {
+								army_type = defense_army
+								army_type = ufop_defense_army
+								army_type = klingon_defense_army
+								army_type = romulan_defense_army
+								army_type = cardassian_defense_army
+							}
+						}
+						remove_army = yes
+					}
+				}
+			}
+		}
+
+
+		name = global_situation.200.b
+		custom_tooltip = global_situation.200.b.tt
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+
+		name = global_situation.200.c
+		custom_tooltip = global_situation.200.c.tt
+
+		### Add war exhaustion effect
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = attackers
+				amount = 0.2
+			}
+		}
+
+		from = {
+			add_situation_progress = 20
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+# Defender Stage - Defender Pop-up		
+country_event = {		
+	id = global_situation.210	
+	title = global_situation.210.name	
+	desc = global_situation.210.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.210.a
+	}	
+}		
+# Defender Stage - Attackers pop-up		
+country_event = {		
+	id = global_situation.220	
+	title = global_situation.220.name	
+	desc = global_situation.220.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.220.a
+	}	
+}
+
+###
+# Defender Stage - TIME SYNC - Main Defender Event
+###
+
+country_event = {
+	id = global_situation.2230	
+	title = global_situation.2230.name	
+	desc = global_situation.2230.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_ship_nebula_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_ship_nebula_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_ship_nebula_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_ship_nebula_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+
+	show_sound = event_nebula_ship	
+	is_triggered_only = yes	
+
+
+	after = {
+		# NOTIFY THE OTHER SIDE
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = attackers
+				}
+			}
+			country_event = { id = global_situation.2240 days = 7 }
+		}	
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = defenders
+				}
+			}
+			country_event = { id = global_situation.2250 days = 7 }
+		}	
+	}
+		
+	## MERGE THE OPTIMISTIC TIMELINE
+	option = {	
+		name = global_situation.2230.a
+		custom_tooltip = global_situation.2230.a.tt
+
+		allow = {
+			
+		}
+
+		random_list = {
+			50 = { event_target:current_war_scope = { add_static_war_gains = {	target = defenders amount = 10 } } }
+			50 = { event_target:current_war_scope = { add_passive_war_exhaustion = { target = defenders amount = -0.1 } } }
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## MERGE THE CHAOTIC TIMELINE
+	option = {	
+		name = global_situation.2230.b
+		custom_tooltip = global_situation.2230.b.tt
+
+		hidden_effect = {
+		}
+
+		random_list = {
+			50 = { event_target:main_defender_scope = { random_owned_leader = { limit = { exists = this } kill_leader = { show_notification = yes } } } }
+			50 = { event_target:main_defender_scope = { add_random_research_option = { add_progress = 1 tier > 1 } } }
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## MERGE THE DARKEST TIMELINE
+	option = {	
+		name = global_situation.2230.c
+		custom_tooltip = global_situation.2230.c.tt
+
+		hidden_effect = {
+		}
+
+		random_list = {
+			50 = { event_target:main_defender_scope = { add_resource = { alloys = 300 food = 300 } add_global_tension = { amount = 10 type = war_developments country = event_target:main_defender_scope } } }
+			50 = { event_target:main_defender_scope = { add_resource = { energy = 800 influence = 50 } add_global_tension = { amount = 10 type = war_developments country = event_target:main_defender_scope } } }
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Defender Stage - TIME SYNC - DEFENDER - A SHIVER IN TIME - ATTACKERS SIDE POP-UP
+country_event = {		
+	id = global_situation.2240	
+	title = global_situation.2240.name	
+	desc = global_situation.2240.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+	
+	option = {	
+		name = global_situation.2240.a
+	}	
+}		
+
+# Defender Stage - TIME SYNC - DEFENDER - TIMELINES CONVERGE - DEFENDERS SIDE POP-UP
+country_event = {		
+	id = global_situation.2250	
+	title = global_situation.2250.name	
+	desc = global_situation.2250.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+	
+	option = {	
+		name = global_situation.2250.a
+	}	
+}
+
+###
+# Defender Stage - FALSE FLAG - Main Defender Event
+###
+
+country_event = {
+	id = global_situation.2330	
+	title = global_situation.2330.name	
+	desc = global_situation.2330.desc
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_civil_unrest_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_civil_unrest_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_civil_unrest_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_civil_unrest_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_red_alert	
+	is_triggered_only = yes	
+
+	trigger = {
+		any_owned_planet = {
+			is_colony = yes
+				num_buildings = {
+					type = any
+					value > 1
+				}
+		}
+	}
+
+
+	after = {
+		# NOTIFY THE OTHER SIDE
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = attackers
+				}
+			}
+			country_event = { id = global_situation.2340 days = 7 }
+		}	
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = defenders
+				}
+			}
+			country_event = { id = global_situation.2350 days = 7 }
+		}	
+	}
+
+	immediate = {
+		random_owned_planet = {
+			limit = {
+				is_colony = yes
+				has_random_civilian_building = yes
+			}
+			save_event_target_as = false_flag_colony
+		}
+	}
+		
+	## OPEN THE SITE FOR INVESTIGATIONS
+	option = {	
+		name = global_situation.2330.a
+		custom_tooltip = global_situation.2330.a.tt
+
+		allow = {
+			
+		}
+
+		remove_random_civilian_building = {
+			TARGET = event_target:false_flag_colony
+		}
+		add_global_tension = {
+			amount = -10
+			type = war_developments
+			country = root
+		}
+
+		# WILLING TO SUPPORT EFFECT
+		from = {
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## STRIKE BACK
+	option = {	
+		name = global_situation.2330.b
+		custom_tooltip = global_situation.2330.b.tt
+
+		hidden_effect = {
+			if = {
+				limit = { 
+					is_ufop = yes
+				}
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+			}
+			else_if = {
+				limit = { 
+					is_cardassian = yes
+				}
+				increase_pop_loyalty_war_situation_effect_cardassian = yes
+			}
+			else_if = {
+				limit = { 
+					is_klingon = yes
+				}
+				increase_pop_loyalty_war_situation_effect_klingon = yes
+			}
+			else_if = {
+				limit = { 
+					is_romulan = yes
+				}
+				increase_pop_loyalty_war_situation_effect_romulan = yes
+			}
+		}
+
+		add_resource = {
+			unity = 250
+		}
+
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## EVACUATE CIVILIANS
+	option = {	
+		name = global_situation.2330.c
+		custom_tooltip = global_situation.2330.c.tt
+
+		hidden_effect = {
+		}
+
+		random_list = {
+			60 = { country_event = { id = global_situation.2331 days = 7 } }
+			40 = { country_event = { id = global_situation.2332 days = 7 } }
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Defender Stage - FALSE FLAG - DEFENDER - FALSE FLAGS PLANTED - ATTACKERS SIDE POP-UP
+country_event = {		
+	id = global_situation.2340	
+	title = global_situation.2340.name	
+	desc = global_situation.2340.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_red_alert_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_red_alert_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_red_alert_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_red_alert_cardassian
+	}
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_generic_suspense		
+	is_triggered_only = yes	
+
+	immediate = {
+
+	}
+		
+	option = {	
+		name = global_situation.2340.a
+	}	
+}		
+
+# Defender Stage - FALSE FLAG - DEFENDER - TERROR TACTICS BACKFIRE - DEFENDERS SIDE POP-UP
+country_event = {		
+	id = global_situation.2350	
+	title = global_situation.2350.name	
+	desc = global_situation.2350.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_red_alert_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_red_alert_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_red_alert_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_red_alert_cardassian
+	}
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_generic_suspense	
+	is_triggered_only = yes	
+
+	immediate = {
+
+	}
+		
+	option = {	
+		name = global_situation.2350.a
+	}	
+}	
+
+# Defender Stage - FALSE FLAG - DEFENDER - CIVILIANS ARE OFF LIMIT - DEFENDER SUCCESS 
+country_event = {		
+	id = global_situation.2331
+	title = global_situation.2331.name	
+	desc = global_situation.2331.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_burial_enterprise_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_burial_vorcha_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_burial_valdore_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_ground_burial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_space_burial	
+	is_triggered_only = yes	
+		
+	after = {
+		event_target:main_attacker_scope = {
+			random_owned_leader = {
+				limit = {
+					exists = leader
+				}
+				kill_leader = {
+					show_notification = yes
+				}
+			}
+			random_owned_army = {
+				limit = {
+					is_defensive_army = no
+				}
+				if = {
+					limit = {
+						exists = leader
+					}
+					leader = {
+						unassign_leader = this
+					}
+				}
+				remove_army = yes
+			}
+		}
+	}
+
+	option = {	
+		name = global_situation.2331.a
+	}	
+}
+
+# Defender Stage - FALSE FLAG - DEFENDER - NO JUSTICE TODAY - DEFENDER FAILURE
+country_event = {		
+	id = global_situation.2332
+	title = global_situation.2332.name	
+	desc = global_situation.2332.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_burial_enterprise_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_burial_vorcha_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_burial_valdore_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_ground_burial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_space_burial	
+	is_triggered_only = yes	
+		
+	after = {
+		add_resource = {
+			influence = 50
+		}
+	}
+
+	option = {	
+		name = global_situation.2332.a
+	}	
+}
+
+###
+# Defender Stage - SPECIAL FORCES CAPTURED - Main Defender Event
+###
+
+country_event = {
+	id = global_situation.2430	
+	title = global_situation.2430.name	
+	desc = global_situation.2430.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_combat_onboard_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_combat_onboard_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_combat_onboard_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_combat_onboard_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_civil_unrest
+	is_triggered_only = yes	
+
+
+	after = {
+		# NOTIFY THE OTHER SIDE
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = attackers
+				}
+			}
+			country_event = { id = global_situation.2440 days = 7 }
+		}	
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = defenders
+				}
+			}
+			country_event = { id = global_situation.2450 days = 7 }
+		}	
+	}
+		
+	## SUBJECT THEM TO HOLO-INTERROGATION
+	option = {	
+		name = global_situation.2430.a
+		custom_tooltip = global_situation.2430.a.tt
+
+		add_intel = {
+			who = event_target:main_attacker_scope
+			amount = 15
+		}
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+
+		event_target:current_war_scope = {
+			add_static_war_gains = {
+				target = defenders
+				amount = 10
+			}
+		}
+
+		hidden_effect = {
+			if = {
+				limit = {
+					is_ufop = yes
+				}
+				war_situation_reduce_pop_loyalty = yes
+			}			
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## REVERSE THEIR GENETIC MODIFICATIONS
+	option = {	
+		name = global_situation.2430.b
+		custom_tooltip = global_situation.2430.b.tt
+
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = attackers
+				amount = 0.1
+			}
+		}
+
+		add_monthly_resource_mult = {
+			resource = research
+			value = 6
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## HOLD A TRIBUNAL
+	option = {	
+		name = global_situation.2430.c
+		custom_tooltip = global_situation.2430.c.tt
+
+		add_global_tension = {
+			amount = -10
+			type = war_developments
+			country = root
+		}
+
+		from = {
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Defender Stage - SPECIAL FORCES CAPTURED - DEFENDER - BASELESS CONJECTURE - ATTACKERS SIDE POP-UP
+country_event = {		
+	id = global_situation.2440	
+	title = global_situation.2440.name	
+	desc = global_situation.2440.desc	
+	picture = GFX_evt_diplomatic_visit_fail	
+	show_sound = event_generic_mysterious	
+	is_triggered_only = yes	
+
+	immediate = {
+
+	}
+		
+	option = {	
+		name = global_situation.2440.a
+	}	
+}		
+
+# Defender Stage - SPECIAL FORCES CAPTURED - DEFENDER - SABOTEURS UNMASKED - DEFENDERS SIDE POP-UP
+country_event = {		
+	id = global_situation.2450	
+	title = global_situation.2450.name	
+	desc = global_situation.2450.desc	
+	picture = GFX_evt_diplomatic_visit_fail	
+	show_sound = event_generic_mysterious	
+	is_triggered_only = yes	
+
+	immediate = {
+
+	}
+		
+	option = {	
+		name = global_situation.2450.a
+	}	
+}
+
+###
+# Defender Stage - RIDICULOUS DEMANDS - Main Defender Event
+###
+
+country_event = {
+	id = global_situation.2530	
+	title = global_situation.2530.name	
+	desc = global_situation.2530.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_red_alert_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_red_alert_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_red_alert_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_red_alert_cardassian
+	}
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_ship_bridge	
+	is_triggered_only = yes	
+
+	after = {
+		# NOTIFY THE OTHER SIDE
+
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				# has_country_flag = participant_in_situation@event_target:current_war_scope
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = attackers
+				}
+			}
+			country_event = { id = global_situation.2540 days = 7 }
+		}	
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				# has_country_flag = participant_in_situation@event_target:current_war_scope
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = defenders
+				}
+			}
+			country_event = { id = global_situation.2550 days = 7 }
+		}	
+	}
+		
+	## MOCK THEM
+	option = {	
+		name = global_situation.2530.a
+		custom_tooltip = global_situation.2530.a.tt
+
+		add_resource = {
+			influence = 30
+		}
+
+		if = {
+			limit = {
+				is_ufop = yes
+			}
+			increase_pop_loyalty_war_situation_effect_ufop = yes
+		}
+		else_if = {
+			limit = {
+				is_klingon = yes
+			}
+			increase_pop_loyalty_war_situation_effect_klingon = yes
+		}
+		else_if = {
+			limit = {
+				is_romulan = yes
+			}
+			increase_pop_loyalty_war_situation_effect_romulan = yes
+		}
+		else_if = {
+			limit = {
+				is_cardassian = yes
+			}
+			increase_pop_loyalty_war_situation_effect_cardassian = yes
+		}
+
+
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## TAKE THE MORAL HIGH-GROUND
+	option = {	
+		name = global_situation.2530.b
+		custom_tooltip = global_situation.2530.b.tt
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+
+		fromfrom = {
+			add_willing_to_support = {
+				amount = 10
+			}
+		}
+		
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## IGNORE-THEM
+	option = {	
+		name = global_situation.2530.c
+		custom_tooltip = global_situation.2530.c.tt
+
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = defenders
+				amount = -0.2
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Defender Stage - RIDICULOUS DEMANDS - DEFENDER - DEMANDS RECEIVED - ATTACKERS SIDE POP-UP
+country_event = {		
+	id = global_situation.2540	
+	title = global_situation.2540.name	
+	desc = global_situation.2540.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+
+	immediate = {
+
+	}
+		
+	option = {	
+		name = global_situation.2540.a
+	}	
+}		
+
+# Defender Stage - RIDICULOUS DEMANDS - DEFENDER - DEMANDS REJECTED - DEFENDERS SIDE POP-UP
+country_event = {		
+	id = global_situation.2550	
+	title = global_situation.2550.name	
+	desc = global_situation.2550.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+
+	immediate = {
+
+	}
+		
+	option = {	
+		name = global_situation.2550.a
+	}	
+}
+
+### STAGES EVENTS - ATTACKERS		
+
+####
+# Attacker Stage - FOG OF WAR - Main Attacker Event		
+####
+
+country_event = {		
+	id = global_situation.230	
+	title = global_situation.230.name	
+	desc = global_situation.230.desc
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_red_alert_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_red_alert_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_red_alert_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_red_alert_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_generic_mysterious	
+	is_triggered_only = yes	
+		
+	option = {	
+
+		name = global_situation.230.a
+		custom_tooltip = global_situation.230.a.tt
+
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = 12
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.230.b
+		custom_tooltip = global_situation.230.b.tt
+
+		hidden_effect = {
+			#Create Elite armies
+			if = {
+				limit = {
+					exists = this
+					is_ufop = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = ufop_elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = this
+					is_klingon = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = klingon_elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = this
+					is_romulan = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = romulan_elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = this
+					is_cardassian = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = cardassian_elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = this
+					is_minor = yes
+				}
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					while = {
+						count = 4
+						create_army = {
+							owner = THIS
+							type = elite_assault_army
+							species = owner_main_species
+						}
+					}
+				}
+			}
+		}
+
+		add_monthly_resource_mult = {
+			resource = officers
+			value = 12
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.230.c
+		custom_tooltip = global_situation.230.c.tt
+
+		#Lose opinion with everyone else
+		hidden_effect = {
+			country_event = {
+				id = global_situation.231
+			}
+		}
+
+		### Add war exhaustion effect
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = defenders
+				amount = 0.2
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+# LOSE OPINION WITH EVERYBODY ELSE	
+country_event = {		
+	id = global_situation.231
+	hide_window = yes
+	is_triggered_only = yes	
+		
+	immediate = {	
+		every_country = {
+			limit = {
+				NOR = {
+					is_same_value = root
+					is_same_value = event_target:main_attacker_scope
+				}
+			}
+			add_opinion_modifier = {
+				who = root
+				modifier = opinion_attacker_massacre
+			}
+		}
+	}	
+}		
+# Attacker Stage - FOG OF WAR - Attacker Pop-up		
+country_event = {		
+	id = global_situation.240	
+	title = global_situation.240.name	
+	desc = global_situation.240.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.240.a
+	}	
+}		
+# Attacker Stage - FOG OF WAR - Defenders pop-up		
+country_event = {		
+	id = global_situation.250	
+	title = global_situation.250.name	
+	desc = global_situation.250.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.250.a
+	}	
+}		
+
+####
+# Attacker Stage - HOLOGRAMS - Main Attacker Event
+####
+
+country_event = {
+	id = global_situation.1230	
+	title = global_situation.1230.name	
+	desc = global_situation.1230.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_computer_malfunction_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_computer_malfunction_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_computer_malfunction_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_computer_malfunction_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_computer_malfunction	
+	is_triggered_only = yes	
+
+
+	after = {
+		# NOTIFY THE OTHER SIDE
+
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = attackers
+				}
+			}
+			country_event = { id = global_situation.1240 days = 7 }
+		}	
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = defenders
+				}
+			}
+			country_event = { id = global_situation.1250 days = 7 }
+		}	
+	}
+		
+	## COUNTER WITH GRAVITY FUNNELS
+	option = {	
+		name = global_situation.1230.a
+		custom_tooltip = global_situation.1230.a.tt
+
+		allow = {
+			resource_stockpile_compare = {
+				resource = gravitons
+				value >= 100
+			}
+		}
+
+		hidden_effect = {
+			add_resource = {
+				gravitons = -100
+			}
+		}
+
+		from = {
+			current_war = {
+				add_passive_war_exhaustion = {
+					target = attackers
+					amount = -0.15
+				}
+				add_passive_war_exhaustion = {
+					target = defender
+					amount = 0.15
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## SHARE DATA TO TRIANGULATE ENEMY POSITIONS
+	option = {	
+		name = global_situation.1230.b
+		custom_tooltip = global_situation.1230.b.tt
+
+		hidden_effect = {
+		}
+
+		add_global_tension = {
+			amount = 10
+			type = war_developments
+			country = root
+		}
+
+		add_intel = {
+			amount = 50
+			who = event_target:main_defender_scope
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## SHARE DATA TO TRIANGUALTE ENEMY POSITIONS
+	option = {	
+		name = global_situation.1230.c
+		custom_tooltip = global_situation.1230.c.tt
+
+		random_list = {
+			70 = { country_event = { id = global_situation.1231 days = 7 } } # SUCCESS
+			30 = { country_event = { id = global_situation.1232 days = 7 } } # FAILURE
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Attacker Stage - HOLOGRAMS - ATTACKER SUCCESS
+country_event = {		
+	id = global_situation.1231
+	hide_window = yes
+	is_triggered_only = yes
+		
+	immediate = {
+		hidden_effect = {
+			add_global_tension = {
+				amount = -5
+				type = war_developments
+				country = root
+			}
+	
+			add_intel = {
+				amount = 30
+				who = event_target:main_defender_scope
+			}
+		}
+	}
+}
+
+# Attacker Stage - HOLOGRAMS - ATTACKER FAILURE
+country_event = {		
+	id = global_situation.1232
+	is_triggered_only = yes	
+	hide_window = yes
+		
+	immediate = {
+		hidden_effect = {
+			event_target:current_war_scope = {
+				add_passive_war_exhaustion = {
+					target = attackers
+					amount = 10
+				}
+			}
+			add_intel = {
+				who = event_target:main_defender_scope
+				amount = 15
+			}
+			add_resource = {
+				energy = -800
+			}
+			event_target:main_defender_scope = {
+				add_intel = {
+					who = event_target:main_attacker_scope
+					amount = 15
+				}
+			}
+		}
+	}
+}
+
+# Attacker Stage - HOLOGRAMS - HOLOGRAPHIC FLEETS FLICKER OUT - ATTACKERS SIDE POP-UP
+country_event = {		
+	id = global_situation.1240	
+	title = global_situation.1240.name	
+	desc = global_situation.1240.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+	
+	option = {	
+		name = global_situation.1240.a
+	}	
+}		
+
+# Attacker Stage - HOLOGRAMS - FLIGHTS OF FANCY - DEFENDERS SIDE POP-UP
+country_event = {		
+	id = global_situation.1250	
+	title = global_situation.1250.name	
+	desc = global_situation.1250.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+	
+	option = {	
+		name = global_situation.1250.a
+	}	
+}	
+
+####
+# Attacker Stage - SCORCHED VOID - Main Attacker Event
+####
+
+country_event = {
+	id = global_situation.1330	
+	title = global_situation.1330.name	
+	desc = global_situation.1330.desc	
+	picture = GFX_evt_spaceship_junkyard	
+	show_sound = event_war_games	
+	is_triggered_only = yes	
+
+	after = {
+		# NOTIFY THE OTHER SIDE
+
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = attackers
+				}
+			}
+			country_event = { id = global_situation.1340 days = 7 }
+		}	
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = defenders
+				}
+			}
+			country_event = { id = global_situation.1350 days = 7 }
+		}	
+	}
+		
+	## CLEAR LANES OF INGRESS
+	option = {	
+		name = global_situation.1330.a
+		custom_tooltip = global_situation.1330.a.tt
+
+		add_resource = {
+			energy = 300
+			deuterium = 100
+			alloys = 300
+		}
+
+		fromfrom = {
+			current_war = {
+				add_passive_war_exhaustion = {
+					target = attackers
+					amount = 0.1
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## OFFER REFUGE TO THEIR CITIZENS
+	option = {	
+		name = global_situation.1330.b
+		custom_tooltip = global_situation.1330.b.tt
+
+		add_resource = {
+			food = -150
+			influence = 30
+		}
+
+		if = {
+			limit = {
+				root = {
+					is_cardassian = yes
+				}
+			}
+			war_situation_convert_pops = {
+				AMOUNT = 0.1
+				TARGET = cardassian
+			}
+		}
+		else_if = {
+			limit = {
+				root = {
+					is_ufop = yes
+				}
+			}
+			war_situation_convert_pops = {
+				AMOUNT = 0.1
+				TARGET = ufop
+			}
+		}
+		else_if = {
+			limit = {
+				root = {
+					is_romulan = yes
+				}
+			}
+			war_situation_convert_pops = {
+				AMOUNT = 0.1
+				TARGET = romulan
+			}
+		}
+		else_if = {
+			limit = {
+				root = {
+					is_klingon = yes
+				}
+			}
+			war_situation_convert_pops = {
+				AMOUNT = 0.1
+				TARGET = klingon
+			}
+		}
+
+		fromfrom = {
+			current_war = {
+				defender = {
+					random_system_within_border = {
+						limit = {
+							exists = owner
+							root = {
+								is_same_value = owner
+							}
+						}
+			
+						add_modifier = {
+							modifier = space_storm
+							years = 10
+						}
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## PUNISH THEIR RETREAT
+	option = {	
+		name = global_situation.1330.c
+		custom_tooltip = global_situation.1330.c.tt
+
+		random_list = {
+			70 = { country_event = { id = global_situation.1331 days = 7 } } # SUCCESS
+			30 = { country_event = { id = global_situation.1332 days = 7 } } # FAILURE
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Attacker Stage - SCORCHED VOID - RUNNING THE ENEMY DOWN - ATTACKER SUCCESS POP UP
+country_event = {		
+	id = global_situation.1331
+	title = global_situation.1331.name	
+	desc = global_situation.1331.desc	
+	picture = GFX_evt_space_debris	
+	show_sound = event_war_games
+	hide_window = no
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	option = {	
+		name = global_situation.1331.a
+
+		fromfrom = {
+			current_war = {
+				add_static_war_gains = {
+					target = attackers
+					amount = 10
+				}
+
+				defender = {
+					random_system_within_border = {
+						limit = {
+							exists = owner
+						}
+			
+						add_modifier = {
+							modifier = space_storm
+							years = 10
+						}
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# Attacker Stage - SCORCHER VOID - TREACHEROUS RETREAT - ATTACKER FAILURE POP UP
+country_event = {		
+	id = global_situation.1332
+	title = global_situation.1332.name	
+	desc = global_situation.1332.desc	
+	picture = GFX_evt_spaceship_junkyard	
+	show_sound = event_war_games	
+	is_triggered_only = yes	
+	hide_window = no
+		
+	immediate = {
+
+		fromfrom = {
+			current_war = {
+				add_static_war_gains = {
+					target = attackers
+					amount = 5
+				}
+
+				attacker = {
+					random_owned_fleet = {
+						limit = {
+							is_ship_class = shipclass_military
+						}
+
+						set_mia = yes
+
+						weights = {
+							base = 1
+
+							modifier = {
+								factor = 2
+								is_in_combat = yes
+							}
+
+							modifier = {
+								factor = 2
+								fleet_power >= 1000
+								fleet_power <= 2500
+							}
+
+						}
+					}
+				}
+
+				defender = {
+					random_system_within_border = {
+						limit = {
+							exists = owner
+						}
+			
+						add_modifier = {
+							modifier = space_storm
+							years = 10
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = {	
+		name = global_situation.1332.a
+	}	
+}
+
+# Attacker Stage - SCORCHED VOID - SHOTS IN THE BACK - ATTACKERS POP-UP
+country_event = {		
+	id = global_situation.1340
+	hide_window = no
+	is_triggered_only = yes
+	title = global_situation.1340.name	
+	desc = global_situation.1340.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+
+	option = {	
+		name = global_situation.1340.a
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# Attacker Stage - SCORCHER VOID - NOWHERE LEFT TO RUN - DEFENDERS POP-UP 
+country_event = {		
+	id = global_situation.1350	
+	title = global_situation.1350.name	
+	desc = global_situation.1350.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+
+	immediate = {
+
+	}
+		
+	option = {	
+		name = global_situation.1350.a
+	}	
+}	
+
+####
+# Attacker Stage - DESTROYED FACILITY - Main Attacker Event
+####
+
+country_event = {
+	id = global_situation.1430	
+	title = global_situation.1430.name	
+	desc = global_situation.1430.desc	
+	picture = GFX_evt_abandoned_laboratory_test_tubes	
+	show_sound = event_laboratory_sound
+	is_triggered_only = yes	
+
+	after = {
+		# NOTIFY THE OTHER SIDE
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = attackers
+				}
+			}
+			country_event = { id = global_situation.1440 days = 7 }
+		}	
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = defenders
+				}
+			}
+			country_event = { id = global_situation.1450 days = 7 }
+		}	
+	}
+		
+	## SALVAGE MATERIALS
+	option = {	
+		name = global_situation.1430.a
+		custom_tooltip = global_situation.1430.a.tt
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+
+		fromfrom = {
+			current_war = {
+				add_static_war_gains = {
+					target = attackers
+					amount = 5
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				root = {
+					is_ufop = yes
+				}
+			}
+
+			root = {
+				convert_pops = {
+					who = root
+					principle = principle_undefined
+					of_principle = principle_ufop
+					percentage = 0.1
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## STABILIZE THE SITE
+	option = {	
+		name = global_situation.1430.b
+		custom_tooltip = global_situation.1430.b.tt
+
+		fromfrom = {
+			current_war = {
+				add_passive_war_exhaustion = {
+					target = attackers
+					amount = 0.1
+				}
+			}
+		}
+
+		add_monthly_resource_mult = {
+			resource = research
+			value = 6
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## NOTIFY THE GALAXY
+	option = {	
+		name = global_situation.1430.c
+		custom_tooltip = global_situation.1430.c.tt
+
+		add_global_tension = {
+			amount = 10
+			type = war_developments
+			country = root
+		}
+
+		from = {
+			add_willing_to_support = {
+				amount = -10
+			}
+		}
+
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Attacker Stage - DESTROYED FACILITY - FORBIDDEN RESEARCH SITE DISCOVERED - ATTACKERS POP-UP
+country_event = {		
+	id = global_situation.1440
+	title = global_situation.1440.name	
+	desc = global_situation.1440.desc	
+	picture = GFX_evt_abandoned_laboratory_test_tubes	
+	show_sound = event_laboratory_sound
+	hide_window = no
+	is_triggered_only = yes
+
+	option = {	
+		name = global_situation.1440.a
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# Attacker Stage - DESTROYED FACILITY - ACCUSATIONS OF FORBIDDEN RESEARCH - DEFENDERS POP UP		
+country_event = {		
+	id = global_situation.1450	
+	title = global_situation.1450.name	
+	desc = global_situation.1450.desc	
+	picture = GFX_evt_abandoned_laboratory_test_tubes	
+	show_sound = event_laboratory_sound	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1450.a
+	}	
+}	
+
+####
+# Attacker Stage - BACK FROM THE DEAD - Main Attacker Event
+####
+
+country_event = {
+	id = global_situation.1530	
+	title = global_situation.1530.name	
+	desc = global_situation.1530.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_sickbay_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_generic_success
+	is_triggered_only = yes	
+
+	after = {
+		# NOTIFY THE OTHER SIDE
+
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = attackers
+				}
+			}
+			country_event = { id = global_situation.1540 days = 7 }
+		}	
+		every_country = {
+			limit = {
+				NOT = { is_same_value = root }
+				is_war_participant = {
+					war = event_target:current_war_scope
+					side = defenders
+				}
+			}
+			country_event = { id = global_situation.1550 days = 7 }
+		}	
+	}
+		
+	## CLASSIFY AND DEBRIEF
+	option = {	
+		name = global_situation.1530.a
+		custom_tooltip = global_situation.1530.a.tt
+
+		add_intel = {
+			who = event_target:war_situation_defenders_leader
+			amount = 20
+		}
+
+		add_resource = {
+			influence = 40
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## CONFIRM THEIR IDENTITIES AND HOLD A PRESS CONFERENCE
+	option = {	
+		name = global_situation.1530.b
+		custom_tooltip = global_situation.1530.b.tt
+
+		add_global_tension = {
+			amount = -15
+			type = war_developments
+			country = root
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	## DRAMATIZE THE ORDEAL
+	option = {	
+		name = global_situation.1530.c
+		custom_tooltip = global_situation.1530.c.tt
+
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = event_target:main_attacker_scope
+				amount = -0.1
+			}
+		}
+
+		event_target:main_attacker_scope = {
+			if = {
+				limit = {
+					root = {
+						is_cardassian = yes
+					}
+				}
+				war_situation_convert_pops = {
+					AMOUNT = 0.1
+					TARGET = cardassian
+				}
+			}
+			else_if = {
+				limit = {
+					root = {
+						is_ufop = yes
+					}
+				}
+				war_situation_convert_pops = {
+					AMOUNT = 0.1
+					TARGET = ufop
+				}
+			}
+			else_if = {
+				limit = {
+					root = {
+						is_romulan = yes
+					}
+				}
+				war_situation_convert_pops = {
+					AMOUNT = 0.1
+					TARGET = romulan
+				}
+			}
+			else_if = {
+				limit = {
+					root = {
+						is_klingon = yes
+					}
+				}
+				war_situation_convert_pops = {
+					AMOUNT = 0.1
+					TARGET = klingon
+				}
+			}
+			else = {
+				
+				war_situation_convert_pops = {
+					AMOUNT = 0.1
+					TARGET = undefined
+				}
+	
+			}
+		}
+
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Attacker Stage - BACK FROM THE DEAD - A SHUTTLE SLIPS THROUGH - ATTACKERS POP-UP
+country_event = {		
+	id = global_situation.1540
+	title = global_situation.1540.name	
+	desc = global_situation.1540.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_sickbay_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_generic_success
+	hide_window = no
+	is_triggered_only = yes
+		
+	immediate = {
+
+		
+	}
+
+	option = {	
+		name = global_situation.1540.a
+
+		hidden_effect = {
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# Attacker Stage - BACK FROM THE DEAD - HEROES RETURN - MAIN DEFENDER POP UP		
+country_event = {		
+	id = global_situation.1550	
+	title = global_situation.1550.name	
+	desc = global_situation.1550.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_star_chart_meeting_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_star_chart_meeting_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_generic_mysterious	
+	is_triggered_only = yes	
+
+	immediate = {
+
+	}
+		
+	option = {	
+		name = global_situation.1550.a
+	}	
+}	
+
+
+### FINISHER EVENTS - DEFENDERS
+		
+# Defender Victory - HOME FIELD ADVANTAGE		
+country_event = {		
+	id = global_situation.260	
+	title = global_situation.260.name	
+	desc = global_situation.260.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes }
+		}
+		picture = GFX_evt_combat_onboard_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_combat_onboard_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_combat_onboard_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_combat_onboard_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+		
+	option = {	
+		allow = {
+			resource_stockpile_compare = { resource = unity value >= 1000 }
+		}
+
+		hidden_effect = {
+			add_resource = {
+				unity = -1000
+			}			
+		}
+
+		name = global_situation.260.a
+		custom_tooltip = global_situation.260.a.tt
+
+		#ADD WAR GAINS
+		event_target:current_war_scope = {
+			add_static_war_gains = {
+				target = root
+				amount = 25
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.260.b
+		custom_tooltip = global_situation.260.b.tt
+
+		hidden_effect = {
+			random_system = {
+				limit = {
+					any_fleet_in_system = {
+						owner = { 
+							NOR = {
+								is_same_value = event_target:main_attacker_scope
+								is_hostile = this
+							}
+						}
+					}
+				}
+				save_event_target_as = mia_system
+			}
+			every_system_within_border = {
+				every_fleet_in_system = {
+					limit = {
+						is_in_combat = no
+						owner = {
+							is_same_value = event_target:main_attacker_scope
+						}
+					}
+					set_mia = yes
+				}			
+				every_fleet_in_system = {
+					limit = {
+						is_in_combat = yes
+						owner = {
+							is_same_value = event_target:main_attacker_scope
+						}
+					}
+					set_location = {
+						target = event_target:mia_system
+						distance = 5
+						angle = random
+						direction = in_system
+					}
+					clear_orders = yes
+					clear_fleet_actions = this
+					fleet_event = {
+						id = global_situation.261 days = 1
+					}
+				}			
+			}
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = {
+					any_system = {
+						is_within_borders_of = root
+						any_fleet_in_system = {
+							owner = { 
+								is_same_value = event_target:main_attacker_scope
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+		
+	option = {	
+		name = global_situation.260.c
+		custom_tooltip = global_situation.260.c.tt
+
+		### Add war exhaustion effect
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = defenders
+				amount = -0.2
+			}
+		}
+
+		hidden_effect = {
+			random_list = {
+				1 = { country_event = { id = global_situation.262 days = 1 } }
+				1 = { country_event = { id = global_situation.263 days = 1 } }
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}	
+# HOME FIELD ADVANTAGE - SET FLEETS IN COMBAT TO MIA	
+fleet_event = {
+	id = global_situation.261
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		set_mia = yes
+	}
+}
+# HOME FIELD ADVANTAGE - GIVE RANDOM SHIELD
+country_event = {
+	id = global_situation.262
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		IF = { # Has all tiers, adds research
+			limit = {
+				has_technology = tech_shield_5
+			}
+			add_monthly_resource_mult = {
+				resource = research
+				value = 12
+			}
+		}
+
+		else_if = { # Adds shields 5
+			limit = {
+				has_technology = tech_shield_4
+			}
+			add_tech_progress = {
+				tech = tech_shield_5
+				progress = 0.25
+			}
+		}
+
+		else_if = { # Adds shields 4
+			limit = {
+				has_technology = tech_shield_3
+			}
+			add_tech_progress = {
+				tech = tech_shield_4
+				progress = 0.25
+			}
+		}
+
+		else_if = { # Adds shields 3
+			limit = {
+				has_technology = tech_shield_2
+			}
+			add_tech_progress = {
+				tech = tech_shield_3
+				progress = 0.25
+			}
+		} # Adds shields 2
+		else = {
+			add_tech_progress = {
+				tech = tech_shield_2
+				progress = 0.25
+			}
+		}
+	}
+}
+# HOME FIELD ADVANTAGE - GIVE RANDOM ARMOR
+country_event = {
+	id = global_situation.263
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		IF = { # Has all tiers, adds research
+			limit = {
+				has_technology = tech_hull_4
+			}
+			add_monthly_resource_mult = {
+				resource = research
+				value = 12
+			}
+		}
+	
+		else_if = { # Adds hulls 5
+			limit = {
+				has_technology = tech_hull_3
+			}
+			add_tech_progress = {
+				tech = tech_hull_4
+				progress = 0.25
+			}
+		}
+	
+		else_if = { # Adds hulls 4
+			limit = {
+				has_technology = tech_hull_2
+			}
+			add_tech_progress = {
+				tech = tech_hull_3
+				progress = 0.25
+			}
+		}
+		# Adds hulls 2
+		else = {
+			add_tech_progress = {
+				tech = tech_hull_2
+				progress = 0.25
+			}
+		}
+	}
+}
+
+# Defender Victory - DESERTERS	
+country_event = {		
+	id = global_situation.2601	
+	title = global_situation.2601.name	
+	desc = global_situation.2601.desc	
+	picture = GFX_evt_diplomatic_visit_fail
+	show_sound = event_generic_success	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.2601.a
+		custom_tooltip = global_situation.2601.a.tt
+
+		#ADD OPINION WITH EVERYONE ELSE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					exists = this
+					is_regular_empire = yes
+					NOT = {
+						is_same_value = root
+					}
+					NOT = {
+						is_same_value = event_target:main_attacker_scope
+					}
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = deserters_opinion_modifier
+				}
+			}	
+		}
+
+
+		#GIVE ATTACKER'S POPS LOYALTY TO YOU
+		hidden_effect = {
+			IF = {
+				limit = { is_ufop = yes }
+				event_target:main_attacker_scope = {
+					increase_pop_loyalty_war_situation_effect_ufop = yes
+				}
+			}
+			ELSE_IF = {
+				limit = { is_klingon = yes }
+				event_target:main_attacker_scope = {
+					increase_pop_loyalty_war_situation_effect_klingon = yes
+				}
+			}
+			ELSE_IF = {
+				limit = { is_romulan = yes }
+				event_target:main_attacker_scope = {
+					increase_pop_loyalty_war_situation_effect_romulan = yes
+				}
+			}
+			ELSE_IF = {
+				limit = { is_cardassian = yes }
+				event_target:main_attacker_scope = {
+					increase_pop_loyalty_war_situation_effect_cardassian = yes
+				}
+			}
+			ELSE = {
+				add_resource = {
+					influence = 250
+				}
+			}
+		}
+
+		#ADD OFFICERS
+		add_monthly_resource_mult = {
+			resource = officers
+			value = 24
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.2601.b
+		custom_tooltip = global_situation.2601.b.tt
+
+		#ADD INTEL
+		add_intel = {
+			amount = 100
+			who = event_target:main_attacker_scope
+		}
+
+		#ADD INFLUENCE
+		add_resource = {
+			influence = 250
+		}
+
+		#ADD WAR GAINS
+		event_target:current_war_scope = {
+			add_static_war_gains = {
+				target = root
+				amount = 25
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.2601.c
+		custom_tooltip = global_situation.2601.c.tt
+
+		#ADD BIG RESOURCE REWARD
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = 24
+		}
+		add_monthly_resource_mult = {
+			resource = deuterium
+			value = 24
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 24
+		}
+		add_monthly_resource_mult = {
+			resource = food
+			value = 24
+		}
+
+		#ADD WAR EXHAUSTION REDUCTION
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = defenders
+				amount = -0.2
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}	
+
+# Defender Victory - THE GALAXY IS ON OUR SIDE	
+country_event = {		
+	id = global_situation.2602	
+	title = global_situation.2602.name	
+	desc = global_situation.2602.desc	
+	picture = GFX_evt_galactic_peace_summit_minor	
+	show_sound = event_galactic_peace_summit	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.2602.a
+		if = {
+			limit = {
+				command_limit <= 20
+			}
+			custom_tooltip = global_situation.2602.a.tt.20
+		}
+		else_if = {
+			limit = {
+				command_limit <= 35
+			}
+			custom_tooltip = global_situation.2602.a.tt.35
+		}
+		else = {
+			custom_tooltip = global_situation.2602.a.tt.50
+		}
+
+		#CREATE MERCENARY FLEET
+		hidden_effect = {
+			create_war_situation_mercenary_fleet_effect = yes
+		}
+		
+		#GIVE ATTACKER'S POPS LOYALTY TO YOU
+		hidden_effect = {
+			IF = {
+				limit = { is_ufop = yes }
+				event_target:main_attacker_scope = {
+					increase_pop_loyalty_war_situation_effect_ufop = yes
+				}
+			}
+			ELSE_IF = {
+				limit = { is_klingon = yes }
+				event_target:main_attacker_scope = {
+					increase_pop_loyalty_war_situation_effect_klingon = yes
+				}
+			}
+			ELSE_IF = {
+				limit = { is_romulan = yes }
+				event_target:main_attacker_scope = {
+					increase_pop_loyalty_war_situation_effect_romulan = yes
+				}
+			}
+			ELSE_IF = {
+				limit = { is_cardassian = yes }
+				event_target:main_attacker_scope = {
+					increase_pop_loyalty_war_situation_effect_cardassian = yes
+				}
+			}
+			ELSE = {
+				add_resource = {
+					influence = 250
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.2602.b
+		custom_tooltip = global_situation.2602.b.tt
+
+		#ADD BIG RESOURCE REWARD
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = 24
+		}
+		add_monthly_resource_mult = {
+			resource = deuterium
+			value = 24
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 24
+		}
+		add_monthly_resource_mult = {
+			resource = food
+			value = 24
+		}
+
+		#ADD OPINION WITH EVERYONE ELSE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					exists = this
+					is_regular_empire = yes
+					NOT = {
+						is_same_value = root
+					}
+					NOT = {
+						is_same_value = event_target:main_attacker_scope
+					}
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = deserters_opinion_modifier
+				}
+			}	
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.2602.c
+		custom_tooltip = global_situation.2602.c.tt
+
+		#ADD WAR EXHAUSTION FOR ATTACKER
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = attackers
+				amount = 0.2
+			}
+		}
+
+		#ADD INFLUENCE
+		add_resource = {
+			influence = 250
+		}
+
+		#ADD INTEL
+		add_intel = {
+			amount = 100
+			who = event_target:main_attacker_scope
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+#FINISHER EVENTS POP-UPS
+
+# Defender Victory - Defender Pop-up		
+country_event = {		
+	id = global_situation.270	
+	title = global_situation.270.name	
+	desc = global_situation.270.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.270.a
+	}	
+}		
+# Defender Victory - Attackers pop-up		
+country_event = {		
+	id = global_situation.280	
+	title = global_situation.280.name	
+	desc = global_situation.280.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.280.a
+	}	
+}		
+
+### FINISHER EVENTS - ATTACKERS
+
+# Attacker Victory - DEMORALIZATION	
+country_event = {		
+	id = global_situation.290	
+	title = global_situation.290.name	
+	desc = global_situation.290.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_combat_onboard_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_combat_onboard_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_combat_onboard_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_combat_onboard_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.290.a
+		custom_tooltip = global_situation.290.a.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = influence value >= 100 }
+		}
+
+		hidden_effect = {
+			add_resource = {
+				influence = -100
+			}
+		}
+
+		#ADD WAR GAINS
+		event_target:current_war_scope = {
+			add_static_war_gains = {
+				target = root
+				amount = 25
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.290.b
+		custom_tooltip = global_situation.290.b.tt
+
+		hidden_effect = {
+			event_target:main_defender_scope = {
+				every_owned_ship = {
+					limit = {
+						is_ship_size = military_station_small
+					}
+					destroy_ship = this
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				event_target:main_defender_scope = {
+					NOT = {
+						any_owned_ship = {
+							is_ship_size = military_station_small
+						}
+					}
+				}
+			}
+		}
+	}	
+		
+	option = {	
+		name = global_situation.290.c
+		custom_tooltip = global_situation.290.c.tt
+
+		### Add war exhaustion effect
+		event_target:current_war_scope = {
+			add_passive_war_exhaustion = {
+				target = attackers
+				amount = -0.2
+			}
+		}
+
+		hidden_effect = {
+			IF = { # Has all tiers, adds research
+				limit = {
+					has_technology = tech_phaser_5
+				}
+				add_monthly_resource_mult = {
+					resource = research
+					value = 12
+				}
+			}
+			else_if = { # Adds Phasers 5
+				limit = {
+					has_technology = tech_phaser_4
+				}
+				add_tech_progress = {
+					tech = tech_phaser_5
+					progress = 0.25
+				}
+			}
+			else_if = { # Adds Phasers 4
+				limit = {
+					has_technology = tech_phaser_3
+				}
+				add_tech_progress = {
+					tech = tech_phaser_4
+					progress = 0.25
+				}
+			}
+			else_if = { # Adds Phasers 3
+				limit = {
+					has_technology = tech_phaser_2
+				}
+				add_tech_progress = {
+					tech = tech_phaser_3
+					progress = 0.25
+				}
+			} # Adds Phasers 2
+			else = {
+				add_tech_progress = {
+					tech = tech_phaser_2
+					progress = 0.25
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}		
+
+# Attacker Victory - DWINDLING FOE
+country_event = {		
+	id = global_situation.2901	
+	title = global_situation.2901.name	
+	desc = global_situation.2901.desc	
+	picture = GFX_evt_spaceship_junkyard
+	show_sound = event_generic_success	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.2901.a
+		custom_tooltip = global_situation.2901.a.tt
+
+		#GAIN STREAM OF RESOURCE
+		add_modifier = {
+			modifier = dwindling_foe_sanctions_attacker
+			days = 3600
+		}
+
+		#SYPHON STREAM OF RESOURCES
+		event_target:main_defender_scope = {
+			add_modifier = {
+				modifier = dwindling_foe_sanctions_defender
+				days = 3600
+			}
+		}
+
+		#REDUCE OPINION WITH EVERYONE ELSE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					exists = this
+					is_regular_empire = yes
+					NOT = {
+						is_same_value = root
+					}
+					NOT = {
+						is_same_value = event_target:main_defender_scope
+					}
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = dwindling_foe_opinion_modifier
+				}
+			}	
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.2901.b
+		custom_tooltip = global_situation.2901.b.tt
+
+		#GAIN BONUS ALLOY PRODUCTION
+		add_modifier = {
+			modifier = dwindling_foe_alloy_production
+			days = 1800
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.2901.c
+		custom_tooltip = global_situation.2901.c.tt
+
+		#ADD A TON OF INFLUENCE
+		add_resource = {
+			influence = 300
+
+		}
+
+		#INCREASE/DECREASE OPINION WITH EVERYONE ELSE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					exists = this
+					is_regular_empire = yes
+					NOT = {
+						is_same_value = root
+					}
+					NOT = {
+						is_same_value = event_target:main_defender_scope
+					}
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = dwindling_foe_external_preassure_positve
+				}
+			}	
+
+			every_country = {
+				limit = {
+					exists = this
+					is_regular_empire = yes
+					NOT = {
+						is_same_value = root
+					}
+					NOT = {
+						is_same_value = event_target:main_defender_scope
+					}
+				}
+				add_opinion_modifier = {
+					who = event_target:main_defender_scope
+					modifier = dwindling_foe_external_preassure_negative
+				}
+			}	
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# Attacker Victory - US AND THEM
+country_event = {		
+	id = global_situation.2902	
+	title = global_situation.2902.name	
+	desc = global_situation.2902.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_colony_women_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_colony_women_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_colony_women_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_colony_forever_young	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.2902.a
+		custom_tooltip = global_situation.2902.a.tt
+
+		#UNITY BONUS
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 24
+		}
+
+		#GAIN JOBS PRODUCTION BONUS
+		add_modifier = {
+			modifier = us_and_them_job_production_bonus
+			days = 3600
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.2902.b
+		custom_tooltip = global_situation.2902.b.tt
+
+		#GAIN EXPERT ADMIRAL
+		create_leader = {
+			class = admiral
+			species = owner_main_species
+			name = random
+			skill = 5
+			leader_age_min = 25
+			leader_age_max = 35
+			traits = {
+				trait = random_trait
+				trait = random_trait
+			}
+		}
+
+		#ADDING FOOD
+		add_monthly_resource_mult = {
+			resource = food
+			value = 24
+		}
+
+		#ADDING INFLUENCE
+		add_resource = {
+			influence = 250
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+		
+	option = {	
+		name = global_situation.2902.c
+		custom_tooltip = global_situation.2902.c.tt
+
+		#GREATER POP LOYALTY
+		hidden_effect = {
+			#UFOP
+			IF = {
+				limit = {
+					is_ufop = yes
+				}
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+			}		
+			#KLINGON
+			ELSE_IF = {
+				limit = {
+					is_klingon = yes
+				}
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_klingon = yes
+				increase_pop_loyalty_war_situation_effect_klingon = yes
+			}	
+			#ROMULAN
+			ELSE_IF = {
+				limit = {
+					is_romulan = yes
+				}
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_romulan = yes
+				increase_pop_loyalty_war_situation_effect_romulan = yes
+			}	
+			#CARDASSIAN
+			ELSE_IF = {
+				limit = {
+					is_cardassian = yes
+				}
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_cardassian = yes
+				increase_pop_loyalty_war_situation_effect_cardassian = yes
+			}	
+			#MIPOS
+			ELSE = {
+				add_resource = {
+					influence = 250
+				}
+			}	
+		}
+
+
+		#INCREASE OPINION WITH EVERYONE ELSE
+		hidden_effect = {
+			every_country = {
+				limit = {
+					exists = this
+					is_regular_empire = yes
+					NOT = {
+						is_same_value = root
+					}
+					NOT = {
+						is_same_value = event_target:main_defender_scope
+					}
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = us_or_them_opinion
+				}
+			}	
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# Attacker Victory - Attacker Pop-up		
+country_event = {		
+	id = global_situation.300	
+	title = global_situation.300.name	
+	desc = global_situation.300.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.300.a
+	}	
+}		
+# Attacker Victory - Defenders pop-up		
+country_event = {		
+	id = global_situation.310	
+	title = global_situation.310.name	
+	desc = global_situation.310.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.310.a
+	}	
+}		
+
+### FINISHER EVENTS - 3RD PARTIES
+
+# Attacker Victory - 3rd Party Pop-up		
+country_event = {		
+	id = global_situation.320	
+	title = global_situation.320.name	
+	desc = global_situation.320.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.320.a
+	}	
+}		
+# Defender Victory - 3rd Party Pop-up	
+country_event = {		
+	id = global_situation.330	
+	title = global_situation.330.name	
+	desc = global_situation.330.desc	
+	picture = GFX_evt_warscore_background	
+	show_sound = event_generic_warfare	
+	is_triggered_only = yes	
+		
+	option = {	
+		name = global_situation.330.a
+	}	
+}	
+
+#######################################
+#######################################
+#### WAR SITUATIONS - TIMED EVENTS ####
+#######################################
+#######################################
+
+###############
+# RANDOMIZERS #
+###############
+
+# Pre-trigger / Scope saver - HIDDEN
+situation_event = {		
+	id = global_situation.400
+	hide_window = yes
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		not = {
+			has_situation_flag = already_triggered_first_event
+		}
+	}
+
+	immediate = {
+		#MAKING SO THAT THIS EVENT TRIGGERS ONLY ONCE
+		set_situation_flag = already_triggered_first_event
+
+		#SAVE EVENT TARGETS, SCOPES AND ASSIGN FLAGS
+		save_event_target_as = current_situation_scope	
+		
+		situation = {
+			current_war = {
+				save_event_target_as = current_war_scope
+				attacker = {
+					save_event_target_as = main_attacker_scope
+				}
+				defender = {
+					save_event_target_as = main_defender_scope
+				}
+				every_war_participant = {
+					set_country_flag = war_participant@prev
+				}
+			}
+		}
+
+		#TRIGGER FIRST TIMED EVENT
+		situation_event = {
+			id = global_situation.410 days = 90
+		}
+	}
+}	
+
+# Main Event Random List - Attacker / Defender choice - HIDDEN
+situation_event = {		
+	id = global_situation.410	
+	hide_window = yes
+	is_triggered_only = yes	
+
+	trigger = {
+		exists = this
+	}
+
+	immediate = {
+		#CHOOSE IF THE EVENT IS FOR AN ATTACKER OR A DEFENDER
+		random_list = {
+			# Random Event for a Defender
+			1 = {
+				random_country = { limit = { is_war_participant = { war = event_target:current_war_scope side = defenders } }
+				country_event = { id = global_situation.411 days = 1 } }
+			}
+
+			# Random Event for an Attacker
+			1 = {
+				random_country = { limit = { is_war_participant = { war = event_target:current_war_scope side = attackers } }
+				country_event = { id = global_situation.412 days = 1 } }
+			}
+		}
+	}
+}	
+
+# Main Event Random List - Random Defender Event - HIDDEN
+country_event = {		
+	id = global_situation.411
+	hide_window = yes
+	is_triggered_only = yes	
+	
+	immediate = {
+		random_list = {
+			1 = { country_event = { id = global_situation.1100 days = 1 } } #Transmissions Home - ALSO FOR ATTACKER
+			# HRBQA-2489: Disable this event
+			# 1 = { modifier = { factor = 0 NOT = { any_owned_fleet = { is_ship_class = shipclass_military } } } country_event = { id = global_situation.1200 days = 1 } } #Lost Contact - Only if you have at least 1 military fleet - ALSO FOR ATTACKER
+			1 = { country_event = { id = global_situation.1300 days = 1 } } #Hunkering Down
+			1 = { country_event = { id = global_situation.1400 days = 1 } } #ATROCITIES
+			1 = { country_event = { id = global_situation.1700 days = 1 } } #STALEMATE 
+			1 = { country_event = { id = global_situation.1600 days = 1 } } #PARADIGM-SHIFT 
+			1 = { country_event = { id = global_situation.1500 days = 1 } } #HOSTAGES 
+		}
+	}
+}	
+
+# Main Event Random List - Random Attacker Event - HIDDEN
+country_event = {		
+	id = global_situation.412
+	hide_window = yes
+	is_triggered_only = yes	
+	
+	immediate = {
+		random_list = {
+			1 = { country_event = { id = global_situation.600 days = 1 } } #Mercenaries
+			1 = { country_event = { id = global_situation.700 days = 1 } } #Guerrillas
+			1 = { country_event = { id = global_situation.800 days = 1 } } #Supply Lines Down
+			1 = { country_event = { id = global_situation.900 days = 1 } } #Disabling Strike
+			1 = { country_event = { id = global_situation.1000 days = 1 } } #Defectors
+			1 = { country_event = { id = global_situation.1100 days = 1 } } #Transmissions Home - ALSO FOR DEFENDER
+			# HRBQA-2489: Disable this event
+			# 1 = { modifier = { factor = 0 NOT = { any_owned_fleet = { is_ship_class = shipclass_military } } } country_event = { id = global_situation.1200 days = 1 } } #Lost Contact - Only if you have at least 1 military fleet - ALSO FOR DEFENDER
+		}
+	}
+}	
+
+#################
+# RANDOM EVENTS #
+#################
+
+
+### Mercenaries ### - ATTACKER
+
+#MERCENARIES, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.600
+	title = global_situation.600.name	
+	desc = global_situation.600.desc	
+	picture = GFX_evt_ship_base_pirates
+	show_sound = event_the_pirate_rebellion	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#RECRUIT MERCENARIES
+	option = {	
+		name = global_situation.600.a
+		if = {
+			limit = {
+				command_limit <= 20
+			}
+			custom_tooltip = global_situation.600.a.tt.20
+		}
+		else_if = {
+			limit = {
+				command_limit <= 35
+			}
+			custom_tooltip = global_situation.600.a.tt.35
+		}
+		else = {
+			custom_tooltip = global_situation.600.a.tt.50
+		}
+
+		allow = {
+			resource_stockpile_compare = { resource = influence value >= 100 }
+			resource_stockpile_compare = { resource = energy value >= 2000 }
+		}
+
+		hidden_effect = {
+			add_resource = {
+				influence = -100
+				energy = -2000
+			}	
+		}
+
+		#CREATE MERCENARY FLEET
+		create_war_situation_mercenary_fleet_effect = yes
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.602 days = 1 }
+			}	
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#DECLINE THEIR OFFER
+	option = {	
+		name = global_situation.600.b
+		custom_tooltip = global_situation.600.b.tt
+
+		#NOT UFOP OR KLINGON
+		IF = {
+			limit = {
+				NOR = { 
+					is_ufop = yes 
+					is_klingon = yes 
+				} 
+			}
+
+			#WILLING TO SUPPORT EFFECT
+
+			fromfrom = {
+				add_willing_to_support = {
+						amount = 25
+					}
+				}
+			}
+
+
+		#UFOP
+		IF = {
+			limit = {
+				is_ufop = yes
+			}
+
+			#POP PRINCIPLE CHANGE BONUS
+			increase_pop_loyalty_war_situation_effect_ufop = yes
+
+			#WILLING TO SUPPORT EFFECT
+
+			fromfrom = {
+				add_willing_to_support = {
+						amount = 15
+					}
+				}
+			}
+
+		#KLINGON
+		IF = {
+			limit = {
+				is_klingon = yes
+			}
+			#POP PRINCIPLE CHANGE BONUS
+			increase_pop_loyalty_war_situation_effect_klingon = yes
+
+			#WILLING TO SUPPORT EFFECT
+
+			fromfrom = {
+				add_willing_to_support = {
+						amount = 15
+					}
+			}
+
+			#UNITY BONUS
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#ROLL THE DICE - RECRUIT THROUGH INTERMEDIARY
+	option = {	
+		name = global_situation.600.c
+		custom_tooltip = global_situation.600.c.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 3000 }
+		}
+
+		hidden_effect = {
+			add_resource = {
+				energy = -3000
+			}
+		}
+
+
+		random_list = {
+			6 = { country_event = { id = global_situation.601 days = 7 } } #FLEET GRANTED, NO ILL EFFECTS
+			4 = { country_event = { id = global_situation.603 days = 7 } } #FLEET GRANTED, PENALTIES
+		}	
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# #FLEET GRANTED, NO ILL EFFECTS - VISIBLE
+country_event = {		
+	id = global_situation.601
+	title = global_situation.601.name	
+	desc = global_situation.601.desc	
+	picture = GFX_evt_space_travel_pirates	
+	show_sound = event_the_pirate_rebellion	
+	is_triggered_only = yes	
+	
+	after = {
+		#CREATE MERCENARY FLEET
+		create_war_situation_mercenary_fleet_effect = yes
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.602 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.601.a
+		if = {
+			limit = {
+				command_limit <= 20
+			}
+			custom_tooltip = global_situation.601.a.tt.20
+		}
+		else_if = {
+			limit = {
+				command_limit <= 35
+			}
+			custom_tooltip = global_situation.601.a.tt.35
+		}
+		else = {
+			custom_tooltip = global_situation.601.a.tt.50
+		}
+	}	
+}	
+
+# MERCENARY FLEET EFFECT POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.602
+	title = global_situation.602.name	
+	desc = global_situation.602.desc	
+	picture = GFX_evt_space_travel_pirates	
+	show_sound = event_the_pirate_rebellion	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.602.a
+	}	
+}	
+
+#FLEET GRANTED, PENALTIES - VISIBLE
+country_event = {		
+	id = global_situation.603
+	title = global_situation.603.name	
+	desc = global_situation.603.desc	
+	picture = GFX_evt_space_travel_pirates	
+	show_sound = event_generic_fail
+	is_triggered_only = yes	
+	
+	after = {
+		#CREATE MERCENARY FLEET
+		create_war_situation_mercenary_fleet_effect = yes
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.604 days = 1 }
+			}		
+		}
+
+		#WILLING TO SUPPORT EFFECT
+		fromfromfrom = {
+			add_willing_to_support = {
+					amount = -25
+				}
+			}
+		}
+
+	option = {	
+		name = global_situation.603.a
+		if = {
+			limit = {
+				command_limit <= 20
+			}
+			custom_tooltip = global_situation.603.a.tt.20
+		}
+		else_if = {
+			limit = {
+				command_limit <= 35
+			}
+			custom_tooltip = global_situation.603.a.tt.35
+		}
+		else = {
+			custom_tooltip = global_situation.603.a.tt.50
+		}
+	}	
+}	
+
+#WILLING TO SUPPORT EFFECT, NEGATIVE POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.604
+	title = global_situation.604.name	
+	desc = global_situation.604.desc	
+	picture = GFX_evt_space_travel_pirates	
+	show_sound = event_the_pirate_rebellion	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.604.a
+	}	
+}
+
+
+### GUERRILLAS ### - ATTACKER
+
+#GUERRILLAS, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.700
+	title = global_situation.700.name	
+	desc = global_situation.700.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_spy_mission_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_spy_mission_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#INTELLIGENCE FEED
+	option = {	
+		name = global_situation.700.a
+		custom_tooltip = global_situation.700.a.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = alloys value >= 500 }
+		}
+
+		hidden_effect = {
+			add_resource = {
+				alloys = -500
+			}	
+		}
+
+		add_resource = {
+			influence = 250
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#MATERIAL AID
+	option = {	
+		name = global_situation.700.b
+		custom_tooltip = global_situation.700.b.tt
+
+		trigger = {
+			event_target:main_defender_scope = {
+				any_owned_leader = {
+					OR = {
+						leader_class = general
+						leader_class = admiral
+					}
+				}
+			}
+		}
+
+		allow = {
+			resource_stockpile_compare = { resource = influence value >= 50 }
+		}
+
+		hidden_effect = {
+			add_resource = {
+				influence = -50
+			}			
+		}
+
+		add_global_tension = {
+			amount = -5
+			type = war_developments
+			country = root
+		}	
+		
+		event_target:main_defender_scope = {
+			IF = {
+				limit = {
+					any_owned_leader = {
+						OR = {
+							leader_class = general
+							leader_class = admiral
+						}
+					}
+				}
+				random_owned_leader = {
+					limit = {
+						OR = {
+							leader_class = general
+							leader_class = admiral
+						}
+					}
+					kill_leader = { show_notification = no }
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	#ROLL THE DICE - FULL SUPORT
+	option = {	
+		name = global_situation.700.c
+		custom_tooltip = global_situation.700.c.tt
+
+		random_list = {
+			7 = { country_event = { id = global_situation.701 days = 7 } } #POP LOYALTY INCREASED, ARMY, LEADER
+			3 = { country_event = { id = global_situation.703 days = 7 } } #ARMY, LEADER, NEGATIVE EFFECT
+		}	
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# #POP LOYALTY INCREASED, ARMY, LEADER POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.701
+	title = global_situation.701.name	
+	desc = global_situation.701.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_spy_mission_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_spy_mission_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+	
+	after = {
+		#CONVERT POPS TO PRINCIPLE, CREATE ARMY AND LEADER
+		hidden_effect = {
+			IF = {
+				limit = {
+					is_ufop = yes
+				}
+
+				#Increase Pop Loyalty
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+
+				#Create Army
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					create_army = {
+						owner = THIS
+						type = ufop_elite_assault_army
+						species = event_target:main_defender_scope.species
+					}
+				}
+
+				#Create Leader
+				create_leader = {
+					class = admiral
+					species = event_target:main_defender_scope.species
+					name = random
+					event_leader = yes
+					skill = 3
+					leader_age_min = 25
+					leader_age_max = 45
+					traits = {
+						trait = random_trait
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_klingon = yes
+				}
+
+				#Increase Pop Loyalty
+				increase_pop_loyalty_war_situation_effect_klingon = yes
+
+				#Create Army
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					create_army = {
+						owner = THIS
+						type = klingon_elite_assault_army
+						species = event_target:main_defender_scope.species
+					}
+				}
+
+				#Create Leader
+				create_leader = {
+					class = admiral
+					species = event_target:main_defender_scope.species
+					name = random
+					event_leader = yes
+					skill = 3
+					leader_age_min = 25
+					leader_age_max = 45
+					traits = {
+						trait = random_trait
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_romulan = yes
+				}
+
+				#Increase Pop Loyalty
+				increase_pop_loyalty_war_situation_effect_romulan = yes
+
+				#Create Army
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					create_army = {
+						owner = THIS
+						type = romulan_elite_assault_army
+						species = event_target:main_defender_scope.species
+					}
+				}
+
+				#Create Leader
+				create_leader = {
+					class = admiral
+					species = event_target:main_defender_scope.species
+					name = random
+					event_leader = yes
+					skill = 3
+					leader_age_min = 25
+					leader_age_max = 45
+					traits = {
+						trait = random_trait
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_cardassian = yes
+				}
+
+				#Increase Pop Loyalty
+				increase_pop_loyalty_war_situation_effect_cardassian = yes
+
+				#Create Army
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					create_army = {
+						owner = THIS
+						type = cardassian_elite_assault_army
+						species = event_target:main_defender_scope.species
+					}
+				}
+
+				#Create Leader
+				create_leader = {
+					class = admiral
+					species = event_target:main_defender_scope.species
+					name = random
+					event_leader = yes
+					skill = 3
+					leader_age_min = 25
+					leader_age_max = 45
+					traits = {
+						trait = random_trait
+					}
+				}
+			}
+			else = {
+				add_resource = {
+					influence = 100
+				}
+			}
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.702 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.701.a
+		custom_tooltip = global_situation.701.a.tt
+	}	
+}	
+
+# POP LOYALTY INCREASED POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.702
+	title = global_situation.702.name	
+	desc = global_situation.702.desc	
+		
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_spy_mission_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_spy_mission_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.702.a
+	}	
+}	
+
+#ARMY, LEADER, NEGATIVE EFFECT POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.703
+	title = global_situation.703.name	
+	desc = global_situation.703.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_spy_mission_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_spy_mission_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+	
+	after = {
+		#CREATE ARMY AND LEADER
+		hidden_effect = {
+			IF = {
+				limit = {
+					is_ufop = yes
+				}
+
+				#Create Army
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					create_army = {
+						owner = THIS
+						type = ufop_elite_assault_army
+						species = event_target:main_defender_scope.species
+					}
+				}
+
+				#Create Leader
+				create_leader = {
+					class = admiral
+					species = event_target:main_defender_scope.species
+					name = random
+					event_leader = yes
+					skill = 3
+					leader_age_min = 25
+					leader_age_max = 45
+					traits = {
+						trait = random_trait
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_klingon = yes
+				}
+
+				#Create Army
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					create_army = {
+						owner = THIS
+						type = klingon_elite_assault_army
+						species = event_target:main_defender_scope.species
+					}
+				}
+
+				#Create Leader
+				create_leader = {
+					class = admiral
+					species = event_target:main_defender_scope.species
+					name = random
+					event_leader = yes
+					skill = 3
+					leader_age_min = 25
+					leader_age_max = 45
+					traits = {
+						trait = random_trait
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_romulan = yes
+				}
+
+				#Create Army
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					create_army = {
+						owner = THIS
+						type = romulan_elite_assault_army
+						species = event_target:main_defender_scope.species
+					}
+				}
+
+				#Create Leader
+				create_leader = {
+					class = admiral
+					species = event_target:main_defender_scope.species
+					name = random
+					event_leader = yes
+					skill = 3
+					leader_age_min = 25
+					leader_age_max = 45
+					traits = {
+						trait = random_trait
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_cardassian = yes
+				}
+
+				#Create Army
+				random_owned_planet = {
+					limit = {
+						is_capital = yes
+					}
+					create_army = {
+						owner = THIS
+						type = cardassian_elite_assault_army
+						species = event_target:main_defender_scope.species
+					}
+				}
+
+				#Create Leader
+				create_leader = {
+					class = admiral
+					species = event_target:main_defender_scope.species
+					name = random
+					event_leader = yes
+					skill = 3
+					leader_age_min = 25
+					leader_age_max = 45
+					traits = {
+						trait = random_trait
+					}
+				}
+			}
+			else = {
+				add_resource = {
+					influence = 100
+				}
+			}
+		}
+
+		#WILLING TO SUPPORT EFFECT
+		fromfromfrom = {
+			add_willing_to_support = {
+					amount = -25
+				}
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.704 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.703.a
+		custom_tooltip = global_situation.703.a.tt
+	}	
+}	
+
+#ARMY, LEADER, NEGATIVE EFFECT, NEGATIVE POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.704
+	title = global_situation.704.name	
+	desc = global_situation.704.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_spy_mission_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_spy_mission_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_spy_mission_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.704.a
+	}	
+}
+
+
+### SUPPLY LINES DOWN ### - ATTACKER
+
+#SUPPLY LINES DOWN, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.800
+	title = global_situation.800.name	
+	desc = global_situation.800.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_star_chart_meeting_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_star_chart_meeting_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+		
+	show_sound = event_ship_explosion
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#REPAIR SUPPLY LINES
+	option = {	
+		name = global_situation.800.a
+		custom_tooltip = global_situation.800.a.tt
+
+		#WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+
+		hidden_effect = {
+			IF = {
+				limit = {
+					OR = {
+						is_romulan = yes
+						is_minor = yes
+					}
+					
+				}
+	
+				add_resource = {
+					influence = 100
+				}
+			}
+	
+			ELSE_IF = {
+				limit = {
+					is_ufop = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+			}
+	
+			ELSE_IF = {
+				limit = {
+					is_klingon = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_klingon = yes
+			}
+	
+			ELSE_IF = {
+				limit = {
+					is_cardassian = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_cardassian = yes
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#PUSH AHEAD ANYWAY
+	option = {	
+		name = global_situation.800.b
+		custom_tooltip = global_situation.800.b.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 2000 }
+		}
+		
+		hidden_effect = {
+			add_resource = {
+				energy = -2000
+			}
+		}
+
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = 12
+		}
+
+		add_global_tension = {
+			amount = -5
+			type = war_developments
+			country = root
+		}		
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	#ROLL THE DICE
+	option = {	
+		name = global_situation.800.c
+		custom_tooltip = global_situation.800.c.tt
+
+		random_list = {
+			5 = { country_event = { id = global_situation.801 days = 7 } } #DESTROY/ENEMY OUTPOST
+			5 = { country_event = { id = global_situation.803 days = 7 } } #WILLING TO SUPPORT EFFECT, NEGATIVE
+		}	
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# DESTROY ENEMY STARBASE EFFECT - VISIBLE
+country_event = {		
+	id = global_situation.801
+	title = global_situation.801.name	
+	desc = global_situation.801.desc	
+	picture = GFX_evt_space_debris	
+	show_sound = event_ship_explosion	
+	is_triggered_only = yes	
+	
+	after = {
+		#DESTROY ENEMY OUTPOST
+		event_target:main_defender_scope = {
+			random_owned_starbase = {
+				limit = {
+					NAND = {
+						solar_system = {
+							any_system_planet = {
+								is_colony = yes
+							}
+						}
+						has_starbase_size = starbase_outpost
+					}
+				}
+				destroy_starbase_effect_war_situation = yes
+			}
+		}
+
+		#WILLING TO SUPPORT EFFECT
+		fromfromfrom = {
+			add_willing_to_support = {
+				amount = -25
+			}
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.802 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.801.a
+		custom_tooltip = global_situation.801.a.tt
+	}	
+}	
+
+# DESTROY ENEMY STARBASE EFFECT POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.802
+	title = global_situation.802.name	
+	desc = global_situation.802.desc	
+	picture = GFX_evt_space_debris
+	show_sound = event_ship_explosion	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.802.a
+	}	
+}	
+
+#WILLING TO SUPPORT EFFECT, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.803
+	title = global_situation.803.name	
+	desc = global_situation.803.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_star_chart_meeting_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_star_chart_meeting_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+	
+	show_sound = event_generic_fail	
+	is_triggered_only = yes	
+	
+	after = {
+		fromfromfrom = {
+			add_willing_to_support = {
+				amount = -15
+			}
+		}
+
+		#Destroy 5 ships
+		hidden_effect = {			
+			while = {
+				count = 5
+				random_owned_ship = {
+					limit = {
+						is_ship_class = shipclass_military
+					}
+					destroy_ship = this
+				}
+			}
+		}
+
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.804 days = 1 }
+			}		
+		}
+	}
+
+	option = {	
+		name = global_situation.803.a
+		custom_tooltip = global_situation.803.a.tt
+	}	
+}	
+
+#WILLING TO SUPPORT EFFECT, NEGATIVE POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.804
+	title = global_situation.804.name	
+	desc = global_situation.804.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_star_chart_meeting_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_star_chart_meeting_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+		
+	show_sound = event_generic_fail	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.804.a
+	}	
+}
+
+
+### DISABLING STRIKE ### - ATTACKER
+
+# DISABLING STRIKE, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.900
+	title = global_situation.900.name	
+	desc = global_situation.900.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+
+	show_sound = event_generic_suspense	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#TAKE OUT ECONOMIC CENTERS
+	option = {	
+		name = global_situation.900.a
+		custom_tooltip = global_situation.900.a.tt
+
+		trigger = {
+			event_target:main_defender_scope = {
+				any_system_within_border = {
+					any_ship_in_system = {
+						is_ship_size = mining_station
+					}
+				}
+			}
+		}
+
+		#ADD MINERALS
+		add_monthly_resource_mult = {
+			resource = minerals
+			value = 12
+		}
+
+		#DESTROY MINING STATIONS
+		hidden_effect = {
+			event_target:main_defender_scope = {
+				random_system_within_border = {
+					limit = {
+						any_ship_in_system = {
+							is_ship_size = mining_station
+						}
+					}
+					every_ship_in_system = {
+						limit = {
+							is_ship_size = mining_station
+						}
+						destroy_ship = this
+					}
+				}
+			}
+		}
+
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#SEIZE RESEARCH SITES
+	option = {	
+		name = global_situation.900.b
+		custom_tooltip = global_situation.900.b.tt
+
+		trigger = {
+			event_target:main_defender_scope = {
+				any_system_within_border = {
+					any_ship_in_system = {
+						is_ship_size = research_station
+					}
+				}
+			}
+		}
+
+		#ADD RESEARCH
+		add_resource = {
+			research = 2000
+		}
+
+		#DESTROY RESEARCH STATIONS
+		hidden_effect = {
+			event_target:main_defender_scope = {
+				random_system_within_border = {
+					limit = {
+						any_ship_in_system = {
+							is_ship_size = research_station
+						}
+					}
+					every_ship_in_system = {
+						limit = {
+							is_ship_size = research_station
+						}
+						destroy_ship = this
+					}
+				}
+			}
+		}
+
+
+		#ADD INTEL
+		add_intel = {
+			who = event_target:main_defender_scope
+			amount = 50	
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	#ROLL THE DICE
+	option = {	
+		name = global_situation.900.c
+		custom_tooltip = global_situation.900.c.tt
+
+		random_list = {
+			6 = { country_event = { id = global_situation.901 days = 7 } } #DESTROY DEFENSE PLATFORMS
+			4 = { country_event = { id = global_situation.903 days = 7 } } #WILLING TO SUPPORT EFFECT, NEGATIVE
+		}	
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# DESTROY ENEMY DEFENSE PLATFORMS - VISIBLE
+country_event = {		
+	id = global_situation.901
+	title = global_situation.901.name	
+	desc = global_situation.901.desc	
+	picture = GFX_evt_space_debris	
+	show_sound = event_ship_explosion	
+	is_triggered_only = yes	
+	
+	after = {
+
+		#DESTROY DEFENSE PLATFORMS
+		hidden_effect = {
+			event_target:main_defender_scope = {
+				while = {
+					count = 6
+					random_owned_ship = {
+						limit = {
+							is_ship_size = military_station_small
+						}
+						destroy_ship = this
+					}
+				}
+			}
+		}
+
+		#WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+				amount = 10
+			}
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.902 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.901.a
+		custom_tooltip = global_situation.901.a.tt
+	}	
+}	
+
+# DESTROY ENEMY DEFENSE PLATFORMS POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.902
+	title = global_situation.902.name	
+	desc = global_situation.902.desc	
+	picture = GFX_evt_space_debris
+	show_sound = event_ship_explosion	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.902.a
+	}	
+}	
+
+#WILLING TO SUPPORT EFFECT, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.903
+	title = global_situation.903.name	
+	desc = global_situation.903.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_enterprise_bridge_decision_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_vorcha_bridge_decision_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_valdore_bridge_decision_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_keldon_bridge_decision_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+	
+	show_sound = event_ship_bridge	
+	is_triggered_only = yes	
+	
+	after = {
+
+		#WILLING TO SUPPORT EFFECT
+		fromfromfrom = {
+			add_willing_to_support = {
+				amount = -25
+			}
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.904 days = 1 }
+			}		
+		}
+	}
+
+	option = {	
+		name = global_situation.903.a
+	}	
+}	
+
+#WILLING TO SUPPORT EFFECT, NEGATIVE POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.904
+	title = global_situation.904.name	
+	desc = global_situation.904.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_enterprise_bridge_decision_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_vorcha_bridge_decision_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_valdore_bridge_decision_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_keldon_bridge_decision_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_ship_bridge	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.904.a
+	}	
+}
+
+
+### DEFECTORS ### - ATTACKER
+
+#DEFECTORS STRIKE, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.1000
+	title = global_situation.1000.name	
+	desc = global_situation.1000.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_galactic_trial_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_galactic_trial_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_galactic_trial_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_galactic_trial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+		
+	show_sound = event_diplomatic_dinner	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#MAKE EXAMPLES OUT OF THEM
+	option = {	
+		name = global_situation.1000.a
+		custom_tooltip = global_situation.1000.a.tt
+
+		#GIVE INFLUENCE
+		add_resource = {
+			influence = 150
+		}
+
+		#WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+					amount = 10
+				}
+		}
+
+		#KILL RANDOM LEADER FROM THE DEFENDER
+		event_target:main_defender_scope = {
+			random_owned_leader = {
+				limit = {
+					exists = this
+				}
+				kill_leader = {
+					show_notification = no
+				}
+			}
+		}
+
+		#ADD UNITY FOR KLINGONS
+		IF = {
+			limit = {
+				is_klingon = yes
+			}
+
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 12
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#PUNISH THE TRAITORS
+	option = {	
+		name = global_situation.1000.b
+		custom_tooltip = global_situation.1000.b.tt
+
+		#WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+					amount = 10
+				}
+		}
+
+		#REDUCE GLOBAL TENSION
+		add_global_tension = {
+			amount = -5
+			type = war_developments
+			country = root
+		}	
+
+		#POP-PRINCIPLE CHANGE
+		hidden_effect = {
+			IF = {
+				limit = {
+					is_ufop = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+			}
+			ELSE_IF = {
+				limit = {
+					is_klingon = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_klingon = yes
+			}
+			ELSE_IF = {
+				limit = {
+					is_romulan = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+			}
+			ELSE_IF = {
+				limit = {
+					is_cardassian = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	#ROLL THE DICE
+	option = {	
+		name = global_situation.1000.c
+		custom_tooltip = global_situation.1000.c.tt
+
+		random_list = {
+			7 = { country_event = { id = global_situation.1001 days = 7 } } #DESTROY DEFENSE PLATFORMS
+			3 = { country_event = { id = global_situation.1003 days = 7 } } #WILLING TO SUPPORT EFFECT, NEGATIVE
+		}				
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+#DOUBLE AGENTS SUCCESS - VISIBLE
+country_event = {		
+	id = global_situation.1001
+	title = global_situation.1001.name	
+	desc = global_situation.1001.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_galactic_trial_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_galactic_trial_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_galactic_trial_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_galactic_trial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_diplomatic_dinner	
+	is_triggered_only = yes	
+	
+	after = {
+
+		#NEGATIVE POP LOYALTY
+		hidden_effect = {
+			IF = {
+				limit = {
+					is_ufop = yes
+				}
+				
+				#POP PRINCIPLE CHANGE PENALTY
+				while = {
+					count = 10
+					random_owned_pop = {
+						limit = {
+							has_principle = principle_ufop
+						}
+						random_list = {
+							1 = { set_principle = principle_klingon }
+							1 = { set_principle = principle_romulan }
+							1 = { set_principle = principle_cardassian }
+						}
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_klingon = yes
+				}
+				
+				#POP PRINCIPLE CHANGE PENALTY
+				while = {
+					count = 10
+					random_owned_pop = {
+						limit = {
+							has_principle = principle_klingon
+						}
+						random_list = {
+							1 = { set_principle = principle_ufop }
+							1 = { set_principle = principle_romulan }
+							1 = { set_principle = principle_cardassian }
+						}
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_cardassian = yes
+				}
+				
+				#POP PRINCIPLE CHANGE PENALTY
+				while = {
+					count = 10
+					random_owned_pop = {
+						limit = {
+							has_principle = principle_cardassian
+						}
+						random_list = {
+							1 = { set_principle = principle_klingon }
+							1 = { set_principle = principle_romulan }
+							1 = { set_principle = principle_ufop }
+						}
+					}
+				}
+			}
+		}
+
+		#ADD INTEL ON MAIN DEFENDER
+		add_intel = {
+			who = event_target:main_defender_scope
+			amount = 50	
+		}
+
+		#ADD RESEARCH
+		add_monthly_resource_mult = {
+			resource = research
+			value = 12
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.1002 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.1001.a
+		custom_tooltip = global_situation.1001.a.tt
+	}	
+}	
+
+#DOUBLE AGENTS SUCCESS POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1002
+	title = global_situation.1002.name	
+	desc = global_situation.1002.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_galactic_trial_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_galactic_trial_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_galactic_trial_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_galactic_trial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+	
+	show_sound = event_diplomatic_visit_fail	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1002.a
+	}	
+}	
+
+#DOUBLE AGENTS FAILURE, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.1003
+	title = global_situation.1003.name	
+	desc = global_situation.1003.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_galactic_trial_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_galactic_trial_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_galactic_trial_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_galactic_trial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+	
+	show_sound = event_diplomatic_visit_fail
+	is_triggered_only = yes	
+	
+	after = {
+
+		#WILLING TO SUPPORT EFFECT
+		fromfromfrom = {
+			add_willing_to_support = {
+					amount = -15
+				}
+		}
+
+		#NEGATIVE POP LOYALTY
+		hidden_effect = {
+			IF = {
+				limit = {
+					is_ufop = yes
+				}
+				
+				#POP PRINCIPLE CHANGE PENALTY
+				while = {
+					count = 10
+					random_owned_pop = {
+						limit = {
+							has_principle = principle_ufop
+						}
+						random_list = {
+							1 = { set_principle = principle_klingon }
+							1 = { set_principle = principle_romulan }
+							1 = { set_principle = principle_cardassian }
+						}
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_klingon = yes
+				}
+				
+				#POP PRINCIPLE CHANGE PENALTY
+				while = {
+					count = 10
+					random_owned_pop = {
+						limit = {
+							has_principle = principle_klingon
+						}
+						random_list = {
+							1 = { set_principle = principle_ufop }
+							1 = { set_principle = principle_romulan }
+							1 = { set_principle = principle_cardassian }
+						}
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					is_cardassian = yes
+				}
+				
+				#POP PRINCIPLE CHANGE PENALTY
+				while = {
+					count = 10
+					random_owned_pop = {
+						limit = {
+							has_principle = principle_cardassian
+						}
+						random_list = {
+							1 = { set_principle = principle_klingon }
+							1 = { set_principle = principle_romulan }
+							1 = { set_principle = principle_ufop }
+						}
+					}
+				}
+			}
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.1004 days = 1 }
+			}		
+		}
+		
+	}
+
+	option = {	
+		name = global_situation.1003.a
+		custom_tooltip = global_situation.1003.a.tt
+	}	
+}	
+
+#DOUBLE AGENTS FAILURE, NEGATIVE POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1004
+	title = global_situation.1004.name	
+	desc = global_situation.1004.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_galactic_trial_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_galactic_trial_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_galactic_trial_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_galactic_trial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+		
+	show_sound = event_diplomatic_dinner	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1004.a
+	}	
+}
+
+
+### TRANSMISSIONS HOME ### - EITHER
+
+#TRANSMISSIONS HOME, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.1100
+	title = global_situation.1100.name	
+	desc = global_situation.1100.desc	
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_sickbay_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+		
+	show_sound = event_sickbay
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#AWARD THE WOUNDED OFFICERS
+	option = {	
+		name = global_situation.1100.a
+		custom_tooltip = global_situation.1100.a.tt
+
+		#GIVE UNITY
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+
+		#POP-PRINCIPLE CHANGE
+		hidden_effect = {
+			IF = {
+				limit = {
+					is_ufop = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_ufop = yes
+			}
+			ELSE_IF = {
+				limit = {
+					is_klingon = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_klingon = yes
+			}
+			ELSE_IF = {
+				limit = {
+					is_romulan = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_romulan = yes
+			}
+			ELSE_IF = {
+				limit = {
+					is_cardassian = yes
+				}
+				
+				#POP PRINCIPLE CHANGE BONUS
+				increase_pop_loyalty_war_situation_effect_cardassian = yes
+			}
+		}
+
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#SUPPORT THE OFFICERS' FAMILIES
+	option = {	
+		name = global_situation.1100.b
+		custom_tooltip = global_situation.1100.b.tt
+
+		#REQUIRES FOOD
+		allow = {
+			resource_stockpile_compare = { resource = food value >= 2000 }
+		}
+
+		hidden_effect = {
+			add_resource = {
+				food = -2000
+			}
+		}
+
+		#WILLING TO SUPPORT EFFECT
+
+		fromfrom = {
+			add_willing_to_support = {
+					amount = 25
+				}
+		}
+
+		#GIVE UNITY
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	#ROLL THE DICE
+	option = {	
+		name = global_situation.1100.c
+		custom_tooltip = global_situation.1100.c.tt
+
+		random_list = {
+			6 = { country_event = { id = global_situation.1101 days = 7 } } #OFFICERS JOIN
+			4 = { country_event = { id = global_situation.1103 days = 7 } } #OFFICERS DEFECT, NEGATIVE
+		}			
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+#EXPERIMENTAL TREATMENTS - VISIBLE
+country_event = {		
+	id = global_situation.1101
+	title = global_situation.1101.name	
+	desc = global_situation.1101.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_sickbay_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_sickbay	
+	is_triggered_only = yes	
+	
+	after = {
+
+		#ADD OFFICERS
+		add_monthly_resource_mult = {
+			resource = officers
+			value = 12
+		}
+
+		#ADD INFLUENCE
+		add_resource = {
+			influence = 150
+		}
+
+		#SUBSTRACT ENERGY
+		add_resource = {
+			energy = -2000
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.1102 days = 5 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.1101.a
+	}	
+}	
+
+#EXPERIMENTAL TREATMENTS POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1102
+	title = global_situation.1102.name	
+	desc = global_situation.1102.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_sickbay_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+		
+	show_sound = event_sickbay	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1102.a
+	}	
+}	
+
+#EXPERIMENTAL TREATMENTS, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.1103
+	title = global_situation.1103.name	
+	desc = global_situation.1103.desc	
+	picture = GFX_evt_abandoned_laboratory_test_tubes	
+	show_sound = event_laboratory_sound	
+	is_triggered_only = yes	
+	
+	after = {
+		#ADD OFFICERS
+		add_resource = {
+			officers = -500
+		}
+
+		#SUBSTRACT ENERGY
+		add_resource = {
+			energy = -2000
+		}
+
+		#WILLING TO SUPPORT EFFECT
+
+		fromfromfrom={
+			add_willing_to_support = {
+					amount = 25
+				}
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.1104 days = 1 }
+			}		
+		}
+	}
+
+	option = {	
+		name = global_situation.1103.a
+	}	
+}	
+
+#EXPERIMENTAL TREATMENTS, NEGATIVE POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1104
+	title = global_situation.1104.name	
+	desc = global_situation.1104.desc	
+	picture = GFX_evt_abandoned_laboratory_test_tubes	
+	show_sound = event_laboratory_sound	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1104.a
+	}	
+}
+
+# HRBQA-2489: Disable this event
+### LOST CONTACT ### - EITHER
+
+#LOST CONTACT, FIRST POP-UP - VISIBLE
+# country_event = {		
+# 	id = global_situation.1200
+# 	title = global_situation.1200.name	
+# 	desc = global_situation.1200.desc	
+# 	picture = GFX_evt_pc_asteroid_sky
+# 	show_sound = event_scanner
+# 	is_triggered_only = yes	
+	
+# 	trigger = {
+# 		exists = this
+# 		exists = event_target:current_situation_scope
+# 	}
+
+# 	after = {
+# 		#RE-TRIGGER RANDOM EVENTS
+# 		hidden_effect = {
+# 			event_target:current_situation_scope = {
+# 				situation_event = {
+# 					id = global_situation.410 days = 90
+# 				}
+# 			}
+# 		}
+# 	}
+
+# 	#BATTLE STATIONS
+# 	option = {	
+# 		name = global_situation.1200.a
+# 		custom_tooltip = global_situation.1200.a.tt
+
+# 		#GIVE INFLUENCE
+# 		add_resource = {
+# 			influence = 150
+# 		}
+
+# 		#SET FLEET MIA
+# 		random_owned_fleet = {
+# 			limit = {
+# 				is_ship_class = shipclass_military
+# 			}
+# 			set_mia = yes
+# 		}
+
+# 		ai_chance = {
+# 			factor = 1
+# 		}
+# 	}	
+
+# 	#SEARCH FOR THE MISSING FLEET
+# 	option = {	
+# 		name = global_situation.1200.b
+# 		custom_tooltip = global_situation.1200.b.tt
+
+# 		#SET FLEET MIA
+# 		random_owned_fleet = {
+# 			limit = {
+# 				is_ship_class = shipclass_military
+# 			}
+# 			set_mia = yes
+# 		}
+
+# 		#WILLING TO SUPPORT EFFECT
+
+# 		fromfrom = {
+# 			add_willing_to_support = {
+# 					amount = 50
+# 				}
+# 		}
+
+# 		ai_chance = {
+# 			factor = 1
+# 		}
+# 	}
+
+# 	#ROLL THE DICE
+# 	option = {	
+# 		name = global_situation.1200.c
+# 		custom_tooltip = global_situation.1200.c.tt
+
+# 		random_list = {
+# 			6 = { country_event = { id = global_situation.1201 days = 7 } } #SAVE FLEET FROM DESTRUCTION
+# 			4 = { country_event = { id = global_situation.1203 days = 7 } } #FLEET IS DESTROYED
+# 		}	
+		
+# 		ai_chance = {
+# 			factor = 1
+# 		}
+# 	}	
+# }
+
+#EXPERIMENTAL SCAN - VISIBLE
+# country_event = {		
+# 	id = global_situation.1201
+# 	title = global_situation.1201.name	
+# 	desc = global_situation.1201.desc	
+
+# 	# Dynamic Images (Major Power variants)
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_ufop = yes } 
+# 		}
+# 		picture = GFX_evt_empire_fleet_ufop
+# 	} 
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_klingon = yes }
+# 		}
+# 		picture = GFX_evt_empire_fleet_klingon
+# 	}
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_romulan = yes } 
+# 		}
+# 		picture = GFX_evt_empire_fleet_romulan
+# 	} 
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_cardassian = yes }
+# 		}
+# 		picture = GFX_evt_empire_fleet_cardassian
+# 	}
+	
+# 	# Default Image on Fail 
+# 	picture = GFX_evt_warscore_background	
+
+# 	show_sound = event_scanner	
+# 	is_triggered_only = yes	
+	
+# 	after = {
+
+# 		#WILLING TO SUPPORT EFFECT
+# 		fromfromfrom = {
+# 			add_willing_to_support = {
+# 					amount = 15
+# 				}
+# 		}
+
+
+# 		#GIVE THE LEADER EXPERIENCE
+# 		random_owned_leader = {
+# 			limit = {
+# 				exists = this
+# 				leader_class = scientist
+# 			}
+# 			add_experience = 200
+# 		}
+
+
+# 		#NOTIFY OTHER SITUATION PARTICIPANTS
+# 		hidden_effect = {	
+# 			every_country = {
+# 				limit = {
+# 					NOT = { is_same_value = root }
+# 					has_country_flag = participant_in_situation@event_target:current_war_scope
+# 				}
+# 				country_event = { id = global_situation.1202 days = 5 }
+# 			}			
+# 		}
+# 	}
+
+# 	option = {	
+# 		name = global_situation.1201.a
+# 	}	
+# }	
+
+#EXPERIMENTAL SCAN POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+# country_event = {		
+# 	id = global_situation.1202
+# 	title = global_situation.1202.name	
+# 	desc = global_situation.1202.desc	
+
+# 	# Dynamic Images (Major Power variants)
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_ufop = yes } 
+# 		}
+# 		picture = GFX_evt_empire_fleet_ufop
+# 	} 
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_klingon = yes }
+# 		}
+# 		picture = GFX_evt_empire_fleet_klingon
+# 	}
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_romulan = yes } 
+# 		}
+# 		picture = GFX_evt_empire_fleet_romulan
+# 	} 
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_cardassian = yes }
+# 		}
+# 		picture = GFX_evt_empire_fleet_cardassian
+# 	}
+	
+# 	# Default Image on Fail 
+# 	picture = GFX_evt_warscore_background
+	
+# 	show_sound = event_scanner	
+# 	is_triggered_only = yes	
+
+# 	option = {	
+# 		name = global_situation.1202.a
+# 	}	
+# }	
+
+#EXPERIMENTAL SCAN, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+# country_event = {		
+# 	id = global_situation.1203
+# 	title = global_situation.1203.name	
+# 	desc = global_situation.1203.desc	
+# 	picture = GFX_evt_space_debris	
+# 	show_sound = event_ship_explosion	
+# 	is_triggered_only = yes	
+	
+# 	after = {
+# 		#DESTROY FLEET
+# 		random_owned_fleet = {
+# 			limit = {
+# 				is_ship_class = shipclass_military
+# 			}
+# 			destroy_fleet = this
+# 		}
+
+# 		fromfromfrom = {
+# 			add_willing_to_support = {
+# 					amount = -15
+# 				}
+# 		}
+		
+# 		#NOTIFY OTHER SITUATION PARTICIPANTS
+# 		hidden_effect = {
+# 			every_country = {
+# 				limit = {
+# 					NOT = { is_same_value = root }
+# 					has_country_flag = participant_in_situation@event_target:current_war_scope
+# 				}
+# 				country_event = { id = global_situation.1204 days = 1 }
+# 			}		
+# 		}
+# 	}
+
+# 	option = {	
+# 		name = global_situation.1203.a
+# 		custom_tooltip = global_situation.1203.a.tt
+# 	}	
+# }	
+
+#EXPERIMENTAL SCAN, NEGATIVE POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+# country_event = {		
+# 	id = global_situation.1204
+# 	title = global_situation.1204.name	
+# 	desc = global_situation.1204.desc	
+
+# 	# Dynamic Images (Major Power variants)
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_ufop = yes } 
+# 		}
+# 		picture = GFX_evt_empire_fleet_ufop
+# 	} 
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_klingon = yes }
+# 		}
+# 		picture = GFX_evt_empire_fleet_klingon
+# 	}
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_romulan = yes } 
+# 		}
+# 		picture = GFX_evt_empire_fleet_romulan
+# 	} 
+# 	picture = {
+# 		trigger = {
+# 		owner = { is_cardassian = yes }
+# 		}
+# 		picture = GFX_evt_empire_fleet_cardassian
+# 	}
+	
+# 	# Default Image on Fail 
+# 	picture = GFX_evt_warscore_background	
+
+# 	show_sound = event_scanner	
+# 	is_triggered_only = yes	
+
+# 	option = {	
+# 		name = global_situation.1204.a
+# 	}	
+# }
+
+
+### HUNKERING DOWN ### - EITHER
+
+#HUNKERING DOWN, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.1300
+	title = global_situation.1300.name	
+	desc = global_situation.1300.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_starbase_background_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_starbase_background_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_starbase_background_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_starbase_background_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+
+	show_sound = event_generic_tension	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#DIVERSIFY EFFORTS
+	option = {	
+		name = global_situation.1300.a
+		custom_tooltip = global_situation.1300.a.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = alloys value >= 1000 }
+		}
+
+		#SUBTRACT ALLOYS
+		hidden_effect = {
+			add_resource = {
+				alloys = -1000
+			}
+		}
+
+		#WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#REPURPOSE OLD EQUIPMENT
+	option = {	
+		name = global_situation.1300.b
+		custom_tooltip = global_situation.1300.b.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = influence value >= 100 }
+		}
+
+		#SUBTRACT INFLUENCE
+		add_resource = {
+			influence = -100
+		}
+
+		#CREATE FLEET
+		create_war_situation_repurposed_fleet_effect = yes
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	#ROLL THE DICE
+	option = {	
+		name = global_situation.1300.c
+		custom_tooltip = global_situation.1300.c.tt
+
+		random_list = {
+			5 = { country_event = { id = global_situation.1301 days = 7 } } #GAIN DEFENSE PLATFORM
+			5 = { country_event = { id = global_situation.1303 days = 7 } } #GAIN WILLING TO SUPPORT
+		}				
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+#DOUBLE DOWN - VISIBLE
+country_event = {		
+	id = global_situation.1301
+	title = global_situation.1301.name	
+	desc = global_situation.1301.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_shipyard_repair_service_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_shipyard_repair_service_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_shipyard_repair_service_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_shipyard_repair_service_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_shipyard_repair_service	
+	is_triggered_only = yes	
+	
+	after = {
+
+		#CREATE DEFENSE PLATFORMS
+		while = {
+			count = 10
+			random_owned_starbase = {
+				limit = {
+					has_starbase_size > starbase_outpost
+				}
+				create_ship = {
+					name = random
+					design = random_existing_design
+					random_existing_design = military_station_small
+				}
+			}
+		}
+
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.1302 days = 1 }
+			}		
+		}
+	}
+
+	option = {	
+		name = global_situation.1301.a
+		custom_tooltip = global_situation.1301.a.tt
+	}	
+}	
+
+#DOUBLE DOWN POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1302
+	title = global_situation.1302.name	
+	desc = global_situation.1302.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_shipyard_repair_service_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_shipyard_repair_service_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_shipyard_repair_service_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_shipyard_repair_service_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_shipyard_repair_service	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1302.a
+	}	
+}	
+
+#DOUBLE DOWN, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.1303
+	title = global_situation.1303.name	
+	desc = global_situation.1303.desc	
+	picture = GFX_evt_spaceship_junkyard	
+	show_sound = event_ship_wreckage_desert_landscape	
+	is_triggered_only = yes	
+	
+	after = {
+
+		#WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+		
+		#NOTIFY OTHER SITUATION PARTICIPANTS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = { is_same_value = root }
+					has_country_flag = participant_in_situation@event_target:current_war_scope
+				}
+				country_event = { id = global_situation.1304 days = 1 }
+			}		
+		}
+	}
+
+	option = {	
+		name = global_situation.1303.a
+	}	
+}	
+
+#DOUBLE DOWN, NEGATIVE POP-UP FOR THE OTHER SITUATION PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1304
+	title = global_situation.1304.name	
+	desc = global_situation.1304.desc	
+	picture = GFX_evt_spaceship_junkyard	
+	show_sound = event_ship_wreckage_desert_landscape	
+	is_triggered_only = yes
+
+	option = {	
+		name = global_situation.1304.a
+	}	
+}
+
+
+### STALEMATE ### - DEFENDER
+
+# STALEMATE, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.1700
+	title = global_situation.1700.name	
+	desc = global_situation.1700.desc	
+	picture = GFX_evt_ship_wreckage_desert_landscape	
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#request support
+	option = {	
+		name = global_situation.1700.a
+		custom_tooltip = global_situation.1700.a.tt
+
+		event_target:main_defender_scope = {
+			add_modifier = {
+				modifier = situation_request_support
+				years = 5
+			}
+		}
+
+		# WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+				amount = -10
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#SCRAP EQUIPMENT
+	option = {	
+		name = global_situation.1700.b
+		custom_tooltip = global_situation.1700.b.tt
+
+		add_monthly_resource_mult = {
+			resource = minerals
+			value = 6
+		}
+		add_monthly_resource_mult = {
+			resource = energy
+			value = 6
+		}
+		add_monthly_resource_mult = {
+			resource = deuterium
+			value = 6
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	#BREAK THROUGH THEIR LINES
+	option = {	
+		name = global_situation.1700.c
+		custom_tooltip = global_situation.1700.c.tt
+
+		allow = {
+			event_target:main_attacker_scope = {
+				count_owned_starbase = {
+					count > 1
+				}
+			}
+			event_target:main_defender_scope = {
+				count_owned_ship = {
+					count >= 5
+					limit = {
+						is_ship_class = shipclass_military
+					}
+				}
+			}
+		}
+
+		random_list = {
+			7 = { country_event = { id = global_situation.1701 days = 7 } } #DESTROY ENEMY STARBASE
+			3 = { country_event = { id = global_situation.1703 days = 7 } } #DESTROY ENEMY STARBASE FAIL, LOSES WILL TO SUPPORT
+		}	
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+#STALEMATE SUCCESS - VISIBLE
+country_event = {		
+	id = global_situation.1701
+	title = global_situation.1701.name	
+	desc = global_situation.1701.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_computer_malfunction_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_computer_malfunction_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_computer_malfunction_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_computer_malfunction_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_war_games	
+	is_triggered_only = yes	
+	
+	after = {
+		#NOTIFY OTHER PLAYERS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+					is_war_participant = {
+						war = event_target:current_war_scope
+					}
+				}
+				country_event = { id = global_situation.1702 days = 1 }
+			}			
+		}
+
+		event_target:main_attacker_scope = {
+			random_owned_starbase = {
+				limit = {
+					NAND = {
+						solar_system = {
+							any_system_planet = {
+								is_colony = yes
+							}
+						}
+						has_starbase_size = starbase_outpost
+					}
+				}
+				destroy_starbase_effect_war_situation = yes
+			}
+		}
+
+		event_target:main_defender_scope = {
+			# Will this WHILE break the game?
+			while = {
+				count >= 5
+				limit = {
+					any_owned_ship = {
+						is_civilian = no
+						NOR = {
+							is_ship_size = enterprise
+							is_ship_size = enterprise_sovereign
+						}
+					}
+				}
+
+				random_owned_ship = {
+					limit = {
+						is_ship_class = shipclass_military
+						
+						NOR = {
+							is_ship_class = shipclass_starbase
+							is_ship_size = enterprise
+							is_ship_size = enterprise_sovereign
+						}
+					}
+					destroy_ship = this
+				}
+			}
+		}
+	}
+
+	option = {	
+		name = global_situation.1701.a
+		custom_tooltip = global_situation.1701.a.tt
+	}	
+}	
+
+#STALEMATE SUCCESS POP-UP FOR THE OTHER WAR PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1702
+	title = global_situation.1702.name	
+	desc = global_situation.1702.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_computer_malfunction_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_computer_malfunction_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_computer_malfunction_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_computer_malfunction_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+
+	show_sound = event_war_games	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1702.a
+	}	
+}	
+
+#STALEMATE FAILURE, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.1703
+	title = global_situation.1703.name	
+	desc = global_situation.1703.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_computer_malfunction_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_computer_malfunction_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_computer_malfunction_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_computer_malfunction_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background	
+
+	show_sound = event_war_games	
+	is_triggered_only = yes	
+	
+	after = {
+		#NOTIFY OTHER PLAYERS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+					is_war_participant = {
+						war = event_target:current_war_scope
+					}
+				}
+				country_event = { id = global_situation.1704 days = 1 }
+			}		
+		}
+
+		event_target:main_attacker_scope = {
+			random_owned_starbase = {
+				limit = {
+					NAND = {
+						solar_system = {
+							any_system_planet = {
+								is_colony = yes
+							}
+						}
+						has_starbase_size = starbase_outpost
+					}
+				}
+				destroy_starbase_effect_war_situation = yes
+			}
+		}
+
+		event_target:main_defender_scope = {
+			# Will this WHILE break the game?
+			while = {
+				count >= 5
+				limit = {
+					any_owned_ship = {
+						is_civilian = no
+						NOR = {
+							is_ship_size = enterprise
+							is_ship_size = enterprise_sovereign
+						}
+					}
+				}
+
+				random_owned_ship = {
+					limit = {
+						is_ship_class = shipclass_military
+						
+						NOR = {
+							is_ship_class = shipclass_starbase
+							is_ship_size = enterprise
+							is_ship_size = enterprise_sovereign
+						}
+					}
+
+					destroy_ship = this
+				}
+			}
+
+			convert_pops = {
+				principle = principle_undefined
+				who = this
+				percentage = 0.1
+			}
+
+		}
+	
+		#WILLING TO SUPPORT EFFECT
+		fromfromfrom = {
+			add_willing_to_support = {
+				amount = -25
+			}
+		}
+	}
+
+	option = {	
+		name = global_situation.1703.a
+		custom_tooltip = global_situation.1703.a.tt
+	}	
+}	
+
+#STALEMATE FAILURE, NEGATIVE POP-UP FOR THE OTHER WAR PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1704
+	title = global_situation.1704.name	
+	desc = global_situation.1704.desc	
+	picture = GFX_evt_ship_wreckage_desert_landscape	
+	show_sound = event_ship_wreckage_desert_landscape
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1704.a
+	}	
+}
+
+
+### PARADIGM-SHIFTING WEAPONS ### - DEFENDER
+
+# PARADIGM-SHIFTING WEAPONS, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.1600
+	title = global_situation.1600.name	
+	desc = global_situation.1600.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_lab_research_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_lab_research_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_lab_research_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_lab_research_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_laboratory_sound	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	#UPDATE OUR PROTOCOLS
+	option = {	
+		name = global_situation.1600.a
+		custom_tooltip = global_situation.1600.a.tt
+
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
+
+		hidden_effect = {
+			add_resource = {
+				energy = -1000
+			}	
+		}
+
+		#WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+				amount = -25
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	#GATHER DATA ON PROTOTYPES
+	option = {	
+		name = global_situation.1600.b
+		custom_tooltip = global_situation.1600.b.tt
+
+		add_resource = {
+			influence = 50
+		}
+
+		add_monthly_resource_mult = {
+			resource = research
+			value = 6
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	#FIELD TEST THE "BIG ONE"
+	option = {	
+		name = global_situation.1600.c
+		custom_tooltip = global_situation.1600.c.tt
+
+		random_list = {
+			7 = { country_event = { id = global_situation.1601 days = 7 } } #SUCCESS
+			3 = { country_event = { id = global_situation.1603 days = 7 } } #FAIL
+		}	
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+#PARADIGM-SHIFTING WEAPONS SUCCESS - VISIBLE
+country_event = {		
+	id = global_situation.1601
+	title = global_situation.1601.name	
+	desc = global_situation.1601.desc	
+	picture = GFX_evt_space_supernova_explosion	
+	show_sound = event_terrifying_supernova_explosion	
+	is_triggered_only = yes	
+	
+	after = {
+		
+		#NOTIFY OTHER PLAYERS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+					is_war_participant = {
+						war = event_target:current_war_scope
+					}
+				}
+				country_event = { id = global_situation.1602 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.1601.a
+
+		event_target:main_defender_scope = {
+			add_random_research_option = {
+				add_progress = 0.15
+				area = engineering
+			}
+		}
+
+		fromfromfrom = {
+			add_willing_to_support = {
+				amount = 10
+			}
+		}
+	}
+}	
+
+#PARADIGM-SHIFTING WEAPONS SUCCESS POP-UP FOR THE OTHER WAR PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1602
+	title = global_situation.1602.name	
+	desc = global_situation.1602.desc	
+	picture = GFX_evt_space_supernova_explosion	
+	show_sound = event_terrifying_supernova_explosion	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1602.a
+	}	
+}	
+
+#PARADIGM-SHIFTING WEAPONS FAILURE, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.1603
+	title = global_situation.1603.name	
+	desc = global_situation.1603.desc	
+	picture = GFX_evt_space_debris
+	show_sound = event_generic_fail
+	is_triggered_only = yes	
+	
+	after = {
+		#NOTIFY OTHER PLAYERS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+					is_war_participant = {
+						war = event_target:current_war_scope
+					}
+				}
+				country_event = { id = global_situation.1604 days = 1 }
+			}		
+		}
+	}
+
+	option = {	
+		name = global_situation.1603.a
+		custom_tooltip = global_situation.1603.a.tt
+
+		event_target:main_defender_scope = {
+			convert_pops = {
+				principle = principle_undefined
+				who = this
+				percentage = 0.1
+			}
+		}
+		fromfromfrom = {
+			add_willing_to_support = {
+				amount = -10
+			}
+		}
+	}
+}
+
+
+#PARADIGM-SHIFTING WEAPONS FAILURE, NEGATIVE POP-UP FOR THE OTHER WAR PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1604
+	title = global_situation.1604.name	
+	desc = global_situation.1604.desc	
+	picture = GFX_evt_space_debris
+	show_sound = event_generic_fail
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1604.a
+	}	
+}
+
+
+### HOSTAGES ### - DEFENDER
+
+# HOSTAGES, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.1500
+	title = global_situation.1500.name	
+	desc = global_situation.1500.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_red_alert_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_red_alert_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_red_alert_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_red_alert_cardassian
+	}
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_generic_suspense	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	# CALL FOR UNIFIED GALACTIC PRESSURE
+	option = {	
+		name = global_situation.1500.a
+		custom_tooltip = global_situation.1500.a.tt
+
+		fromfrom = {
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	# NEGOTIATE FOR THE HOSTAGES' RELEASE
+	option = {	
+		name = global_situation.1500.b
+		custom_tooltip = global_situation.1500.b.tt
+
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
+
+		add_resource = {
+			influence = 50
+		}
+
+		hidden_effect = {
+			add_resource = {
+				energy = -1000
+			}	
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	# SEND IN AN ELITE RESCUE TEAM
+	option = {	
+		name = global_situation.1500.c
+		custom_tooltip = global_situation.1500.c.tt
+
+		random_list = {
+			7 = { country_event = { id = global_situation.1501 days = 7 } } #SUCCESS
+			3 = { country_event = { id = global_situation.1503 days = 7 } } #FAIL
+		}	
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# HOSTAGES SUCCESS - VISIBLE
+country_event = {		
+	id = global_situation.1501
+	title = global_situation.1501.name	
+	desc = global_situation.1501.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_combat_onboard_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_combat_onboard_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_combat_onboard_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_combat_onboard_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+	
+	after = {
+		#NOTIFY OTHER PLAYERS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+					is_war_participant = {
+						war = event_target:current_war_scope
+					}
+				}
+				country_event = { id = global_situation.1502 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.1501.a
+		custom_tooltip = global_situation.1501.a.tt
+
+		fromfromfrom = {
+			#WILLING TO SUPPORT EFFECT
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+
+		event_target:main_defender_scope = {
+			
+			add_resource = {
+				influence = 25
+			}
+
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+			}
+
+			#WILLING TO SUPPORT EFFECT
+			add_willing_to_support = {
+				situation_event = event_target:current_situation_scope
+				amount = 25
+			}
+
+
+			if = {
+				limit = {
+					this = {
+						is_cardassian = yes
+					}
+				}
+
+				# This one doesnt take into account already loyal pops
+				war_situation_convert_pops = {
+					TARGET = cardassian
+					AMOUNT = 0.1
+				}
+
+				# This one takes into account all pops
+				# convert_pops = {
+				# 	percentage = 0.1
+				# 	principle = principle_cardassian
+				# }
+			}
+
+			else_if = {
+				limit = {
+					this = {
+						is_ufop = yes
+					}
+				}
+
+				war_situation_convert_pops = {
+					TARGET = ufop
+					AMOUNT = 0.1
+				}
+			}
+
+			else_if = {
+				limit = {
+					this = {
+						is_romulan = yes
+					}
+				}
+
+				war_situation_convert_pops = {
+					TARGET = romulan
+					AMOUNT = 0.1
+				}
+			}
+
+			else_if = {
+				limit = {
+					this = {
+						is_klingon = yes
+					}
+				}
+
+				war_situation_convert_pops = {
+					TARGET = klingon
+					AMOUNT = 0.1
+				}
+			}
+		}
+	}	
+}	
+
+# HOSTAGES SUCCESS POP-UP FOR THE OTHER WAR PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1502
+	title = global_situation.1502.name	
+	desc = global_situation.1502.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_combat_onboard_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_combat_onboard_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_combat_onboard_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_combat_onboard_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1502.a
+	}	
+}	
+
+# HOSTAGES, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.1503
+	title = global_situation.1503.name	
+	desc = global_situation.1503.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_burial_enterprise_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_burial_vorcha_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_burial_valdore_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_ground_burial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_space_burial
+	is_triggered_only = yes	
+	
+	after = {
+		#NOTIFY OTHER PLAYERS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+					is_war_participant = {
+						war = event_target:current_war_scope
+					}
+				}
+				country_event = { id = global_situation.1504 days = 1 }
+			}		
+		}
+	}
+
+	option = {	
+		name = global_situation.1503.a
+		custom_tooltip = global_situation.1503.a.tt
+
+		event_target:main_defender_scope = {
+			
+			if = {
+				limit = {
+					this = {
+						is_cardassian = yes
+					}
+				}
+				convert_pops = {
+					who = this
+					principle = principle_undefined
+					percentage = 0.1
+					of_principle = principle_cardassian
+				}
+			}
+
+			else_if = {
+				limit = {
+					this = {
+						is_ufop = yes
+					}
+				}
+				convert_pops = {
+					who = this
+					principle = principle_undefined
+					percentage = 0.1
+					of_principle = principle_undefined
+				}
+			}
+
+			else_if = {
+				limit = {
+					this = {
+						is_romulan = yes
+					}
+				}
+				convert_pops = {
+					who = this
+					principle = principle_undefined
+					percentage = 0.1
+					of_principle = principle_romulan
+				}
+			}
+
+			else_if = {
+				limit = {
+					this = {
+						is_klingon = yes
+					}
+				}
+				convert_pops = {
+					who = this
+					principle = principle_undefined
+					percentage = 0.1
+					of_principle = principle_klingon
+				}
+			}
+
+			
+
+			else = {
+				convert_pops = {
+					who = this
+					principle = principle_undefined
+					percentage = 0.1
+				}
+			}
+
+			add_resource = {
+				officers = -300
+			}
+		}
+		
+	}	
+}	
+
+# HOSTAGES, NEGATIVE POP-UP FOR THE OTHER WAR PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1504
+	title = global_situation.1504.name	
+	desc = global_situation.1504.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_burial_enterprise_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_burial_vorcha_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_burial_valdore_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_ground_burial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_space_burial	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1504.a
+	}	
+}
+
+
+### ATROCITIES UNCOVERED ### - DEFENDER
+
+# ATROCITIES UNCOVERED, FIRST POP-UP - VISIBLE
+country_event = {		
+	id = global_situation.1400
+	title = global_situation.1400.name	
+	desc = global_situation.1400.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_civil_unrest_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_civil_unrest_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_civil_unrest_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_civil_unrest_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+	
+	trigger = {
+		exists = this
+		exists = event_target:current_situation_scope
+	}
+
+	after = {
+		#RE-TRIGGER RANDOM EVENTS
+		hidden_effect = {
+			event_target:current_situation_scope = {
+				situation_event = {
+					id = global_situation.410 days = 90
+				}
+			}
+		}
+	}
+
+	# share footage of the atrocities
+	option = {	
+		name = global_situation.1400.a
+		custom_tooltip = global_situation.1400.a.tt
+
+		#WILLING TO SUPPORT EFFECT
+		fromfrom = {
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+
+	# Declare the massacre a war crime
+	option = {	
+		name = global_situation.1400.b
+		custom_tooltip = global_situation.1400.b.tt
+
+		add_global_tension = {
+			amount = -15
+		}
+		add_resource = {
+			influence = 100
+		}
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+		}
+
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	# Take vengeance
+	option = {	
+		name = global_situation.1400.c
+		custom_tooltip = global_situation.1400.c.tt
+
+		random_list = {
+			6 = { country_event = { id = global_situation.1401 days = 7 } } #SUCCESS
+			4 = { country_event = { id = global_situation.1403 days = 7 } } #FAIL
+		}	
+
+		ai_chance = {
+			factor = 1
+		}
+	}	
+}
+
+# ATROCITIES UNCOVERED - VISIBLE
+country_event = {		
+	id = global_situation.1401
+	title = global_situation.1401.name	
+	desc = global_situation.1401.desc
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_colony_women_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_colony_women_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_colony_women_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_generic_success
+	is_triggered_only = yes	
+	
+	after = {
+		#WILLING TO SUPPORT EFFECT
+		fromfromfrom = {
+			add_willing_to_support = {
+				amount = 25
+			}
+		}
+
+		#NOTIFY OTHER PLAYERS
+		hidden_effect = {	
+			every_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+					is_war_participant = {
+						war = event_target:current_war_scope
+					}
+				}
+				country_event = { id = global_situation.1402 days = 1 }
+			}			
+		}
+	}
+
+	option = {	
+		name = global_situation.1401.a
+	}	
+}	
+
+# ATROCITIES UNCOVERED POP-UP FOR THE OTHER WAR PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1402
+	title = global_situation.1402.name	
+	desc = global_situation.1402.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_colony_women_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_colony_women_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_colony_women_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_civil_unrest	
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1402.a
+	}	
+}	
+
+# HOSTAGES, NEGATIVE POP-UP FOR THE PLAYER - VISIBLE
+country_event = {		
+	id = global_situation.1403
+	title = global_situation.1403.name	
+	desc = global_situation.1403.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_burial_enterprise_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_burial_vorcha_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_burial_valdore_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_ground_burial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+
+	show_sound = event_space_burial	
+	is_triggered_only = yes	
+	
+	after = {
+		#NOTIFY OTHER PLAYERS
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						is_same_value = root
+					}
+					is_war_participant = {
+						war = event_target:current_war_scope
+					}
+				}
+				country_event = { id = global_situation.1404 days = 7 }
+			}		
+		}
+	}
+
+	option = {	
+		name = global_situation.1403.a
+		custom_tooltip = global_situation.1403.a.tt
+
+		event_target:main_defender_scope = {
+			random_owned_fleet = {
+				limit = {
+					is_ship_class = shipclass_military
+				}
+				set_mia = yes
+			}
+		}
+
+		#WILLING TO SUPPORT EFFECT
+		fromfromfrom = {
+			add_willing_to_support = {
+				situation_event = event_target:current_situation_scope
+				amount = 25
+			}
+		}
+	}
+}	
+
+# ATROCITIES UNCOVERED, NEGATIVE POP-UP FOR THE OTHER WAR PARTICIPANTS - VISIBLE
+country_event = {		
+	id = global_situation.1404
+	title = global_situation.1404.name	
+	desc = global_situation.1404.desc	
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_burial_enterprise_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_burial_vorcha_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_burial_valdore_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_ground_burial_cardassian
+	}
+
+	# Default Image on Fail 
+	picture = GFX_evt_warscore_background
+	
+	show_sound = event_space_burial
+	is_triggered_only = yes	
+
+	option = {	
+		name = global_situation.1404.a
+	}	
+}

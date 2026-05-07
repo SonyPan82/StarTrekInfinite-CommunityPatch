@@ -1,0 +1,5 @@
+on_becoming_subject = {
+	events = {
+		cp26_vassalization.4
+	}
+}

@@ -3,7 +3,7 @@ spawn_gorn_system = {
 		min_jumps = 1
 		max_jumps = 1
 		min_distance = 3
-		max_distance = 7
+		max_distance = 10
 		initializer = gorn_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -14,8 +14,8 @@ spawn_finibus_system = {
 	spawn_system = {
 		min_jumps = 1
 		max_jumps = 1
-		min_distance = 4
-		max_distance = 9
+		min_distance = 3
+		max_distance = 10
 		initializer = finibus_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -25,8 +25,8 @@ spawn_galdonterre_system = {
 	spawn_system = {
 		min_jumps = 1
 		max_jumps = 1
-		min_distance = 5
-		max_distance = 8
+		min_distance = 3
+		max_distance = 10
 		initializer = galdonterre_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -36,8 +36,8 @@ spawn_cestus_system = {
 	spawn_system = {
 		min_jumps = 1
 		max_jumps = 1
-		min_distance = 4
-		max_distance = 9
+		min_distance = 3
+		max_distance = 10
 		initializer = cestus_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -45,37 +45,59 @@ spawn_cestus_system = {
 }
 
 setup_gorn_capital = {
-	random_system_planet = {
+	if = {
 		limit = {
-			has_planet_flag = gorn_capital				
+			exists = event_target:gorn_country
 		}
-			while = {
-				count = 20
-				create_pop = { species = "Gorn" }
+		set_surveyed = { surveyed = yes surveyor = event_target:gorn_country }
+		if = {
+			limit = { exists = event_target:ufop_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+		}
+		if = {
+			limit = { exists = event_target:klingon_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:klingon_country }
+		}
+		if = {
+			limit = { exists = event_target:romulan_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:romulan_country }
+		}
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:cardassian_country }
+		}
+		random_system_planet = {
+			limit = {
+				has_planet_flag = gorn_capital				
 			}
-			add_deposit = d_ore_rich_slopes
-			add_deposit = d_rich_mountain
-			add_deposit = d_hot_springs
-			add_deposit = d_geothermal_vent
-			clear_blockers = yes
-			add_district = district_city
-			add_district = district_city
-		add_district = district_mining
-		add_district = district_mining
-		add_district = district_industrial
-		add_district = district_generator
-		add_district = district_generator
-		add_district = district_gorn_hunting
-		add_district = district_gorn_hunting
-		add_district = district_gorn_hunting
-		remove_building = building_colony_shelter
-		add_building = building_capital	
-	}
-	create_starbase = {
-		size = starbase_starport
-		owner = event_target:gorn_country
-		module = shipyard
-		building = crew_quarters
+				while = {
+					count = 20
+					create_pop = { species = "Gorn" }
+				}
+				add_deposit = d_ore_rich_slopes
+				add_deposit = d_rich_mountain
+				add_deposit = d_hot_springs
+				add_deposit = d_geothermal_vent
+				clear_blockers = yes
+				add_district_and_planet_size_if_needed_effect = { district = district_city }
+				add_district_and_planet_size_if_needed_effect = { district = district_city }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
+			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
+			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
+			remove_building = building_colony_shelter
+			add_building = building_capital	
+		}
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:gorn_country
+			module = shipyard
+			building = crew_quarters
+		}
 	}
 }
 
@@ -85,6 +107,22 @@ setup_gorn_territory = {
 			exists = event_target:gorn_country
 		}
 		set_surveyed = { surveyed = yes surveyor = event_target:gorn_country }
+		if = {
+			limit = { exists = event_target:ufop_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+		}
+		if = {
+			limit = { exists = event_target:klingon_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:klingon_country }
+		}
+		if = {
+			limit = { exists = event_target:romulan_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:romulan_country }
+		}
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:cardassian_country }
+		}
 		create_starbase = {
 			size = starbase_outpost
 			owner = event_target:gorn_country

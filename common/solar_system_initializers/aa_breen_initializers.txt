@@ -123,19 +123,24 @@ breen_system_initializer = {
 					skill = 3
 				}
 				set_leader = last_created_leader
+				}
+			}
+
+			late_init_effect = {
+				if = {
+					limit = {
+						exists = event_target:breen_country
+					}
+					create_colony = {
+						owner = event_target:breen_country
+					}
+				}
+				add_modifier = {
+					modifier = home_planet
+					days = -1
+				}
 			}
 		}
-		
-		late_init_effect = {
-			create_colony = {
-				owner = event_target:breen_country
-			}
-			add_modifier = {
-				modifier = home_planet
-				days = -1
-			}			
-		}
-	}
 	
 	planet = {
 		name = "Breenus Secundus"
@@ -148,16 +153,21 @@ breen_system_initializer = {
 		home_planet = no
 		flags = { mapo_colony breenus_secundus }
 		
-		init_effect = {
-			prevent_anomaly = yes
-		}
-		
-		late_init_effect = {
-			create_colony = {
-				owner = event_target:breen_country
+			init_effect = {
+				prevent_anomaly = yes
+			}
+
+			late_init_effect = {
+				if = {
+					limit = {
+						exists = event_target:breen_country
+					}
+					create_colony = {
+						owner = event_target:breen_country
+					}
+				}
 			}
 		}
-	}
 	
 	init_effect = {
 		generate_home_system_resources = yes
@@ -172,10 +182,15 @@ breen_system_initializer = {
 		}
 	}
 
-	late_init_effect = {
-		create_starbase = {
-			size = starbase_starport
-			owner = event_target:breen_country
+		late_init_effect = {
+			if = {
+				limit = {
+					exists = event_target:breen_country
+				}
+				create_starbase = {
+					size = starbase_starport
+					owner = event_target:breen_country
+				}
+			}
 		}
 	}
-}

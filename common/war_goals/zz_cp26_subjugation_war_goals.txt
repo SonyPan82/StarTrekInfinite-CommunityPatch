@@ -1,0 +1,66 @@
+wg_subjugation = {
+	casus_belli = cb_subjugation
+	hide_if_no_cb = yes
+	release_occupied_systems_on_status_quo = yes
+	total_war = no
+	needs_total_occupation = no
+	cede_claims = no
+	threat_multiplier = 1.5
+
+	allowed_peace_offers = {
+		status_quo
+		surrender
+		demand_surrender
+		neutral_zone
+	}
+
+	surrender_acceptance = -75
+
+	potential = {
+		has_total_war_cb = no
+		OR = {
+			is_country_type = default
+			is_country_type = contender
+		}
+	}
+
+	possible = {
+		from = {
+			is_subject = no
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
+		}
+	}
+
+	on_accept = {
+		from = {
+			set_subject_of = {
+				who = root
+				subject_type = vassal
+			}
+		}
+	}
+
+	on_status_quo = {
+		if = {
+			limit = {
+				exists = last_created_country
+				last_created_country = {
+					has_country_flag = released_empire
+				}
+			}
+			last_created_country = {
+				set_subject_of = {
+					who = root
+					subject_type = vassal
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
