@@ -101,6 +101,10 @@ country_event = {
 				who = root
 				modifier = opinion_demanded_subjectization
 			}
+			set_timed_country_flag = {
+				flag = cp26_subjugation_cb_vs_@root
+				days = 360
+			}
 			add_casus_belli = {
 				type = cb_subjugation
 				who = root
@@ -317,6 +321,7 @@ country_event = {
 				}
 				NOT = { is_same_value = from }
 				NOT = { has_country_flag = liberation_war_casus_belli_on_@root }
+				has_communications = from
 			}
 
 			set_country_flag = liberation_war_casus_belli_on_@root
@@ -376,6 +381,7 @@ country_event = {
 						is_regular_empire = yes
 					}
 					NOT = { is_same_value = from }
+					has_communications = from
 				}
 
 				set_country_flag = liberation_war_casus_belli_on_@root

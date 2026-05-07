@@ -1,6 +1,6 @@
 wg_subjugation = {
 	casus_belli = cb_subjugation
-	hide_if_no_cb = yes
+	hide_if_no_cb = no
 	release_occupied_systems_on_status_quo = yes
 	total_war = no
 	needs_total_occupation = no

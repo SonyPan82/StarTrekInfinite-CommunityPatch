@@ -105,6 +105,8 @@ cb_subjugation = {
 		NOT = { is_in_federation_with = from }
 	}
 	is_valid = {
+		cp26_vassalization_mode_allows_actor = yes
+		has_country_flag = cp26_subjugation_cb_vs_@from
 		has_total_war_cb = no
 		NOT = { is_overlord_to = FROM }
 		OR = {
@@ -132,6 +134,14 @@ cb_cp26_forced_occupation = {
 		NOT = { is_in_federation_with = from }
 	}
 	is_valid = {
+		OR = {
+			has_claim = FROM
+			from = {
+				any_subject = {
+					root = { has_claim = prev }
+				}
+			}
+		}
 		has_total_war_cb = no
 		NOT = { is_overlord_to = FROM }
 		is_subject = no

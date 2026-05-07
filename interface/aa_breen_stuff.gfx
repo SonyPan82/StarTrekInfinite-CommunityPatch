@@ -24,6 +24,11 @@ spriteTypes = {
 		texturefile = "flags/emblem/bottombar/flag_breen.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
+	spriteType = {
+		name = "flag_breen_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_breen.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
 	
 	# ships
 	spriteType = {

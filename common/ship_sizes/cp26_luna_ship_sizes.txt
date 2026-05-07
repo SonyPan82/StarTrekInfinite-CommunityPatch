@@ -33,7 +33,6 @@ luna = {
 		ship_evasion_add = @luna_evasion
 		ship_anomaly_research_speed_mult = 0.10
 
-		ship_hyperlane_range_add = 1
 	}
 
 	size_multiplier = 5
@@ -48,7 +47,6 @@ luna = {
 	base_buildtime = @luna_build_time
 	can_have_federation_design = yes
 	enable_default_design = yes
-	ignores_warp_range = yes
 
 	default_behavior = "hrb_bomber"
 

@@ -619,6 +619,7 @@ action_break_integration_process = {
 action_cp26_offer_war_goal_peace = {
 	icon = "GFX_diplomacy_status_war"
 	is_listed = yes
+	auto_accepted = yes
 	requires_actor_independence = no
 	requires_recipient_independence = no
 	should_show_auto_accept_message_recipient = no
@@ -653,10 +654,6 @@ action_cp26_offer_war_goal_peace = {
 				NOT = { has_country_flag = cp26_wargoal_peace_pending_target }
 			}
 		}
-	}
-
-	proposable = {
-		always = yes
 	}
 
 	on_accept = {
@@ -769,6 +766,69 @@ action_break_support = {
 }
 
 # CP26: extend subject liberation to regular empires, not only vanilla minor subjects.
+action_release_subject = {
+	icon = "GFX_diplomacy_status_has_vassal"
+	requires_recipient_independence = no
+	auto_accepted = yes
+	should_notify_all_communications = yes
+	should_show_auto_accept_message_recipient = yes
+	action_type = positive
+
+	potential = {
+		hidden_trigger = {
+			OR = {
+				is_major_minor_relation = yes
+				AND = {
+					is_regular_empire = yes
+					from = { is_regular_empire = yes }
+				}
+			}
+		}
+	}
+}
+
+action_ask_to_be_released_subject = {
+	icon = "GFX_diplomacy_status_has_vassal"
+	requires_actor_independence = no
+	diplo_view_acceptance_icon = yes
+	should_notify_all_communications = yes
+	AI_acceptance_base_value = -50
+	action_type = neutral
+
+	potential = {
+		hidden_trigger = {
+			OR = {
+				from = { is_major = yes }
+				AND = {
+					is_regular_empire = yes
+					from = { is_regular_empire = yes }
+				}
+			}
+		}
+	}
+}
+
+action_liberate_subject = {
+	icon = "GFX_diplomacy_status_has_vassal"
+	requires_recipient_independence = no
+	diplo_view_acceptance_icon = yes
+	should_notify_all_communications = yes
+	action_type = neutral
+	auto_accepted = yes
+
+	potential = {
+		hidden_trigger = {
+			OR = {
+				is_major_minor_relation = yes
+				AND = {
+					is_regular_empire = yes
+					from = { is_regular_empire = yes }
+				}
+			}
+		}
+	}
+}
+
 action_request_subject_liberation = {
 	icon = "GFX_diplomacy_status_has_vassal"
 	requires_actor_independence = no
