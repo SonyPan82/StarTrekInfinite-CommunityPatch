@@ -1,9 +1,9 @@
 spawn_gorn_system = {
 	spawn_system = {
 		min_jumps = 1
-		max_jumps = 4
-		min_distance = 1
-		max_distance = 16
+		max_jumps = 1
+		min_distance = 3
+		max_distance = 10
 		initializer = gorn_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -13,9 +13,9 @@ spawn_gorn_system = {
 spawn_finibus_system = {
 	spawn_system = {
 		min_jumps = 1
-		max_jumps = 2
+		max_jumps = 1
 		min_distance = 3
-		max_distance = 12
+		max_distance = 10
 		initializer = finibus_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -24,9 +24,9 @@ spawn_finibus_system = {
 spawn_galdonterre_system = {
 	spawn_system = {
 		min_jumps = 1
-		max_jumps = 2
+		max_jumps = 1
 		min_distance = 3
-		max_distance = 8
+		max_distance = 10
 		initializer = galdonterre_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -35,11 +35,11 @@ spawn_galdonterre_system = {
 spawn_cestus_system = {
 	spawn_system = {
 		min_jumps = 1
-		max_jumps = 2
-		min_distance = 4
-		max_distance = 9
+		max_jumps = 1
+		min_distance = 3
+		max_distance = 10
 		initializer = cestus_system_initializer
-		hyperlane = no
+		hyperlane = yes
 		is_discovered = yes
 	}
 }
@@ -48,6 +48,23 @@ setup_gorn_capital = {
 	if = {
 		limit = {
 			exists = event_target:gorn_country
+		}
+		set_surveyed = { surveyed = yes surveyor = event_target:gorn_country }
+		if = {
+			limit = { exists = event_target:ufop_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+		}
+		if = {
+			limit = { exists = event_target:klingon_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:klingon_country }
+		}
+		if = {
+			limit = { exists = event_target:romulan_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:romulan_country }
+		}
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:cardassian_country }
 		}
 		random_system_planet = {
 			limit = {
@@ -90,6 +107,22 @@ setup_gorn_territory = {
 			exists = event_target:gorn_country
 		}
 		set_surveyed = { surveyed = yes surveyor = event_target:gorn_country }
+		if = {
+			limit = { exists = event_target:ufop_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+		}
+		if = {
+			limit = { exists = event_target:klingon_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:klingon_country }
+		}
+		if = {
+			limit = { exists = event_target:romulan_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:romulan_country }
+		}
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			set_surveyed = { surveyed = yes surveyor = event_target:cardassian_country }
+		}
 		create_starbase = {
 			size = starbase_outpost
 			owner = event_target:gorn_country
