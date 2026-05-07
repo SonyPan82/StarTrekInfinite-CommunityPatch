@@ -1,0 +1,225 @@
+CP26 WAR AND VASSALIZATION WORKLOG
+Date: 2026-05-07
+
+Status
+- This file is now the single current reference for:
+  - vassalization work
+  - war-goal / surrender work
+  - wartime access work
+  - puppet / occupied-state experiments
+  - Gorn spawn fixes tied to this work period
+- Older duplicate text files were kept for reference during testing, but are no longer considered the source of truth.
+- If a future reset is done from the Workshop baseline, this file should be the first place to check what must be re-applied.
+
+Context
+- This file records the recent CP26 work around:
+  - vassalization
+  - war-goal acceptance / surrender proposals
+  - wartime border access
+  - puppet / occupied-state related diplomacy behavior
+- It is written as a practical history file so the work can be resumed cleanly later.
+
+1) Vassalization restoration
+- Restored and expanded a direct diplomatic vassalization flow outside vanilla-only restrictions.
+- Added / worked on a proposal flow where one empire can propose vassalization to another.
+- Intended result:
+  - target receives a proposal
+  - target can accept or refuse
+  - refusal grants a temporary subjugation casus belli
+- Related local work:
+  - common/diplomatic_actions/00_hornblower_actions.txt
+  - events/zz_cp26_vassalization_events.txt
+  - common/on_actions/zz_cp26_vassalization_on_actions.txt
+  - localisation/english/replace/zz_cp26_diplomacy_l_english.yml
+  - localisation/french/replace/zz_cp26_diplomacy_l_french.yml
+  - localisation/english/zz_cp26_patch_l_english.yml
+  - localisation/french/zz_cp26_patch_l_french.yml
+
+2) War-goal peace / "Demand Surrender" proposal
+- Added a separate diplomatic action intended for wartime use:
+  - action_cp26_offer_war_goal_peace
+- Intended result:
+  - actor sends a war-goal acceptance proposal during war
+  - recipient gets a pop-up after a short delay
+  - recipient accepts or refuses
+  - accept should end the war with demand_surrender
+  - refuse should keep the war going
+- Related event chain:
+  - cp26_vassalization.6
+  - cp26_vassalization.7
+  - cp26_vassalization.8
+- Important finding:
+  - this is not a Workshop feature that was lost
+  - this is custom CP26 work added locally
+
+3) War screen / "Impose War Goal" attempts
+- Multiple attempts were made to expose a visible "impose war goal" style button in the war overview.
+- We tested:
+  - injecting force_demands into the visible offer_peace bar
+  - replacing / renaming the neutral_zone slot
+  - trying to reuse vanilla peace bar widget names
+- Result:
+  - visible button could appear
+  - but the behavior was not reliable
+  - replacing neutral_zone caused GUI errors because the engine expects that slot to exist
+- Conclusion:
+  - the waroverview GUI is not a safe place to force this mechanic
+  - the cleaner path is a separate wartime diplomatic action + event flow
+- File involved:
+  - interface/waroverview.gui
+
+4) Wartime border opening / war access
+- Added support work intended to open movement access during wars.
+- Goal:
+  - if empires are at war, fleets should not get blocked by closed borders
+  - neutral zones should not trap movement during active wars
+- Related file:
+  - events/zz_cp26_war_access_events.txt
+  - common/on_actions/zz_cp26_war_access_on_actions.txt
+- Effect used:
+  - set_closed_borders = { status = no forced = 5 }
+- Purpose:
+  - reduce cases where war participants cannot enter enemy-adjacent systems
+
+5) Puppet state / subject-path experiments
+- Several tests were made around using the game's puppet-state style diplomatic hooks.
+- Purpose:
+  - see whether an already-wired vanilla diplomatic action could be reused
+  - see whether puppet-state logic could stand in for missing vassalization support
+- Result:
+  - useful for testing visibility / availability
+  - but not a clean substitute for a true accept/refuse war-goal proposal flow
+- Important gameplay concern raised:
+  - puppet-state behavior can distort normal federation / integration logic
+  - puppet-state behavior can auto-resolve in ways that are not appropriate for the intended CP26 war flow
+
+6) Occupation / occupied-state war-goal work
+- A custom occupation-style war-goal path was discussed and partly implemented locally.
+- Intended design:
+  - always-available occupation war goal
+  - victory imposes occupied-state outcome
+  - status quo allows retention of occupied/claimed systems where applicable
+  - total loss means no gain
+- Related local file:
+  - common/war_goals/zz_cp26_subjugation_war_goals.txt
+- This is local CP26 custom work, not a Workshop baseline file.
+
+7) Localisation work done around diplomacy
+- Added / adjusted English and French localisation for:
+  - vassalization proposal
+  - war-goal peace proposal
+  - demand surrender / force demands labels
+  - related popup text
+- Important issue found:
+  - the game reported a missing token for:
+    action_cp26_offer_war_goal_peace
+- Fix direction:
+  - provide both uppercase action keys and lowercase/direct tokens where needed
+  - place them in the patch localisation as well as replace files when necessary
+
+8) Workshop comparison findings
+- We compared the local CP26 tree against the Workshop version:
+  /Users/yohanmbp/Library/Application Support/Steam/steamapps/workshop/content/1622900/3717921693
+- Confirmed Workshop items that had gone missing locally and were restored:
+  - events/zz_cp26_ai_shipyard_fix.txt
+  - events/zz_cp26_bajoran_wormhole_events.txt
+  - common/on_actions/zz_cp26_bajoran_wormhole_on_actions.txt
+- Confirmed that the following are NOT Workshop features, but local custom work:
+  - events/zz_cp26_vassalization_events.txt
+  - common/war_goals/zz_cp26_subjugation_war_goals.txt
+  - wartime surrender proposal flow
+
+9) Construction queue crash relevance
+- During this same work period, repeated crashes occurred in:
+  CConstructionQueueManager::DailyUpdate(CConstructionManager&)
+- Separate but important fix work was restored / validated:
+  - invalid design vs combat-computer size restrictions were repaired
+  - this matters because broken queue entries can destabilize ship construction
+- Practical result after the latest static validation:
+  - component_size_issues 0
+- This is not the same system as vassalization, but it affects overall campaign stability.
+
+10) Current conclusion
+- What is considered restored / available:
+  - direct vassalization proposal framework
+  - wartime proposal framework for accepting a war goal
+  - wartime border-opening support
+  - puppet-state related exploratory support
+- What is NOT considered solved yet:
+  - a reliable "Impose War Goal" button inside the vanilla war overview bar
+- Recommended next step if this work is resumed:
+  - stop trying to force the vanilla waroverview peace bar
+  - keep the wartime surrender / war-goal acceptance flow as a separate diplomatic action
+  - finish and test the accept/refuse popup path until it works without GUI hacks
+
+11) Main files touched or relevant
+- interface/waroverview.gui
+- common/diplomatic_actions/00_hornblower_actions.txt
+- common/war_goals/zz_cp26_subjugation_war_goals.txt
+- common/on_actions/zz_cp26_vassalization_on_actions.txt
+- common/on_actions/zz_cp26_war_access_on_actions.txt
+- events/zz_cp26_vassalization_events.txt
+- events/zz_cp26_war_access_events.txt
+- localisation/english/replace/zz_cp26_diplomacy_l_english.yml
+- localisation/french/replace/zz_cp26_diplomacy_l_french.yml
+- localisation/english/zz_cp26_patch_l_english.yml
+- localisation/french/zz_cp26_patch_l_french.yml
+
+12) Stellaris mod comparison insight
+- We also checked a Stellaris Workshop mod for implementation patterns:
+  /Users/yohanmbp/Library/Application Support/Steam/steamapps/workshop/content/281990/1886496498
+- Useful finding:
+  - the mod uses dedicated event windows with custom_gui for custom interaction flows
+  - example pattern found in:
+    - events/STNC_naval_museum_events.txt
+    - interface/STNC_diplomacy_event_view.gui
+    - interface/STNC_diplomacy_confirmation_event_view.gui
+- Why this matters:
+  - this supports the idea that a CP26-specific war negotiation window is more realistic than forcing the vanilla war overview bar
+  - in other words, custom event UI is a proven pattern, while hijacking the peace bar is much riskier
+
+13) Planned reset / clean baseline note
+- Current intention: most of the local experimental diplomacy / war-goal work may be discarded and rebuilt from a clean baseline.
+- Preferred clean baseline:
+  /Users/yohanmbp/Library/Application Support/Steam/steamapps/workshop/content/1622900/3717921693
+- Important exception:
+  - the Workshop baseline does NOT contain the later strict Gorn spawn fix discussed in this work period
+  - if we reset back to the Workshop baseline, the Gorn fix must be re-applied afterward
+- Meaning of this note:
+  - the Workshop version is the "sane" restore point
+  - the Gorn spawn correction remains a remembered post-reset patch item
+
+14) Gorn strict spawn summary
+- The local current state moved away from the older fixed Xindus/Tribble anchor approach.
+- The more recent direction is:
+  - build valid empty candidate systems around the UFP/Klingon frontier
+  - pick a pocket in the intended frontier area
+  - spawn the Gorn capital and side systems locally from that pocket
+  - keep connected hyperlanes so the spawned Gorn territory stays playable
+- Important baseline note:
+  - this newer Gorn frontier-pocket logic is local work
+  - it is not present in the clean Workshop baseline
+  - if we reset to the Workshop baseline, this Gorn fix must be re-applied afterward
+
+15) File cleanup note
+- The following older tracking files were intentionally removed after consolidation into this worklog:
+  - Mod info/CP26_DIPLOMACY_MODES_TABLE.txt
+  - Mod info/CP26_RECENT_FIXES_AND_VASSALIZATION_NOTES.txt
+  - Mod info/CP26_GORN_STRICT_SPAWN_EXPLANATION.txt
+- Reason:
+  - they had become partially outdated
+  - they duplicated information
+  - they created confusion about which document reflected the real current state
+
+16) Re-applied on clean baseline
+- After returning to the sane Workshop-style baseline, the Gorn fix was re-applied cleanly.
+- What was kept:
+  - the newer frontier-pocket Gorn generator
+  - local capital/side-system spawning with connected hyperlanes
+- What was removed again:
+  - the older Xindus/Tribble hard-anchor map rewiring
+  - the dedicated cp26 anchor initializer file used only by that older approach
+- Practical meaning:
+  - the clean baseline stays cleaner
+  - the Gorn fix remains active
+  - the map no longer depends on special anchor replacements for Xindus and Tribble

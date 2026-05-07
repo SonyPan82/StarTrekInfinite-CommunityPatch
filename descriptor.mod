@@ -6,7 +6,6 @@ tags={
 	"Economy"
 	"Diplomacy"
 	"Planets"
-	"Romulan"
 	"UI"
 }
 name="Community Patch 2026"

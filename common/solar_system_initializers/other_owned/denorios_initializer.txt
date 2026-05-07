@@ -42,5 +42,4 @@ denorios_initializer = {
 	init_effect = {
 		generate_home_system_resources = yes
 	}
-
 }
