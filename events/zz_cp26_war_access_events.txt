@@ -20,13 +20,13 @@ country_event = {
 					set_closed_borders = {
 						who = prev
 						status = no
-						forced = 5
+						forced = 40
 					}
 				}
 				set_closed_borders = {
 					who = event_target:cp26_war_access_country
 					status = no
-					forced = 5
+					forced = 40
 				}
 			}
 		}
@@ -37,7 +37,7 @@ country_event = {
 			set_closed_borders = {
 				who = event_target:cp26_war_access_country
 				status = no
-				forced = 5
+				forced = 40
 			}
 		}
 	}
@@ -66,13 +66,13 @@ country_event = {
 					set_closed_borders = {
 						who = prev
 						status = no
-						forced = 5
+						forced = 40
 					}
 				}
 				set_closed_borders = {
 					who = event_target:cp26_war_access_country
 					status = no
-					forced = 5
+					forced = 40
 				}
 			}
 		}
@@ -83,7 +83,7 @@ country_event = {
 			set_closed_borders = {
 				who = event_target:cp26_war_access_country
 				status = no
-				forced = 5
+				forced = 40
 			}
 		}
 	}

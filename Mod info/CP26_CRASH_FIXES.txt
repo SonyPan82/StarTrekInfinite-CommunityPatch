@@ -1,7 +1,8 @@
-CP26 CRASH FIXES — 2026-05-07
-==============================
+CP26 CRASH FIXES — 2026-05-08 (mis à jour)
+==========================================
 
-Trois crashs distincts diagnostiqués et corrigés sur la version 1.0.7 du jeu.
+Dix correctifs appliqués sur la version 1.0.7 du jeu
+(Fixes 1–3 : 2026-05-07 / Fixes 4–10 : 2026-05-08)
 
 
 =============================================================================
@@ -132,17 +133,189 @@ CORRECTION :
 
 
 =============================================================================
-AUTRES ERREURS IDENTIFIES (non crashantes, non corrigees)
+FIX 4 — EXCEPTION_ACCESS_VIOLATION — Action diplomatique mal typée (2026-05-08)
 =============================================================================
 
-  - relative_power { value >= superior } invalide dans zz_cp26_vassalization_events.txt
-    lignes 22 et 75 — AI vassalisation mal calculee, pas de crash.
+FICHIER MODIFIE :
+  common/diplomatic_actions/00_hornblower_actions.txt
+  Action : action_cp26_offer_war_goal_peace
 
-  - action_cp26_offer_war_goal_peace : token de localisation manquant.
+CAUSE :
+  La combinaison is_listed = yes + auto_accepted = yes + action_type = aggressive
+  n'est supportee par aucune autre action dans le jeu de base. Le moteur
+  echoue a enregistrer correctement l'action, laissant un pointeur null dans
+  la table interne des actions diplomatiques. Quand l'AI itere cette table,
+  elle dereference ce pointeur — crash.
 
-  - wg_cp26_forced_occupation : icone manquante.
+CORRECTION :
+  action_type = aggressive remplace par action_type = negative.
+  Aucun impact gameplay : le changement ne modifie que la couleur de
+  l'icone dans l'interface diplomatique.
 
-  - spawn_janeway_and_ship : conflit avec mod workshop mzl_voyager.
 
-  - cp26_war_access.2 declare sur on_daily_pulse_country ET
-    on_monthly_pulse_country — redondant, impact perf mineur.
+=============================================================================
+FIX 5 — Iterator invalidation — cp26_war_access.2 sur on_daily_pulse (2026-05-08)
+=============================================================================
+
+FICHIERS MODIFIES :
+  common/on_actions/zz_cp26_war_access_on_actions.txt
+  events/zz_cp26_war_access_events.txt
+
+SYMPTOME :
+  Surcharge CPU et crash potentiel pendant les guerres actives, notamment
+  en milieu de partie avec plusieurs conflits simultanes.
+
+CAUSE :
+  cp26_war_access.2 etait declare sur on_daily_pulse_country : il s'executait
+  chaque jour pour chaque empire. En guerre, la boucle every_war { every_war_participant
+  { set_closed_borders } } generait des centaines d'appels par jour, risquant
+  une invalidation d'iterateur sur les objets war en modification concurrente.
+  Le forced = 5 expirait avant le prochain refresh, creant des fenetres de
+  bordures fermees.
+
+CORRECTION :
+  Deplacement sur on_monthly_pulse_country. forced = 5 -> forced = 40 pour
+  garantir que les bordures restent ouvertes entre deux refreshs mensuels.
+
+
+=============================================================================
+FIX 6 — add_casus_belli sans communications (2026-05-08)
+=============================================================================
+
+FICHIER MODIFIE :
+  events/zz_cp26_vassalization_events.txt
+  Evenement : cp26_vassalization.21
+
+SYMPTOME :
+  Erreur moteur "add_casus_belli Requires communications" dans le log,
+  effets partiels sur la guerre de liberation.
+
+CAUSE :
+  every_country iterait tous les majors/empires pour leur attribuer un
+  casus belli de guerre de liberation, sans verifier si ces empires avaient
+  etabli des communications avec la cible. add_casus_belli exige des
+  communications prealables.
+
+CORRECTION :
+  Ajout de has_communications = from comme condition de la boucle.
+
+
+=============================================================================
+FIX 7 — kill_pop sans filtre dans l'evenement Romulien country.9016 (2026-05-08)
+=============================================================================
+
+FICHIER MODIFIE :
+  events/hornblower_country_events.txt
+  Evenement : country.9016 (Tan Zhekran Poison - Fail)
+
+SYMPTOME :
+  Warning "Broken Save: Army X parent Pop Y doesn't remember them" dans
+  les saves Romuliens en milieu/fin de partie.
+
+CAUSE :
+  La branche else de l'evenement tuait une pop aleatoire sans filtre sur
+  Romulus quand aucune pop avec le job centurion_romulan n'etait presente.
+  Le moteur 1.0.7 ne nettoie pas toujours le lien armee-pop lors d'un
+  kill_pop scripte — la pop disparait mais l'armee reste orpheline.
+
+CORRECTION :
+  Suppression du bloc else. Si Romulus n'a plus de centurions, l'evenement
+  ne produit pas d'effet secondaire (comportement neutre preferable a un
+  kill_pop aveugle).
+
+
+=============================================================================
+FIX 8 — kill_pop pouvant vider une colonie (unique_mechanic.1 Cardassien) (2026-05-08)
+=============================================================================
+
+FICHIER MODIFIE :
+  events/hornblower_country_events.txt
+  Evenement : unique_mechanic.1
+
+SYMPTOME :
+  Warning "Broken Save: Army X parent Pop Y doesn't remember them" sur
+  les empires Cardassiens possedant des populations esclaves. Possible
+  colonie "possedee mais vide" si toutes les pops non-cardassienne sont
+  eliminee sur une planete.
+
+CAUSE :
+  Le mecanisme unique Cardassien (25% de chance par planete de tuer une
+  pop non-cardassienne) pouvait tuer la DERNIERE pop non-cardassienne sur
+  une planete ne contenant que des esclaves non-cardassiens. La planete
+  se retrouvait avec un proprietaire mais zero pop — etat instable generant
+  des armies orphelines et potentiellement un crash.
+
+CORRECTION :
+  Ajout d'un guard dans la limite du random_owned_pop : la pop cible doit
+  se trouver sur une planete qui possede AU MOINS une pop cardassienne.
+  Garantit qu'une colonie ne peut jamais se retrouver entierement vide
+  par ce mecanisme.
+
+
+=============================================================================
+FIX 9 — CPlanetManager::DailyUpdate — 3 districts jeu de base non couverts (2026-05-08)
+=============================================================================
+
+FICHIER CREE :
+  common/districts/zz_cp26_district_fixes.txt
+
+SYMPTOME :
+  Crash SIGSEGV identique au Fix 2, persistant malgre ce dernier.
+  Les 5 fichiers couverts par Fix 2 ne suffisaient pas : 3 districts
+  du jeu de base n'etaient pas overrides par CP26 et portaient le meme bug.
+
+CAUSE :
+  Le jeu de base (Infinite) contient 4 fichiers de districts Hornblower avec
+  le meme pattern defaillant :
+    06_hornblower_ufop_districts.txt      → district_culture
+    07_hornblower_klingon_districts.txt   → district_hunting_grounds
+    08_hornblower_romulan_districts.txt   → district_civil_forum  (deja fixe)
+    09_hornblower_cardassian_districts.txt → district_labor_camp
+
+  district_civil_forum etait deja override par CP26 (z_hornblower_romulan_districts).
+  Les trois autres (culture, hunting_grounds, labor_camp) ne l'etaient pas —
+  le jeu de base les chargeait avec le bug intact.
+
+CORRECTION :
+  Creation de zz_cp26_district_fixes.txt qui override les 3 districts manquants
+  avec exists = from en premiere condition de chaque show_on_uncolonized.
+  Contenu fonctionnel identique aux originaux, seul le guard est ajoute.
+
+
+=============================================================================
+FIX 10 — war_situation_scope undefined — global_situation.17 (2026-05-08)
+=============================================================================
+
+FICHIER CREE :
+  events/zz_cp26_global_situation_fix.txt
+
+SYMPTOME :
+  Log spam au demarrage de chaque guerre CP26 :
+    "Undefined event target: war_situation_scope"
+    "Script Error: Invalid context switch [event_target:war_situation_scope]"
+  Erreur repetee pour chaque empire majeur (5+ lignes par guerre).
+  Pas de crash, mais la mecanique de "war situation" globale
+  (observateurs, tensions) est non fonctionnelle pour les guerres CP26.
+
+CAUSE :
+  L'evenement global_situation.17 (hornblower_global_situation_events.txt)
+  se declenche via on_war_started pour toute guerre. Son bloc after :
+    1. Appelle start_global_situation { type = war_situation }
+    2. Sauvegarde last_created_situation comme war_situation_scope
+    3. Itere every_country pour ajouter des observateurs a la situation
+
+  Pour les guerres impliquant des empires de type contender (CP26),
+  start_global_situation echoue silencieusement (type de guerre non
+  supporte ou situation existante). last_created_situation renvoie null —
+  war_situation_scope n'est jamais defini. Le every_country loop tente
+  quand meme d'y acceder → erreur pour chaque empire.
+
+CORRECTION :
+  Override de global_situation.17 dans zz_cp26_global_situation_fix.txt.
+  Le bloc hidden_effect est enveloppe dans :
+    if = {
+        limit = { exists = event_target:war_situation_scope }
+        ...
+    }
+  Si start_global_situation echoue, tout le bloc est ignore proprement.
+  Comportement identique au jeu de base quand la situation est creee avec succes.
