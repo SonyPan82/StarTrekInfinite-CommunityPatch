@@ -1,8 +1,8 @@
 CP26 CRASH FIXES — 2026-05-08 (mis à jour)
 ==========================================
 
-Dix correctifs appliqués sur la version 1.0.7 du jeu
-(Fixes 1–3 : 2026-05-07 / Fixes 4–10 : 2026-05-08)
+Neuf correctifs appliqués sur la version 1.0.7 du jeu
+(Fixes 1–3 : 2026-05-07 / Fixes 4–9 : 2026-05-08)
 
 
 =============================================================================
@@ -283,39 +283,18 @@ CORRECTION :
 
 
 =============================================================================
-FIX 10 — war_situation_scope undefined — global_situation.17 (2026-05-08)
+NOTE — war_situation_scope undefined — global_situation.17 (NON CORRIGE)
 =============================================================================
-
-FICHIER CREE :
-  events/zz_cp26_global_situation_fix.txt
 
 SYMPTOME :
   Log spam au demarrage de chaque guerre CP26 :
     "Undefined event target: war_situation_scope"
-    "Script Error: Invalid context switch [event_target:war_situation_scope]"
   Erreur repetee pour chaque empire majeur (5+ lignes par guerre).
-  Pas de crash, mais la mecanique de "war situation" globale
-  (observateurs, tensions) est non fonctionnelle pour les guerres CP26.
+  Pas de crash.
 
 CAUSE :
-  L'evenement global_situation.17 (hornblower_global_situation_events.txt)
-  se declenche via on_war_started pour toute guerre. Son bloc after :
-    1. Appelle start_global_situation { type = war_situation }
-    2. Sauvegarde last_created_situation comme war_situation_scope
-    3. Itere every_country pour ajouter des observateurs a la situation
-
-  Pour les guerres impliquant des empires de type contender (CP26),
-  start_global_situation echoue silencieusement (type de guerre non
-  supporte ou situation existante). last_created_situation renvoie null —
-  war_situation_scope n'est jamais defini. Le every_country loop tente
-  quand meme d'y acceder → erreur pour chaque empire.
-
-CORRECTION :
-  Override de global_situation.17 dans zz_cp26_global_situation_fix.txt.
-  Le bloc hidden_effect est enveloppe dans :
-    if = {
-        limit = { exists = event_target:war_situation_scope }
-        ...
-    }
-  Si start_global_situation echoue, tout le bloc est ignore proprement.
-  Comportement identique au jeu de base quand la situation est creee avec succes.
+  Le moteur d'events Infinite refuse les IDs dupliques (eventmanager.cpp:367).
+  Impossible d'overrider global_situation.17 via un fichier CP26 separé.
+  Un override complet de hornblower_global_situation_events.txt (8923 lignes)
+  est possible mais présente un risque de maintenance élevé.
+  Laissé en log spam bénin pour l'instant.

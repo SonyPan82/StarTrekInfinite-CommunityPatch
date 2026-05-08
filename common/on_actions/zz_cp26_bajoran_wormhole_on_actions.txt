@@ -1,5 +1,4 @@
 on_entering_cp26_bajoran_wormhole = {
 	events = {
-		cp26_bajoran_wormhole.300
 	}
 }
