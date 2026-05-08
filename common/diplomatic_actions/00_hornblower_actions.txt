@@ -625,7 +625,7 @@ action_cp26_offer_war_goal_peace = {
 	should_show_auto_accept_message_recipient = no
 	should_show_auto_accept_message_actor = no
 	should_notify_all_communications = no
-	action_type = aggressive
+	action_type = negative
 
 	potential = {
 		hidden_trigger = {

@@ -1,0 +1,611 @@
+@base_cost = 300
+@city_cost = 500
+
+# CP26 Fix: add exists = from guard in show_on_uncolonized to prevent
+# CPlanet::DailyUpdateAllUnhabitableSelfDontReadOthers null pointer crash.
+# Overrides district_culture, district_hunting_grounds, district_labor_camp
+# from the Infinite base game (same fix already applied to district_civil_forum
+# via z_hornblower_romulan_districts).
+
+district_culture = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = { has_country_id = "ufop" }
+		uses_district_set = standard
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		is_colonizable = yes
+		uses_district_set = standard
+		from = { is_ufop = yes }
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_city
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @city_cost
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_entertainer_add = 2
+			job_researcher_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_deposit = d_frozen_hangar_caves
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_entertainer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_technology = tech_sports_ufop_klingon }
+		}
+		alloys = 2
+	}
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		research = 10
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_tradition = tr_klingon_legendary }
+		}
+		unity = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_whispering_mounds }
+		}
+		energy = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_apex_predators }
+		}
+		research = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_apex_predators }
+		}
+		food = 3
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_behemotic_fossils }
+		}
+		research = 3
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_behemotic_fossils }
+		}
+		unity = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_abandoned_ruins }
+		}
+		research = 2
+	}
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		officers = 12
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		influence = 1
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_tradition = tr_defense_oath_citizenship }
+		}
+		unity = 4
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_quest_tree_node = qt_klingon_e2 }
+		}
+		unity = 4
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			planet = { has_modifier = kahless_festival }
+		}
+		unity = 12
+	}
+}
+
+district_hunting_grounds = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = { is_klingon = yes }
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		is_colonizable = yes
+		uses_district_set = standard
+		from = { is_klingon = yes }
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @city_cost
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_city
+		district_industrial
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+		planet_amenities_add = 4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_martial_artist_klingon_add = 1
+			job_warrior_klingon_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				has_country_flag = qt_klingon_c3
+			}
+		}
+		modifier = {
+			planet_housing_add = 2
+			planet_amenities_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				has_country_flag = qt_klingon_f4
+			}
+		}
+		modifier = {
+			job_warrior_klingon_add = 1
+			job_martial_artist_klingon_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_deposit = d_frozen_hangar_caves }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_martial_artist_klingon_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_warrior_klingon_effect_desc
+	}
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		unity = 6
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_technology = tech_sports_ufop_klingon }
+		}
+		alloys = 1
+	}
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		officers = 3
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		influence = 1
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_tradition = tr_defense_oath_citizenship }
+		}
+		unity = 1
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_quest_tree_node = qt_klingon_e2 }
+		}
+		unity = 1
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			planet = { has_modifier = kahless_festival }
+		}
+		unity = 3
+	}
+}
+
+district_labor_camp = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = { is_cardassian = yes }
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		is_colonizable = yes
+		uses_district_set = standard
+		from = { is_cardassian = yes }
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @city_cost
+		}
+		upkeep = {
+			energy = 3
+		}
+
+		upkeep = {
+			trigger = {
+				owner = { has_quest_tree_node = qt_cardassian_c3 }
+			}
+			energy = -3
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_city
+		district_industrial
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_forced_miner_cardassian_add = 1
+			job_forced_farmer_cardassian_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_strip_mining_cardassan }
+		}
+		modifier = {
+			job_forced_miner_cardassian_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_cardassian_family_values }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_deposit = d_frozen_hangar_caves }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_processing_plants_cardassian_r }
+		}
+		modifier = {
+			planet_jobs_slave_produces_mult = 0.02
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_forced_miner_cardassian_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_forced_farmer_cardassian_effect_desc
+	}
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		minerals = 8
+	}
+
+	ai_resource_production = {
+		trigger = {
+			planet = { has_active_building = building_mineral_purification_plant }
+		}
+		minerals = 1
+	}
+
+	ai_resource_production = {
+		trigger = {
+			planet = { has_active_building = building_mineral_purification_hub }
+		}
+		minerals = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_dry_heat }
+		}
+		energy = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_moss_caves }
+		}
+		food = 4
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_strip_mining_cardassan }
+		}
+		minerals = 8
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_strip_mining_cardassan }
+			planet = { has_active_building = building_mineral_purification_plant }
+		}
+		minerals = 1
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_strip_mining_cardassan }
+			planet = { has_active_building = building_mineral_purification_hub }
+		}
+		minerals = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_strip_mining_cardassan }
+			exists = planet
+			planet = { has_deposit = d_dry_heat }
+		}
+		energy = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_moss_caves }
+		}
+		food = 4
+	}
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		food = 8
+	}
+
+	ai_resource_production = {
+		trigger = {
+			planet = { has_active_building = building_food_processing_facility }
+		}
+		food = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			planet = { has_active_building = building_food_processing_center }
+		}
+		food = 4
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_mineral_flora }
+		}
+		minerals = 6
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_ore_rich_slopes }
+		}
+		minerals = 4
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_infertile_land }
+		}
+		energy = 8
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_infertile_land }
+		}
+		minerals = 8
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_gigantic_aquatic_life }
+		}
+		research = 6
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = { has_deposit = d_enriched_soild }
+		}
+		food = 6
+	}
+}

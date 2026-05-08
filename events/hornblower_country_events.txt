@@ -908,13 +908,6 @@ country_event = {
 			}
 		}
 		
-		else = {
-			event_target:romulan_homeworld = {
-				random_owned_pop = {
-					kill_pop = yes
-				}
-			}
-		}
 	}
 }
 
@@ -4289,6 +4282,9 @@ country_event = {
 							limit = {
 								NOT = {
 									is_same_species = owner_main_species
+								}
+								planet = {
+									any_owned_pop = { is_same_species = owner_main_species }
 								}
 							}
 
