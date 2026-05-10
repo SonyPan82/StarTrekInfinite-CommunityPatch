@@ -1,0 +1,8 @@
+# DOMINION THREAT SYSTEM — DISABLED (not yet in game)
+# Uncomment the block below when ready to activate Phases 1-2.
+#
+# on_yearly_pulse_country = {
+# 	events = {
+# 		cp26_dominion_threat.1
+# 	}
+# }

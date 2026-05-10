@@ -1,9 +1,12 @@
-# Whenever a fleet enters a system, fire the bypass-discovery hook for its
-# owner. The event itself filters: only countries that haven't yet seen the
-# bypass type get add_seen_bypass_type, and only if the global wormhole flag
-# is set.
 on_entering_system_fleet = {
-    events = {
-        cp26_bajoran_wormhole.10
-    }
+	events = {
+		cp26_bajoran_wormhole.10
+		cp26_bajoran_wormhole.11
+	}
+}
+
+on_yearly_pulse_country = {
+	events = {
+		cp26_bajoran_wormhole.20
+	}
 }

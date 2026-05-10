@@ -296,6 +296,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		owner_species = { save_event_target_as = marauder_species }
 
 		# Create the fleet that attacks a MiPo
 		create_marauder_merc_admiral = yes

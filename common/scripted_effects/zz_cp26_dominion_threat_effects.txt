@@ -1,0 +1,145 @@
+# ============================================================================
+# CP26 — Dominion Threat Level (DTL) scripted effects
+# DTL is stored as variable "cp26_dtl" on the Dominion country (0-100).
+# ============================================================================
+
+# Call from any scope. Finds the Dominion and increases its DTL variable,
+# then sets the appropriate threshold global flags.
+# Usage: cp26_dtl_increase = { AMOUNT = 10 }
+cp26_dtl_increase = {
+	random_country = {
+		limit = { has_country_flag = the_dominion }
+		change_variable = { which = cp26_dtl value = $AMOUNT$ }
+		if = {
+			limit = { check_variable = { which = cp26_dtl value > 100 } }
+			set_variable = { which = cp26_dtl value = 100 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = cp26_dtl value >= 20 }
+				NOT = { has_global_flag = cp26_dtl_20_reached }
+			}
+			set_global_flag = cp26_dtl_20_reached
+		}
+		if = {
+			limit = {
+				check_variable = { which = cp26_dtl value >= 40 }
+				NOT = { has_global_flag = cp26_dtl_40_reached }
+			}
+			set_global_flag = cp26_dtl_40_reached
+		}
+		if = {
+			limit = {
+				check_variable = { which = cp26_dtl value >= 60 }
+				NOT = { has_global_flag = cp26_dtl_60_reached }
+			}
+			set_global_flag = cp26_dtl_60_reached
+		}
+		if = {
+			limit = {
+				check_variable = { which = cp26_dtl value >= 80 }
+				NOT = { has_global_flag = cp26_dtl_80_reached }
+			}
+			set_global_flag = cp26_dtl_80_reached
+		}
+		if = {
+			limit = {
+				check_variable = { which = cp26_dtl value >= 100 }
+				NOT = { has_global_flag = cp26_dtl_100_reached }
+			}
+			set_global_flag = cp26_dtl_100_reached
+		}
+	}
+}
+
+# Usage: cp26_dtl_decrease = { AMOUNT = 5 }
+cp26_dtl_decrease = {
+	random_country = {
+		limit = { has_country_flag = the_dominion }
+		change_variable = { which = cp26_dtl value = -$AMOUNT$ }
+		if = {
+			limit = { check_variable = { which = cp26_dtl value < 0 } }
+			set_variable = { which = cp26_dtl value = 0 }
+		}
+	}
+}
+
+# Spawns a small Jem'Hadar scout element from the Dominion country at the Bajoran system.
+# Must be called from Dominion country scope.
+cp26_spawn_jem_hadar_scouts = {
+	random_system = {
+		limit = { has_star_flag = bajoran_system }
+		save_event_target_as = cp26_bajoran_spawn_system
+	}
+	create_fleet_from_naval_cap = 0.01
+	last_created_fleet = {
+		set_name = "Jem'Hadar Scout"
+		set_location = event_target:cp26_bajoran_spawn_system
+	}
+}
+
+# Spawns a medium Jem'Hadar patrol from the Dominion country at the Bajoran system.
+# Must be called from Dominion country scope.
+cp26_spawn_jem_hadar_patrol = {
+	random_system = {
+		limit = { has_star_flag = bajoran_system }
+		save_event_target_as = cp26_bajoran_spawn_system
+	}
+	create_fleet_from_naval_cap = 0.03
+	last_created_fleet = {
+		set_name = "Jem'Hadar Strike Force"
+		set_location = event_target:cp26_bajoran_spawn_system
+	}
+}
+
+# Spawns a Jem'Hadar strike wing (Phase 5 raids). Must be called from Dominion scope.
+cp26_spawn_jem_hadar_strike = {
+	random_system = {
+		limit = { has_star_flag = bajoran_system }
+		save_event_target_as = cp26_bajoran_spawn_system
+	}
+	create_fleet_from_naval_cap = 0.07
+	last_created_fleet = {
+		set_name = "Jem'Hadar Attack Wing"
+		set_location = event_target:cp26_bajoran_spawn_system
+	}
+}
+
+# Spawns a full Dominion armada (Phase 5 DS9 assault). Must be called from Dominion scope.
+cp26_spawn_jem_hadar_armada = {
+	random_system = {
+		limit = { has_star_flag = bajoran_system }
+		save_event_target_as = cp26_bajoran_spawn_system
+	}
+	create_fleet_from_naval_cap = 0.15
+	last_created_fleet = {
+		set_name = "Dominion Armada"
+		set_location = event_target:cp26_bajoran_spawn_system
+	}
+}
+
+# Increase Changeling infiltration level (stored on Dominion country).
+# Usage: cp26_changeling_infiltration_increase = { AMOUNT = 3 }
+cp26_changeling_infiltration_increase = {
+	random_country = {
+		limit = { has_country_flag = the_dominion }
+		change_variable = { which = cp26_changeling_infiltration value = $AMOUNT$ }
+		if = {
+			limit = { check_variable = { which = cp26_changeling_infiltration value > 10 } }
+			set_variable = { which = cp26_changeling_infiltration value = 10 }
+		}
+	}
+}
+
+# Decrease Changeling infiltration level (stored on Dominion country).
+# Usage: cp26_changeling_infiltration_decrease = { AMOUNT = 3 }
+cp26_changeling_infiltration_decrease = {
+	random_country = {
+		limit = { has_country_flag = the_dominion }
+		change_variable = { which = cp26_changeling_infiltration value = -$AMOUNT$ }
+		if = {
+			limit = { check_variable = { which = cp26_changeling_infiltration value < 0 } }
+			set_variable = { which = cp26_changeling_infiltration value = 0 }
+		}
+	}
+}

@@ -1,98 +1,12 @@
 namespace = cp26_bajoran_wormhole
 
 # ============================================================================
-# DISCOVERY CHAIN — DS9-era lore-friendly window (year 2369+)
+# WORMHOLE ACTIVATION — called by STH_bajoran_story.1010 CP26 override
 # ============================================================================
 
-# Yearly check: if Denorios was surveyed before 2369, the project appears once
-# the date matches the DS9-era discovery window.
-country_event = {
-	id = cp26_bajoran_wormhole.110
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		years_passed > 22
-		OR = {
-			has_country_flag = cp26_denorios_surveyed
-			any_system = {
-				has_star_flag = denorios_system
-				is_surveyed = {
-					who = ROOT
-					status = yes
-				}
-			}
-		}
-		NOT = { has_country_flag = cp26_bajoran_wormhole_project_enabled }
-		NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created }
-	}
-
-	immediate = {
-		set_country_flag = cp26_denorios_surveyed
-		country_event = { id = cp26_bajoran_wormhole.120 }
-	}
-}
-
-# Denorios survey hook. Before 2369 it only records the discovery; from 2369
-# onward it opens the investigation in the situation log.
-country_event = {
-	id = cp26_bajoran_wormhole.1
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		exists = from
-		from = { has_star_flag = denorios_system }
-		NOT = { has_country_flag = cp26_bajoran_wormhole_project_enabled }
-		NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created }
-	}
-
-	immediate = {
-		set_country_flag = cp26_denorios_surveyed
-		if = {
-			limit = { years_passed > 22 }
-			country_event = { id = cp26_bajoran_wormhole.120 }
-		}
-	}
-}
-
-# Investigation popup, asks the player to start the special project.
-country_event = {
-	id = cp26_bajoran_wormhole.120
-	title = cp26_bajoran_wormhole.120.name
-	desc = cp26_bajoran_wormhole.120.desc
-	picture = GFX_evt_space_travel_vortex_enterprise_ufop
-	is_triggered_only = yes
-
-	immediate = {
-		random_system = {
-			limit = { has_star_flag = denorios_system }
-			save_event_target_as = cp26_denorios_system
-		}
-	}
-
-	option = {
-		name = cp26_bajoran_wormhole.120.ok
-		set_country_flag = cp26_bajoran_wormhole_project_enabled
-		enable_special_project = {
-			name = "CP26_BAJORAN_WORMHOLE_INVESTIGATION"
-			location = event_target:cp26_denorios_system
-			owner = ROOT
-		}
-	}
-
-	option = {
-		name = cp26_bajoran_wormhole.120.no
-	}
-}
-
-# ============================================================================
-# WORMHOLE ACTIVATION — fired once when special project completes (.901 → .200)
-# ============================================================================
-
-# Spawns a linked CP26 bypass between Denorios and Idran, unseals the Gamma
-# pocket so internal navigation works, but keeps Idran sealed so the ONLY way
-# in/out of Idran from the Alpha side is the bypass itself (no jump/warp).
+# Sets the global "wormhole active" flag and shows the discovery notification.
+# No bypass or Gamma pocket is spawned — the wormhole exists only cosmetically
+# and as a gameplay flag that gates the Gamma expedition pop-up chain.
 country_event = {
 	id = cp26_bajoran_wormhole.200
 	hide_window = yes
@@ -100,67 +14,25 @@ country_event = {
 
 	immediate = {
 		if = {
-			limit = {
-				NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created }
-				NOT = { has_global_flag = bajoran_wormhole_discovered }
-			}
+			limit = { NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created } }
 			set_global_flag = cp26_bajoran_wormhole_bypass_created
 			set_global_flag = bajoran_wormhole_discovered
-
-			random_system = {
-				limit = { has_star_flag = denorios_system }
-				if = {
-					limit = { has_natural_wormhole = no }
-					spawn_natural_wormhole = {
-						bypass_type = cp26_bajoran_bypass
-						random_pos = no
-						orbit_angle = 100
-						orbit_distance = 120
-					}
-				}
-				save_event_target_as = cp26_denorios_system
-			}
-
-			random_system = {
-				limit = { has_star_flag = idran_system }
-				set_name = "NAME_Idran"
-				if = {
-					limit = { has_natural_wormhole = no }
-					spawn_natural_wormhole = {
-						bypass_type = cp26_bajoran_bypass
-						random_pos = no
-						orbit_angle = 360
-						orbit_distance = 20
-					}
-					link_wormholes = event_target:cp26_denorios_system
-				}
-			}
-
-			# Unseal the Gamma pocket (except Idran itself) so fleets can
-			# navigate it via the internal hyperlanes once they cross.
-			# Idran stays sealed — only accessible via the bypass.
-			every_system = {
+			# Ambient object approach removed — sth_denorios_belt_wormhole not available in Infinite.
+			# The star planet in bajoran_bajor_initializer carries set_planet_flag = denorios_belt_target.
+			# Initialize DTL on the Dominion country so the yearly tick is ready.
+			random_country = {
 				limit = {
-					has_star_flag = bajoran_pocket_system
-					NOT = { has_star_flag = idran_system }
+					has_country_flag = the_dominion
+					NOT = { is_variable_set = cp26_dtl }
 				}
-				remove_star_flag = sealed_system
+				set_variable = { which = cp26_dtl value = 5 }
 			}
 		}
-
-		# Make sure the discoverer can see the bypass on the galaxy map.
-		add_seen_bypass_type = cp26_bajoran_bypass
-		random_system = {
-			limit = { has_star_flag = idran_system }
-			save_event_target_as = cp26_idran_reveal_system
-		}
-		set_visited = event_target:cp26_idran_reveal_system
-
 		country_event = { id = cp26_bajoran_wormhole.2 }
 	}
 }
 
-# Notification: wormhole is now open.
+# Notification: wormhole confirmed active.
 country_event = {
 	id = cp26_bajoran_wormhole.2
 	title = cp26_bajoran_wormhole.2.name
@@ -174,40 +46,65 @@ country_event = {
 }
 
 # ============================================================================
-# CONSOLE / TESTING HELPERS
+# WORMHOLE DISCOVERY — first fleet enters Denorios before discovery
 # ============================================================================
 
-# Force the discovery flow.
-country_event = {
-	id = cp26_bajoran_wormhole.900
+# Fires when any fleet enters Denorios while the wormhole is still undiscovered.
+# Enables the CP26_WORMHOLE_SURVEY special project at the wormhole ambient object,
+# then notifies the owner that a scientific investigation is warranted.
+fleet_event = {
+	id = cp26_bajoran_wormhole.11
 	hide_window = yes
 	is_triggered_only = yes
 
+	trigger = {
+		from = { has_star_flag = bajoran_system }
+		NOT = { has_global_flag = bajoran_wormhole_discovered }
+
+		exists = owner
+		owner = {
+			is_country_type = default
+			NOT = { has_country_flag = bajoran_republic }
+			NOT = { has_special_project = CP26_WORMHOLE_SURVEY }
+		}
+		from = { any_system_planet = { has_planet_flag = denorios_belt_target } }
+	}
+
 	immediate = {
-		set_country_flag = cp26_denorios_surveyed
-		if = {
-			limit = {
-				NOT = { has_country_flag = cp26_bajoran_wormhole_project_enabled }
-				NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created }
+		from = {
+			save_event_target_as = cp26_wormhole_survey_location
+		}
+		owner = {
+			enable_special_project = {
+				name = CP26_WORMHOLE_SURVEY
+				location = event_target:cp26_wormhole_survey_location
+				owner = this
 			}
-			country_event = { id = cp26_bajoran_wormhole.120 }
+			country_event = { id = cp26_bajoran_wormhole.12 }
 		}
 	}
 }
 
-# Force wormhole activation (skips the project).
+# Notification: anomalous readings detected, survey recommended.
 country_event = {
-	id = cp26_bajoran_wormhole.901
-	hide_window = yes
+	id = cp26_bajoran_wormhole.12
+	title = cp26_bajoran_wormhole.12.name
+	desc = cp26_bajoran_wormhole.12.desc
+	picture = GFX_evt_first_contact_ufop_bajoran_stage3
 	is_triggered_only = yes
 
-	immediate = {
-		country_event = { id = cp26_bajoran_wormhole.200 }
+	option = {
+		name = cp26_bajoran_wormhole.12.ok
 	}
 }
 
-# Fleet hook: when a fleet enters Denorios or Idran, give its owner the
-# bypass type so they can pathfind through it. THIS = fleet, FROM = system.
+# ============================================================================
+# GAMMA EXPEDITION — fleet enters Denorios after wormhole is active
+# ============================================================================
+
+# Fired by on_entering_system_fleet when a fleet enters Denorios.
+# Offers the owning empire a chance to dispatch an expedition through the wormhole.
+# Cooldown of 10 years prevents it firing every visit.
 fleet_event = {
 	id = cp26_bajoran_wormhole.10
 	hide_window = yes
@@ -215,23 +112,230 @@ fleet_event = {
 
 	trigger = {
 		has_global_flag = cp26_bajoran_wormhole_bypass_created
-		from = {
-			OR = {
-				has_star_flag = denorios_system
-				has_star_flag = idran_system
-			}
-		}
+		has_global_flag = cp26_phase1_resolved
+		from = { has_star_flag = bajoran_system }
 		exists = owner
 		owner = {
 			is_country_type = default
-			NOT = { has_country_flag = cp26_seen_bajoran_bypass }
+			NOT = { has_country_flag = cp26_gamma_expedition_cooldown }
 		}
 	}
 
 	immediate = {
 		owner = {
-			set_country_flag = cp26_seen_bajoran_bypass
-			add_seen_bypass_type = cp26_bajoran_bypass
+			set_timed_country_flag = { flag = cp26_gamma_expedition_cooldown days = 3650 }
+			country_event = { id = cp26_bajoran_wormhole.300 }
 		}
+	}
+}
+
+# Expedition offer: player decides how to approach the Gamma Quadrant.
+country_event = {
+	id = cp26_bajoran_wormhole.300
+	title = cp26_bajoran_wormhole.300.name
+	desc = cp26_bajoran_wormhole.300.desc
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.300.a
+		country_event = { id = cp26_bajoran_wormhole.310 }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.300.b
+		country_event = { id = cp26_bajoran_wormhole.320 }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.300.c
+	}
+}
+
+# ============================================================
+# BRANCH A — Peaceful approach
+# ============================================================
+
+country_event = {
+	id = cp26_bajoran_wormhole.310
+	title = cp26_bajoran_wormhole.310.name
+	desc = cp26_bajoran_wormhole.310.desc
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.310.a
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 5
+			min = 15
+			max = 50
+		}
+		country_event = { id = cp26_bajoran_wormhole.311 }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.310.b
+		add_monthly_resource_mult = {
+			resource = research
+			value = 3
+			min = 60
+			max = 180
+		}
+	}
+}
+
+# Peaceful outcome: Founders observe but take no action — for now.
+country_event = {
+	id = cp26_bajoran_wormhole.311
+	title = cp26_bajoran_wormhole.311.name
+	desc = cp26_bajoran_wormhole.311.desc
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.311.ok
+	}
+}
+
+# ============================================================
+# BRANCH B — Aggressive approach
+# ============================================================
+
+country_event = {
+	id = cp26_bajoran_wormhole.320
+	title = cp26_bajoran_wormhole.320.name
+	desc = cp26_bajoran_wormhole.320.desc
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.320.a
+		country_event = { id = cp26_bajoran_wormhole.321 }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.320.b
+		country_event = { id = cp26_bajoran_wormhole.322 }
+	}
+}
+
+# Hostile outcome: Dominion retaliates — Jem'Hadar patrol emerges near Denorios.
+country_event = {
+	id = cp26_bajoran_wormhole.321
+	title = cp26_bajoran_wormhole.321.name
+	desc = cp26_bajoran_wormhole.321.desc
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	is_triggered_only = yes
+
+	immediate = {
+		# Spawn a Jem'Hadar patrol from the Dominion empire at Bajor (Denorios Belt).
+		random_system = {
+			limit = { has_star_flag = bajoran_system }
+			save_event_target_as = cp26_denorios_system
+		}
+		random_country = {
+			limit = { has_country_flag = the_dominion }
+			create_fleet_from_naval_cap = 0.03
+			last_created_fleet = {
+				set_name = "Jem'Hadar Strike Force"
+				set_location = event_target:cp26_denorios_system
+				set_fleet_stance = aggressive
+			}
+		}
+		# Shorten cooldown so the Dominion keeps pressing
+		remove_country_flag = cp26_gamma_expedition_cooldown
+		set_timed_country_flag = { flag = cp26_gamma_expedition_cooldown days = 1825 }
+	}
+
+	option = {
+		name = cp26_bajoran_wormhole.321.ok
+	}
+}
+
+# Warning outcome: withdrawal accepted but Dominion notes the intrusion.
+country_event = {
+	id = cp26_bajoran_wormhole.322
+	title = cp26_bajoran_wormhole.322.name
+	desc = cp26_bajoran_wormhole.322.desc
+	picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.322.ok
+	}
+}
+
+# ============================================================================
+# CANONICAL 2369 TRIGGER — Bajor gets the survey project automatically
+# ============================================================================
+
+# Fires on_yearly_pulse_country in 2369 for the Bajoran empire.
+# Enables CP26_WORMHOLE_SURVEY at the wormhole location — canonical discovery.
+country_event = {
+	id = cp26_bajoran_wormhole.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = bajoran_republic
+
+
+		NOT = { has_global_flag = bajoran_wormhole_discovered }
+		NOT = { has_special_project = CP26_WORMHOLE_SURVEY }
+	}
+
+	immediate = {
+		random_system = {
+			limit = { has_star_flag = bajoran_system }
+			save_event_target_as = cp26_wormhole_2369_location
+		}
+		if = {
+			limit = { exists = event_target:cp26_wormhole_2369_location }
+			enable_special_project = {
+				name = CP26_WORMHOLE_SURVEY
+				location = event_target:cp26_wormhole_2369_location
+				owner = this
+			}
+			country_event = { id = cp26_bajoran_wormhole.21 }
+		}
+	}
+}
+
+# Bajor notification: the anomaly has intensified, investigation authorized.
+country_event = {
+	id = cp26_bajoran_wormhole.21
+	title = cp26_bajoran_wormhole.21.name
+	desc = cp26_bajoran_wormhole.21.desc
+	picture = GFX_evt_first_contact_ufop_bajoran_stage3
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.21.ok
+	}
+}
+
+# ============================================================================
+# CONSOLE / TESTING HELPERS
+# ============================================================================
+
+# Force wormhole activation (skips vanilla discovery).
+country_event = {
+	id = cp26_bajoran_wormhole.900
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created } }
+			country_event = { id = cp26_bajoran_wormhole.200 }
+		}
+	}
+}
+
+# Alias kept for compatibility with console macros.
+country_event = {
+	id = cp26_bajoran_wormhole.901
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = cp26_bajoran_wormhole.200 }
 	}
 }

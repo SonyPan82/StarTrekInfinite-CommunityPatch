@@ -132,11 +132,6 @@ bespoke_procedural_scenario = {
 		initializer = bajoran_bajor_initializer spawn_weight = { base = 1 }
 	}
 
-	system = {
-		id = "950"
-		name = "NAME_Denorios" position = { x = 66 y = 390 }
-		initializer = denorios_initializer spawn_weight = { base = 1 }
-	}
 
 	system = {
 		id = "968"
@@ -148,93 +143,6 @@ bespoke_procedural_scenario = {
 		id = "969"
 		name = "Orion" position = { x = -230 y = 470 }
 		initializer = orion_system_initializer spawn_weight = { base = 1 }
-	}
-
-	# Idran pocket: isolated deep-space cluster, reachable only through the Bajoran wormhole.
-	system = {
-		id = "951"
-		name = "NAME_Idran" position = { x = 340 y = -480 }
-		initializer = idran_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "952"
-		position = { x = 390 y = -520 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "953"
-		position = { x = 445 y = -475 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "954"
-		position = { x = 420 y = -420 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "955"
-		position = { x = 335 y = -415 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "956"
-		position = { x = 295 y = -470 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "957"
-		name = "NAME_Dolly" position = { x = 575 y = -700 }
-		initializer = lonia_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "958"
-		position = { x = 350 y = -555 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "959"
-		position = { x = 415 y = -575 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "960"
-		position = { x = 485 y = -550 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "961"
-		position = { x = 525 y = -605 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "962"
-		position = { x = 470 y = -645 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "963"
-		position = { x = 405 y = -630 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "964"
-		position = { x = 340 y = -660 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "965"
-		position = { x = 285 y = -615 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "966"
-		position = { x = 270 y = -550 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
-	}
-	system = {
-		id = "967"
-		position = { x = 525 y = -675 }
-		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
@@ -1420,26 +1328,6 @@ bespoke_procedural_scenario = {
 		initializer = zone_rom_ufop_theta_curry_initializer spawn_weight = { base = 1 }
 	}
 
-	# ===== Bajoran pocket forced connectivity =====
-	# Denorios is near Bajor, but the Idran pocket has no normal lane into local space.
-	add_hyperlane = { from = "949" to = "950" }
-	add_hyperlane = { from = "951" to = "952" }
-	add_hyperlane = { from = "952" to = "953" }
-	add_hyperlane = { from = "953" to = "954" }
-	add_hyperlane = { from = "954" to = "955" }
-	add_hyperlane = { from = "955" to = "956" }
-	add_hyperlane = { from = "952" to = "958" }
-	add_hyperlane = { from = "958" to = "959" }
-	add_hyperlane = { from = "959" to = "960" }
-	add_hyperlane = { from = "960" to = "961" }
-	add_hyperlane = { from = "961" to = "962" }
-	add_hyperlane = { from = "962" to = "963" }
-	add_hyperlane = { from = "963" to = "964" }
-	add_hyperlane = { from = "964" to = "965" }
-	add_hyperlane = { from = "965" to = "966" }
-	add_hyperlane = { from = "962" to = "967" }
-	add_hyperlane = { from = "967" to = "957" }
-
 
 
 	#--------- Bespoke Hazards ---------#
@@ -1461,60 +1349,60 @@ bespoke_procedural_scenario = {
 	# step 2
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -800
-		camera_limit_max_x = 1100
-		camera_limit_min_y = -950
-		camera_limit_max_y = 850
+		camera_limit_min_x = -760
+		camera_limit_max_x = 850
+		camera_limit_min_y = -300
+		camera_limit_max_y = 700
 		camera_limit_min_pitch = 40
 		camera_limit_max_pitch = 85
 	}
 	# step 3
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -768
-		camera_limit_max_x = 1100
-		camera_limit_min_y = -950
-		camera_limit_max_y = 800
+		camera_limit_min_x = -720
+		camera_limit_max_x = 820
+		camera_limit_min_y = -270
+		camera_limit_max_y = 670
 		camera_limit_min_pitch = 40
 		camera_limit_max_pitch = 85
 	}
 	# step 4
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -640
-		camera_limit_max_x = 1100
-		camera_limit_min_y = -925
-		camera_limit_max_y = 720
+		camera_limit_min_x = -650
+		camera_limit_max_x = 780
+		camera_limit_min_y = -240
+		camera_limit_max_y = 640
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
 	# step 5
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -576
-		camera_limit_max_x = 1100
-		camera_limit_min_y = -900
-		camera_limit_max_y = 680
+		camera_limit_min_x = -580
+		camera_limit_max_x = 740
+		camera_limit_min_y = -210
+		camera_limit_max_y = 610
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
 	# step 6
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -416
-		camera_limit_max_x = 1100
-		camera_limit_min_y = -875
-		camera_limit_max_y = 660
+		camera_limit_min_x = -500
+		camera_limit_max_x = 700
+		camera_limit_min_y = -180
+		camera_limit_max_y = 580
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
 	# step 7
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -384
-		camera_limit_max_x = 1100
-		camera_limit_min_y = -850
-		camera_limit_max_y = 640
+		camera_limit_min_x = -420
+		camera_limit_max_x = 650
+		camera_limit_min_y = -150
+		camera_limit_max_y = 550
 		camera_limit_min_pitch = 85
 		camera_limit_max_pitch = 85
 	}

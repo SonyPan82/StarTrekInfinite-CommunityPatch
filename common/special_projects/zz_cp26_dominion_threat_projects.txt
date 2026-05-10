@@ -1,0 +1,191 @@
+# ============================================================================
+# CP26 — DOMINION THREAT SPECIAL PROJECTS — DISABLED (not yet in game)
+# All three projects have abort_trigger = { always = yes } so they terminate
+# immediately if somehow enabled. Remove those lines when activating the system.
+# ============================================================================
+
+# Phase 1 — Science Expedition
+# Requires science ship + scientist in the Bajoran system.
+special_project = {
+	key = "CP26_GAMMA_EXPEDITION_SCIENCE"
+	days_to_research = 180
+	timelimit = -1
+	tech_department = physics_technology
+	picture = GFX_evt_first_contact_ufop_bajoran_stage3
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		owner = { country_event = { id = cp26_dominion_threat.200 } }
+	}
+	on_fail = { }
+	abort_trigger = {
+		always = yes  # DISABLED — remove this line when activating
+		owner = { NOT = { has_country_flag = cp26_gamma_approach_science } }
+	}
+}
+
+# Phase 1 — Military Patrol
+# Requires military ship in the Bajoran system.
+special_project = {
+	key = "CP26_GAMMA_EXPEDITION_MILITARY"
+	days_to_research = 90
+	timelimit = -1
+	tech_department = engineering_technology
+	picture = GFX_evt_first_contact
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		owner = { country_event = { id = cp26_dominion_threat.210 } }
+	}
+	on_fail = { }
+	abort_trigger = {
+		always = yes  # DISABLED — remove this line when activating
+		owner = { NOT = { has_country_flag = cp26_gamma_approach_military } }
+	}
+}
+
+# Phase 2 — Colony Investigation
+# Military ship required at the frontier colony that went silent.
+# 40% ambush / 60% intel found.
+special_project = {
+	key = "CP26_COLONY_INVESTIGATION"
+	days_to_research = 120
+	timelimit = -1
+	tech_department = engineering_technology
+	picture = GFX_evt_first_contact
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		from = { save_global_event_target_as = cp26_colony_invest_system }
+		owner = {
+			random_list = {
+				40 = { country_event = { id = cp26_dominion_threat.420 } }
+				60 = { country_event = { id = cp26_dominion_threat.430 } }
+			}
+		}
+	}
+	on_fail = { }
+	abort_trigger = {
+		always = yes  # DISABLED — remove this line when activating
+		owner = { NOT = { has_country_flag = cp26_phase2_investigating } }
+	}
+}
+
+# Phase 3 — Changeling Hunt
+# Science ship required in the Bajoran system.
+# Reduces infiltration -1 to -3 on success.
+special_project = {
+	key = "CP26_CHANGELING_HUNT"
+	days_to_research = 90
+	timelimit = -1
+	tech_department = society_technology
+	picture = GFX_evt_first_contact
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		owner = {
+			random_list = {
+				33 = { cp26_changeling_infiltration_decrease = { AMOUNT = 1 } }
+				34 = { cp26_changeling_infiltration_decrease = { AMOUNT = 2 } }
+				33 = { cp26_changeling_infiltration_decrease = { AMOUNT = 3 } }
+			}
+		}
+	}
+	on_fail = { }
+	abort_trigger = {
+		always = yes  # DISABLED — remove this line when activating
+		owner = { NOT = { has_global_flag = cp26_phase3_intro_fired } }
+	}
+}
+
+# Phase 4 — Cardassia Recon
+# Science ship required in the Bajoran system.
+# Reveals whether the Cardassia/Dominion alliance is forming.
+special_project = {
+	key = "CP26_CARDASSIA_RECON"
+	days_to_research = 60
+	timelimit = -1
+	tech_department = society_technology
+	picture = GFX_evt_first_contact
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		owner = {
+			random_list = {
+				60 = { country_event = { id = cp26_dominion_threat.610 } }
+				40 = {
+					# False alarm — small intelligence reward
+					add_monthly_resource_mult = { resource = research value = 4 min = 80 max = 200 }
+					set_global_flag = cp26_phase4_resolved
+				}
+			}
+		}
+	}
+	on_fail = { }
+	abort_trigger = {
+		always = yes  # DISABLED — remove this line when activating
+		owner = { NOT = { has_global_flag = cp26_phase4_intro_fired } }
+	}
+}
+
+# Phase 5 — DS9 Defense
+# Military ship required in the Bajoran system.
+# 50% success: DS9 holds / 50%: DS9 takes damage.
+special_project = {
+	key = "CP26_DS9_DEFENSE"
+	days_to_research = 30
+	timelimit = -1
+	tech_department = engineering_technology
+	picture = GFX_evt_first_contact_ufop_bajoran_stage3
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		owner = {
+			random_list = {
+				50 = {
+					# DS9 holds — big unity, DTL down
+					add_monthly_resource_mult = { resource = unity value = 10 min = 300 max = 800 }
+					cp26_dtl_decrease = { AMOUNT = 10 }
+				}
+				50 = {
+					# DS9 damaged — economic malus
+					random_owned_planet = {
+						add_modifier = { modifier = cp26_ds9_damaged months = 60 }
+					}
+					cp26_dtl_increase = { AMOUNT = 3 }
+				}
+			}
+		}
+	}
+	on_fail = { }
+	abort_trigger = {
+		always = yes  # DISABLED — remove this line when activating
+		owner = { NOT = { has_global_flag = cp26_ds9_attack_fired } }
+	}
+}

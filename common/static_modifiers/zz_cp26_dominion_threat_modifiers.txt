@@ -1,0 +1,23 @@
+# CP26 — Dominion Threat static modifiers (applied via add_modifier on planets)
+
+# Phase 3: martial law / blood screening protocols — stability and unity hit
+cp26_security_protocols = {
+	planet_stability_add = -15
+	pop_growth_speed = -0.1
+	icon = "gfx/interface/icons/planet_modifiers/pm_crime.dds"
+}
+
+# Phase 3: Changeling sabotage — economic malus
+cp26_sabotaged_infrastructure = {
+	planet_amenities_add = -5
+	trade_value_add = -10
+	icon = "gfx/interface/icons/planet_modifiers/pm_terraforming_candidate.dds"
+}
+
+# Phase 5: DS9 structural damage — economic/trade penalty
+cp26_ds9_damaged = {
+	planet_amenities_add = -10
+	trade_value_add = -20
+	planet_stability_add = -5
+	icon = "gfx/interface/icons/planet_modifiers/pm_crime.dds"
+}

@@ -1,16 +1,14 @@
 namespace = STH_bajoran_story
 
-# Override of STH_bajoran_story.1010 (vanilla wormhole discovery story event).
-# The vanilla event spawns a natural wormhole bypass in bajoran_system (the
-# Bajoran homeworld). CP26 wants the wormhole at Denorios+Idran (lore-correct
-# DS9 location), so this override neutralises the vanilla spawn and routes the
-# discovery flag through CP26's activation chain (.200 spawns the actual
-# cp26_bajoran_bypass between Denorios and Idran).
+# Override of STH_bajoran_story.1010 (vanilla wormhole discovery event).
+# Prevents the vanilla event from spawning a bypass at bajoran_system and instead
+# routes discovery through CP26's activation event (.200), which sets the global
+# flag that gates the Gamma expedition pop-up chain.
 country_event = {
 	id = STH_bajoran_story.1010
 	title = "STH_bajoran_story.1010.name"
 	desc = "STH_bajoran_story.1010.desc_02"
-	picture = sth_GFX_evt_bajoranWormhole_2
+	picture = GFX_evt_first_contact_ufop_bajoran_stage3
 	is_triggered_only = yes
 
 	immediate = {
@@ -18,27 +16,15 @@ country_event = {
 		set_country_flag = encountered_first_wormhole
 		set_country_flag = wormhole_discoverer
 		save_event_target_as = wormhole_discoverer
+		add_seen_bypass_type = wormhole
 
-		# Route through CP26's activation event so the popup teleport
-		# system is properly enabled (sets cp26_bajoran_wormhole_bypass_created,
-		# unseals Gamma pocket except Idran, reveals Idran).
 		if = {
 			limit = { NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created } }
 			country_event = { id = cp26_bajoran_wormhole.200 }
 		}
 	}
 
-	after = { log = "STH_bajoran_story.1010 ended (CP26 override)" }
-
 	option = {
 		name = STH_bajoran_story.1010.a
-		random_system = {
-			limit = { has_star_flag = idran_system }
-			remove_star_flag = idran_system_restricted
-		}
-		random_system = {
-			limit = { has_star_flag = idran_system_restricted }
-			remove_star_flag = idran_system_restricted
-		}
 	}
 }
