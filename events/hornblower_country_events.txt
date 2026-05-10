@@ -6135,17 +6135,19 @@ first_contact_event = {
 	}
 
 	immediate = {
-		from = {
-			add_opinion_modifier = {
-				who = fromfrom
-				modifier = opinion_civic_diplomatic_expertise
+		if = {
+			limit = { from = { NOT = { is_same_value = fromfrom } } }
+			from = {
+				add_opinion_modifier = {
+					who = fromfrom
+					modifier = opinion_civic_diplomatic_expertise
+				}
 			}
-		}
-
-		fromfrom = {
-			add_opinion_modifier = {
-				who = root.from
-				modifier = opinion_civic_diplomatic_expertise
+			fromfrom = {
+				add_opinion_modifier = {
+					who = root.from
+					modifier = opinion_civic_diplomatic_expertise
+				}
 			}
 		}
 	}

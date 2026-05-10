@@ -6,14 +6,3 @@ on_game_start_country = {
 	}
 }
 
-on_yearly_pulse_country = {
-	events = {
-		cp26_bajoran_wormhole.110
-	}
-}
-
-on_system_survey = {
-	events = {
-		cp26_bajoran_wormhole.1
-	}
-}

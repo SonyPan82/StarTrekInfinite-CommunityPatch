@@ -1,0 +1,196 @@
+l_english:
+
+ # --- Planet Modifiers ---
+ cp26_security_protocols:0 "Security Protocols"
+ cp26_security_protocols_desc:0 "Mandatory blood screenings and identification checks have been implemented across all personnel. The Changelings are being rooted out — but trust has been eroded."
+ cp26_sabotaged_infrastructure:0 "Sabotaged Infrastructure"
+ cp26_sabotaged_infrastructure_desc:0 "A Changeling infiltrator has destroyed critical infrastructure. Repairs are underway, but the damage will linger."
+ cp26_ds9_damaged:0 "Station Battle Damage"
+ cp26_ds9_damaged_desc:0 "Deep Space Nine sustained significant structural damage during the Dominion assault. Repair teams are deployed but full restoration will take time."
+
+ # --- Special Projects ---
+ CP26_GAMMA_EXPEDITION_SCIENCE:0 "Bajoran Wormhole: Science Survey"
+ CP26_GAMMA_EXPEDITION_SCIENCE_DESC:0 "Station a science ship with a scientist in the Bajoran system to conduct a full subspace analysis of the wormhole terminus. The findings will be critical to understanding what lies on the other side."
+ CP26_GAMMA_EXPEDITION_MILITARY:0 "Bajoran Wormhole: Military Patrol"
+ CP26_GAMMA_EXPEDITION_MILITARY_DESC:0 "Station a military vessel in the Bajoran system to conduct a tactical assessment of the wormhole. Monitor traffic, map sensor signatures, and evaluate the threat posed by any forces on the other side."
+
+ # --- EVENT .100: Approach Choice ---
+ cp26_dominion_threat.100.name:0 "The Bajoran Wormhole — Strategic Decision"
+ cp26_dominion_threat.100.desc:0 "The Bajoran Wormhole is confirmed stable. Whatever lies on the other side is aware of this terminus — and aware of us.\n\nCommand must establish how we approach this unprecedented situation. The choice we make now will define our relationship with the Gamma Quadrant for years to come.\n\nEach approach requires deploying the appropriate assets to the Bajoran system."
+ cp26_dominion_threat.100.a:0 "Science expedition — station a science ship in the Bajoran system."
+ cp26_dominion_threat.100.b:0 "Military patrol — station a warship in the Bajoran system."
+ cp26_dominion_threat.100.c:0 "Seal the wormhole. We need time."
+
+ # --- EVENT .109: Science instructions ---
+ cp26_dominion_threat.109.name:0 "Orders: Science Survey — Bajoran System"
+ cp26_dominion_threat.109.desc:0 "A science survey project has been opened in the Bajoran system. Station a science vessel commanded by a scientist there to begin the investigation.\n\nThe Gamma Quadrant will not wait forever."
+ cp26_dominion_threat.109.ok:0 "Move the science ship to the Bajoran system."
+
+ # --- EVENT .119: Military instructions ---
+ cp26_dominion_threat.119.name:0 "Orders: Military Patrol — Bajoran System"
+ cp26_dominion_threat.119.desc:0 "A military patrol project has been opened in the Bajoran system. Station a warship there to begin the tactical assessment.\n\nWhatever is on the other side of that wormhole is already watching us."
+ cp26_dominion_threat.119.ok:0 "Move the fleet to the Bajoran system."
+
+ # --- EVENT .102: Bajor tension ---
+ cp26_dominion_threat.102.name:0 "Bajoran Protest: Wormhole Closure"
+ cp26_dominion_threat.102.desc:0 "The decision to seal the wormhole has not gone unnoticed. The Bajoran Provisional Government has filed a formal protest — the wormhole is considered a sacred passage by the Bajoran people, and restricting access is seen as a direct violation of their spiritual sovereignty.\n\nDiplomatic channels are tense. The Bajorans demand a timeline for reopening."
+ cp26_dominion_threat.102.a:0 "Concede. Agree to reopen the wormhole and begin a science survey."
+ cp26_dominion_threat.102.b:0 "Hold the line. The closure stands for now."
+
+ # --- EVENT .200: Science expedition outcome ---
+ cp26_dominion_threat.200.name:0 "Science Survey Complete: Gamma Terminus"
+ cp26_dominion_threat.200.desc:0 "The science survey of the wormhole terminus in the Bajoran system is complete. Our vessel has gathered an unprecedented dataset on the passage and the region of space beyond it.\n\nThe readings confirm a highly organised, technologically advanced presence on the Gamma side. Multiple vessel contacts were logged — none approached, but all watched.\n\nHow do we proceed with this information?"
+ cp26_dominion_threat.200.a:0 "Compile the data. File a comprehensive report."
+ cp26_dominion_threat.200.b:0 "Use our findings to attempt a formal first contact transmission."
+ cp26_dominion_threat.200.c:0 "The readings are concerning. Order the science ship to withdraw."
+
+ # --- EVENT .201: Dominion responds to science contact ---
+ cp26_dominion_threat.201.name:0 "Gamma Quadrant: A Response"
+ cp26_dominion_threat.201.desc:0 "Our first contact transmission has been received. After a period of silence that stretched for thirty-one days, a response arrived — structured, deliberate, and clearly translated by a highly sophisticated linguistic AI.\n\nThe message identified the senders as the Dominion. It expressed no hostility — only the observation that our kind has now entered their space. They call us §Isolids§!.\n\nThe transmission ended with a single question: §IWhat are your intentions?§!"
+ cp26_dominion_threat.201.a:0 "Respond: our intentions are peaceful exploration."
+ cp26_dominion_threat.201.b:0 "Do not respond. Close the channel."
+
+ # --- EVENT .210: Military expedition outcome ---
+ cp26_dominion_threat.210.name:0 "Military Assessment: Wormhole Terminus"
+ cp26_dominion_threat.210.desc:0 "Our warship's patrol of the wormhole terminus has confirmed what intelligence suspected — the wormhole is active, stable, and being monitored from the other side. Tactical sweeps have picked up the energy signatures of at least three vessels holding position just beyond sensor range.\n\nThey have not engaged. They are waiting to see what we do next.\n\nCommand must decide."
+ cp26_dominion_threat.210.a:0 "Send the fleet through. Establish tactical dominance of the wormhole."
+ cp26_dominion_threat.210.b:0 "Hold position. Monitor and fortify the Bajoran system approach."
+ cp26_dominion_threat.210.c:0 "Fall back. The risk is too great at this stage."
+
+ # --- EVENT .211: Jem'Hadar retaliation ---
+ cp26_dominion_threat.211.name:0 "Jem'Hadar — Alpha Quadrant Incursion"
+ cp26_dominion_threat.211.desc:0 "Our fleet's passage through the wormhole did not go unanswered. Within hours of our return, a formation of Jem'Hadar attack ships emerged from the Bajoran Wormhole and took up position in the Bajoran system.\n\nThey have not opened fire — but they are armed, and their formation is unmistakably aggressive.\n\nThis is a message."
+ cp26_dominion_threat.211.a:0 "Engage. Drive the Jem'Hadar back through the wormhole."
+ cp26_dominion_threat.211.b:0 "Stand down. Pull our forces back and let them withdraw."
+
+ # --- Special Project ---
+ CP26_COLONY_INVESTIGATION:0 "Investigate the Silent Colony"
+ CP26_COLONY_INVESTIGATION_DESC:0 "Station a warship at the affected system to sweep for Jem'Hadar signatures, recover survivors, and determine the extent of Dominion activity in the Alpha Quadrant."
+
+ # --- Phase 2 Events ---
+ cp26_dominion_threat.400.name:0 "Jem'Hadar Activity in the Alpha Quadrant"
+ cp26_dominion_threat.400.desc:0 "Since the Bajoran Wormhole was opened, intelligence reports have grown increasingly alarming. Freighter captains along the Bajoran frontier describe being shadowed by vessels matching no known design. Two deep-space relay stations have gone offline without explanation.\n\nThis morning, a colony on the frontier missed its scheduled check-in. It has been silent for eleven hours.\n\nThe Dominion is no longer content to watch from the other side."
+ cp26_dominion_threat.400.ok:0 "Raise the readiness level on the frontier."
+
+ cp26_dominion_threat.410.name:0 "Colony Gone Silent"
+ cp26_dominion_threat.410.desc:0 "The frontier colony has now been silent for four days. The last transmission was cut mid-sentence. Long-range scans are inconclusive — either the colony's communications array has been destroyed, or something is blocking the signal.\n\nHigh Command has three options on the table."
+ cp26_dominion_threat.410.a:0 "Send a warship to investigate — station it at the colony system."
+ cp26_dominion_threat.410.b:0 "We don't have the resources right now. Ignore the report."
+ cp26_dominion_threat.410.c:0 "Formally accuse Cardassia of involvement."
+
+ cp26_dominion_threat.411.name:0 "Cardassian Denial"
+ cp26_dominion_threat.411.desc:0 "Gul Dukat has responded to our accusation with characteristic contempt. The Cardassian Union categorically denies any involvement with the missing colony, and suggests that our intelligence services have once again confused Cardassian patrol routes with hostile incursions.\n\nOur analysts are divided. The denial is confident — either truthful or very well rehearsed."
+ cp26_dominion_threat.411.a:0 "Accept the denial. The Cardassians are not responsible."
+ cp26_dominion_threat.411.b:0 "Reject the denial. We press the accusation."
+
+ cp26_dominion_threat.412.name:0 "Orders: Investigate the Colony"
+ cp26_dominion_threat.412.desc:0 "A military investigation project has been opened at the frontier colony system. Station a warship there to conduct a full tactical sweep.\n\nBe prepared for contact."
+ cp26_dominion_threat.412.ok:0 "Understood. Moving assets to the colony."
+
+ cp26_dominion_threat.413.name:0 "The Colony Is Gone"
+ cp26_dominion_threat.413.desc:0 "Three weeks after our decision to ignore the report, a salvage crew operating in the sector has filed a disturbing dispatch: the colony is empty. No bodies, no debris, no signs of struggle — only silence and a few scattered personal effects.\n\nWhatever happened was surgical. And a Jem'Hadar patrol has now been detected near the Bajoran system."
+ cp26_dominion_threat.413.ok:0 "Increase the frontier patrols immediately."
+
+ cp26_dominion_threat.420.name:0 "Ambush — Jem'Hadar at the Colony"
+ cp26_dominion_threat.420.desc:0 "Our warship arrived at the silent colony to find it not empty — but occupied. A Jem'Hadar strike wing was waiting, holding position in the system's outer belt.\n\nThe moment our vessel entered sensor range, they moved to intercept. This was not a scouting patrol. They knew we were coming."
+ cp26_dominion_threat.420.a:0 "Engage the Jem'Hadar. Hold the system."
+ cp26_dominion_threat.420.b:0 "Fall back. Preserve the ship — the colony is lost."
+
+ cp26_dominion_threat.430.name:0 "Investigation Complete: Dominion Intel Recovered"
+ cp26_dominion_threat.430.desc:0 "The colony was evacuated — not destroyed. The colonists were moved, apparently by force, into structures built to Dominion specifications. Our warship's crew found extensive sensor records of Dominion activity in the system going back months.\n\nWe now have detailed data on Jem'Hadar patrol patterns, ship configurations, and communication protocols. This is a significant intelligence windfall."
+ cp26_dominion_threat.430.a:0 "Share the intelligence with all allied powers immediately."
+ cp26_dominion_threat.430.b:0 "Classify the data. Keep the advantage for ourselves."
+
+ # --- Special Projects Phase 3-5 ---
+ CP26_CHANGELING_HUNT:0 "Operation: Changeling Hunt"
+ CP26_CHANGELING_HUNT_DESC:0 "Station a science vessel with a scientist in the Bajoran system to coordinate a covert sweep for Changeling infiltrators. Subspace resonance scans and agent debriefings will narrow down the impostor network."
+ CP26_CARDASSIA_RECON:0 "Operation: Cardassia Recon"
+ CP26_CARDASSIA_RECON_DESC:0 "Station a science vessel in the Bajoran system to intercept Cardassian communications near the frontier. Determine whether the rumoured talks with the Dominion are real — and how far advanced they are."
+ CP26_DS9_DEFENSE:0 "Defense: Deep Space Nine"
+ CP26_DS9_DEFENSE_DESC:0 "Station a warship in the Bajoran system to coordinate the defense of the station against the Dominion armada. Every vessel counts."
+
+ # --- Phase 3: Changeling Infiltration ---
+ cp26_dominion_threat.500.name:0 "Anomalies in the Command Structure"
+ cp26_dominion_threat.500.desc:0 "A flag officer has submitted a classified report. Over the past several weeks, three senior officers have acted in ways that are difficult to reconcile with their known personalities — decisions reversed without explanation, meetings attended that were never recorded, questions deflected that should have been answered in seconds.\n\nIntelligence believes the Dominion has placed agents inside our command structure. The Changelings do not need ships to wage war."
+ cp26_dominion_threat.500.ok:0 "Convene an emergency security review."
+
+ cp26_dominion_threat.510.name:0 "The Infiltration Problem"
+ cp26_dominion_threat.510.desc:0 "The level of Changeling infiltration in our systems is unknown — and that is the most dangerous part. Three options are on the table. Each carries its own price."
+ cp26_dominion_threat.510.a:0 "Mandatory blood screenings across all senior staff."
+ cp26_dominion_threat.510.b:0 "Preserve civil liberties. We will not become what we're fighting."
+ cp26_dominion_threat.510.c:0 "Activate Section 31. Let our shadows handle theirs. [300 Influence]"
+
+ cp26_dominion_threat.511.name:0 "Blood Test Results"
+ cp26_dominion_threat.511.desc:0 "The screenings are complete. §Y[Root.GetName]§! has identified a number of individuals whose blood morphology does not match their service records. The evidence is conclusive.\n\nThe question is what we do with them."
+ cp26_dominion_threat.511.a:0 "Detain and interrogate them. We need everything they know."
+ cp26_dominion_threat.511.b:0 "Eliminate them quietly. No trials, no exposure."
+
+ cp26_dominion_threat.512.name:0 "Section 31 — After Action Report"
+ cp26_dominion_threat.512.desc:0 "Our operatives have returned from the field. The Changeling network has been substantially disrupted — but whether the operation was a complete success or only partial remains unclear. What they've learned either ends the crisis or begins the next phase of it."
+ cp26_dominion_threat.512.a:0 "Complete success. The network is dismantled."
+ cp26_dominion_threat.512.b:0 "Partial success. They know we came for them."
+
+ cp26_dominion_threat.520.name:0 "Changeling Incident"
+ cp26_dominion_threat.520.desc:0 "Another report has come in. The pattern is undeniable — there are still Changelings among us, and they are still active. Whatever we have done so far has not been enough.\n\nAn investigation project can be opened in the Bajoran system to hunt them down directly."
+ cp26_dominion_threat.520.a:0 "Open a Changeling Hunt investigation in the Bajoran system."
+ cp26_dominion_threat.520.b:0 "Absorb the damage. We cannot spare the assets right now."
+
+ # --- Phase 4: Cardassia/Dominion Alliance ---
+ cp26_dominion_threat.600.name:0 "Unusual Movements on the Cardassian Frontier"
+ cp26_dominion_threat.600.desc:0 "Intelligence has flagged a series of covert meetings near the Bajoran border. Cardassian delegates have been observed aboard unregistered vessels in deep space — vessels whose engine signatures match known Dominion designs.\n\nIf the Cardassians are negotiating a protection agreement with the Dominion, the consequences for the Alpha Quadrant would be severe."
+ cp26_dominion_threat.600.a:0 "Send a science ship to intercept Cardassian communications."
+ cp26_dominion_threat.600.b:0 "Open a diplomatic channel to Cardassia directly. [200 Influence]"
+
+ cp26_dominion_threat.610.name:0 "Cardassia Joins the Dominion"
+ cp26_dominion_threat.610.desc:0 "The Cardassian Prefect has made the announcement from Cardassia Prime. A mutual protection treaty has been signed with the Dominion. Jem'Hadar soldiers are now being stationed throughout Cardassian space, and Cardassian military assets are officially at the Dominion's disposal.\n\nThe balance of power in the Alpha Quadrant has shifted — and not in our favour."
+ cp26_dominion_threat.610.a:0 "Prepare for war. Begin emergency military mobilisation."
+ cp26_dominion_threat.610.b:0 "Propose emergency mediation. [400 Influence]"
+
+ cp26_dominion_threat.620.name:0 "A Question of Loyalty"
+ cp26_dominion_threat.620.desc:0 "The Cardassian-Dominion alliance has forced a political reckoning. Several of our existing agreements with the Cardassian Union are now deeply problematic — honouring them provides the Dominion with resources and intelligence by proxy.\n\nThe government is demanding a clear decision on where we stand."
+ cp26_dominion_threat.620.a:0 "Terminate all existing agreements with Cardassia."
+ cp26_dominion_threat.620.b:0 "Maintain technical neutrality. We cannot afford enemies on two fronts."
+
+ # --- Phase 5: Dominion War ---
+ cp26_dominion_threat.700.name:0 "The Dominion War Begins"
+ cp26_dominion_threat.700.desc:0 "The intelligence is unambiguous. Dominion fleets are massing on both sides of the wormhole. The Jem'Hadar incursions are no longer probing actions — they are the opening moves of a campaign.\n\nThe Alpha Quadrant is at war."
+ cp26_dominion_threat.700.ok:0 "General quarters. All commands to battle readiness."
+
+ cp26_dominion_threat.701.name:0 "Jem'Hadar Raid — Bajoran Frontier"
+ cp26_dominion_threat.701.desc:0 "A Jem'Hadar strike wing has crossed the frontier and is engaging targets in the Bajoran system. These are not reconnaissance assets — they are combat-ready attack ships executing coordinated strikes.\n\nCommands are waiting for orders."
+ cp26_dominion_threat.701.a:0 "Engage and repel the raiders."
+ cp26_dominion_threat.701.b:0 "Fall back and preserve our forces for the battles ahead."
+
+ cp26_dominion_threat.710.name:0 "Dominion Forces Attack"
+ cp26_dominion_threat.710.desc:0 "A significant Dominion strike force has entered the system. Their attack vectors suggest a deliberate attempt to capture or neutralise key infrastructure — not a raid, but an occupation attempt.\n\nCommand must respond."
+ cp26_dominion_threat.710.a:0 "Defend the system at all costs."
+ cp26_dominion_threat.710.b:0 "Evacuate what we can. The system is not worth this fight."
+
+ cp26_dominion_threat.720.name:0 "The Battle of Deep Space Nine"
+ cp26_dominion_threat.720.desc:0 "A Dominion armada is approaching the Bajoran system. Deep Space Nine is directly in their path. Our window for response is narrow — whatever we choose, we choose now.\n\nThree options remain."
+ cp26_dominion_threat.720.a:0 "Defend the station. Station a warship in the Bajoran system."
+ cp26_dominion_threat.720.b:0 "Evacuate Deep Space Nine. Preserve our people."
+ cp26_dominion_threat.720.c:0 "Mine the wormhole. Cut the Dominion's supply line — permanently."
+
+ cp26_dominion_threat.730.name:0 "The Prophets Stir"
+ cp26_dominion_threat.730.desc:0 "The Orb sphere aboard the station pulses with an intensity not seen in years. The station's Bajoran crew have gathered in the shrine in silence. Whatever the Prophets intend to communicate, it is happening now — and the armada is still incoming.\n\nThe choice is ours."
+ cp26_dominion_threat.730.a:0 "Trust the Prophets. Stand down our weapons."
+ cp26_dominion_threat.730.b:0 "This is not the time for religion. Our survival is our own responsibility."
+
+ cp26_dominion_threat.731.name:0 "The Armada Vanishes"
+ cp26_dominion_threat.731.desc:0 "Sensors across the entire Bajoran system registered the event simultaneously — a burst of tachyon radiation from within the wormhole, and then silence. When the interference cleared, there was nothing where the Dominion armada had been.\n\nThey are gone. Every ship. Gone."
+ cp26_dominion_threat.731.ok:0 "Record the event. All stations, stand down from battle readiness."
+
+ # --- Endings ---
+ cp26_dominion_threat.800.name:0 "The Dominion Withdraws"
+ cp26_dominion_threat.800.desc:0 "The message arrived without preamble, as all Dominion communications do. The Founders have concluded that the cost of a total invasion of the Alpha Quadrant exceeds the strategic value of the outcome. The Jem'Hadar are pulling back.\n\nDeep Space Nine stands. The wormhole remains open. The war is over — at least for now."
+ cp26_dominion_threat.800.ok:0 "Begin reconstruction and debriefing. Note for the record: we held."
+
+ cp26_dominion_threat.810.name:0 "The Alpha Quadrant Falls"
+ cp26_dominion_threat.810.desc:0 "The Dominion flag flies over Deep Space Nine. Jem'Hadar governors have been installed in the key systems. The occupation is systematic, methodical, and total — as everything the Dominion does.\n\nThere is no ceasefire. There is only survival, and the hope that resistance is still possible."
+ cp26_dominion_threat.810.ok:0 "We endure. Begin resistance planning."
+
+ cp26_dominion_threat.820.name:0 "Cardassia Rises Against the Dominion"
+ cp26_dominion_threat.820.desc:0 "The message is fragmented and arriving through back-channels, but its meaning is clear: the Cardassian people are fighting their Dominion occupiers. Street by street, station by station — the rebellion is real.\n\nThis changes everything. If we act now, the war can end. Two paths are open."
+ cp26_dominion_threat.820.a:0 "Support the Cardassian resistance. Send what forces we can."
+ cp26_dominion_threat.820.b:0 "Let Odo negotiate. The Founders will listen to one of their own."

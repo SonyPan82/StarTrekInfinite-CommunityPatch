@@ -1,0 +1,27 @@
+# CP26 — BAJORAN WORMHOLE DISCOVERY PROJECT
+# Enabled when a fleet first enters the Denorios system (event .11).
+# Requires a science ship with scientist to investigate the neutrino anomaly.
+# On success fires STH_bajoran_story.1010, caught by the CP26 override.
+
+special_project = {
+	key = "CP26_WORMHOLE_SURVEY"
+	days_to_research = 90
+	timelimit = -1
+	tech_department = physics_technology
+	picture = GFX_evt_first_contact_ufop_bajoran_stage3
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		owner = { country_event = { id = STH_bajoran_story.1010 } }
+	}
+	on_fail = { }
+
+	abort_trigger = {
+		owner = { has_global_flag = bajoran_wormhole_discovered }
+	}
+}

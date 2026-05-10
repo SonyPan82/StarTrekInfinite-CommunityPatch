@@ -1,11 +1,12 @@
 @base_cost = 300
 @city_cost = 500
+@hab_cost = 400
 
 # CP26 Fix: add exists = from guard in show_on_uncolonized to prevent
 # CPlanet::DailyUpdateAllUnhabitableSelfDontReadOthers null pointer crash.
-# Overrides district_culture, district_hunting_grounds, district_labor_camp
-# from the Infinite base game (same fix already applied to district_civil_forum
-# via z_hornblower_romulan_districts).
+# Overrides standard districts (06/07/09_hornblower_*_districts.txt)
+# and habitat variants (03_habitat_districts.txt).
+# district_civil_forum already fixed via z_hornblower_romulan_districts.
 
 district_culture = {
 	base_buildtime = 480
@@ -607,5 +608,304 @@ district_labor_camp = {
 			planet = { has_deposit = d_enriched_soild }
 		}
 		food = 6
+	}
+}
+
+district_culture_habitat = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	icon = district_culture
+
+	potential = {
+		exists = owner
+		owner = { has_country_id = "ufop" }
+		uses_district_set = habitat
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		is_colonizable = yes
+		from = { has_country_id = "ufop" }
+		uses_district_set = habitat
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_city_habitat
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @hab_cost
+		}
+		upkeep = {
+			energy = 3
+			food = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_entertainer_add = 2
+			job_researcher_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_entertainer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+}
+
+district_hunting_grounds_habitat = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	icon = district_hunting_grounds
+
+	potential = {
+		exists = owner
+		owner = { is_klingon = yes }
+		uses_district_set = habitat
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		is_colonizable = yes
+		uses_district_set = habitat
+		from = { is_klingon = yes }
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @hab_cost
+		}
+		upkeep = {
+			energy = 3
+			food = 1
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_city
+		district_industrial
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+		planet_amenities_add = 4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_martial_artist_klingon_add = 1
+			job_warrior_klingon_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_martial_artist_klingon_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_warrior_klingon_effect_desc
+	}
+}
+
+district_civil_forum_habitat = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	icon = district_civil_forum
+
+	potential = {
+		exists = owner
+		owner = { is_romulan = yes }
+		uses_district_set = habitat
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		is_colonizable = yes
+		uses_district_set = habitat
+		from = { is_romulan = yes }
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @hab_cost
+		}
+		upkeep = {
+			energy = 3
+			food = 1
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_city
+		district_industrial
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_praetorian_guard_romulan_add = 1
+			job_researcher_add = 1
+			job_bureaucrat_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+}
+
+district_labor_camp_habitat = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	icon = district_labor_camp
+
+	potential = {
+		exists = owner
+		owner = { is_cardassian = yes }
+		uses_district_set = habitat
+	}
+
+	show_on_uncolonized = {
+		exists = from
+		is_colonizable = yes
+		uses_district_set = habitat
+		from = { is_cardassian = yes }
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			minerals = @hab_cost
+		}
+		upkeep = {
+			energy = 3
+			food = 1
+		}
+		upkeep = {
+			trigger = {
+				owner = { has_quest_tree_node = qt_cardassian_c3 }
+			}
+			energy = -3
+			food = -1
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_city
+		district_industrial
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_forced_miner_cardassian_add = 1
+			job_forced_farmer_cardassian_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_strip_mining_cardassan }
+		}
+		modifier = {
+			job_forced_miner_cardassian_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_cardassian_family_values }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_processing_plants_cardassian_r }
+		}
+		modifier = {
+			planet_jobs_slave_produces_mult = 0.02
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_forced_miner_cardassian_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_forced_farmer_cardassian_effect_desc
 	}
 }

@@ -13,7 +13,12 @@ bajoran_bajor_initializer = {
 		size = { min = 20 max = 30 }
 		has_ring = no
 
-		init_effect = { change_pc = pc_g_star }
+		init_effect = {
+			change_pc = pc_g_star
+			# denorios_belt ambient objects removed — sth_denorios_belt type not available in Infinite
+			# denorios_belt_target flag set on star planet instead for survey project location
+			set_planet_flag = denorios_belt_target
+		}
 	}
 
 	change_orbit = 20
