@@ -16,29 +16,6 @@ denorios_initializer = {
 		}
 	}
 
-	change_orbit = 25
-
-	planet = {
-		name = "NAME_Denorios_II"
-		count = 1
-		orbit_distance = 22
-		size = 16
-		orbit_angle = { min = 0 max = 300 }
-		class = pc_arid
-		subclass = psc_class_m
-		home_planet = no
-	}
-
-	planet = {
-		name = "NAME_Denorios_III"
-		count = 1
-		orbit_distance = 28
-		size = 12
-		orbit_angle = { min = 0 max = 300 }
-		class = pc_barren
-		home_planet = no
-	}
-
 	init_effect = {
 		generate_home_system_resources = yes
 	}

@@ -153,87 +153,87 @@ bespoke_procedural_scenario = {
 	# Idran pocket: isolated deep-space cluster, reachable only through the Bajoran wormhole.
 	system = {
 		id = "951"
-		name = "NAME_Idran" position = { x = 340 y = -650 }
+		name = "NAME_Idran" position = { x = 340 y = -480 }
 		initializer = idran_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "952"
-		name = "NAME_Bajoran_Pocket_2" position = { x = 390 y = -690 }
+		position = { x = 390 y = -520 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "953"
-		name = "NAME_Bajoran_Pocket_3" position = { x = 445 y = -645 }
+		position = { x = 445 y = -475 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "954"
-		name = "NAME_Bajoran_Pocket_4" position = { x = 420 y = -590 }
+		position = { x = 420 y = -420 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "955"
-		name = "NAME_Bajoran_Pocket_5" position = { x = 335 y = -585 }
+		position = { x = 335 y = -415 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "956"
-		name = "NAME_Bajoran_Pocket_6" position = { x = 295 y = -640 }
+		position = { x = 295 y = -470 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "957"
-		name = "NAME_Dolly" position = { x = 575 y = -820 }
+		name = "NAME_Dolly" position = { x = 575 y = -700 }
 		initializer = lonia_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "958"
-		name = "NAME_Gamma_Pocket_1" position = { x = 350 y = -725 }
+		position = { x = 350 y = -555 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "959"
-		name = "NAME_Gamma_Pocket_2" position = { x = 415 y = -745 }
+		position = { x = 415 y = -575 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "960"
-		name = "NAME_Gamma_Pocket_3" position = { x = 485 y = -720 }
+		position = { x = 485 y = -550 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "961"
-		name = "NAME_Gamma_Pocket_4" position = { x = 525 y = -775 }
+		position = { x = 525 y = -605 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "962"
-		name = "NAME_Gamma_Pocket_5" position = { x = 470 y = -815 }
+		position = { x = 470 y = -645 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "963"
-		name = "NAME_Gamma_Pocket_6" position = { x = 405 y = -800 }
+		position = { x = 405 y = -630 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "964"
-		name = "NAME_Gamma_Pocket_7" position = { x = 340 y = -830 }
+		position = { x = 340 y = -660 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "965"
-		name = "NAME_Gamma_Pocket_8" position = { x = 285 y = -785 }
+		position = { x = 285 y = -615 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "966"
-		name = "NAME_Gamma_Pocket_9" position = { x = 270 y = -720 }
+		position = { x = 270 y = -550 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 	system = {
 		id = "967"
-		name = "NAME_Gamma_Pocket_10" position = { x = 525 y = -845 }
+		position = { x = 525 y = -675 }
 		initializer = cp26_gamma_sealed_system_initializer spawn_weight = { base = 1 }
 	}
 

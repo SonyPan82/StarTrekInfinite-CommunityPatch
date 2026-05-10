@@ -1,7 +1,11 @@
 namespace = cp26_bajoran_wormhole
 
-# Yearly check: if Denorios was surveyed before 2369, the project appears once the
-# date matches the DS9-era discovery window.
+# ============================================================================
+# DISCOVERY CHAIN — DS9-era lore-friendly window (year 2369+)
+# ============================================================================
+
+# Yearly check: if Denorios was surveyed before 2369, the project appears once
+# the date matches the DS9-era discovery window.
 country_event = {
 	id = cp26_bajoran_wormhole.110
 	hide_window = yes
@@ -52,6 +56,7 @@ country_event = {
 	}
 }
 
+# Investigation popup, asks the player to start the special project.
 country_event = {
 	id = cp26_bajoran_wormhole.120
 	title = cp26_bajoran_wormhole.120.name
@@ -81,6 +86,13 @@ country_event = {
 	}
 }
 
+# ============================================================================
+# WORMHOLE ACTIVATION — fired once when special project completes (.901 → .200)
+# ============================================================================
+
+# Spawns a linked CP26 bypass between Denorios and Idran, unseals the Gamma
+# pocket so internal navigation works, but keeps Idran sealed so the ONLY way
+# in/out of Idran from the Alpha side is the bypass itself (no jump/warp).
 country_event = {
 	id = cp26_bajoran_wormhole.200
 	hide_window = yes
@@ -88,41 +100,67 @@ country_event = {
 
 	immediate = {
 		if = {
-			limit = { NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created } }
+			limit = {
+				NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created }
+				NOT = { has_global_flag = bajoran_wormhole_discovered }
+			}
 			set_global_flag = cp26_bajoran_wormhole_bypass_created
+			set_global_flag = bajoran_wormhole_discovered
+
+			random_system = {
+				limit = { has_star_flag = denorios_system }
+				if = {
+					limit = { has_natural_wormhole = no }
+					spawn_natural_wormhole = {
+						bypass_type = cp26_bajoran_bypass
+						random_pos = no
+						orbit_angle = 100
+						orbit_distance = 120
+					}
+				}
+				save_event_target_as = cp26_denorios_system
+			}
 
 			random_system = {
 				limit = { has_star_flag = idran_system }
 				set_name = "NAME_Idran"
-				spawn_natural_wormhole = {
-					bypass_type = cp26_bajoran_wormhole_bypass
-					random_pos = no
-					orbit_angle = 215
+				if = {
+					limit = { has_natural_wormhole = no }
+					spawn_natural_wormhole = {
+						bypass_type = cp26_bajoran_bypass
+						random_pos = no
+						orbit_angle = 360
+						orbit_distance = 20
+					}
+					link_wormholes = event_target:cp26_denorios_system
 				}
-				save_event_target_as = cp26_idran_system
 			}
 
-			random_system = {
-				limit = { has_star_flag = denorios_system }
-				spawn_natural_wormhole = {
-					bypass_type = cp26_bajoran_wormhole_bypass
-					random_pos = no
-					orbit_angle = 35
+			# Unseal the Gamma pocket (except Idran itself) so fleets can
+			# navigate it via the internal hyperlanes once they cross.
+			# Idran stays sealed — only accessible via the bypass.
+			every_system = {
+				limit = {
+					has_star_flag = bajoran_pocket_system
+					NOT = { has_star_flag = idran_system }
 				}
-				link_wormholes = event_target:cp26_idran_system
+				remove_star_flag = sealed_system
 			}
 		}
 
-		add_seen_bypass_type = cp26_bajoran_wormhole_bypass
+		# Make sure the discoverer can see the bypass on the galaxy map.
+		add_seen_bypass_type = cp26_bajoran_bypass
 		random_system = {
 			limit = { has_star_flag = idran_system }
 			save_event_target_as = cp26_idran_reveal_system
 		}
 		set_visited = event_target:cp26_idran_reveal_system
+
 		country_event = { id = cp26_bajoran_wormhole.2 }
 	}
 }
 
+# Notification: wormhole is now open.
 country_event = {
 	id = cp26_bajoran_wormhole.2
 	title = cp26_bajoran_wormhole.2.name
@@ -135,8 +173,11 @@ country_event = {
 	}
 }
 
-# Console/testing helpers. These are intentionally hidden and are not called by
-# normal gameplay.
+# ============================================================================
+# CONSOLE / TESTING HELPERS
+# ============================================================================
+
+# Force the discovery flow.
 country_event = {
 	id = cp26_bajoran_wormhole.900
 	hide_window = yes
@@ -154,6 +195,7 @@ country_event = {
 	}
 }
 
+# Force wormhole activation (skips the project).
 country_event = {
 	id = cp26_bajoran_wormhole.901
 	hide_window = yes
@@ -164,19 +206,32 @@ country_event = {
 	}
 }
 
+# Fleet hook: when a fleet enters Denorios or Idran, give its owner the
+# bypass type so they can pathfind through it. THIS = fleet, FROM = system.
 fleet_event = {
-	id = cp26_bajoran_wormhole.300
+	id = cp26_bajoran_wormhole.10
 	hide_window = yes
 	is_triggered_only = yes
 
-	immediate = {
-		if = {
-			limit = { exists = from }
-			set_location = {
-				target = from
-				distance = 40
-				angle = random
+	trigger = {
+		has_global_flag = cp26_bajoran_wormhole_bypass_created
+		from = {
+			OR = {
+				has_star_flag = denorios_system
+				has_star_flag = idran_system
 			}
+		}
+		exists = owner
+		owner = {
+			is_country_type = default
+			NOT = { has_country_flag = cp26_seen_bajoran_bypass }
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = cp26_seen_bajoran_bypass
+			add_seen_bypass_type = cp26_bajoran_bypass
 		}
 	}
 }

@@ -283,6 +283,57 @@ CORRECTION :
 
 
 =============================================================================
+FIX 10 — CPlanetManager::DailyUpdate — 4 districts habitat non couverts (2026-05-08)
+=============================================================================
+
+FICHIER MODIFIE :
+  common/districts/zz_cp26_district_fixes.txt
+
+SYMPTOME :
+  Crash SIGSEGV identique aux Fix 2 et Fix 9, persistant malgre ces derniers.
+
+CAUSE :
+  Le fichier 03_habitat_districts.txt du jeu de base contient 4 districts
+  variante habitat avec le meme pattern defaillant :
+    district_culture_habitat         → UFOP
+    district_hunting_grounds_habitat → Klingon
+    district_civil_forum_habitat     → Romulien
+    district_labor_camp_habitat      → Cardassien
+  Aucun n'etait override par CP26.
+
+CORRECTION :
+  Ajout des 4 districts dans zz_cp26_district_fixes.txt avec
+  exists = from en premiere condition de chaque show_on_uncolonized.
+
+
+=============================================================================
+=============================================================================
+FIX 11 — pdx_entity.cpp — part1 locator manquant sur 2 entites Cardassiens (2026-05-09)
+=============================================================================
+
+FICHIER CREE :
+  gfx/models/ships/cardassian_01/zz_cp26_cardassian_01_ship_fixes.asset
+
+SYMPTOME :
+  Warnings pdx_entity.cpp au chargement :
+    "cardassian_01_governor_ship_entity has no attach point named part1"
+    "hideki_entity has no attach point named part1"
+  Pas de crash, mais section_slots mal resolus.
+
+CAUSE :
+  Le jeu de base a intentionnellement commente le locator part1 sur ces deux
+  entites (commentaire HRB_TODO). Leurs ship_sizes correspondants declarent
+  section_slots = { "mid" = { locator = "part1" } } — le moteur cherche ce
+  locator et logue un warning quand il ne le trouve pas.
+
+CORRECTION :
+  Override complet des deux entites dans un nouveau fichier CP26, avec
+  locator = { name = "part1" position = { 0 0 0 } } ajoute/decommente.
+  Les entites de starbase (outpost + starport) avaient ete corrigees dans
+  _starbase_entities.asset lors du Fix precedent.
+
+
+=============================================================================
 NOTE — war_situation_scope undefined — global_situation.17 (NON CORRIGE)
 =============================================================================
 
