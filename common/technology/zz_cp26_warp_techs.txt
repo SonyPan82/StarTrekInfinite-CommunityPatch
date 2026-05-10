@@ -1,3 +1,34 @@
+# CP26 — Warp speed tech overrides
+#
+# Base warp speed is reduced to 0.065 (vanilla 0.1 = ~35% slower) via defines.
+# The three tech tiers restore and then exceed vanilla speed progressively:
+#
+#   No tech    : 65% vanilla speed  — early galaxy feels vast
+#   Warp 5 (T1): 85% vanilla speed  — meaningful mid-game improvement
+#   Warp 6 (T2): ~104% vanilla speed — late-game matches vanilla feel
+#   Warp 7 (T3): ~120% vanilla speed — end-game mastery of the warp
+
+# ── Warp 5 ─────────────────────────────────────────────────────────────────
+# Override of vanilla tech_warp_speed_increase_1: +20% → +30%
+tech_warp_speed_increase_1 = {
+	cost = @tier2cost1
+	area = engineering
+	category = { propulsion }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight1
+
+	ai_weight = {
+		weight = 2
+	}
+
+	modifier = {
+		ship_warp_speed_mult = 0.30
+	}
+}
+
+# ── Warp 6 ─────────────────────────────────────────────────────────────────
+# Was +10%; increased to +30% to keep pace with the slower base.
 tech_warp_speed_increase_2 = {
 	cost = @tier4cost1
 	area = engineering
@@ -7,41 +38,57 @@ tech_warp_speed_increase_2 = {
 	prerequisites = { tech_warp_speed_increase_1 }
 	weight = @tier4weight1
 
+	ai_weight = {
+		weight = 2
+	}
+
 	triggered_config = {
-		trigger = {
-			is_ufop = yes
-		}
+		trigger = { is_ufop = yes }
 		title = tech_warp_speed_increase_2
 		desc = tech_warp_speed_increase_2_desc
 		icon = tech_warp_speed_increase_2_ufop
 	}
 	triggered_config = {
-		trigger = {
-			is_klingon = yes
-		}
+		trigger = { is_klingon = yes }
 		title = tech_warp_speed_increase_2
 		desc = tech_warp_speed_increase_2_desc
 		icon = tech_warp_speed_increase_2_klingon
 	}
 	triggered_config = {
-		trigger = {
-			is_romulan = yes
-		}
+		trigger = { is_romulan = yes }
 		title = tech_warp_speed_increase_2
 		desc = tech_warp_speed_increase_2_desc
 		icon = tech_warp_speed_increase_2_romulan
 	}
 	triggered_config = {
-		trigger = {
-			is_cardassian = yes
-		}
+		trigger = { is_cardassian = yes }
 		title = tech_warp_speed_increase_2
 		desc = tech_warp_speed_increase_2_desc
 		icon = tech_warp_speed_increase_2_cardassian
 	}
 
 	modifier = {
-		# Small late-game traversal boost without collapsing the map scale.
-		ship_warp_speed_mult = 0.10
+		ship_warp_speed_mult = 0.30
+	}
+}
+
+# ── Warp 7 ─────────────────────────────────────────────────────────────────
+# New end-game tech. Combined with T1+T2 gives +85% over the reduced base
+# → ~120% of vanilla speed. Reward for mastering late-game propulsion.
+tech_warp_speed_increase_3 = {
+	cost = @tier5cost1
+	area = engineering
+	category = { propulsion }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_warp_speed_increase_2 }
+	weight = @tier5weight1
+
+	ai_weight = {
+		weight = 2
+	}
+
+	modifier = {
+		ship_warp_speed_mult = 0.25
 	}
 }

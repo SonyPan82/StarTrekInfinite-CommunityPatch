@@ -1,0 +1,186 @@
+================================================================================
+  CP26 — WARP MOVEMENT & TRAVEL SPEED DESIGN / Date : 2026-05-10
+
+Ce document explique deux interventions distinctes sur le système de déplacement
+warp en STI : le bypass de la limite de portée pour les vaisseaux non-militaires,
+et la refonte de l'échelle temporelle du voyage warp via la tech tree.
+
+
+════════════════════════════════════════════════════════════════════════════════
+  PARTIE 1 — BYPASS DE LA LIMITE DE PORTÉE WARP
+════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────
+  1.1  Contexte — le problème vanilla
+────────────────────────────────────────────────────────────────────────────────
+
+En vanilla STI, les vaisseaux de chaque empire ne peuvent voyager que dans un
+rayon défini par :
+  - le define OUTPOST_WARP_RANGE_RADIUS (= 47 en vanilla)
+  - les avant-postes / starbases, qui étendent ce rayon
+
+Sans starbases suffisantes, les vaisseaux militaires, scientifiques et de
+transport ne peuvent pas atteindre les systèmes distants. C'est gênant en début
+de partie (empire compact, réseau de bases pas encore construit) et incohérent
+avec Star Trek (un vaisseau warp peut aller n'importe où).
+
+
+────────────────────────────────────────────────────────────────────────────────
+  1.2  Approche CP26
+────────────────────────────────────────────────────────────────────────────────
+
+CP26 a résolu ce problème sur trois niveaux :
+
+  (A) Country type — tous les empires par défaut
+  ──────────────────────────────────────────────
+  Fichier : common/country_types/zz_cp26_default_country_type.txt
+
+    default = {
+        ignores_warp_range = yes   ← AJOUT CP26
+        ...
+    }
+
+  Ceci s'applique à TOUS les ships de tout empire de type "default", ce qui
+  couvre militaires, scientifiques, colons, transports — à la volée, sans
+  toucher aux ship_size individuels.
+  Le define a aussi été augmenté à 60 (+27% vs vanilla) pour les cas où la
+  propriété country_type ne suffit pas (empires non-default).
+
+  (B) California class — redéfinie dans CP26
+  ──────────────────────────────────────────
+  Fichier : common/ship_sizes/cp26_california_ship_sizes.txt
+
+    california = { ignores_warp_range = yes ... }
+    california_hero = { ignores_warp_range = yes ... }
+
+  La California est un vaisseau CP26 custom. Elle le porte explicitement.
+
+  (C) Voyager hero
+  ────────────────
+  Fichier : common/ship_sizes/voyager_hero_sizes.txt
+
+    voyager_hero = { ignores_warp_range = yes ... }
+
+  Voyager est le seul vaisseau héros qui explore hors des frontières connues —
+  logique narrative de l'avoir libre de toute limite de portée.
+
+  (D) Vaisseaux de transport de troupes — override CP26
+  ──────────────────────────────────────────────────────
+  Fichier : common/ship_sizes/zz_cp26_transport_sizes.txt  (nouveau)
+
+  Le ship_size "transport" vanilla ne portait pas ignores_warp_range.
+  Même si le country_type le couvre, l'override explicite garantit le
+  comportement attendu quelle que soit l'évolution du code country_type,
+  et le documente clairement.
+
+    transport = {
+        ...
+        ignores_warp_range = yes   ← AJOUT CP26
+        ...
+    }
+
+  Comportement résultant :
+    ✓ Les transports voyagent sans limite de portée warp
+    ✓ Les frontières fermées bloquent toujours le passage
+    ✓ Pendant la guerre (accès ouvert automatique), les transports passent
+    ✗ Pas de libre passage en territoire ennemi en temps de paix
+        → comportement identique aux militaires et scientifiques
+
+
+────────────────────────────────────────────────────────────────────────────────
+  1.3  Pourquoi PAS ignores_borders pour les transports ?
+────────────────────────────────────────────────────────────────────────────────
+
+Le spy ship vanilla a à la fois ignores_warp_range = yes ET ignores_borders = yes.
+Les transports ne doivent pas avoir ignores_borders pour deux raisons :
+
+  1. Cohérence gameplay : un empire ne laisse pas passer des troupes ennemies
+     en territoire souverain. Les frontières fermées font sens pour les armées.
+  2. Cohérence avec les militaires : les flottes de combat respectent les
+     frontières — les flottes de transport doivent avoir le même comportement.
+
+Le spy ship est un cas particulier (rôle d'infiltration = traversée clandestine).
+Les transports ne sont pas des agents clandestins.
+
+
+════════════════════════════════════════════════════════════════════════════════
+  PARTIE 2 — REFONTE DE L'ÉCHELLE TEMPORELLE DU VOYAGE WARP
+════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────
+  2.1  Contexte — le problème vanilla
+────────────────────────────────────────────────────────────────────────────────
+
+En vanilla STI, les voyages intersidéraux sont rapides. La galaxie paraît petite,
+l'exploration manque de tension et de sens de l'immensité. Star Trek est pourtant
+une franchise où chaque trajet de plusieurs jours à plusieurs semaines est narratif.
+
+La vitesse warp interstellaire est contrôlée par le define :
+    NShip { WARP_INTERSTELLAR_TRAVEL_SPEED = 0.1 }
+
+Une valeur plus faible = trajets plus longs. Un modificateur ship_warp_speed_mult
+multiplie cette valeur (base 1.0 = 100%).
+
+
+────────────────────────────────────────────────────────────────────────────────
+  2.2  Vanilla vs CP26 — comparaison des tech tree warp
+────────────────────────────────────────────────────────────────────────────────
+
+  VANILLA
+  ───────
+  WARP_INTERSTELLAR_TRAVEL_SPEED = 0.1 (base)
+
+  tech_warp_speed_increase_1 (Tier 2) : ship_warp_speed_mult = +0.20
+    → vitesse effective = 0.1 × 1.20 = 0.120  (+20%)
+
+  tech_warp_speed_increase_2 : commenté / désactivé en vanilla
+
+  Résultat : la galaxie est identiquement rapide tout au long de la partie.
+  Un seul palier de progression, gain modeste, peu d'impact ressenti.
+
+
+  CP26
+  ────
+  WARP_INTERSTELLAR_TRAVEL_SPEED = 0.065 (−35% vs vanilla) ← define modifié
+
+  tech_warp_speed_increase_1 (Tier 2, "Warp 5")  : ship_warp_speed_mult = +0.30
+    → vitesse effective = 0.065 × 1.30 = 0.0845  (84.5% vanilla)
+
+  tech_warp_speed_increase_2 (Tier 4, "Warp 6")  : ship_warp_speed_mult = +0.30
+    → bonus cumulé +0.60 → 0.065 × 1.60 = 0.104  (104% vanilla)
+
+  tech_warp_speed_increase_3 (Tier 5, "Warp 7")  : ship_warp_speed_mult = +0.25  ← NOUVEAU
+    → bonus cumulé +0.85 → 0.065 × 1.85 = 0.120  (120% vanilla)
+
+
+────────────────────────────────────────────────────────────────────────────────
+  2.3  Progression résumée
+────────────────────────────────────────────────────────────────────────────────
+
+  Palier          Tech                           Vitesse relative  Ressenti
+  ─────────────── ─────────────────────────────  ────────────────  ──────────────────────────────
+  Début de partie  (aucune)                       65% vanilla       Lent, galaxie immense, tension
+  Warp 5          tech_warp_speed_increase_1      85% vanilla       Amélioration notable, +15%
+  Warp 6          tech_warp_speed_increase_2     104% vanilla       Confortable, équivalent vanilla
+  Warp 7          tech_warp_speed_increase_3     120% vanilla       Récompense fin de partie
+
+
+────────────────────────────────────────────────────────────────────────────────
+  2.4  Fichiers modifiés / créés
+────────────────────────────────────────────────────────────────────────────────
+
+  common/defines/cmi_01_defines.txt
+    → NShip { WARP_INTERSTELLAR_TRAVEL_SPEED = 0.065 }
+
+  common/technology/zz_cp26_warp_techs.txt
+    → Override tech_warp_speed_increase_1 : +0.20 → +0.30
+    → Override tech_warp_speed_increase_2 : +0.10 → +0.30
+    → Nouveau tech_warp_speed_increase_3   : +0.25 (Tier 5, prérequis = T2)
+
+  localisation/english/zz_cp26_patch_l_english.yml
+    → Ajout de tech_warp_speed_increase_3 / _desc
+
+
+================================================================================
+  FIN DU DOCUMENT
+================================================================================

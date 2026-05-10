@@ -1,8 +1,8 @@
 hegemonic_imperialists_gorn = {
-	aggressiveness = 3.0
+	aggressiveness = 2.0
 	trade_willingness = 0.1
-	bravery = 2.0
-	combat_bravery = 2.0
+	bravery = 1.5
+	combat_bravery = 1.5
 
 	military_spending = 1.5
 	colony_spending = 0.5
@@ -22,10 +22,10 @@ hegemonic_imperialists_gorn = {
 	shields_ratio = 0.25
 	hull_ratio = 0.0
 
-	threat_modifier = 2.0
-	threat_others_modifier = 1.5
-	friction_modifier = 2.0
-	claims_modifier = 2.0
+	threat_modifier = 1.5
+	threat_others_modifier = 1.2
+	friction_modifier = 1.8
+	claims_modifier = 1.8
 
 	behaviour = {
 		conqueror = yes

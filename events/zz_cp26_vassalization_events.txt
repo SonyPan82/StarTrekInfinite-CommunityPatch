@@ -15,16 +15,18 @@ country_event = {
 	option = {
 		name = cp26_vassalization.1.accept
 		ai_chance = {
-			factor = 0
+			factor = 10
 			modifier = {
-				factor = 80
+				# Superior power + good opinion: very likely to submit
+				factor = 4
 				AND = {
 					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
 					opinion_level = { who = event_target:cp26_vassalization_actor level >= good }
 				}
 			}
 			modifier = {
-				factor = 45
+				# Superior power + any positive signal: moderately likely
+				factor = 2
 				AND = {
 					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
 					OR = {
@@ -68,16 +70,17 @@ country_event = {
 	option = {
 		name = cp26_vassalization.1.decline
 		ai_chance = {
-			factor = 100
+			factor = 15
 			modifier = {
-				factor = 20
+				# Favourable conditions: much less likely to refuse
+				factor = 0.3
 				AND = {
 					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
 					opinion_level = { who = event_target:cp26_vassalization_actor level >= good }
 				}
 			}
 			modifier = {
-				factor = 10
+				factor = 0.5
 				AND = {
 					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
 					OR = {
@@ -91,7 +94,8 @@ country_event = {
 				}
 			}
 			modifier = {
-				factor = 200
+				# Hostile opinion: certain refusal
+				factor = 3
 				opinion_level = { who = event_target:cp26_vassalization_actor level < neutral }
 			}
 		}

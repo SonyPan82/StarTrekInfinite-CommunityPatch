@@ -1,4 +1,5 @@
 contender = {
+	ignores_warp_range = yes
 	has_difficulty_bonuses = yes
 	counts_for_victory = no
 	pop_growth = yes
@@ -20,7 +21,7 @@ contender = {
 	ai = {
 		enabled = yes
 		declare_war = yes
-		min_navy_for_wars = 0.01
+		min_navy_for_wars = 0.30
 		min_assault_armies_for_wars = @armies_for_declaring_war	
 		colonizer = yes
 		internal_policies = yes
