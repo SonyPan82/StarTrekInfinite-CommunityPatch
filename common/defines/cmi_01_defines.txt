@@ -4,5 +4,6 @@ NGameplay =
 }
 
 NShip = {
-	OUTPOST_WARP_RANGE_RADIUS = 60		# vanilla = 47, +15%
+	OUTPOST_WARP_RANGE_RADIUS = 60			# vanilla = 47, +15%
+	WARP_INTERSTELLAR_TRAVEL_SPEED = 0.065	# vanilla = 0.1  → ~35% slower base; tech tree compensates progressively
 }
