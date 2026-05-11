@@ -1,4 +1,4 @@
-[h1]CP26 - Update 2026-05-10[/h1]
+[h1]CP26 - Update 2026-05-11[/h1]
 
 [h2]Crash Fixes[/h2]
 [list]
@@ -8,6 +8,13 @@
 [*] Fixed district show_on_uncolonized null pointer crashes (exists = from guard).
 [*] New delayed event system : Colony Shelter → Planetary Capital on Day 3.
 [*] Affects : Tholian, Orion, Breen, Gorn capitals + Verex III, Breenus Secundus, Glintara, Denobula.
+[/list]
+
+[h2]AI Improvements[/h2]
+[list]
+[*] AI Fix 1 — Defines NAI (zz_cp26_ai_defines.txt) : improved construction thresholds, war priorities, research weighting, rare tech multipliers and max fleet distance.
+[*] AI Shipyard Fix : all AI majors/minors/contenders now start with Starport + Shipyard on their capital.
+[*] Fixed vanilla event country.27500 (UFOP First Contact Bonus) : no more "add_opinion_modifier on oneself" error ; opinion bonus now applies correctly.
 [/list]
 
 [h2]Hero Ship Balance[/h2]
@@ -38,6 +45,8 @@
 [h2]Galaxy Setup[/h2]
 [list]
 [*] Stars : 1000.
-[*] Radius : 490.
-[*] [b]Note :[/b] 490 is above vanilla safe zone (~460) but under the 500 hard ceiling. Monitor for stability.
+[*] Radius : 570.
+[*] Entire bespoke map shifted +100y to center the galaxy vertically.
+[*] Removed experimental bespoke_procedural.txt that caused worse core density.
+[*] [b]Note :[/b] 570 is highly experimental. Vanilla safe zone is ~460. Monitor for stability and report any crash on save.
 [/list]

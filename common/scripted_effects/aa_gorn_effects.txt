@@ -1,7 +1,9 @@
 spawn_gorn_system = {
+	# CP26: scaled galaxy -> keep Gorn capital adjacent to anchor (max_jumps=1)
+	# to avoid the capital drifting to the southern galaxy edge.
 	spawn_system = {
 		min_jumps = 1
-		max_jumps = 2
+		max_jumps = 1
 		min_distance = 1
 		max_distance = 18
 		initializer = gorn_system_initializer
@@ -15,7 +17,7 @@ spawn_gorn_system_fallback = {
 		min_jumps = 1
 		max_jumps = 3
 		min_distance = 1
-		max_distance = 24
+		max_distance = 36
 		initializer = gorn_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -23,11 +25,13 @@ spawn_gorn_system_fallback = {
 }
 
 spawn_finibus_system = {
+	# CP26: tightened max_distance so outposts stay near the Gorn capital,
+	# not drifting toward the galaxy edge.
 	spawn_system = {
 		min_jumps = 1
 		max_jumps = 2
 		min_distance = 1
-		max_distance = 18
+		max_distance = 22
 		initializer = finibus_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -38,7 +42,7 @@ spawn_galdonterre_system = {
 		min_jumps = 1
 		max_jumps = 2
 		min_distance = 1
-		max_distance = 18
+		max_distance = 22
 		initializer = galdonterre_system_initializer
 		hyperlane = yes
 		is_discovered = yes
@@ -49,7 +53,7 @@ spawn_cestus_system = {
 		min_jumps = 1
 		max_jumps = 2
 		min_distance = 1
-		max_distance = 18
+		max_distance = 22
 		initializer = cestus_system_initializer
 		hyperlane = yes
 		is_discovered = yes
