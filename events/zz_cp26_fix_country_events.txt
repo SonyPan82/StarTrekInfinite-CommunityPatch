@@ -1,0 +1,55 @@
+# CP26 Fix — country.27500 (UFOP First Contact Bonus)
+# 
+# BUG vanilla : in the original event (hornblower_country_events.txt:6136),
+# the second add_opinion_modifier block uses 'who = root.from' which can
+# resolve to the same country as the scope executing the effect, causing
+# the engine to log "Trying to add_opinion_modifier on oneself" and skip
+# the opinion bonus entirely.
+#
+# FIX : 
+# 1. Replace invalid 'who = root.from' with 'who = from' (the other party).
+# 2. Add is_same_value guards to both blocks so the effect only fires when
+#    the two scopes are genuinely different countries.
+
+first_contact_event = {
+	id = country.27500
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			FROM = { has_civic = civic_diplomatic_expertise }
+			FROMFROM = { has_civic = civic_diplomatic_expertise }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				exists = from
+				exists = fromfrom
+				NOT = { is_same_value = fromfrom }
+			}
+			from = {
+				add_opinion_modifier = {
+					who = fromfrom
+					modifier = opinion_civic_diplomatic_expertise
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				exists = fromfrom
+				exists = from
+				NOT = { is_same_value = from }
+			}
+			fromfrom = {
+				add_opinion_modifier = {
+					who = from
+					modifier = opinion_civic_diplomatic_expertise
+				}
+			}
+		}
+	}
+}

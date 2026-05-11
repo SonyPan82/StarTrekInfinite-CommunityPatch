@@ -1,0 +1,69 @@
+CP26 — Correction de country.27500 (UFOP First Contact Bonus)
+=============================================================
+Date : 2026-05-11
+Fichier vanilla : events/hornblower_country_events.txt (ligne 6136)
+Fichier CP26 : events/zz_cp26_fix_country_events.txt
+
+1. QU'EST-CE QUE C'EST ?
+------------------------
+L'event country.27500 est un bonus de Premier Contact Diplomatique vanilla.
+Quand la Fédération (ou tout empire avec le civic "Diplomatic Expertise")
+rencontre un nouvel empire, cet event donne un petit bonus d'opinion
+réciproque : opinion_civic_diplomatic_expertise.
+
+2. QUEL EST LE BUG ?
+--------------------
+Dans le bloc immediate original, la deuxième application d'opinion utilise :
+
+    fromfrom = {
+        add_opinion_modifier = {
+            who = root.from
+            modifier = opinion_civic_diplomatic_expertise
+        }
+    }
+
+Problèmes :
+• "root.from" est syntaxiquement invalide dans un first_contact_event.
+  root est déjà un scope pays ; on ne peut pas accéder à un sous-scope
+  "from" depuis root.
+• Quand les scopes se chevauchent (fromfrom == root ou fromfrom == from),
+  le jeu tente d'appliquer un opinion_modifier d'un pays sur lui-même.
+  Le moteur refuse et loggue :
+  "Trying to add_opinion_modifier on oneself !"
+• Conséquence : le bonus d'opinion n'est pas appliqué du tout dans ces cas.
+  C'est un micro-nerf involontaire sur la diplomatie UFP.
+
+3. POURQUOI LE JEU DE BASE NE L'A PAS CORRIGÉ ?
+-------------------------------------------------
+STI tourne sur un moteur Clausewitz figé (v1.0.7, décembre 2023).
+Paradox / Negonicula ne sortent plus de patchs officiels pour ce jeu.
+Le bug ne provoque pas de crash — juste une erreur dans les logs — donc
+il est resté dans le codebase vanilla.
+
+4. COMMENT CP26 LE CORRIGE ?
+------------------------------
+Le fichier zz_cp26_fix_country_events.txt redéfinit l'event country.27500
+avec deux changements :
+
+A. Remplacement de "who = root.from" par "who = from"
+   → Cible correcte : l'autre pays impliqué dans le premier contact.
+
+B. Ajout de guards is_same_value dans les deux blocs :
+   • Le premier bloc ne s'exécute que si from != fromfrom
+   • Le deuxième bloc ne s'exécute que si fromfrom != from
+   → Cela empêche définitivement toute tentative d'auto-opinion.
+
+5. RISQUES
+----------
+• Très faible. L'event est isolé et ne touche qu'au bonus de premier
+  contact diplomatique.
+• Aucun impact sur la stabilité ou les sauvegardes.
+• Si un futur patch vanilla corrige cet event (hypothétique), CP26
+  l'override. Il suffira alors de supprimer ce fichier.
+
+6. IMPACT EN JEU
+----------------
+• Avant : le bonus d'opinion de première contact pouvait échouer
+  silencieusement, laissant la Fédération sans son avantage diplomatique.
+• Après : le bonus s'applique correctement dans tous les cas valides.
+• Plus d'erreur "add_opinion_modifier on oneself" dans les logs.
