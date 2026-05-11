@@ -1,0 +1,43 @@
+[h1]CP26 - Update 2026-05-10[/h1]
+
+[h2]Crash Fixes[/h2]
+[list]
+[*] Fixed dangerous remove_building/add_building pattern after create_colony across all custom colonies.
+[*] Fixed invalid species = random on Romulus & Qo'noS pop generation.
+[*] Fixed duplicate create_colony on Bajor.
+[*] Fixed district show_on_uncolonized null pointer crashes (exists = from guard).
+[*] New delayed event system : Colony Shelter → Planetary Capital on Day 3.
+[*] Affects : Tholian, Orion, Breen, Gorn capitals + Verex III, Breenus Secundus, Glintara, Denobula.
+[/list]
+
+[h2]Hero Ship Balance[/h2]
+[list]
+[*] Voyager : 7000 → 2500 HP (still heroic, no longer immortal).
+[*] D'deridex Hero : 10000 → 4500 HP.
+[/list]
+
+[h2]Minor Battleship Fix[/h2]
+[list]
+[*] Tholien / Orion / Breen / Gorn battleships : fleet_slot_size 3 → 4.
+[/list]
+
+[h2]Economy Fix[/h2]
+[list]
+[*] Romulan Soldier Camp (Remus) : upkeep food=0 → energy=3.
+[/list]
+
+[h2]Minor Faction Lore Balance[/h2]
+[list]
+[*] Tholien : reduced stability & aligned pop bonuses, kept territorial edge.
+[*] Gorn : reduced war exhaustion & army bonuses, removed hidden amenities cheat.
+[*] Breen : reduced station exploitation bonus.
+[*] Orion : reduced matriarch stability bonus.
+[*] All values still above major empire standards ; factions remain feared.
+[/list]
+
+[h2]Galaxy Setup[/h2]
+[list]
+[*] Stars : 1000.
+[*] Radius : 490.
+[*] [b]Note :[/b] 490 is above vanilla safe zone (~460) but under the 500 hard ceiling. Monitor for stability.
+[/list]

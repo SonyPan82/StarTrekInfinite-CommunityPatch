@@ -45,6 +45,7 @@ romulan_glintara_initializer = {
 			create_colony = {
 				owner = event_target:romulan_country 
 			}
+			set_planet_flag = cp26_needs_capital_upgrade
 			create_glintara_colony = yes
 		}
 	}

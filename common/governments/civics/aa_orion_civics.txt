@@ -4,7 +4,7 @@ civic_orion_matriarchs = {
 	}
 
 	modifier = {
- 		planet_stability_add = 10
+ 		planet_stability_add = 5
 	}
 }
 

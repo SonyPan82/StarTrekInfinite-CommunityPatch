@@ -3,7 +3,7 @@
 @dderidex_formation_priority = 50
 @dderidex_speed = 28.8
 @dderidex_collision_radius = 6
-@dd_hp = 10000
+@dd_hp = 4500
 @dd_evasion = 8
 @battleship_size_icon_frame = 5
 @dderidex_build_time = 480

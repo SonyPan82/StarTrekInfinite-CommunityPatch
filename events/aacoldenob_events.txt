@@ -30,6 +30,7 @@ event = {
 			create_colony = {
 				owner = event_target:ufop_country
 			}
+			set_planet_flag = cp26_needs_capital_upgrade
 		}
 
 		event_target:ufop_country = {
@@ -50,8 +51,6 @@ event = {
 				add_district_and_planet_size_if_needed_effect = {
 					district = district_generator
 				}
-				remove_building = building_colony_shelter
-				add_building = building_capital
 				add_building = building_clinic
 			}
 		}

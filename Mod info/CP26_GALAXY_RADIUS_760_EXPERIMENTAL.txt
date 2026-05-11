@@ -1,0 +1,50 @@
+CP26 GALAXY RADIUS 760 — HIGHLY EXPERIMENTAL
+==============================================
+
+CONTEXTE
+========
+Le setup "Star Charts - Large" utilise désormais un radius de 760.
+Le moteur Stellaris recommande un radius < 500, idéalement < ~460.
+
+CHANGEMENT
+==========
+Radius passé de 460 → 600 → 760 sur :
+  - map/setup_scenarios/Alpha-Beta_medium.txt
+  - map/setup_scenarios/tutorial.txt
+
+Num_stars reste à 1150.
+
+RISQUES IDENTIFIES (AUGMENTES)
+==============================
+A 760, les risques sont MAJEURS par rapport à 600 :
+
+1. Le moteur Paradox n'est pas testé au-delà de ~500. Des effets
+   imprévisibles peuvent survenir :
+   - Crash à la génération de galaxie (le plus probable)
+   - Systèmes placés hors des limites internes (coordinates overflow)
+   - Hyperlanes manquantes sur toute la périphérie
+   - IA incapable de trouver des chemins entre systèmes éloignés
+
+2. Avec 1150 étoiles sur 760 de radius, la densité est très faible.
+   Les systèmes procéduraux risquent d'être isolés ou de former des
+   amas déserts sans connexion aux empires.
+
+3. Les systèmes statiques (bespoke) restent aux coordonnées d'origine
+   (rescalées depuis 900 avec factor 0.511111). Ils seront regroupés
+   au centre tandis que les systèmes procéduraux s'étaleront sur
+   une immense surface vide.
+
+4. Les performances en jeu peuvent se dégrader : le moteur calcule
+   les distances et les hyperlanes sur une carte deux fois plus grande
+   que la limite recommandée.
+
+RETOUR EN ARRIERE
+=================
+Si le jeu crash à la génération ou si la carte est cassée :
+  1. Remettre radius = 460 dans les deux fichiers
+  2. Supprimer ce fichier de documentation
+
+RECOMMANDATION
+==============
+NE PAS publier ce paramètre dans une version stable du mod sans
+extensive testing. C'est une expérimentation pure.

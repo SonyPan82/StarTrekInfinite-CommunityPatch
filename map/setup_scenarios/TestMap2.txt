@@ -1,0 +1,90 @@
+# #Made with Retalyx Static Galaxy Generator v0.97
+# bespoke_procedural_scenario = {
+#     name = "TestMap2"
+#     default = no
+#     priority = 0
+
+#     # Bespoke Content
+    
+#     num_empires = { min = 1 max = 5 }
+#     num_empire_default = 3
+#     marauder_empire_default = 1
+#     marauder_empire_max = 4
+#     fallen_empire_max = 4
+#     advanced_empire_default = 1
+#     core_radius = 0
+#     primitive_odds = 1
+#     crisis_strength = 1
+#     random_hyperlanes = yes
+#     num_wormhole_pairs = { min = 1 max = 30 }
+#     num_wormhole_pairs_default = 1
+#     num_gateways = { min = 1 max = 20 }
+#     num_gateways_default = 1
+
+#     # Procedural Content
+# 	num_stars = 200
+# 	radius = 200					#should be less than 500, preferably less than ~460
+# 	num_nebulas	= 2
+# 	nebula_size = 60
+# 	nebula_min_dist = 100
+
+# system = { id = "0" name = "0-0" position = { x = -100 y = 60 } initializer = united_federation_of_planets_system_initializer spawn_weight = { base = 1 }  }
+# system = { id = "1" name = "0-1" position = { x = -103 y = 60 }  }
+# system = { id = "2" name = "0-2" position = { x = -106 y = 60 }  }
+# system = { id = "3" name = "0-3" position = { x = -109 y = 60 }  }
+# system = { id = "4" name = "0-4" position = { x = -100 y = 64 }  }
+# system = { id = "5" name = "0-5" position = { x = -103 y = 64 }  }
+# system = { id = "6" name = "0-6" position = { x = -106 y = 64 }  }
+# system = { id = "7" name = "0-7" position = { x = -109 y = 64 }  }
+# system = { id = "8" name = "0-8" position = { x = -100 y = 68 }  }
+# system = { id = "9" name = "0-9" position = { x = -103 y = 68 }  }
+
+# system = { id = "10" name = "1-0" position = { x = 106 y = -60 } initializer = cardassian_system_initializer spawn_weight = { base = 1 } }
+# system = { id = "11" name = "1-1" position = { x = 109 y = -60 }  }
+# system = { id = "12" name = "1-2" position = { x = 100 y = -60 }  }
+# system = { id = "13" name = "1-3" position = { x = 103 y = -60 }  }
+# system = { id = "14" name = "1-4" position = { x = 106 y = -64 }  }
+# system = { id = "15" name = "1-5" position = { x = 109 y = -64 }  }
+# system = { id = "16" name = "1-6" position = { x = 100 y = -64 }  }
+# system = { id = "17" name = "1-7" position = { x = 103 y = -64 }  }
+# system = { id = "18" name = "1-8" position = { x = 106 y = -68 }  }
+# system = { id = "19" name = "1-9" position = { x = 109 y = -68 }  }
+
+# system = { id = "20" name = "2-0" position = { x = 100 y = 60 } initializer = romulan_system_initializer spawn_weight = { base = 1 }  }
+# system = { id = "21" name = "2-1" position = { x = 103 y = 60 }  }
+# system = { id = "22" name = "2-2" position = { x = 106 y = 60 }  }
+# system = { id = "23" name = "2-3" position = { x = 109 y = 60 }  }
+# system = { id = "24" name = "2-4" position = { x = 100 y = 64 }  }
+# system = { id = "25" name = "2-5" position = { x = 103 y = 64 }  }
+# system = { id = "26" name = "2-6" position = { x = 106 y = 64 }  }
+# system = { id = "27" name = "2-7" position = { x = 109 y = 64 }  }
+# system = { id = "28" name = "2-8" position = { x = 100 y = 68 }  }
+# system = { id = "29" name = "2-9" position = { x = 103 y = 68 }  }
+
+# system = { id = "30" name = "3-0" position = { x = -100 y = -60 } initializer = klingon_system_initializer spawn_weight = { base = 1 }  }
+# system = { id = "31" name = "3-1" position = { x = -103 y = -60 }  }
+# system = { id = "32" name = "3-2" position = { x = -106 y = -60 }  }
+# system = { id = "33" name = "3-3" position = { x = -109 y = -60 }  }
+# system = { id = "34" name = "3-4" position = { x = -100 y = -64 }  }
+# system = { id = "35" name = "3-5" position = { x = -103 y = -64 }  }
+# system = { id = "36" name = "3-6" position = { x = -106 y = -64 }  }
+# system = { id = "37" name = "3-7" position = { x = -109 y = -64 }  }
+# system = { id = "38" name = "3-8" position = { x = -100 y = -68 }  }
+# system = { id = "39" name = "3-9" position = { x = -103 y = -68 }  }
+
+#  nebula = { name = "Nebula" position = { x = -110 y = -110 } radius = 25 }
+
+#  add_hyperlane = { from = "0" to = "9" }
+#  add_hyperlane = { from = "3" to = "9" }
+#  add_hyperlane = { from = "10" to = "19" }
+#  add_hyperlane = { from = "13" to = "19" }
+#  add_hyperlane = { from = "20" to = "29" }
+#  add_hyperlane = { from = "23" to = "29" }
+#  add_hyperlane = { from = "30" to = "39" }
+#  add_hyperlane = { from = "33" to = "39" }
+
+#  hazard_area = {coordinates_count = "5" coordinate = { 1 1 } coordinate = { 1 11 } coordinate = { 11 11 } coordinate = { 11 1 } coordinate = { 1 1 }}
+#  hazard_area = {coordinates_count = "5" coordinate = { 10 20 } coordinate = { 10 110 } coordinate = { 110 110 } coordinate = { 110 10 } coordinate = { 10 20 }}
+
+
+# hazard_effect = {hazard_effect_damage = {damage_trigger = "ONEXIT" damage_amount = 10 damage_trigger = "ONENTER" damage_amount = 10}}

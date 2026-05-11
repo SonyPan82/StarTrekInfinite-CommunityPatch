@@ -19,6 +19,6 @@ civic_breen_exploitation = {
 	description = "civic_breen_exploitation_effect_desc"
 
 	modifier = {
-		station_gatherers_produces_mult = 0.5
+		station_gatherers_produces_mult = 0.25
 	}
 }

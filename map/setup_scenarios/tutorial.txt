@@ -4,9 +4,8 @@ bespoke_procedural_scenario = {
 	priority = 0					#priority decides in which order the scenarios are listed
 
 	# Everything below this line should be a copy of Alpha-Beta_medium
-	num_stars = 1250
-	radius = 900
-
+	num_stars = 1000
+	radius = 500
 	num_empires = { min = 24 max = 24 }	# HRB_NOTE: { min = 1 max = 24 }, out of this values the game may crash. Use the max value to ensure appear the 4 Mapos.
 	num_empire_default = 24		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.
 	advanced_empire_default = 0
@@ -20,8 +19,7 @@ bespoke_procedural_scenario = {
 	crisis_strength = 1.0
 	extra_crisis_strength = { 10 25 }
 
-	max_hyperlane_distance = 50
-
+	max_hyperlane_distance = 28
 	home_system_partitions = {
 		max_systems = 5
 		min_systems= 4
@@ -43,19 +41,18 @@ bespoke_procedural_scenario = {
 	}
 
 	num_nebulas = 0
-	nebula_size = 60
-	nebula_min_dist = 200
-
-	nebula = { name = "Briar Patch" position = { x = -13 y = 407 } radius = 10 }	#orange nebula, use flags = { orange } in system initalizers
-	nebula = { name = "Badlands" position = { x = 72 y = 370 } radius = 8 }			#orange nebula, use flags = { orange } in system initalizers
-	nebula = { name = "Typhon Expanse" position = { x = -48 y = 252 } radius = 15 } #light blue/slight green, WIP
-	nebula = { name = "Azure Nebula" position = { x = -86 y = 394} radius = 4}      #dark blue/slight purple, WIP
-	nebula = { name = "Rolor Nebula" position = { x = 81 y = 360} radius = 3}		#purple nebula, use flags = { purple } in system initalizers
-	nebula = { name = "Argolis Cluster" position = { x = 21 y = 397} radius = 5}
-	nebula = { name = "Vaulterra Nebula" position = { x = 56 y = 454} radius = 9}	#Red, WIP
-	nebula = { name = "Mutara Nebula" position = { x = -53 y = 604} radius = 16}	#purple nebula, use flags = { purple } in system initalizers
-	nebula = { name = "Mutara Nebula" position = { x = 59 y = 552} radius = 7}		#purple nebula, use flags = { purple } in system initalizers
-	nebula = { name = "Bassen Rift" position = { x = -16 y = 330 } radius = 7}		#green, WIP
+	nebula_size = 31
+	nebula_min_dist = 102
+	nebula = { name = "Briar Patch" position = { x = -7 y = 308 } radius = 5 }	#orange nebula, use flags = { orange } in system initalizers
+	nebula = { name = "Badlands" position = { x = 37 y = 289 } radius = 4 }			#orange nebula, use flags = { orange } in system initalizers
+	nebula = { name = "Typhon Expanse" position = { x = -25 y = 229 } radius = 8 } #light blue/slight green, WIP
+	nebula = { name = "Azure Nebula" position = { x = -44 y = 301} radius = 2}      #dark blue/slight purple, WIP
+	nebula = { name = "Rolor Nebula" position = { x = 41 y = 284} radius = 2}		#purple nebula, use flags = { purple } in system initalizers
+	nebula = { name = "Argolis Cluster" position = { x = 11 y = 303} radius = 3}
+	nebula = { name = "Vaulterra Nebula" position = { x = 29 y = 332} radius = 5}	#Red, WIP
+	nebula = { name = "Mutara Nebula" position = { x = -27 y = 409} radius = 8}	#purple nebula, use flags = { purple } in system initalizers
+	nebula = { name = "Mutara Nebula" position = { x = 30 y = 382} radius = 4}		#purple nebula, use flags = { purple } in system initalizers
+	nebula = { name = "Bassen Rift" position = { x = -8 y = 269 } radius = 4}		#green, WIP
 
 	num_wormhole_pairs = { min = 0 max = 0 }
 	num_wormhole_pairs_default = 0
@@ -73,7 +70,7 @@ bespoke_procedural_scenario = {
 		#position_set = { x = -196 y = 112 }
 		#position_set = { x = 451 y = 442 }
 		#position_set = { x = 539 y = 158 }
-		position = { x = -45 y = 262 }
+		position = { x = -23 y = 234 }
 		initializer = highway_system_initializer
 		spawn_weight = { base = 1 }
 	}
@@ -85,7 +82,7 @@ bespoke_procedural_scenario = {
 		#position_set = { x = 505 y = 215 }
 		#position_set = { x = 556 y = 187 }
 		#position_set = { x = -379 y = 623 }
-		position = { x = -400 y = -150 }
+		position = { x = -204 y = 23 }
 		initializer = highway_system_initializer
 		spawn_weight = { base = 1 }
 	}
@@ -102,14 +99,14 @@ bespoke_procedural_scenario = {
 	#system = {
 		# Borg transwarp conduit
 		# Needs to be first system, before Bespoke systems
-	#	name = "NAME_Highway_Node" position = { x = -400 y = -150 }
+	#	name = "NAME_Highway_Node" position = { x = -204 y = 23 }
 	#	spawn_weight = { base = 1 }
 	#}
 
 	#system = {
 		# Borg transwarp conduit
 		# Needs to be first system, before Bespoke systems
-		#name = "NAME_Highway_Node" position = { x = 0 y = 300 }
+		#name = "NAME_Highway_Node" position = { x = 0 y = 253 }
 	#	spawn_weight = { base = 1 }
 	#}
 
@@ -117,1214 +114,1214 @@ bespoke_procedural_scenario = {
 
 	system = {
     id = "2"
-		name = "NAME_Acamarian" position = { x = -82 y = 384 }
+		name = "NAME_Acamarian" position = { x = -42 y = 296 }
 		initializer = acamarian_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Athos" position = { x = 82 y = 373 }
+		name = "NAME_Athos" position = { x = 42 y = 291 }
 		initializer = uncontrolled_athos_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
 		id = "949"
-		name = "NAME_Bajor" position = { x = 64 y = 389 }
+		name = "NAME_Bajor" position = { x = 33 y = 299 }
 		initializer = bajoran_bajor_initializer spawn_weight = { base = 1 }
 	}
 
 
 	system = {
 		id = "968"
-		name = "Tholias" position = { x = 115 y = 295 }
+		name = "Tholias" position = { x = 59 y = 251 }
 		initializer = tholian_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
 		id = "969"
-		name = "Orion" position = { x = -230 y = 470 }
+		name = "Orion" position = { x = -118 y = 340 }
 		initializer = orion_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Betazoid" position = { x = 19 y = 405 }
+		name = "NAME_Betazoid" position = { x = 10 y = 307 }
 		initializer = betazoid_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Bolarus" position = { x = -9 y = 320 }
+		name = "NAME_Bolarus" position = { x = -5 y = 264 }
 		initializer = bolian_bolarus_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Boslic" position = { x = 692 y = 47 }
+		name = "NAME_Boslic" position = { x = 354 y = 124 }
 		initializer = boslic_boslic_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Cairn" position = { x = 448 y = 188 }
+		name = "NAME_Cairn" position = { x = 229 y = 196 }
 		initializer = cairn_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Actrium" position = { x = 95 y = 375 }
+		name = "NAME_Actrium" position = { x = 49 y = 292 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Adarak" position = { x = 100 y = 385 }
+		name = "NAME_Adarak" position = { x = 51 y = 297 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Arawath" position = { x = 116 y = 390 }
+		name = "NAME_Arawath" position = { x = 59 y = 299 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Argaya" position = { x = 78 y = 419 }
+		name = "NAME_Argaya" position = { x = 40 y = 314 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Atbar" position = { x = 86 y = 380 }
+		name = "NAME_Atbar" position = { x = 44 y = 294 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Chintoka" position = { x = 34 y = 402 }
+		name = "NAME_Chintoka" position = { x = 17 y = 305 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Cuellar" position = { x = 33 y = 407 }
+		name = "NAME_Cuellar" position = { x = 17 y = 308 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Delavi" position = { x = 91 y = 370 }
+		name = "NAME_Delavi" position = { x = 47 y = 289 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Dopa" position = { x = 108 y = 406 }
+		name = "NAME_Dopa" position = { x = 55 y = 308 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Kelrabi" position = { x = 37 y = 411 }
+		name = "NAME_Kelrabi" position = { x = 19 y = 310 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Korma" position = { x = 61 y = 395 }
+		name = "NAME_Korma" position = { x = 31 y = 302 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Lazon" position = { x = 108 y = 380 }
+		name = "NAME_Lazon" position = { x = 55 y = 294 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Mryax" position = { x = 110 y = 401 }
+		name = "NAME_Mryax" position = { x = 56 y = 305 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Omekla" position = { x = 74 y = 409 }
+		name = "NAME_Omekla" position = { x = 38 y = 309 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Orias" position = { x = 91 y = 399 }
+		name = "NAME_Orias" position = { x = 47 y = 304 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Panora" position = { x = 50 y = 398 }
+		name = "NAME_Panora" position = { x = 26 y = 303 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Pentath" position = { x = 79 y = 398 }
+		name = "NAME_Pentath" position = { x = 40 y = 303 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Quatal" position = { x = 41 y = 398 }
+		name = "NAME_Quatal" position = { x = 21 y = 303 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Rakal" position = { x = 52 y = 410 }
+		name = "NAME_Rakal" position = { x = 27 y = 310 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Rondac" position = { x = 120 y = 395 }
+		name = "NAME_Rondac" position = { x = 61 y = 302 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Sarpedion" position = { x = 97 y = 396 }
+		name = "NAME_Sarpedion" position = { x = 50 y = 302 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Vanden" position = { x = 119 y = 403 }
+		name = "NAME_Vanden" position = { x = 61 y = 306 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Vestalan" position = { x = 103 y = 412 }
+		name = "NAME_Vestalan" position = { x = 53 y = 311 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Vitar" position = { x = 100 y = 413 }
+		name = "NAME_Vitar" position = { x = 51 y = 311 }
 		initializer = cardassian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Amleth" position = { x = 66 y = 397 }
+		name = "NAME_Amleth" position = { x = 34 y = 303 }
 		initializer = cardassian_amleth_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Avenal" position = { x = 85 y = 383 }
+		name = "NAME_Avenal" position = { x = 43 y = 296 }
 		initializer = cardassian_avenal_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Cardassia" position = { x = 70 y = 386 }
+		name = "NAME_Cardassia" position = { x = 36 y = 297 }
 		initializer = cardassian_cardassia_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Celtris" position = { x = 68 y = 408 }
+		name = "NAME_Celtris" position = { x = 35 y = 309 }
 		initializer = cardassian_celtris_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Septimus" position = { x = 97 y = 373 }
+		name = "NAME_Septimus" position = { x = 50 y = 291 }
 		initializer = cardassian_septimus_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Sheva" position = { x = 30 y = 405 }
+		name = "NAME_Sheva" position = { x = 15 y = 307 }
 		initializer = cardassian_sheva_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Unefra" position = { x = 105 y = 400 }
+		name = "NAME_Unefra" position = { x = 54 y = 304 }
 		initializer = cardassian_unefra_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Velos" position = { x = 88 y = 411 }
+		name = "NAME_Velos" position = { x = 45 y = 310 }
 		initializer = cardassian_velos_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Carraya" position = { x = -183 y = 355 }
+		name = "NAME_Carraya" position = { x = -94 y = 281 }
 		initializer = carraya_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Cordian" position = { x = 1 y = 317 }
+		name = "NAME_Cordian" position = { x = 1 y = 262 }
 		initializer = cordian_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Denobula" position = { x = 25 y = 346 }
+		name = "NAME_Denobula" position = { x = 13 y = 277 }
 		initializer = denobula_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Draygo" position = { x = 42 y = 393 }
+		name = "NAME_Draygo" position = { x = 21 y = 301 }
 		initializer = draygo_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Farian" position = { x = 34 y = 381 }
+		name = "NAME_Farian" position = { x = 17 y = 295 }
 		initializer = farian_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ferenginar" position = { x = 63 y = 322 }
+		name = "NAME_Ferenginar" position = { x = 32 y = 265 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 	#system = {
-	#	name = "NAME_Thalos" position = { x = 61 y = 319 }
+	#	name = "NAME_Thalos" position = { x = 31 y = 263 }
 	#	initializer = ferengi_thalos_initializer spawn_weight = { base = 1 }
 	#
 	#}
 
 	system = {
-		name = "NAME_Hupyrian" position = { x = 72 y = 305 }
+		name = "NAME_Hupyrian" position = { x = 37 y = 256 }
 		initializer = hupyrian_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Idanian" position = { x = 608 y = 270 }
+		name = "NAME_Idanian" position = { x = 311 y = 238 }
 		initializer = idanian_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Iyaaran" position = { x = -605 y = 225 }
+		name = "NAME_Iyaaran" position = { x = -309 y = 215 }
 		initializer = iyaaran_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Jnaii" position = { x = 394 y = 47 }
+		name = "NAME_Jnaii" position = { x = 201 y = 124 }
 		initializer = jnaii_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Kaelon" position = { x = -255 y = 135 }
+		name = "NAME_Kaelon" position = { x = -130 y = 169 }
 		initializer = kaelon_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Katula" position = { x = 65 y = 238 }
+		name = "NAME_Katula" position = { x = 33 y = 222 }
 		initializer = katula_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Kesprytt" position = { x = 115 y = 490 }
+		name = "NAME_Kesprytt" position = { x = 59 y = 350 }
 		initializer = kesprytt_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Boreth" position = { x = -27 y = 463 }
+		name = "NAME_Boreth" position = { x = -14 y = 337 }
 		initializer = klingon_boreth_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Hatoria" position = { x = -106 y = 391 }
+		name = "NAME_Hatoria" position = { x = -54 y = 300 }
 		initializer = klingon_hatoria_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Khitomer" position = { x = -86 y = 404 }
+		name = "NAME_Khitomer" position = { x = -44 y = 306 }
 		initializer = klingon_khitomer_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Narendra" position = { x = -121 y = 389 }
+		name = "NAME_Narendra" position = { x = -62 y = 299 }
 		initializer = klingon_narendra_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ogat" position = { x = -110 y = 536 }
+		name = "NAME_Ogat" position = { x = -56 y = 374 }
 		initializer = klingon_ogat_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -90 y = 460 }
+	system = { position = { x = -46 y = 335 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -100 y = 485 }
+	system = { position = { x = -51 y = 348 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -103 y = 500 }
+	system = { position = { x = -53 y = 356 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -104 y = 512 }
+	system = { position = { x = -53 y = 362 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -114 y = 516 }
+	system = { position = { x = -58 y = 364 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -159 y = 441 }
+	system = { position = { x = -81 y = 325 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -207 y = 450 }
+	system = { position = { x = -106 y = 330 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -209 y = 436 }
-		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
-	}
-
-	system = {
-		name = "NAME_59_Eridani" position = { x = -72 y = 453 }
+	system = { position = { x = -107 y = 323 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Archanis" position = { x = -52 y = 422 }
+		name = "NAME_59_Eridani" position = { x = -37 y = 332 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ardana" position = { x = -39 y = 437 }
+		name = "NAME_Archanis" position = { x = -27 y = 316 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Beta_Penthe" position = { x = -90 y = 416 }
+		name = "NAME_Ardana" position = { x = -20 y = 323 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Beta_Thoridor" position = { x = -93 y = 397 }
+		name = "NAME_Beta_Penthe" position = { x = -46 y = 313 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_B-Moth" position = { x = -128 y = 438 }
+		name = "NAME_Beta_Thoridor" position = { x = -48 y = 303 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Bortas" position = { x = -214 y = 437 }
+		name = "NAME_B-Moth" position = { x = -65 y = 324 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Chi-dan" position = { x = -100 y = 390 }
+		name = "NAME_Bortas" position = { x = -109 y = 323 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Denatos" position = { x = -54 y = 458 }
+		name = "NAME_Chi-dan" position = { x = -51 y = 299 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_D-kel" position = { x = -110 y = 430 }
+		name = "NAME_Denatos" position = { x = -28 y = 334 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Durandal" position = { x = -55 y = 481 }
+		name = "NAME_D-kel" position = { x = -56 y = 320 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Epsilon_Monocerontis" position = { x = -70 y = 475 }
+		name = "NAME_Durandal" position = { x = -28 y = 346 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Gamma_Eridon" position = { x = -63 y = 444 }
+		name = "NAME_Epsilon_Monocerontis" position = { x = -36 y = 343 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ganalda" position = { x = -60 y = 431 }
+		name = "NAME_Gamma_Eridon" position = { x = -32 y = 327 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ghomha" position = { x = -104 y = 455 }
+		name = "NAME_Ganalda" position = { x = -31 y = 320 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ikalia" position = { x = -166 y = 446 }
+		name = "NAME_Ghomha" position = { x = -53 y = 333 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_K-tinga" position = { x = -130 y = 413 }
+		name = "NAME_Ikalia" position = { x = -85 y = 328 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_K-Vort" position = { x = -55 y = 490 }
+		name = "NAME_K-tinga" position = { x = -66 y = 311 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Lambda_Geminorum" position = { x = -37 y = 446 }
+		name = "NAME_K-Vort" position = { x = -28 y = 350 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Mempa" position = { x = -100 y = 411 }
+		name = "NAME_Lambda_Geminorum" position = { x = -19 y = 328 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Mutara" position = { x = -95 y = 470 }
+		name = "NAME_Mempa" position = { x = -51 y = 310 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Nathvekra" position = { x = -200 y = 455 }
+		name = "NAME_Mutara" position = { x = -49 y = 340 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_No-Mat" position = { x = -78 y = 430 }
+		name = "NAME_Nathvekra" position = { x = -102 y = 333 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Omega_Leonis" position = { x = -67 y = 421 }
+		name = "NAME_No-Mat" position = { x = -40 y = 320 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Pheben" position = { x = -121 y = 399 }
+		name = "NAME_Omega_Leonis" position = { x = -34 y = 315 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Praxian" position = { x = -62 y = 454 }
+		name = "NAME_Pheben" position = { x = -62 y = 304 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Qul-Miwi" position = { x = -152 y = 458 }
+		name = "NAME_Praxian" position = { x = -32 y = 332 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Rotarran" position = { x = -79 y = 516 }
+		name = "NAME_Qul-Miwi" position = { x = -78 y = 334 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Sanek" position = { x = -121 y = 448 }
+		name = "NAME_Rotarran" position = { x = -40 y = 364 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Seq-qih" position = { x = -82 y = 493 }
+		name = "NAME_Sanek" position = { x = -62 y = 329 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Sulvin" position = { x = -54 y = 544 }
+		name = "NAME_Seq-qih" position = { x = -42 y = 352 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Teroka" position = { x = -98 y = 445 }
+		name = "NAME_Sulvin" position = { x = -28 y = 378 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Tribble" position = { x = -25 y = 480 }
+		name = "NAME_Teroka" position = { x = -50 y = 327 }
+		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
+	}
+
+	system = {
+		name = "NAME_Tribble" position = { x = -13 y = 345 }
 		initializer = cp26_tribble_anchor_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Vangshua-a-" position = { x = -137 y = 454 }
+		name = "NAME_Vangshua-a-" position = { x = -70 y = 332 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_VokNagral" position = { x = -119 y = 474 }
+		name = "NAME_VokNagral" position = { x = -61 y = 342 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Vornak" position = { x = -124 y = 500 }
+		name = "NAME_Vornak" position = { x = -63 y = 356 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ya-vang" position = { x = -65 y = 538 }
+		name = "NAME_Ya-vang" position = { x = -33 y = 375 }
 		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Qonos" position = { x = -89 y = 429 }
+		name = "NAME_Qonos" position = { x = -45 y = 319 }
 		initializer = klingon_qonos_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_TyGokor" position = { x = -119 y = 467 }
+		name = "NAME_TyGokor" position = { x = -61 y = 339 }
 		initializer = klingon_tygokor_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Krios" position = { x = -169 y = 437 }
+		name = "NAME_Krios" position = { x = -86 y = 323 }
 		initializer = krios_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ktarian" position = { x = 31 y = 429 }
+		name = "NAME_Ktarian" position = { x = 16 y = 319 }
 		initializer = ktarian_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Lissepian" position = { x = 64 y = 321 }
+		name = "NAME_Lissepian" position = { x = 33 y = 264 }
 		initializer = lissepian_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Malcorian" position = { x = 13 y = 417 }
+		name = "NAME_Malcorian" position = { x = 7 y = 313 }
 		initializer = malcorian_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Maxia" position = { x = 46 y = 332 }
+		name = "NAME_Maxia" position = { x = 24 y = 270 }
 		initializer = uncontrolled_maxia_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Pelian" position = { x = 29 y = 369 }
+		name = "NAME_Pelian" position = { x = 15 y = 289 }
 		initializer = pelian_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_QuVat" position = { x = -105 y = 421 }
+		name = "NAME_QuVat" position = { x = -54 y = 315 }
 		initializer = quvat_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Risa" position = { x = -6 y = 398 }
+		name = "NAME_Risa" position = { x = -3 y = 303 }
 		initializer = risa_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Achernar" position = { x = -78 y = 321 }
+		name = "NAME_Achernar" position = { x = -40 y = 264 }
 		initializer = romulan_achernar_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Chaltok" position = { x = -122 y = 360 }
+		name = "NAME_Chaltok" position = { x = -62 y = 284 }
 		initializer = romulan_chaltok_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Cheron" position = { x = -31 y = 300 }
+		name = "NAME_Cheron" position = { x = -16 y = 253 }
 		initializer = romulan_cheron_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Dewa" position = { x = -133 y = 369 }
+		name = "NAME_Dewa" position = { x = -68 y = 289 }
 		initializer = romulan_dewa_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Glintara" position = { x = -49 y = 300 }
+		name = "NAME_Glintara" position = { x = -25 y = 253 }
 		initializer = romulan_glintara_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Hobus" position = { x = -39 y = 315 }
+		name = "NAME_Hobus" position = { x = -20 y = 261 }
 		initializer = romulan_hobus_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -63 y = 328 }
+	system = { position = { x = -32 y = 268 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -115 y = 355 }
-		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
-	}
-
-	system = {
-		name = "NAME_Aelont" position = { x = -121 y = 314 }
+	system = { position = { x = -59 y = 281 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Belak" position = { x = -57 y = 304 }
+		name = "NAME_Aelont" position = { x = -62 y = 260 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Beta_Reticuli" position = { x = -80 y = 338 }
+		name = "NAME_Belak" position = { x = -29 y = 255 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Beta_Volantis" position = { x = -115 y = 330 }
+		name = "NAME_Beta_Reticuli" position = { x = -41 y = 273 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Celinar" position = { x = -58 y = 315 }
+		name = "NAME_Beta_Volantis" position = { x = -59 y = 269 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Chaltak" position = { x = -96 y = 342 }
+		name = "NAME_Celinar" position = { x = -30 y = 261 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Crateris" position = { x = -71 y = 344 }
+		name = "NAME_Chaltak" position = { x = -49 y = 275 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_D-Deridex" position = { x = -120 y = 372 }
+		name = "NAME_Crateris" position = { x = -36 y = 276 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Delta_Hydri" position = { x = -98 y = 313 }
+		name = "NAME_D-Deridex" position = { x = -61 y = 290 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Devoras" position = { x = -95 y = 358 }
+		name = "NAME_Delta_Hydri" position = { x = -50 y = 260 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Fangkor" position = { x = -60 y = 280 }
+		name = "NAME_Devoras" position = { x = -49 y = 283 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Frigis" position = { x = -130 y = 337 }
+		name = "NAME_Fangkor" position = { x = -31 y = 243 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Gacrux" position = { x = -85 y = 302 }
+		name = "NAME_Frigis" position = { x = -66 y = 272 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Gamma_Tucanae" position = { x = -27 y = 313 }
+		name = "NAME_Gacrux" position = { x = -43 y = 254 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Garid" position = { x = -137 y = 322 }
+		name = "NAME_Gamma_Tucanae" position = { x = -14 y = 260 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Haakona" position = { x = -76 y = 309 }
+		name = "NAME_Garid" position = { x = -70 y = 265 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Hinq" position = { x = -120 y = 285 }
+		name = "NAME_Haakona" position = { x = -39 y = 258 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Khazara" position = { x = -132 y = 348 }
+		name = "NAME_Hinq" position = { x = -61 y = 246 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Nequencia" position = { x = -110 y = 378 }
+		name = "NAME_Khazara" position = { x = -67 y = 278 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Pretorian" position = { x = -92 y = 325 }
+		name = "NAME_Nequencia" position = { x = -56 y = 293 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Rho_Virginis" position = { x = -36 y = 334 }
+		name = "NAME_Pretorian" position = { x = -47 y = 266 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Talon" position = { x = -51 y = 332 }
+		name = "NAME_Rho_Virginis" position = { x = -18 y = 271 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Talvath" position = { x = -120 y = 304 }
+		name = "NAME_Talon" position = { x = -26 y = 270 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_T-met" position = { x = -52 y = 291 }
+		name = "NAME_Talvath" position = { x = -61 y = 255 }
 		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Rator" position = { x = -50 y = 350 }
+		name = "NAME_T-met" position = { x = -27 y = 249 }
+		initializer = romulan_outpost_initializer spawn_weight = { base = 1 }
+	}
+
+	system = {
+		name = "NAME_Rator" position = { x = -26 y = 279 }
 		initializer = romulan_rator_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Romii" position = { x = -33 y = 307 }
+		name = "NAME_Romii" position = { x = -17 y = 257 }
 		initializer = romulan_romii_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Romula" position = { x = -35 y = 304 }
+		name = "NAME_Romula" position = { x = -18 y = 255 }
 		initializer = romulan_romulus_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Unroth" position = { x = -73 y = 366 }
+		name = "NAME_Unroth" position = { x = -37 y = 287 }
 		initializer = romulan_unroth_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Sona" position = { x = -16 y = 415 }
+		name = "NAME_Sona" position = { x = -8 y = 312 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Talar" position = { x = 96 y = 435 }
+		name = "NAME_Talar" position = { x = 49 y = 322 }
 		initializer = talarian_talar_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Tanugan" position = { x = -471 y = 163 }
+		name = "NAME_Tanugan" position = { x = -241 y = 183 }
 		initializer = tanugan_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Trill" position = { x = 39 y = 375 }
+		name = "NAME_Trill" position = { x = 20 y = 292 }
 		initializer = trill_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Andor" position = { x = -7 y = 360 }
+		name = "NAME_Andor" position = { x = -4 y = 284 }
 		initializer = ufop_andor_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Illyria" position = { x = 56 y = 454 }
+		name = "NAME_Illyria" position = { x = 29 y = 332 }
 		initializer = ufop_illyria_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -24 y = 391 }
+	system = { position = { x = -12 y = 300 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
-	system = { position = { x = -64 y = 396 }
-		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
-	}
-
-	system = {
-		name = "NAME_Aldebaran" position = { x = -1 y = 418 }
+	system = { position = { x = -33 y = 302 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Argus" position = { x = 37 y = 311 }
+		name = "NAME_Aldebaran" position = { x = -1 y = 314 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Azati" position = { x = 57 y = 469 }
+		name = "NAME_Argus" position = { x = 19 y = 259 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Barradas" position = { x = -38 y = 356 }
+		name = "NAME_Azati" position = { x = 29 y = 340 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Benecia" position = { x = 16 y = 434 }
+		name = "NAME_Barradas" position = { x = -19 y = 282 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Camus" position = { x = 0 y = 449 }
+		name = "NAME_Benecia" position = { x = 8 y = 322 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Celes" position = { x = -44 y = 379 }
+		name = "NAME_Camus" position = { x = 0 y = 329 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Deneva" position = { x = -14 y = 375 }
+		name = "NAME_Celes" position = { x = -22 y = 294 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Efrosia" position = { x = -25 y = 372 }
+		name = "NAME_Deneva" position = { x = -7 y = 292 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Gamma_Hromi" position = { x = -67 y = 405 }
+		name = "NAME_Efrosia" position = { x = -13 y = 290 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Hyralan" position = { x = -51 y = 372 }
+		name = "NAME_Gamma_Hromi" position = { x = -34 y = 307 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Kantare" position = { x = -11 y = 411 }
+		name = "NAME_Hyralan" position = { x = -26 y = 290 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_K-norm" position = { x = 23 y = 443 }
+		name = "NAME_Kantare" position = { x = -6 y = 310 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Korvat" position = { x = -81 y = 414 }
+		name = "NAME_K-norm" position = { x = 12 y = 326 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Likarris" position = { x = -8 y = 311 }
+		name = "NAME_Korvat" position = { x = -41 y = 312 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Mathen" position = { x = 47 y = 422 }
+		name = "NAME_Likarris" position = { x = -4 y = 259 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Memory_Alpha" position = { x = 9 y = 329 }
+		name = "NAME_Mathen" position = { x = 24 y = 316 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Mizar" position = { x = 38 y = 366 }
+		name = "NAME_Memory_Alpha" position = { x = 5 y = 268 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Mu_Arae" position = { x = -19 y = 299 }
+		name = "NAME_Mizar" position = { x = 19 y = 287 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Muratas" position = { x = 35 y = 460 }
+		name = "NAME_Mu_Arae" position = { x = -10 y = 253 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_NewXindus" position = { x = 67 y = 489 }
+		name = "NAME_Muratas" position = { x = 18 y = 335 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_NGC-1218" position = { x = -14 y = 321 }
+		name = "NAME_NewXindus" position = { x = 34 y = 350 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Niburon" position = { x = 20 y = 415 }
+		name = "NAME_NGC-1218" position = { x = -7 y = 264 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Obruli" position = { x = -36 y = 416 }
+		name = "NAME_Niburon" position = { x = 10 y = 312 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Organia" position = { x = -14 y = 440 }
+		name = "NAME_Obruli" position = { x = -18 y = 313 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Porrima" position = { x = -19 y = 340 }
+		name = "NAME_Organia" position = { x = -7 y = 325 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Regulus" position = { x = -41 y = 390 }
+		name = "NAME_Porrima" position = { x = -10 y = 274 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Sherman-s_Planet" position = { x = -23 y = 433 }
+		name = "NAME_Regulus" position = { x = -21 y = 299 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Suliban" position = { x = -27 y = 402 }
+		name = "NAME_Sherman-s_Planet" position = { x = -12 y = 321 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Talos" position = { x = 38 y = 438 }
+		name = "NAME_Suliban" position = { x = -14 y = 305 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Tomed" position = { x = -59 y = 367 }
+		name = "NAME_Talos" position = { x = 19 y = 324 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Trimble" position = { x = -52 y = 415 }
+		name = "NAME_Tomed" position = { x = -30 y = 288 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Veytan" position = { x = -70 y = 382 }
+		name = "NAME_Trimble" position = { x = -27 y = 312 }
 		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Xindus" position = { x = 19 y = 460 }
+		name = "NAME_Veytan" position = { x = -36 y = 295 }
+		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
+	}
+
+	system = {
+		name = "NAME_Xindus" position = { x = 10 y = 335 }
 		initializer = cp26_xindus_anchor_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Qualor" position = { x = -47 y = 361 }
+		name = "NAME_Qualor" position = { x = -24 y = 285 }
 		initializer = ufop_qualor_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Setlik" position = { x = 33 y = 412 }
+		name = "NAME_Setlik" position = { x = 17 y = 311 }
 		initializer = ufop_setlik_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Sol" position = { x = 0 y = 350 }
+		name = "NAME_Sol" position = { x = 0 y = 279 }
 		initializer = ufop_sol_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_61-Cygni" position = { x = 12 y = 348 }
+		name = "NAME_61-Cygni" position = { x = 6 y = 278 }
 		initializer = ufop_tellar_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Vulcan" position = { x = -5 y = 364 }
+		name = "NAME_Vulcan" position = { x = -3 y = 286 }
 		initializer = ufop_vulcan_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Algeron" position = { x = -84 y = 275 }
+		name = "NAME_Algeron" position = { x = -43 y = 241 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Alpha_Trianguli" position = { x = 40 y = 396 }
+		name = "NAME_Alpha_Trianguli" position = { x = 20 y = 302 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Arathar" position = { x = 91 y = 363 }
+		name = "NAME_Arathar" position = { x = 47 y = 286 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_B-lii" position = { x = 84 y = 376 }
+		name = "NAME_B-lii" position = { x = 43 y = 292 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Bradeezi" position = { x = 59 y = 392 }
+		name = "NAME_Bradeezi" position = { x = 30 y = 300 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Camor" position = { x = 39 y = 414 }
+		name = "NAME_Camor" position = { x = 20 y = 312 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Dorvan" position = { x = 44 y = 395 }
+		name = "NAME_Dorvan" position = { x = 22 y = 302 }
 		initializer = uncontrolled_dorvan_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Dozaria" position = { x = 122 y = 380 }
+		name = "NAME_Dozaria" position = { x = 62 y = 294 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Felton" position = { x = 109 y = 372 }
+		name = "NAME_Felton" position = { x = 56 y = 290 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Galador" position = { x = 34 y = 380 }
+		name = "NAME_Galador" position = { x = 17 y = 294 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Gamma_Tauri" position = { x = 143 y = 389 }
+		name = "NAME_Gamma_Tauri" position = { x = 73 y = 299 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Gemini_774" position = { x = 189 y = 354 }
+		name = "NAME_Gemini_774" position = { x = 97 y = 281 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Hakton" position = { x = 64 y = 413 }
+		name = "NAME_Hakton" position = { x = 33 y = 311 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Inkaria" position = { x = 102 y = 365 }
+		name = "NAME_Inkaria" position = { x = 52 y = 287 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Klaestron" position = { x = 41 y = 379 }
+		name = "NAME_Klaestron" position = { x = 21 y = 294 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Lyshan" position = { x = 70 y = 418 }
+		name = "NAME_Lyshan" position = { x = 36 y = 314 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Melona" position = { x = 35 y = 423 }
+		name = "NAME_Melona" position = { x = 18 y = 316 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Mericor" position = { x = 70 y = 413 }
+		name = "NAME_Mericor" position = { x = 36 y = 311 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Minos_Korva" position = { x = 25 y = 408 }
+		name = "NAME_Minos_Korva" position = { x = 13 y = 309 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Portas" position = { x = 121 y = 373 }
+		name = "NAME_Portas" position = { x = 62 y = 291 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Prophet-s_Landing" position = { x = 66 y = 384 }
+		name = "NAME_Prophet-s_Landing" position = { x = 34 y = 296 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Regulak" position = { x = 76 y = 382 }
+		name = "NAME_Regulak" position = { x = 39 y = 295 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ronara" position = { x = 52 y = 415 }
+		name = "NAME_Ronara" position = { x = 27 y = 312 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Rudella" position = { x = 107 y = 417 }
+		name = "NAME_Rudella" position = { x = 55 y = 313 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Solarion" position = { x = 31 y = 399 }
+		name = "NAME_Solarion" position = { x = 16 y = 304 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Tohvun" position = { x = 76 y = 421 }
+		name = "NAME_Tohvun" position = { x = 39 y = 315 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Torman" position = { x = 89 y = 416 }
+		name = "NAME_Torman" position = { x = 45 y = 313 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Trelka" position = { x = 140 y = 377 }
+		name = "NAME_Trelka" position = { x = 72 y = 293 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Ultima_Thule" position = { x = 121 y = 357 }
+		name = "NAME_Ultima_Thule" position = { x = 62 y = 282 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Umoth" position = { x = 47 y = 413 }
+		name = "NAME_Umoth" position = { x = 24 y = 311 }
 		initializer = uncontrolled_umoth_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Volnar" position = { x = 105 y = 368 }
+		name = "NAME_Volnar" position = { x = 54 y = 288 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Valo" position = { x = 52 y = 394 }
+		name = "NAME_Valo" position = { x = 27 y = 301 }
 		initializer = valo_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Wolf" position = { x = -5 y = 352 }
+		name = "NAME_Wolf" position = { x = -3 y = 280 }
 		initializer = ufop_wolf_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Belcer" position = { x = -67 y = 370 }
+		name = "NAME_Belcer" position = { x = -34 y = 289 }
 		initializer = zone_rom_ufop_belcer_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Devron" position = { x = -24 y = 324 }
+		name = "NAME_Devron" position = { x = -12 y = 266 }
 		initializer = zone_rom_ufop_devron_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Draken" position = { x = -38 y = 351 }
+		name = "NAME_Draken" position = { x = -19 y = 279 }
 		initializer = zone_rom_ufop_draken_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Eden" position = { x = -23 y = 315 }
+		name = "NAME_Eden" position = { x = -12 y = 261 }
 		initializer = zone_rom_ufop_eden_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Epsilon_Legato" position = { x = -72 y = 375 }
+		name = "NAME_Epsilon_Legato" position = { x = -37 y = 292 }
 		initializer = zone_rom_ufop_epsilon_legato_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Fenris" position = { x = -24 y = 306 }
+		name = "NAME_Fenris" position = { x = -12 y = 256 }
 		initializer = zone_rom_ufop_fenris_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Galorndon_Core" position = { x = -56 y = 360 }
+		name = "NAME_Galorndon_Core" position = { x = -29 y = 284 }
 		initializer = zone_rom_ufop_galorndon_core_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Iconia" position = { x = -76 y = 376}
+		name = "NAME_Iconia" position = { x = -39 y = 292}
 		initializer = zone_rom_ufop_iconia_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Iota_Pavonis" position = { x = -29 y = 296 }
+		name = "NAME_Iota_Pavonis" position = { x = -15 y = 251 }
 		initializer = zone_rom_ufop_iota_pavonis_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Moore-s_Star" position = { x = -29 y = 336 }
+		name = "NAME_Moore-s_Star" position = { x = -15 y = 272 }
 		initializer = zone_rom_ufop_moores_star_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Nelvana" position = { x = -33 y = 344 }
+		name = "NAME_Nelvana" position = { x = -17 y = 276 }
 		initializer = zone_rom_ufop_nelvana_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Nimbus" position = { x = -40 y = 288 }
+		name = "NAME_Nimbus" position = { x = -20 y = 247 }
 		initializer = zone_rom_ufop_nimbus_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
-		name = "NAME_Theta_Curry" position = { x = -47 y = 355 }
+		name = "NAME_Theta_Curry" position = { x = -24 y = 281 }
 		initializer = zone_rom_ufop_theta_curry_initializer spawn_weight = { base = 1 }
 	}
 
@@ -1333,8 +1330,8 @@ bespoke_procedural_scenario = {
 	#--------- Bespoke Hazards ---------#
 
 	num_hazards	= 6
-	hazard_min_dist = 200
-	hazard_major_min_dist = 50
+	hazard_min_dist = 102
+	hazard_major_min_dist = 26
 	#--------- Test Camera Limits ---------#
 	# step 1
 	# camera_limits_max_zoom =
@@ -1349,60 +1346,60 @@ bespoke_procedural_scenario = {
 	# step 2
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -760
-		camera_limit_max_x = 850
-		camera_limit_min_y = -300
-		camera_limit_max_y = 700
+		camera_limit_min_x = -388
+		camera_limit_max_x = 434
+		camera_limit_min_y = -153
+		camera_limit_max_y = 358
 		camera_limit_min_pitch = 40
 		camera_limit_max_pitch = 85
 	}
 	# step 3
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -720
-		camera_limit_max_x = 820
-		camera_limit_min_y = -270
-		camera_limit_max_y = 670
+		camera_limit_min_x = -368
+		camera_limit_max_x = 419
+		camera_limit_min_y = -138
+		camera_limit_max_y = 342
 		camera_limit_min_pitch = 40
 		camera_limit_max_pitch = 85
 	}
 	# step 4
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -650
-		camera_limit_max_x = 780
-		camera_limit_min_y = -240
-		camera_limit_max_y = 640
+		camera_limit_min_x = -332
+		camera_limit_max_x = 399
+		camera_limit_min_y = -123
+		camera_limit_max_y = 327
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
 	# step 5
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -580
-		camera_limit_max_x = 740
-		camera_limit_min_y = -210
-		camera_limit_max_y = 610
+		camera_limit_min_x = -296
+		camera_limit_max_x = 378
+		camera_limit_min_y = -107
+		camera_limit_max_y = 312
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
 	# step 6
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -500
-		camera_limit_max_x = 700
-		camera_limit_min_y = -180
-		camera_limit_max_y = 580
+		camera_limit_min_x = -256
+		camera_limit_max_x = 358
+		camera_limit_min_y = -92
+		camera_limit_max_y = 296
 		camera_limit_min_pitch = 65
 		camera_limit_max_pitch = 85
 	}
 	# step 7
 	camera_limits_max_zoom =
 	{
-		camera_limit_min_x = -420
-		camera_limit_max_x = 650
-		camera_limit_min_y = -150
-		camera_limit_max_y = 550
+		camera_limit_min_x = -215
+		camera_limit_max_x = 332
+		camera_limit_min_y = -77
+		camera_limit_max_y = 281
 		camera_limit_min_pitch = 85
 		camera_limit_max_pitch = 85
 	}
