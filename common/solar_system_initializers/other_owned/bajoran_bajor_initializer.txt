@@ -50,12 +50,6 @@ bajoran_bajor_initializer = {
 			save_global_event_target_as = bajoran_planet
 		}
 
-		late_init_effect = {
-			create_colony = {
-				owner = event_target:bajoran_country # Since we already created a Starbase with an owner, it isn't necessary to set the owner here too
-			}
-		}
-
 		moon = {
 			count = 5
 			orbit_distance = 6

@@ -59,16 +59,6 @@ ufop_sol_initializer = {
 		modifiers = none
 		flags = { planet_earth mapo_colony }
 		
-		init_effect = {
-			prevent_anomaly = yes
-			save_global_event_target_as = ufop_homeworld
-			
-			add_modifier = {
-				modifier = home_planet
-				days = -1
-			}
-		}
-	
 		moon = {
 			name = "NAME_Luna"
 			class = "pc_barren_cold"
@@ -81,6 +71,17 @@ ufop_sol_initializer = {
 			entity = "cold_barren_planet_luna_entity"
 			flags = { moon_luna }
 		}
+		
+		init_effect = {
+			prevent_anomaly = yes
+			save_global_event_target_as = ufop_homeworld
+			
+			add_modifier = {
+				modifier = home_planet
+				days = -1
+			}
+		}
+	
 	}
 	
 	planet = {

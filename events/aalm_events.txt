@@ -31,8 +31,6 @@ event = {
 				modifier = lunar_one_colony
 				days = -1
 			}
-			remove_building = building_colony_shelter
-			add_building = building_capital
 			add_district_and_planet_size_if_needed_effect = {
 				district = district_city
 			}
@@ -64,8 +62,6 @@ event = {
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			set_planet_flag = mining_habitat
-			remove_building = building_colony_shelter
-			add_building = building_capital
 			add_district_and_planet_size_if_needed_effect = {
 				district = district_industrial
 			}

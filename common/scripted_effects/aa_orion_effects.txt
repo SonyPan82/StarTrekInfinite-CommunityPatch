@@ -54,8 +54,7 @@ setup_orion_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
-			remove_building = building_colony_shelter
-			add_building = building_capital
+			set_planet_flag = cp26_needs_capital_upgrade
 		}
 		if = {
 			limit = {
@@ -99,8 +98,7 @@ setup_verex_colony = {
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
-			remove_building = building_colony_shelter
-			add_building = building_capital
+			set_planet_flag = cp26_needs_capital_upgrade
 			set_name = "Verex III"
 		}
 	}

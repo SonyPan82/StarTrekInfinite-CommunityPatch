@@ -101,8 +101,7 @@ setup_gorn_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
 			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
 			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
-			remove_building = building_colony_shelter
-			add_building = building_capital	
+			set_planet_flag = cp26_needs_capital_upgrade
 		}
 		create_starbase = {
 			size = starbase_starport

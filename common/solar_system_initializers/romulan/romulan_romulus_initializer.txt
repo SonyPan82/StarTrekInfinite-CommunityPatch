@@ -93,7 +93,7 @@ romulan_romulus_initializer = {
 			while = {
 				count = 30
 				create_pop = {
-					species = random
+					species = owner_main_species
 				}
 			}
 

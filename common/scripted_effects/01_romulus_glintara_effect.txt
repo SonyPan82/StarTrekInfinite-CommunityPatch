@@ -7,8 +7,6 @@ create_glintara_colony = {
 	add_deposit = d_veiny_cliffs 
 	add_deposit = d_lush_jungle  
 
-	add_building = building_capital
-
 	while = {
 		count = 1
 		add_district_and_planet_size_if_needed_effect = {

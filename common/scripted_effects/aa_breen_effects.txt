@@ -45,8 +45,7 @@ setup_breen_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			add_district_and_planet_size_if_needed_effect = { district = district_civil_forum_breen }
-			remove_building = building_colony_shelter
-			add_building = building_capital
+			set_planet_flag = cp26_needs_capital_upgrade
 		}
 		random_system_planet = {
 			limit = {
@@ -62,8 +61,6 @@ setup_breen_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_city }
 			add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
 			add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
-			remove_building = building_colony_shelter
-			add_building = building_capital
 
 			while = {
 				count = 4
@@ -74,6 +71,7 @@ setup_breen_capital = {
 			create_pop = { species = "Romulan" }
 			create_pop = { species = "Cardassian" }
 			create_pop = { species = "Klingon" }
+			set_planet_flag = cp26_needs_capital_upgrade
 		}
 		create_starbase = {
 			size = starbase_starport

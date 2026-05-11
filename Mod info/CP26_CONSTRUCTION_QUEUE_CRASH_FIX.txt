@@ -1,0 +1,259 @@
+CP26 CONSTRUCTION QUEUE CRASH FIX — 2026-05-10
+==============================================
+
+Contexte :
+  Crash systématique à CSaveGameTaskManager::CreateMemoryFiles →
+  CConstructionManager → CConstructionQueue lors du chargement de partie.
+  Diagnostic : des planètes initialisées avec des pops et des bâtiments
+  corrompaient la file de construction interne du moteur Stellaris.
+
+
+=============================================================================
+PHASE 1 — Système d'upgrade différé des capitaux (J+3)
+=============================================================================
+
+FICHIERS MODIFIES :
+  events/cp26_delayed_capital_upgrade.txt                  (nouveau)
+  common/on_actions/zz_cp26_on_game_start.txt              (+1 event)
+  events/aalm_events.txt                                   (+2 flags)
+  events/aacoldenob_events.txt                             (+1 flag)
+  common/scripted_effects/aa_tholian_effects.txt           (+1 flag)
+  common/scripted_effects/aa_orion_effects.txt             (+2 flags)
+  common/scripted_effects/aa_breen_effects.txt             (+2 flags)
+  common/scripted_effects/aa_gorn_effects.txt              (+1 flag)
+  common/solar_system_initializers/romulan/romulan_glintara_initializer.txt (+1 flag)
+
+OBJECTIF :
+  Les fixes 1–7 retiraient le pattern dangereux remove_building/add_building
+  immédiat, ce qui laissait certaines colonies avec un building_colony_shelter
+  (Colony Shelter) au lieu d'un building_capital (Planetary Capital). Cela
+  créait un handicap involontaire pour les factions concernées.
+
+ARCHITECTURE :
+  - Un flag cp26_needs_capital_upgrade est posé sur chaque colonie concernée
+    lors de sa création (dans les events/initializers/scripted_effects).
+  - À chaque début de partie, l'on_action on_game_start_country déclenche
+    l'event cp26_capital_upgrade.1 pour chaque pays.
+  - Cet event programme cp26_capital_upgrade.2 avec un délai de 3 jours.
+  - J+3, cp26_capital_upgrade.2 parcourt toutes les planètes du pays ayant
+    le flag, retire le building_colony_shelter et ajoute building_capital
+    de manière sécurisée (la file de construction est alors stable).
+  - Le flag est supprimé après traitement.
+
+PLANETES CONCERNEES :
+  - Denobula (UFOP)
+  - Capitale Tholienne (Tholian)
+  - Capitale Orion (Orion)
+  - Verex III (Orion)
+  - Capitale Breen (Breen)
+  - Breenus Secundus (Breen)
+  - Capitale Gorn (Gorn)
+  - Glintara (Romulan)
+  (Luna et Mars conservent leur Colony Shelter natif, ce ne sont pas des
+   capitales d'empire.)
+
+IMPACT GAMEPLAY :
+  Ces 10 planètes récupèrent désormais leur Planetary Capital au Jour 3 de la
+  partie, sans risque de corruption de la file de construction. Le reste du
+  mod (colonies mineures sans ce flag) conserve leur Colony Shelter natif.
+
+
+=============================================================================
+FIX 1 — Luna (correction du pattern building_colony_shelter)
+=============================================================================
+
+FICHIERS MODIFIES :
+  common/solar_system_initializers/ufop/ufop_sol_initializer.txt
+  events/aalm_events.txt
+
+SYMPTOME :
+  Luna, lune de la Terre, était transformée en colonie habitable via un
+  événement on_game_start (aa_lm.1000). Ce pattern de mutation planétaire
+  + création de colonie + retrait brutal du building_colony_shelter est
+  un vecteur connu de crash CConstructionQueue.
+
+CORRECTION :
+  - Luna est conservée dans le système Sol.
+  - Suppression des deux lignes dangereuses dans aa_lm.1000 pour Luna :
+      remove_building = building_colony_shelter
+      add_building = building_capital
+  - Luna conserve create_colony, ses pops et son district.
+  - Pas d'upgrade différé : Luna reste avec son Colony Shelter natif.
+
+IMPACT GAMEPLAY :
+  Luna démarre et reste avec un Colony Shelter (capital de base). Le joueur
+  pourra upgrader le capital normalement en cours de partie.
+
+
+=============================================================================
+FIX 2 — Mars (retrait du pattern building_colony_shelter → building_capital)
+=============================================================================
+
+FICHIER MODIFIE :
+  events/aalm_events.txt
+
+SYMPTOME :
+  Mars utilisait le même pattern dangereux que Luna :
+    create_colony → create_pop x4 → remove_building = building_colony_shelter
+    → add_building = building_capital → add_district...
+  Le retrait immédiat du building_colony_shelter (bâtiment par défaut créé
+  par create_colony) et son remplacement par building_capital dans le même
+  tick corrompait la construction queue du moteur.
+
+CORRECTION :
+  - Suppression des deux lignes :
+      remove_building = building_colony_shelter
+      add_building = building_capital
+  - Mars conserve create_colony, ses pops et ses districts.
+  - Pas d'upgrade différé : Mars reste avec son Colony Shelter natif.
+
+IMPACT GAMEPLAY :
+  Mars démarre et reste avec un Colony Shelter (capital de base). Le joueur
+  pourra upgrader le capital normalement en cours de partie.
+
+
+=============================================================================
+FIX 3 — Romulus & Qonos (create_pop species = random → owner_main_species)
+=============================================================================
+
+FICHIERS MODIFIES :
+  common/solar_system_initializers/romulan/romulan_romulus_initializer.txt
+  common/solar_system_initializers/klingon/klingon_qonos_initializer.txt
+
+SYMPTOME :
+  Les planètes de départ Romulus et Qonos ajoutaient 30 pops via :
+      create_pop = { species = random }
+  dans un late_init_effect. Sur une starting_planet = yes, le jeu génère
+  déjà automatiquement les pops du propriétaire. "random" pouvait choisir
+  une espèce incompatible (pré-sapient, crisis, etc.), provoquant des
+  instabilités dans la gestion des jobs et des constructions.
+
+CORRECTION :
+  - Remplacement de species = random par species = owner_main_species dans
+    les deux initializers. Les 30 pops ajoutés sont désormais de l'espèce
+    du propriétaire de la planète.
+
+IMPACT GAMEPLAY :
+  Romulus et Qonos conservent leurs 30 pops supplémentaires, mais ce sont
+  désormais des pops Romuliens/Klingons cohérents avec l'empire. Plus de
+  risque d'espèces étrangères sur la planète de départ.
+
+
+=============================================================================
+FIX 4 — Bajor (suppression du create_colony doublon sur home_planet)
+=============================================================================
+
+FICHIER MODIFIE :
+  common/solar_system_initializers/other_owned/bajoran_bajor_initializer.txt
+
+SYMPTOME :
+  Bajor était déclarée home_planet = yes ET possédait un create_colony
+  explicite dans son late_init_effect. Le jeu crée automatiquement une
+  colonie pour toute planète home_planet = yes ; le create_colony en
+  doublon risquait de générer une colonie fantôme ou un état planétaire
+  incohérent.
+
+CORRECTION :
+  - Suppression du bloc late_init_effect contenant create_colony.
+  - Bajor reste home_planet = yes ; le jeu gère la colonisation nativement.
+
+IMPACT GAMEPLAY :
+  Aucun. Bajor est toujours la planète de départ Bajorane. Le retrait du
+  doublon élimine juste un risque d'instabilité à l'initialisation.
+
+
+=============================================================================
+FIX 5 — Factions mineures (retrait du pattern building_colony_shelter)
+=============================================================================
+
+FICHIERS MODIFIES :
+  common/scripted_effects/aa_tholian_effects.txt   (1 occurrence)
+  common/scripted_effects/aa_orion_effects.txt     (2 occurrences)
+  common/scripted_effects/aa_breen_effects.txt     (2 occurrences)
+  common/scripted_effects/aa_gorn_effects.txt      (1 occurrence)
+
+SYMPTOME :
+  Les scripted_effects de colonisation des factions mineures utilisaient
+  le même pattern dangereux que Mars/Luna :
+      create_colony → ... → remove_building = building_colony_shelter
+      → add_building = building_capital
+  Ce pattern apparaissait sur les colonies principales et secondaires de
+  chaque faction.
+
+CORRECTION :
+  - Suppression systématique des paires de lignes :
+      remove_building = building_colony_shelter
+      add_building = building_capital
+    dans les 4 fichiers de factions mineures (6 occurrences au total).
+  - Ajout de set_planet_flag = cp26_needs_capital_upgrade sur chaque
+    colonie concernée (capitales + Verex III + Breenus Secundus).
+  - Les colonies conservent leur building_colony_shelter natif jusqu'à J+3.
+
+IMPACT GAMEPLAY :
+  Les capitales Tholienne, Orion, Breen et Gorn, ainsi que Verex III et
+  Breenus Secundus, démarrent avec un Colony Shelter, puis reçoivent leur
+  Planetary Capital au Jour 3 via la Phase 1. Tous les pops, districts
+  et dépôts restent inchangés.
+
+
+=============================================================================
+FIX 6 — Denobula (retrait du pattern building_colony_shelter)
+=============================================================================
+
+FICHIER MODIFIE :
+  events/aacoldenob_events.txt
+
+SYMPTOME :
+  Denobula utilisait le même pattern dangereux de retrait immédiat du
+  building_colony_shelter après create_colony.
+
+CORRECTION :
+  - Suppression des lignes remove_building = building_colony_shelter et
+    add_building = building_capital.
+  - Ajout de set_planet_flag = cp26_needs_capital_upgrade après create_colony.
+  - Denobula conserve son add_building = building_clinic.
+
+IMPACT GAMEPLAY :
+  Denobula démarre avec un Colony Shelter, puis reçoit son Planetary Capital
+  automatiquement au Jour 3 via la Phase 1.
+
+
+=============================================================================
+FIX 7 — Glintara (retrait du building_capital doublon)
+=============================================================================
+
+FICHIERS MODIFIES :
+  common/scripted_effects/01_romulus_glintara_effect.txt
+  common/solar_system_initializers/romulan/romulan_glintara_initializer.txt
+
+SYMPTOME :
+  Le scripted_effect create_glintara_colony ajoutait building_capital sans
+  retirer le building_colony_shelter créé automatiquement par create_colony
+  dans l'initializer. Glintara se retrouvait potentiellement avec deux
+  capitaux simultanés.
+
+CORRECTION :
+  - Suppression de add_building = building_capital.
+  - Ajout de set_planet_flag = cp26_needs_capital_upgrade après create_colony
+    dans l'initializer.
+  - Glintara conserve son building_colony_shelter natif jusqu'à J+3.
+
+IMPACT GAMEPLAY :
+  Glintara démarre avec un Colony Shelter, puis reçoit son Planetary Capital
+  automatiquement au Jour 3 via la Phase 1.
+
+
+=============================================================================
+NOTE GLOBALE
+=============================================================================
+
+Le pattern à risque identifié est :
+  create_colony + remove_building = building_colony_shelter (même tick)
+
+Ce pattern est désormais éliminé de tout le mod CP26. Il reste présent
+ dans le jeu de base (ex: create_cardassia_v_colony), mais ceux-ci sont
+ hors de portée de CP26 et n'ont pas été modifiés.
+
+Les colonies concernées récupèrent leur Planetary Capital de façon sûre
+grâce au système d'upgrade différé (Phase 1), qui attend que la file de
+construction interne du moteur soit stable avant de modifier les bâtiments.

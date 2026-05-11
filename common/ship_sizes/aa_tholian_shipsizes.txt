@@ -233,7 +233,7 @@ tholianbattleship = {
 	}
 
 	size_multiplier = 8
-	fleet_slot_size = 3
+	fleet_slot_size = 4
 	graphical_culture = no
 
 	section_slots = { "mid" = { locator = "part1" } }

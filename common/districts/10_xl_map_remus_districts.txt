@@ -490,7 +490,7 @@ soldier_camp_remus = {
 			minerals = @city_cost
 		}
 		upkeep = {
-			food = 0
+			energy = 3
 		} 
 				
 		produces = {

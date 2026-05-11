@@ -1,0 +1,113 @@
+CP26 — AI Improvement Plan
+==========================
+Document de travail : fixes et améliorations possibles pour l'IA.
+
+NIVEAU 1 — CORE NAI DEFINES (CODÉ)
+====================================
+Fichier : common/defines/zz_cp26_ai_defines.txt
+Impact : Fort | Difficulté : Facile
+
+Changements appliqués :
+  AI_FREE_JOBS_DISTRICT_BUILD_CAP   1 → 0   (construit plus de districts)
+  AI_FREE_JOBS_BUILDING_BUILD_CAP   2 → 1   (construit plus de bâtiments)
+  AI_DEFICIT_SCORE_MULT            100 → 150 (réagit plus vite aux pénuries)
+  AI_UPGRADE_SCORE_MULT             40 → 60  (upgrade plus vite)
+  AI_FOCUS_SCORE_MULT               40 → 50  (priorise mieux les ressources focus)
+  AI_AMENITIES_SCORE_MULT           50 → 40  (moins obsédée par les amenities)
+  AI_HOUSING_SCORE_MULT            4.5 → 6.0 (meilleure gestion logement)
+  AI_MAX_DISTANCE                  200 → 300 (regarde plus loin pour cibles)
+  WAR_ATTACK_CLAIM_PRIO           11.0 → 15.0 (attaque claims plus agressivement)
+  WAR_DEFENSE_CLAIM_PRIO          10.0 → 12.0 (défend mieux les claims)
+  AI_NO_RETREAT_LIMIT               3 → 2   (combat à mort plus tôt)
+  FLEET_GROUP_ABORT_MISSION_MULT  1.2 → 1.5 (moins de flip-flop de flottes)
+  AI_TECHNOLOGY_RARE_WEIGHT_MULT   5 → 6   (privilégie techs rares)
+  ADVANCED_EMPIRE_COLONY_CHANCE   75 → 90  (empires avancés colonisent plus)
+
+
+NIVEAU 2 — ECONOMIC PLANS IA (À CODER)
+=======================================
+Fichier suggéré : common/economic_plans/zz_cp26_ai_plans.txt
+Impact : Fort | Difficulté : Moyenne
+
+Objectif : Créer des plans économiques plus agressifs pour early/mid/end game.
+
+Actions possibles :
+  - Augmenter income/focus alloys en early (60 → 80-100)
+  - Augmenter officers pour recrutement amiraux
+  - Créer des subplans par faction :
+      * Klingon = très agressif (alloys++, research-)
+      * Federation = équilibré (research+, unity+)
+      * Romulan = tech/espionnage (research++, alloys moyen)
+      * Cardassian = expansion (influence+, minerals+)
+  - Ajuster empire_size tolerance selon la faction
+
+
+NIVEAU 3 — AI BUDGETS (À CODER)
+================================
+Fichier suggéré : common/ai_budget/zz_cp26_ai_budget.txt
+Impact : Moyen | Difficulté : Moyenne
+
+Objectif : Tweaker les poids de dépense de l'IA par ressource.
+
+Actions possibles :
+  - Augmenter le poids des alloys en temps de paix (préparation)
+  - Augmenter influence pour claims
+  - Augmenter officers pour flottes plus nombreuses
+  - Réduire légèrement le poids food/energy si surplus
+
+
+NIVEAU 4 — SHIP DESIGNS IA (À CODER)
+=====================================
+Fichier suggéré : common/global_ship_designs/zz_cp26_ai_designs.txt
+Impact : Moyen-Fort | Difficulté : Moyenne-Élevée
+
+Objectif : Donner à l'IA des templates utilisant les nouveaux vaisseaux CP26.
+
+Actions possibles :
+  - California-class (vaisseau moyen Fed) en escorte
+  - Odyssey-class en vaisseau lourd
+  - Constellation/Ambassador/Lantree/New Orleans en roles spécifiques
+  - Templates par faction :
+      * Federation = équilibré beam/torpille/shield
+      * Klingon = full disruptors, armor lourd
+      * Romulan = plasma + cloak bonus
+      * Cardassian = missiles + tracteur
+      * Minor factions = designs adaptés à leur tech
+
+
+NIVEAU 5 — SHIP BEHAVIORS / COMBAT IA (À ÉTUDIER)
+===================================================
+Fichier suggéré : common/ship_behaviors/zz_cp26_ai_behaviors.txt
+Impact : Faible-Moyen | Difficulté : Élevée
+
+Objectif : Meilleures tactiques de combat pour l'IA.
+
+Note : Les behaviors sont assez opaques dans le moteur Stellaris. 
+Gains potentiels limités sans tests intensifs.
+
+
+NIVEAU 6 — EXPANSION / COLONISATION (PARTIELLEMENT HARDCODÉ)
+===============================================================
+Impact : Moyen | Difficulté : Variable
+
+Ce qui est scriptable :
+  - Defines : ADVANCED_EMPIRE_COLONY_CHANCE, MATURE_GALAXY_COLONY_DISTANCE
+  - Economic plans : plus d'influence/alloys = plus de claims/colonies
+
+Ce qui est hardcodé :
+  - La logique de choix des planètes par l'IA (moteur C++)
+  - La priorité colonisation vs construction
+
+Actions possibles :
+  - Augmenter MATURE_GALAXY_COLONY_DISTANCE_FIXED (4 → 6)
+  - Augmenter MATURE_GALAXY_COLONY_DISTANCE_RANDOM (2 → 3)
+
+
+RÉSUMÉ PRIORITAIRE
+==================
+1. Niveau 1 : DONE (zz_cp26_ai_defines.txt)
+2. Niveau 2 : HIGH VALUE — economic plans par faction
+3. Niveau 3 : MEDIUM VALUE — ai_budget tweaks
+4. Niveau 4 : MEDIUM VALUE — ship designs CP26-aware
+5. Niveau 5 : LOW VALUE / HIGH RISK — ship behaviors
+6. Niveau 6 : LOW VALUE — limited by engine
