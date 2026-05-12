@@ -9,6 +9,114 @@ Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = e
 Session du 2026-05-12  —  Audit & fixes
 --------------------------------------------------------------------------------
 
+[FIX][LOW] Luna One Colony — modifier dupliqué (visuel double sur Luna)
+  Symptôme : Luna affichait deux instances du modifier "Lunar One Colony".
+  Cause racine, deux problèmes superposés :
+    1) Collision de définition. Le modifier `lunar_one_colony` est défini à
+       la fois côté vanilla (modifiers chargés tardivement, sans stats, juste
+       l'icône) et côté CP26 (`common/static_modifiers/00_aalunmars_static_modifiers.txt`,
+       avec les vrais stats : +2 chercheurs, +2 logements, +20%/-20% specialist/worker,
+       -50% growth, +25% amenities usage). Pour `static_modifiers`, Clausewitz
+       applique "last-loaded-wins", donc vanilla écrasait la définition CP26
+       et Luna perdait silencieusement ses stats.
+    2) Double application. Vanilla `events/game_start.txt` applique le modifier
+       à Luna ET CP26 `events/aalm_events.txt:31` l'applique aussi. Comme les
+       deux entrées sont permanentes (`days = -1`), elles s'empilent visuellement.
+
+  Fix appliqué :
+    - Renommage `lunar_one_colony` → `lunar_one_colony_cp26` dans
+      `common/static_modifiers/00_aalunmars_static_modifiers.txt`.
+    - `events/aalm_events.txt:31` applique désormais `lunar_one_colony_cp26`.
+    - Ajout des clés de localisation EN/FR pour `lunar_one_colony_cp26`
+      (`zz_cp26_patch_l_english.yml`, `zz_cp26_patch_l_french.yml`).
+
+  Résultat in-game :
+    - Luna reçoit l'instance vanilla cosmétique (icône uniquement, conservée pour ne
+      pas casser le visuel familier).
+    - Luna reçoit en plus l'instance CP26 fonctionnelle (vrais stats) avec un
+      libellé distinct ("Lunar One Colony").
+    - Plus de doublon visuel inutile : la première entrée a son icône et son nom
+      vanilla, la seconde porte les bonus chercheurs + logements.
+
+[FIX][LOW] Icons manquantes — 4 species traits Denobulan + Reman
+  Symptôme : dans le panel de population et l'éditeur d'espèces, les traits
+  `trait_denob_communal`, `trait_denob_polyamorous`, `trait_denob_family`
+  (denobulan_traits.txt) et `trait_reman_homeworld` (remus_traits.txt)
+  s'affichaient sans icône (carré vide / icône fallback).
+  Cause : le moteur cherche par défaut `gfx/interface/icons/traits/<clé>.dds`,
+  mais aucun de ces 4 fichiers n'existe (ni en vanilla ni en CP26). CP26 fournit
+  6 icônes custom (Risan/Tholian), les 60 traits minor species pointent vers
+  des icônes vanilla compatibles, mais ces 4 traits avaient été oubliés.
+
+  Fix appliqué : champ `icon = "..."` ajouté à chaque trait, mappé vers une
+  icône vanilla thématiquement cohérente (toutes vérifiées existantes sur disque) :
+    - trait_denob_communal       → trait_communal.dds
+    - trait_denob_polyamorous    → trait_rapid_breeders.dds
+    - trait_denob_family         → trait_traditional.dds
+    - trait_reman_homeworld      → trait_pc_nuked_preference.dds
+  Zéro nouveau .dds nécessaire, aucun risque sur la chaîne d'assets.
+
+[FIX][LOW] hrb_colony.75 / hrb_colony.83 — passage à replace_path
+  Découverte d'aujourd'hui : pour la base de données 'events', Clausewitz
+  applique la règle "first-loaded-wins" (eventmanager.cpp:367 logge
+  "an event with id [X] already exists!" et IGNORE la nouvelle définition).
+  C'est l'INVERSE des autres bases (pop_jobs, ship_sizes, country_types,
+  districts, casus_belli...) où c'est "last-wins" via game_singleobjectdatabase.h:151
+  qui logge "using the one at..." et garde la NOUVELLE.
+
+  Conséquence : le précédent fix `events/zz_cp26_fix_vanilla_colony_events.txt`
+  redéfinissait `hrb_colony.75` et `.83` MAIS chargeait après vanilla, donc
+  était systématiquement rejeté. Visible dans error.log :
+    [HH:MM:SS][eventmanager.cpp:367]: an event with id [hrb_colony.75]
+      already exists!  file: events/zz_cp26_fix_vanilla_colony_events.txt line: 31
+    [HH:MM:SS][eventmanager.cpp:367]: an event with id [hrb_colony.83]
+      already exists!  file: events/zz_cp26_fix_vanilla_colony_events.txt line: 67
+  Les deux bugs scope d'origine (unsupported scope hrb_colony.75 + undefined
+  target aqueduct_scientist hrb_colony.83) continuaient donc à se déclencher.
+
+  Solution propre : passage à `replace_path` pour `events/hornblower_colony_events.txt`,
+  pattern déjà utilisé pour 3 autres fichiers d'events vanilla
+  (hornblower_country_events, hornblower_game_start, hornblower_pirate_events).
+
+  Procédure :
+    1. Copie byte-perfect du fichier vanilla (71668 bytes, CRLF préservé,
+       MD5 identique en sortie de cp).
+    2. Deux patches chirurgicaux appliqués en mode binaire Python pour
+       garantir la préservation des line endings CRLF :
+       - hrb_colony.75 (ligne 2967) : sortie du `hidden_effect { country_event }`
+         hors du bloc `event_target:colony_ruins_uncovered = { ... }`
+         (le country_event doit s'exécuter en scope country, pas planet).
+       - hrb_colony.83 (ligne 3479) : `event_target:aqueduct_scientist = {...}`
+         enveloppé dans `if = { limit = { exists = event_target:... } ... }`
+         pour gérer le cas où le special_project upstream n'a pas pu
+         capturer le scientifique (leader absent).
+    3. Validation : 58 events présents (identique), 112 mentions hrb_colony.*
+       (identique), 910/910 accolades équilibrées (vanilla 908/908, +2 paires
+       attendues = 1 bloc planet refermé + 1 if/limit ajouté).
+    4. Ajout `replace_path="events/hornblower_colony_events.txt"` dans
+       descriptor.mod (insertion alphabétique avant les 3 autres events).
+    5. Suppression de `events/zz_cp26_fix_vanilla_colony_events.txt`
+       devenu redondant — l'ancien fichier provoquait simplement deux
+       warnings de chargement, et la logique du fix est désormais portée
+       directement dans la copie vanilla.
+
+  Impact en jeu :
+    ✓ hrb_colony.75 : la visite de retour J+10 ans après "Bomb Fields"
+      (event chain hrb_colony.75001 → .75002) se déclenche à nouveau
+      correctement. Plus de scope error logée à chaque option.a choisie.
+    ✓ hrb_colony.83 : si le scientifique d'Aqueduct n'a pas été capturé
+      en amont, l'option a) reste valide sans logger d'Invalid context
+      switch ; le trait Pathologist est appliqué uniquement quand un
+      leader existe.
+    ✓ error.log : deux warnings "eventmanager.cpp:367 already exists!"
+      éliminés au chargement, plus de "unsupported scope hrb_colony.75",
+      plus d'"Invalid context switch [event_target:aqueduct_scientist]".
+
+  Maintenance future : si Paradox publie un correctif vanilla de
+  hornblower_colony_events.txt (peu probable, STI en maintenance depuis
+  2024), il faudra re-merger les changements manuellement. Coût minimal.
+
+
 [POLISH][LOW] Nettoyage warnings game error.log — 3 fixes appliqués, 3 laissés
   Audit de tous les warnings/script errors visibles dans
   /Documents/Paradox Interactive/Infinite/logs/error.log sur partie longue.

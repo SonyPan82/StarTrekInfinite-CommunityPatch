@@ -1,5 +1,6 @@
 trait_denob_communal = {
 	cost = 4
+	icon = "gfx/interface/icons/traits/trait_communal.dds"
 	potential_crossbreeding_chance = 1.0
 	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
 	allowed_archetypes = { BIOLOGICAL }
@@ -12,6 +13,7 @@ trait_denob_communal = {
 
 trait_denob_polyamorous = {
 	cost = 4
+	icon = "gfx/interface/icons/traits/trait_rapid_breeders.dds"
 	potential_crossbreeding_chance = 1.0
 	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
 	allowed_archetypes = { BIOLOGICAL }
@@ -23,6 +25,7 @@ trait_denob_polyamorous = {
 
 trait_denob_family = {
 	cost = -1
+	icon = "gfx/interface/icons/traits/trait_traditional.dds"
 	potential_crossbreeding_chance = 1.0
 	opposites = { "trait_strong" "trait_very_strong" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }

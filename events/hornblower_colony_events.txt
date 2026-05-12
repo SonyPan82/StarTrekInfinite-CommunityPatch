@@ -1,0 +1,3651 @@
+namespace = hrb_colony
+
+@res_mod_plus = 200
+@res_mod_plusX2 = 500
+@res_mod_plusX3 = 1500
+
+#
+##
+### COLONY P1E1: METAMORPHOSIS
+
+### COLONY P1E1: METAMORPHOSIS - TRIGGER
+planet_event = {
+	id = hrb_colony.10
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		num_pops > 1
+		NOT = {
+			is_planet_class = pc_habitat
+		}
+		NOR = {
+			has_planet_flag = colony_event
+			has_planet_flag = bespoke_colony
+			owner = { 
+				has_country_flag = metamorphosis_event 
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = {
+			which = killed_pops
+			value = 0
+		}
+
+		set_planet_flag = colony_event
+		save_event_target_as = colony_metamorphosis
+		owner = { 
+			set_country_flag = metamorphosis_event 
+		}
+		planet_event = { id = hrb_colony.11 }
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - KILL ALL POPS
+planet_event = {
+	id = hrb_colony.11
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				num_pops > 1
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			owner = {
+				change_variable = {
+					which = "killed_pops"
+					value = 1
+				}
+			}
+			planet_event = { id = hrb_colony.11 }
+		}
+		else = {
+			planet_event = { id = hrb_colony.12 }
+		}
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - STEP 1: MISSING POPULATION
+planet_event = {
+	id = hrb_colony.12
+	title = "hrb_colony.12.name"
+	desc = "hrb_colony.12.desc"
+	show_sound = event_bridge_decision
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_enterprise_bridge_decision_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_vorcha_bridge_decision_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_valdore_bridge_decision_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_keldon_bridge_decision_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+	
+	after = {
+		add_modifier = {
+			modifier = metamorphosis_stability_penalty days = 3600
+		}
+		owner = {
+			add_resource = {
+				influence = 100
+			}
+			event_target:colony_metamorphosis = {
+				enable_special_project = {
+					name = "THE_SHADOW_PEOPLE"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+
+	### UFOP: Send a rescue party.
+	option = {
+
+		trigger = {	
+			owner = { 
+				is_ufop = yes 
+			} 
+		}
+
+		name = hrb_colony.12.a
+		custom_tooltip = hrb_colony.12.a.tt
+	}
+
+	### Klingon: Prepare for battle.
+	option = {
+
+		trigger = {	
+			owner = { 
+				is_klingon = yes 
+			} 
+		}
+
+		name = hrb_colony.12.b
+		custom_tooltip = hrb_colony.12.b.tt
+	}
+
+	### Romulan: A trick?
+	option = {
+
+		trigger = {	
+			owner = { 
+				is_romulan = yes 
+			} 
+		}
+
+		name = hrb_colony.12.c
+		custom_tooltip = hrb_colony.12.c.tt
+	}
+
+	### Cardassian: An inconvenient tragedy.
+	option = {
+
+		trigger = {	
+			owner = { 
+				is_cardassian = yes 
+			} 
+		}
+
+		name = hrb_colony.12.d
+		custom_tooltip = hrb_colony.12.d.tt
+	}
+}
+
+ship_event = {
+	id = hrb_colony.12001
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		save_event_target_as = metamorphosis_ship
+		leader = { 
+			add_experience = 1000 
+		}
+		event_target:colony_metamorphosis = { 
+			planet_event = { id = hrb_colony.13 days = 1 } 
+		}
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - STEP 2: SOMEONE WAS HERE, AND RECENTLY
+planet_event = {
+	id = hrb_colony.13
+	title = "hrb_colony.13.name"
+	show_sound = event_investigation_planet_surface_crew
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_investigation_planet_surface_crew_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_investigation_planet_surface_crew_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_investigation_planet_surface_crew_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_investigation_planet_surface_crew_cardassian
+	}
+
+	# Default image on fail
+	picture = GFX_evt_archaeology_excavation
+
+	desc = {
+		trigger = { 
+			owner = { 
+				is_ufop = yes 
+			} 
+		} 		
+		text = hrb_colony.13.ufop.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			owner = { 
+				is_klingon = yes 
+			} 
+		} 	
+		text = hrb_colony.13.klingon.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			owner = { 
+				is_romulan = yes 
+			} 
+		} 	
+		text = hrb_colony.13.romulan.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			owner = { 
+				is_cardassian = yes 
+			} 
+		} 	
+		text = hrb_colony.13.cardassian.desc 
+	}
+
+	after = {
+		hidden_effect = { 
+			owner = { 
+				country_event = { id = hrb_colony.14 days = 30 } 
+			} 
+		}
+	}
+
+	### ALL: Analyze the shredded uniform.
+	option = {
+		name = hrb_colony.13.a
+		custom_tooltip = hrb_colony.13.a.tt
+		
+		owner = {
+			add_monthly_resource_mult = {
+				resource = research
+				value = 6
+				max = 12000
+			}
+		}
+
+		add_deposit = d_underworld_caverns
+	}
+
+	### ALL: Analyze the shredded uniform.
+	option = {
+
+		name = hrb_colony.13.b
+		custom_tooltip = hrb_colony.13.b.tt
+		
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 12
+				max = 12000
+			}
+		}
+		
+		add_deposit = d_dry_heat
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - STEP 3: METAMORPHOSIS
+country_event = {
+	id = hrb_colony.14
+	title = "hrb_colony.14.name"
+	show_sound = event_sickbay
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = {is_klingon = yes }
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_sickbay_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	desc = { 
+		trigger = { 
+			is_ufop = yes
+		} 		
+		text = hrb_colony.14.ufop.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_klingon = yes 
+		} 	
+		text = hrb_colony.14.klingon.desc 
+	}
+
+	desc = { 
+		trigger = { 
+				is_romulan = yes
+		} 	
+		text = hrb_colony.14.romulan.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_cardassian = yes  
+		} 	
+		text = hrb_colony.14.cardassian.desc 
+	}
+
+	### UFOP: Treat the infected officer.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = hrb_colony.14.a
+		custom_tooltip = hrb_colony.14.a.tt
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.15 days = 30 }
+		}
+	}
+
+	### Klingon: Pray over the infected warrior.
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = hrb_colony.14.b
+		custom_tooltip = hrb_colony.14.b.tt
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.15 days = 30 }
+		}
+	}
+
+	### Romulan: Operate on the infected scout.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = hrb_colony.14.c
+		custom_tooltip = hrb_colony.14.c.tt
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.15 days = 30 }
+		}
+	}
+
+	### Cardassian: Perform emergency surgery.
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = hrb_colony.14.d
+		custom_tooltip = hrb_colony.14.d.tt
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.15 days = 30 }
+		}
+	}
+
+	### ALL: Run a genetic scan on the alien cells.
+	option = {
+
+		name = hrb_colony.14.e
+		custom_tooltip = hrb_colony.14.e.tt
+
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
+
+		add_modifier = {
+			modifier = metamorphosis_research_speed_10 days = 1800
+		}
+		
+		add_resource = {
+			energy = -1000
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.16 days = 30 }
+		}
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - STEP 4A: SHADOWS WITHOUT BODIES
+country_event = {
+	id = hrb_colony.15
+	title = "hrb_colony.15.name"
+	show_sound = event_sickbay
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_sickbay_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	desc = { 
+		trigger = { 
+			is_ufop = yes  
+		} 		
+		text = hrb_colony.15.ufop.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_klingon = yes 
+		} 	
+		text = hrb_colony.15.klingon.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_romulan = yes  
+		} 	
+		text = hrb_colony.15.romulan.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_cardassian = yes 
+		} 	
+		text = hrb_colony.15.cardassian.desc 
+	}
+
+	### UFOP: The colonists may have been abducted.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = hrb_colony.15.a
+		custom_tooltip = hrb_colony.15.a.tt
+
+		add_monthly_resource_mult = {
+			resource = energy
+			value = 6
+		}
+	}
+	
+	### Klingon: An unseen foe lurks on §H[colony_metamorphosis.GetName]§!.
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = hrb_colony.15.b
+		custom_tooltip = hrb_colony.15.b.tt
+
+		add_monthly_resource_mult = {
+			resource = energy
+			value = 6
+		}
+	}
+
+	### Romulan: This settlement is far from empty.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = hrb_colony.15.c
+		custom_tooltip = hrb_colony.15.c.tt
+
+		add_monthly_resource_mult = {
+			resource = energy
+			#value = @res_mod_plusX2
+			value = 6
+		}
+	}
+
+	### Cardassian: We will find the source of the shadow and destroy it.
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = hrb_colony.15.d
+		custom_tooltip = hrb_colony.15.d.tt
+
+		add_monthly_resource_mult = {
+			resource = energy
+			#value = @res_mod_plusX2
+			value = 6
+		}
+	}
+
+	### ALL: Perform a deeper scan on §H[colony_metamorphosis.GetName]§!.
+	option = {
+
+		name = hrb_colony.15.e
+		custom_tooltip = hrb_colony.15.e.tt
+
+		add_monthly_resource_mult = {
+			resource = research
+			value = 12
+			max = 12000
+		}
+	}
+
+	after = {
+		hidden_effect = { 
+			country_event = { id = hrb_colony.17 days = 30 } 
+		}
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - STEP 4B: THE PARASITE
+country_event = {
+	id = hrb_colony.16
+	title = "hrb_colony.16.name"
+	desc = "hrb_colony.16.desc"
+	show_sound = event_sickbay
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_lab_research_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_lab_research_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_lab_research_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_lab_research_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	### All: Create a U.V. device to reveal the invisible creatures.
+	option = {
+
+		name = hrb_colony.16.a
+		custom_tooltip = hrb_colony.16.a.tt
+
+		add_modifier = {
+			modifier = metamorphosis_clear_block_speed_bonus days = 1800
+		}
+	}
+
+	### All: They weren't abducted. They were transformed.
+	option = {
+
+		name = hrb_colony.16.b
+		custom_tooltip = hrb_colony.16.b.tt
+
+		add_modifier = {
+			modifier = metamorphosis_research_speed_5 days = 1800
+		}
+	}
+
+	after = {
+		hidden_effect = { 
+			country_event = { id = hrb_colony.17 days = 30 } 
+		}
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - STEP 5: DON'T HIDE YOUR INFECTION
+country_event = {
+	id = hrb_colony.17
+	title = "hrb_colony.17.name"
+	show_sound = event_bridge_decision
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_enterprise_bridge_decision_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_vorcha_bridge_decision_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_valdore_bridge_decision_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_keldon_bridge_decision_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	desc = { 
+		trigger = { 
+			is_ufop = yes 
+		} 		
+		text = hrb_colony.17.ufop.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_klingon = yes 
+		} 	
+		text = hrb_colony.17.klingon.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_romulan = yes  
+		} 	
+		text = hrb_colony.17.romulan.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_cardassian = yes 
+		} 	
+		text = hrb_colony.17.cardassian.desc 
+	}
+
+	### UFOP: Send a rescue party.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = hrb_colony.17.a
+		custom_tooltip = hrb_colony.17.a.tt
+
+		hidden_effect = { 
+			random_list = {
+				8 = { country_event = { id = hrb_colony.18 days = 30 } }
+				2 = { country_event = { id = hrb_colony.19 days = 30 } }
+			}
+		}
+	}
+
+	### Klingon: Send a war party to restore honor.
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = hrb_colony.17.b
+		custom_tooltip = hrb_colony.17.b.tt
+
+		hidden_effect = { 
+			random_list = {
+				8 = { country_event = { id = hrb_colony.18 days = 30 } }
+				2 = { country_event = { id = hrb_colony.19 days = 30 } }
+			}
+		}
+	}
+
+	### Romulan: Send in an extraction team.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = hrb_colony.17.c
+		custom_tooltip = hrb_colony.17.c.tt
+
+		hidden_effect = { 
+			random_list = {
+				8 = { country_event = { id = hrb_colony.18 days = 30 } }
+				2 = { country_event = { id = hrb_colony.19 days = 30 } }
+			}
+		}
+	}
+
+	### Cardassian: Recover lost soldier for interrogation.
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = hrb_colony.17.d
+		custom_tooltip = hrb_colony.17.d.tt
+
+		hidden_effect = { 
+			random_list = {
+				8 = { country_event = { id = hrb_colony.18 days = 30 } }
+				2 = { country_event = { id = hrb_colony.19 days = 30 } }
+			}
+		}
+	}
+
+	### All: Comb the wastelands.
+	option = {
+
+		name = hrb_colony.17.e
+
+		add_resource = {
+			officers = -50
+		}
+
+		hidden_effect = { 
+			country_event = { id = hrb_colony.18 days = 30 }
+		}
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - STEP 6A: RETURN TO THE LIGHT (SUCCESS)
+country_event = {
+	id = hrb_colony.18
+	title = "hrb_colony.18.name"
+	show_sound = event_away_team
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_away_team
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_away_team_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_away_team_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_away_team_cardassian
+	}
+
+	# Default image on fail
+	picture = GFX_evt_archaeology_excavation
+
+	desc = { 
+		trigger = { 
+			is_ufop = yes  
+		} 		
+		text = hrb_colony.18.ufop.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_klingon = yes 
+		} 	
+		text = hrb_colony.18.klingon.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_romulan = yes  
+		} 	
+		text = hrb_colony.18.romulan.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_cardassian = yes 
+		} 	
+		text = hrb_colony.18.cardassian.desc 
+	}
+
+	### ALL: We will leave them be.
+	option = {
+
+		name = hrb_colony.18.a
+		custom_tooltip = hrb_colony.18.a.tt
+
+		hidden_effect = {
+			while = {
+				count = killed_pops
+	
+				event_target:colony_metamorphosis = {
+					create_pop = { species = owner_species }
+				}
+			}	
+		}
+
+		event_target:colony_metamorphosis = {
+			remove_modifier = metamorphosis_stability_penalty
+			
+			add_modifier = {
+				modifier = metamorphosis_stability_bonus days = 3600
+			}
+		}
+
+		event_target:original_scientist = {
+			add_experience = 200
+		}
+	}
+}
+
+### COLONY P1E1: METAMORPHOSIS - STEP 6B: LOST IN THE SHADOWS (FAIL)
+country_event = {
+	id = hrb_colony.19
+	title = "hrb_colony.19.name"
+	show_sound = event_bridge_decision
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_enterprise_bridge_decision_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_vorcha_bridge_decision_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_valdore_bridge_decision_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_keldon_bridge_decision_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	desc = { 
+		trigger = { 
+			is_ufop = yes  
+		} 		
+		text = hrb_colony.19.ufop.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_klingon = yes  
+		} 	
+		text = hrb_colony.19.klingon.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_romulan = yes 
+		} 	
+		text = hrb_colony.19.romulan.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_cardassian = yes 
+		} 	
+		text = hrb_colony.19.cardassian.desc 
+	}
+
+	### UFOP: We must learn to co-exist.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = hrb_colony.19.a
+		custom_tooltip = hrb_colony.19.a.tt
+	}
+
+	### Klingon: Victory is ours, at great cost.
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = hrb_colony.19.b
+		custom_tooltip = hrb_colony.19.b.tt
+	}
+
+	### Romulan: We were... outmatched.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = hrb_colony.19.c
+		custom_tooltip = hrb_colony.19.c.tt
+	}
+
+	### Cardassian: All records of these events will be sealed.
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = hrb_colony.19.d
+		custom_tooltip = hrb_colony.19.d.tt
+	}
+
+	after = {
+		add_monthly_resource_mult = {
+			resource = research
+			value = 12
+			max = 12000
+		}
+
+		event_target:colony_metamorphosis = {
+			add_modifier = {
+				modifier = metamorphosis_stability_penalty_lost days = 3600
+			}
+		}
+		
+		hidden_effect = {
+			random_list = {
+				1 = { owner = { change_variable = { which = killed_pops value = -1 } } }
+				1 = { owner = { change_variable = { which = killed_pops value = -2 } } }
+				1 = { owner = { change_variable = { which = killed_pops value = -3 } } }
+			}
+
+			while = {
+				count = killed_pops
+	
+				event_target:colony_metamorphosis = {
+					create_pop = {
+						species = owner_species
+					}
+				}
+			}	
+		}
+	}
+}
+
+#
+##
+### COLONY P2E1: OF KLINGONS AND ROMULANS
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - TRIGGER
+planet_event = {
+	id = hrb_colony.20
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = {
+			has_planet_flag = colony_event
+			has_planet_flag = bespoke_colony
+			is_planet_class = pc_habitat
+			owner = { 
+				has_country_flag = klingons_and_romulans_event 
+			}
+		}
+
+		owner = {
+			is_cardassian = no
+		}
+	}
+
+	immediate = {
+		save_event_target_as = colony_distance_6
+		planet_event = { id = hrb_colony.21 }
+	}
+}
+
+planet_event = {
+	id = hrb_colony.21
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		any_system = { 
+			distance = {
+				source = event_target:colony_distance_6
+				min_jumps = 1
+				max_jumps = 6
+			}
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		save_event_target_as = colony_klingons_romulans
+		owner = { set_country_flag = klingons_and_romulans_event }
+		planet_event = { id = hrb_colony.22 }
+	}
+}
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - STEP 1: OF KLINGONS AND ROMULANS
+planet_event = {
+	id = hrb_colony.22
+	title = "hrb_colony.22.name"
+	show_sound = event_ceremony_wedding_klingon_trill
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { 
+			owner = {
+				is_ufop = yes 
+			}
+		} 
+		picture = GFX_evt_building_colosseum_camp_birthright_ufop
+	} 
+	picture = {
+		trigger = { 
+			owner = {
+				is_klingon = yes
+			} 
+		}
+		picture = GFX_evt_building_colosseum_camp_birthright_klingon
+	}
+	picture = {
+		trigger = { 
+			owner = { 
+				is_romulan = yes 
+			} 
+		} 
+		picture = GFX_evt_building_colosseum_camp_arrival_romulan
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	desc = { 
+		trigger = { 
+			owner = {
+				is_ufop = yes
+			} 
+		} 		
+		text = hrb_colony.22.ufop.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			owner = {
+				is_klingon = yes 
+			}
+		} 	
+		text = hrb_colony.22.klingon.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			owner = {
+				is_romulan = yes
+			}
+		} 	
+		text = hrb_colony.22.romulan.desc 
+	}
+	
+	### All: Keep the colony secret.
+	option = {
+
+		name = hrb_colony.22.a
+		custom_tooltip = hrb_colony.22.a.tt
+
+		create_pop = { species = "Klingon" }
+		create_pop = { species = "Romulan" }
+	}
+
+	### UFOP: Spread the word.
+	option = {
+
+		trigger = {	
+			owner = { 
+				is_ufop = yes 
+			} 
+		}
+
+		name = hrb_colony.22.b
+		custom_tooltip = hrb_colony.22.b.tt
+
+		owner = {
+			add_monthly_resource_mult = {
+				resource = influence
+				value = 6
+				max = 12000
+			}
+		}
+
+		hidden_effect = {
+			planet_event = { id = hrb_colony.23 }
+		}
+	}
+
+	### Klingon: Reform the Klingon youth.
+	option = {
+
+		trigger = {	
+			owner = { 
+				is_klingon = yes 
+			} 
+		}
+
+		name = hrb_colony.22.c
+		custom_tooltip = hrb_colony.22.c.tt
+
+		owner = {
+			event_target:colony_klingons_romulans = {
+				enable_special_project = {
+					name = "BIRTHRIGHT"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+
+	### Romulan: Revive the Tal Shiar's mission.
+	option = {
+
+		trigger = {	
+			owner = { 
+				is_romulan = yes 
+			} 
+		}
+
+		name = hrb_colony.22.d
+		custom_tooltip = hrb_colony.22.d.tt
+
+		owner = {
+			event_target:colony_klingons_romulans = {
+				enable_special_project = {
+					name = "SHAIPOUIN"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = hrb_colony.0000
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		fire_on_action = {
+			on_action = on_colony_5_years_old
+		}
+	}
+}
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - STEP 2: DANGEROUS LIAISONS
+planet_event = {
+	id = hrb_colony.23
+	title = "hrb_colony.23.name"
+	desc = "hrb_colony.23.desc"
+	picture = GFX_evt_building_colosseum_camp_birthright_ufop
+	show_sound = event_ceremony_wedding_klingon_trill
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### ALL: The truth must come out.
+	option = {
+		name = hrb_colony.23.a
+		custom_tooltip = hrb_colony.23.a.tt
+		
+		owner = {
+			add_monthly_resource_mult = {
+				resource = influence
+				value = 6
+				max = 12000
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:romulan_country }
+
+			event_target:romulan_country = {
+				add_opinion_modifier = {
+					who = prev.owner
+					modifier = dangerous_liaisons_romulans_opinion
+				}
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:klingon_country }
+			
+			event_target:klingon_country = {
+				add_opinion_modifier = {
+					who = prev.owner
+					modifier = dangerous_liaisons_klingons_opinion
+				}
+			}
+		}
+
+		event_target:colony_klingons_romulans = {
+			add_deposit = d_romulan_klingon_settlement
+		}
+	}
+}
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - STEP 3A: RITE OF MAJQA (SUCCESS) (KLING)
+planet_event = {
+	id = hrb_colony.24
+	title = "hrb_colony.24.name"
+	desc = "hrb_colony.24.desc"
+	picture = GFX_evt_pc_ice_sky
+	show_sound = event_frozen_planet_pod_loot
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### Klingon: Honor can be regained.
+	option = {
+
+		name = hrb_colony.24.a
+		custom_tooltip = hrb_colony.24.a.tt
+		
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 12
+				max = 12000
+			}
+		}
+
+		create_pop = { species = "Klingon" }
+		create_pop = { species = "Klingon" }
+	}
+}
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - STEP 3B: ROMULAN INTERFERENCE (FAIL) (KLING)
+planet_event = {
+	id = hrb_colony.25
+	title = "hrb_colony.25.name"
+	desc = "hrb_colony.25.desc"
+	picture = GFX_evt_building_colosseum_camp_birthright_klingon
+	show_sound = event_ceremony_wedding_klingon_trill
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### Klingon: These Klingons cannot be integrated.
+	option = {
+
+		name = hrb_colony.25.a
+		custom_tooltip = hrb_colony.25.a.tt
+		
+		random_owned_pop = {
+			limit = { is_species = "Klingon" }
+			kill_pop = yes
+		}
+
+		event_target:colony_klingons_romulans = {
+			add_deposit = d_romulan_klingon_settlement
+		}
+	}
+}
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - STEP 4A: OPERATION SHAIPOUIN COMPLETE (SUCCESS) (ROM)
+planet_event = {
+	id = hrb_colony.26
+	title = "hrb_colony.26.name"
+	desc = "hrb_colony.26.desc"
+	picture = GFX_evt_building_colosseum_camp_arrival_romulan
+	show_sound = event_ceremony_wedding_klingon_trill
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### Romulan: Blackmail our Klingon contacts.
+	option = {
+
+		name = hrb_colony.26.a
+		custom_tooltip = hrb_colony.26.a.tt
+		
+		owner = {
+			add_monthly_resource_mult = {
+				resource = influence
+				value = 12
+				max = 12000
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:klingon_country }
+	
+			event_target:klingon_country = {
+				add_opinion_modifier = {
+					who = prev.owner
+					modifier = operation_shaipouin_klingons_opinion
+				}
+			}
+		}
+	}
+}
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - STEP 4B: KLINGON INTERFERENCE (FAIL) (ROM)
+planet_event = {
+	id = hrb_colony.27
+	title = "hrb_colony.27.name"
+	desc = "hrb_colony.27.desc"
+	picture = GFX_evt_building_colosseum_camp_arrival_romulan
+	show_sound = event_ceremony_wedding_klingon_trill
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### Romulan: Most unfortunate.
+	option = {
+		
+		name = hrb_colony.27.a
+		custom_tooltip = hrb_colony.27.a.tt
+		
+		add_modifier = {
+			modifier = klingon_interference_stability
+		}
+
+		random_owned_pop = {
+			limit = { is_species = "Romulan" }
+			kill_pop = yes
+		}
+	}
+}
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - CLEARING BLOCKER OCCUPIED POP-UP: REGION ACCESSIBLE
+planet_event = {
+	id = hrb_colony.28
+	title = "hrb_colony.28.name"
+	desc = "hrb_colony.28.desc"
+	show_sound = event_ceremony_wedding_klingon_trill
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_building_colosseum_camp_birthright_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_building_colosseum_camp_birthright_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_building_colosseum_camp_arrival_romulan
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	### All: Perfect.
+	option = {
+		name = hrb_colony.28.a
+	}
+}
+
+#
+##
+### COLONY P3E1: FEMNOVA
+
+### COLONY P3E1: FEMNOVA - TRIGGER
+planet_event = {
+	id = hrb_colony.30
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = {
+			has_planet_flag = colony_event
+			is_planet_class = pc_habitat
+			has_planet_flag = bespoke_colony
+			owner = { 
+				has_country_flag = femnova_event
+			}
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		save_event_target_as = colony_femnova
+		owner = { 
+			set_country_flag = femnova_event 
+		}
+		owner = { 
+			country_event = { id = hrb_colony.31 } 
+		}
+	}
+}
+
+### COLONY P3E1: FEMNOVA - STEP 1: FEMNOVA
+country_event = {
+	id = hrb_colony.31
+	title = "hrb_colony.31.name"
+	desc = "hrb_colony.31.desc"
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_colony_women_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_colony_women_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes } 
+		picture = GFX_evt_colony_women_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_colony_mixed
+
+	### UFOP: Re-establish communications with §H[colony_femnova.GetName]§!.
+	option = {
+
+		trigger = { 
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.31.a
+
+		hidden_effect = { 
+			random_list = {
+				1 = { country_event = { id = hrb_colony.32 days = 30 } } # Femnova's Cultural Developments
+				1 = { country_event = { id = hrb_colony.34 days = 30 } } # Femnova's Scientific Developments
+				1 = { country_event = { id = hrb_colony.35 days = 30 } } # Femnova's Splintering
+			}
+		}
+	}
+
+	### Klingon: Re-establish communications with §H[colony_femnova.GetName]§!.
+	option = {
+
+		trigger = { 
+			is_klingon = yes 
+		}
+
+		name = hrb_colony.31.a
+
+		hidden_effect = { 
+			random_list = {
+				1 = { country_event = { id = hrb_colony.33 days = 30 } } # Femnova's Spiritual Developments
+				1 = { country_event = { id = hrb_colony.34 days = 30 } } # Femnova's Scientific Developments
+				1 = { country_event = { id = hrb_colony.35 days = 30 } } # Femnova's Splintering
+			}
+		}
+	}
+
+	### Romulan: Re-establish communications with §H[colony_femnova.GetName]§!.
+	option = {
+
+		trigger = { 
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.31.a
+
+		hidden_effect = { 
+			random_list = {
+				1 = { country_event = { id = hrb_colony.32 days = 30 } } # Femnova's Cultural Developments
+				1 = { country_event = { id = hrb_colony.34 days = 30 } } # Femnova's Scientific Developments
+				1 = { country_event = { id = hrb_colony.36 days = 30 } } # Femnova's Qowat Milat
+			}
+		}
+	}
+
+	### Cardassian: Re-establish communications with §H[colony_femnova.GetName]§!.
+	option = {
+
+		trigger = { 
+			is_cardassian = yes 
+		}
+
+		name = hrb_colony.31.a
+
+		hidden_effect = { 
+			random_list = {
+				1 = { country_event = { id = hrb_colony.32 days = 30 } } # Femnova's Cultural Developments
+				1 = { country_event = { id = hrb_colony.35 days = 30 } } # Femnova's Splintering
+			}
+		}
+	}
+
+	### UFOP, Kling, Card: This news is trivial.
+	option = {
+
+		trigger = {
+			OR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_cardassian = yes
+			}
+		}
+
+		name = hrb_colony.31.b
+
+		hidden_effect = { 
+			country_event = { id = hrb_colony.35 days = 30 } # Femnova's Splintering
+		}
+	}
+
+	### Romulan: This news is trivial.
+	option = {
+
+		trigger = { 
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.31.b
+
+		hidden_effect = { 
+			country_event = { id = hrb_colony.36 days = 30 } # Femnova's Qowat Milat
+		}
+	}
+}
+
+### COLONY P3E1: FEMNOVA - STEP 2A: FEMNOVA'S CULTURAL DEVELOPMENTS
+country_event = {
+	id = hrb_colony.32
+	title = "hrb_colony.32.name"
+	desc = "hrb_colony.32.desc"
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_colony_women_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes } 
+		picture = GFX_evt_colony_women_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_colony_mixed
+
+	### UFOP: Adapt our educational programs.
+	option = {
+
+		trigger = { 
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.32.a
+		custom_tooltip = hrb_colony.32.a.tt
+		
+		add_monthly_resource_mult = { 
+			resource = research value = 6 max = 12000 
+		}
+
+		add_modifier = { 
+			modifier = widespread_innovation 
+		}
+	}
+
+	### Romulan: We shall use their research.
+	option = {
+
+		trigger = { 
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.32.b
+		custom_tooltip = hrb_colony.32.b.tt
+		
+		add_monthly_resource_mult = { 
+			resource = research value = 6 max = 12000 
+		}
+
+		add_modifier = { 
+			modifier = widespread_innovation 
+		}
+	}
+
+	### Cardassian: We shall usurp their findings.
+	option = {
+
+		trigger = { 
+			is_cardassian = yes 
+		}
+
+		name = hrb_colony.32.c
+		custom_tooltip = hrb_colony.32.c.tt
+
+		add_monthly_resource_mult = { 
+			resource = research value = 6 max = 12000 
+		}
+
+		add_modifier = {
+			modifier = widespread_innovation 
+		}
+	}
+}
+
+### COLONY P3E1: FEMNOVA - STEP 2A: Femnova's SPIRITUAL DEVELOPMENTS (KLING)
+country_event = {
+	id = hrb_colony.33
+	title = "hrb_colony.33.name"
+	desc = "hrb_colony.33.desc"
+	picture = GFX_evt_colony_women_klingon
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### Klingon: Our Empire is reinvigorated.
+	option = {
+
+		name = hrb_colony.33.a
+		custom_tooltip = hrb_colony.33.a.tt
+		
+		add_monthly_resource_mult = { 
+			resource = research value = 6 max = 12000 
+		}
+
+		add_modifier = { 
+			modifier = widespread_innovation 
+		}
+	}
+}
+
+### COLONY P3E1: FEMNOVA - STEP 2B: Femnova's SCIENTIFIC DEVELOPMENTS (FED, KLING, ROM)
+country_event = {
+	id = hrb_colony.34
+	title = "hrb_colony.34.name"
+	desc = "hrb_colony.34.desc"
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_colony_women_ufop
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_colony_women_ufop
+	} 
+	
+	# Default Image on Fail 
+	picture = GFX_evt_idyllic_haven
+
+	### UFOP, Klingon, Romulan: Adapt our scientific programs.
+	option = {
+
+		name = hrb_colony.34.a
+		custom_tooltip = hrb_colony.34.a.tt
+		
+		add_monthly_resource_mult = { 
+			resource = research value = 6 max = 12000 
+		}
+
+		event_target:colony_femnova = {
+			add_modifier = { 
+				modifier = femnova_research_miner_jobs 
+			}
+		}
+	}
+
+	### UFOP, Klingon, Romulan: A perfect place to mine.
+	option = {
+
+		name = hrb_colony.34.b
+		custom_tooltip = hrb_colony.34.b.tt
+		
+		add_monthly_resource_mult = { 
+			resource = minerals value = 6 max = 12000 
+		}
+
+		event_target:colony_femnova = {
+			add_modifier = { 
+				modifier = femnova_mineral_rich 
+			}
+		}
+	}
+}
+
+### COLONY P3E1: FEMNOVA - STEP 2C: Femnova's SPLINTERING  (FED, KLING, CARD)
+country_event = {
+	id = hrb_colony.35
+	title = "hrb_colony.35.name"
+	desc = "hrb_colony.35.desc"
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_colony_women_klingon
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_colony_women_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_colony_mixed
+
+	### UFOP, Klingon, Cardassian: We will monitor the turmoil.
+	option = {
+
+		name = hrb_colony.35.a
+		custom_tooltip = hrb_colony.35.a.tt
+		
+		event_target:colony_femnova = {
+			add_modifier = { 
+				modifier = colony_stability_loss days = 1800 
+			}
+		}
+	}
+}
+
+### COLONY P3E1: FEMNOVA - STEP 2C: Femnova's QOWAT MILAT(ROM)
+country_event = {
+	id = hrb_colony.36
+	title = "hrb_colony.36.name"
+	desc = "hrb_colony.36.desc"
+	picture = GFX_evt_colony_women_romulan
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### Romulan: Uncontrolled delinquency. Interesting.
+	option = {
+
+		name = hrb_colony.36.a
+		custom_tooltip = hrb_colony.36.a.tt
+		
+		event_target:colony_femnova = {
+			add_modifier = {
+				modifier = colony_stability_loss days = 1800
+			}
+		}
+		#HRB_TODO +Espionage TBD
+	}
+}
+
+#
+##
+### COLONY P2E2: PARADISE
+
+### COLONY P2E2: PARADISE - TRIGGER
+planet_event = {
+	id = hrb_colony.40
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = {
+			has_planet_flag = colony_event
+			has_planet_flag = bespoke_colony
+			is_planet_class = pc_habitat
+			owner = { 
+				has_country_flag = paradise_event 
+			}
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		save_event_target_as = colony_paradise
+
+		owner = { 
+			set_country_flag = paradise_event 
+		}
+		owner = { 
+			country_event = { id = hrb_colony.41 } 
+		}
+	}
+}
+
+### COLONY P2E2: PARADISE - STEP 1: DUONETIC FIELD
+country_event = {
+	id = hrb_colony.41
+	title = "hrb_colony.41.name"
+	desc = "hrb_colony.41.desc"
+	show_sound = event_enterprise_bridge_conversation_ufop
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_star_chart_meeting_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes } 
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_star_chart_meeting_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes } 
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	### All: Only time will tell.
+	option = {
+
+		name = hrb_colony.41.a
+		custom_tooltip = hrb_colony.41.a.tt
+		
+		event_target:colony_paradise = {
+			add_modifier = { 
+				modifier = paradise_duonetic_field 
+			}
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.42 days = 1080 }
+		}
+	}
+}
+
+### COLONY P2E2: PARADISE - STEP 2: PARADISE
+country_event = {
+	id = hrb_colony.42
+	title = "hrb_colony.42.name"
+	desc = "hrb_colony.42.desc"
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_colony_women_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_colony_women_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_colony_women_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_colony_mixed
+
+	### All: Only time will tell.
+	option = {
+
+		name = hrb_colony.42.a
+		custom_tooltip = hrb_colony.42.a.tt
+		
+		add_monthly_resource_mult = {
+			resource = research
+			value = 6
+			max = 12000
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.43 days = 10 }
+		}
+	}
+
+	### UFOP: Strike a non-disclosure deal with Alixus.
+	option = {
+
+		trigger = { 
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.42.b
+		custom_tooltip = hrb_colony.42.b.tt
+
+		event_target:colony_paradise = {
+			add_modifier = { 
+				modifier = colony_stability_bonus 
+			}
+			add_modifier = { 
+				modifier = paradise_paradise_modifier 
+			}
+			remove_modifier = paradise_duonetic_field
+		}
+	}
+
+	### All: Where there is a pact, there is profit.
+	option = {
+
+		name = hrb_colony.42.c
+		custom_tooltip = hrb_colony.42.c.tt
+		
+		add_monthly_resource_mult = {
+			resource = food
+			value = 6
+			max = 12000
+		}
+
+		event_target:colony_paradise = {
+			add_modifier = { 
+				modifier = paradise_paradise_modifier 
+			}
+			remove_modifier = paradise_duonetic_field
+		}
+	}
+}
+
+### COLONY P2E2: PARADISE - STEP 3: ANTI-TECH CULT
+country_event = {
+	id = hrb_colony.43
+	title = "hrb_colony.43.name"
+	desc = "hrb_colony.43.desc"
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_colony_women_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_colony_women_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_colony_women_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_colony_mixed
+
+	### All: Something is off here.
+	option = {
+
+		name = hrb_colony.43.a
+		
+		add_monthly_resource_mult = {
+			resource = research
+			value = 6
+			max = 12000
+		}
+
+		event_target:colony_paradise = {
+			enable_special_project = {
+				name = "ANTI_TECH_FIELD"
+				location = this
+				owner = root
+			}
+		}
+	}
+
+	### All (except UFOP): Let these cultists be.
+	option = {
+
+		trigger = { 
+			is_ufop = no 
+		}
+
+		name = hrb_colony.43.b
+		custom_tooltip = hrb_colony.43.b.tt
+
+		event_target:colony_paradise = {
+			add_modifier = { 
+				modifier = colony_stability_loss days = 1800 
+			}
+		}
+	}
+}
+
+### COLONY P2E2: PARADISE - STEP 4A: A NEW TRUTH (FED/KLING)
+country_event = {
+	id = hrb_colony.44
+	title = "hrb_colony.44.name"
+	desc = "hrb_colony.44.desc"
+	show_sound = event_colony_women
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_colony_women_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_colony_women_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_colony_women_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_colony_women_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_colony_mixed
+
+	### UFOP: We will live separately.
+	option = {
+
+		trigger = { 
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.44.a
+		custom_tooltip = hrb_colony.44.a.tt
+		
+		add_monthly_resource_mult = {
+			resource = research
+			value = 6
+			max = 12000
+		}
+
+		event_target:colony_paradise = {
+			remove_modifier = paradise_duonetic_field
+		}
+	}
+
+	### Klingon: For now, they have proven their worth.
+	option = {
+
+		trigger = { 
+			is_klingon = yes 
+		}
+
+		name = hrb_colony.44.b
+		custom_tooltip = hrb_colony.44.b.tt
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 6
+			max = 12000
+		}
+
+		event_target:colony_paradise = {
+			remove_modifier = paradise_duonetic_field
+		}
+	}
+}
+
+### COLONY P2E2: PARADISE - STEP 4B: FROM SCRUTINY TO MUTINY
+country_event = {
+	id = hrb_colony.45
+	title = "hrb_colony.45.name"
+	desc = "hrb_colony.45.desc"
+	show_sound = event_bridge_decision
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_enterprise_bridge_decision_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_vorcha_bridge_decision_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_valdore_bridge_decision_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_keldon_bridge_decision_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	### ALL: Exile Alixus and her followers.
+	option = {
+
+		name = hrb_colony.45.a
+		custom_tooltip = hrb_colony.45.a.tt
+		
+		event_target:colony_paradise = {
+			add_modifier = { 
+				modifier = colony_stability_bonus days = 1080 
+			}
+			remove_modifier = paradise_duonetic_field
+
+			create_pop = { 
+				species = owner_species 
+			}
+		}
+	}
+
+	### Cardassian: Encourage a mutiny.
+	option = {
+
+		name = hrb_colony.45.b
+		custom_tooltip = hrb_colony.45.b.tt
+
+		trigger = { 
+			is_cardassian = yes 
+		}
+
+		event_target:colony_paradise = {
+			remove_modifier = paradise_duonetic_field
+
+			create_pop = { 
+				species = owner_species 
+			}
+			create_pop = { 
+				species = owner_species 
+			}
+			create_pop = { 
+				species = owner_species 
+			}
+		}
+	}
+}
+
+#
+##
+### COLONY P3E2: FOREVER YOUNG
+
+### COLONY P3E2: FOREVER YOUNG - TRIGGER
+planet_event = {
+	id = hrb_colony.50
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = {
+			has_planet_flag = colony_event
+			has_planet_flag = bespoke_colony
+			is_planet_class = pc_habitat
+			owner = { 
+				has_country_flag = forever_young_event 
+			}
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		save_event_target_as = colony_forever_young
+		owner = { 
+			set_country_flag = forever_young_event 
+		}
+		owner = { 
+			country_event = { id = hrb_colony.51 } 
+		}
+	}
+}
+
+### COLONY P3E2: FOREVER YOUNG - STEP 1: WHERE ARE ALL THE GROWNUPS?
+country_event = {
+	id = hrb_colony.51
+	title = "hrb_colony.51.name"
+	desc = "hrb_colony.51.desc"
+	show_sound = event_colony_forever_young_frequency
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_enterprise_bridge_decision_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_vorcha_bridge_decision_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_valdore_bridge_decision_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_keldon_bridge_decision_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_idyllic_haven
+
+	### ALL: Help the children organize their society.
+	option = {
+
+		name = hrb_colony.51.a
+		custom_tooltip = hrb_colony.51.a.tt
+		
+		event_target:colony_forever_young = {
+			add_modifier = { 
+				modifier = forever_young_fountain_of_youth 
+			}
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.52 days = 60 }
+		}
+	}
+
+	### ALL: Cleanse the water supply.
+	option = {
+
+		name = hrb_colony.51.b
+		custom_tooltip = hrb_colony.51.b.tt
+		
+		event_target:colony_forever_young = {
+			add_modifier = { 
+				modifier = forever_young_bountiful_oasis 
+			}
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.53 days = 60 }
+		}
+	}
+}
+
+### COLONY P3E2: FOREVER YOUNG - STEP 2A: HERE COME THE FUN POLICE
+country_event = {
+	id = hrb_colony.52
+	title = "hrb_colony.52.name"
+	desc = "hrb_colony.52.desc"
+	picture = GFX_evt_idyllic_haven
+	show_sound = event_idyllic_haven
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### UFOP: Back to work.
+	option = {
+
+		trigger = {	
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.52.a
+	}
+
+	### Klingon: Playtime is over.
+	option = {
+
+		trigger = {	
+			is_klingon = yes 
+		}
+
+		name = hrb_colony.52.b
+	}
+
+	### Romulan: No more fun and games.
+	option = {
+
+		trigger = {	
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.52.c
+	}
+
+	### Cardassian: Without adults there can be no family.
+	option = {
+
+		trigger = {	
+			is_cardassian = yes 
+		}
+
+		name = hrb_colony.52.d
+	}
+
+	after = {
+		add_modifier = { 
+			modifier = forever_young_strict_working_condition 
+		}
+	}
+}
+
+### COLONY P3E2: FOREVER YOUNG - STEP 2B: FOREVER YOUNG
+country_event = {
+	id = hrb_colony.53
+	title = "hrb_colony.53.name"
+	desc = "hrb_colony.53.desc"
+	picture = GFX_evt_overwater_civilization_city_landscape
+	show_sound = event_colony_forever_young
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### UFOP: Great. When's recess?
+	option = {
+
+		trigger = {	
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.53.a
+		custom_tooltip = hrb_colony.53.a.tt
+	}
+
+	### Klingon: Every warrior knows play is nobler than work.
+	option = {
+
+		trigger = {	
+			is_klingon = yes 
+		}
+
+		name = hrb_colony.53.b
+	}
+
+	### Romulan: Games are a great teacher of strategy.
+	option = {
+
+		trigger = {	
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.53.c
+	}
+
+	### Cardassian: Children are the future of our Union.
+	option = {
+
+		trigger = {	
+			is_cardassian = yes 
+		}
+
+		name = hrb_colony.53.d
+	}
+
+	after = {
+		add_modifier = { 
+			modifier = forever_young_chilled_out days = 1800 
+		}
+	}
+}
+
+#
+##
+### COLONY P3E4: THE BIRDS AND THE BEEPS
+
+### COLONY P3E4: THE BIRDS AND THE BEEPS - TRIGGER
+planet_event = {
+	id = hrb_colony.60
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = {
+			has_planet_flag = colony_event
+			has_planet_flag = bespoke_colony
+			has_planet_flag = crystalline_entity_planet_flag
+			is_planet_class = pc_habitat
+			owner = { 
+				has_country_flag = birds_beeps_event 
+			}
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		save_event_target_as = colony_birds_beeps
+		owner = { 
+			set_country_flag = birds_beeps_event 
+			save_event_target_as = colony_birds_beeps_country
+		}
+		owner = { 
+			country_event = { id = hrb_colony.61 } 
+		}
+	}
+}
+
+### STEP 1: THE BIRDS
+country_event = {
+	id = hrb_colony.61
+	title = "hrb_colony.61.name"
+	desc = "hrb_colony.61.desc"
+	picture = GFX_evt_pc_tropical_l03
+	show_sound = event_space_garden_landscape
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_same_value = event_target:colony_birds_beeps_country 
+	}
+
+	### All: Update the prefabricated structures.
+	option = {
+
+		name = hrb_colony.61.a
+		custom_tooltip = hrb_colony.61.a.tt
+		
+		add_modifier = { 
+			modifier = birds_and_beeps_build_speed 
+		}
+	}
+
+	### All: Reprimand the makers of the habitat.
+	option = {
+
+		name = hrb_colony.61.b
+		custom_tooltip = hrb_colony.61.b.tt
+		
+		event_target:colony_birds_beeps = {
+			add_modifier = { 
+				modifier = birds_and_beeps_stability_gain 
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = hrb_colony.62 days = 360 }
+		}
+	}
+}
+
+### STEP 2: THE BEEPS
+country_event = {
+	id = hrb_colony.62
+	title = "hrb_colony.62.name"
+	desc = "hrb_colony.62.desc"
+	picture = GFX_evt_plantlife_flora_bio_lab
+	show_sound = event_space_garden_landscape
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### All: Prioritize semiology.
+	option = {
+
+		name = hrb_colony.62.a
+		custom_tooltip = hrb_colony.62.a.tt
+		
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 12
+        	max = 12000
+		}
+	}
+
+	### All: Prioritize xeno-ornithology.
+	option = {
+
+		name = hrb_colony.62.b
+		custom_tooltip = hrb_colony.62.b.tt
+		
+		add_modifier = { 
+			modifier = birds_and_beeps_anomaly_chance 
+		}
+	}
+}
+
+#
+##
+### COLONY P4E1: RUINS UNCOVERED
+
+### COLONY P4E1: RUINS UNCOVERED - TRIGGER
+planet_event = {
+	id = hrb_colony.70
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = {
+			has_planet_flag = colony_event
+			has_planet_flag = bespoke_colony
+			is_planet_class = pc_habitat
+		}
+		
+		NOR = {
+			owner = {
+				has_country_flag = paw_of_protection_flag
+				has_country_flag = lotus_1578_flag		
+				has_country_flag = titanic_precursors_flag
+				has_country_flag = terminal_terminal_flag
+				has_country_flag = i_heard_you_like_ruins_flag
+				has_country_flag = city_of_doors_flag
+				has_country_flag = chrono_canyon_flag
+			}
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		save_event_target_as = colony_ruins_uncovered
+		owner = { 
+			country_event = { id = hrb_colony.71 } 
+		}
+	}
+}
+
+### STEP 1: RUINS UNCOVERED
+country_event = {
+	id = hrb_colony.71
+	title = "hrb_colony.71.name"
+	desc = "hrb_colony.71.desc"
+	picture = GFX_evt_archaeology_excavation
+	show_sound = event_archaeology_ruins_alien_planet
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### All: Investigate the ruins on §H[colony_ruins_uncovered.GetName]§!.
+	option = {
+		name = hrb_colony.71.a
+		
+		event_target:colony_ruins_uncovered = {
+			add_deposit = f_planet_of_ruins
+
+			enable_special_project = {
+				name = "PLANET_OF_RUINS"
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+
+### STEP 2A: PAW OF PROTECTION (FED/KLING)
+country_event = {
+	id = hrb_colony.72
+	title = "hrb_colony.72.name"
+	desc = "hrb_colony.72.desc"
+	picture = GFX_evt_archaeology_ruins_alien_planet
+	show_sound = event_archaeology_ruins_alien_planet
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = paw_of_protection_flag
+	}
+
+	### All: Respect the cat-dragon.
+	option = {
+
+		name = hrb_colony.72.a
+		
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_protected_grounds
+		}
+	}
+
+	### All: Begin excavations.
+	option = {
+
+		name = hrb_colony.72.b
+		
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_pilfered_grounds
+		}
+	}
+}
+
+### STEP 2B: LOTUS 1578 (NOT CARD)
+country_event = {
+	id = hrb_colony.73
+	title = "hrb_colony.73.name"
+	desc = "hrb_colony.73.desc"
+	picture = GFX_evt_cave_water_haven
+	show_sound = event_cave_water_haven
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = lotus_1578_flag
+	}
+
+	### UFOP: Establish the Lotus 1578 micro-reserve.
+	option = {
+
+		trigger = { 
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.73.a
+		custom_tooltip = hrb_colony.73.a.tt
+	}
+
+	### Klingon: Establish the Lotus 1578 micro-reserve.
+	option = {
+
+		trigger = { 
+			is_klingon = yes 
+		}
+
+		name = hrb_colony.73.b
+		custom_tooltip = hrb_colony.73.b.tt
+	}
+
+	### Romulan: Establish the Lotus 1578 micro-reserve.
+	option = {
+
+		trigger = { 
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.73.c
+		custom_tooltip = hrb_colony.73.c.tt
+	}
+
+	after = {
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_lotus_reserve
+		}
+	}
+}
+
+### STEP 2C: TITANIC PRECURSORS
+country_event = {
+	id = hrb_colony.74
+	title = "hrb_colony.74.name"
+	desc = "hrb_colony.74.desc"
+	picture = GFX_evt_underground_civilization_city_landscape
+	show_sound = event_underground_civilization_city_landscape
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = titanic_precursors_flag
+	}
+
+	### All: Harvest the crystals and energy.
+	option = {
+		name = hrb_colony.74.a
+
+		add_monthly_resource_mult = {
+			resource = energy
+			 value = @tier1materialreward
+			 min = @tier1materialmin
+			 max = @tier1materialmax
+		}
+
+		add_monthly_resource_mult = {
+			resource = minerals
+			 value = @tier1materialreward
+			 min = @tier1materialmin
+			 max = @tier1materialmax
+		}
+	}
+
+	### UFOP: Rebuild the titanic city.
+	option = {
+
+		trigger = { 
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.74.b
+		custom_tooltip = hrb_colony.74.b.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_titanic_city
+		}
+	}
+
+	### Klingon: Rebuild the titanic city.
+	option = {
+
+		trigger = { 
+			is_klingon = yes 
+		}
+
+		name = hrb_colony.74.c
+		custom_tooltip = hrb_colony.74.c.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_titanic_city
+		}
+	}
+
+	### Romulan: Rebuild the titanic city.
+	option = {
+
+		trigger = { 
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.74.d
+		custom_tooltip = hrb_colony.74.d.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_titanic_city
+		}
+	}
+
+	option = {
+
+		trigger = { 
+			is_cardassian = yes 
+		}
+
+		name = hrb_colony.74.e
+		custom_tooltip = hrb_colony.74.e.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_titanic_city
+		}
+	}
+}
+
+### STEP 2D: TERMINAL TERMINAL
+country_event = {
+	id = hrb_colony.75
+	title = "hrb_colony.75.name"
+	desc = "hrb_colony.75.desc"
+	picture = GFX_evt_facility_capsules_androids_ai_alert
+	show_sound = event_facility_capsules_androids_ai_alert
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = terminal_terminal_flag
+	}
+
+	### All: Uh-oh.
+	option = {
+
+		name = hrb_colony.75.a
+		custom_tooltip = hrb_colony.75.a.tt
+		
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_bomb_fields
+		}
+
+		# CP26 fix : country_event needs a country scope; the original
+		# fired it from inside the planet block which produced an
+		# unsupported-scope warning and the delayed return event was lost.
+		hidden_effect = {
+			country_event = { id = hrb_colony.75001 days = 3600 }
+		}
+	}
+}
+
+country_event = {
+	id = hrb_colony.75001
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		random_list = {
+			1 = { country_event = { id = hrb_colony.75001 days = 3600 } }
+			1 = { country_event = { id = hrb_colony.75002 } }
+		}
+	}
+}
+
+# Bomb Field Fatalities
+country_event = {
+	id = hrb_colony.75002
+	title = "hrb_colony.75002.name"
+	desc = "hrb_colony.75002.desc"
+	show_sound = event_sickbay
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_sickbay_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_archaeology_excavation
+
+	immediate = {
+		event_target:colony_ruins_uncovered = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = hrb_colony.75001 days = 3600 }
+		}
+	}
+
+	### All: Close log.
+	option = {
+		name = hrb_colony.75002.a
+	}
+}
+
+### STEP 2E: I HEARD YOU LIKE RUINS
+country_event = {
+	id = hrb_colony.76
+	title = "hrb_colony.76.name"
+	desc = "hrb_colony.76.desc"
+	picture = GFX_evt_archaeology_excavation
+	show_sound = event_archaeology_ruins_alien_planet
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = i_heard_you_like_ruins_flag
+	}
+
+	### All: Atop ruins.
+	option = {
+
+		name = hrb_colony.76.a
+		custom_tooltip = hrb_colony.76.a.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_ancient_xeno_cultural_sites
+		}
+	}
+
+	### All: Bulldoze them all.
+	option = {
+
+		name = hrb_colony.76.b
+		custom_tooltip = hrb_colony.76.b.tt
+		
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_archaic_cultural_strata
+		}
+	}
+}
+
+### STEP 2F: CITY OF DOORS
+country_event = {
+	id = hrb_colony.77
+	title = "hrb_colony.77.name"
+	desc = "hrb_colony.77.desc"
+	picture = GFX_evt_underground_civilization_city_landscape
+	show_sound = event_underground_civilization_city_landscape
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = city_of_doors_flag
+	}
+
+	### All: Harvest the bleed-off.
+	option = {
+
+		name = hrb_colony.77.a
+		custom_tooltip = hrb_colony.77.a.tt
+		
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_garden_of_sealed_portals
+		}
+	}
+
+	### All: Neutralize the doorways.
+	option = {
+
+		name = hrb_colony.77.b
+		custom_tooltip = hrb_colony.77.b.tt
+		
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_portal_graveyard
+		}
+	}
+}
+
+### STEP 2G: CHRONO CANYON
+country_event = {
+	id = hrb_colony.78
+	title = "hrb_colony.78.name"
+	desc = "hrb_colony.78.desc"
+	show_sound = event_away_team
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_away_team
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_away_team_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_away_team_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_away_team_cardassian
+	}
+
+	# Default image on fail
+	picture = GFX_evt_archaeology_excavation
+
+	immediate = {
+		set_country_flag = chrono_canyon_flag
+	}
+
+	### UFOP: Wait a minute.
+	option = {
+
+		trigger = { 
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.78.a
+		custom_tooltip = hrb_colony.78.a.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_atemporal_crevices
+		}
+	}
+
+	### Klingon: Destiny is a closed loop.
+	option = {
+
+		trigger = { 
+			is_klingon = yes 
+		}
+
+		name = hrb_colony.78.b
+		custom_tooltip = hrb_colony.78.b.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_atemporal_crevices
+		}
+	}
+
+	### Romulan: Time is a maze like any other.
+	option = {
+
+		trigger = { 
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.78.c
+		custom_tooltip = hrb_colony.78.c.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_atemporal_crevices
+		}
+	}
+
+	### Cardassian: An exercise in futility.
+	option = {
+
+		trigger = { 
+			is_cardassian = yes 
+		}
+
+		name = hrb_colony.78.d
+		custom_tooltip = hrb_colony.78.d.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_atemporal_crevices
+		}
+	}
+
+	### All: Don't touch the pedestal.
+	option = {
+
+		name = hrb_colony.78.e
+		custom_tooltip = hrb_colony.78.e.tt
+
+		event_target:colony_ruins_uncovered = {
+			remove_deposit = f_planet_of_ruins
+			add_deposit = f_perilous_pedestals
+		}
+	}
+}
+
+#
+##
+### COLONY P6E2: STELLA MARIS
+
+### COLONY P6E2: STELLA MARIS - TRIGGER
+planet_event = {
+	id = hrb_colony.80
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+	
+	trigger = {
+		NOT = {
+			has_planet_flag = colony_event
+			has_planet_flag = bespoke_colony
+			is_planet_class = pc_habitat
+			owner = { 
+				has_country_flag = stella_maris_event 
+			}
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		save_event_target_as = colony_stella_maris
+		owner = { 
+			set_country_flag = stella_maris_event 
+		}
+		owner = { 
+			country_event = { id = hrb_colony.81 } 
+		}
+	}
+}
+
+### STEP 1: ARID AQUEDUCT
+country_event = {
+	id = hrb_colony.81
+	title = "hrb_colony.81.name"
+	show_sound = event_away_team
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_away_team
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_away_team_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_away_team_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_away_team_cardassian
+	}
+
+	# Default image on fail
+	picture = GFX_evt_archaeology_excavation
+
+	desc = { 
+		trigger = { 
+			is_cardassian = no 
+		} 	
+		text = hrb_colony.81.desc 
+	}
+
+	desc = { 
+		trigger = { 
+			is_cardassian = yes 
+		} 	
+		text = hrb_colony.81.cardassian.desc 
+	}
+
+	### All: Investigate the aqueduct.
+	option = {
+
+		name = hrb_colony.81.a
+		custom_tooltip = hrb_colony.81.a.tt
+		
+		add_monthly_resource_mult = {
+			resource = research
+			value = 6
+			max = 12000
+		}
+
+		event_target:colony_stella_maris = {
+			enable_special_project = {
+				name = "AQUEDUCT_LIFEFORM"
+				location = this
+				owner = root
+			}
+		}
+	}
+
+	### All: Gather the beads and leave.
+	option = {
+
+		name = hrb_colony.81.b
+		custom_tooltip = hrb_colony.81.b.tt
+		
+		add_monthly_resource_mult = {
+			resource = minerals
+			value = 12
+			max = 12000
+		}
+	}
+}
+
+### STEP 2: CAM-HP23
+country_event = {
+	id = hrb_colony.82
+	title = "hrb_colony.82.name"
+	desc = "hrb_colony.82.desc"
+	show_sound = event_hologram_automaton_rocky_planet
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_hologram_automaton_rocky_planet_ufop
+	} 
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_hologram_automaton_rocky_planet_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_hologram_automaton_rocky_planet_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_hologram_automaton_rocky_planet_cardassian
+	}
+
+	# Default image on fail
+	picture = GFX_evt_archaeology_excavation
+
+	### UFOP: Permission granted.
+	option = {
+
+		trigger = { 
+			is_ufop = yes 
+		}
+
+		name = hrb_colony.82.a
+	}
+
+	### Klingon: Play it, puny one.
+	option = {
+
+		trigger = { 
+			is_klingon = yes 
+		}
+
+		name = hrb_colony.82.b
+	}
+
+	### Romulan: Fortunately, it is non-sentient. Granted.
+	option = {
+
+		trigger = { 
+			is_romulan = yes 
+		}
+
+		name = hrb_colony.82.c
+	}
+
+	### Cardassian: Asking for permission? How fitting. Granted.
+	option = {
+
+		trigger = { 
+			is_cardassian = yes 
+		}
+
+		name = hrb_colony.82.d
+	}
+
+	after = {
+		add_monthly_resource_mult = { 
+			resource = research 
+			value = @tier2researchreward 
+			min = @tier2researchmin 
+			max = @tier2researchmax 
+		}
+
+		hidden_effect = {
+			country_event = { id = hrb_colony.83 days = 7 }
+		}
+	}
+}
+
+### STEP 3: STELLA MARIS
+country_event = {
+	id = hrb_colony.83
+	title = "hrb_colony.83.name"
+	desc = "hrb_colony.83.desc"
+	show_sound = event_hologram_automaton_rocky_planet
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = { is_ufop = yes } 
+		picture = GFX_evt_hologram_automaton_rocky_planet_ufop
+	} 
+	picture = {
+		trigger = {  is_klingon = yes }
+		picture = GFX_evt_hologram_automaton_rocky_planet_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes } 
+		picture = GFX_evt_hologram_automaton_rocky_planet_romulan
+	} 
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_hologram_automaton_rocky_planet_cardassian
+	}
+
+	# Default image on fail
+	picture = GFX_evt_archaeology_excavation
+
+	### All: Study the automaton's programs.
+	option = {
+
+		name = hrb_colony.83.a
+		custom_tooltip = hrb_colony.83.a.tt
+		
+		# CP26 fix : the upstream special_project AQUEDUCT_LIFEFORM only saves
+		# event_target:aqueduct_scientist when the science ship has an assigned
+		# leader. If that capture failed, accessing the target raised an
+		# Invalid context switch warning. Gate the trait reward on existence.
+		if = {
+			limit = { exists = event_target:aqueduct_scientist }
+			event_target:aqueduct_scientist = {
+				add_trait = "leader_trait_pathologist"
+				add_experience = 200
+			}
+		}
+	}
+
+	### All: Crush the beads, and leave.
+	option = {
+
+		name = hrb_colony.83.b
+		custom_tooltip = hrb_colony.83.b.tt
+		
+		add_monthly_resource_mult = { 
+			resource = unity 
+			value = @tier2unityreward 
+			min = @tier2unitymin 
+			max = @tier2unitymax 
+		}
+		
+		if = {
+			limit = { 
+				has_technology = tech_frontier_hospital 
+			}
+
+			add_monthly_resource_mult = { 
+				resource = research 
+				value = @tier2researchreward 
+				min = @tier2researchmin 
+				max = @tier2researchmax 
+			}
+		}
+		else_if = {
+			limit = { 
+				has_technology = tech_frontier_health 
+			}
+
+			add_tech_progress = {
+				tech = tech_frontier_hospital
+				progress = 0.25
+			}
+		}
+		else = {
+			add_tech_progress = {
+				tech = tech_frontier_health
+				progress = 0.25
+			}
+		}
+	}
+
+	### All: Replenish the aqueduct.
+	option = {
+
+		name = hrb_colony.83.c
+		custom_tooltip = hrb_colony.83.c.tt
+		
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
+		
+		add_resource = { energy = -1000 }
+
+		event_target:colony_stella_maris = {
+			add_modifier = { 
+				modifier = stella_maris_revitalized_ecosystem 
+			}
+		}
+	}
+}
+
+### CAPTAIN DAD TRIGGER
+planet_event = {
+	id = hrb_colony.90
+	is_triggered_only = yes
+	hide_window = yes
+	
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		owner = { 
+			is_ufop = yes 
+		}
+		num_pops > 1
+		NOT = {
+			is_planet_class = pc_habitat
+		}
+		NOR = {
+			has_planet_flag = colony_event
+			has_planet_flag = bespoke_colony
+			owner = { 
+				has_country_flag = captain_dad_event 
+			}
+		}
+	}
+	
+	immediate = {
+		set_planet_flag = colony_event
+		save_event_target_as = captain_dad_colony
+		owner = { 
+			set_country_flag = captain_dad_event 
+		}
+		owner = { 
+			country_event = { id = hrb_colony.91 days = 1 } 
+		}
+	}
+}
+
+### CAPTAIN DAD
+country_event = {
+	id = hrb_colony.91
+	title = "hrb_colony.91.name"
+	desc = "hrb_colony.91.desc"
+	picture = GFX_evt_space_garden_landscape
+	show_sound = event_space_garden_landscape
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	### UFOP: Dedicate a bench to a loved one.
+	option = {
+
+		name = hrb_colony.91.a
+		custom_tooltip = hrb_colony.91.a.tt
+
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier4unityreward
+				min = @tier4unitymin
+				max = @tier4unitymax
+			}
+		}
+	}
+
+	### UFOP: Sit and watch the birds.
+	option = {
+
+		name = hrb_colony.91.b
+		custom_tooltip = hrb_colony.91.b.tt
+	
+		event_target:captain_dad_colony = {
+			add_modifier = {
+				modifier = colony_stability_bonus
+				days = 1800
+			}
+		}
+	}
+}
