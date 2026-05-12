@@ -9,7 +9,7 @@ bespoke_procedural_scenario = {
 	# header comment for full reasoning. Synced with main scenario.
 	radius = 498
 	num_empires = { min = 20 max = 20 }	# CP26: 20 prescripted + 4 dynamiques (Tholian, Orion, Breen, Gorn) = 24 total.
-	num_empire_default = 24		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.
+	num_empire_default = 20		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.
 	advanced_empire_default = 0
 	fallen_empire_default = 0
 	fallen_empire_max = 0
