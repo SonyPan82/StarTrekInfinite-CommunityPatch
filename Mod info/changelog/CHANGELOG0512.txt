@@ -782,11 +782,11 @@ Session du 2026-05-10  —  Refonte complète de l'initialisation des colonies
   Cause : sans create_colony précédent, Glintara est vide quand create_glintara_colony
   essaie de créer des pops avec species = romulan. Le moteur ne peut pas résoudre
   une espèce nommée sur une planète sans pops.
-  Fix proposé (non appliqué, en attente de GO) :
-    - Remplacer species = romulan par species = owner_main_species dans
+  Fix appliqué :
+    - Remplacé species = romulan par species = owner_main_species dans
       common/scripted_effects/01_romulus_glintara_effect.txt.
-    - Alternative : ajouter 1 pop owner_main_species dans l'initializer avant
-      create_glintara_colony, et réduire le while count de 11 à 10.
+    - owner_main_species résout correctement l'espèce Romulienne car set_owner
+      est appelé dans l'initializer juste avant create_glintara_colony.
 
 [NOTE] Logs non liés à cette migration (connus / hors scope)
   - Duplicate keys : pop_jobs, ship_sizes, districts, country_types, etc.
