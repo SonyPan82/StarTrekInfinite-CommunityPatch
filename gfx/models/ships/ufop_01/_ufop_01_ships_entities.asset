@@ -239,6 +239,9 @@ entity = {
 
 	}
 
+	# CP26 fix : missing part1 locator caused SIGSEGV in CullAndUpdateEntitiesRecursive
+	# when spy ships entered viewport (warp limit removed = ships circulate everywhere).
+	locator = { name = "part1" 			position = { 0 0 0 } }
 }
 
 entity = {
@@ -1496,5 +1499,9 @@ entity = {
 			event = { time = 3.2 node = "explosion_locator_04" particle = "explosion_medium" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
 			event = { time = 4.5 node = "explosion_locator_05" particle = "final_explosion_large" keep_particle = yes trigger_once = yes sound = { soundeffect = "final_explosion_small" } }
 		}
-	
+
+		# CP26 fix : missing part2 locator caused warning then SIGSEGV when
+		# AI built this station model in rendered space.
+		locator = { name = "part2" 			position = { 0 0 0 } }
+
 		}

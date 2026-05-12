@@ -31,6 +31,11 @@ country_event = {
 				add_building = building_foundry_1
 				remove_planet_flag = cp26_vega_needs_foundry
 			}
+			if = {
+				limit = { has_planet_flag = cp26_denobula_needs_clinic }
+				add_building = building_clinic
+				remove_planet_flag = cp26_denobula_needs_clinic
+			}
 		}
 	}
 }

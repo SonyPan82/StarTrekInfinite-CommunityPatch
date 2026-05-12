@@ -6,10 +6,19 @@
 # the engine to log "Trying to add_opinion_modifier on oneself" and skip
 # the opinion bonus entirely.
 #
-# FIX : 
-# 1. Replace invalid 'who = root.from' with 'who = from' (the other party).
-# 2. Add is_same_value guards to both blocks so the effect only fires when
-#    the two scopes are genuinely different countries.
+# FIX history :
+# v1 (CP26 audit) : Replaced 'who = root.from' with 'who = from' and added
+#                   is_same_value guards at the outer limit.
+# v2 (2026-05-12) : Moved the is_same_value check INSIDE the target scope.
+#                   The previous outer-limit check was compared against the
+#                   root scope of the event (e.g. the player country), not
+#                   against fromfrom/from at the inner scope where the effect
+#                   is actually applied. When the chained first_contact
+#                   targets resolved to the same country (rare but happens
+#                   on self-triggered chains), the engine still logged the
+#                   "add_opinion_modifier on oneself" warning. Moving the
+#                   check inside guarantees the comparison uses the right
+#                   contextual scope.
 
 first_contact_event = {
 	id = country.27500
@@ -28,12 +37,14 @@ first_contact_event = {
 			limit = {
 				exists = from
 				exists = fromfrom
-				NOT = { is_same_value = fromfrom }
 			}
 			from = {
-				add_opinion_modifier = {
-					who = fromfrom
-					modifier = opinion_civic_diplomatic_expertise
+				if = {
+					limit = { NOT = { is_same_value = fromfrom } }
+					add_opinion_modifier = {
+						who = fromfrom
+						modifier = opinion_civic_diplomatic_expertise
+					}
 				}
 			}
 		}
@@ -42,12 +53,14 @@ first_contact_event = {
 			limit = {
 				exists = fromfrom
 				exists = from
-				NOT = { is_same_value = from }
 			}
 			fromfrom = {
-				add_opinion_modifier = {
-					who = from
-					modifier = opinion_civic_diplomatic_expertise
+				if = {
+					limit = { NOT = { is_same_value = from } }
+					add_opinion_modifier = {
+						who = from
+						modifier = opinion_civic_diplomatic_expertise
+					}
 				}
 			}
 		}

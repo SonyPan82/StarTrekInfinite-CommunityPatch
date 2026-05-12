@@ -1,0 +1,734 @@
+================================================================================
+CP26 — Changelog
+================================================================================
+
+Format : version / date / catégorie [risque] / description
+Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
+
+--------------------------------------------------------------------------------
+Session du 2026-05-12  —  Audit & fixes
+--------------------------------------------------------------------------------
+
+[FIX][LOW] Luna One Colony — modifier dupliqué (visuel double sur Luna)
+  Symptôme : Luna affichait deux instances du modifier "Lunar One Colony".
+  Cause racine, deux problèmes superposés :
+    1) Collision de définition. Le modifier `lunar_one_colony` est défini à
+       la fois côté vanilla (modifiers chargés tardivement, sans stats, juste
+       l'icône) et côté CP26 (`common/static_modifiers/00_aalunmars_static_modifiers.txt`,
+       avec les vrais stats : +2 chercheurs, +2 logements, +20%/-20% specialist/worker,
+       -50% growth, +25% amenities usage). Pour `static_modifiers`, Clausewitz
+       applique "last-loaded-wins", donc vanilla écrasait la définition CP26
+       et Luna perdait silencieusement ses stats.
+    2) Double application. Vanilla `events/game_start.txt` applique le modifier
+       à Luna ET CP26 `events/aalm_events.txt:31` l'applique aussi. Comme les
+       deux entrées sont permanentes (`days = -1`), elles s'empilent visuellement.
+
+  Fix appliqué :
+    - Renommage `lunar_one_colony` → `lunar_one_colony_cp26` dans
+      `common/static_modifiers/00_aalunmars_static_modifiers.txt`.
+    - `events/aalm_events.txt:31` applique désormais `lunar_one_colony_cp26`.
+    - Ajout des clés de localisation EN/FR pour `lunar_one_colony_cp26`
+      (`zz_cp26_patch_l_english.yml`, `zz_cp26_patch_l_french.yml`).
+
+  Résultat in-game :
+    - Luna reçoit l'instance vanilla cosmétique (icône uniquement, conservée pour ne
+      pas casser le visuel familier).
+    - Luna reçoit en plus l'instance CP26 fonctionnelle (vrais stats) avec un
+      libellé distinct ("Lunar One Colony").
+    - Plus de doublon visuel inutile : la première entrée a son icône et son nom
+      vanilla, la seconde porte les bonus chercheurs + logements.
+
+[FIX][LOW] Icons manquantes — 4 species traits Denobulan + Reman
+  Symptôme : dans le panel de population et l'éditeur d'espèces, les traits
+  `trait_denob_communal`, `trait_denob_polyamorous`, `trait_denob_family`
+  (denobulan_traits.txt) et `trait_reman_homeworld` (remus_traits.txt)
+  s'affichaient sans icône (carré vide / icône fallback).
+  Cause : le moteur cherche par défaut `gfx/interface/icons/traits/<clé>.dds`,
+  mais aucun de ces 4 fichiers n'existe (ni en vanilla ni en CP26). CP26 fournit
+  6 icônes custom (Risan/Tholian), les 60 traits minor species pointent vers
+  des icônes vanilla compatibles, mais ces 4 traits avaient été oubliés.
+
+  Fix appliqué : champ `icon = "..."` ajouté à chaque trait, mappé vers une
+  icône vanilla thématiquement cohérente (toutes vérifiées existantes sur disque) :
+    - trait_denob_communal       → trait_communal.dds
+    - trait_denob_polyamorous    → trait_rapid_breeders.dds
+    - trait_denob_family         → trait_traditional.dds
+    - trait_reman_homeworld      → trait_pc_nuked_preference.dds
+  Zéro nouveau .dds nécessaire, aucun risque sur la chaîne d'assets.
+
+[FIX][LOW] hrb_colony.75 / hrb_colony.83 — passage à replace_path
+  Découverte d'aujourd'hui : pour la base de données 'events', Clausewitz
+  applique la règle "first-loaded-wins" (eventmanager.cpp:367 logge
+  "an event with id [X] already exists!" et IGNORE la nouvelle définition).
+  C'est l'INVERSE des autres bases (pop_jobs, ship_sizes, country_types,
+  districts, casus_belli...) où c'est "last-wins" via game_singleobjectdatabase.h:151
+  qui logge "using the one at..." et garde la NOUVELLE.
+
+  Conséquence : le précédent fix `events/zz_cp26_fix_vanilla_colony_events.txt`
+  redéfinissait `hrb_colony.75` et `.83` MAIS chargeait après vanilla, donc
+  était systématiquement rejeté. Visible dans error.log :
+    [HH:MM:SS][eventmanager.cpp:367]: an event with id [hrb_colony.75]
+      already exists!  file: events/zz_cp26_fix_vanilla_colony_events.txt line: 31
+    [HH:MM:SS][eventmanager.cpp:367]: an event with id [hrb_colony.83]
+      already exists!  file: events/zz_cp26_fix_vanilla_colony_events.txt line: 67
+  Les deux bugs scope d'origine (unsupported scope hrb_colony.75 + undefined
+  target aqueduct_scientist hrb_colony.83) continuaient donc à se déclencher.
+
+  Solution propre : passage à `replace_path` pour `events/hornblower_colony_events.txt`,
+  pattern déjà utilisé pour 3 autres fichiers d'events vanilla
+  (hornblower_country_events, hornblower_game_start, hornblower_pirate_events).
+
+  Procédure :
+    1. Copie byte-perfect du fichier vanilla (71668 bytes, CRLF préservé,
+       MD5 identique en sortie de cp).
+    2. Deux patches chirurgicaux appliqués en mode binaire Python pour
+       garantir la préservation des line endings CRLF :
+       - hrb_colony.75 (ligne 2967) : sortie du `hidden_effect { country_event }`
+         hors du bloc `event_target:colony_ruins_uncovered = { ... }`
+         (le country_event doit s'exécuter en scope country, pas planet).
+       - hrb_colony.83 (ligne 3479) : `event_target:aqueduct_scientist = {...}`
+         enveloppé dans `if = { limit = { exists = event_target:... } ... }`
+         pour gérer le cas où le special_project upstream n'a pas pu
+         capturer le scientifique (leader absent).
+    3. Validation : 58 events présents (identique), 112 mentions hrb_colony.*
+       (identique), 910/910 accolades équilibrées (vanilla 908/908, +2 paires
+       attendues = 1 bloc planet refermé + 1 if/limit ajouté).
+    4. Ajout `replace_path="events/hornblower_colony_events.txt"` dans
+       descriptor.mod (insertion alphabétique avant les 3 autres events).
+    5. Suppression de `events/zz_cp26_fix_vanilla_colony_events.txt`
+       devenu redondant — l'ancien fichier provoquait simplement deux
+       warnings de chargement, et la logique du fix est désormais portée
+       directement dans la copie vanilla.
+
+  Impact en jeu :
+    ✓ hrb_colony.75 : la visite de retour J+10 ans après "Bomb Fields"
+      (event chain hrb_colony.75001 → .75002) se déclenche à nouveau
+      correctement. Plus de scope error logée à chaque option.a choisie.
+    ✓ hrb_colony.83 : si le scientifique d'Aqueduct n'a pas été capturé
+      en amont, l'option a) reste valide sans logger d'Invalid context
+      switch ; le trait Pathologist est appliqué uniquement quand un
+      leader existe.
+    ✓ error.log : deux warnings "eventmanager.cpp:367 already exists!"
+      éliminés au chargement, plus de "unsupported scope hrb_colony.75",
+      plus d'"Invalid context switch [event_target:aqueduct_scientist]".
+
+  Maintenance future : si Paradox publie un correctif vanilla de
+  hornblower_colony_events.txt (peu probable, STI en maintenance depuis
+  2024), il faudra re-merger les changements manuellement. Coût minimal.
+
+
+[POLISH][LOW] Nettoyage warnings game error.log — 3 fixes appliqués, 3 laissés
+  Audit de tous les warnings/script errors visibles dans
+  /Documents/Paradox Interactive/Infinite/logs/error.log sur partie longue.
+  Tri par cause (CP26 vs vanilla) et faisabilité.
+
+  ─── FIX 1 — zz_cp26_fix_country_events.txt:48 (add_opinion_modifier on oneself) ───
+    Notre fichier CP26 dédié au fix de country.27500 (premier contact UFOP)
+    avait un check `NOT = { is_same_value = from }` placé au LIMIT racine
+    de l'event. Quand le moteur entre dans `fromfrom = { add_opinion_modifier
+    = { who = from ... } }`, le scope devient `fromfrom` et la comparaison
+    `is_same_value = from` ne réfère plus au scope racine — donc le check
+    ne protégeait pas du cas `fromfrom == from`. Résultat : warning
+    "Trying to add_opinion_modifier on oneself" à chaque déclenchement
+    avec le scope chainé pointant vers le même pays.
+    Fix : check `is_same_value` déplacé À L'INTÉRIEUR du scope target
+    pour qu'il compare avec le bon contexte. Les deux blocs (from →
+    fromfrom et fromfrom → from) ont été durcis symétriquement.
+
+  ─── FIX 2 — Stella Maris / USS Olympia leader scope error ───
+    Vanilla `common/special_projects/00_hornblower_colony_projects.txt`
+    ligne 36 et 233 fait `on_success = { leader = { save_event_target_as
+    = X } }` sans guard. Si le science ship n'a pas de leader assigné
+    (réassignement, mort, etc.), `leader = { ... }` lance "Invalid context
+    switch [leader] from <ship>" et le target n'est jamais créé.
+    L'event consommateur (hrb_colony.83 pour aqueduct_scientist) plante
+    ensuite avec "Undefined event target".
+    Fix : créé `common/special_projects/zz_cp26_fix_vanilla_colony_projects.txt`
+    qui redéfinit les 2 special_projects fautifs (THE_SHADOW_PEOPLE,
+    AQUEDUCT_LIFEFORM) avec un wrapper `if = { limit = { exists = leader }
+    leader = { ... } }`. Le projet réussit normalement, seul le bonus
+    trait scientifique est skippé si le leader manque (au lieu de crasher
+    avec un log error).
+
+  ─── FIX 3 — hrb_colony.75 unsupported scope + hrb_colony.83 undefined target ───
+    Vanilla `events/hornblower_colony_events.txt` ligne 2978 (hrb_colony.75)
+    fait un `country_event = { id = hrb_colony.75001 days = 3600 }` depuis
+    le scope planet (`event_target:colony_ruins_uncovered = { ... }`).
+    country_event exige scope country → "attempted to execute an effect
+    on an unsupported scope". L'event de retour à J+3600 (10 ans) était
+    silencieusement perdu.
+    Vanilla ligne 3484 (hrb_colony.83 option a) consomme
+    `event_target:aqueduct_scientist` sans guard — directement impacté
+    par le bug Stella Maris ci-dessus.
+    Fix : créé `events/zz_cp26_fix_vanilla_colony_events.txt` qui redéfinit
+    hrb_colony.75 (country_event sorti du bloc planet, fired depuis le
+    scope country racine) et hrb_colony.83 (event_target:aqueduct_scientist
+    wrapped dans `if exists`).
+
+  ─── NON-FIXÉ 1 — Mission AI no positive ai_chance (mission.16/17/55/86/193/215/...) ───
+    Symptôme : "Triggered Event mission.X for AI Y has no options with
+    positive ai_chance!" déclenché ~10x sur une partie longue pour les
+    AI minor factions (Farian, Trill, Bolian, Bajoran, Malcorian,
+    Pelian, Kesprytt, etc.).
+    Cause : ces events vanilla ont des options avec `trigger = { is_ufop =
+    yes }`, `trigger = { is_klingon = yes }` etc. Aucune option ne matche
+    pour les minor factions. Le moteur choisit option 0 par défaut.
+    Pourquoi maintenant : la session a boosté l'activité des minors
+    (species_classes refactor, traits species, AI personalities). Ces
+    events back-end leur popent plus souvent qu'avant.
+    Pourquoi pas fix : ce sont des events `hide_window = yes` +
+    `is_triggered_only = yes`. Le moteur tolère et continue sans crasher.
+    Fix possible = filtrer `is_minor = no` au top de mission.213 et 9
+    autres events, MAIS risque réel de casser des mission chains qui
+    impliquent légitimement les minors. Test exhaustif requis pour
+    chaque event, bénéfice nul (le jeu continue, juste du bruit log).
+
+  ─── NON-FIXÉ 2 — First Contact missing (on_action_events.txt:5105) ───
+    Symptôme : "<X> has encountered <Y> ... but has neither communications
+    with them nor an active First Contact site to do so."
+    Cause : le `log_error = "..."` est VOLONTAIRE en vanilla. Le moteur
+    log puis fait `establish_communications_no_message = prev` juste après.
+    C'est un message de debug intentionnel, pas une erreur fatale.
+    Pourquoi pas fix : retirer le log_error demanderait d'override
+    `events/on_action_events.txt` (~5000 lignes vanilla). Coût excessif
+    pour supprimer un log debug par design. Plus de minors actifs =
+    plus de logs, c'est attendu.
+
+  ─── NON-FIXÉ 3 — Spy mission cleanup (spy_mission_spy_global undefined) ───
+    Symptôme : "Trying to remove undefined event target: spy_mission_spy_global"
+    Cause : `clear_global_event_target = spy_mission_spy_global` est
+    appelé dans l'`after` block d'events spy. Si le target n'a pas été
+    créé en amont (event chain incomplète), le clear log un warning et
+    fait rien.
+    Pourquoi pas fix : STI n'expose pas de syntaxe `exists = global_event_target:X`
+    pour wrapper proprement. Vanilla utilise ce pattern partout sans
+    guard (10+ occurrences anomaly/borg/spy events). Le moteur tolère.
+    Fix demanderait reverse-engineering de la spy chain complète pour
+    garantir le save préalable.
+
+  Fichiers ajoutés :
+    common/special_projects/zz_cp26_fix_vanilla_colony_projects.txt   (Stella Maris + Shadow People)
+    events/zz_cp26_fix_vanilla_colony_events.txt                     (hrb_colony.75 + hrb_colony.83)
+
+  Fichier modifié :
+    events/zz_cp26_fix_country_events.txt                            (durcissement is_same_value check)
+
+  → Effet en jeu :
+    - 3 warnings éliminés du log (CP26 self-opinion, Stella Maris scope,
+      hrb_colony.75 scope).
+    - Mission chains "Of Klingons and Romulans" et "Stella Maris" arrivent
+      désormais à leurs payouts trait/research même si le scientifique
+      est absent au moment de l'on_success.
+    - L'event return-visit de Planet of Ruins (J+3600) n'est plus perdu.
+    - Les 3 warnings non-fixés restent visibles mais documentés comme
+      "vanilla intentionnel" ou "fix risqué non rentable".
+
+[CRASH][HIGH] Fix locators part1/part2 manquants — 3 entities (spy ships + station)
+  Symptôme : SIGSEGV dans `CullAndUpdateEntitiesRecursive` (rendu d'entités)
+  après ~8 minutes de jeu. Stack trace : 5 niveaux récursifs dans le quadtree
+  d'entités → crash au moment où une entité essaie de résoudre un attach
+  point inexistant.
+
+  Cause (visible dans logs/error.log) — 3 warnings juste avant le crash :
+    [pdx_entity.cpp:1260]: ufop_01_military_station_small_entity has no attach point named part2
+    [pdx_entity.cpp:1260]: ufop_01_spy_ship_entity has no attach point named part1
+    [pdx_entity.cpp:1260]: klingon_01_spy_ship_entity has no attach point named part1
+    → SIGSEGV 11 secondes après le 3e warning
+
+  Pourquoi maintenant et pas avant : la levée de la limite warp pour les
+  spy/transport/military/construction ships (`ignores_warp_range = yes`)
+  fait que ces vaisseaux circulent désormais partout. Avant ils restaient
+  près de leur territoire, étaient peu construits par l'AI, et ne croisaient
+  jamais le viewport assez longtemps pour déclencher l'attachement raté.
+
+  Fix : ajout du bloc `locator = { name = "part1" position = { 0 0 0 } }`
+  (ou `part2`) sur les 3 entities, calque exact du pattern déjà utilisé pour
+  California / Sovereign / Klingon plus tôt dans la session.
+
+  Fichiers modifiés :
+    gfx/models/ships/ufop_01/_ufop_01_ships_entities.asset      (2 ajouts : part1 spy, part2 station)
+    gfx/models/ships/klingon_01/_klingon_01_ships_entities.asset (1 ajout : part1 spy)
+
+  Audit complémentaire : recherche exhaustive de tous les warnings
+  `has no attach point` dans game error.log + tous les crash dumps.
+  Résultat = uniquement ces 3 entities. Aucune autre n'est concernée
+  (les autres entities .asset du mod sans part1/part2 ne sont jamais
+  demandées avec un attachement, donc safe).
+
+  → Effet en jeu :
+     - Plus de crash quand spy ships UFOP/Klingon circulent dans le viewport.
+     - Plus de crash quand military station small UFOP est rendue à l'écran.
+     - Aucun impact gameplay (locator position 0 0 0 = attach point au centre
+       du mesh, pattern standard utilisé partout dans le mod).
+
+[CRASH][HIGH] Fix Denobula colony — même pattern que Vega, deuxième occurrence
+  Symptôme : SIGSEGV dans `CConstructionQueueManager::DailyUpdate` après
+  ~14 minutes de jeu en partie UFOP. Crash random selon l'AI Denobulan qui
+  finit par toucher la queue corrompue. Même signature exacte que le crash
+  Vega que tu avais fixé.
+
+  Cause : `events/aacoldenob_events.txt` (event `aa_coldenob.1000`, game start
+  UFOP) faisait `create_colony` sur Denobula puis, deux sub-blocs plus loin
+  dans `random_owned_planet`, `add_building = building_clinic` au même tick.
+  Pattern strictement identique à celui de Vega (`vgcol_events.txt` avant
+  ton fix) : la `ConstructionQueue` de la planète est dans un état non
+  stabilisé quand `add_building` est commit → corruption silencieuse → SIGSEGV
+  quand l'engine itère sur la queue dans un `DailyUpdate` ultérieur.
+
+  Fix : calque du pattern Vega
+    • events/aacoldenob_events.txt L54 : `add_building = building_clinic` retiré,
+      remplacé par `set_planet_flag = cp26_denobula_needs_clinic`.
+    • events/cp26_delayed_capital_upgrade.txt : nouveau bloc `if` dans
+      `cp26_capital_upgrade.2`, sibling du bloc Vega :
+          if = {
+              limit = { has_planet_flag = cp26_denobula_needs_clinic }
+              add_building = building_clinic
+              remove_planet_flag = cp26_denobula_needs_clinic
+          }
+      Le clinic est donc commit à J+3 via le même mécanisme que le foundry
+      Vega, après stabilisation de la queue par l'engine.
+
+  → Effet en jeu :
+     - Denobula garde son clinic dès le tout début de partie (J+3 au lieu de J+0).
+     - Plus de crash random `DailyUpdate` lié à la queue Denobula.
+     - Lore intact : la Fédération équipe toujours sa colonie avec ce qu'il faut.
+
+[AUDIT][LOW] Audit exhaustif `create_colony` + `add_building` / `remove_building`
+  Suite au fix Vega + Denobula, audit complet de tous les patterns à risque
+  pour la `CConstructionQueue` dans le mod (events/ + common/scripted_effects/ +
+  common/solar_system_initializers/).
+
+  Résultat — TOUS les autres cas sont safe :
+    • Remus, Risa, Lunar One, Mars, Trill northern colony :
+      `create_colony` seul, sans `add_building` voisin.
+    • Setup capitales Tholian / Orion / Gorn / Breen :
+      uniquement `add_district_and_planet_size_if_needed_effect` + flag
+      `cp26_needs_capital_upgrade` → opérations sensibles routées vers J+3.
+    • Breen Secundus, Orion Verex : `create_colony` seul, pas de building immédiat.
+    • Solar system initializers Cardassia, Romulus/Glintara,
+      20 minor factions (other_owned/*) : aucun `add_building`.
+    • `XL_MAP.002` (admin offices UFOP/Klingon) : déclenché via le hook
+      moteur `empire_init_capital_planet` après stabilisation complète de
+      la capitale (pattern vanilla, safe).
+    • `cp26_delayed_capital_upgrade.txt` : la seule occurrence de
+      `remove_building` du mod, déjà différée J+3 par construction.
+
+  Cas surveillé (non-fixé) :
+    • `common/solar_system_initializers/klingon/klingon_khitomer_initializer.txt:53`
+      `late_init_effect = { create_khitomer_colony = yes ; add_building = building_bureaucratic_1 }`
+      Pattern syntaxiquement similaire mais sémantiquement différent : tout
+      est dans un seul bloc `late_init_effect`, un hook moteur dédié dans
+      lequel le moteur garantit l'ordre commit. Vanilla utilise déjà ce
+      pattern (`create_khitomer_colony` contient lui-même un
+      `add_building = building_capital` interne) sans crash signalé. À
+      retirer ou différer si un crash Klingon-spécifique remonte.
+
+[HOTFIX][LOW] Crash SIGSEGV après le load — 3 modifiers research-catégorie invalides
+  Symptôme : crash signal 11 (SIGSEGV) dans `CullAndUpdateEntitiesRecursive`
+  juste après le passage au tick de gameplay. Stack trace propre côté moteur
+  (pas de save corrompue), pointait l'entity system du rendu d'objets.
+
+  Cause réelle (visible dans logs/error.log juste avant le crash) :
+    [modifier.cpp:2758]: Invalid modifier planet_jobs_society_research_produces_mult
+                         at common/traits/zz_cp26_minor_species_traits.txt line: XX
+    (12 occurrences sur 3 noms de modifiers, 9 races impactées)
+
+  Les modifiers `planet_jobs_society_research_produces_mult`,
+  `planet_jobs_physics_research_produces_mult`,
+  `planet_jobs_engineering_research_produces_mult` apparaissent en clair dans
+  les fichiers vanilla STI (`static_modifiers/02_static_modifers.txt`,
+  `species_rights/06_species_rights_profiles.txt`) mais **TOUS commentés**.
+  Vestiges Stellaris non portés en Star Trek: Infinite — l'engine STI ne sait
+  PAS les évaluer et les marque "Invalid". Les traits species qui les
+  référencent retournent des modifiers fantômes, ce qui corrompt l'état des
+  pops puis casse le rendu d'entités au premier update.
+
+  Fix : remplacement des 12 occurrences par `planet_jobs_research_produces_mult`
+  (modifier générique research effectivement supporté par STI, utilisé dans
+  `trait_intelligent` et 30+ traits species vanilla). Pour le trait Bajoran
+  `trait_selective_researchers_bajoran` qui combinait 2 lignes drawback
+  -10% chacune (-20% net), consolidation en une seule ligne -10% pour
+  éviter la double pénalisation lors du collapse.
+
+  Fichier modifié :
+    common/traits/zz_cp26_minor_species_traits.txt   (12 lignes, 11 traits)
+    Mod info/CP26_MINOR_SPECIES_TRAITS.txt           (doc HOTFIX en bas)
+
+  → Effet en jeu :
+     - Plus de "Invalid modifier" dans error.log au load.
+     - Bonus research conservés en magnitude, généralisés (au lieu d'être
+       fléchés society / physics / engineering).
+     - Suppression du crash SIGSEGV au premier update entité.
+
+[FEAT][LOW] Galaxie étalée pour combler l'espace vide (×1.20 autour du centroïde)
+  Le joueur a observé que les systèmes paraissaient collés au centre/nord
+  de la map avec encore beaucoup d'espace vide visible. Plutôt que toucher
+  au radius (interdit, limite engine 500), application d'un scale uniforme
+  ×1.20 autour du centroïde géométrique de la galaxie (cx=-8, cy=289).
+
+  Algorithme : nouvelle_position = centroïde + (ancienne - centroïde) × 1.20
+  pour les 258 positions de systèmes + nebulas (Alpha-Beta_medium.txt
+  + tutorial.txt synchronisés).
+
+  Constantes spatiales scalées proportionnellement pour cohérence :
+    nebula_size            : 31  → 37
+    nebula_min_dist        : 102 → 122
+    hazard_min_dist        : 102 → 122
+    hazard_major_min_dist  : 26  → 31
+    max_hyperlane_distance : 28  → 34  (non critique, num_hyperlanes = 0)
+
+  Vérifications géométriques post-scale :
+    Hypot max depuis (0,0) : 435 (vs radius 500 → marge 65 unités)
+    X range                : -369 → +426 (camera_limit_max_x = 434 → marge 8)
+    Y range                : -36 → +427  (camera_limit_max_y = 450 → marge 23)
+    Aucune sortie de box engine, aucun ajustement caméra nécessaire.
+
+  Backups : Alpha-Beta_medium.txt.bak.before_scale_B120, tutorial idem.
+
+  → Effet : galaxie 20% plus étalée dans toutes les directions, l'espace
+    vide visible sur le screenshot est désormais comblé. La forme relative
+    et le centre visuel de la galaxie sont préservés.
+
+[FEAT][LOW] Second passage d'étalement — hypot max moteur + caméra alignée
+  Après le ×1.20, il restait encore ~64 unités de marge sous radius=500
+  (hypot max ~435). Le joueur voyait encore du vide en haut / sur les côtés.
+  Deuxième scale depuis le même centroïde (-7.5, 289.5), facteur binaire
+  recherché pour plafonner hypot à 498 (sous le cap 500). Ce facteur
+  (×1.158603) s'applique aux positions déjà passées au ×1.20 (état fichier
+  avant ce second passage), pas aux positions vanilla d'origine.
+
+  Géométrie résultante :
+    hypot max ≈ 498.0   bbox X ≈ -427 .. +495   Y ≈ -88 .. +449
+
+  Les limites caméra (steps 2–7) ont été recalculées : le step 2 englobe
+  le bbox + 22 px de marge, les steps 3–7 reprennent les mêmes ratios de
+  rétrécissement qu'avant (zoom interne), avec clamp [-498, 498] pour
+  rester dans la box moteur. Ex. step 2 : max_x=498, max_y=471.
+
+  Constantes spatiales re-scalées depuis les valeurs post-B120 :
+    nebula_size 37→43, nebula_min_dist 122→141, hazard idem, hazard_major
+    31→36, max_hyperlane_distance 34→39.
+
+  Backups supplémentaires : *.bak.before_scale_B120_max
+
+  → Effet : galaxie utilisant quasiment tout le disque autorisé par le
+    radius 500, y compris davantage d'écart vers le haut (Y min plus bas,
+    Y max plus haut) et vers la droite, sans augmenter radius.
+
+[CRASH][HIGH] Radius galaxie 570 → 500 (limite engine hardcodée)
+  Cause racine des crashes aléatoires SIGSEGV / EXC_BAD_ACCESS dans
+  CConstructionQueueManager::DailyUpdate et CSaveGameTaskManager::
+  CreateMemoryFiles (Mac et Windows — "access violation 0xc0000005" sous
+  Windows, KERN_PROTECTION_FAILURE sous macOS).
+
+  Diagnostic :
+  Le moteur Clausewitz (commun à Stellaris et Star Trek: Infinite) impose
+  une limite HARDCODÉE de radius <= 500. La doc officielle Paradox dit :
+
+    "the map in Stellaris is a box 1000x1000x10, from -500 to +500"
+    "Map radius (max 500)"
+    "should be less than 500, preferably less than ~460"
+    — Stellaris Wiki, Map_modding
+
+  Au-dessus de 500, les structures spatiales internes du moteur
+  (quadtree de proximity, grilles pathfinding, indices ConstructionQueue)
+  débordent et provoquent des accès mémoire hors zone allouée. Le crash
+  apparait au moment où un objet (constructeur, flotte, save serializer)
+  tombe dans la zone fantôme — d'où le caractère aléatoire.
+
+  État actuel CP26 :
+    - Alpha-Beta_medium.txt : radius = 570  (HORS LIMITE)
+    - tutorial.txt           : radius = 570  (HORS LIMITE)
+    - Tous les autres scenarios : radius 300/400/450 (OK)
+
+  Mesure géométrique : les 258 positions de systèmes ont une distance
+  maximale de 405 depuis l'origine (hypot). Baisser le radius à 460
+  garde TOUS les systèmes dans la box avec 55 unités de marge.
+
+  Fix :
+    - Alpha-Beta_medium.txt : radius 570 → 498 (engine hard cap exact)
+    - tutorial.txt          : radius 570 → 498 (sync)
+    - Camera limits inchangées (max abs = 450, déjà dans la box engine)
+    - Hypot max système = 405, donc 95 unités de marge sous le cap engine.
+
+  → Effet attendu : élimination des crashes aléatoires
+    SIGSEGV/access-violation au runtime et au save. C'est la cause RACINE
+    qu'on cherchait depuis le début. Mes diagnostics précédents (queue
+    de construction "saturée par le ship_data dynamique", ConstructionQueue
+    "corruption script") étaient des amplificateurs au mieux, pas la cause.
+    Le radius était bien le problème.
+
+[CRASH][HIGH] Hotfix — modifier invalide ship_weapon_damage_mult (Breen doctrine)
+  Le modifier cp26_minor_breen_combat_doctrine introduit en B.6 utilisait le
+  nom `ship_weapon_damage_mult` qui N'EXISTE PAS dans STI. Le bon nom vanilla
+  est `ship_weapon_damage`. Quand le setup_breen_capital appliquait le
+  modifier au Breen country, le moteur tombait dans un état inconsistent
+  et finissait par crasher quelques secondes plus tard.
+
+  Symptôme dans error.log :
+    [modifier.cpp:2758]: Invalid modifier ship_weapon_damage_mult at
+      common/static_modifiers/zz_cp26_minor_faction_modifiers.txt line: 47
+
+  Fix : `ship_weapon_damage_mult = 0.10` → `ship_weapon_damage = 0.10`.
+
+  → Effet : plus de crash au moment du spawn Breen ; doctrine Breen
+    fonctionne désormais comme prévu (+25% armor, +10% weapon damage,
+    -10% fire rate).
+
+[CRASH][HIGH] Fix Vega colony — pattern create_colony + add_building same-tick
+  `events/vgcol_events.txt` (vg_col.1000, trigger on_game_start) contenait
+  le pattern dangereux documenté dans CP26_CONSTRUCTION_QUEUE_CRASH_FIX.txt :
+  `create_colony` suivi immédiatement par `add_building = building_foundry_1`
+  dans le même bloc `random_system_planet`, même tick. Cela corrompt la
+  CConstructionQueue (pointeur dangling sur building_colony_shelter créé
+  implicitement par create_colony), provoquant un SIGSEGV dès la première
+  sauvegarde (CSaveGameTaskManager::CreateMemoryFiles).
+
+  Fix :
+    - events/vgcol_events.txt :
+        • Retrait de `add_building = building_foundry_1` du bloc create_colony.
+        • Ajout de `set_planet_flag = cp26_needs_capital_upgrade`.
+        • Ajout de `set_planet_flag = cp26_vega_needs_foundry` pour la
+          fonderie différée.
+    - events/cp26_delayed_capital_upgrade.txt (cp26_capital_upgrade.2) :
+        • Après le `add_building = building_capital`, ajout d'un bloc
+          conditionnel `has_planet_flag = cp26_vega_needs_foundry` qui pose
+          `building_foundry_1` à J+3 (hors du tick de création de colonie).
+
+  → Effet : Vega garde sa fonderie (lore intact), mais la pose est différée
+    hors du tick critique. Plus de corruption ConstructionQueue au game-start.
+
+[FIX][LOW] Caméra Galaxy View — systèmes du sud inaccessibles au dézoom
+  Symptôme : impossible d'atteindre les systèmes les plus au sud quand
+  on dézoome (Romulan, Cardassian, certains minors).
+
+  Cause : les `camera_limit_max_y` étaient calibrés pour les anciennes
+  positions de la galaxie. Avec le layout actuel les systèmes vont
+  jusqu'à Y=404, mais les limites étaient :
+    step 2 : 358   step 3 : 342   step 4 : 327
+    step 5 : 312   step 6 : 296   step 7 : 281
+  → tous les systèmes Y > 281 devenaient inaccessibles au max zoom out.
+
+  Fix : `camera_limit_max_y` remonté à 440-450 sur les 6 steps de
+  zoom-out dans Alpha-Beta_medium.txt et tutorial.txt (synchronisés).
+
+  → Effet : tous les systèmes du sud à nouveau cliquables à tous les
+    niveaux de zoom.
+
+
+[FIX][LOW] A.1 — Event country.27500 défini en double
+  Le fix CP26 du First Contact Bonus (civic Diplomatic Expertise) coexistait
+  avec la version vanilla buguée dans events/hornblower_country_events.txt.
+  Le moteur loggait "an event with id [country.27500] already exists!" et
+  pouvait charger la version vanilla cassée (qui skip silencieusement le
+  bonus d'opinion). Bloc vanilla retiré, seule la version corrigée de
+  zz_cp26_fix_country_events.txt reste active.
+
+  → Effet : tous les first contacts avec un empire portant le civic
+    Diplomatic Expertise donnent désormais bien le bonus d'opinion aux
+    deux parties (avant : ~50% des cas le perdaient).
+
+[FIX][LOW] A.2 — Tech warp speed dupliquées
+  tech_warp_speed_increase_1 et _2 étaient définies à la fois dans :
+    - common/technology/zz_cp26_warp_techs.txt (valeurs CP26 +30%)
+    - vanilla 00_hornblower_eng_techs.txt et 00_hornblower_unsupported_techs.txt
+      (valeurs vanilla +20% et +10%)
+  Le moteur loggait "Duplicate technology" et pouvait appliquer la mauvaise
+  version, cassant le design "warp lent en early, accéléré progressivement
+  par tech".
+  Fix : ajout de replace_path pour les 2 fichiers vanilla, et retrait des
+  deux blocs dupliqués dans les copies CP26.
+
+  → Effet : le design warp CP26 est désormais réellement appliqué :
+    65% vanilla speed en early → 85% (Warp 5) → 104% (Warp 6) → 120% (Warp 7).
+
+[FIX][LOW] A.5 — District romulan sans extension .txt
+  Le fichier common/districts/z_hornblower_romulan_districts n'avait pas
+  d'extension .txt → silencieusement ignoré par le parseur. Renommé en
+  z_hornblower_romulan_districts.txt.
+
+  → Effet : les districts romulans définis dans ce fichier sont à nouveau
+    chargés. L'économie romulan side recouvre sa configuration prévue.
+
+[FIX][LOW] B.3 — California Hero shield bug
+  Le California Hero (UFOP) avait `ship_shield_mult = 0.9` (+90% bouclier),
+  manifestement une typo de `-0.1` (les 5 autres modifiers étaient bien
+  à -0.1, pattern "no admiral"). Le héros était quasi indestructible.
+  Fix : 0.9 → -0.1. Ajout d'un petit `ship_hull_mult = -0.1` pour respecter
+  le lore de vaisseau utilitaire (Lower Decks, pas un capital ship héros).
+
+  → Effet : équilibre combat UFOP rétabli. Cohérence avec les autres ships
+    héros vanilla (Dderidex_hero, etc.).
+
+[BAL][LOW] B.5 — AI_MAX_DISTANCE 300 → 230
+  CP26 portait AI_MAX_DISTANCE à 300 (vanilla 200) pour rendre l'IA plus
+  agressive. Mais avec une galaxie de rayon 630, 300 = ~½ galaxie : l'IA
+  planifiait des guerres jusqu'à l'autre bout du monde, consommait de la
+  CPU pour rien, et contribuait probablement aux crashs
+  CConstructionQueueManager::DailyUpdate. Réduit à 230 : plus agressive
+  que vanilla, mais reste sur le voisinage.
+
+  → Effet attendu : performances mid/late game améliorées, IA plus
+    cohérente géographiquement, réduction du risque de crash construction.
+
+[FEAT][MED] B.6 — Différenciation des 4 minor factions (Gorn, Tholian, Orion, Breen)
+  Avant : les 4 minors utilisaient les mêmes stats vanilla, identité
+  purement visuelle. Tactique de combat indistincte.
+  Ajout : `common/static_modifiers/zz_cp26_minor_faction_modifiers.txt`
+  avec 4 doctrines de combat lore-cohérentes, appliquées sur le country
+  via `add_modifier` lors du `setup_*_capital` (jamais ré-appliqué grâce
+  à un guard `has_modifier`).
+
+    Gorn    : +20% hull, -10% speed, -15% evasion        (lourd & lent)
+    Tholian : +25% shields, +30% shield regen, -10% hull (énergie & fragile)
+    Orion   : +15% fire rate, +10 evasion, -15% armor    (rapide & punchy)
+    Breen   : +25% armor, +10% weapon damage, -10% rate  (lourd & froid)
+
+  Localisations EN + FR ajoutées.
+
+  → Effet : chaque rencontre avec un minor demande désormais une approche
+    tactique différente, ce qui valorise la phase d'exploration.
+
+[FEAT][LOW] C.Civils — Refonte des species classes minor factions
+  Avant : 19 prescripted minors partageaient tous la classe "HRB", avec
+  14 fichiers contenant "TODO: Create custom class". Pool de portraits
+  partagé entre Bajoran (spirituel), Talarian (belliqueux), etc. → aucune
+  identité visuelle distincte.
+  Ajout : `common/species_classes/zz_cp26_minor_species_classes.txt`
+  avec 3 classes thématiques (mêmes paramètres mécaniques, identique au
+  moteur — différenciation purement visuelle) :
+
+    HRB_DIPLO  → Bajoran, Betazoid, Trill, Kaelon, Malcorian, Iyaaran  (6)
+    HRB_TRADE  → Bolian, Boslic, Hupyrian, Lissepian, Pelian, Farian   (6)
+    HRB_HARDY  → Acamarian, Cairn, Talarian, Tanugan, Kesprytt,
+                 Ktarian, Idanian                                       (7)
+
+  Tous les fichiers prescripted/00_*.txt ont été patchés vers la bonne
+  classe (sauf 00_jnaii.txt qui garde sa classe JNA propre).
+  Documentation : Mod info/CP26_MINOR_SPECIES_CLASSES.txt.
+
+  → Effet : chaque archétype minor a son propre pool de portraits.
+    HRB_HARDY utilise graphical_culture = minor_01 (look distinct).
+    Identité visuelle des minors lisible en jeu.
+
+[POLISH][LOW] B.5 + diverses doctrines AI déjà en place
+  AI_MAX_DISTANCE corrigé (voir ci-dessus). Le reste du fichier
+  zz_cp26_ai_defines.txt (AI_FOCUS_SCORE_MULT, WAR_ATTACK_CLAIM_PRIO,
+  FLEET_GROUP_ABORT_MISSION_MULT, etc.) reste inchangé.
+
+[DOC]      Mod info/CP26_BORG_CRISIS.txt
+  Analyse complète de l'état du crisis Borg vanilla (4 829 lignes
+  d'events, chain finale "The Freed" commentée → crisis qui se termine
+  en queue de poisson) + plan en 3 phases (A = fix simple, B = tuning
+  des délais, C = anti-Borg fleet missions). Phase A recommandée
+  prioritaire — pas encore appliquée, attend feu vert.
+
+[DOC]      Mod info/CP26_MINOR_SPECIES_CLASSES.txt
+  Documentation détaillée de la refonte des species classes (justification,
+  mapping, choix techniques, plan phase 2 futur).
+
+[POLISH]   Repo cleanup
+  - Création de `.gitignore` (ignore .DS_Store, *.bak, .vscode/, etc.).
+  - Suppression des 16 fichiers .DS_Store présents (15 trackés via
+    `git rm --cached` + 1 non tracké).
+  - Suppression du backup obsolète
+    map/setup_scenarios/Alpha-Beta_medium.txt.bak.before_scaleC.
+  - Renommage du district romulan (voir A.5 ci-dessus).
+
+[FEAT][MED] C.ShipData — Option A : ship_data dynamique (yearly pulse + flags)
+  Avant : constructor min=3 max=3, science min=3 max=3, colonizer min=0 max=1
+  → l'AI plafonnait dès le début et restait sous-staffée en mid/late game
+  (commentaire HRB_TODO "fix how ship_data works, add support for dynamic
+  modifiers" laissé par les devs originaux).
+
+  Implémentation :
+    - Event annuel `cp26_ai_pulse.1` (events/zz_cp26_ai_pulse_events.txt)
+      set un country_flag selon count_owned_planet :
+        small  : 0 - 3    flag = cp26_empire_size_small
+        medium : 4 - 7    flag = cp26_empire_size_medium
+        large  : 8 - 14   flag = cp26_empire_size_large
+        huge   : 15+      flag = cp26_empire_size_huge
+    - Déclenché par on_yearly_pulse_country + 1 fois au game_start_country
+      (pour ne pas attendre 1 an).
+    - Le ship_data dans zz_cp26_default_country_type.txt lit ces flags
+      via des fraction modifiers et augmente progressivement les targets
+      des 3 catégories.
+
+  Nouveaux bornes / fractions :
+    constructor  min=3 max=6   fraction 0.05 +0.05/medium +0.10/large +0.15/huge
+    science      min=3 max=5   fraction 0.03 +0.04/large +0.07/huge
+    colonizer    min=0 max=6   fraction 0.10 +0.10/medium +0.20/large +0.30/huge
+                              (avec garde-fous existants conservés : factor=0
+                               si déjà occupé, food < 2000, etc.)
+
+  → Effet attendu :
+    - Early game (1-3 planètes) : ~comme avant (3 constructors, 0-1 colonizer).
+    - Mid game (4-7) : 4-5 constructors, 1-2 colonizers en chantier.
+    - Large (8-14) : 5-6 constructors, 2-3 colonizers, 3-4 science.
+    - Huge (15+) : 6 constructors saturés, 3+ colonizers, 5 science.
+    L'AI ne lâche plus son expansion en mid/late game, ses systèmes
+    annexes (mining/research stations) sont mieux construits.
+  → Impact CPU : 1 trigger eval par AI country par an → négligeable.
+
+[FEAT][LOW] C.Civils — Création des 60 traits species minor factions
+  Les 20 prescripted minor factions de CP26 référençaient chacune 3 traits
+  species custom dans leur fichier prescripted_countries/00_*.txt (Bajoran,
+  Betazoid, Bolian, etc.), pour un total de 60 noms uniques. Audit : aucun
+  de ces 60 traits n'était défini nulle part — pas de fichier dans
+  common/traits/, pas de localisation. Le moteur les ignorait silencieusement,
+  les pops de ces 20 races démarraient avec ZÉRO trait species effectif.
+
+  Stratégie B retenue (création complète, parité avec les 4 majeures CP26
+  qui ont déjà chacune 3 traits species dédiés).
+
+  Fichiers créés :
+    common/traits/zz_cp26_minor_species_traits.txt                       (60 traits)
+    localisation/english/zz_cp26_minor_species_traits_l_english.yml      (UTF-8 BOM)
+    localisation/french/zz_cp26_minor_species_traits_l_french.yml        (UTF-8 BOM)
+    Mod info/CP26_MINOR_SPECIES_TRAITS.txt                               (doc design)
+
+  Pattern par race : 1 trait signature majeur (cost=4) + 1 trait positif
+  secondaire (cost=2) + 1 trait drawback culturel (cost=-1).
+  Budget net par race ≈ +3 à +5 cost, modifiers modérés (±10-20%).
+
+  Modifiers utilisés : tous observés dans aa_tholian_traits, denobulan_traits,
+  risan_traits, remus_traits ou 00_hornblower_leader_traits (aucun inventé) :
+  pop_growth_speed, pop_amenities_usage_mult, pop_housing_usage_mult,
+  planet_pops_organics_food_upkeep_mult, planet_pops_energy_upkeep_mult,
+  planet_jobs_*_produces_mult (worker/specialist/ruler/unity/research),
+  planet_stability_add, army_damage_mult, army_health, leader_age,
+  trade_value_add, envoys_add, diplo_weight_economy_mult, ship_speed_mult.
+
+  Identités par archetype :
+    HRB_DIPLO (Bajoran, Betazoid, Iyaaran, Kaelon, Malcorian, Trill) →
+      research society + leader long-lived + drawback "amenity heavy/slow"
+    HRB_TRADE (Bolian, Boslic, Farian, Hupyrian, Lissepian, Pelian) →
+      trade value + production specialist/worker + drawback social
+    HRB_HARDY (Acamarian, Cairn, Idanian, Kesprytt, Ktarian, Talarian, Tanugan) →
+      armée + stabilité + research society + drawback instabilité/pacifisme
+    JNA (Jnaii) → conformiste, 3 traits positifs équilibrés
+
+  Aucune modification des prescripted_countries (les noms étaient déjà bons).
+  Aucune modification de l'architecture species_classes (HRB_DIPLO/TRADE/HARDY
+  inchangés).
+
+  → Effet attendu :
+    - Chaque rencontre minor faction devient lisible : forces et faiblesses
+      lore-cohérentes (Bajoran résilient mais conservateur tech, Cairn
+      télépathes pacifistes, Talarien soldats à reproduction lente, etc.).
+    - L'AI minor faction joue mieux sa partie : Bolians orientés trade,
+      Acamariens orientés army, Trills focalisés leaders long-lived.
+    - Pops migrées / conquises / vassales apportent leur trait dans
+      l'empire du joueur (un Talarien intégré = excellente garnison,
+      un Lissepian intégré = booster commerce, etc.).
+    - Plus aucun warning "trait not found" pour ces 60 noms.
+
+================================================================================
+EN ATTENTE DE DÉCISION (non appliqué)
+================================================================================
+
+[?] C.Borg Phase A — Décommenter borg_crisis_end_the_freed
+    Décision en attente : analyse complète disponible dans
+    Mod info/CP26_BORG_CRISIS.txt.
+
+================================================================================

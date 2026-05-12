@@ -27,8 +27,11 @@ event = {
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			set_planet_flag = research_habitat
+			# CP26 fix : utilise notre modifier renommé lunar_one_colony_cp26
+			# pour ne pas être écrasé par la définition vanilla (vide de stats).
+			# Voir 00_aalunmars_static_modifiers.txt pour le contexte.
 			add_modifier = {
-				modifier = lunar_one_colony
+				modifier = lunar_one_colony_cp26
 				days = -1
 			}
 			add_district_and_planet_size_if_needed_effect = {

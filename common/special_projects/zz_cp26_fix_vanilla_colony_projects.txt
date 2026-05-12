@@ -1,0 +1,111 @@
+# CP26 — Fix vanilla colony special projects (2 scope errors)
+# ============================================================
+#
+# BUG vanilla (`common/special_projects/00_hornblower_colony_projects.txt`):
+#   Two special projects do `on_success = { leader = { save_event_target_as = X } ... }`
+#   on a `ship_event` scope. The `leader = { ... }` scope switch expects the
+#   ship to have an assigned scientist (leader pointer). When the science ship
+#   is reassigned, killed or simply has no scientist mapped at the moment
+#   `on_success` resolves, the engine logs:
+#
+#     Script Error: Invalid context switch [leader] from <ship_name> [ship]
+#
+#   and silently drops the `save_event_target_as`. Later events that try to
+#   use `event_target:original_scientist` or `event_target:aqueduct_scientist`
+#   then fail with "Undefined event target" and an unsupported-scope error.
+#
+# FIX :
+#   Wrap each `leader = { save_event_target_as = X }` in
+#   `if = { limit = { exists = leader } ... }` so the scope switch is only
+#   attempted when there actually IS a leader on the ship. If there is none,
+#   the special project still completes (the colony / mission chain proceeds
+#   normally) — only the scientist-specific bonus (trait reward in the
+#   downstream event) is skipped, which is the same outcome as today
+#   minus the error log.
+#
+# Loaded after the vanilla file (zz_* prefix) so these redefinitions
+# overwrite the originals via the singleobject database.
+
+# --- Special Project #1 : THE_SHADOW_PEOPLE (original scientist) -----------
+special_project = {
+	key = "THE_SHADOW_PEOPLE"
+	days_to_research = 120
+	tech_department = engineering_technology
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_enterprise_bridge_conversation_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_vorcha_bridge_conversation_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_valdore_bridge_conversation_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_keldon_bridge_conversation_cardassian
+	}
+
+	picture = GFX_evt_archaeology_excavation
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		# CP26 fix : guard against missing leader to avoid "Invalid context
+		# switch [leader] from <ship>" error in events using event_target:original_scientist
+		if = {
+			limit = { exists = leader }
+			leader = { save_event_target_as = original_scientist }
+		}
+		ship_event = { id = hrb_colony.12001 }
+	}
+}
+
+# --- Special Project #2 : COLONY MISSION TREE (Stella Maris / aqueduct) ----
+special_project = {
+	key = "AQUEDUCT_LIFEFORM"
+	days_to_research = 5
+	tech_department = engineering_technology
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_away_team
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_away_team_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_away_team_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_away_team_cardassian
+	}
+
+	picture = GFX_evt_archaeology_excavation
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		# CP26 fix : same guard as above (prevents the SIGSEGV-adjacent log
+		# error on USS Olympia and equivalents).
+		if = {
+			limit = { exists = leader }
+			leader = { save_event_target_as = aqueduct_scientist }
+		}
+		event_target:colony_stella_maris = { owner = { country_event = { id = hrb_colony.82 days = 5 } } }
+	}
+}

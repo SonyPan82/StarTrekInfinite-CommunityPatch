@@ -1,0 +1,678 @@
+# CP26 - Minor Species Traits
+# ============================================================
+# 60 species traits for the 20 prescripted minor factions.
+# Each race gets 3 unique lore-driven traits.
+#
+# Naming follows the conventions already referenced in
+# prescripted_countries/00_*.txt (no rename needed).
+#
+# Structure :
+#   - 18 traits HRB_DIPLO : Bajoran, Betazoid, Iyaaran, Kaelon, Malcorian, Trill
+#   - 18 traits HRB_TRADE : Bolian, Boslic, Farian, Hupyrian, Lissepian, Pelian
+#   - 21 traits HRB_HARDY : Acamarian, Cairn, Idanian, Kesprytt, Ktarian, Talarian, Tanugan
+#   -  3 traits JNA       : Jnaii
+#
+# Design budget per race : ~+3 to +5 total cost (light "above vanilla" tilt
+# fitting their bespoke/prescripted status). Most positives are cost=2 with
+# a flagship trait at cost=4 ; each race has one cost=-1 cultural drawback.
+#
+# Modifiers used are all visible in existing CP26 / vanilla STI trait files
+# (aa_tholian_traits, denobulan_traits, remus_traits, risan_traits,
+# 00_hornblower_leader_traits).
+
+# ============================================================
+# HRB_DIPLO - Diplomatic / Empathic minors
+# ============================================================
+
+# --- Bajoran : survivors of the Cardassian Occupation, deeply spiritual
+trait_survivors_bajoran = {
+	cost = 4
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_growth_speed = 0.10
+		army_damage_mult = 0.10
+		planet_pops_organics_food_upkeep_mult = -0.10
+	}
+}
+
+trait_prophetic_believer_bajoran = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.15
+		leader_age = 10
+	}
+}
+
+trait_selective_researchers_bajoran = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_research_produces_mult = -0.10
+	}
+}
+
+# --- Betazoid : empathic, matriarchal noble houses
+trait_empath_betazoid = {
+	cost = 4
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		envoys_add = 1
+		planet_jobs_research_produces_mult = 0.10
+	}
+}
+
+trait_matriarcal_houses_betazoid = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		leader_age = 20
+		planet_stability_add = 0.05
+	}
+}
+
+trait_hard_to_please_betazoid = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_amenities_usage_mult = 0.20
+	}
+}
+
+# --- Iyaaran : ascetic, no leisure, slow but undemanding
+trait_leisureless_iyaaran = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_worker_produces_mult = 0.10
+	}
+}
+
+trait_undemanding_iyaaran = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_amenities_usage_mult = -0.20
+		pop_housing_usage_mult = -0.10
+	}
+}
+
+trait_unhurried_iyaaran = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_rapid_breeders" "trait_slow_breeders" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_growth_speed = -0.20
+	}
+}
+
+# --- Kaelon : conservatives clinging to fading resources, reclusive
+trait_conservative_kaelon = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_research_produces_mult = -0.10
+		leader_age = 10
+	}
+}
+
+trait_resourceful_kaelon = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_worker_produces_mult = 0.10
+		planet_pops_energy_upkeep_mult = -0.10
+	}
+}
+
+trait_secluded_kaelon = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_amenities_usage_mult = 0.10
+	}
+}
+
+# --- Malcorian : philosophical, traditionalist, cynical first-contact case
+trait_transcendentalists_malcorian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_research_produces_mult = 0.10
+	}
+}
+
+trait_traditionalists_malcorian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_stability_add = 0.10
+		leader_age = 10
+	}
+}
+
+trait_cynical_malcorian = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		diplo_weight_economy_mult = -0.10
+	}
+}
+
+# --- Trill : joined symbionts give lifetimes of accumulated wisdom
+trait_joined_elite_trill = {
+	cost = 4
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		leader_age = 30
+		planet_jobs_specialist_produces_mult = 0.05
+	}
+}
+
+trait_experience_seekers_trill = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_research_produces_mult = 0.10
+	}
+}
+
+trait_private_trill = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_ruler_produces_mult = -0.10
+	}
+}
+
+# ============================================================
+# HRB_TRADE - Mercantile / Opportunistic minors
+# ============================================================
+
+# --- Bolian : entrepreneurs, aristocratic, iron-rich digestion
+trait_entrepreneurial_bolian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		trade_value_add = 1
+		planet_jobs_specialist_produces_mult = 0.05
+	}
+}
+
+trait_blueblood_bolian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		leader_age = 15
+		planet_stability_add = 0.05
+	}
+}
+
+trait_digestor_bolian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_pops_organics_food_upkeep_mult = -0.20
+	}
+}
+
+# --- Boslic : pirates, smugglers, hardened wanderers
+trait_smugglers_boslic = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		trade_value_add = 2
+	}
+}
+
+trait_roamers_boslic = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		ship_speed_mult = 0.10
+		pop_amenities_usage_mult = -0.10
+	}
+}
+
+trait_amoral_boslic = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_stability_add = -0.10
+	}
+}
+
+# --- Farian : cunning, opportunistic, exploitative
+trait_cunning_farians = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_specialist_produces_mult = 0.10
+	}
+}
+
+trait_entrepreneurial_farians = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		trade_value_add = 1
+		planet_jobs_worker_produces_mult = 0.05
+	}
+}
+
+trait_exploitative_farians = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_stability_add = -0.05
+		diplo_weight_economy_mult = -0.05
+	}
+}
+
+# --- Hupyrian : religiously devout, physically sturdy, voracious
+trait_devout_hupyrian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.10
+	}
+}
+
+trait_sturdy_hupyrian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		army_health = 0.10
+		army_damage_mult = 0.05
+	}
+}
+
+trait_great_needs_hupyrian = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_pops_organics_food_upkeep_mult = 0.20
+	}
+}
+
+# --- Lissepian : keen-eyed traders, punctual, natural mediators
+trait_eye_for_business_lissepian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		trade_value_add = 2
+	}
+}
+
+trait_timely_lissepian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_worker_produces_mult = 0.05
+		planet_jobs_specialist_produces_mult = 0.05
+	}
+}
+
+trait_intermediaries_lissepian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		envoys_add = 1
+	}
+}
+
+# --- Pelian : smart workers, exemplary administrators, restless minds
+trait_smart_workers_pelian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_worker_produces_mult = 0.10
+	}
+}
+
+trait_organized_pelian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_ruler_produces_mult = 0.10
+	}
+}
+
+trait_busy_minds_pelian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_specialist_produces_mult = 0.05
+		planet_jobs_research_produces_mult = 0.05
+	}
+}
+
+# ============================================================
+# HRB_HARDY - Resilient / Frontier minors
+# ============================================================
+
+# --- Acamarian : Highland clans, fierce internal rivalries
+trait_stubborn_resilience_acamarian = {
+	cost = 4
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		army_health = 0.15
+		planet_stability_add = 0.05
+	}
+}
+
+trait_divergent_acamarian = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_stability_add = -0.10
+	}
+}
+
+trait_combative_acamarian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		army_damage_mult = 0.15
+	}
+}
+
+# --- Cairn : pure telepaths, no spoken language, instinctive pacifism
+trait_uninhibited_cairn = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_research_produces_mult = 0.15
+	}
+}
+
+trait_telepathic_cairn = {
+	cost = 4
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		envoys_add = 1
+		planet_jobs_research_produces_mult = 0.10
+	}
+}
+
+trait_pacifists_cairn = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_strong" "trait_very_strong" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		army_damage_mult = -0.20
+	}
+}
+
+# --- Idanian : secret-society undercurrent, vigilant, distant
+trait_secretive_idanian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_ruler_produces_mult = 0.10
+	}
+}
+
+trait_observant_idanian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_specialist_produces_mult = 0.10
+	}
+}
+
+trait_reserved_idanian = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		diplo_weight_economy_mult = -0.10
+	}
+}
+
+# --- Kesprytt : two factions in cold conflict, utilitarian engineers
+trait_disbelieving_kesprytt = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.10
+	}
+}
+
+trait_utilitarian_kesprytt = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_amenities_usage_mult = -0.15
+		pop_housing_usage_mult = -0.10
+	}
+}
+
+trait_ununified_kesprytt = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_stability_add = -0.10
+	}
+}
+
+# --- Ktarian : master deceivers, mind-altering tech, disruptive
+trait_deceivers_ktarian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_ruler_produces_mult = 0.10
+	}
+}
+
+trait_neuro_engineers_ktarian = {
+	cost = 4
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_research_produces_mult = 0.15
+	}
+}
+
+trait_disruptive_ktarian = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_stability_add = -0.05
+		pop_amenities_usage_mult = 0.10
+	}
+}
+
+# --- Talarian : militaristic patriarchy, honor above life, strict society
+trait_vigilant_talarian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		army_health = 0.10
+	}
+}
+
+trait_undying_duty_talarian = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		army_damage_mult = 0.15
+	}
+}
+
+trait_chaste_talarian = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_rapid_breeders" "trait_slow_breeders" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_growth_speed = -0.20
+	}
+}
+
+# --- Tanugan : inquisitive, lawful, skeptical of all dogma
+trait_inquisitive_tanugan = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_research_produces_mult = 0.10
+	}
+}
+
+trait_law_abiding_tanugan = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_stability_add = 0.10
+	}
+}
+
+trait_skeptics_tanugan = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_unity_produces_mult = -0.10
+	}
+}
+
+# ============================================================
+# JNA - Jnaii (genderless conformist society)
+# ============================================================
+
+trait_kindred_jnaii = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.10
+	}
+}
+
+trait_enlightened_jnaii = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_jobs_research_produces_mult = 0.10
+	}
+}
+
+trait_conformist_jnaii = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_stability_add = 0.10
+	}
+}

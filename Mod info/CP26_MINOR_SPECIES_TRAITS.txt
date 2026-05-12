@@ -1,0 +1,386 @@
+CP26 — MINOR SPECIES TRAITS (60 traits species) — 2026-05-12
+================================================================================
+
+CONTEXTE
+--------------------------------------------------------------------------------
+Les 20 prescripted minor factions de CP26 (19 sous classe HRB_DIPLO/TRADE/HARDY
++ Jnaii sous classe JNA) référencent CHACUNE 3 traits species dans leur fichier
+`prescripted_countries/00_*.txt`. Exemples :
+
+    species = {
+        class = "HRB_DIPLO"
+        portrait = "bajoran"
+        trait = "trait_survivors_bajoran"
+        trait = "trait_prophetic_believer_bajoran"
+        trait = "trait_selective_researchers_bajoran"
+    }
+
+PROBLÈME : ces 60 traits n'étaient définis NULLE PART. Aucun fichier dans
+`common/traits/`, aucune localisation. Le moteur les ignorait silencieusement,
+et les pops de ces espèces n'avaient AUCUN trait species effectif — juste les
+défauts du moteur. C'était un trou massif de gameplay et de lore qui touchait
+toutes les rencontres avec les minor factions.
+
+À titre de comparaison, les 4 empires CP26 *majeurs* (Tholian, Denobulan, Remus,
+Risan) ont leurs traits species correctement définis dans des fichiers dédiés
+(`aa_tholian_traits.txt`, `denobulan_traits.txt`, etc.). Les minors n'avaient
+jamais eu droit au même traitement.
+
+
+DÉCISION : STRATÉGIE B — CRÉATION COMPLÈTE
+--------------------------------------------------------------------------------
+Trois stratégies étaient possibles :
+
+  A) Hybride : 1 trait signature unique par race + 2 archetypes partagés par
+     classe HRB_* (28 traits). Léger mais Bajoran = Trill en 2/3 des stats.
+
+  B) Création complète : 60 traits 100% uniques, fidélité lore maximale,
+     parité avec le traitement des 4 majeures. (RETENU)
+
+  C) Pack minimal : 9 traits archetype seulement, refactor des 19 prescripted.
+     Trop génériquE — perte totale d'identité par race.
+
+Le choix B s'imposait pour quatre raisons :
+
+  1. PARITÉ MAJEURES / MINEURES — les 4 majeures ont chacune 3 traits species
+     uniques. Faire un système hybride pour les minors créerait une asymétrie
+     "les majeures ont du contenu unique, les mineures partagent" peu Star Trek.
+
+  2. NOMS DÉJÀ POSÉS — les 60 noms dans les prescripted (trait_smugglers_boslic,
+     trait_neuro_engineers_ktarian, trait_matriarcal_houses_betazoid, etc.) sont
+     manifestement issus d'un travail de design original (lore Star Trek).
+     Les jeter au profit d'archetypes génériques aurait gâché ce capital.
+
+  3. AUCUN PRESCRIPTED À TOUCHER — la création des 60 traits sous leurs noms
+     existants évite toute modification des 19 fichiers prescripted_countries
+     (zéro risque de casser leurs spawns / civics / governments).
+
+  4. MÉMORABILITÉ — quand le joueur rencontre les Cairn et lit
+     "Pure Telepaths : +1 envoy, +0.10 society research", c'est lore-cohérent
+     et mémorable. Avec un trait générique HRB_* ça aurait grincé.
+
+
+ARCHITECTURE DES FICHIERS
+--------------------------------------------------------------------------------
+  common/traits/zz_cp26_minor_species_traits.txt             (60 traits)
+  localisation/english/zz_cp26_minor_species_traits_l_english.yml
+  localisation/french/zz_cp26_minor_species_traits_l_french.yml
+
+Aucune modification de :
+  - prescripted_countries/00_*.txt        (noms inchangés)
+  - common/species_classes/zz_cp26_minor_species_classes.txt (classes HRB_*)
+  - common/on_actions/* / events/* / etc.
+
+Les noms suivent la convention déjà en place : `trait_<descripteur>_<race>` au
+singulier (`trait_survivors_bajoran`, `trait_blueblood_bolian`, etc.).
+
+
+PHILOSOPHIE DE DESIGN
+--------------------------------------------------------------------------------
+Budget par race : ~+3 à +5 cost cumulé (positif net "above vanilla", fitting
+le statut bespoke/prescripted des minors — ils ne sont pas inférieurs aux
+races standards). Pattern récurrent :
+
+    trait #1  cost = 4   trait signature majeur (effet lore phare)
+    trait #2  cost = 2   trait positif secondaire
+    trait #3  cost = -1  trait drawback culturel (équilibre)
+
+Variantes mineures (certaines races avec 3 traits cost=2, certaines avec 2
+traits forts et 1 nul). Les valeurs des modifiers sont délibérément MODESTES
+(±10-20%) pour éviter de transformer ces races en cheat-codes ou en boulets.
+
+Modifiers utilisés — TOUS observés dans des trait files vanilla/CP26
+existants (aa_tholian_traits, denobulan_traits, risan_traits, remus_traits,
+00_hornblower_leader_traits) :
+
+    pop_growth_speed                              pop_amenities_usage_mult
+    pop_housing_usage_mult                        planet_stability_add
+    planet_pops_organics_food_upkeep_mult         planet_pops_energy_upkeep_mult
+    planet_jobs_worker_produces_mult              planet_jobs_specialist_produces_mult
+    planet_jobs_ruler_produces_mult               planet_jobs_unity_produces_mult
+    planet_jobs_research_produces_mult            army_health
+    army_damage_mult                              leader_age
+    trade_value_add                               envoys_add
+    diplo_weight_economy_mult                     ship_speed_mult
+
+HOTFIX 2026-05-12 (crash SIGSEGV au load) — Les modifiers research par catégorie
+`planet_jobs_society_research_produces_mult`, `..._physics_..._mult` et
+`..._engineering_..._mult` (12 occurrences sur 9 races) étaient présents dans le
+fichier vanilla STI mais **commentés** dans tous les usages et **rejetés à
+l'execution** (`modifier.cpp:2758: Invalid modifier`). Effet observé : crash
+SIGSEGV dans `CullAndUpdateEntitiesRecursive` au premier tick après le load.
+Remplacés par `planet_jobs_research_produces_mult` (modifier générique research,
+réellement supporté par STI, utilisé dans `trait_intelligent` et nombreux autres
+traits species vanilla). Conséquence design : le bonus/malus s'applique à la
+catégorie research globale plutôt qu'à une sous-catégorie ; pas de perte de
+lore puisque seule la magnitude est conservée.
+
+Structure standard de chaque trait :
+
+    trait_X_race = {
+        cost = N
+        potential_crossbreeding_chance = 1.0
+        opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
+        allowed_archetypes = { BIOLOGICAL }
+        modifier = { ... }
+    }
+
+
+TABLEAU DÉTAILLÉ — 60 TRAITS
+--------------------------------------------------------------------------------
+
+================== HRB_DIPLO — Diplomates / Empathes (6 races) ==================
+
+BAJORAN (rescapés de l'occupation cardassienne, profondément spirituels)
+  trait_survivors_bajoran                cost=+4
+    +0.10 pop growth speed
+    +0.10 army damage
+    -0.10 food upkeep
+  trait_prophetic_believer_bajoran       cost=+2
+    +0.15 unity from jobs
+    +10  leader age
+  trait_selective_researchers_bajoran    cost=-1
+    -0.10 engineering research
+    -0.10 physics research
+
+BETAZOID (empathes télépathes, maisons matriarcales)
+  trait_empath_betazoid                  cost=+4
+    +1 envoy
+    +0.10 society research
+  trait_matriarcal_houses_betazoid       cost=+2
+    +20 leader age
+    +0.05 planet stability
+  trait_hard_to_please_betazoid          cost=-1
+    +0.20 amenity usage
+
+IYAARAN (ascétiques sans loisirs, faibles besoins, sans hâte)
+  trait_leisureless_iyaaran              cost=+2
+    +0.10 worker production
+  trait_undemanding_iyaaran              cost=+2
+    -0.20 amenity usage
+    -0.10 housing usage
+  trait_unhurried_iyaaran                cost=-1
+    -0.20 pop growth
+
+KAELON (conservateurs aux ressources mourantes, reclus)
+  trait_conservative_kaelon              cost=-1
+    -0.10 society research
+    +10 leader age
+  trait_resourceful_kaelon               cost=+2
+    +0.10 worker production
+    -0.10 energy upkeep
+  trait_secluded_kaelon                  cost=-1
+    +0.10 amenity usage
+
+MALCORIAN (transcendantalistes, traditionnels, cyniques en diplo)
+  trait_transcendentalists_malcorian     cost=+2
+    +0.10 society research
+  trait_traditionalists_malcorian        cost=+2
+    +0.10 planet stability
+    +10 leader age
+  trait_cynical_malcorian                cost=-1
+    -0.10 diplomatic weight (economy)
+
+TRILL (joints symbiotes — vies accumulées, discrets)
+  trait_joined_elite_trill               cost=+4
+    +30 leader age
+    +0.05 specialist production
+  trait_experience_seekers_trill         cost=+2
+    +0.10 society research
+  trait_private_trill                    cost=-1
+    -0.10 ruler production
+
+================== HRB_TRADE — Marchands / Opportunistes (6 races) ==================
+
+BOLIAN (entrepreneurs, sang bleu aristo, digestion robuste)
+  trait_entrepreneurial_bolian           cost=+2
+    +1 trade value
+    +0.05 specialist production
+  trait_blueblood_bolian                 cost=+2
+    +15 leader age
+    +0.05 planet stability
+  trait_digestor_bolian                  cost=+2
+    -0.20 food upkeep
+
+BOSLIC (contrebandiers, vagabonds, amoraux)
+  trait_smugglers_boslic                 cost=+2
+    +2 trade value
+  trait_roamers_boslic                   cost=+2
+    +0.10 ship speed
+    -0.10 amenity usage
+  trait_amoral_boslic                    cost=-1
+    -0.10 planet stability
+
+FARIAN (rusés, entrepreneurs, exploiteurs)
+  trait_cunning_farians                  cost=+2
+    +0.10 specialist production
+  trait_entrepreneurial_farians          cost=+2
+    +1 trade value
+    +0.05 worker production
+  trait_exploitative_farians             cost=-1
+    -0.05 planet stability
+    -0.05 diplomatic weight
+
+HUPYRIAN (dévots, robustes, grands appétits)
+  trait_devout_hupyrian                  cost=+2
+    +0.10 unity from jobs
+  trait_sturdy_hupyrian                  cost=+2
+    +0.10 army health
+    +0.05 army damage
+  trait_great_needs_hupyrian             cost=-1
+    +0.20 food upkeep
+
+LISSEPIAN (oeil pour les affaires, ponctuels, intermédiaires)
+  trait_eye_for_business_lissepian       cost=+2
+    +2 trade value
+  trait_timely_lissepian                 cost=+2
+    +0.05 worker production
+    +0.05 specialist production
+  trait_intermediaries_lissepian         cost=+2
+    +1 envoy
+
+PELIAN (travailleurs intelligents, organisés, esprits actifs)
+  trait_smart_workers_pelian             cost=+2
+    +0.10 worker production
+  trait_organized_pelian                 cost=+2
+    +0.10 ruler production
+  trait_busy_minds_pelian                cost=+2
+    +0.05 specialist production
+    +0.05 society research
+
+================== HRB_HARDY — Résilients / Frontière (7 races) ==================
+
+ACAMARIAN (clans des hautes terres, rivalités internes, combatifs)
+  trait_stubborn_resilience_acamarian    cost=+4
+    +0.15 army health
+    +0.05 planet stability
+  trait_divergent_acamarian              cost=-1
+    -0.10 planet stability
+  trait_combative_acamarian              cost=+2
+    +0.15 army damage
+
+CAIRN (télépathes purs sans langage parlé, pacifistes)
+  trait_uninhibited_cairn                cost=+2
+    +0.15 society research
+  trait_telepathic_cairn                 cost=+4
+    +1 envoy
+    +0.10 society research
+  trait_pacifists_cairn                  cost=-1
+    -0.20 army damage
+
+IDANIAN (réseaux secrets, observateurs, réservés)
+  trait_secretive_idanian                cost=+2
+    +0.10 ruler production
+  trait_observant_idanian                cost=+2
+    +0.10 specialist production
+  trait_reserved_idanian                 cost=-1
+    -0.10 diplomatic weight
+
+KESPRYTT (deux factions en froid, utilitaires, désunifiés)
+  trait_disbelieving_kesprytt            cost=+2
+    +0.10 unity from jobs
+  trait_utilitarian_kesprytt             cost=+2
+    -0.15 amenity usage
+    -0.10 housing usage
+  trait_ununified_kesprytt               cost=-1
+    -0.10 planet stability
+
+KTARIAN (manipulateurs, neuro-ingénieurs, perturbateurs)
+  trait_deceivers_ktarian                cost=+2
+    +0.10 ruler production
+  trait_neuro_engineers_ktarian          cost=+4
+    +0.15 engineering research
+  trait_disruptive_ktarian               cost=-1
+    -0.05 planet stability
+    +0.10 amenity usage
+
+TALARIAN (vigilants militaristes, devoir absolu, société chaste)
+  trait_vigilant_talarian                cost=+2
+    +0.10 army health
+  trait_undying_duty_talarian            cost=+2
+    +0.15 army damage
+  trait_chaste_talarian                  cost=-1
+    -0.20 pop growth
+
+TANUGAN (inquisitifs, légalistes, sceptiques)
+  trait_inquisitive_tanugan              cost=+2
+    +0.10 society research
+  trait_law_abiding_tanugan              cost=+2
+    +0.10 planet stability
+  trait_skeptics_tanugan                 cost=-1
+    -0.10 unity from jobs
+
+================== JNA — Jnaii (conformistes sans genre, 1 race) ==================
+
+JNAII (parenté étendue, éclairés philosophiquement, conformistes totaux)
+  trait_kindred_jnaii                    cost=+2
+    +0.10 unity from jobs
+  trait_enlightened_jnaii                cost=+2
+    +0.10 society research
+  trait_conformist_jnaii                 cost=+2
+    +0.10 planet stability
+
+
+SOMMAIRE — IDENTITÉ RECOGNAISSABLE PAR ARCHETYPE
+--------------------------------------------------------------------------------
+Avec ces 60 traits, chaque archetype a une "couleur" reconnaissable dans le
+gameplay, tout en gardant des différences race-vs-race.
+
+  HRB_DIPLO  → Tendance globale : recherche société + leader long-lived
+               + un trait drawback récurrent type "amenity heavy" ou "slow"
+               + signatures uniques : Bajoran combat/survie, Betazoid envoys,
+                 Trill leader âge, Iyaaran ascèse, Kaelon résilience,
+                 Malcorian stabilité.
+
+  HRB_TRADE  → Tendance globale : trade_value + production specialist/worker
+               + un trait drawback "social" (instabilité, food, stabilité)
+               + signatures uniques : Bolian aristo, Boslic ship speed,
+                 Hupyrian armée robuste, Lissepian envoys, Pelian admin.
+
+  HRB_HARDY  → Tendance globale : armée + stabilité + research society
+               + un trait drawback "instabilité interne" ou "pacifisme"
+               + signatures uniques : Cairn télépathie (envoys), Ktarian
+                 engineering, Talarian discipline, Acamarian guerriers,
+                 Idanian intel, Kesprytt utilitarisme, Tanugan loi.
+
+  JNA        → Société conformiste très stable, recherche société élevée,
+               aucun drawback (3 traits positifs équilibrés).
+
+
+VÉRIFICATIONS AVANT LIVRAISON
+--------------------------------------------------------------------------------
+  ✓ 60 traits définis dans common/traits/zz_cp26_minor_species_traits.txt
+  ✓ 60 noms EN + 60 descriptions EN dans le fichier loc anglais (UTF-8 BOM)
+  ✓ 60 noms FR + 60 descriptions FR dans le fichier loc français (UTF-8 BOM)
+  ✓ Chaque trait référencé dans les 20 prescripted_countries/00_*.txt est
+    désormais défini.
+  ✓ Aucune modification des prescripted_countries (les noms étaient déjà bons).
+  ✓ Aucun modifier utilisé n'est inventé — tous proviennent de trait files
+    vanilla/CP26 existants.
+
+
+IMPACT GAMEPLAY ATTENDU
+--------------------------------------------------------------------------------
+  - Chaque rencontre avec une minor faction est désormais lisible : leurs
+    forces et faiblesses ont une saveur lore-cohérente.
+  - L'AI minor faction joue mieux ses cartes : un Bolian focusé trade, un
+    Acamarian focusé army, un Trill focusé long-term leaders.
+  - Les pops de ces races, si elles intègrent l'empire du joueur (migration,
+    conquête, vassalité), apportent leurs traits — donc un Talarien vassal
+    devient une excellente garnison, un Lissepian intégré devient un
+    booster de commerce, etc.
+  - Plus aucun warning "trait not found" pour ces 60 noms.
+
+
+FUTURE PHASE (OPTIONNELLE)
+--------------------------------------------------------------------------------
+Phase 2 : audit/équilibrage fin par campagne. Certains traits pourraient
+être ajustés à la hausse ou à la baisse une fois testés en partie complète.
+Pas urgent — la balance initiale est délibérément modérée (±10-20%).
+
+Phase 3 : sprites/icônes custom par trait (actuellement, ils utilisent les
+icônes standard du moteur). Ajouterait du polish visuel.
+
+Phase 4 : événements liés aux traits (ex : un event "Cairn pure-telepath
+mishap" qui crée un mini-incident diplomatique). Riche en saveur mais
+charge de travail non négligeable.
