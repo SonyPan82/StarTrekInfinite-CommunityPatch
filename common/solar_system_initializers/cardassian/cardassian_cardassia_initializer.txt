@@ -111,7 +111,6 @@ cardassian_cardassia_initializer = {
 		late_init_effect = {
 			set_owner = event_target:cardassian_country
 			set_colony_type = col_default
-			add_building = building_capital
 			create_pop = { species = owner_main_species }
 			create_cardassia_v_colony = yes
 		}

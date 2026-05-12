@@ -44,9 +44,9 @@ setup_orion_capital = {
 				add_deposit = d_hot_springs
 				add_deposit = d_geothermal_vent
 				while = {
-					count = 20
+					count = 21
 					create_pop = { species = "Orion" }
-			}
+				}
 			create_pop = { species = "Tellarite" }
 			create_pop = { species = "Klingon" }
 			create_pop = { species = "Andorian" }
