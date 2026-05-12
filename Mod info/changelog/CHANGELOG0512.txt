@@ -732,3 +732,71 @@ EN ATTENTE DE DÉCISION (non appliqué)
     Mod info/CP26_BORG_CRISIS.txt.
 
 ================================================================================
+
+--------------------------------------------------------------------------------
+Session du 2026-05-10  —  Refonte complète de l'initialisation des colonies
+--------------------------------------------------------------------------------
+
+[REFACTOR][HIGH] Migration universelle : create_colony → pattern vanilla set_owner
+  Contexte : crash SIGSEGV récurrent en early-game dans CConstructionQueueManager::
+  DailyUpdate. Le moteur corrompt la file de construction quand create_colony
+  (qui ajoute implicitement building_colony_shelter) est suivi d'un add_building
+  ou remove_building sur le même tick ou trop tôt.
+
+  Le vanilla évite ce pattern sur ses colonies "bespoke" (Vulcan, Andor, Tellar,
+  Khitomer) en utilisant directement set_owner + set_colony_type + add_building
+  sans jamais appeler create_colony.
+
+  Scope : toutes les colonies CP26 custom (46 fichiers).
+
+  Fichiers migrés :
+    - Events custom : aacoldenob, vgcol, tncol, aacolrisa, aacolremus, aalm
+    - Majors CP26 : Tholian, Orion, Breen, Gorn (capitales + colonies secondaires)
+    - Romulan : Glintara (initializer + scripted effect)
+    - Cardassian : Cardassia V (initializer, laissé à create_cardassia_v_colony vanilla)
+    - Minors other_owned : 20 empires prescripted (Acamarian, Trill, Betazoid, etc.)
+
+  Changements techniques :
+    - create_colony remplacé par set_owner + set_colony_type + add_building direct.
+    - cp26_needs_capital_upgrade et cp26_delayed_capital_upgrade.txt supprimés.
+    - cp26_capital_upgrade.1 retiré de on_game_start_country.
+    - Pops compensés (+1 par colonie pour le pop implicitement créé par create_colony).
+    - Orion : correction count 20 → 21 pops.
+    - Cardassia V : retrait du add_building = building_capital redondant devant
+      create_cardassia_v_colony vanilla.
+
+  Fichiers supprimés :
+    - events/cp26_delayed_capital_upgrade.txt
+
+  Résultat attendu :
+    - 0 create_colony dans CP26.
+    - 0 flag cp26_needs_capital_upgrade.
+    - Plus de deferred upgrade J+3.
+    - File de construction non corrompue à l'initialisation.
+
+  Fichier d'audit complet : Mod info/CP26_COLONY_MIGRATION_AUDIT_2026-05-10.txt
+
+[FIX][MED] Glintara — create_pop species "romulan" échoue sur planète vide
+  Détecté dans les logs : [effect_impl_pop.cpp:248] "Attempting to get a random
+  pop species on planet Glintara with no pops".
+  Cause : sans create_colony précédent, Glintara est vide quand create_glintara_colony
+  essaie de créer des pops avec species = romulan. Le moteur ne peut pas résoudre
+  une espèce nommée sur une planète sans pops.
+  Fix proposé (non appliqué, en attente de GO) :
+    - Remplacer species = romulan par species = owner_main_species dans
+      common/scripted_effects/01_romulus_glintara_effect.txt.
+    - Alternative : ajouter 1 pop owner_main_species dans l'initializer avant
+      create_glintara_colony, et réduire le while count de 11 à 10.
+
+[NOTE] Logs non liés à cette migration (connus / hors scope)
+  - Duplicate keys : pop_jobs, ship_sizes, districts, country_types, etc.
+    → CP26 override intentionnel du vanilla. Aucun impact stabilité.
+  - Undefined event target : minor_state_event_country_3rd_party
+    → Bug vanilla hornblower_mission_events.txt:3332. Non lié.
+  - mission.16 / mission.44 / etc. "no options with positive ai_chance"
+    → Events vanilla de missions pour AI minors. Non lié.
+  - first_contact script error (reverse_first_contact)
+    → Bug vanilla first_contact_NPC_country_types_events.txt. Non lié.
+  - bitmapfont "Could not find coloring for character ' '"
+    → Problème de police/localisation. Non lié.
+

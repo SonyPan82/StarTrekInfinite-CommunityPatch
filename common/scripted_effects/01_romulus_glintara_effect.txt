@@ -48,7 +48,7 @@ create_glintara_colony = {
 	while = {
 		count = 11
 		create_pop = {
-			species = romulan
+			species = owner_main_species
 		}
 	}
 	
