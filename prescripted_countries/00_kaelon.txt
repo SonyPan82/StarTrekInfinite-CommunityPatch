@@ -14,7 +14,7 @@ kaelon = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_kaelon"
 
 	species = {
-		class = "HRB" # TODO: Create custom class
+		class = "HRB_DIPLO" # CP26: was HRB, assigned to diplomatic archetype
 		portrait = "kaelon"
 		name = "PRESCRIPTED_species_name_kaelon"
 		plural = "PRESCRIPTED_species_plural_kaelon"

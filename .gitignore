@@ -1,0 +1,33 @@
+# --- macOS noise ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# --- Windows noise ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Mod artefacts / backups ---
+*.bak
+*.bak.*
+*.orig
+*.rej
+*.tmp
+*.log
+
+# --- Local generation / scratch ---
+/scratch/
+/.cursor-cache/

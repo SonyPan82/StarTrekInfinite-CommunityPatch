@@ -241,3 +241,6 @@
 
  tech_warp_speed_increase_3:0 "Transwarp Geometry"
  tech_warp_speed_increase_3_desc:0 "By mapping space-time curvature along established warp corridors, our navigational systems can exploit natural subspace geometries to achieve §Htranswarp-tier velocities§! -- the final frontier of conventional warp propulsion."
+
+ # Game setup: galaxy size row (engine does not populate scenario name; keep in sync with map/setup_scenarios/Alpha-Beta_medium.txt name)
+ CP26_GALAXY_SCENARIO_DISPLAY:0 "Star Charts - Large"

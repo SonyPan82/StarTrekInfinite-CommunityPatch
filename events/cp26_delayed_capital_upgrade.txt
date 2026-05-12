@@ -26,6 +26,11 @@ country_event = {
 			remove_building = building_colony_shelter
 			add_building = building_capital
 			remove_planet_flag = cp26_needs_capital_upgrade
+			if = {
+				limit = { has_planet_flag = cp26_vega_needs_foundry }
+				add_building = building_foundry_1
+				remove_planet_flag = cp26_vega_needs_foundry
+			}
 		}
 	}
 }

@@ -65,6 +65,13 @@ setup_gorn_capital = {
 		limit = {
 			exists = event_target:gorn_country
 		}
+		# CP26 — Gorn combat doctrine : tough but slow reptilian fleets.
+		event_target:gorn_country = {
+			if = {
+				limit = { NOT = { has_modifier = cp26_minor_gorn_combat_doctrine } }
+				add_modifier = { modifier = cp26_minor_gorn_combat_doctrine days = -1 }
+			}
+		}
 		set_surveyed = { surveyed = yes surveyor = event_target:gorn_country }
 		if = {
 			limit = { exists = event_target:ufop_country }

@@ -35,7 +35,9 @@ event = {
 					create_colony = {
 						owner = event_target:ufop_country
 					}
-					
+					set_planet_flag = cp26_needs_capital_upgrade
+					set_planet_flag = cp26_vega_needs_foundry
+
 					while = {
 						count = 9
 						create_pop = { species = "Human" }
@@ -55,7 +57,6 @@ event = {
 					add_district_and_planet_size_if_needed_effect = {
 						district = district_culture
 					}
-					add_building = building_foundry_1
 				}
 			}
 		}

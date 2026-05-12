@@ -14,7 +14,7 @@ pelian = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_pelian"
 
 	species = {
-		class = "HRB" # TODO: Create custom class
+		class = "HRB_TRADE" # CP26: was HRB, assigned to trader archetype
 		portrait = "pelian"
 		name = "PRESCRIPTED_species_name_pelian"
 		plural = "PRESCRIPTED_species_plural_pelian"

@@ -1,0 +1,330 @@
+================================================================================
+CP26 — Changelog
+================================================================================
+
+Format : version / date / catégorie [risque] / description
+Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
+
+--------------------------------------------------------------------------------
+Session du 2026-05-12  —  Audit & fixes
+--------------------------------------------------------------------------------
+
+[FEAT][LOW] Galaxie étalée pour combler l'espace vide (×1.20 autour du centroïde)
+  Le joueur a observé que les systèmes paraissaient collés au centre/nord
+  de la map avec encore beaucoup d'espace vide visible. Plutôt que toucher
+  au radius (interdit, limite engine 500), application d'un scale uniforme
+  ×1.20 autour du centroïde géométrique de la galaxie (cx=-8, cy=289).
+
+  Algorithme : nouvelle_position = centroïde + (ancienne - centroïde) × 1.20
+  pour les 258 positions de systèmes + nebulas (Alpha-Beta_medium.txt
+  + tutorial.txt synchronisés).
+
+  Constantes spatiales scalées proportionnellement pour cohérence :
+    nebula_size            : 31  → 37
+    nebula_min_dist        : 102 → 122
+    hazard_min_dist        : 102 → 122
+    hazard_major_min_dist  : 26  → 31
+    max_hyperlane_distance : 28  → 34  (non critique, num_hyperlanes = 0)
+
+  Vérifications géométriques post-scale :
+    Hypot max depuis (0,0) : 435 (vs radius 500 → marge 65 unités)
+    X range                : -369 → +426 (camera_limit_max_x = 434 → marge 8)
+    Y range                : -36 → +427  (camera_limit_max_y = 450 → marge 23)
+    Aucune sortie de box engine, aucun ajustement caméra nécessaire.
+
+  Backups : Alpha-Beta_medium.txt.bak.before_scale_B120, tutorial idem.
+
+  → Effet : galaxie 20% plus étalée dans toutes les directions, l'espace
+    vide visible sur le screenshot est désormais comblé. La forme relative
+    et le centre visuel de la galaxie sont préservés.
+
+[FEAT][LOW] Second passage d'étalement — hypot max moteur + caméra alignée
+  Après le ×1.20, il restait encore ~64 unités de marge sous radius=500
+  (hypot max ~435). Le joueur voyait encore du vide en haut / sur les côtés.
+  Deuxième scale depuis le même centroïde (-7.5, 289.5), facteur binaire
+  recherché pour plafonner hypot à 498 (sous le cap 500). Ce facteur
+  (×1.158603) s'applique aux positions déjà passées au ×1.20 (état fichier
+  avant ce second passage), pas aux positions vanilla d'origine.
+
+  Géométrie résultante :
+    hypot max ≈ 498.0   bbox X ≈ -427 .. +495   Y ≈ -88 .. +449
+
+  Les limites caméra (steps 2–7) ont été recalculées : le step 2 englobe
+  le bbox + 22 px de marge, les steps 3–7 reprennent les mêmes ratios de
+  rétrécissement qu'avant (zoom interne), avec clamp [-498, 498] pour
+  rester dans la box moteur. Ex. step 2 : max_x=498, max_y=471.
+
+  Constantes spatiales re-scalées depuis les valeurs post-B120 :
+    nebula_size 37→43, nebula_min_dist 122→141, hazard idem, hazard_major
+    31→36, max_hyperlane_distance 34→39.
+
+  Backups supplémentaires : *.bak.before_scale_B120_max
+
+  → Effet : galaxie utilisant quasiment tout le disque autorisé par le
+    radius 500, y compris davantage d'écart vers le haut (Y min plus bas,
+    Y max plus haut) et vers la droite, sans augmenter radius.
+
+[CRASH][HIGH] Radius galaxie 570 → 500 (limite engine hardcodée)
+  Cause racine des crashes aléatoires SIGSEGV / EXC_BAD_ACCESS dans
+  CConstructionQueueManager::DailyUpdate et CSaveGameTaskManager::
+  CreateMemoryFiles (Mac et Windows — "access violation 0xc0000005" sous
+  Windows, KERN_PROTECTION_FAILURE sous macOS).
+
+  Diagnostic :
+  Le moteur Clausewitz (commun à Stellaris et Star Trek: Infinite) impose
+  une limite HARDCODÉE de radius <= 500. La doc officielle Paradox dit :
+
+    "the map in Stellaris is a box 1000x1000x10, from -500 to +500"
+    "Map radius (max 500)"
+    "should be less than 500, preferably less than ~460"
+    — Stellaris Wiki, Map_modding
+
+  Au-dessus de 500, les structures spatiales internes du moteur
+  (quadtree de proximity, grilles pathfinding, indices ConstructionQueue)
+  débordent et provoquent des accès mémoire hors zone allouée. Le crash
+  apparait au moment où un objet (constructeur, flotte, save serializer)
+  tombe dans la zone fantôme — d'où le caractère aléatoire.
+
+  État actuel CP26 :
+    - Alpha-Beta_medium.txt : radius = 570  (HORS LIMITE)
+    - tutorial.txt           : radius = 570  (HORS LIMITE)
+    - Tous les autres scenarios : radius 300/400/450 (OK)
+
+  Mesure géométrique : les 258 positions de systèmes ont une distance
+  maximale de 405 depuis l'origine (hypot). Baisser le radius à 460
+  garde TOUS les systèmes dans la box avec 55 unités de marge.
+
+  Fix :
+    - Alpha-Beta_medium.txt : radius 570 → 500 (engine hard cap exact)
+    - tutorial.txt          : radius 570 → 500 (sync)
+    - Camera limits inchangées (max abs = 450, déjà dans la box engine)
+    - Hypot max système = 405, donc 95 unités de marge sous le cap engine.
+
+  → Effet attendu : élimination des crashes aléatoires
+    SIGSEGV/access-violation au runtime et au save. C'est la cause RACINE
+    qu'on cherchait depuis le début. Mes diagnostics précédents (queue
+    de construction "saturée par le ship_data dynamique", ConstructionQueue
+    "corruption script") étaient des amplificateurs au mieux, pas la cause.
+    Le radius était bien le problème.
+
+[CRASH][HIGH] Hotfix — modifier invalide ship_weapon_damage_mult (Breen doctrine)
+  Le modifier cp26_minor_breen_combat_doctrine introduit en B.6 utilisait le
+  nom `ship_weapon_damage_mult` qui N'EXISTE PAS dans STI. Le bon nom vanilla
+  est `ship_weapon_damage`. Quand le setup_breen_capital appliquait le
+  modifier au Breen country, le moteur tombait dans un état inconsistent
+  et finissait par crasher quelques secondes plus tard.
+
+  Symptôme dans error.log :
+    [modifier.cpp:2758]: Invalid modifier ship_weapon_damage_mult at
+      common/static_modifiers/zz_cp26_minor_faction_modifiers.txt line: 47
+
+  Fix : `ship_weapon_damage_mult = 0.10` → `ship_weapon_damage = 0.10`.
+
+  → Effet : plus de crash au moment du spawn Breen ; doctrine Breen
+    fonctionne désormais comme prévu (+25% armor, +10% weapon damage,
+    -10% fire rate).
+
+[CRASH][HIGH] Fix Vega colony — pattern create_colony + add_building same-tick
+  `events/vgcol_events.txt` (vg_col.1000, trigger on_game_start) contenait
+  le pattern dangereux documenté dans CP26_CONSTRUCTION_QUEUE_CRASH_FIX.txt :
+  `create_colony` suivi immédiatement par `add_building = building_foundry_1`
+  dans le même bloc `random_system_planet`, même tick. Cela corrompt la
+  CConstructionQueue (pointeur dangling sur building_colony_shelter créé
+  implicitement par create_colony), provoquant un SIGSEGV dès la première
+  sauvegarde (CSaveGameTaskManager::CreateMemoryFiles).
+
+  Fix :
+    - events/vgcol_events.txt :
+        • Retrait de `add_building = building_foundry_1` du bloc create_colony.
+        • Ajout de `set_planet_flag = cp26_needs_capital_upgrade`.
+        • Ajout de `set_planet_flag = cp26_vega_needs_foundry` pour la
+          fonderie différée.
+    - events/cp26_delayed_capital_upgrade.txt (cp26_capital_upgrade.2) :
+        • Après le `add_building = building_capital`, ajout d'un bloc
+          conditionnel `has_planet_flag = cp26_vega_needs_foundry` qui pose
+          `building_foundry_1` à J+3 (hors du tick de création de colonie).
+
+  → Effet : Vega garde sa fonderie (lore intact), mais la pose est différée
+    hors du tick critique. Plus de corruption ConstructionQueue au game-start.
+
+[FIX][LOW] Caméra Galaxy View — systèmes du sud inaccessibles au dézoom
+  Symptôme : impossible d'atteindre les systèmes les plus au sud quand
+  on dézoome (Romulan, Cardassian, certains minors).
+
+  Cause : les `camera_limit_max_y` étaient calibrés pour les anciennes
+  positions de la galaxie. Avec le layout actuel les systèmes vont
+  jusqu'à Y=404, mais les limites étaient :
+    step 2 : 358   step 3 : 342   step 4 : 327
+    step 5 : 312   step 6 : 296   step 7 : 281
+  → tous les systèmes Y > 281 devenaient inaccessibles au max zoom out.
+
+  Fix : `camera_limit_max_y` remonté à 440-450 sur les 6 steps de
+  zoom-out dans Alpha-Beta_medium.txt et tutorial.txt (synchronisés).
+
+  → Effet : tous les systèmes du sud à nouveau cliquables à tous les
+    niveaux de zoom.
+
+
+[FIX][LOW] A.1 — Event country.27500 défini en double
+  Le fix CP26 du First Contact Bonus (civic Diplomatic Expertise) coexistait
+  avec la version vanilla buguée dans events/hornblower_country_events.txt.
+  Le moteur loggait "an event with id [country.27500] already exists!" et
+  pouvait charger la version vanilla cassée (qui skip silencieusement le
+  bonus d'opinion). Bloc vanilla retiré, seule la version corrigée de
+  zz_cp26_fix_country_events.txt reste active.
+
+  → Effet : tous les first contacts avec un empire portant le civic
+    Diplomatic Expertise donnent désormais bien le bonus d'opinion aux
+    deux parties (avant : ~50% des cas le perdaient).
+
+[FIX][LOW] A.2 — Tech warp speed dupliquées
+  tech_warp_speed_increase_1 et _2 étaient définies à la fois dans :
+    - common/technology/zz_cp26_warp_techs.txt (valeurs CP26 +30%)
+    - vanilla 00_hornblower_eng_techs.txt et 00_hornblower_unsupported_techs.txt
+      (valeurs vanilla +20% et +10%)
+  Le moteur loggait "Duplicate technology" et pouvait appliquer la mauvaise
+  version, cassant le design "warp lent en early, accéléré progressivement
+  par tech".
+  Fix : ajout de replace_path pour les 2 fichiers vanilla, et retrait des
+  deux blocs dupliqués dans les copies CP26.
+
+  → Effet : le design warp CP26 est désormais réellement appliqué :
+    65% vanilla speed en early → 85% (Warp 5) → 104% (Warp 6) → 120% (Warp 7).
+
+[FIX][LOW] A.5 — District romulan sans extension .txt
+  Le fichier common/districts/z_hornblower_romulan_districts n'avait pas
+  d'extension .txt → silencieusement ignoré par le parseur. Renommé en
+  z_hornblower_romulan_districts.txt.
+
+  → Effet : les districts romulans définis dans ce fichier sont à nouveau
+    chargés. L'économie romulan side recouvre sa configuration prévue.
+
+[FIX][LOW] B.3 — California Hero shield bug
+  Le California Hero (UFOP) avait `ship_shield_mult = 0.9` (+90% bouclier),
+  manifestement une typo de `-0.1` (les 5 autres modifiers étaient bien
+  à -0.1, pattern "no admiral"). Le héros était quasi indestructible.
+  Fix : 0.9 → -0.1. Ajout d'un petit `ship_hull_mult = -0.1` pour respecter
+  le lore de vaisseau utilitaire (Lower Decks, pas un capital ship héros).
+
+  → Effet : équilibre combat UFOP rétabli. Cohérence avec les autres ships
+    héros vanilla (Dderidex_hero, etc.).
+
+[BAL][LOW] B.5 — AI_MAX_DISTANCE 300 → 230
+  CP26 portait AI_MAX_DISTANCE à 300 (vanilla 200) pour rendre l'IA plus
+  agressive. Mais avec une galaxie de rayon 630, 300 = ~½ galaxie : l'IA
+  planifiait des guerres jusqu'à l'autre bout du monde, consommait de la
+  CPU pour rien, et contribuait probablement aux crashs
+  CConstructionQueueManager::DailyUpdate. Réduit à 230 : plus agressive
+  que vanilla, mais reste sur le voisinage.
+
+  → Effet attendu : performances mid/late game améliorées, IA plus
+    cohérente géographiquement, réduction du risque de crash construction.
+
+[FEAT][MED] B.6 — Différenciation des 4 minor factions (Gorn, Tholian, Orion, Breen)
+  Avant : les 4 minors utilisaient les mêmes stats vanilla, identité
+  purement visuelle. Tactique de combat indistincte.
+  Ajout : `common/static_modifiers/zz_cp26_minor_faction_modifiers.txt`
+  avec 4 doctrines de combat lore-cohérentes, appliquées sur le country
+  via `add_modifier` lors du `setup_*_capital` (jamais ré-appliqué grâce
+  à un guard `has_modifier`).
+
+    Gorn    : +20% hull, -10% speed, -15% evasion        (lourd & lent)
+    Tholian : +25% shields, +30% shield regen, -10% hull (énergie & fragile)
+    Orion   : +15% fire rate, +10 evasion, -15% armor    (rapide & punchy)
+    Breen   : +25% armor, +10% weapon damage, -10% rate  (lourd & froid)
+
+  Localisations EN + FR ajoutées.
+
+  → Effet : chaque rencontre avec un minor demande désormais une approche
+    tactique différente, ce qui valorise la phase d'exploration.
+
+[FEAT][LOW] C.Civils — Refonte des species classes minor factions
+  Avant : 19 prescripted minors partageaient tous la classe "HRB", avec
+  14 fichiers contenant "TODO: Create custom class". Pool de portraits
+  partagé entre Bajoran (spirituel), Talarian (belliqueux), etc. → aucune
+  identité visuelle distincte.
+  Ajout : `common/species_classes/zz_cp26_minor_species_classes.txt`
+  avec 3 classes thématiques (mêmes paramètres mécaniques, identique au
+  moteur — différenciation purement visuelle) :
+
+    HRB_DIPLO  → Bajoran, Betazoid, Trill, Kaelon, Malcorian, Iyaaran  (6)
+    HRB_TRADE  → Bolian, Boslic, Hupyrian, Lissepian, Pelian, Farian   (6)
+    HRB_HARDY  → Acamarian, Cairn, Talarian, Tanugan, Kesprytt,
+                 Ktarian, Idanian                                       (7)
+
+  Tous les fichiers prescripted/00_*.txt ont été patchés vers la bonne
+  classe (sauf 00_jnaii.txt qui garde sa classe JNA propre).
+  Documentation : Mod info/CP26_MINOR_SPECIES_CLASSES.txt.
+
+  → Effet : chaque archétype minor a son propre pool de portraits.
+    HRB_HARDY utilise graphical_culture = minor_01 (look distinct).
+    Identité visuelle des minors lisible en jeu.
+
+[POLISH][LOW] B.5 + diverses doctrines AI déjà en place
+  AI_MAX_DISTANCE corrigé (voir ci-dessus). Le reste du fichier
+  zz_cp26_ai_defines.txt (AI_FOCUS_SCORE_MULT, WAR_ATTACK_CLAIM_PRIO,
+  FLEET_GROUP_ABORT_MISSION_MULT, etc.) reste inchangé.
+
+[DOC]      Mod info/CP26_BORG_CRISIS.txt
+  Analyse complète de l'état du crisis Borg vanilla (4 829 lignes
+  d'events, chain finale "The Freed" commentée → crisis qui se termine
+  en queue de poisson) + plan en 3 phases (A = fix simple, B = tuning
+  des délais, C = anti-Borg fleet missions). Phase A recommandée
+  prioritaire — pas encore appliquée, attend feu vert.
+
+[DOC]      Mod info/CP26_MINOR_SPECIES_CLASSES.txt
+  Documentation détaillée de la refonte des species classes (justification,
+  mapping, choix techniques, plan phase 2 futur).
+
+[POLISH]   Repo cleanup
+  - Création de `.gitignore` (ignore .DS_Store, *.bak, .vscode/, etc.).
+  - Suppression des 16 fichiers .DS_Store présents (15 trackés via
+    `git rm --cached` + 1 non tracké).
+  - Suppression du backup obsolète
+    map/setup_scenarios/Alpha-Beta_medium.txt.bak.before_scaleC.
+  - Renommage du district romulan (voir A.5 ci-dessus).
+
+[FEAT][MED] C.ShipData — Option A : ship_data dynamique (yearly pulse + flags)
+  Avant : constructor min=3 max=3, science min=3 max=3, colonizer min=0 max=1
+  → l'AI plafonnait dès le début et restait sous-staffée en mid/late game
+  (commentaire HRB_TODO "fix how ship_data works, add support for dynamic
+  modifiers" laissé par les devs originaux).
+
+  Implémentation :
+    - Event annuel `cp26_ai_pulse.1` (events/zz_cp26_ai_pulse_events.txt)
+      set un country_flag selon count_owned_planet :
+        small  : 0 - 3    flag = cp26_empire_size_small
+        medium : 4 - 7    flag = cp26_empire_size_medium
+        large  : 8 - 14   flag = cp26_empire_size_large
+        huge   : 15+      flag = cp26_empire_size_huge
+    - Déclenché par on_yearly_pulse_country + 1 fois au game_start_country
+      (pour ne pas attendre 1 an).
+    - Le ship_data dans zz_cp26_default_country_type.txt lit ces flags
+      via des fraction modifiers et augmente progressivement les targets
+      des 3 catégories.
+
+  Nouveaux bornes / fractions :
+    constructor  min=3 max=6   fraction 0.05 +0.05/medium +0.10/large +0.15/huge
+    science      min=3 max=5   fraction 0.03 +0.04/large +0.07/huge
+    colonizer    min=0 max=6   fraction 0.10 +0.10/medium +0.20/large +0.30/huge
+                              (avec garde-fous existants conservés : factor=0
+                               si déjà occupé, food < 2000, etc.)
+
+  → Effet attendu :
+    - Early game (1-3 planètes) : ~comme avant (3 constructors, 0-1 colonizer).
+    - Mid game (4-7) : 4-5 constructors, 1-2 colonizers en chantier.
+    - Large (8-14) : 5-6 constructors, 2-3 colonizers, 3-4 science.
+    - Huge (15+) : 6 constructors saturés, 3+ colonizers, 5 science.
+    L'AI ne lâche plus son expansion en mid/late game, ses systèmes
+    annexes (mining/research stations) sont mieux construits.
+  → Impact CPU : 1 trigger eval par AI country par an → négligeable.
+
+================================================================================
+EN ATTENTE DE DÉCISION (non appliqué)
+================================================================================
+
+[?] C.Borg Phase A — Décommenter borg_crisis_end_the_freed
+    Décision en attente : analyse complète disponible dans
+    Mod info/CP26_BORG_CRISIS.txt.
+
+================================================================================

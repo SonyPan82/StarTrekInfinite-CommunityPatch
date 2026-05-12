@@ -1,5 +1,5 @@
 bespoke_procedural_scenario = {
-    name = "Alpha-Elliptical Small"
+    name = "CP26 Elliptical Small"
 	priority = 4					#priority decides in which order the scenarios are listed
 	num_stars = 350
 	radius = 300					#should be less than 500, preferably less than ~460

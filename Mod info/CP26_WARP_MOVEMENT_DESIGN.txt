@@ -24,12 +24,16 @@ transport ne peuvent pas atteindre les systèmes distants. C'est gênant en déb
 de partie (empire compact, réseau de bases pas encore construit) et incohérent
 avec Star Trek (un vaisseau warp peut aller n'importe où).
 
+De plus, le moteur dessine en permanence une bulle de portée autour de chaque
+starbase sélectionnée — affichage redondant et visuellement parasite dès lors
+que CP26 a déjà donné `ignores_warp_range = yes` à tous les vaisseaux jouables.
+
 
 ────────────────────────────────────────────────────────────────────────────────
   1.2  Approche CP26
 ────────────────────────────────────────────────────────────────────────────────
 
-CP26 a résolu ce problème sur trois niveaux :
+CP26 a résolu ce problème sur plusieurs niveaux :
 
   (A) Country type — tous les empires par défaut
   ──────────────────────────────────────────────
@@ -43,8 +47,10 @@ CP26 a résolu ce problème sur trois niveaux :
   Ceci s'applique à TOUS les ships de tout empire de type "default", ce qui
   couvre militaires, scientifiques, colons, transports — à la volée, sans
   toucher aux ship_size individuels.
-  Le define a aussi été augmenté à 60 (+27% vs vanilla) pour les cas où la
-  propriété country_type ne suffit pas (empires non-default).
+
+  Étape historique : le define avait été augmenté à 60 (+27% vs vanilla) pour
+  les cas où la propriété country_type ne suffisait pas. Voir 1.4 ci-dessous
+  pour l'étape finale qui le ramène à 0.
 
   (B) California class — redéfinie dans CP26
   ──────────────────────────────────────────
@@ -101,6 +107,63 @@ Les transports ne doivent pas avoir ignores_borders pour deux raisons :
 
 Le spy ship est un cas particulier (rôle d'infiltration = traversée clandestine).
 Les transports ne sont pas des agents clandestins.
+
+
+────────────────────────────────────────────────────────────────────────────────
+  1.4  OUTPOST_WARP_RANGE_RADIUS = 0 — suppression de la bulle de portée
+────────────────────────────────────────────────────────────────────────────────
+
+  CONTEXTE
+  ────────
+  Même avec `ignores_warp_range = yes` sur les vaisseaux, le moteur continuait
+  à dessiner un cercle de portée autour de chaque starbase à la sélection,
+  basé sur OUTPOST_WARP_RANGE_RADIUS. Affichage visuel parasite, sans
+  signification gameplay puisque tous les vaisseaux ignorent cette portée.
+
+  ACTION
+  ──────
+  Fichier : common/defines/cmi_01_defines.txt
+    NShip { OUTPOST_WARP_RANGE_RADIUS = 0 }   ← ancien 60, vanilla 47
+
+  RISQUE & MITIGATION
+  ───────────────────
+  À 0, tout country_type qui n'a PAS `ignores_warp_range = yes` se retrouverait
+  confiné à une portée nulle. Pour éliminer ce risque, CP26 ajoute le flag à
+  tous les country_types qui pilotent des flottes mobiles via replace_path :
+
+  common/country_types/00_country_types.txt    (replace_path CP26)
+    Ajout `ignores_warp_range = yes` aux types :
+      pirate, ruined_marauders, awakened_marauders, dormant_marauders,
+      swarm, extradimensional, ai_empire, cybrex_empire, sentinels,
+      gate_builders, gray, tiyanki, amoeba, amoeba_borderless, crystal,
+      drone, cloud, feral_prethoryn, feral_prethoryn_infighting
+    Déjà présents en vanilla :
+      borg, pirate_country, marauder_raiders, crystalline_entity_country
+
+  common/country_types/03_country_types_megacorp.txt   (replace_path CP26)
+    Ajout `ignores_warp_range = yes` à :
+      caravaneer_home, caravaneer_fleet
+
+  Côté CP26 (déjà appliqué) :
+      default (zz_cp26_default_country_type.txt)
+      contender (aa_contender_country.txt)
+
+  Country_types laissés tels quels (stationnaires ou sans vaisseau warp) :
+      faction, adversary, neutral_faction, nomad, primitive, rebel, ambient,
+      enclave, shroud, shroud_spirits, tiyanki_garrison, amoeba_garrison,
+      amoeba_faction, crystal_faction, drone_faction, portal_holder, vol,
+      ratlings, mechanocalibrator, guardian_* (Leviathans), prikki, neutral_zone
+
+  COMPORTEMENT RÉSULTANT
+  ──────────────────────
+    ✓ Plus aucune bulle de portée autour des starbases
+    ✓ Tous les vaisseaux jouables (déjà ignores_warp_range) : aucun changement
+    ✓ IA majeures, contender (mineurs CP26) : aucun changement
+    ✓ Pirates, marauders, crises (Borg/Prethoryn/Unbidden/Contingency/War in Heaven) :
+      protégés explicitement, continuent à voyager partout
+    ✓ Créatures spatiales (amoeba, tiyanki, crystal, drone, cloud) :
+      protégées, continuent à migrer librement
+    ✓ Caravaneers : protégés
 
 
 ════════════════════════════════════════════════════════════════════════════════
@@ -171,6 +234,17 @@ multiplie cette valeur (base 1.0 = 100%).
 
   common/defines/cmi_01_defines.txt
     → NShip { WARP_INTERSTELLAR_TRAVEL_SPEED = 0.065 }
+    → NShip { OUTPOST_WARP_RANGE_RADIUS = 0 }   (1.4)
+
+  common/country_types/00_country_types.txt           (replace_path CP26, 1.4)
+  common/country_types/03_country_types_megacorp.txt  (replace_path CP26, 1.4)
+    → ignores_warp_range = yes ajouté à tous les types mobiles non couverts
+
+  common/country_types/zz_cp26_default_country_type.txt  (déjà existant)
+  common/country_types/aa_contender_country.txt          (déjà existant)
+  common/ship_sizes/cp26_california_ship_sizes.txt       (déjà existant)
+  common/ship_sizes/voyager_hero_sizes.txt               (déjà existant)
+  common/ship_sizes/zz_cp26_transport_sizes.txt          (déjà existant)
 
   common/technology/zz_cp26_warp_techs.txt
     → Override tech_warp_speed_increase_1 : +0.20 → +0.30

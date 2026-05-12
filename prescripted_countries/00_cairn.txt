@@ -14,7 +14,7 @@ cairn = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_cairn"
 
 	species = {
-		class = "HRB" # TODO: Create custom class
+		class = "HRB_HARDY" # CP26: was HRB, assigned to hardy/frontier archetype
 		portrait = "cairn"
 		name = "PRESCRIPTED_species_name_cairn"
 		plural = "PRESCRIPTED_species_plural_cairn"

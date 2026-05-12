@@ -1,5 +1,5 @@
 setup_scenario = {
-	name = "large"
+	name = "CP26 Large"
 	priority = 3					#priority decides in which order the scenarios are listed
 	num_stars = 800
 	radius = 450					#should be less than 500, preferably less than ~460

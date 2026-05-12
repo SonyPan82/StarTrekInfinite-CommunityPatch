@@ -1,5 +1,5 @@
 bespoke_procedural_scenario = {
-	name = "alpha_beta_large"
+	name = "CP26 Alpha-Beta Large"
 	priority = 3					#priority decides in which order the scenarios are listed
 	num_stars = 650
 	radius = 450					#should be less than 500, preferably less than ~460

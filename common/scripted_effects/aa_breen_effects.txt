@@ -25,6 +25,13 @@ spawn_breen_system_fallback = {
 setup_breen_capital = {
 	if = {
 		limit = { exists = event_target:breen_country }
+		# CP26 — Breen combat doctrine : heavy cryo armor, slow cadence.
+		event_target:breen_country = {
+			if = {
+				limit = { NOT = { has_modifier = cp26_minor_breen_combat_doctrine } }
+				add_modifier = { modifier = cp26_minor_breen_combat_doctrine days = -1 }
+			}
+		}
 		random_system_planet = {
 			limit = {
 				has_planet_flag = breen_capital

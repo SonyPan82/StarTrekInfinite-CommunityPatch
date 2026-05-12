@@ -14,7 +14,7 @@ talarian = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_talarian"
 
 	species = {
-		class = "HRB"
+		class = "HRB_HARDY" # CP26: was HRB
 		portrait = "talarian"
 		name = "PRESCRIPTED_species_name_talarian"
 		plural = "PRESCRIPTED_species_plural_talarian"

@@ -1,0 +1,96 @@
+================================================================================
+CP26 — Refonte des Species Classes pour les Minor Factions
+================================================================================
+Date          : 2026-05
+Fichiers      : common/species_classes/zz_cp26_minor_species_classes.txt
+                prescripted_countries/00_*.txt (19 fichiers patchés)
+Phase         : 1 (quick win — différenciation visuelle / lore)
+================================================================================
+
+1. PROBLÈME D'ORIGINE (vanilla)
+--------------------------------------------------------------------------------
+Star Trek Infinite regroupe TOUS les peuples mineurs (Acamarian, Bajoran,
+Betazoid, Bolian, Boslic, Cairn, Farian, Hupyrian, Idanian, Iyaaran, Kaelon,
+Kesprytt, Ktarian, Lissepian, Malcorian, Pelian, Talarian, Tanugan, Trill...)
+sous une SEULE et même classe : "HRB" (Humanoid Race - Beta).
+
+14 des 21 fichiers prescripted minors portent même un commentaire explicite :
+
+    class = "HRB" # TODO: Create custom class
+
+Conséquences :
+  - Tous les minors partagent le MÊME pool de portraits (vulcan, klingon,
+    cardassian, fedhuman, etc. mélangés).
+  - Tous utilisent la MÊME graphical_culture (ufop_01).
+  - Aucune distinction visuelle ou lore entre un Bajoran spirituel et un
+    Talarian belliqueux — mécaniquement identiques au moteur.
+
+2. SOLUTION CP26 — 3 archétypes thématiques
+--------------------------------------------------------------------------------
+Au lieu de créer 1 classe par minor (coûteux, 20 classes à maintenir), on
+les regroupe en 3 archétypes thématiquement cohérents.
+
+╔═══════════════╦═══════════════════════════════════╦════════════════════════╗
+║ Classe        ║ Identité lore                     ║ Membres                ║
+╠═══════════════╬═══════════════════════════════════╬════════════════════════╣
+║ HRB_DIPLO     ║ Diplomates / spirituels           ║ Bajoran                ║
+║               ║ Peuples raffinés, contact         ║ Betazoid               ║
+║               ║ pacifique, civilisations          ║ Trill                  ║
+║               ║ avancées non militaires.          ║ Kaelon                 ║
+║               ║                                   ║ Malcorian              ║
+║               ║                                   ║ Iyaaran                ║
+║               ║ graphical_culture = ufop_01       ║                        ║
+╠═══════════════╬═══════════════════════════════════╬════════════════════════╣
+║ HRB_TRADE     ║ Marchands / opportunistes         ║ Bolian                 ║
+║               ║ Économies basées sur le           ║ Boslic                 ║
+║               ║ commerce, neutralité politique,   ║ Hupyrian               ║
+║               ║ services aux puissances.          ║ Lissepian              ║
+║               ║                                   ║ Pelian                 ║
+║               ║                                   ║ Farian                 ║
+║               ║ graphical_culture = ufop_01       ║ (+ ferengi portraits)  ║
+╠═══════════════╬═══════════════════════════════════╬════════════════════════╣
+║ HRB_HARDY     ║ Résilients / belliqueux           ║ Acamarian              ║
+║               ║ Peuples endurcis, mondes          ║ Cairn                  ║
+║               ║ frontaliers, traditions           ║ Talarian               ║
+║               ║ militaires fortes ou survie       ║ Tanugan                ║
+║               ║ en milieu hostile.                ║ Kesprytt               ║
+║               ║                                   ║ Ktarian                ║
+║               ║ graphical_culture = minor_01      ║ Idanian                ║
+║               ║ (look distinct des UFOP)          ║ (+ nausicaan portraits)║
+╚═══════════════╩═══════════════════════════════════╩════════════════════════╝
+
+Total = 6 + 6 + 7 = 19 prescripted minors regroupés.
+Plus : Jnaii (classe JNA spéciale vanilla, gardée intacte).
+Plus : 1 prescripted hors champ minor (mère vérification : on compte 20 fichiers
+"00_*" au total dans prescripted_countries, tous couverts).
+
+3. CHOIX TECHNIQUES
+--------------------------------------------------------------------------------
+- archetype = BIOLOGICAL : identique à HRB → zero impact mécanique.
+- resources = {} : aucune modification d'upkeep ni de production de pop.
+- portraits restreints au thème : c'est le SEUL effet observable en jeu
+  (visuel uniquement).
+- HRB_HARDY utilise graphical_culture = minor_01 pour différencier l'aspect
+  cités/vaisseaux des minors "rudes" des UFOP.
+- La classe générique "HRB" originale est conservée intacte dans
+  02_hornblower_species_classes.txt (utilisée par randoms et autres).
+
+4. RISQUES & RÉVERSIBILITÉ
+--------------------------------------------------------------------------------
+- Risque équilibrage : NUL. Les classes sont identiques mécaniquement.
+- Risque visuel : si un portrait n'existe pas dans le .gfx, le moteur tombe
+  sur un placeholder. Tous les portraits utilisés (bajoran, betazoid, trill,
+  etc.) sont déjà déclarés dans la liste HRB vanilla → garantis présents.
+- Reversibilité : 1 commit de revert (supprimer les patches `class = HRB_*`
+  vers `class = HRB`, supprimer le fichier zz_cp26_minor_species_classes.txt).
+
+5. PHASE 2 (FUTURE — non implémentée)
+--------------------------------------------------------------------------------
+Une fois la phase 1 stable, on peut envisager :
+  - Traits raciaux propres à chaque classe (ex: HRB_DIPLO +5% diplomatic
+    weight ; HRB_TRADE +10% trade value ; HRB_HARDY +10% army damage).
+  - Prefer_room distinct par classe (visuel des transmissions).
+  - Name_lists thématiques (au lieu de partager NHP/PRTN/etc.).
+
+Décision : NON déployé tant que phase 1 n'a pas été testée plusieurs runs.
+================================================================================

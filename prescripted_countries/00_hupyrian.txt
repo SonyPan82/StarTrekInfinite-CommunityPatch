@@ -14,7 +14,7 @@ Hupyrian = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_hupyrian"
 
 	species = {
-		class = "HRB"
+		class = "HRB_TRADE" # CP26: was HRB
 		portrait = "hupyrian"
 		name = "PRESCRIPTED_species_name_hupyrian"
 		plural = "PRESCRIPTED_species_plural_hupyrian"
