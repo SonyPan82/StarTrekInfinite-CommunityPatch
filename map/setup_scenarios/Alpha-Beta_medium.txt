@@ -12,7 +12,7 @@ bespoke_procedural_scenario = {
 	# CConstructionQueueManager::DailyUpdate and CSaveGameTaskManager::
 	# CreateMemoryFiles. All 258 system positions stay within hypot 405
 	# from origin, so 500 (engine hard cap) leaves a 95-unit safety margin.
-	radius = 500
+	radius = 498
 	num_empires = { min = 24 max = 24 }	# HRB_NOTE: { min = 1 max = 24 }, out of this values the game may crash. Use the max value to ensure appear the 4 Mapos.
 	num_empire_default = 24		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.
 	advanced_empire_default = 0

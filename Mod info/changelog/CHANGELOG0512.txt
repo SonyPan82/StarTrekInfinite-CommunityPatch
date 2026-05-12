@@ -9,6 +9,150 @@ Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = e
 Session du 2026-05-12  —  Audit & fixes
 --------------------------------------------------------------------------------
 
+[POLISH][LOW] Nettoyage warnings game error.log — 3 fixes appliqués, 3 laissés
+  Audit de tous les warnings/script errors visibles dans
+  /Documents/Paradox Interactive/Infinite/logs/error.log sur partie longue.
+  Tri par cause (CP26 vs vanilla) et faisabilité.
+
+  ─── FIX 1 — zz_cp26_fix_country_events.txt:48 (add_opinion_modifier on oneself) ───
+    Notre fichier CP26 dédié au fix de country.27500 (premier contact UFOP)
+    avait un check `NOT = { is_same_value = from }` placé au LIMIT racine
+    de l'event. Quand le moteur entre dans `fromfrom = { add_opinion_modifier
+    = { who = from ... } }`, le scope devient `fromfrom` et la comparaison
+    `is_same_value = from` ne réfère plus au scope racine — donc le check
+    ne protégeait pas du cas `fromfrom == from`. Résultat : warning
+    "Trying to add_opinion_modifier on oneself" à chaque déclenchement
+    avec le scope chainé pointant vers le même pays.
+    Fix : check `is_same_value` déplacé À L'INTÉRIEUR du scope target
+    pour qu'il compare avec le bon contexte. Les deux blocs (from →
+    fromfrom et fromfrom → from) ont été durcis symétriquement.
+
+  ─── FIX 2 — Stella Maris / USS Olympia leader scope error ───
+    Vanilla `common/special_projects/00_hornblower_colony_projects.txt`
+    ligne 36 et 233 fait `on_success = { leader = { save_event_target_as
+    = X } }` sans guard. Si le science ship n'a pas de leader assigné
+    (réassignement, mort, etc.), `leader = { ... }` lance "Invalid context
+    switch [leader] from <ship>" et le target n'est jamais créé.
+    L'event consommateur (hrb_colony.83 pour aqueduct_scientist) plante
+    ensuite avec "Undefined event target".
+    Fix : créé `common/special_projects/zz_cp26_fix_vanilla_colony_projects.txt`
+    qui redéfinit les 2 special_projects fautifs (THE_SHADOW_PEOPLE,
+    AQUEDUCT_LIFEFORM) avec un wrapper `if = { limit = { exists = leader }
+    leader = { ... } }`. Le projet réussit normalement, seul le bonus
+    trait scientifique est skippé si le leader manque (au lieu de crasher
+    avec un log error).
+
+  ─── FIX 3 — hrb_colony.75 unsupported scope + hrb_colony.83 undefined target ───
+    Vanilla `events/hornblower_colony_events.txt` ligne 2978 (hrb_colony.75)
+    fait un `country_event = { id = hrb_colony.75001 days = 3600 }` depuis
+    le scope planet (`event_target:colony_ruins_uncovered = { ... }`).
+    country_event exige scope country → "attempted to execute an effect
+    on an unsupported scope". L'event de retour à J+3600 (10 ans) était
+    silencieusement perdu.
+    Vanilla ligne 3484 (hrb_colony.83 option a) consomme
+    `event_target:aqueduct_scientist` sans guard — directement impacté
+    par le bug Stella Maris ci-dessus.
+    Fix : créé `events/zz_cp26_fix_vanilla_colony_events.txt` qui redéfinit
+    hrb_colony.75 (country_event sorti du bloc planet, fired depuis le
+    scope country racine) et hrb_colony.83 (event_target:aqueduct_scientist
+    wrapped dans `if exists`).
+
+  ─── NON-FIXÉ 1 — Mission AI no positive ai_chance (mission.16/17/55/86/193/215/...) ───
+    Symptôme : "Triggered Event mission.X for AI Y has no options with
+    positive ai_chance!" déclenché ~10x sur une partie longue pour les
+    AI minor factions (Farian, Trill, Bolian, Bajoran, Malcorian,
+    Pelian, Kesprytt, etc.).
+    Cause : ces events vanilla ont des options avec `trigger = { is_ufop =
+    yes }`, `trigger = { is_klingon = yes }` etc. Aucune option ne matche
+    pour les minor factions. Le moteur choisit option 0 par défaut.
+    Pourquoi maintenant : la session a boosté l'activité des minors
+    (species_classes refactor, traits species, AI personalities). Ces
+    events back-end leur popent plus souvent qu'avant.
+    Pourquoi pas fix : ce sont des events `hide_window = yes` +
+    `is_triggered_only = yes`. Le moteur tolère et continue sans crasher.
+    Fix possible = filtrer `is_minor = no` au top de mission.213 et 9
+    autres events, MAIS risque réel de casser des mission chains qui
+    impliquent légitimement les minors. Test exhaustif requis pour
+    chaque event, bénéfice nul (le jeu continue, juste du bruit log).
+
+  ─── NON-FIXÉ 2 — First Contact missing (on_action_events.txt:5105) ───
+    Symptôme : "<X> has encountered <Y> ... but has neither communications
+    with them nor an active First Contact site to do so."
+    Cause : le `log_error = "..."` est VOLONTAIRE en vanilla. Le moteur
+    log puis fait `establish_communications_no_message = prev` juste après.
+    C'est un message de debug intentionnel, pas une erreur fatale.
+    Pourquoi pas fix : retirer le log_error demanderait d'override
+    `events/on_action_events.txt` (~5000 lignes vanilla). Coût excessif
+    pour supprimer un log debug par design. Plus de minors actifs =
+    plus de logs, c'est attendu.
+
+  ─── NON-FIXÉ 3 — Spy mission cleanup (spy_mission_spy_global undefined) ───
+    Symptôme : "Trying to remove undefined event target: spy_mission_spy_global"
+    Cause : `clear_global_event_target = spy_mission_spy_global` est
+    appelé dans l'`after` block d'events spy. Si le target n'a pas été
+    créé en amont (event chain incomplète), le clear log un warning et
+    fait rien.
+    Pourquoi pas fix : STI n'expose pas de syntaxe `exists = global_event_target:X`
+    pour wrapper proprement. Vanilla utilise ce pattern partout sans
+    guard (10+ occurrences anomaly/borg/spy events). Le moteur tolère.
+    Fix demanderait reverse-engineering de la spy chain complète pour
+    garantir le save préalable.
+
+  Fichiers ajoutés :
+    common/special_projects/zz_cp26_fix_vanilla_colony_projects.txt   (Stella Maris + Shadow People)
+    events/zz_cp26_fix_vanilla_colony_events.txt                     (hrb_colony.75 + hrb_colony.83)
+
+  Fichier modifié :
+    events/zz_cp26_fix_country_events.txt                            (durcissement is_same_value check)
+
+  → Effet en jeu :
+    - 3 warnings éliminés du log (CP26 self-opinion, Stella Maris scope,
+      hrb_colony.75 scope).
+    - Mission chains "Of Klingons and Romulans" et "Stella Maris" arrivent
+      désormais à leurs payouts trait/research même si le scientifique
+      est absent au moment de l'on_success.
+    - L'event return-visit de Planet of Ruins (J+3600) n'est plus perdu.
+    - Les 3 warnings non-fixés restent visibles mais documentés comme
+      "vanilla intentionnel" ou "fix risqué non rentable".
+
+[CRASH][HIGH] Fix locators part1/part2 manquants — 3 entities (spy ships + station)
+  Symptôme : SIGSEGV dans `CullAndUpdateEntitiesRecursive` (rendu d'entités)
+  après ~8 minutes de jeu. Stack trace : 5 niveaux récursifs dans le quadtree
+  d'entités → crash au moment où une entité essaie de résoudre un attach
+  point inexistant.
+
+  Cause (visible dans logs/error.log) — 3 warnings juste avant le crash :
+    [pdx_entity.cpp:1260]: ufop_01_military_station_small_entity has no attach point named part2
+    [pdx_entity.cpp:1260]: ufop_01_spy_ship_entity has no attach point named part1
+    [pdx_entity.cpp:1260]: klingon_01_spy_ship_entity has no attach point named part1
+    → SIGSEGV 11 secondes après le 3e warning
+
+  Pourquoi maintenant et pas avant : la levée de la limite warp pour les
+  spy/transport/military/construction ships (`ignores_warp_range = yes`)
+  fait que ces vaisseaux circulent désormais partout. Avant ils restaient
+  près de leur territoire, étaient peu construits par l'AI, et ne croisaient
+  jamais le viewport assez longtemps pour déclencher l'attachement raté.
+
+  Fix : ajout du bloc `locator = { name = "part1" position = { 0 0 0 } }`
+  (ou `part2`) sur les 3 entities, calque exact du pattern déjà utilisé pour
+  California / Sovereign / Klingon plus tôt dans la session.
+
+  Fichiers modifiés :
+    gfx/models/ships/ufop_01/_ufop_01_ships_entities.asset      (2 ajouts : part1 spy, part2 station)
+    gfx/models/ships/klingon_01/_klingon_01_ships_entities.asset (1 ajout : part1 spy)
+
+  Audit complémentaire : recherche exhaustive de tous les warnings
+  `has no attach point` dans game error.log + tous les crash dumps.
+  Résultat = uniquement ces 3 entities. Aucune autre n'est concernée
+  (les autres entities .asset du mod sans part1/part2 ne sont jamais
+  demandées avec un attachement, donc safe).
+
+  → Effet en jeu :
+     - Plus de crash quand spy ships UFOP/Klingon circulent dans le viewport.
+     - Plus de crash quand military station small UFOP est rendue à l'écran.
+     - Aucun impact gameplay (locator position 0 0 0 = attach point au centre
+       du mesh, pattern standard utilisé partout dans le mod).
+
 [CRASH][HIGH] Fix Denobula colony — même pattern que Vega, deuxième occurrence
   Symptôme : SIGSEGV dans `CConstructionQueueManager::DailyUpdate` après
   ~14 minutes de jeu en partie UFOP. Crash random selon l'AI Denobulan qui
@@ -194,8 +338,8 @@ Session du 2026-05-12  —  Audit & fixes
   garde TOUS les systèmes dans la box avec 55 unités de marge.
 
   Fix :
-    - Alpha-Beta_medium.txt : radius 570 → 500 (engine hard cap exact)
-    - tutorial.txt          : radius 570 → 500 (sync)
+    - Alpha-Beta_medium.txt : radius 570 → 498 (engine hard cap exact)
+    - tutorial.txt          : radius 570 → 498 (sync)
     - Camera limits inchangées (max abs = 450, déjà dans la box engine)
     - Hypot max système = 405, donc 95 unités de marge sous le cap engine.
 

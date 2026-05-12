@@ -224,6 +224,10 @@ entity = {
 		uv_animation_direction  = { 0.5 0.0 }
 
 	}
+
+	# CP26 fix : missing part1 locator caused SIGSEGV in CullAndUpdateEntitiesRecursive
+	# when spy ships entered viewport (warp limit removed = ships circulate everywhere).
+	locator = { name = "part1" 			position = { 0 0 0 } }
 }
 
 entity = {
