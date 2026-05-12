@@ -51,7 +51,11 @@ event = {
 				add_district_and_planet_size_if_needed_effect = {
 					district = district_generator
 				}
-				add_building = building_clinic
+				# Note: add_building = building_clinic deferred to J+3 via
+				# cp26_denobula_needs_clinic flag, see cp26_delayed_capital_upgrade.txt.
+				# Adding a building on the same tick as create_colony corrupts
+				# the construction queue (cf. fix Vega session 2026-05-12).
+				set_planet_flag = cp26_denobula_needs_clinic
 			}
 		}
 	}

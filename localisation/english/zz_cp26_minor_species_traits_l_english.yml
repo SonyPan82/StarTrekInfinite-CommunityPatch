@@ -1,0 +1,161 @@
+﻿l_english:
+
+ # --- Bajoran
+ trait_survivors_bajoran: "Survivors"
+ trait_survivors_bajoran_desc: "A people forged by occupation — they endure where others would break."
+ trait_prophetic_believer_bajoran: "Prophetic Believers"
+ trait_prophetic_believer_bajoran_desc: "Their faith in the Prophets gives meaning and stability to every aspect of Bajoran life."
+ trait_selective_researchers_bajoran: "Selective Researchers"
+ trait_selective_researchers_bajoran_desc: "Bajorans distrust technologies born of conquest or material excess."
+
+ # --- Betazoid
+ trait_empath_betazoid: "Empaths"
+ trait_empath_betazoid_desc: "Telepathic awareness lets Betazoids feel what others feel — a diplomatic gift."
+ trait_matriarcal_houses_betazoid: "Matriarchal Houses"
+ trait_matriarcal_houses_betazoid_desc: "Ancient noble Houses, led by their matriarchs, guarantee long-term continuity."
+ trait_hard_to_please_betazoid: "Hard to Please"
+ trait_hard_to_please_betazoid_desc: "Cultural refinement comes at a cost — they expect a high quality of life."
+
+ # --- Iyaaran
+ trait_leisureless_iyaaran: "No Leisure"
+ trait_leisureless_iyaaran_desc: "Iyaarans do not value rest as such — every hour is for purpose."
+ trait_undemanding_iyaaran: "Undemanding"
+ trait_undemanding_iyaaran_desc: "Minimal personal needs translate into modest housing and amenities footprint."
+ trait_unhurried_iyaaran: "Unhurried"
+ trait_unhurried_iyaaran_desc: "There is no rush in Iyaaran society — and their birth rate reflects it."
+
+ # --- Kaelon
+ trait_conservative_kaelon: "Conservatives"
+ trait_conservative_kaelon_desc: "Kaelons cling to ancestral ways, slow to embrace new sciences."
+ trait_resourceful_kaelon: "Resourceful"
+ trait_resourceful_kaelon_desc: "A dying sun taught them to do more with less."
+ trait_secluded_kaelon: "Secluded"
+ trait_secluded_kaelon_desc: "Kaelon culture prefers isolation — interaction beyond their world feels intrusive."
+
+ # --- Malcorian
+ trait_transcendentalists_malcorian: "Transcendentalists"
+ trait_transcendentalists_malcorian_desc: "Malcorian philosophy seeks meaning beyond the material plane."
+ trait_traditionalists_malcorian: "Traditionalists"
+ trait_traditionalists_malcorian_desc: "Centuries-old customs cement social order on every Malcorian world."
+ trait_cynical_malcorian: "Cynical"
+ trait_cynical_malcorian_desc: "Malcorians distrust outsiders' motives — diplomacy is uphill."
+
+ # --- Trill
+ trait_joined_elite_trill: "Joined Elite"
+ trait_joined_elite_trill_desc: "Symbionts carry lifetimes of memory and skill, generation after generation."
+ trait_experience_seekers_trill: "Experience Seekers"
+ trait_experience_seekers_trill_desc: "Trills value the breadth of experience as the highest form of growth."
+ trait_private_trill: "Private"
+ trait_private_trill_desc: "Trill culture discourages public displays of authority and status."
+
+ # --- Bolian
+ trait_entrepreneurial_bolian: "Entrepreneurial"
+ trait_entrepreneurial_bolian_desc: "Born negotiators, Bolians turn every encounter into a transaction."
+ trait_blueblood_bolian: "Blueblood Lineage"
+ trait_blueblood_bolian_desc: "Aristocratic Bolian houses preserve stability and produce long-lived leaders."
+ trait_digestor_bolian: "Strong Digestion"
+ trait_digestor_bolian_desc: "Bolians thrive on rough fare that would sicken others."
+
+ # --- Boslic
+ trait_smugglers_boslic: "Smugglers"
+ trait_smugglers_boslic_desc: "A long tradition of moving goods where rules do not — and turning profit on the way."
+ trait_roamers_boslic: "Roamers"
+ trait_roamers_boslic_desc: "Boslics live aboard their ships — speed and self-sufficiency are second nature."
+ trait_amoral_boslic: "Amoral"
+ trait_amoral_boslic_desc: "Boslic crews recognize no flag and no creed — internal trust is hard to build."
+
+ # --- Farian
+ trait_cunning_farians: "Cunning"
+ trait_cunning_farians_desc: "Farians read every situation for advantage long before others realize it exists."
+ trait_entrepreneurial_farians: "Entrepreneurial"
+ trait_entrepreneurial_farians_desc: "Hard work and sharper bargains shape the Farian economy."
+ trait_exploitative_farians: "Exploitative"
+ trait_exploitative_farians_desc: "Their dealings leave a sour aftertaste with allies and subjects alike."
+
+ # --- Hupyrian
+ trait_devout_hupyrian: "Devout"
+ trait_devout_hupyrian_desc: "Religious devotion structures every aspect of Hupyrian life."
+ trait_sturdy_hupyrian: "Sturdy"
+ trait_sturdy_hupyrian_desc: "Hupyrians stand half again the height of an average humanoid — and twice as tough."
+ trait_great_needs_hupyrian: "Voracious Appetite"
+ trait_great_needs_hupyrian_desc: "Hupyrian size demands large rations to sustain their physical work."
+
+ # --- Lissepian
+ trait_eye_for_business_lissepian: "Eye for Business"
+ trait_eye_for_business_lissepian_desc: "Lissepians see profit lines where others see only noise."
+ trait_timely_lissepian: "Timely"
+ trait_timely_lissepian_desc: "Punctuality is a Lissepian virtue — schedules are honored to the second."
+ trait_intermediaries_lissepian: "Natural Intermediaries"
+ trait_intermediaries_lissepian_desc: "Lissepian neutrality makes them sought-after mediators across the Quadrant."
+
+ # --- Pelian
+ trait_smart_workers_pelian: "Smart Workers"
+ trait_smart_workers_pelian_desc: "Pelian labor force combines intelligence with physical capability."
+ trait_organized_pelian: "Organized"
+ trait_organized_pelian_desc: "Pelian administration runs with machine-like precision."
+ trait_busy_minds_pelian: "Busy Minds"
+ trait_busy_minds_pelian_desc: "Pelian thought rarely rests — they juggle multiple tasks with ease."
+
+ # --- Acamarian
+ trait_stubborn_resilience_acamarian: "Stubborn Resilience"
+ trait_stubborn_resilience_acamarian_desc: "Highland clan stock — Acamarians break through hardship that would crush others."
+ trait_divergent_acamarian: "Divergent Clans"
+ trait_divergent_acamarian_desc: "Rival clan loyalties keep Acamarian society from full unity."
+ trait_combative_acamarian: "Combative"
+ trait_combative_acamarian_desc: "Acamarian warrior tradition produces fierce ground forces."
+
+ # --- Cairn
+ trait_uninhibited_cairn: "Uninhibited Thought"
+ trait_uninhibited_cairn_desc: "Direct telepathic exchange bypasses linguistic filters — pure ideas flow."
+ trait_telepathic_cairn: "Pure Telepaths"
+ trait_telepathic_cairn_desc: "Cairns communicate exclusively through telepathy — there is no spoken language."
+ trait_pacifists_cairn: "Pacifists"
+ trait_pacifists_cairn_desc: "Cairn telepathic culture finds physical violence almost incomprehensible."
+
+ # --- Idanian
+ trait_secretive_idanian: "Secretive"
+ trait_secretive_idanian_desc: "Idanian leaders operate through shadow networks unknown to outsiders."
+ trait_observant_idanian: "Observant"
+ trait_observant_idanian_desc: "Idanians notice details that escape every other species."
+ trait_reserved_idanian: "Reserved"
+ trait_reserved_idanian_desc: "Idanians keep cordial distance — public diplomacy feels indecent."
+
+ # --- Kesprytt
+ trait_disbelieving_kesprytt: "Disbelieving"
+ trait_disbelieving_kesprytt_desc: "Kesprytt reject most galactic dogmas — their unity comes from collective skepticism."
+ trait_utilitarian_kesprytt: "Utilitarian"
+ trait_utilitarian_kesprytt_desc: "Function trumps form — Kesprytt habitats are spartan but efficient."
+ trait_ununified_kesprytt: "Disunified"
+ trait_ununified_kesprytt_desc: "Two ancient factions hold Kesprytt in a cold internal stalemate."
+
+ # --- Ktarian
+ trait_deceivers_ktarian: "Deceivers"
+ trait_deceivers_ktarian_desc: "Ktarian leadership thrives on indirect manipulation and layered agendas."
+ trait_neuro_engineers_ktarian: "Neuro-Engineers"
+ trait_neuro_engineers_ktarian_desc: "Ktarians pioneer neural-interface technology unrivaled in the Quadrant."
+ trait_disruptive_ktarian: "Disruptive"
+ trait_disruptive_ktarian_desc: "Ktarian cultural exports sow restlessness on every world they reach."
+
+ # --- Talarian
+ trait_vigilant_talarian: "Vigilant"
+ trait_vigilant_talarian_desc: "Talarian warriors stand perpetual watch — readiness is a state of mind."
+ trait_undying_duty_talarian: "Undying Duty"
+ trait_undying_duty_talarian_desc: "Talarian honor demands fighting to the last — surrender is unthinkable."
+ trait_chaste_talarian: "Chaste Society"
+ trait_chaste_talarian_desc: "Strict Talarian customs around courtship slow population growth."
+
+ # --- Tanugan
+ trait_inquisitive_tanugan: "Inquisitive"
+ trait_inquisitive_tanugan_desc: "Tanugans question everything — relentless curiosity fuels their academies."
+ trait_law_abiding_tanugan: "Law-Abiding"
+ trait_law_abiding_tanugan_desc: "Tanugan civic culture rests on transparent and enforced rule of law."
+ trait_skeptics_tanugan: "Skeptics"
+ trait_skeptics_tanugan_desc: "Tanugans dismiss mysticism — secular reasoning rules every debate."
+
+ # --- Jnaii
+ trait_kindred_jnaii: "Kindred"
+ trait_kindred_jnaii_desc: "The genderless Jnaii view all of their species as one extended family."
+ trait_enlightened_jnaii: "Enlightened"
+ trait_enlightened_jnaii_desc: "Jnaii philosophy values higher consciousness over base impulses."
+ trait_conformist_jnaii: "Conformist"
+ trait_conformist_jnaii_desc: "Total societal cohesion is the Jnaii cultural ideal."

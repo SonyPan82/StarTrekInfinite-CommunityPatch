@@ -1,0 +1,161 @@
+﻿l_french:
+
+ # --- Bajoran
+ trait_survivors_bajoran:0 "Survivants"
+ trait_survivors_bajoran_desc:0 "Un peuple forgé par l'occupation — ils tiennent là où d'autres s'effondreraient."
+ trait_prophetic_believer_bajoran:0 "Croyants des Prophètes"
+ trait_prophetic_believer_bajoran_desc:0 "Leur foi envers les Prophètes donne sens et stabilité à chaque aspect de la vie bajorane."
+ trait_selective_researchers_bajoran:0 "Chercheurs Sélectifs"
+ trait_selective_researchers_bajoran_desc:0 "Les Bajorans se méfient des technologies issues de la conquête ou de l'excès matériel."
+
+ # --- Betazoid
+ trait_empath_betazoid:0 "Empathes"
+ trait_empath_betazoid_desc:0 "La conscience télépathique permet aux Betazoïdes de ressentir l'autre — un don diplomatique."
+ trait_matriarcal_houses_betazoid:0 "Maisons Matriarcales"
+ trait_matriarcal_houses_betazoid_desc:0 "D'anciennes Maisons nobles, dirigées par leurs matriarches, garantissent la continuité."
+ trait_hard_to_please_betazoid:0 "Exigeants"
+ trait_hard_to_please_betazoid_desc:0 "Le raffinement culturel a un prix : ils exigent un haut niveau de vie."
+
+ # --- Iyaaran
+ trait_leisureless_iyaaran:0 "Sans Loisirs"
+ trait_leisureless_iyaaran_desc:0 "Les Iyaarans n'accordent pas de valeur au repos en soi — chaque heure a un but."
+ trait_undemanding_iyaaran:0 "Frugaux"
+ trait_undemanding_iyaaran_desc:0 "Des besoins personnels minimaux se traduisent par une empreinte modeste."
+ trait_unhurried_iyaaran:0 "Sans Hâte"
+ trait_unhurried_iyaaran_desc:0 "Aucune urgence dans la société iyaarane — leur taux de natalité s'en ressent."
+
+ # --- Kaelon
+ trait_conservative_kaelon:0 "Conservateurs"
+ trait_conservative_kaelon_desc:0 "Les Kaelons s'accrochent aux traditions ancestrales, lents à embrasser les nouvelles sciences."
+ trait_resourceful_kaelon:0 "Ingénieux"
+ trait_resourceful_kaelon_desc:0 "Un soleil mourant leur a appris à faire plus avec moins."
+ trait_secluded_kaelon:0 "Reclus"
+ trait_secluded_kaelon_desc:0 "La culture kaelon préfère l'isolement — toute interaction extérieure semble intrusive."
+
+ # --- Malcorian
+ trait_transcendentalists_malcorian:0 "Transcendantalistes"
+ trait_transcendentalists_malcorian_desc:0 "La philosophie malcoriane cherche un sens au-delà du plan matériel."
+ trait_traditionalists_malcorian:0 "Traditionalistes"
+ trait_traditionalists_malcorian_desc:0 "Des coutumes séculaires cimentent l'ordre social sur chaque monde malcorien."
+ trait_cynical_malcorian:0 "Cyniques"
+ trait_cynical_malcorian_desc:0 "Les Malcoriens se méfient des motivations étrangères — la diplomatie est ardue."
+
+ # --- Trill
+ trait_joined_elite_trill:0 "Élite Conjointe"
+ trait_joined_elite_trill_desc:0 "Les symbiotes portent des vies de mémoire et de savoir, génération après génération."
+ trait_experience_seekers_trill:0 "En Quête d'Expérience"
+ trait_experience_seekers_trill_desc:0 "Les Trills valorisent l'ampleur de l'expérience comme la plus haute forme de croissance."
+ trait_private_trill:0 "Discrets"
+ trait_private_trill_desc:0 "La culture trill décourage les démonstrations publiques d'autorité et de statut."
+
+ # --- Bolian
+ trait_entrepreneurial_bolian:0 "Entrepreneurs"
+ trait_entrepreneurial_bolian_desc:0 "Négociateurs nés, les Boliens transforment toute rencontre en transaction."
+ trait_blueblood_bolian:0 "Sang Bleu"
+ trait_blueblood_bolian_desc:0 "Les maisons aristocratiques boliennes préservent la stabilité et engendrent des leaders longévifs."
+ trait_digestor_bolian:0 "Forte Digestion"
+ trait_digestor_bolian_desc:0 "Les Boliens prospèrent sur des aliments grossiers qui rendraient d'autres malades."
+
+ # --- Boslic
+ trait_smugglers_boslic:0 "Contrebandiers"
+ trait_smugglers_boslic_desc:0 "Une longue tradition de transport de biens là où les règles ne vont pas — au profit toujours."
+ trait_roamers_boslic:0 "Vagabonds"
+ trait_roamers_boslic_desc:0 "Les Boslics vivent à bord de leurs vaisseaux — vitesse et autonomie sont leur seconde nature."
+ trait_amoral_boslic:0 "Amoraux"
+ trait_amoral_boslic_desc:0 "Les équipages Boslics ne reconnaissent ni drapeau ni croyance — la confiance interne se construit mal."
+
+ # --- Farian
+ trait_cunning_farians:0 "Rusés"
+ trait_cunning_farians_desc:0 "Les Fariens lisent l'avantage de chaque situation bien avant que d'autres y voient une opportunité."
+ trait_entrepreneurial_farians:0 "Entrepreneurs"
+ trait_entrepreneurial_farians_desc:0 "Travail acharné et négociations affûtées façonnent l'économie farienne."
+ trait_exploitative_farians:0 "Exploiteurs"
+ trait_exploitative_farians_desc:0 "Leurs affaires laissent un goût amer chez alliés et sujets."
+
+ # --- Hupyrian
+ trait_devout_hupyrian:0 "Dévots"
+ trait_devout_hupyrian_desc:0 "La dévotion religieuse structure tous les aspects de la vie hupyrienne."
+ trait_sturdy_hupyrian:0 "Robustes"
+ trait_sturdy_hupyrian_desc:0 "Les Hupyriens font une fois et demie la taille d'un humanoïde moyen — et le double en endurance."
+ trait_great_needs_hupyrian:0 "Grand Appétit"
+ trait_great_needs_hupyrian_desc:0 "La taille hupyrienne exige de grandes rations pour soutenir leur travail physique."
+
+ # --- Lissepian
+ trait_eye_for_business_lissepian:0 "Sens des Affaires"
+ trait_eye_for_business_lissepian_desc:0 "Les Lisséopiens voient des lignes de profit là où d'autres ne voient que du bruit."
+ trait_timely_lissepian:0 "Ponctuels"
+ trait_timely_lissepian_desc:0 "La ponctualité est une vertu lissépienne — les horaires sont respectés à la seconde."
+ trait_intermediaries_lissepian:0 "Intermédiaires Naturels"
+ trait_intermediaries_lissepian_desc:0 "La neutralité lissépienne en fait des médiateurs prisés à travers le Quadrant."
+
+ # --- Pelian
+ trait_smart_workers_pelian:0 "Travailleurs Intelligents"
+ trait_smart_workers_pelian_desc:0 "La main d'œuvre pélienne combine intelligence et capacité physique."
+ trait_organized_pelian:0 "Organisés"
+ trait_organized_pelian_desc:0 "L'administration pélienne fonctionne avec une précision mécanique."
+ trait_busy_minds_pelian:0 "Esprits Actifs"
+ trait_busy_minds_pelian_desc:0 "L'esprit pélien ne se repose jamais — ils jonglent aisément avec plusieurs tâches."
+
+ # --- Acamarian
+ trait_stubborn_resilience_acamarian:0 "Résilience Têtue"
+ trait_stubborn_resilience_acamarian_desc:0 "Souche des clans des hautes terres — les Acamariens traversent des épreuves qui briseraient d'autres."
+ trait_divergent_acamarian:0 "Clans Divergents"
+ trait_divergent_acamarian_desc:0 "Les loyautés claniques rivales empêchent la société acamarienne de s'unir pleinement."
+ trait_combative_acamarian:0 "Combatifs"
+ trait_combative_acamarian_desc:0 "La tradition guerrière acamarienne produit des troupes au sol redoutables."
+
+ # --- Cairn
+ trait_uninhibited_cairn:0 "Pensée Sans Filtre"
+ trait_uninhibited_cairn_desc:0 "L'échange télépathique direct contourne les filtres linguistiques — les idées pures circulent."
+ trait_telepathic_cairn:0 "Télépathes Purs"
+ trait_telepathic_cairn_desc:0 "Les Cairns communiquent exclusivement par télépathie — pas de langage parlé."
+ trait_pacifists_cairn:0 "Pacifistes"
+ trait_pacifists_cairn_desc:0 "La culture télépathique Cairn trouve la violence physique presque incompréhensible."
+
+ # --- Idanian
+ trait_secretive_idanian:0 "Secrets"
+ trait_secretive_idanian_desc:0 "Les dirigeants Idaniens opèrent par des réseaux occultes inconnus des étrangers."
+ trait_observant_idanian:0 "Observateurs"
+ trait_observant_idanian_desc:0 "Les Idaniens remarquent des détails qui échappent à toute autre espèce."
+ trait_reserved_idanian:0 "Réservés"
+ trait_reserved_idanian_desc:0 "Les Idaniens gardent une distance cordiale — la diplomatie publique leur semble indécente."
+
+ # --- Kesprytt
+ trait_disbelieving_kesprytt:0 "Sceptiques"
+ trait_disbelieving_kesprytt_desc:0 "Les Kesprytt rejettent la plupart des dogmes galactiques — leur unité naît du scepticisme collectif."
+ trait_utilitarian_kesprytt:0 "Utilitaires"
+ trait_utilitarian_kesprytt_desc:0 "La fonction prime sur la forme — les habitats Kesprytt sont spartiates mais efficaces."
+ trait_ununified_kesprytt:0 "Désunifiés"
+ trait_ununified_kesprytt_desc:0 "Deux factions anciennes maintiennent Kesprytt dans une impasse interne glaciale."
+
+ # --- Ktarian
+ trait_deceivers_ktarian:0 "Trompeurs"
+ trait_deceivers_ktarian_desc:0 "L'élite Ktariane prospère par la manipulation indirecte et les agendas superposés."
+ trait_neuro_engineers_ktarian:0 "Neuro-Ingénieurs"
+ trait_neuro_engineers_ktarian_desc:0 "Les Ktariens sont pionniers des interfaces neurales, sans égal dans le Quadrant."
+ trait_disruptive_ktarian:0 "Perturbateurs"
+ trait_disruptive_ktarian_desc:0 "Les exportations culturelles Ktariannes sèment l'agitation sur chaque monde qu'elles touchent."
+
+ # --- Talarian
+ trait_vigilant_talarian:0 "Vigilants"
+ trait_vigilant_talarian_desc:0 "Les guerriers Talariens montent une garde perpétuelle — la vigilance est un état d'esprit."
+ trait_undying_duty_talarian:0 "Devoir Immortel"
+ trait_undying_duty_talarian_desc:0 "L'honneur Talarien exige de combattre jusqu'au bout — la reddition est impensable."
+ trait_chaste_talarian:0 "Société Chaste"
+ trait_chaste_talarian_desc:0 "Les coutumes strictes Talariennes autour des fréquentations ralentissent la démographie."
+
+ # --- Tanugan
+ trait_inquisitive_tanugan:0 "Curieux"
+ trait_inquisitive_tanugan_desc:0 "Les Tanugans questionnent tout — une curiosité incessante nourrit leurs académies."
+ trait_law_abiding_tanugan:0 "Respectueux des Lois"
+ trait_law_abiding_tanugan_desc:0 "La culture civique Tanugane repose sur un État de droit transparent et appliqué."
+ trait_skeptics_tanugan:0 "Sceptiques"
+ trait_skeptics_tanugan_desc:0 "Les Tanugans rejettent le mysticisme — le raisonnement séculier régit chaque débat."
+
+ # --- Jnaii
+ trait_kindred_jnaii:0 "Affins"
+ trait_kindred_jnaii_desc:0 "Les Jnaii sans genre voient toute leur espèce comme une famille élargie."
+ trait_enlightened_jnaii:0 "Éclairés"
+ trait_enlightened_jnaii_desc:0 "La philosophie Jnaii valorise la conscience supérieure au-dessus des pulsions basiques."
+ trait_conformist_jnaii:0 "Conformistes"
+ trait_conformist_jnaii_desc:0 "La cohésion sociale totale est l'idéal culturel Jnaii."

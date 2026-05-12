@@ -9,6 +9,105 @@ Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = e
 Session du 2026-05-12  —  Audit & fixes
 --------------------------------------------------------------------------------
 
+[CRASH][HIGH] Fix Denobula colony — même pattern que Vega, deuxième occurrence
+  Symptôme : SIGSEGV dans `CConstructionQueueManager::DailyUpdate` après
+  ~14 minutes de jeu en partie UFOP. Crash random selon l'AI Denobulan qui
+  finit par toucher la queue corrompue. Même signature exacte que le crash
+  Vega que tu avais fixé.
+
+  Cause : `events/aacoldenob_events.txt` (event `aa_coldenob.1000`, game start
+  UFOP) faisait `create_colony` sur Denobula puis, deux sub-blocs plus loin
+  dans `random_owned_planet`, `add_building = building_clinic` au même tick.
+  Pattern strictement identique à celui de Vega (`vgcol_events.txt` avant
+  ton fix) : la `ConstructionQueue` de la planète est dans un état non
+  stabilisé quand `add_building` est commit → corruption silencieuse → SIGSEGV
+  quand l'engine itère sur la queue dans un `DailyUpdate` ultérieur.
+
+  Fix : calque du pattern Vega
+    • events/aacoldenob_events.txt L54 : `add_building = building_clinic` retiré,
+      remplacé par `set_planet_flag = cp26_denobula_needs_clinic`.
+    • events/cp26_delayed_capital_upgrade.txt : nouveau bloc `if` dans
+      `cp26_capital_upgrade.2`, sibling du bloc Vega :
+          if = {
+              limit = { has_planet_flag = cp26_denobula_needs_clinic }
+              add_building = building_clinic
+              remove_planet_flag = cp26_denobula_needs_clinic
+          }
+      Le clinic est donc commit à J+3 via le même mécanisme que le foundry
+      Vega, après stabilisation de la queue par l'engine.
+
+  → Effet en jeu :
+     - Denobula garde son clinic dès le tout début de partie (J+3 au lieu de J+0).
+     - Plus de crash random `DailyUpdate` lié à la queue Denobula.
+     - Lore intact : la Fédération équipe toujours sa colonie avec ce qu'il faut.
+
+[AUDIT][LOW] Audit exhaustif `create_colony` + `add_building` / `remove_building`
+  Suite au fix Vega + Denobula, audit complet de tous les patterns à risque
+  pour la `CConstructionQueue` dans le mod (events/ + common/scripted_effects/ +
+  common/solar_system_initializers/).
+
+  Résultat — TOUS les autres cas sont safe :
+    • Remus, Risa, Lunar One, Mars, Trill northern colony :
+      `create_colony` seul, sans `add_building` voisin.
+    • Setup capitales Tholian / Orion / Gorn / Breen :
+      uniquement `add_district_and_planet_size_if_needed_effect` + flag
+      `cp26_needs_capital_upgrade` → opérations sensibles routées vers J+3.
+    • Breen Secundus, Orion Verex : `create_colony` seul, pas de building immédiat.
+    • Solar system initializers Cardassia, Romulus/Glintara,
+      20 minor factions (other_owned/*) : aucun `add_building`.
+    • `XL_MAP.002` (admin offices UFOP/Klingon) : déclenché via le hook
+      moteur `empire_init_capital_planet` après stabilisation complète de
+      la capitale (pattern vanilla, safe).
+    • `cp26_delayed_capital_upgrade.txt` : la seule occurrence de
+      `remove_building` du mod, déjà différée J+3 par construction.
+
+  Cas surveillé (non-fixé) :
+    • `common/solar_system_initializers/klingon/klingon_khitomer_initializer.txt:53`
+      `late_init_effect = { create_khitomer_colony = yes ; add_building = building_bureaucratic_1 }`
+      Pattern syntaxiquement similaire mais sémantiquement différent : tout
+      est dans un seul bloc `late_init_effect`, un hook moteur dédié dans
+      lequel le moteur garantit l'ordre commit. Vanilla utilise déjà ce
+      pattern (`create_khitomer_colony` contient lui-même un
+      `add_building = building_capital` interne) sans crash signalé. À
+      retirer ou différer si un crash Klingon-spécifique remonte.
+
+[HOTFIX][LOW] Crash SIGSEGV après le load — 3 modifiers research-catégorie invalides
+  Symptôme : crash signal 11 (SIGSEGV) dans `CullAndUpdateEntitiesRecursive`
+  juste après le passage au tick de gameplay. Stack trace propre côté moteur
+  (pas de save corrompue), pointait l'entity system du rendu d'objets.
+
+  Cause réelle (visible dans logs/error.log juste avant le crash) :
+    [modifier.cpp:2758]: Invalid modifier planet_jobs_society_research_produces_mult
+                         at common/traits/zz_cp26_minor_species_traits.txt line: XX
+    (12 occurrences sur 3 noms de modifiers, 9 races impactées)
+
+  Les modifiers `planet_jobs_society_research_produces_mult`,
+  `planet_jobs_physics_research_produces_mult`,
+  `planet_jobs_engineering_research_produces_mult` apparaissent en clair dans
+  les fichiers vanilla STI (`static_modifiers/02_static_modifers.txt`,
+  `species_rights/06_species_rights_profiles.txt`) mais **TOUS commentés**.
+  Vestiges Stellaris non portés en Star Trek: Infinite — l'engine STI ne sait
+  PAS les évaluer et les marque "Invalid". Les traits species qui les
+  référencent retournent des modifiers fantômes, ce qui corrompt l'état des
+  pops puis casse le rendu d'entités au premier update.
+
+  Fix : remplacement des 12 occurrences par `planet_jobs_research_produces_mult`
+  (modifier générique research effectivement supporté par STI, utilisé dans
+  `trait_intelligent` et 30+ traits species vanilla). Pour le trait Bajoran
+  `trait_selective_researchers_bajoran` qui combinait 2 lignes drawback
+  -10% chacune (-20% net), consolidation en une seule ligne -10% pour
+  éviter la double pénalisation lors du collapse.
+
+  Fichier modifié :
+    common/traits/zz_cp26_minor_species_traits.txt   (12 lignes, 11 traits)
+    Mod info/CP26_MINOR_SPECIES_TRAITS.txt           (doc HOTFIX en bas)
+
+  → Effet en jeu :
+     - Plus de "Invalid modifier" dans error.log au load.
+     - Bonus research conservés en magnitude, généralisés (au lieu d'être
+       fléchés society / physics / engineering).
+     - Suppression du crash SIGSEGV au premier update entité.
+
 [FEAT][LOW] Galaxie étalée pour combler l'espace vide (×1.20 autour du centroïde)
   Le joueur a observé que les systèmes paraissaient collés au centre/nord
   de la map avec encore beaucoup d'espace vide visible. Plutôt que toucher
@@ -318,6 +417,59 @@ Session du 2026-05-12  —  Audit & fixes
     L'AI ne lâche plus son expansion en mid/late game, ses systèmes
     annexes (mining/research stations) sont mieux construits.
   → Impact CPU : 1 trigger eval par AI country par an → négligeable.
+
+[FEAT][LOW] C.Civils — Création des 60 traits species minor factions
+  Les 20 prescripted minor factions de CP26 référençaient chacune 3 traits
+  species custom dans leur fichier prescripted_countries/00_*.txt (Bajoran,
+  Betazoid, Bolian, etc.), pour un total de 60 noms uniques. Audit : aucun
+  de ces 60 traits n'était défini nulle part — pas de fichier dans
+  common/traits/, pas de localisation. Le moteur les ignorait silencieusement,
+  les pops de ces 20 races démarraient avec ZÉRO trait species effectif.
+
+  Stratégie B retenue (création complète, parité avec les 4 majeures CP26
+  qui ont déjà chacune 3 traits species dédiés).
+
+  Fichiers créés :
+    common/traits/zz_cp26_minor_species_traits.txt                       (60 traits)
+    localisation/english/zz_cp26_minor_species_traits_l_english.yml      (UTF-8 BOM)
+    localisation/french/zz_cp26_minor_species_traits_l_french.yml        (UTF-8 BOM)
+    Mod info/CP26_MINOR_SPECIES_TRAITS.txt                               (doc design)
+
+  Pattern par race : 1 trait signature majeur (cost=4) + 1 trait positif
+  secondaire (cost=2) + 1 trait drawback culturel (cost=-1).
+  Budget net par race ≈ +3 à +5 cost, modifiers modérés (±10-20%).
+
+  Modifiers utilisés : tous observés dans aa_tholian_traits, denobulan_traits,
+  risan_traits, remus_traits ou 00_hornblower_leader_traits (aucun inventé) :
+  pop_growth_speed, pop_amenities_usage_mult, pop_housing_usage_mult,
+  planet_pops_organics_food_upkeep_mult, planet_pops_energy_upkeep_mult,
+  planet_jobs_*_produces_mult (worker/specialist/ruler/unity/research),
+  planet_stability_add, army_damage_mult, army_health, leader_age,
+  trade_value_add, envoys_add, diplo_weight_economy_mult, ship_speed_mult.
+
+  Identités par archetype :
+    HRB_DIPLO (Bajoran, Betazoid, Iyaaran, Kaelon, Malcorian, Trill) →
+      research society + leader long-lived + drawback "amenity heavy/slow"
+    HRB_TRADE (Bolian, Boslic, Farian, Hupyrian, Lissepian, Pelian) →
+      trade value + production specialist/worker + drawback social
+    HRB_HARDY (Acamarian, Cairn, Idanian, Kesprytt, Ktarian, Talarian, Tanugan) →
+      armée + stabilité + research society + drawback instabilité/pacifisme
+    JNA (Jnaii) → conformiste, 3 traits positifs équilibrés
+
+  Aucune modification des prescripted_countries (les noms étaient déjà bons).
+  Aucune modification de l'architecture species_classes (HRB_DIPLO/TRADE/HARDY
+  inchangés).
+
+  → Effet attendu :
+    - Chaque rencontre minor faction devient lisible : forces et faiblesses
+      lore-cohérentes (Bajoran résilient mais conservateur tech, Cairn
+      télépathes pacifistes, Talarien soldats à reproduction lente, etc.).
+    - L'AI minor faction joue mieux sa partie : Bolians orientés trade,
+      Acamariens orientés army, Trills focalisés leaders long-lived.
+    - Pops migrées / conquises / vassales apportent leur trait dans
+      l'empire du joueur (un Talarien intégré = excellente garnison,
+      un Lissepian intégré = booster commerce, etc.).
+    - Plus aucun warning "trait not found" pour ces 60 noms.
 
 ================================================================================
 EN ATTENTE DE DÉCISION (non appliqué)
