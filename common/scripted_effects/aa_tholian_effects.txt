@@ -43,7 +43,7 @@ setup_tholian_capital = {
 			add_deposit = d_hot_springs
 			add_deposit = d_geothermal_vent
 			while = {
-				count = 20
+				count = 21
 				create_pop = { species = "Tholian" }
 			}
 			clear_blockers = yes
@@ -57,7 +57,7 @@ setup_tholian_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
 			add_district_and_planet_size_if_needed_effect = { district = district_industrial }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
-			set_planet_flag = cp26_needs_capital_upgrade
+			add_building = building_capital
 		}
 		if = {
 			limit = {

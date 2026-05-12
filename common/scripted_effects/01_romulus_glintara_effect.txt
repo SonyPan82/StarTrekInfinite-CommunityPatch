@@ -46,8 +46,7 @@ create_glintara_colony = {
 
 
 	while = {
-		#one less than intended, casue this colony has to create_colony{} first (adding 1 pop ion the process)
-		count = 10
+		count = 11
 		create_pop = {
 			species = romulan
 		}

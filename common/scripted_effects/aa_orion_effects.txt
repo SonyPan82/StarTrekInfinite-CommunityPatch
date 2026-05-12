@@ -61,7 +61,7 @@ setup_orion_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
-			set_planet_flag = cp26_needs_capital_upgrade
+			add_building = building_capital
 		}
 		if = {
 			limit = {
@@ -90,11 +90,10 @@ setup_verex_colony = {
 			limit = {
 				has_planet_flag = orion_colony
 			}
-			create_colony = {
-				owner = event_target:orion_country
-			}
+			set_owner = event_target:orion_country
+			set_colony_type = col_default
 			while = {
-				count = 10
+				count = 11
 				create_pop = { species = "Orion" }
 			}
 			clear_blockers = yes
@@ -105,7 +104,7 @@ setup_verex_colony = {
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
-			set_planet_flag = cp26_needs_capital_upgrade
+			add_building = building_capital
 			set_name = "Verex III"
 		}
 	}

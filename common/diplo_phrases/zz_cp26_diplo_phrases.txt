@@ -1,0 +1,27 @@
+action_cp26_offer_war_goal_peace = {
+	consider = {
+		01_CP26_OFFER_WAR_GOAL_PEACE_CONSIDER = {
+			trigger = { always = yes }
+		}
+	}
+	select = {
+		01_CP26_OFFER_WAR_GOAL_PEACE_SELECT = {
+			trigger = { always = yes }
+		}
+	}
+	propose = {
+		01_CP26_OFFER_WAR_GOAL_PEACE_PROPOSE = {
+			trigger = { always = yes }
+		}
+	}
+	accept = {
+		01_CP26_OFFER_WAR_GOAL_PEACE_ACCEPT = {
+			trigger = { always = yes }
+		}
+	}
+	refuse = {
+		01_CP26_OFFER_WAR_GOAL_PEACE_REFUSE = {
+			trigger = { always = yes }
+		}
+	}
+}

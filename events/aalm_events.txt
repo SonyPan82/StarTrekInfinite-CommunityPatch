@@ -19,10 +19,11 @@ event = {
 			add_deposit = d_underworld_caverns
 			add_deposit = d_ore_rich_slopes
 
-			create_colony = {
-				owner = event_target:ufop_country
-			}
+			set_owner = event_target:ufop_country
+			set_colony_type = col_default
+			add_building = building_capital
 			
+			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
@@ -56,10 +57,11 @@ event = {
 			add_deposit = d_infertile_land
 			add_deposit = d_ore_rich_slopes
 			
-			create_colony = {
-				owner = event_target:ufop_country
-			}
+			set_owner = event_target:ufop_country
+			set_colony_type = col_default
+			add_building = building_capital
 			
+			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }

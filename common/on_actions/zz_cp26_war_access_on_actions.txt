@@ -4,7 +4,7 @@ on_war_beginning = {
 	}
 }
 
-on_monthly_pulse_country = {
+on_daily_pulse_country = {
 	events = {
 		cp26_war_access.2
 	}

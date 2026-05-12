@@ -94,7 +94,7 @@ setup_gorn_capital = {
 				has_planet_flag = gorn_capital				
 			}
 				while = {
-					count = 20
+					count = 21
 					create_pop = { species = "Gorn" }
 				}
 				add_deposit = d_ore_rich_slopes
@@ -112,7 +112,7 @@ setup_gorn_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
 			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
 			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
-			set_planet_flag = cp26_needs_capital_upgrade
+			add_building = building_capital
 		}
 		create_starbase = {
 			size = starbase_starport

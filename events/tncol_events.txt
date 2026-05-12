@@ -32,12 +32,12 @@ event = {
 						has_planet_flag = terra_nova_planet
 					}
 					
-					create_colony = {
-						owner = event_target:ufop_country
-					}
+					set_owner = event_target:ufop_country
+					set_colony_type = col_default
+					add_building = building_capital
 					
 					while = {
-						count = 4
+						count = 5
 						create_pop = { species = "Human" }
 					}
 					add_district_and_planet_size_if_needed_effect = {

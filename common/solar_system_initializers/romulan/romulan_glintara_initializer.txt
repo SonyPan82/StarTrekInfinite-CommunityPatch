@@ -42,10 +42,9 @@ romulan_glintara_initializer = {
 		}
 
 		late_init_effect = {
-			create_colony = {
-				owner = event_target:romulan_country 
-			}
-			set_planet_flag = cp26_needs_capital_upgrade
+			set_owner = event_target:romulan_country 
+			set_colony_type = col_default
+			add_building = building_capital
 			create_glintara_colony = yes
 		}
 	}

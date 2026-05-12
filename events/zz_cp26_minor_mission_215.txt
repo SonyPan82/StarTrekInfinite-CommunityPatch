@@ -1,0 +1,47 @@
+namespace = cp26_minor_mission
+
+country_event = {
+	id = cp26_minor_mission.215
+	title = "cp26_minor_mission.215.name"
+	desc = "cp26_minor_mission.215.desc"
+	show_sound = event_generic_popup
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	picture = GFX_evt_pc_black_hole_sky
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = event_target:minor_state_vessel
+				}
+				destroy_ambient_object = event_target:minor_state_vessel
+			}
+			if = {
+				limit = {
+					exists = event_target:minor_state_event_country
+				}
+				finished_major_minor_mission = {
+					minor_country = event_target:minor_state_event_country
+					finished_successfully = no
+				}
+				event_target:minor_state_event_country = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_failure
+					}
+				}
+			}
+			remove_country_flag = dignitary_declined
+			remove_country_flag = dignitary_challenge
+		}
+	}
+
+	option = {
+		name = cp26_minor_mission.215.a
+		custom_tooltip = cp26_minor_mission.215.a.tt
+		ai_chance = { factor = 1 }
+	}
+}
