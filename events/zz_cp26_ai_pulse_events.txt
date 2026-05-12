@@ -1,0 +1,67 @@
+# CP26 — AI Empire-Size Pulse
+#
+# Sets a country flag describing the AI's empire size every year.
+# This flag is then read by ship_data fraction modifiers in
+# common/country_types/zz_cp26_default_country_type.txt to dynamically
+# scale the AI's target counts of constructors / colonizers / science ships
+# proportionally to its actual empire size — instead of being stuck on
+# vanilla's static min/max.
+#
+# Thresholds :
+#   small  : 0 - 3 owned planets   (early game, single-cluster empire)
+#   medium : 4 - 7                 (consolidating)
+#   large  : 8 - 14                (regional power)
+#   huge   : 15+                   (galactic power, late game)
+#
+# Why on_yearly_pulse_country and not on_monthly :
+#   - planet count changes slowly. Annual granularity is plenty for the AI.
+#   - 0 CPU impact (one cheap branch per AI country per year).
+
+namespace = cp26_ai_pulse
+
+# Update empire-size country flag based on owned planet count.
+country_event = {
+	id = cp26_ai_pulse.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = yes
+		is_country_type = default
+	}
+
+	immediate = {
+		remove_country_flag = cp26_empire_size_small
+		remove_country_flag = cp26_empire_size_medium
+		remove_country_flag = cp26_empire_size_large
+		remove_country_flag = cp26_empire_size_huge
+
+		if = {
+			limit = {
+				count_owned_planet = {
+					count >= 15
+				}
+			}
+			set_country_flag = cp26_empire_size_huge
+		}
+		else_if = {
+			limit = {
+				count_owned_planet = {
+					count >= 8
+				}
+			}
+			set_country_flag = cp26_empire_size_large
+		}
+		else_if = {
+			limit = {
+				count_owned_planet = {
+					count >= 4
+				}
+			}
+			set_country_flag = cp26_empire_size_medium
+		}
+		else = {
+			set_country_flag = cp26_empire_size_small
+		}
+	}
+}

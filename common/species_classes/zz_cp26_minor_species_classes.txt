@@ -1,0 +1,114 @@
+# CP26 — Minor faction species classes
+#
+# Vanilla regroupe TOUTES les minor factions (Bajoran, Bolian, Trill, Acamarian,
+# Talarian, etc.) sous la même classe générique "HRB", avec un commentaire
+# "HRB_TODO: Create custom class" présent dans 14 des 21 fichiers prescripted.
+#
+# Conséquences vanilla :
+#   - Tous les minors partagent le même pool de portraits → identité visuelle floue.
+#   - Mêmes prefer_room, mêmes graphical_culture, aucune différenciation lore.
+#
+# CP26 — Phase 1 : 3 classes thématiques regroupant les minors par archétype.
+# Identique mécaniquement (archetype = BIOLOGICAL, resources = {}) → zero risque
+# de casser l'équilibre. Différenciation purement lore/visuelle :
+#   - portraits propres au thème (cohérents canon)
+#   - graphical_culture distincte (look vaisseaux + cités quand applicable)
+#
+# Mapping :
+#   HRB_DIPLO  → Bajoran, Betazoid, Trill, Kaelon, Malcorian, Iyaaran
+#                "Diplomates / spirituels" — peuples raffinés, contact pacifique
+#   HRB_TRADE  → Bolian, Boslic, Hupyrian, Lissepian, Pelian, Farian
+#                "Marchands / opportunistes" — civilisations basées sur le commerce
+#   HRB_HARDY  → Acamarian, Cairn, Talarian, Tanugan, Kesprytt, Ktarian, Idanian
+#                "Résilients / belliqueux" — peuples endurcis, frontaliers
+#
+# Total couvert = 6 + 6 + 7 = 19 prescripted minors via classes thématiques,
+# + Jnaii (JNA, classe propre vanilla)
+# + 1 reste (à vérifier — devrait être 21 prescripted minors)
+
+HRB_DIPLO = {
+	archetype = BIOLOGICAL
+
+	portraits = {
+		"bajoran"
+		"betazoid"
+		"trill"
+		"kaelon"
+		"malcorian"
+		"iyaaran"
+	}
+
+	non_randomized_portraits = {
+		"bajoran"
+		"betazoid"
+		"trill"
+		"kaelon"
+		"malcorian"
+		"iyaaran"
+	}
+
+	graphical_culture = ufop_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+
+	resources = {}
+}
+
+HRB_TRADE = {
+	archetype = BIOLOGICAL
+
+	portraits = {
+		"bolian"
+		"boslic"
+		"hupyrian"
+		"lissepian"
+		"pelian"
+		"farian"
+		"ferengi"
+	}
+
+	non_randomized_portraits = {
+		"bolian"
+		"boslic"
+		"hupyrian"
+		"lissepian"
+		"pelian"
+		"farian"
+		"ferengi"
+	}
+
+	graphical_culture = ufop_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+
+	resources = {}
+}
+
+HRB_HARDY = {
+	archetype = BIOLOGICAL
+
+	portraits = {
+		"acamarian"
+		"cairn"
+		"talarian"
+		"tanugan"
+		"kesprytt"
+		"ktarian"
+		"idanian"
+		"nausicaan"
+	}
+
+	non_randomized_portraits = {
+		"acamarian"
+		"cairn"
+		"talarian"
+		"tanugan"
+		"kesprytt"
+		"ktarian"
+		"idanian"
+		"nausicaan"
+	}
+
+	graphical_culture = minor_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+
+	resources = {}
+}

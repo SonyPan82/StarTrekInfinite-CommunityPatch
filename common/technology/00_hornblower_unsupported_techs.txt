@@ -1,0 +1,2744 @@
+# The following techs' implementations are not yet supported by our Tech Tool so they are implemented individualy here (and commented on the propper file)
+
+########################
+#	 UNIQUE TECHS	 #
+# REQUIRE A MAPO CHECK #
+########################
+
+tech_artificial_singularities_1 = {
+
+	area = physics
+	category = { field_manipulation }
+	tier = 0
+	start_tech = yes
+	potential = {
+		is_romulan = yes
+	}
+}
+
+tech_artificial_singularities_2 = {
+
+	cost = @tier2cost1
+	area = physics
+	category = { field_manipulation }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_artificial_singularities_1 }
+	weight = @tier2weight1
+	potential = {
+		is_romulan = yes
+	}
+}
+
+tech_artificial_singularities_3 = {
+
+	cost = @tier4cost2
+	area = physics
+	category = { field_manipulation }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_artificial_singularities_2 }
+	weight = @tier4weight2
+	potential = {
+		is_romulan = yes
+	}
+}
+
+tech_klingon_shrine = {
+
+	area = society
+	category = { statecraft }
+	tier = 0
+	start_tech = yes
+	potential = {
+		is_klingon = yes
+	}
+}
+
+tech_holographic_rituals = {
+
+	cost = @tier1cost2
+	area = society
+	category = { statecraft }
+	tier = 1
+	start_tech = no
+	prerequisites = { tech_klingon_shrine }
+	weight = @tier1weight2
+	potential = {
+		is_klingon = yes
+	}
+}
+
+tech_transcendent_faith = {
+
+	cost = @tier3cost2
+	area = society
+	category = { statecraft }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight2
+	potential = {
+		is_klingon = yes
+	}
+}
+
+tech_hyper_entertainment_forum = {
+
+	cost = @tier3cost3
+	area = society
+	category = { statecraft }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight3
+	potential = {
+		is_ufop = yes
+	}
+}
+
+############################
+#	FEATURE FLAG TECHS	#
+# REQUIRE UNLOCKING A FLAG #
+############################
+
+tech_enable_automatic_surveying = {
+
+	area = physics
+	category = { computing }
+	tier = 0
+	start_tech = yes
+
+	#allow auto-explore on science ships
+	feature_flags = {
+		tech_automated_exploration
+		unlocks_auto_research
+	}
+}
+
+tech_terraforming = {
+
+	cost = @tier3cost2
+	area = society
+	category = { new_worlds }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight2
+
+	feature_flags = {
+		build_terraform_station
+	}
+}
+
+tech_advanced_terraforming = {
+
+	cost = @tier4cost2
+	area = society
+	category = { new_worlds }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_terraforming }
+	weight = @tier4weight2
+
+	feature_flags = {
+		terraform_inhabited
+	}
+}
+
+# Won't be implementing this tech, but leaving it commented for later
+
+# tech_wormhole_travel_unique = {
+
+# 	cost = @tier3cost3
+# 	area = physics
+# 	category = { field_manipulation }
+# 	tier = 3
+# 	start_tech = no
+# 	weight = @tier3weight3
+
+# 	feature_flags = { 
+# 		wormhole_stabilization 
+# 	}
+# }
+
+tech_cloaking_device_1 = {
+
+	cost = @tier1cost3
+	area = physics
+	category = { field_manipulation }
+	tier = 1
+	weight = @tier1weight3
+
+	potential = {
+
+		OR = {
+			AND = {
+				has_origin = origin_ufop
+				owner = {
+					has_country_flag = qt_ufop_control_neutral_zone_finished
+				}
+			}
+
+			NOT = {
+				has_origin = origin_default
+				has_origin = origin_ufop
+			}
+		}   
+	}
+}
+
+## Highway Fluctuations Scanner (T1) 
+tech_highway_fluctuations_scanner = { 
+	cost = @tier1cost2 
+	area = physics 
+	category = { computing } 
+	tier = 1 
+	start_tech = no 
+	ai_update_type = all 
+	weight = @tier1weight2
+
+	modifier = {
+		description = tech_highway_fluctuations_scanner_effect
+	}
+} 
+
+## Highway Stabilization Field (T2) 
+tech_highway_stabilization_field = { 
+	cost = @tier2cost2 
+	area = physics 
+	category = { computing } 
+	tier = 2 
+	start_tech = no 
+	ai_update_type = all 
+	prerequisites = { tech_highway_fluctuations_scanner } 
+	weight = @tier2weight2
+
+	modifier = {
+		description = tech_highway_stabilization_field_effect
+	}
+}
+
+####################################
+#		  NEW HULL TECHS		  #
+# REQUIRE CUSTOM WEIGHTS AND DESCS #
+####################################
+
+# HRB_TODO: add "desc" in the triggered_config -> prereqfor_desc -> ship
+# That's how Stellaris Hull Unlocks work too
+
+
+tech_corvette_unlock = {
+	area = engineering
+	category = { voidcraft }
+	tier = 0
+	start_tech = yes
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_miranda		
+		desc = tech_miranda_desc		
+		icon = tech_miranda # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_MIRANDA_CONSTRUCTION_TITLE
+				desc = tech_miranda_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_bird_of_prey		
+		desc = tech_bird_of_prey_desc		
+		icon = tech_bird_of_prey # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_BIRD_OF_PREY_CONSTRUCTION_TITLE
+				desc = tech_bird_of_prey_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_romulan = yes	
+		}		
+		title = tech_ferrax		
+		desc = tech_ferrax_desc		
+		icon = tech_romulan_bird_of_prey # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_FERRAX_CONSTRUCTION_TITLE
+				desc = tech_ferrax_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_cardassian = yes	
+		}		
+		title = tech_hideki		
+		desc = tech_hideki_desc		
+		icon = tech_hideki # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_HIDEKI_CONSTRUCTION_TITLE
+				desc = tech_hideki_desc
+			}	
+		}		
+	}			
+}
+
+tech_defiant = {
+	cost = @tier2cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 0
+	start_tech = no
+	#hidden = yes #we dont want the tech to be acquirable by normal means, however making it hidden caused other issues so we used weight 0 instead
+	weight = 0
+	
+	potential = {
+		is_ufop = yes	
+	}	
+}
+
+tech_destroyer_unlock = {
+	cost = @tier2cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_corvette_unlock }
+	weight = @specialhullweight #@tier2weight2
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_intrepid		
+		desc = tech_intrepid_desc		
+		icon = tech_intrepid # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_INTREPID_CONSTRUCTION_TITLE
+				desc = tech_intrepid_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_warbird		
+		desc = tech_warbird_desc		
+		icon = tech_warbird # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_WARBIRD_CONSTRUCTION_TITLE
+				desc = tech_warbird_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_romulan = yes	
+		}		
+		title = tech_vindius		
+		desc = tech_vindius_desc		
+		icon = tech_vindius # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_VINDIUS_CONSTRUCTION_TITLE
+				desc = tech_vindius_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_cardassian = yes	
+		}		
+		title = tech_galor		
+		desc = tech_galor_desc		
+		icon = tech_galor # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_GALOR_CONSTRUCTION_TITLE
+				desc = tech_galor_desc
+			}	
+		}		
+	}			
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			years_passed < 10
+		}
+		modifier = {
+			factor = 8
+			years_passed > 18
+		}
+		modifier = {
+			factor = 8
+			any_neighbor_country = {
+				has_technology = tech_destroyer_unlock
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+
+		#Boost for Cardassians
+		modifier = {
+			factor = 1.25
+			is_cardassian = yes
+		}
+	}
+	ai_weight = {
+		factor = 4 # Hulls are good
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}
+
+tech_cruiser_unlock = {
+	cost = @tier3cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_destroyer_unlock }
+	weight = @specialhullweight #@tier3weight2
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_excelsior		
+		desc = tech_excelsior_desc		
+		icon = tech_excelsior # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_EXCELSIOR_CONSTRUCTION_TITLE
+				desc = tech_excelsior_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_ktinga		
+		desc = tech_ktinga_desc		
+		icon = tech_ktinga # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_KTINGA_CONSTRUCTION_TITLE
+				desc = tech_ktinga_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_romulan = yes	
+		}		
+		title = tech_valdore		
+		desc = tech_valdore_desc		
+		icon = tech_valdore # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_VALDORE_CONSTRUCTION_TITLE
+				desc = tech_valdore_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_cardassian = yes	
+		}		
+		title = tech_keldon		
+		desc = tech_keldon_desc		
+		icon = tech_keldon # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_KELDON_CONSTRUCTION_TITLE
+				desc = tech_keldon_desc
+			}	
+		}		
+	}			
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			years_passed < 50
+		}
+		modifier = {
+			factor = 7
+			years_passed > 58
+		}
+		modifier = {
+			factor = 7
+			any_neighbor_country = {
+			has_technology = tech_cruiser_unlock
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+
+		#Boost for Klingons
+		modifier = {
+			factor = 1.25
+			is_klingon = yes
+		}
+	}
+	ai_weight = {
+		factor = 5 # Hulls are good
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}
+
+tech_battleship_unlock = {
+	cost = @tier4cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock }
+	weight = @specialhullweight #@tier4weight2
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_galaxy		
+		desc = tech_galaxy_desc		
+		icon = tech_galaxy # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_GALAXY_CONSTRUCTION_TITLE
+				desc = tech_galaxy_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_vorcha		
+		desc = tech_vorcha_desc		
+		icon = tech_vorcha # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_VORCHA_CONSTRUCTION_TITLE
+				desc = tech_vorcha_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_romulan = yes	
+		}		
+		title = tech_dderidex		
+		desc = tech_dderidex_desc		
+		icon = tech_dderidex # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_DDERIDEX_CONSTRUCTION_TITLE
+				desc = tech_dderidex_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_cardassian = yes	
+		}		
+		title = tech_kazikai		
+		desc = tech_kazikai_desc		
+		icon = tech_kazikai # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_KAZIKAI_CONSTRUCTION_TITLE
+				desc = tech_kazikai_desc
+			}	
+		}		
+	}			
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			years_passed < 80
+		}
+		modifier = {
+			factor = 6
+			years_passed > 88
+		}
+		modifier = {
+			factor = 6
+			any_neighbor_country = {
+			has_technology = tech_battleship_unlock
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+
+		#Boost for the UFOP
+		modifier = {
+			factor = 1.25
+			is_ufop = yes
+		}
+	}
+	ai_weight = {
+		factor = 6 # Hulls are good
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}
+
+tech_titan_unlock = {
+	cost = @tier5cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_battleship_unlock }
+	weight = @specialhullweight #@tier5weight2
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_sovereign		
+		desc = tech_sovereign_desc		
+		icon = tech_sovereign # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_SOVEREIGN_CONSTRUCTION_TITLE
+				desc = tech_sovereign_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_neghvar		
+		desc = tech_neghvar_desc		
+		icon = tech_neghvar # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_NEGHVAR_CONSTRUCTION_TITLE
+				desc = tech_neghvar_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_romulan = yes	
+		}		
+		title = tech_majestus		
+		desc = tech_majestus_desc		
+		icon = tech_majestus # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_MAJESTUS_CONSTRUCTION_TITLE
+				desc = tech_majestus_desc
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_cardassian = yes	
+		}		
+		title = tech_nokoram		
+		desc = tech_nokoram_desc		
+		icon = tech_nokoram # HRB_TODO: placeholder		
+		prereqfor_desc = {		
+			ship = {	
+				title = TECH_UNLOCK_NOKORAM_CONSTRUCTION_TITLE
+				desc = tech_nokoram_desc
+			}	
+		}		
+	}			
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			years_passed < 110
+		}
+		modifier = {
+			factor = 5
+			years_passed > 118
+		}
+		modifier = {
+			factor = 5
+			any_neighbor_country = {
+			has_technology = tech_titan_unlock
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+
+		#Boost for Romulans
+		modifier = {
+			factor = 1.25
+			is_romulan = yes
+		}
+	}
+	ai_weight = {
+		factor = 7 # Hulls are good
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}
+
+##################################
+# SHIP CREATION EFFICIENCY TECHS #
+#		 REQUIRE DESCS		  #
+##################################
+
+tech_corvette_build_speed_cost = {
+	cost = @tier1cost3
+	area = engineering
+	category = { voidcraft }
+	tier = 1
+	start_tech = no
+	prerequisites = { tech_corvette_unlock }
+	weight = @tier1weight3
+
+	triggered_config = {			
+		trigger = { is_ufop = yes }		
+		title = tech_efficiency_miranda		
+		desc = tech_efficiency_miranda_desc		
+		icon = tech_miranda_build_speed_cost # HRB_TODO: placeholder
+		modifier = {
+			shipsize_miranda_build_speed_mult = 0.25
+		}		
+	}			
+	triggered_config = {			
+		trigger = { is_klingon = yes }		
+		title = tech_efficiency_bird_of_prey		
+		desc = tech_efficiency_bird_of_prey_desc		
+		icon = tech_bird_of_prey_build_speed_cost # HRB_TODO: placeholder
+		modifier = {
+			shipsize_bird_of_prey_build_speed_mult = 0.25
+		}		
+	}			
+	triggered_config = {			
+		trigger = { is_romulan = yes }		
+		title = tech_efficiency_ferrax		
+		desc = tech_efficiency_ferrax_desc		
+		icon = tech_romulan_bird_of_prey_build_speed_cost # HRB_TODO: placeholder		
+		modifier = {
+			shipsize_ferrax_build_speed_mult = 0.25
+		}		
+	}			
+	triggered_config = {			
+		trigger = { is_cardassian = yes }		
+		title = tech_efficiency_hideki		
+		desc = tech_efficiency_hideki_desc		
+		icon = tech_hideki_build_speed_cost # HRB_TODO: placeholder		
+		modifier = {
+			shipsize_hideki_build_speed_mult = 0.25
+		}		
+	}			
+	
+	modifier = {
+		ship_evasion_add = 5
+	}
+}
+
+tech_destroyer_build_speed_cost = {
+	cost = @tier2cost3
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_destroyer_unlock }
+	weight = @tier2weight3   
+	
+	triggered_config = {		
+		trigger = { is_ufop = yes }	
+		title = tech_efficiency_intrepid	
+		desc = tech_efficiency_intrepid_desc	
+		icon = tech_intrepid_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_intrepid_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_klingon = yes }	
+		title = tech_efficiency_warbird	
+		desc = tech_efficiency_warbird_desc	
+		icon = tech_warbird_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_warbird_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_romulan = yes }	
+		title = tech_efficiency_vindius	
+		desc = tech_efficiency_vindius_desc	
+		icon = tech_vindius_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_vindius_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_cardassian = yes }	
+		title = tech_efficiency_galor	
+		desc = tech_efficiency_galor_desc	
+		icon = tech_galor_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_galor_build_speed_mult = 0.25
+		}	
+	}	
+
+	modifier = {
+		ship_shield_mult = 0.05
+	}
+}
+
+tech_cruiser_build_speed_cost = {
+	cost = @tier3cost3
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock }
+	weight = @tier3weight3   
+	triggered_config = {		
+		trigger = { is_ufop = yes }	
+		title = tech_efficiency_excelsior	
+		desc = tech_efficiency_excelsior_desc	
+		icon = tech_excelsior_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_excelsior_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_klingon = yes }	
+		title = tech_efficiency_ktinga	
+		desc = tech_efficiency_ktinga_desc	
+		icon = tech_ktinga_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_ktinga_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_romulan = yes }	
+		title = tech_efficiency_valdore	
+		desc = tech_efficiency_valdore_desc	
+		icon = tech_valdore_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_valdore_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_cardassian = yes }	
+		title = tech_efficiency_keldon	
+		desc = tech_efficiency_keldon_desc	
+		icon = tech_keldon_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_keldon_build_speed_mult = 0.25
+		}	
+	}		
+
+	modifier = {
+		ship_fire_rate_mult = 0.05
+	}
+}
+
+tech_battleship_build_speed_cost = {
+	cost = @tier4cost3
+	area = engineering
+	category = { voidcraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_battleship_unlock }
+	weight = @tier4weight3   
+	triggered_config = {		
+		trigger = { is_ufop = yes }	
+		title = tech_efficiency_galaxy	
+		desc = tech_efficiency_galaxy_desc	
+		icon = tech_galaxy_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_galaxy_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_klingon = yes }	
+		title = tech_efficiency_vorcha	
+		desc = tech_efficiency_vorcha_desc	
+		icon = tech_vorcha_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_vorcha_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_romulan = yes }	
+		title = tech_efficiency_dderidex	
+		desc = tech_efficiency_dderidex_desc	
+		icon = tech_dderidex_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_dderidex_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_cardassian = yes }	
+		title = tech_efficiency_kazikai	
+		desc = tech_efficiency_kazikai_desc	
+		icon = tech_kazikai_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_kazikai_build_speed_mult = 0.25
+		}	
+	}		
+
+	modifier = {
+		ship_hull_mult = 0.05
+	}
+}
+
+tech_titan_build_speed_cost = {
+	cost = @tier5cost3
+	area = engineering
+	category = { voidcraft }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_titan_unlock }
+	weight = @tier5weight3   
+	triggered_config = {		
+		trigger = { is_ufop = yes }	
+		title = tech_efficiency_sovereign	
+		desc = tech_efficiency_sovereign_desc	
+		icon = tech_sovereign_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_sovereign_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_klingon = yes }	
+		title = tech_efficiency_neghvar	
+		desc = tech_efficiency_neghvar_desc	
+		icon = tech_neghvar_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_neghvar_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_romulan = yes }	
+		title = tech_efficiency_majestus	
+		desc = tech_efficiency_majestus_desc	
+		icon = tech_majestus_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_majestus_build_speed_mult = 0.25
+		}	
+	}		
+	triggered_config = {		
+		trigger = { is_cardassian = yes }	
+		title = tech_efficiency_nokoram	
+		desc = tech_efficiency_nokoram_desc	
+		icon = tech_nokoram_build_speed_cost # HRB_TODO: placeholder	
+		modifier = {	
+			shipsize_nokoram_build_speed_mult = 0.25
+		}	
+	}		
+
+	modifier = {
+		ship_weapon_damage = 0.05
+	}
+}
+
+############################
+#	 MINE UNLOCK TECH	 #
+# REQUIRES SPECIFIC WEIGTS #
+############################
+
+tech_minefields_tier_1 = {
+	area = engineering
+	cost = @tier1cost1
+	category = { materials }
+	tier = 1
+	weight = @tier1weight1
+
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_minefields_tier_1		
+		desc = tech_minefields_tier_1_desc		
+		icon = tech_minefields_tier_1_ufop # HRB_TODO: placeholder			
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_minefields_tier_1		
+		desc = tech_minefields_tier_1_desc		
+		icon = tech_minefields_tier_1_klingon # HRB_TODO: placeholder		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_romulan = yes	
+		}		
+		title = tech_minefields_tier_1		
+		desc = tech_minefields_tier_1_desc		
+		icon = tech_minefields_tier_1_romulan # HRB_TODO: placeholder		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_cardassian = yes	
+		}		
+		title = tech_minefields_tier_1		
+		desc = tech_minefields_tier_1_desc		
+		icon = tech_minefields_tier_1_cardassian # HRB_TODO: placeholder			
+	}		
+
+	weight_modifier = {
+		factor = 0.50
+		# modifier = {
+		# 	factor = @ap_technological_ascendancy_rare_tech
+		# 	has_ascension_perk = ap_technological_ascendancy
+		# }
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				# has_trait = leader_trait_expertise_field_manipulation
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 4 # Mines are good
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				# has_trait = leader_trait_expertise_field_manipulation
+			}
+		}
+	}
+}
+
+tech_minefields_tier_2 = {
+
+	cost = @tier3cost3
+	area = engineering
+	category = { propulsion }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_minefields_tier_1 }
+	weight = @tier3weight3   
+
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_minefields_tier_2		
+		desc = tech_minefields_tier_2_desc		
+		icon = tech_minefields_tier_2_ufop # HRB_TODO: placeholder			
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_minefields_tier_2		
+		desc = tech_minefields_tier_2_desc		
+		icon = tech_minefields_tier_2_klingon # HRB_TODO: placeholder		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_romulan = yes	
+		}		
+		title = tech_minefields_tier_2		
+		desc = tech_minefields_tier_2_desc		
+		icon = tech_minefields_tier_2_romulan # HRB_TODO: placeholder		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_cardassian = yes	
+		}		
+		title = tech_minefields_tier_2		
+		desc = tech_minefields_tier_2_desc		
+		icon = tech_minefields_tier_2_cardassian # HRB_TODO: placeholder			
+	}	
+
+	modifier = {
+		mine_field_accuracy_mult = 0.25
+		mine_field_damage_mult = 0.25
+		mine_field_shield_penetration_mult = 0.25 
+	}
+}
+
+############################
+#  STARBASE UPGRADE TECHS  #
+# REQUIRES SPECIFIC WEIGTS #
+############################
+
+tech_starbase_starport = {
+
+	area = engineering
+	category = { voidcraft }
+	tier = 0
+	start_tech = yes
+
+	triggered_config = {		
+		trigger = { is_ufop = yes }	
+		title = tech_starbase_starport	
+		desc = tech_starbase_starport_desc	
+		icon = tech_starbase_starport_ufop # HRB_TODO: placeholder	
+	}		
+	triggered_config = {		
+		trigger = { is_klingon = yes }	
+		title = tech_starbase_starport	
+		desc = tech_starbase_starport_desc	
+		icon = tech_starbase_starport_klingon # HRB_TODO: placeholder		
+	}		
+	triggered_config = {		
+		trigger = { is_romulan = yes }	
+		title = tech_starbase_starport	
+		desc = tech_starbase_starport_desc	
+		icon = tech_starbase_starport_romulan # HRB_TODO: placeholder	
+	}		
+	triggered_config = {		
+		trigger = { is_cardassian = yes }	
+		title = tech_starbase_starport	
+		desc = tech_starbase_starport_desc	
+		icon = tech_starbase_starport_cardassian # HRB_TODO: placeholder		
+	}	
+}
+
+tech_starbase_starhold = {
+
+	cost = @tier2cost3
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_starbase_starport }
+	weight = @tier2weight3
+
+	triggered_config = {		
+		trigger = { is_ufop = yes }	
+		title = tech_starbase_starhold	
+		desc = tech_starbase_starhold_desc	
+		icon = tech_starbase_starhold_ufop # HRB_TODO: placeholder	
+	}		
+	triggered_config = {		
+		trigger = { is_klingon = yes }	
+		title = tech_starbase_starhold	
+		desc = tech_starbase_starhold_desc	
+		icon = tech_starbase_starhold_klingon # HRB_TODO: placeholder		
+	}		
+	triggered_config = {		
+		trigger = { is_romulan = yes }	
+		title = tech_starbase_starhold	
+		desc = tech_starbase_starhold_desc	
+		icon = tech_starbase_starhold_romulan # HRB_TODO: placeholder	
+	}		
+	triggered_config = {		
+		trigger = { is_cardassian = yes }	
+		title = tech_starbase_starhold	
+		desc = tech_starbase_starhold_desc	
+		icon = tech_starbase_starhold_cardassian # HRB_TODO: placeholder		
+	}	
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.1
+			NOT = { years_passed > 20 }
+		}
+		modifier = {
+			factor = 10
+			any_neighbor_country = {
+				has_technology = tech_starbase_starhold
+			}
+		}
+		modifier = {
+			factor = 2
+			years_passed > 30
+		}
+		modifier = {
+			factor = 3
+			years_passed > 35
+		}
+		modifier = {
+			factor = 4
+			years_passed > 40
+		}
+		modifier = {
+			factor = 5
+			count_starbase_sizes = {
+				starbase_size = starbase_starport
+				count >= 3
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+	}
+}
+
+tech_starbase_fortress = {
+
+	cost = @tier4cost3
+	area = engineering
+	category = { voidcraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_starbase_starhold }
+	weight = @tier4weight3
+
+	triggered_config = {		
+		trigger = { is_ufop = yes }	
+		title = tech_starbase_fortress	
+		desc = tech_starbase_fortress_desc	
+		icon = tech_starbase_fortress_ufop # HRB_TODO: placeholder	
+	}		
+	triggered_config = {		
+		trigger = { is_klingon = yes }	
+		title = tech_starbase_fortress	
+		desc = tech_starbase_fortress_desc	
+		icon = tech_starbase_fortress_klingon # HRB_TODO: placeholder		
+	}		
+	triggered_config = {		
+		trigger = { is_romulan = yes }	
+		title = tech_starbase_fortress	
+		desc = tech_starbase_fortress_desc		
+		icon = tech_starbase_fortress_romulan # HRB_TODO: placeholder	
+	}		
+	triggered_config = {		
+		trigger = { is_cardassian = yes }	
+		title = tech_starbase_fortress	
+		desc = tech_starbase_fortress_desc		
+		icon = tech_starbase_fortress_cardassian # HRB_TODO: placeholder		
+	}	
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.1
+			NOT = { years_passed > 70 }
+		}
+		modifier = {
+			factor = 10
+			any_neighbor_country = {
+				has_technology = tech_starbase_fortress
+			}
+		}
+		modifier = {
+			factor = 2
+			years_passed > 90
+		}
+		modifier = {
+			factor = 3
+			years_passed > 95
+		}
+		modifier = {
+			factor = 4
+			years_passed > 100
+		}
+		modifier = {
+			factor = 5
+			count_starbase_sizes = {
+				starbase_size = starbase_starhold
+				count >= 3
+			}
+		}
+	}
+}
+
+##############################
+#  STATION PRODUCTION TECHS  #
+#  REQUIRES SPECIFIC WEIGTS  #
+##############################
+
+tech_mining_station_mineral_output_increase_tier_1 = {
+
+	cost = @tier1cost1
+	area = engineering
+	category = { industry }
+	tier = 1
+	start_tech = no
+	weight = @tier1weight1   
+
+	modifier = {
+		stations_minerals_produces_mult = 0.10 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+tech_mining_station_mineral_output_increase_tier_2 = {
+
+	cost = @tier2cost3
+	area = engineering
+	category = { industry }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_mining_station_mineral_output_increase_tier_1 }
+	weight = @tier2weight3  
+
+	modifier = {
+		stations_minerals_produces_mult = 0.10  
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+tech_mining_station_mineral_output_increase_tier_3 = {
+
+	cost = @tier4cost1
+	area = engineering
+	category = { industry }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_mining_station_mineral_output_increase_tier_2 }
+	weight = @tier4weight1   
+
+	modifier = {
+		stations_minerals_produces_mult = 0.10 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+tech_mining_station_deuterium_output_increase_tier_1 = {
+
+	cost = @tier1cost1
+	area = engineering
+	category = { industry }
+	tier = 1
+	start_tech = no
+	weight = @tier1weight1   
+
+	modifier = {
+		stations_deuterium_produces_mult = 0.10 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+tech_mining_station_deuterium_output_increase_tier_2 = {
+
+	cost = @tier2cost3
+	area = engineering
+	category = { industry }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_mining_station_deuterium_output_increase_tier_1 }
+	weight = @tier2weight3   
+
+	modifier = {
+		stations_deuterium_produces_mult = 0.10 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+tech_mining_station_deuterium_output_increase_tier_3 = {
+
+	cost = @tier4cost1
+	area = engineering
+	category = { industry }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_mining_station_deuterium_output_increase_tier_2 }
+	weight = @tier4weight1   
+
+	modifier = {
+		stations_deuterium_produces_mult = 0.10 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+tech_research_station_output_tier_1 = {
+
+	cost = @tier1cost1
+	area = physics
+	category = { computing }
+	tier = 1
+	start_tech = no
+	weight = @tier1weight1   
+
+	modifier = {
+		stations_research_produces_mult = 0.1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_research_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_development_adopt
+		}
+	}
+}
+
+tech_research_station_output_tier_2 = {
+
+	cost = @tier2cost2
+	area = physics
+	category = { computing }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_research_station_output_tier_1 }
+	weight = @tier2weight2   
+	
+	modifier = {
+		stations_research_produces_mult = 0.1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_research_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_development_adopt
+		}
+	}
+}
+
+tech_research_station_output_tier_3 = {
+
+	cost = @tier3cost3
+	area = physics
+	category = { computing }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_research_station_output_tier_2 }
+	weight = @tier3weight3   
+
+	modifier = {
+		stations_research_produces_mult = 0.1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_research_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_development_adopt
+		}
+	}
+}
+
+tech_mining_station_energy_output_increase_tier_1 = {
+
+	cost = @tier1cost1
+	area = physics
+	category = { field_manipulation }
+	tier = 1
+	start_tech = no
+	weight = @tier1weight1  
+
+	modifier = {
+		stations_energy_produces_mult = 0.10
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+tech_mining_station_energy_output_increase_tier_2 = {
+
+	cost = @tier2cost3
+	area = physics
+	category = { field_manipulation }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_mining_station_energy_output_increase_tier_1 }
+	weight = @tier2weight3   
+
+	modifier = {
+		stations_energy_produces_mult = 0.10
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+tech_mining_station_energy_output_increase_tier_3 = {
+
+	cost = @tier4cost1
+	area = physics
+	category = { field_manipulation }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_mining_station_energy_output_increase_tier_2 }
+	weight = @tier4weight1  
+
+	modifier = {
+		stations_energy_produces_mult = 0.10
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_commerce_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_wellfare_adopt
+		}
+	}
+}
+
+###########################
+#	HABITABILITY TECHS   #
+# REQUIRE SPECIFIC WEIGTS #
+###########################
+
+tech_pop_growth_speed_tier_1 = {
+
+	cost = @tier1cost3
+	area = society
+	category = { biology }
+	tier = 1
+	start_tech = no
+	weight = @tier1weight3   
+
+	modifier = {
+		pop_growth_speed = 0.1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+			num_owned_planets > 8
+		}
+	}
+}
+
+tech_pop_growth_speed_tier_2 = {
+
+	cost = @tier2cost3
+	area = society
+	category = { biology }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_pop_growth_speed_tier_1 }
+	weight = @tier2weight3   
+
+	modifier = {
+		pop_growth_speed = 0.1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+			num_owned_planets > 10
+		}
+	}
+}
+
+tech_pop_growth_speed_tier_3 = {
+
+	cost = @tier3cost2
+	area = society
+	category = { biology }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_pop_growth_speed_tier_2 }
+	weight = @tier3weight2   
+
+	modifier = {
+		pop_growth_speed = 0.1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+			num_owned_planets > 12
+		}
+	}
+}
+
+###########################
+#	   ENVOY TECHS	   #
+# REQUIRE SPECIFIC WEIGTS #
+###########################
+
+tech_envoy_increase_tier_1 = {
+
+	cost = @tier1cost2
+	area = society
+	category = { statecraft }
+	tier = 1
+	start_tech = no
+	weight = @tier1weight2   
+
+	modifier = {
+		envoys_add = 1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+			num_communications > 8
+		}
+	}
+}
+
+tech_envoy_increase_tier_2 = {
+
+	cost = @tier2cost2
+	area = society
+	category = { statecraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_envoy_increase_tier_1 }
+	weight = @tier2weight2   
+
+	modifier = {
+		envoys_add = 1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+			num_communications > 10
+		}
+	}
+}
+
+tech_envoy_increase_tier_3 = {
+
+	cost = @tier4cost1
+	area = society
+	category = { statecraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_envoy_increase_tier_2 }
+	weight = @tier4weight1   
+
+	modifier = {
+		envoys_add = 1 
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+			num_communications > 8
+		}
+	}
+}
+
+##########################
+#	  EMBASSY TECHS	 #
+# REQUIRE SPECIFIC DESCS #
+##########################
+
+# HRB_TODO: delete all the prereqfor_desc for buildings, they are auto generated
+# To avoid showing the other's empires buildings, go to the building definition and add
+#   show_tech_unlock_if = {
+#	   [conditions...]
+#	   is_ufop = yes 
+#   }
+
+# HRB_NOTE: if the title will remain the same, or the desc, you can choose to not specify that field,
+# and the triggered_config will take the default one.
+
+tech_xeno_diplomacy = {
+	cost = @tier2cost2
+	area = society
+	category = { new_worlds }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight2
+
+	# triggered_config = {
+	#	 trigger = { is_ufop = yes }
+	#	 title = tech_xeno_diplomacy
+	#	 desc = tech_xeno_diplomacy_desc
+	#	 icon = tech_mine_gravitons_1 # HRB_TODO: placeholder
+	# }
+	# triggered_config = {
+	#	 trigger = { is_klingon = yes }
+	#	 title = tech_xeno_diplomacy
+	#	 desc = tech_xeno_diplomacy_desc
+	#	 icon = tech_mine_gravitons_1 # HRB_TODO: placeholder
+	# }
+	# triggered_config = {
+	#	 trigger = { is_romulan = yes }
+	#	 title = tech_xeno_diplomacy
+	#	 desc = tech_xeno_diplomacy_desc
+	#	 icon = tech_mine_gravitons_1 # HRB_TODO: placeholder
+	# }
+	# triggered_config = {
+	#	 trigger = {	is_cardassian = yes	}
+	#	 title = tech_xeno_diplomacy
+	#	 desc = tech_xeno_diplomacy_desc
+	#	 icon = tech_mine_gravitons_1 # HRB_TODO: placeholder		
+	# }
+}
+
+tech_xeno_relations = {
+
+	cost = @tier3cost2
+	area = society
+	category = { new_worlds }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_xeno_diplomacy }
+	weight = @tier3weight2
+	# triggered_config = {			
+	#	 trigger = {		
+	#		 is_ufop = yes	
+	#	 }		
+	#	 title = tech_xeno_relations
+	#	 desc = tech_xeno_relations_desc		
+	#	 icon = tech_mine_gravitons_1 # HRB_TODO: placeholder		
+	#	 prereqfor_desc = {		
+	#		 hide_prereq_for_desc = component	
+	#		 building = {	
+	#			 title = TECH_EMBASSY_UFOP_2_TITLE
+	#		 }	
+	#	 }		
+	# }			
+	# triggered_config = {			
+	#	 trigger = {		
+	#		 is_klingon = yes	
+	#	 }		
+	#	 title = tech_xeno_relations
+	#	 desc = tech_xeno_relations_desc		
+	#	 icon = tech_mine_gravitons_1 # HRB_TODO: placeholder		
+	#	 prereqfor_desc = {		
+	#		 hide_prereq_for_desc = component	
+	#		 building = {	
+	#			 title = TECH_EMBASSY_KLINGON_2_TITLE
+	#		 }	
+	#	 }		
+	# }			
+	# triggered_config = {			
+	#	 trigger = {		
+	#		 is_romulan = yes	
+	#	 }		
+	#	 title = tech_xeno_relations
+	#	 desc = tech_xeno_relations_desc		
+	#	 icon = tech_mine_gravitons_1 # HRB_TODO: placeholder		
+	#	 prereqfor_desc = {		
+	#		 hide_prereq_for_desc = component	
+	#		 building = {	
+	#			 title = TECH_EMBASSY_ROMULAN_2_TITLE
+	#		 }	
+	#	 }		
+	# }			
+	# triggered_config = {			
+	#	 trigger = {		
+	#		 is_cardassian = yes	
+	#	 }		
+	#	 title = tech_xeno_relations
+	#	 desc = tech_xeno_relations_desc		
+	#	 icon = tech_mine_gravitons_1 # HRB_TODO: placeholder		
+	#	 prereqfor_desc = {		
+	#		 hide_prereq_for_desc = component	
+	#		 building = {	
+	#			 title = TECH_EMBASSY_CARDASSIAN_2_TITLE
+	#		 }	
+	#	 }		
+	# }	
+}
+
+########################
+#  NEW EXCLUSIVE TECHS #
+# REQUIRE A MAPO CHECK #
+########################
+
+tech_tractor_beam_ufop = {
+
+	cost = @tier2cost1
+	area = physics
+	category = { field_manipulation }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight1   
+
+	potential = {
+		is_ufop = yes
+	}
+
+	modifier = {
+		stations_minerals_produces_mult = 0.1
+		stations_research_produces_mult = 0.1 
+	}
+}
+
+tech_streamlined_transporters_ufop = {
+
+	cost = @tier3cost2
+	area = physics
+	category = { particles }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight2   
+
+	potential = {
+		is_ufop = yes
+	}
+
+	modifier = {
+		pop_growth_speed = 0.05
+		planet_jobs_upkeep_mult = -0.1 
+	}
+}
+
+tech_tricorders_ufop = {
+
+	cost = @tier3cost3
+	area = society
+	category = { biology }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight3   
+
+	potential = {
+		is_ufop = yes
+	}
+
+	modifier = {
+		ship_anomaly_generation_chance_mult = 0.1
+		planet_colony_development_speed_mult = 0.5 
+	}
+}
+
+tech_batleth_klingon = {
+
+	cost = @tier2cost1
+	area = engineering
+	category = { industry }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight1   
+
+	potential = {
+		is_klingon = yes
+	}
+
+	modifier = {
+		description = tech_batleth_klingon_effect
+		stations_alloys_produces_mult = 0.5
+	}
+}
+
+tech_armors_klingons = {
+
+	cost = @tier3cost2
+	area = society
+	category = { military_theory }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight2   
+
+	potential = {
+		is_klingon = yes
+	}
+
+	modifier = {
+		envoys_add = 1
+		planet_jobs_worker_produces_mult = 0.05 
+	}
+}
+
+tech_historic_clone_klingon = {
+
+	cost = @tier3cost3
+	area = society
+	category = { biology }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight3
+
+	potential = {
+		is_klingon = yes
+	}
+
+	modifier = {
+		description = tech_historic_clone_klingon_effect
+	}
+}
+
+tech_emitters_romulan = {
+
+	cost = @tier2cost1
+	area = physics
+	category = { particles }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight1   
+
+	potential = {
+		is_romulan = yes
+	}
+
+	modifier = {
+		ship_evasion_add = 5
+		ship_tracking_add = 5 
+	}
+}
+
+tech_surgery_romulan = {
+
+	cost = @tier3cost3
+	area = society
+	category = { biology }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight3   
+
+	potential = {
+		is_romulan = yes
+	}
+
+	modifier = {
+		description = tech_surgery_romulan_effect
+		spies_cap_add = 1 
+	}
+
+	weight_modifier = { 
+		modifier = { 
+			factor = 0 
+			has_modifier = khitomer_aftershock 
+		} 
+	} 
+}
+
+tech_hologram_romulan = {
+
+	cost = @tier3cost3
+	area = society
+	category = { statecraft }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight3   
+
+	potential = {
+		is_romulan = yes
+	}
+
+	modifier = {
+		description = tech_hologram_romulan_effect
+		envoys_add = 1 
+	}
+}
+
+tech_criminal_science_cardassian = {
+
+	cost = @tier2cost1
+	area = society
+	category = { statecraft }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight1
+
+	potential = {
+		is_cardassian = yes
+	}
+
+	modifier = {
+		description = tech_criminal_science_cardassian_effect
+	}
+}
+
+tech_memory_cardassian = {
+
+	cost = @tier3cost2
+	area = society
+	category = { biology }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight2   
+
+	potential = {
+		is_cardassian = yes
+	}
+
+	modifier = {
+		description = tech_memory_cardassian_effect
+		planet_building_build_speed_mult = 0.25 
+	}
+}
+
+tech_strip_mining_cardassan = {
+
+	cost = @tier3cost2
+	area = society
+	category = { military_theory }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight2
+
+	potential = {
+		is_cardassian = yes
+	}
+
+	modifier = {
+		description = tech_strip_mining_cardassan_effect
+	}
+}
+
+########################
+#	DUAL MAPO TECHS   #
+# REQUIRE A MAPO CHECK #
+########################
+
+tech_sports_ufop_klingon = {
+
+	cost = @tier2cost3
+	area = engineering
+	category = { materials }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight3   
+
+	potential = {
+		OR = {
+			is_ufop = yes
+			is_klingon = yes
+		}
+	}
+
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_sports_ufop_klingon
+		desc = tech_sports_ufop_klingon_desc
+		icon = tech_sports_ufop_klingon	
+		prereqfor_desc = {		
+			hide_prereq_for_desc = component	
+			building = {	
+				title = tech_sports_ufop_klingon_ufop_effect
+			}	
+		}		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_sports_ufop_klingon
+		desc = tech_sports_ufop_klingon_desc
+		icon = tech_sports_ufop_klingon			
+		prereqfor_desc = {		
+			hide_prereq_for_desc = component	
+			building = {	
+				title = tech_sports_ufop_klingon_klingon_effect
+			}	
+		}		
+	}
+
+	modifier = {
+		species_leader_exp_gain = 0.1 
+	}
+}
+
+tech_admin_ufop_romulan = {
+
+	cost = @tier2cost3
+	area = society
+	category = { new_worlds }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight3   
+
+	potential = {
+		OR = {
+			is_ufop = yes
+			is_romulan = yes
+		}
+	}
+
+	modifier = {
+		description = tech_admin_ufop_romulan_effect
+		governors_cap_add = 1 
+	}
+}
+
+tech_trades_ufop_cardassian = {
+
+	cost = @tier2cost3
+	area = physics
+	category = { computing }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight3   
+
+	potential = {
+		OR = {
+			is_ufop = yes
+			is_cardassian = yes
+		}
+	}
+
+	modifier = {
+		planet_crime_add = -5
+		planet_jobs_worker_produces_mult = 0.05 
+	}
+}
+
+tech_overcharge_klingon_romulan = {
+
+	cost = @tier2cost3
+	area = engineering
+	category = { propulsion }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight3   
+
+	potential = {
+		OR = {
+			is_klingon = yes
+			is_romulan = yes
+		}
+	}
+
+	modifier = {
+		ship_weapon_damage = 0.1
+		stations_energy_produces_mult = 0.1 
+	}
+}
+
+tech_deployment_klingon_cardassian = {
+
+	cost = @tier2cost3
+	area = engineering
+	category = { industry }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight3   
+
+	potential = {
+		OR = {
+			is_klingon = yes
+			is_cardassian = yes
+		}
+	}
+
+	modifier = {
+		description = tech_deployment_klingon_cardassian_effect
+		starbase_shipyard_build_speed_mult = 0.25 
+	}
+}
+
+tech_scanners_romulan_cardassian = {
+
+	cost = @tier2cost3
+	area = physics
+	category = { computing }
+	tier = 2
+	start_tech = no
+	weight = 10000 #@tier2weight3   
+
+	potential = {
+		OR = {
+			is_romulan = yes
+			is_cardassian = yes
+		}
+	}
+
+	modifier = {
+		pop_housing_usage_mult = -0.15
+		pop_amenities_usage_mult = -0.15 
+	}
+}
+
+##########################################
+#		OFFICER PRODUCTION TECHS		#
+# REQUIRE A MAPO CHECK AND DYNAMIC DESCS #
+##########################################
+
+tech_officers_1 = {
+
+	cost = @tier1cost2
+	area = society
+	category = { military_theory }
+	tier = 1
+	start_tech = no
+	weight = @tier1weight2   
+
+	potential = {
+		is_minor = no
+	}
+
+	triggered_config = {			
+		 trigger = {		
+			 is_ufop = yes	
+		 }		
+		 title = tech_officers_1
+		 desc = tech_officers_1_desc		
+		 icon = tech_officers_1
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_1_ufop_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_klingon = yes	
+		 }		
+		 title = tech_officers_1
+		 desc = tech_officers_1_desc		
+		 icon = tech_officers_1		
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_1_klingon_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_romulan = yes	
+		 }		
+		 title = tech_officers_1
+		 desc = tech_officers_1_desc		
+		 icon = tech_officers_1	
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_1_romulan_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_cardassian = yes	
+		 }		
+		 title = tech_officers_1
+		 desc = tech_officers_1_desc		
+		 icon = tech_officers_1	
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_1_cardassian_effect
+			 }	
+		 }		
+	}	
+	
+	modifier = {
+		country_officers_produces_mult = 0.1 
+	}
+}
+
+
+tech_officers_2 = {
+
+	cost = @tier2cost2
+	area = society
+	category = { military_theory }
+	tier = 2
+	start_tech = no
+	weight = @tier2weight2   
+
+	potential = {
+		is_minor = no
+	}
+
+	triggered_config = {			
+		 trigger = {		
+			 is_ufop = yes	
+		 }		
+		 title = tech_officers_2
+		 desc = tech_officers_2_desc		
+		 icon = tech_officers_2		
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_2_ufop_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_klingon = yes	
+		 }		
+		 title = tech_officers_2
+		 desc = tech_officers_2_desc		
+		 icon = tech_officers_2		
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_2_klingon_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_romulan = yes	
+		 }		
+		 title = tech_officers_2
+		 desc = tech_officers_2_desc		
+		 icon = tech_officers_2	
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_2_romulan_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_cardassian = yes	
+		 }		
+		 title = tech_officers_2
+		 desc = tech_officers_2_desc		
+		 icon = tech_officers_2	
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_2_cardassian_effect
+			 }	
+		 }		
+	}	
+	
+	modifier = {
+		country_officers_produces_mult = 0.1 
+	}
+}
+
+
+tech_officers_3 = {
+
+	cost = @tier3cost2
+	area = society
+	category = { military_theory }
+	tier = 3
+	start_tech = no
+	weight = @tier3weight2   
+
+	potential = {
+		is_minor = no
+	}
+
+	triggered_config = {			
+		 trigger = {		
+			 is_ufop = yes	
+		 }		
+		 title = tech_officers_3
+		 desc = tech_officers_3_desc		
+		 icon = tech_officers_3
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_3_ufop_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_klingon = yes	
+		 }		
+		 title = tech_officers_3
+		 desc = tech_officers_3_desc		
+		 icon = tech_officers_3
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_3_klingon_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_romulan = yes	
+		 }		
+		 title = tech_officers_3
+		 desc = tech_officers_3_desc		
+		 icon = tech_officers_3
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_3_romulan_effect
+			 }	
+		 }		
+	}	
+
+	triggered_config = {			
+		 trigger = {		
+			 is_cardassian = yes	
+		 }		
+		 title = tech_officers_3
+		 desc = tech_officers_3_desc		
+		 icon = tech_officers_3	
+		 prereqfor_desc = {		
+			 hide_prereq_for_desc = component	
+			 building = {	
+				 title = tech_officers_3_cardassian_effect
+			 }	
+		 }		
+	}	
+	
+	modifier = {
+		country_officers_produces_mult = 0.1 
+	}
+}
+
+#########################
+#	 CIVILIAN SHIPS	#
+#		   +		   #
+#	  WARP SPEED 2	 #
+# REQUIRE DYNAMIC ICONS #
+#########################
+
+tech_civilian_ships = {
+
+	area = engineering
+	category = { voidcraft }
+	tier = 0
+	start_tech = yes
+
+	triggered_config = {			
+		trigger = {		
+			is_ufop = yes	
+		}		
+		title = tech_civilian_ships		
+		desc = tech_civilian_ships_desc		
+		icon = tech_civilian_ships_ufop # HRB_TODO: placeholder			
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_klingon = yes	
+		}		
+		title = tech_civilian_ships		
+		desc = tech_civilian_ships_desc		
+		icon = tech_civilian_ships_klingon # HRB_TODO: placeholder		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_romulan = yes	
+		}		
+		title = tech_civilian_ships		
+		desc = tech_civilian_ships_desc		
+		icon = tech_civilian_ships_romulan # HRB_TODO: placeholder		
+	}			
+	triggered_config = {			
+		trigger = {		
+			is_cardassian = yes	
+		}		
+		title = tech_civilian_ships		
+		desc = tech_civilian_ships_desc		
+		icon = tech_civilian_ships_cardassian # HRB_TODO: placeholder			
+	}	
+}
+
+# CP26 — tech_warp_speed_increase_2 is redefined in common/technology/zz_cp26_warp_techs.txt
+# (slower base warp + stronger progressive tech curve). Original block removed here to
+# avoid the "Duplicate technology: tech_warp_speed_increase_2" engine error.
+
+#############################################
+#		SPY & GOV CAP INCREASE TECHS	   #
+#	  CAN'T BE SELECTABLE AT THE START	 #
+# MIPOS CAN'T HAVE MORE THAN 1 EXTRA LEADER #
+#############################################
+
+tech_governor_pool_size_tier_1 = {
+
+	cost = @tier1cost2
+	area = society
+	category = { statecraft }
+	tier = 1
+	start_tech = no
+	weight = @tier1weight2   
+	modifier = {
+		governor_skill_levels = 1
+		governors_cap_add = 1 
+	}
+
+	potential = {
+		OR = {
+			is_major = yes
+			AND = {
+				is_minor = yes
+				years_passed > 100
+				has_country_flag = starting_gov
+			}
+		}	
+	}
+}
+
+tech_governor_pool_size_tier_2 = {
+
+	cost = @tier2cost2
+	area = society
+	category = { statecraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_governor_pool_size_tier_1 }
+	weight = @tier2weight2   
+	modifier = {
+		governor_skill_levels = 1
+		governors_cap_add = 1 
+	}
+
+	potential = {
+		is_major = yes
+	}
+}
+
+####################################
+# HABITAT UNLOCK AND UPGRADE TECHS #
+#     NEED CUSTOM DESCRIPTIONS	   #
+####################################
+
+tech_megastructure_1 = {
+
+    cost = @tier2cost3
+    area = engineering
+    category = { industry }
+    tier = 2
+    start_tech = no
+
+	prereqfor_desc = {
+		ship = {
+			title = "allow_habitats"
+			desc = "habitat_0_MEGASTRUCTURE_DETAILS"
+		}
+	}
+}
+
+tech_megastructure_2 = {
+
+    cost = @tier3cost3
+    area = engineering
+    category = { industry }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_megastructure_1 }
+
+	prereqfor_desc = {
+		ship = {
+			title = "allow_habitat_upgrade"
+			desc = "tech_habitat_2_effect"
+		}
+	}
+}
+
+tech_megastructure_3 = {
+
+    cost = @tier4cost3
+    area = engineering
+    category = { industry }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_megastructure_2 }
+
+	prereqfor_desc = {
+		ship = {
+			title = "allow_habitat_2_upgrade"
+			desc = "tech_habitat_3_effect"
+		}
+	}
+}
+
+# DLC TECHS
+tech_california_unlock = {
+
+    cost = 8000
+    area = engineering
+    category = { voidcraft }
+    tier = 1
+    start_tech = no
+
+	weight = 999999
+
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			years_passed < 34
+		}
+		modifier = {
+			factor = 0
+			is_ufop = no
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				host_has_dlc = "Pre Order Bonus"
+			}
+		}
+	}
+}
+
+####################################
+#          REACTOR TECHS           #
+#     NOT AVAILABLE TO ROMULANS	   #
+####################################
+
+tech_reactor_1 = {
+
+    area = engineering
+    category = { industry }
+    tier = 0
+    start_tech = yes
+
+	potential = {
+		is_romulan = NO
+	}
+}
+
+tech_reactor_2 = {
+
+    cost = @tier1cost1
+    area = engineering
+    category = { industry }
+    tier = 1
+    start_tech = no
+    prerequisites = { tech_reactor_1 }
+    weight = @tier1weight1
+
+	potential = {
+		is_romulan = NO
+	}
+}
+
+tech_reactor_3 = {
+
+    cost = @tier3cost2
+    area = engineering
+    category = { industry }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_reactor_2 }
+    weight = @tier3weight2
+
+	potential = {
+		is_romulan = NO
+	}
+}
+
+tech_reactor_4 = {
+
+    cost = @tier4cost1
+    area = engineering
+    category = { industry }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_reactor_3 }
+    weight = @tier4weight1
+
+	potential = {
+		is_romulan = NO
+	}
+}

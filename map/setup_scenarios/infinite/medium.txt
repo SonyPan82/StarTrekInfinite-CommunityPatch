@@ -1,7 +1,6 @@
 setup_scenario = {
-	name = "medium"
+	name = "CP26 Medium"
 	priority = 2					#priority decides in which order the scenarios are listed
-	default = no
 	num_stars = 600
 	radius = 400					#should be less than 500, preferably less than ~460
 	num_empires = { min = 0 max = 18 }	#limits player customization

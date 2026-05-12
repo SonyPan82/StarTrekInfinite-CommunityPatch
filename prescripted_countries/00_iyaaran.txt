@@ -14,7 +14,7 @@ iyaaran = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_iyaaran"
 
 	species = {
-		class = "HRB" # TODO: Create custom class
+		class = "HRB_DIPLO" # CP26: was HRB, assigned to diplomatic archetype
 		portrait = "iyaaran"
 		name = "PRESCRIPTED_species_name_iyaaran"
 		plural = "PRESCRIPTED_species_plural_iyaaran"

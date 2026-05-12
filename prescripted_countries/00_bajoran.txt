@@ -14,7 +14,7 @@ bajoran = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_bajoran"
 
 	species = {
-		class = "HRB"
+		class = "HRB_DIPLO" # CP26: was HRB
 		portrait = "bajoran"
 		name = "PRESCRIPTED_species_name_bajoran"
 		plural = "PRESCRIPTED_species_plural_bajoran"

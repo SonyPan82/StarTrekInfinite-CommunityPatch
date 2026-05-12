@@ -6122,36 +6122,10 @@ country_event = {
 }
 
 # UFOP First Contact Bonus
-first_contact_event = {
-	id = country.27500
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		OR = {
-			FROM = { has_civic = civic_diplomatic_expertise }
-			FROMFROM = { has_civic = civic_diplomatic_expertise }
-		}
-	}
-
-	immediate = {
-		if = {
-			limit = { from = { NOT = { is_same_value = fromfrom } } }
-			from = {
-				add_opinion_modifier = {
-					who = fromfrom
-					modifier = opinion_civic_diplomatic_expertise
-				}
-			}
-			fromfrom = {
-				add_opinion_modifier = {
-					who = root.from
-					modifier = opinion_civic_diplomatic_expertise
-				}
-			}
-		}
-	}
-}
+# CP26 — original vanilla event removed here. Fixed/replacement version lives in
+# events/zz_cp26_fix_country_events.txt (uses `who = from` instead of `root.from`,
+# plus is_same_value guards). Keeping both definitions triggered the
+# "an event with id [country.27500] already exists!" engine error.
 
 country_event = {
 	id = country.28000

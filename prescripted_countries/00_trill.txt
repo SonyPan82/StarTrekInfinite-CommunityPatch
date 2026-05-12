@@ -14,7 +14,7 @@ trill = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_trill"
 
 	species = {
-		class = "HRB" # TODO: Create custom class
+		class = "HRB_DIPLO" # CP26: was HRB, assigned to diplomatic archetype
 		portrait = "trill"
 		name = "PRESCRIPTED_species_name_trill"
 		plural = "PRESCRIPTED_species_plural_trill"

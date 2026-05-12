@@ -4,6 +4,7 @@ NGameplay =
 }
 
 NShip = {
-	OUTPOST_WARP_RANGE_RADIUS = 60			# vanilla = 47, +15%
+	OUTPOST_WARP_RANGE_RADIUS = 0			# CP26: no warp range bubble from outpost/starbase upgrades
+	WARP_RANGE = 0							# CP26: base warp range (system-level) -> 0 to suppress the bubble drawn around starbases entirely
 	WARP_INTERSTELLAR_TRAVEL_SPEED = 0.065	# vanilla = 0.1  → ~35% slower base; tech tree compensates progressively
 }

@@ -14,7 +14,7 @@ lissepian = {
 	ship_prefix = "PRESCRIPTED_ship_prefix_lissepian"
 
 	species = {
-		class = "HRB" # TODO: Create custom class
+		class = "HRB_TRADE" # CP26: was HRB, assigned to trader archetype
 		portrait = "lissepian"
 		name = "PRESCRIPTED_species_name_lissepian"
 		plural = "PRESCRIPTED_species_plural_lissepian"

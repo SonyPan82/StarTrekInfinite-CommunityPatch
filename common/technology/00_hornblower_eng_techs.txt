@@ -1,0 +1,1147 @@
+############################
+#
+#        engineering Techs
+#
+############################
+# tech_warp_drive_4 = {
+
+#     hidden = no/yes
+#     cost = @tier2cost1
+#     area = engineering
+#     category = { particles }
+#     tier = 2
+#     is_rare = yes
+#     start_tech = no
+#     prerequisites = { tech_warp_drive_3 }
+#     weight = @tier2weight1
+#     ai_update_type = all
+#     prereqfor_desc = {
+#         custom = {
+#             title = tech_unlock_thruster_1_title
+#             desc = 32
+#         } 
+#     }
+# }
+
+# tech_minefields_tier_1 = {
+# 
+#     cost = @tier2weight2
+#     area = engineering
+#     category = { materials }
+#     tier = 2
+#     start_tech = no
+#     weight = @tier2weight2
+# }
+
+tech_phase_payloads = {
+
+    cost = @tier2cost2
+    area = engineering
+    category = { materials }
+    tier = 2
+    start_tech = no
+    weight = @tier2weight2
+}
+
+tech_antimatter_payloads = {
+
+    cost = @tier3cost1
+    area = engineering
+    category = { materials }
+    tier = 3
+    start_tech = no
+    weight = @tier3weight1
+}
+
+tech_torpedo_1 = {
+
+    cost = @tier2cost1
+    area = engineering
+    category = { propulsion }
+    tier = 2
+    start_tech = no
+    weight = @tier2weight1
+}
+
+tech_torpedo_2 = {
+
+    cost = @tier3cost2
+    area = engineering
+    category = { propulsion }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_torpedo_1 }
+    weight = @tier3weight2
+}
+
+tech_big_bomb_1 = {
+
+    area = engineering
+    category = { materials }
+    tier = 0
+    start_tech = yes
+}
+
+tech_big_bomb_2 = {
+
+    cost = @tier2cost1
+    area = engineering
+    category = { materials }
+    tier = 2
+    start_tech = no
+    prerequisites = { tech_big_bomb_1 }
+    weight = @tier2weight1
+}
+
+tech_big_bomb_3 = {
+
+    cost = @tier3cost1
+    area = engineering
+    category = { materials }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_big_bomb_2 }
+    weight = @tier3weight1
+}
+
+tech_hull_1 = {
+
+    area = engineering
+    category = { materials }
+    tier = 0
+    start_tech = yes
+}
+
+tech_hull_2 = {
+
+    cost = @tier2cost3
+    area = engineering
+    category = { materials }
+    tier = 2
+    start_tech = no
+    prerequisites = { tech_hull_1 }
+    weight = @tier2weight3
+}
+
+tech_hull_3 = {
+
+    cost = @tier3cost3
+    area = engineering
+    category = { materials }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_hull_2 }
+    weight = @tier3weight3
+}
+
+tech_hull_4 = {
+
+    cost = @tier4cost3
+    area = engineering
+    category = { materials }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_hull_3 }
+    weight = @tier4weight3
+}
+
+tech_battery_1 = {
+
+    area = engineering
+    category = { materials }
+    tier = 0
+    start_tech = yes
+}
+
+tech_battery_2 = {
+
+    cost = @tier2cost3
+    area = engineering
+    category = { materials }
+    tier = 2
+    start_tech = no
+    prerequisites = { tech_battery_1 }
+    weight = @tier2weight3
+}
+
+tech_battery_3 = {
+
+    cost = @tier4cost1
+    area = engineering
+    category = { materials }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_battery_2 }
+    weight = @tier4weight1
+}
+
+tech_aux_engine_1 = {
+
+    cost = @tier1cost3
+    area = engineering
+    category = { propulsion }
+    tier = 1
+    start_tech = no
+    weight = @tier1weight3
+}
+
+tech_aux_engine_2 = {
+
+    cost = @tier4cost3
+    area = engineering
+    category = { propulsion }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_aux_engine_1 }
+    weight = @tier4weight3
+}
+
+# tech_reactor_1 = {
+
+#     area = engineering
+#     category = { industry }
+#     tier = 0
+#     start_tech = yes
+# }
+
+# tech_reactor_2 = {
+
+#     cost = @tier1cost1
+#     area = engineering
+#     category = { industry }
+#     tier = 1
+#     start_tech = no
+#     prerequisites = { tech_reactor_1 }
+#     weight = @tier1weight1
+# }
+
+# tech_reactor_3 = {
+
+#     cost = @tier3cost2
+#     area = engineering
+#     category = { industry }
+#     tier = 3
+#     start_tech = no
+#     prerequisites = { tech_reactor_2 }
+#     weight = @tier3weight2
+# }
+
+# tech_reactor_4 = {
+
+#     cost = @tier4cost1
+#     area = engineering
+#     category = { industry }
+#     tier = 4
+#     start_tech = no
+#     prerequisites = { tech_reactor_3 }
+#     weight = @tier4weight1
+# }
+
+tech_engine_1 = {
+
+    area = engineering
+    category = { propulsion }
+    tier = 0
+    start_tech = yes
+}
+
+tech_engine_2 = {
+
+    cost = @tier1cost3
+    area = engineering
+    category = { propulsion }
+    tier = 1
+    start_tech = no
+    prerequisites = { tech_engine_1 }
+    weight = @tier1weight3
+}
+
+tech_engine_3 = {
+
+    cost = @tier3cost1
+    area = engineering
+    category = { propulsion }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_engine_2 }
+    weight = @tier3weight1
+}
+
+tech_engine_4 = {
+
+    cost = @tier4cost2
+    area = engineering
+    category = { propulsion }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_engine_3 }
+    weight = @tier4weight2
+}
+
+tech_mineral_purification_1 = {
+
+    cost = @tier1cost3
+    area = engineering
+    category = { materials }
+    tier = 1
+    start_tech = no
+    weight = @tier1weight3
+}
+
+tech_mineral_purification_2 = {
+
+    cost = @tier2cost3
+    area = engineering
+    category = { materials }
+    tier = 2
+    start_tech = no
+    prerequisites = { tech_mineral_purification_1 }
+    weight = @tier2weight3
+}
+
+tech_basic_industry = {
+
+    area = engineering
+    category = { industry }
+    tier = 0
+    start_tech = yes
+}
+
+tech_alloys_1 = {
+
+    cost = @tier1cost1
+    area = engineering
+    category = { industry }
+    tier = 1
+    start_tech = no
+    prerequisites = { tech_basic_industry }
+    weight = @tier1weight1
+}
+
+tech_alloys_2 = {
+
+    cost = @tier3cost2
+    area = engineering
+    category = { industry }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_alloys_1 }
+    weight = @tier3weight2
+}
+
+tech_luxuries_1 = {
+
+    cost = @tier1cost3
+    area = engineering
+    category = { industry }
+    tier = 1
+    start_tech = no
+    prerequisites = { tech_basic_industry }
+    weight = @tier1weight3
+}
+
+tech_luxuries_2 = {
+
+    cost = @tier3cost3
+    area = engineering
+    category = { industry }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_luxuries_1 }
+    weight = @tier3weight3
+}
+
+tech_global_production_strategy = {
+
+    cost = @tier3cost1
+    area = engineering
+    category = { industry }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_alloys_1 }
+    weight = @tier3weight1
+}
+
+tech_dilithium_refining = {
+
+    cost = @tier2cost1
+    area = engineering
+    category = { industry }
+    tier = 2
+    start_tech = no
+    weight = @tier2weight1
+}
+
+tech_tetryons_refining = {
+
+    cost = @tier2cost1
+    area = engineering
+    category = { industry }
+    tier = 2
+    start_tech = no
+    weight = @tier2weight1
+}
+
+tech_graviton_refining = {
+
+    cost = @tier3cost1
+    area = engineering
+    category = { industry }
+    tier = 3
+    start_tech = no
+    weight = @tier3weight1
+}
+
+tech_nanite_refining = {
+
+    cost = @tier3cost1
+    area = engineering
+    category = { industry }
+    tier = 3
+    start_tech = no
+    weight = @tier3weight1
+}
+
+tech_mine_dilithium = {
+
+    # cost = @tier1cost3
+    area = engineering
+    category = { industry }
+    tier = 0
+    start_tech = yes
+    # weight = @tier1weight3
+}
+
+tech_mine_tetryons = {
+
+    # cost = @tier1cost3
+    area = engineering
+    category = { industry }
+    tier = 0
+    start_tech = yes
+    # weight = @tier1weight3
+}
+
+tech_weapons_maintenance_bay = {
+
+    cost = @tier3cost1
+    area = engineering
+    category = { materials }
+    tier = 3
+    start_tech = no
+    weight = @tier3weight1
+}
+
+tech_defense_comlink = {
+
+    cost = @tier4cost1
+    area = engineering
+    category = { materials }
+    tier = 4
+    start_tech = no
+    weight = @tier4weight1
+}
+
+tech_ice_mining_station = {
+
+    cost = @tier1cost1
+    area = engineering
+    category = { industry }
+    tier = 1
+    start_tech = no
+    weight = @tier1weight1
+}
+
+tech_shipyard = {
+
+    area = engineering
+    category = { propulsion }
+    tier = 0
+    start_tech = yes
+}
+
+tech_versatile_defense_system = {
+
+    area = engineering
+    category = { propulsion }
+    tier = 0
+    start_tech = yes
+}
+
+tech_solar_panel_array = {
+
+    cost = @tier1cost1
+    area = engineering
+    category = { industry }
+    tier = 1
+    start_tech = no
+    prerequisites = { tech_mining_station_energy_output_increase_tier_1 }
+    weight = @tier1weight1
+}
+
+# tech_megastructure_1 = {
+
+#     cost = @tier2cost3
+#     area = engineering
+#     category = { industry }
+#     tier = 2
+#     start_tech = no
+# }
+
+# tech_megastructure_2 = {
+
+#     cost = @tier3cost3
+#     area = engineering
+#     category = { industry }
+#     tier = 3
+#     start_tech = no
+#     prerequisites = { tech_megastructure_1 }
+# }
+
+# tech_megastructure_3 = {
+
+#     cost = @tier4cost3
+#     area = engineering
+#     category = { industry }
+#     tier = 4
+#     start_tech = no
+#     prerequisites = { tech_megastructure_2 }
+# }
+
+tech_building_district_cost_reduction_tier_1 = {
+
+    cost = @tier1cost3
+    area = engineering
+    category = { industry }
+    tier = 1
+    start_tech = no
+    weight = @tier1weight3   
+    modifier = {
+        planet_buildings_cost_mult = -0.15
+        planet_districts_cost_mult = -0.15 
+    }
+}
+
+tech_building_district_cost_reduction_tier_2 = {
+
+    cost = @tier2cost3
+    area = engineering
+    category = { industry }
+    tier = 2
+    start_tech = no
+    prerequisites = { tech_building_district_cost_reduction_tier_1 }
+    weight = @tier2weight3   
+    modifier = {
+        planet_buildings_cost_mult = -0.15
+        planet_districts_cost_mult = -0.15 
+    }
+}
+
+tech_ship_upkeep_upgrade_reduction_tier_1 = {
+
+    cost = @tier1cost2
+    area = engineering
+    category = { voidcraft }
+    tier = 1
+    start_tech = no
+    weight = @tier1weight2   
+    modifier = {
+        ships_upkeep_mult = -0.15 
+    }
+}
+
+tech_ship_upkeep_upgrade_reduction_tier_2 = {
+
+    cost = @tier3cost1
+    area = engineering
+    category = { voidcraft }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_ship_upkeep_upgrade_reduction_tier_1 }
+    weight = @tier3weight1   
+    modifier = {
+        ships_upkeep_mult = -0.1 
+    }
+}
+
+tech_ship_upkeep_upgrade_reduction_tier_3 = {
+
+    cost = @tier5cost2
+    area = engineering
+    category = { voidcraft }
+    tier = 5
+    start_tech = no
+    prerequisites = { tech_ship_upkeep_upgrade_reduction_tier_2 }
+    weight = @tier5weight2   
+    modifier = {
+        ships_upkeep_mult = -0.05 
+    }
+}
+
+# tech_corvette_unlock = {
+
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 1
+#     start_tech = yes
+# }
+
+# tech_destroyer_unlock = {
+
+#     cost = @tier2cost2
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 2
+#     start_tech = no
+#     prerequisites = { tech_corvette_unlock }
+#     weight = @tier2weight2
+#     weight_modifier = {
+#         modifier = {
+#             factor = 0
+#             years_passed < 20
+#         }
+#         modifier = {
+#             factor = 8
+#             years_passed > 28
+#         }
+#         modifier = {
+#             factor = 8
+#             any_neighbor_country = {
+#             has_technology = tech_destroyer_unlock
+#             }
+#         }
+#     }
+#     ai_weight = {
+# 		factor = 4 # Hulls are good
+# 		modifier = {
+# 			factor = 1.25
+# 			research_leader = {
+# 				area = engineering
+# 			}
+# 		}
+# 	}
+# }
+
+# tech_cruiser_unlock = {
+
+#     cost = @tier3cost2
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 3
+#     start_tech = no
+#     prerequisites = { tech_destroyer_unlock }
+#     weight = @tier3weight2
+#     weight_modifier = {
+#             modifier = {
+#                 factor = 0
+#                 years_passed < 50
+#             }
+#             modifier = {
+#                 factor = 7
+#                 years_passed > 58
+#             }
+#             modifier = {
+#                 factor = 7
+#                 any_neighbor_country = {
+#                 has_technology = tech_cruiser_unlock
+#             }
+#         }
+#     }
+#     ai_weight = {
+# 		factor = 5 # Hulls are good
+# 		modifier = {
+# 			factor = 1.25
+# 			research_leader = {
+# 				area = engineering
+# 			}
+# 		}
+# 	}
+# }
+
+# tech_battleship_unlock = {
+
+#     cost = @tier4cost2
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 4
+#     start_tech = no
+#     prerequisites = { tech_cruiser_unlock }
+#     weight = @tier4weight2
+#     weight_modifier = {
+#             modifier = {
+#                 factor = 0
+#                 years_passed < 80
+#             }
+#             modifier = {
+#                 factor = 6
+#                 years_passed > 88
+#             }
+#             modifier = {
+#                 factor = 6
+#                 any_neighbor_country = {
+#                 has_technology = tech_battleship_unlock
+#             }
+#         }
+#     }
+#     ai_weight = {
+# 		factor = 6 # Hulls are good
+# 		modifier = {
+# 			factor = 1.25
+# 			research_leader = {
+# 				area = engineering
+# 			}
+# 		}
+# 	}
+# }
+
+# tech_titan_unlock = {
+
+#     cost = @tier5cost2
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 5
+#     start_tech = no
+#     prerequisites = { tech_battleship_unlock }
+#     weight = @tier5weight2
+#     weight_modifier = {
+#             modifier = {
+#                 factor = 0
+#                 years_passed < 110
+#             }
+#             modifier = {
+#                 factor = 5
+#                 years_passed > 118
+#             }
+#             modifier = {
+#                 factor = 5
+#                 any_neighbor_country = {
+#                 has_technology = tech_titan_unlock
+#             }
+#         }
+#     }
+#     ai_weight = {
+# 		factor = 7 # Hulls are good
+# 		modifier = {
+# 			factor = 1.25
+# 			research_leader = {
+# 				area = engineering
+# 			}
+# 		}
+# 	}
+# }
+
+# tech_mining_station_mineral_output_increase_tier_1 = {
+
+#     cost = @tier1cost1
+#     area = engineering
+#     category = { industry }
+#     tier = 1
+#     start_tech = no
+#     weight = @tier1weight1   
+#     modifier = {
+#         starbase_constructions_minerals_produces_mult = 0.10 
+#     }
+# }
+
+# tech_mining_station_mineral_output_increase_tier_2 = {
+
+#     cost = @tier2cost3
+#     area = engineering
+#     category = { industry }
+#     tier = 2
+#     start_tech = no
+#     prerequisites = { tech_mining_station_mineral_output_increase_tier_1 }
+#     weight = @tier2weight3   
+#     modifier = {
+#         starbase_constructions_minerals_produces_mult = 0.10  
+#     }
+# }
+
+# tech_mining_station_mineral_output_increase_tier_3 = {
+
+#     cost = @tier4cost1
+#     area = engineering
+#     category = { industry }
+#     tier = 4
+#     start_tech = no
+#     prerequisites = { tech_mining_station_mineral_output_increase_tier_2 }
+#     weight = @tier4weight1   
+#     modifier = {
+#         starbase_constructions_minerals_produces_mult = 0.10 
+#     }
+# }
+
+# tech_mining_station_deuterium_output_increase_tier_1 = {
+
+#     cost = @tier1cost1
+#     area = engineering
+#     category = { industry }
+#     tier = 1
+#     start_tech = no
+#     weight = @tier1weight1   
+#     modifier = {
+#         starbase_constructions_deuterium_produces_mult = 0.10 
+#     }
+# }
+
+# tech_mining_station_deuterium_output_increase_tier_2 = {
+
+#     cost = @tier2cost3
+#     area = engineering
+#     category = { industry }
+#     tier = 2
+#     start_tech = no
+#     prerequisites = { tech_mining_station_deuterium_output_increase_tier_1 }
+#     weight = @tier2weight3   
+#     modifier = {
+#         starbase_constructions_deuterium_produces_mult = 0.10 
+#     }
+# }
+
+# tech_mining_station_deuterium_output_increase_tier_3 = {
+
+#     cost = @tier4cost1
+#     area = engineering
+#     category = { industry }
+#     tier = 4
+#     start_tech = no
+#     prerequisites = { tech_mining_station_deuterium_output_increase_tier_2 }
+#     weight = @tier4weight1   
+#     modifier = {
+#         starbase_constructions_deuterium_produces_mult = 0.10 
+#     }
+# }
+
+tech_building_build_speed_tier_1 = {
+
+    cost = @tier1cost2
+    area = engineering
+    category = { industry }
+    tier = 1
+    start_tech = no
+    weight = @tier1weight2   
+    modifier = {
+        planet_building_build_speed_mult = 0.5 
+    }
+}
+
+tech_building_build_speed_tier_2 = {
+
+    cost = @tier2cost2
+    area = engineering
+    category = { industry }
+    tier = 2
+    start_tech = no
+    prerequisites = { tech_building_build_speed_tier_1 }
+    weight = @tier2weight2   
+    modifier = {
+        planet_building_build_speed_mult = 0.5 
+    }
+}
+
+# tech_starbase_starport = {
+
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 0
+#     start_tech = yes
+# }
+
+# tech_starbase_starhold = {
+
+#     cost = @tier2cost3
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 2
+#     start_tech = no
+#     prerequisites = { tech_starbase_starport }
+#     weight = @tier2weight3
+# }
+
+# tech_starbase_fortress = {
+
+#     cost = @tier4cost3
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 4
+#     start_tech = no
+#     prerequisites = { tech_starbase_starhold }
+#     weight = @tier4weight3
+# }
+
+# tech_corvette_build_speed_cost = {
+
+#     cost = @tier1cost3
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 1
+#     start_tech = no
+#     prerequisites = { tech_corvette_unlock }
+#     weight = @tier1weight3   
+#     modifier = {
+#         shipsize_corvette_build_speed_mult = 0.25
+#         ship_corvette_cost_mult = -0.1 
+#     }
+# }
+
+# tech_destroyer_build_speed_cost = {
+
+#     cost = @tier2cost3
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 2
+#     start_tech = no
+#     prerequisites = { tech_destroyer_unlock }
+#     weight = @tier2weight3   
+#     modifier = {
+#         shipsize_destroyer_build_speed_mult = 0.25
+#         ship_destroyer_cost_mult = -0.1 
+#     }
+# }
+
+# tech_cruiser_build_speed_cost = {
+
+#     cost = @tier3cost3
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 3
+#     start_tech = no
+#     prerequisites = { tech_cruiser_unlock }
+#     weight = @tier3weight3   
+#     modifier = {
+#         shipsize_cruiser_build_speed_mult = 0.25
+#         ship_cruiser_cost_mult = -0.1 
+#     }
+# }
+
+# tech_battleship_build_speed_cost = {
+
+#     cost = @tier4cost3
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 4
+#     start_tech = no
+#     prerequisites = { tech_battleship_unlock }
+#     weight = @tier4weight3   
+#     modifier = {
+#         shipsize_battleship_build_speed_mult = 0.25
+#         ship_battleship_cost_mult = -0.1 
+#     }
+# }
+
+# tech_titan_build_speed_cost = {
+
+#     cost = @tier5cost3
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 5
+#     start_tech = no
+#     prerequisites = { tech_titan_unlock }
+#     weight = @tier5weight3   
+#     modifier = {
+#         shipsize_titan_build_speed_mult = 0.25
+#         ship_titan_cost_mult = -0.1 
+#     }
+# }
+
+# tech_minefields_tier_1 = {
+# 	area = engineering
+# 	cost = @tier1cost1
+# 	category = { materials }
+# 	tier = 1
+# #	is_rare = yes
+# #	prerequisites = { tech_sensor_2 }
+# 	weight = @tier1weight1
+
+# #	feature_flags = { experimental_subspace_navigation }
+
+# 	weight_modifier = {
+# 		factor = 0.50
+# 		# modifier = {
+# 		# 	factor = @ap_technological_ascendancy_rare_tech
+# 		# 	has_ascension_perk = ap_technological_ascendancy
+# 		# }
+# 		modifier = {
+# 			factor = 1.25
+# 			research_leader = {
+# 				area = engineering
+# 				# has_trait = "leader_trait_expertise_field_manipulation"
+# 			}
+# 		}
+# 	}
+
+# 	ai_weight = {
+# 		factor = 4 # Mines are good
+# 		modifier = {
+# 			factor = 1.25
+# 			research_leader = {
+# 				area = engineering
+# 				# has_trait = "leader_trait_expertise_field_manipulation"
+# 			}
+# 		}
+# 	}
+# }
+
+# tech_minefields_tier_2 = {
+
+#     cost = @tier3cost3
+#     area = engineering
+#     category = { propulsion }
+#     tier = 3
+#     start_tech = no
+#     prerequisites = { tech_minefields_tier_1 }
+#     weight = @tier3weight3   
+#     modifier = {
+#         mine_field_accuracy_mult = 0.25
+#         mine_field_damage_mult = 0.25
+#         mine_field_shield_penetration_mult = 0.25 
+#     }
+# }
+
+tech_minefields_tier_3 = {
+
+    cost = @tier4cost3
+    area = engineering
+    category = { propulsion }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_minefields_tier_2 }
+    weight = @tier4weight3   
+    modifier = {
+        mine_field_accuracy_mult = 0.25
+        mine_field_damage_mult = 0.25
+        mine_field_shield_penetration_mult = 0.25 
+    }
+}
+
+# tech_civilian_ships = {
+
+#     area = engineering
+#     category = { voidcraft }
+#     tier = 0
+#     start_tech = yes
+# }
+
+tech_escape_pod_1 = {
+
+    cost = @tier1cost3
+    area = engineering
+    category = { voidcraft }
+    tier = 1
+    weight = @tier1weight3
+}
+
+tech_mine_dilithium_1 = {
+
+    cost = @tier2cost2
+    area = engineering
+    category = { materials }
+    tier = 2
+    start_tech = no
+    weight = @tier2weight2   
+    modifier = {
+        stations_dilithium_produces_mult = 0.25 
+    }
+}
+
+tech_mine_dilithium_2 = {
+
+    cost = @tier3cost2
+    area = engineering
+    category = { materials }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_mine_dilithium_1 }
+    weight = @tier3weight2   
+    modifier = {
+        stations_dilithium_produces_mult = 0.3 
+    }
+}
+
+tech_mine_dilithium_3 = {
+
+    cost = @tier4cost2
+    area = engineering
+    category = { materials }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_mine_dilithium_2 }
+    weight = @tier4weight2   
+    modifier = {
+        stations_dilithium_produces_mult = 0.45 
+    }
+}
+
+tech_mine_tetryons_1 = {
+
+    cost = @tier2cost2
+    area = engineering
+    category = { materials }
+    tier = 2
+    start_tech = no
+    weight = @tier2weight2   
+    modifier = {
+        stations_tetryons_produces_mult = 0.25 
+    }
+}
+
+
+tech_mine_tetryons_2 = {
+
+    cost = @tier3cost2
+    area = engineering
+    category = { materials }
+    tier = 3
+    start_tech = no
+    prerequisites = { tech_mine_tetryons_1 }
+    weight = @tier3weight2   
+    modifier = {
+        stations_tetryons_produces_mult = 0.3 
+    }
+}
+
+
+tech_mine_tetryons_3 = {
+
+    cost = @tier4cost2
+    area = engineering
+    category = { materials }
+    tier = 4
+    start_tech = no
+    prerequisites = { tech_mine_tetryons_2 }
+    weight = @tier4weight2   
+    modifier = {
+        stations_tetryons_produces_mult = 0.45 
+    }
+}
+
+# CP26 — tech_warp_speed_increase_1 is redefined in common/technology/zz_cp26_warp_techs.txt
+# (slower base warp + stronger progressive tech curve). Original block removed here to
+# avoid the "Duplicate technology: tech_warp_speed_increase_1" engine error.
+# Vanilla original kept below as commented reference:
+#
+# tech_warp_speed_increase_1 = {
+#     cost = @tier2cost1
+#     area = engineering
+#     category = { propulsion }
+#     tier = 2
+#     start_tech = no
+#     weight = @tier2weight1
+#     modifier = {
+#         ship_warp_speed_mult = 0.20
+#     }
+# }
+
+# tech_warp_speed_increase_2 = {
+
+#     cost = @tier4cost1
+#     area = engineering
+#     category = { propulsion }
+#     tier = 4
+#     start_tech = no
+#     prerequisites = { tech_warp_speed_increase_1 }
+#     weight = @tier4weight1   
+#     modifier = {
+#         ship_warp_speed_mult = 0.20
+#     }
+# }

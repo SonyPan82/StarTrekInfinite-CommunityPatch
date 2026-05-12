@@ -715,3 +715,6 @@
  building_stone_palace_desc:0 "Siège monumental du pouvoir, construit pour impressionner autant que pour gouverner."
  building_urban_dwellings:0 "Logements urbains"
  building_urban_dwellings_desc:0 "Habitations denses marquant l'apparition de véritables centres urbains."
+
+ # Écran nouvelle partie : ligne taille galaxie (le moteur ne remplit pas le nom; aligner sur Alpha-Beta_medium.txt)
+ CP26_GALAXY_SCENARIO_DISPLAY:0 "Cartes stellaires - Grande"

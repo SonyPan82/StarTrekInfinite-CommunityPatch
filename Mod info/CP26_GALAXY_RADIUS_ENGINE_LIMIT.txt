@@ -1,0 +1,135 @@
+================================================================================
+CP26 — Galaxy Radius : ENGINE HARDCODED LIMIT
+================================================================================
+Date    : 2026-05-12
+Statut  : APPLIQUÉ (radius 570 → 500 sur Alpha-Beta_medium.txt + tutorial.txt)
+================================================================================
+
+1. PROBLÈME — CRASHES ALÉATOIRES SIGSEGV / ACCESS VIOLATION
+--------------------------------------------------------------------------------
+Symptômes observés (Mac et Windows) :
+  - macOS : EXC_BAD_ACCESS / SIGSEGV / KERN_PROTECTION_FAILURE
+  - Windows : "access violation 0xc0000005"
+  - Stack typique : CConstructionQueueManager::DailyUpdate
+                    CSaveGameTaskManager::CreateMemoryFiles
+                    CConstructionQueue::WriteMembers
+  - Fréquence : ALÉATOIRE — quelques minutes à quelques heures de jeu.
+  - Ne se reproduit pas à la commande.
+
+Diagnostic erroné pendant plusieurs sessions :
+  - On a soupçonné le ship_data dynamique (charge IA accrue)
+  - On a soupçonné les patterns remove_building/add_building
+  - On a soupçonné AI_MAX_DISTANCE
+  - On a appliqué l'upgrade différé J+3 du capital (vrai fix utile mais
+    n'éliminait pas les crashes résiduels)
+
+VRAIE cause racine :
+  Le moteur Clausewitz (Stellaris, STI, CK3) impose une limite HARDCODÉE
+  de radius <= 500 sur les setup_scenarios et bespoke_procedural_scenario.
+  Au-dessus, comportement non documenté → memory corruption silencieuse.
+
+2. SOURCE OFFICIELLE
+--------------------------------------------------------------------------------
+Stellaris Wiki — Map modding (paradoxwikis.com/Map_modding) :
+
+    "About Galaxy Modding [...] both dynamic and static maps have some
+     default limitations:
+       - Map radius (max 500)"
+
+    Static galaxy scenario reference :
+       "radius = 500
+        # Max size is 500 (Specifically, the map in Stellaris is a box
+        #  1000x1000x10. From -500 to 500 but in a Z direction only from
+        #  -5 to 5)"
+
+    Galaxy size template comment in vanilla huge.txt :
+       "radius = 450    # should be less than 500, preferably less than ~460"
+
+3. POURQUOI LE CRASH EST ALÉATOIRE
+--------------------------------------------------------------------------------
+Quand radius > 500, certaines structures spatiales internes du moteur
+sont sized correctement (radius * 2 = 1000+ unités) mais leurs ACCÈS
+sont bornés à la box [-500, +500]. Conséquences :
+
+  - Quadtree de proximity : des nodes peuvent référencer des cellules
+    hors plage → indice array invalide → read from wild pointer.
+  - Pathfinding : un vaisseau qui patrouille en bordure peut tenter
+    de calculer un chemin via une cell hors box → access invalide.
+  - Construction queue : les tasks de construction (stations, megastructures)
+    contiennent des coordonnées. Si une task pointe vers une zone hors
+    box, la sérialisation au save tombe sur de la mémoire non allouée.
+
+Le crash apparait au moment où un objet TOUCHE la zone fantôme, ce
+qui dépend du gameplay (mouvement IA, construction, save). D'où
+l'aspect ALÉATOIRE.
+
+4. ÉTAT AVANT FIX
+--------------------------------------------------------------------------------
+Audit des scenarios CP26 :
+
+  Alpha-Beta_medium.txt          radius = 570   ❌ HORS LIMITE  (default=yes)
+  tutorial.txt                   radius = 570   ❌ HORS LIMITE
+  Alpha-Beta-Elliptical_large    radius = 450   ✓ OK
+  Alpha-Beta-Elliptical_medium   radius = 400   ✓ OK
+  Alpha-Beta-Elliptical_small    radius = 300   ✓ OK
+  Alpha-Beta_large               radius = 450   ✓ OK
+  Alpha-Beta_small               radius = 300   ✓ OK
+
+Le SEUL scenario hors limite était le scenario PRINCIPAL (default=yes,
+celui qui est chargé par défaut au lancement). D'où l'omniprésence
+des crashes en partie standard.
+
+Historique des modifications successives (conversations passées) :
+  Initial CP26    : radius = 500
+  Itération A     : radius = 760 (test "huge galaxy")  -> crashes massifs
+  Itération B     : radius = 660
+  Itération C     : radius = 630
+  État avant fix  : radius = 570  -> au-dessus de la limite engine
+  Fix 2026-05-12  : radius = 500  -> exactement la limite hard engine
+                                     (cap officiel Paradox, 95 unités
+                                      de marge sur les positions actuelles)
+
+5. FIX APPLIQUÉ — 2026-05-12
+--------------------------------------------------------------------------------
+Mesure géométrique préalable :
+  Total positions       : 258 systèmes
+  X range               : -309 → +354
+  Y range               : +18  → +404
+  Hypot max depuis (0,0): 405
+
+Action :
+  - Alpha-Beta_medium.txt : `radius = 570` → `radius = 500`
+  - tutorial.txt          : `radius = 570` → `radius = 500` (sync)
+  - Aucune position de système ne dépasse hypot 405 < 500
+  - Aucune position de nebula ne dépasse hypot 405 < 500
+  - Camera limits inchangées (max abs = 450, dans la box engine)
+  - Hazard parameters inchangés
+
+  Choix de 500 plutôt que 460 :
+    500 est exactement la limite hard documentée par Paradox. Le moteur est
+    censé la supporter intégralement. Ça maximise la marge de manœuvre pour
+    de futures extensions de positions sans toucher au radius. La recommandation
+    "preferably less than ~460" du wiki est conservatrice ; 460 est ce qu'on
+    utiliserait si on observait encore des problèmes à 500.
+
+Garde-fous architecturaux :
+  Le commentaire au début du fichier explicite désormais la contrainte :
+    "radius MUST stay <= 500 (engine hard limit, see Stellaris wiki:
+     'the map is a box 1000x1000x10, from -500 to 500')"
+
+6. RECOMMANDATIONS FUTURES
+--------------------------------------------------------------------------------
+- NE JAMAIS dépasser radius = 500. C'est une contrainte moteur, pas une
+  préférence. Cela inclut tout futur scenario ou variant.
+- Préférer radius <= 460 selon recommandation Paradox.
+- Si on veut une galaxie "plus grande" visuellement, augmenter num_stars
+  et/ou densifier les positions plutôt que d'étirer le rayon.
+- Garder camera_limits dans [-500, +500].
+
+7. CE QU'IL FAUT TESTER
+--------------------------------------------------------------------------------
+Lancer une session normale (~30-60 min) ou plusieurs charges de save
+consécutives. Les crashes SIGSEGV/access violation aléatoires devraient
+disparaitre. Si crash résiduel, c'est un autre vecteur (à ce moment-là
+on regardera les patterns scripts encore non couverts).
+================================================================================

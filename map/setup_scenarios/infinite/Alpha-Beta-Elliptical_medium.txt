@@ -1,5 +1,5 @@
 bespoke_procedural_scenario = {
-    name = "Alpha-Elliptical Medium "
+    name = "CP26 Elliptical Medium"
 	priority = 5					#priority decides in which order the scenarios are listed
 	num_stars = 500
 	arms = 0
