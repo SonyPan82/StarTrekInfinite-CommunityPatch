@@ -79,12 +79,17 @@ setup_breen_capital = {
 			create_pop = { species = "Klingon" }
 			add_building = building_capital
 		}
-		create_starbase = {
-			size = starbase_starport
-			owner = event_target:breen_country
-			module = shipyard
-			building = crew_quarters
-		}
+			if = {
+				limit = {
+					NOT = { exists = starbase }
+				}
+				create_starbase = {
+					size = starbase_starport
+					owner = event_target:breen_country
+					module = shipyard
+					building = crew_quarters
+				}
+			}
 	}
 }
 

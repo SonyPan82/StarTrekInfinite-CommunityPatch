@@ -114,12 +114,17 @@ setup_gorn_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_gorn_hunting }
 			add_building = building_capital
 		}
-		create_starbase = {
-			size = starbase_starport
-			owner = event_target:gorn_country
-			module = shipyard
-			building = crew_quarters
-		}
+			if = {
+				limit = {
+					NOT = { exists = starbase }
+				}
+				create_starbase = {
+					size = starbase_starport
+					owner = event_target:gorn_country
+					module = shipyard
+					building = crew_quarters
+				}
+			}
 	}
 }
 
@@ -145,9 +150,14 @@ setup_gorn_territory = {
 			limit = { exists = event_target:cardassian_country }
 			set_surveyed = { surveyed = yes surveyor = event_target:cardassian_country }
 		}
-		create_starbase = {
-			size = starbase_outpost
-			owner = event_target:gorn_country
-		}
+			if = {
+				limit = {
+					NOT = { exists = starbase }
+				}
+				create_starbase = {
+					size = starbase_outpost
+					owner = event_target:gorn_country
+				}
+			}
 	}
 }

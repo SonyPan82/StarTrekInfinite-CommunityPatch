@@ -360,8 +360,8 @@ bespoke_procedural_scenario = {
 	#}
 
 	system = {
-		name = "NAME_Hupyrian" position = { x = 54.5 y = 236.1 }
-		initializer = hupyrian_initializer spawn_weight = { base = 1 }
+		name = "Breenus" position = { x = 54.5 y = 236.1 }
+		initializer = breen_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
@@ -390,8 +390,8 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
-		name = "NAME_Kesprytt" position = { x = 85.1 y = 366.8 }
-		initializer = kesprytt_initializer spawn_weight = { base = 1 }
+		name = "Tau Lacertae" position = { x = 85.1 y = 366.8 }
+		initializer = gorn_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
@@ -656,10 +656,10 @@ bespoke_procedural_scenario = {
 		initializer = ktarian_initializer spawn_weight = { base = 1 }
 	}
 
-	system = {
-		name = "NAME_Lissepian" position = { x = 48.9 y = 247.2 }
-		initializer = lissepian_initializer spawn_weight = { base = 1 }
-	}
+	#system = {
+	#	name = "NAME_Lissepian" position = { x = 48.9 y = 247.2 }
+	#	initializer = lissepian_initializer spawn_weight = { base = 1 }
+	#}
 
 	system = {
 		name = "NAME_Malcorian" position = { x = 12.8 y = 315.3 }
@@ -874,10 +874,10 @@ bespoke_procedural_scenario = {
 		initializer = talarian_talar_initializer spawn_weight = { base = 1 }
 	}
 
-	system = {
-		name = "NAME_Tanugan" position = { x = -332 y = 134.6 }
-		initializer = tanugan_initializer spawn_weight = { base = 1 }
-	}
+	#system = {
+	#	name = "NAME_Tanugan" position = { x = -332 y = 134.6 }
+	#	initializer = tanugan_initializer spawn_weight = { base = 1 }
+	#}
 
 	system = {
 		name = "NAME_Trill" position = { x = 30.8 y = 286.1 }

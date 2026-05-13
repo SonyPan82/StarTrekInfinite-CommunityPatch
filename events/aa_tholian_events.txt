@@ -26,10 +26,11 @@ event = {
 			}
 		}
 
-		random_system = {
-			limit = {
-				has_star_flag = tholian_anchor
-			}
+			random_system = {
+				limit = {
+					not = { exists = event_target:tholian_country }
+					has_star_flag = tholian_anchor
+				}
 			spawn_tholian_system = yes
 			last_created_system = {
 				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
@@ -48,10 +49,11 @@ event = {
 			}			
 		}
 		
-		every_system = {
-			limit = {
-				has_star_flag = tholian_anchor
-			}
+			every_system = {
+				limit = {
+					not = { exists = event_target:tholian_country }
+					has_star_flag = tholian_anchor
+				}
 			setup_tholian_territory = yes	
 		}
 

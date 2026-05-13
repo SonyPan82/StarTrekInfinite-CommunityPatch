@@ -35,10 +35,11 @@ event = {
 			}
 		}
 
-		random_system = {
-			limit = {
-				has_star_flag = orion_anchor
-			}
+			random_system = {
+				limit = {
+					not = { exists = event_target:orion_country }
+					has_star_flag = orion_anchor
+				}
 			spawn_orion_system = yes
 			last_created_system = {
 				setup_orion_capital =  yes
@@ -57,10 +58,11 @@ event = {
 			}
 		}
 		
-		every_system = {
-			limit = {
-				has_star_flag = orion_anchor
-			}
+			every_system = {
+				limit = {
+					not = { exists = event_target:orion_country }
+					has_star_flag = orion_anchor
+				}
 			setup_orion_territory = yes	
 		}
 
