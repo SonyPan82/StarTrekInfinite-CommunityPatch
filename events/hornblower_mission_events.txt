@@ -1,0 +1,7818 @@
+##############################
+#
+#  		MISSION EVENTS
+#
+##############################
+
+namespace = mission
+
+##############################################################################
+# Ship in Peril Mission
+# mission.11, mission.12, mission.13, mission.14, mission.15, mission.16, mission.17
+# GD_TAG: Event Chain Common Original
+##############################################################################
+
+### REWARD VARIABLES ###
+
+@reward_tier_1 = 1000
+@reward_strategic_tier_1 = 100
+
+###########################
+# CORE MISSION RANDOMIZER #
+###########################
+
+# Event Target Initializing
+country_event = {
+	id = mission.01
+	hide_window = yes 
+
+	is_triggered_only = yes
+
+	immediate = {
+		ROOT = {
+			save_event_target_as = major_state_country
+		}
+
+		FROM = {
+			save_event_target_as = minor_state_event_country
+		}
+		country_event = { id = mission.02 }
+	}
+}
+
+country_event = {
+	id = mission.02
+	hide_window = yes 
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = player_has_enterprise
+				has_quest_tree_node = qt_ufop_build_the_enterprise_4
+				NOT = {
+					has_quest_tree_node = qt_ufop_empathic_diplomacy_26
+				} 
+			}
+			country_event = { id = mission.04 }
+		}
+		else = {
+			country_event = { id = mission.03 }
+		}
+	}
+}
+
+# Minor Power mission randomizer
+country_event = {
+	id = mission.03
+	hide_window = yes 
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			1 = { modifier = { factor = 0 has_country_flag = vessel_adrift_not_triggered } country_event = { id = mission.12 } } # VESSEL ADRIFT 
+			1 = { modifier = { factor = 0 has_country_flag = disaster_relief_not_triggered } country_event = { id = mission.22 } } # DISASTER RELIEF 
+			1 = { modifier = { factor = 0 has_country_flag = growth_spurt_not_triggered } country_event = { id = mission.32 } } # GROWTH SPURT 
+			1 = { country_event = { id = mission.42 } } # SUPER-BACTERIA /// NOTE: THIS ONE ALWAYS TRIGGERS
+			1 = { modifier = { factor = 0 has_country_flag = unusual_gravity_not_triggered } country_event = { id = mission.52 } } # UNUSUAL GRAVITY 
+			1 = { modifier = { factor = 0 has_country_flag = particle_spill_not_triggered } country_event = { id = mission.62 } } # PARTICLE SPILL 
+			1 = { modifier = { factor = 0 has_country_flag = rebellion_not_triggered } country_event = { id = mission.72 } } # REBELLION 
+			1 = { modifier = { factor = 0 has_country_flag = buildup_of_forces_not_triggered } country_event = { id = mission.82 } } # BUILDUP OF FORCES 
+			1 = { modifier = { factor = 0 has_country_flag = war_games_not_triggered } country_event = { id = mission.92 } } # WAR GAMES 
+			1 = { modifier = { factor = 0 has_country_flag = not_secret_weapons_not_triggered } country_event = { id = mission.102 } } # FLIPPING FERENGI 
+			1 = { modifier = { factor = 0 has_country_flag = assassination_attempt_not_triggered } country_event = { id = mission.112 } } # ASSASSINATION ATTEMPT 
+			1 = { modifier = { factor = 0 has_country_flag = know_listening_not_triggered } country_event = { id = mission.122 } } # NEVER KNOW WHO'S LISTENING 
+			1 = { modifier = { factor = 0 has_country_flag = perks_diplomacy_not_triggered } country_event = { id = mission.132 } } # THE PERKS OF DIPLOMACY 
+			1 = { modifier = { factor = 0 has_country_flag = galactic_summit_not_triggered } country_event = { id = mission.142 } } # GALACTIC PEACE SUMMIT 
+			1 = { modifier = { factor = 0 has_country_flag = calories_supply_not_triggered } country_event = { id = mission.152 } } # CALORIES IN SHORT SUPPLY 
+			
+			#New MiPo Missions
+			1 = { modifier = { factor = 0 has_country_flag = shipping_it_not_triggered } country_event = { id = mission.200 } } # SHIPPING IT
+			1 = { modifier = { factor = 0 has_country_flag = demanding_dignatary_not_triggered } country_event = { id = mission.212 } } # DEMANDING DIGNITARY
+			1 = { country_event = { id = mission.192 } } # PHYSICS 101 /// NOTE: THIS ONE ALWAYS TRIGGERS
+		}
+	}
+}
+# Minor Power missions available for the Enterprise randomizer
+country_event = {
+	id = mission.04
+	hide_window = yes 
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			1 = { modifier = { factor = 0 has_country_flag = unusual_gravity_not_triggered } country_event = { id = mission.52 } } # UNUSUAL GRAVITY 
+			1 = { modifier = { factor = 0 has_country_flag = particle_spill_not_triggered } country_event = { id = mission.62 } } # PARTICLE SPILL 
+			1 = { modifier = { factor = 0 has_country_flag = rebellion_not_triggered } country_event = { id = mission.72 } } # REBELLION 
+			1 = { modifier = { factor = 0 has_country_flag = buildup_of_forces_not_triggered } country_event = { id = mission.82 } } # BUILDUP OF FORCES 
+			1 = { modifier = { factor = 0 has_country_flag = war_games_not_triggered } country_event = { id = mission.92 } } # WAR GAMES 
+			1 = { modifier = { factor = 0 has_country_flag = shipping_it_not_triggered } country_event = { id = mission.200 } } # SHIPPING IT
+			1 = { modifier = { factor = 0 has_country_flag = demanding_dignatary_not_triggered } country_event = { id = mission.212 } } # DEMANDING DIGNITARY
+		}
+	}
+}
+
+#################
+# VESSEL ADRIFT #
+#################
+
+# Check Fleet Spawn Conditions
+# If yes = trigger mission.13
+# If no = loop itself (mission.12)
+country_event = {
+	id = mission.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		pick_random_system_for_fleet_rescue_mission_effect = {
+			DISTANCE = 50
+		}
+
+		if = {
+			limit = { NOT = { exists = event_target:minor_state_event_system } }
+
+			pick_random_system_for_fleet_rescue_mission_effect = {
+				DISTANCE = 100
+			}
+		}
+
+		if = {
+			limit = { NOT = { exists = event_target:minor_state_event_system } }
+
+			pick_random_system_for_fleet_rescue_mission_effect = {
+				DISTANCE = 150
+			}
+		}
+
+		if = {
+			limit = { NOT = { exists = event_target:minor_state_event_system } }
+
+			pick_random_system_for_fleet_rescue_mission_effect = {
+				DISTANCE = 200
+			}
+		}
+
+		# Fallback
+		if = {
+			limit = { NOT = { exists = event_target:minor_state_event_system } }
+
+			pick_random_system_for_fleet_rescue_mission_effect = {
+				DISTANCE = 500
+			}
+		}
+
+		# Mission not possible right now, pick another one
+		if = {
+			limit = { NOT = { exists = event_target:minor_state_event_system } }
+			country_event = { id = mission.02 }
+			set_country_flag = vessel_adrift_not_triggered
+		}
+		# All good
+		else = {
+			country_event = { id = mission.13 } #Triggers Spawn Disabled Minor State Fleet
+			remove_all_mipo_mission_flags = yes
+		}
+	}	
+}
+
+# Spawn Disabled Minor State Fleet
+country_event = {
+	id = mission.13
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_system = {
+			# Can only spawn a fleet within a planet scope
+			random_system_planet = { 
+				save_event_target_as = minor_state_event_fleet_location
+			}
+		}
+
+		create_fleet = {		
+			effect = {
+				set_owner = event_target:minor_state_event_country
+				
+				create_ship = {
+					design = "NAME_C2"
+					effect = {
+						set_disabled = yes
+					}
+				}
+				
+				set_location = {
+					target = event_target:minor_state_event_fleet_location
+					distance = 140
+					angle = random
+				}
+				
+				set_fleet_stance = passive
+			}
+
+			settings = {
+				can_upgrade = no
+				can_disband = no
+				can_change_composition = no
+				can_change_leader = no
+				spawn_debris = yes
+			}
+		}
+
+		last_created_fleet = {
+			save_event_target_as = minor_state_event_fleet
+
+			create_ambient_object = {
+				type = "ship_spawn_object"
+				location = THIS
+				use_3d_location = yes
+				duration = 1
+			}
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.14 } #Triggers Mission Event Chain & Special Project
+		}
+	}
+}
+
+### Trigger Mission Event Chain & Special Project
+country_event = {
+	id = mission.14
+	title = "mission.14.name"
+	desc = "mission.14.desc"
+	picture = GFX_evt_space_distress_ship_minor
+	show_sound = event_space_travel #HRB_TODO
+	location = event_target:minor_state_event_fleet
+
+	is_triggered_only = yes
+
+	### Accept Mission
+	option = {
+		name = mission.14.a
+		custom_tooltip = mission.14.a.tt
+
+		rescue_minor_ship_sp_added_effect = yes
+
+		enable_special_project = {
+			name = "RESCUE_MINOR_SHIP"
+			location = event_target:minor_state_event_fleet
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Suspicious
+	option = {
+		trigger = {	is_ufop = yes }
+		name = mission.14.b
+		custom_tooltip = mission.14.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.18 days = 1 #30
+			}	
+		}
+	}
+
+	option = {
+		trigger = {	is_klingon = yes }
+		name = mission.14.b
+		custom_tooltip = mission.14.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.18 days = 1 #30
+			}	
+		}
+	}
+
+	option = {
+		trigger = {	is_romulan = yes }
+		name = mission.14.c
+		custom_tooltip = mission.14.c.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.18 days = 1 #30
+			}	
+		}
+	}
+
+	option = {
+		trigger = {	is_cardassian = yes }
+		name = mission.14.d
+		custom_tooltip = mission.14.d.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.18 days = 1 #30
+			}	
+		}
+	}
+}
+
+# Mission Completed
+country_event = {
+	id = mission.16
+	title = "mission.16.name"
+	desc = "mission.16.desc"
+	picture = GFX_evt_space_distress_ship_minor
+	show_sound = event_space_travel
+	location = event_target:minor_state_event_fleet
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			event_target:minor_state_event_system = {
+				remove_star_flag = fleet_to_rescue_system
+			}
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+
+			rescue_minor_ship_sp_removed_effect = yes
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.16.a
+		custom_tooltip = mission.16.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.16.b
+		custom_tooltip = mission.16.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.16.c
+		custom_tooltip = mission.16.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.16.d
+		custom_tooltip = mission.16.d.tt
+	}
+
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+
+		hidden_effect = {
+			destroy_fleet = event_target:minor_state_event_fleet
+		}
+	}
+}
+
+# Mission Failed
+country_event = {
+	id = mission.17
+	title = "mission.17.name"
+	desc = "mission.17.desc"
+	picture = GFX_evt_space_distress_ship_minor_destroyed
+	show_sound = event_explosion_minor_ship
+	location = event_target:minor_state_event_fleet
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			event_target:minor_state_event_system = {
+				remove_star_flag = fleet_to_rescue_system
+			}
+						
+			destroy_fleet = event_target:minor_state_event_fleet
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+
+		owner = {
+			rescue_minor_ship_sp_removed_effect = yes
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.17.a
+		custom_tooltip = mission.17.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.17.b
+		custom_tooltip = mission.17.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.17.c
+		custom_tooltip = mission.17.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.17.d
+		custom_tooltip = mission.17.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+# Contraband Discovered
+country_event = {
+	id = mission.18
+	title = "mission.18.name"
+	desc = "mission.18.desc"
+	picture = GFX_evt_space_distress_ship_minor
+	show_sound = event_generic_mysterious
+	location = event_target:minor_state_event_fleet
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+	
+	### Smuggled Deuterium
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.18.a
+		custom_tooltip = mission.18.a.tt
+
+		rescue_minor_ship_sp_added_effect = yes
+
+		enable_special_project = {
+			name = "RESCUE_MINOR_SHIP"
+			location = event_target:minor_state_event_fleet
+			owner = event_target:major_state_country
+		}
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.18.b
+		custom_tooltip = mission.18.b.tt
+
+		add_resource = {
+			deuterium = @reward_tier_1
+		}
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.18.c
+		custom_tooltip = mission.18.c.tt
+
+		add_resource = {
+			deuterium = @reward_tier_1
+		}
+
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.18.d
+		custom_tooltip = mission.18.d.tt
+
+		add_resource = {
+			deuterium = @reward_tier_1
+		}
+
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+}
+
+###################
+# DISASTER RELIEF #
+###################
+
+# Pick Starbase for the Event
+# If yes = trigger mission.23
+# If no = loop itself (mission.22)
+country_event = {
+	id = mission.22
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system_within_warp_area = {
+			limit = {
+				exists = owner
+				owner = {
+					is_same_value = event_target:minor_state_event_country
+				}
+				has_access_fleet = this
+				has_access_fleet = event_target:minor_state_event_country
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = this
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+			}	
+			set_star_flag = starbase_to_repair_system
+			save_event_target_as = minor_state_event_system
+		}
+
+		if = {
+			limit = { exists = event_target:minor_state_event_system }
+			country_event = { id = mission.23 } #Triggers Starbase Disableing
+			event_target:minor_state_event_country = {
+				set_closed_borders = {
+					who = event_target:major_state_country
+					status = no
+					forced = 1
+				}
+			}
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Starbase Conditions
+			set_country_flag = disaster_relief_not_triggered
+		}
+	}	
+}
+
+# Disable Starbase
+country_event = {
+	id = mission.23
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_system = {
+			random_ship_in_system = {
+				limit = {
+					is_ship_class = shipclass_starbase
+				}
+				save_event_target_as = minor_state_event_starbase
+			}
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.24 } #Triggers Special Project
+		}
+	}
+}
+
+### DISASTER RELIEF - Trigger Special Project
+country_event = {
+	id = mission.24
+	title = "mission.24.name"
+	desc = "mission.24.desc"
+	picture = GFX_evt_pc_k_star_sky
+	show_sound = event_disaster_relief
+	location = event_target:minor_state_event_fleet
+
+	is_triggered_only = yes
+
+	### Accept Mission
+	option = {
+		name = mission.24.a
+		custom_tooltip = mission.24.a.tt
+
+		enable_special_project = {
+			name = "REPAIR_MINOR_STARBASE"
+			location = event_target:minor_state_event_starbase
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.24.b
+		custom_tooltip = mission.24.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.26 days = 1 #30
+			}	
+		}
+	}
+}
+
+# STARBASE REBUILT
+country_event = {
+	id = mission.25
+	title = "mission.25.name"
+	desc = "mission.25.desc"
+	show_sound = event_generic_success
+	location = event_target:minor_state_event_fleet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_shipyard_repair_service_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_shipyard_repair_service_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_shipyard_repair_service_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_shipyard_repair_service_cardassian	
+	}		
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			event_target:minor_state_event_system = {
+				remove_star_flag = starbase_to_repair_system
+			}
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.25.a
+		custom_tooltip = mission.25.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.25.b
+		custom_tooltip = mission.25.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.25.c
+		custom_tooltip = mission.25.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.25.d
+		custom_tooltip = mission.25.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# HALF-DARK STARBASE
+country_event = {
+	id = mission.26
+	title = "mission.26.name"
+	desc = "mission.26.desc"
+	picture = GFX_evt_spaceship_junkyard
+	show_sound = event_generic_mysterious
+	location = event_target:minor_state_event_fleet
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			event_target:minor_state_event_system = {
+				remove_star_flag = starbase_to_repair_system
+			}
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.26.a
+		custom_tooltip = mission.26.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.26.b
+		custom_tooltip = mission.26.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.26.c
+		custom_tooltip = mission.26.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.26.d
+		custom_tooltip = mission.26.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+###############
+# GROWTH SPURT #
+###############
+
+# Pick Planet for the Event
+# If yes = trigger mission.33
+# If no = loop itself (mission.32)
+country_event = {
+	id = mission.32
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system_within_warp_area = {
+			limit = {
+				exists = owner
+				owner = {
+					is_same_value = event_target:minor_state_event_country
+				}
+				has_access_fleet = ROOT
+				has_access_fleet = event_target:minor_state_event_country
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = ROOT
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+				any_system_planet = {
+					is_colony = yes
+				}
+			}
+			random_system_planet = {
+				limit = {
+					is_colony = yes
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+		}
+		
+		if = {
+			limit = { exists = event_target:minor_state_event_planet }
+			country_event = { id = mission.33 } #Triggers Special Project
+			event_target:minor_state_event_country = {
+				set_closed_borders = {
+					who = event_target:major_state_country
+					status = no
+					forced = 1
+				}
+			}
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Planet Conditions
+			set_country_flag = growth_spurt_not_triggered
+		}
+	}	
+}
+
+### GROWTH SPUR - Trigger Special Project
+country_event = {
+	id = mission.33
+	title = "mission.33.name"
+	desc = "mission.33.desc"
+	picture = GFX_evt_underground_civilization_city_landscape
+	show_sound = event_growth_spurt_neutral
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.33.a
+		custom_tooltip = mission.33.a.tt
+
+		enable_special_project = {
+			name = "BUILD_MINOR_HOUSING"
+			location = event_target:minor_state_event_planet
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.33.b
+		custom_tooltip = mission.33.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.35 days = 1 #30
+			}	
+		}
+	}
+}
+
+# Mutually-Assured Construction
+country_event = {
+	id = mission.34
+	title = "mission.34.name"
+	desc = "mission.34.desc"
+	picture = GFX_evt_underwater_civilization_city_landscape
+	show_sound = event_generic_success
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			# event_target:minor_state_event_system = {
+			# 	remove_star_flag = starbase_to_repair_system
+			# }
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.34.a
+		custom_tooltip = mission.34.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.34.b
+		custom_tooltip = mission.34.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.34.c
+		custom_tooltip = mission.34.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.34.d
+		custom_tooltip = mission.34.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		add_resource = {
+			energy = @reward_tier_1
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# HOUSING CRUNCH WORSENS
+country_event = {
+	id = mission.35
+	title = "mission.35.name"
+	desc = "mission.35.desc"
+	picture = GFX_evt_underground_civilization_city_landscape
+	show_sound = event_growth_spurt_tension
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			# event_target:minor_state_event_system = {
+			# 	remove_star_flag = starbase_to_repair_system
+			# }
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.35.a
+		custom_tooltip = mission.35.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.35.b
+		custom_tooltip = mission.35.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.35.c
+		custom_tooltip = mission.35.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.35.d
+		custom_tooltip = mission.35.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+##################
+# SUPER-BACTERIA #
+##################
+
+### SUPER-BACTERIA - Trigger Special Project
+country_event = {
+	id = mission.42
+	title = "mission.42.name"
+	desc = "mission.42.desc"
+	show_sound = event_the_plague_is_coming
+	location = FROM
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_enterprise_bridge_decision_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_vorcha_bridge_decision_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_valdore_bridge_decision_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_keldon_bridge_decision_cardassian	
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_country = {
+			random_planet_within_border = {
+				limit = {
+					is_capital = yes
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+		}
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.42.a
+		custom_tooltip = mission.42.a.tt
+
+		owner = {
+			enable_special_project = {
+				name = "RESEARCH_BACTERIA_MINOR"
+			}	
+		}
+		
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.42.b
+		custom_tooltip = mission.42.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.44 days = 1 #180
+			}	
+		}
+	}
+}
+
+# BACT IN ACTION
+country_event = {
+	id = mission.43
+	title = "mission.43.name"
+	desc = "mission.43.desc"
+	show_sound = event_generic_success
+	location = FROM
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_lab_research_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_lab_research_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_lab_research_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_lab_research_cardassian	
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.43.a
+		custom_tooltip = mission.43.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.43.b
+		custom_tooltip = mission.43.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.43.c
+		custom_tooltip = mission.43.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.43.d
+		custom_tooltip = mission.43.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# A FAILURE TO BACT
+country_event = {
+	id = mission.44
+	title = "mission.44.name"
+	desc = "mission.44.desc"
+	show_sound = event_the_plague #HRB_TODO_SOUND
+	location = FROM
+
+	is_triggered_only = yes
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_enterprise_bridge_decision_ufop
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_vorcha_bridge_decision_klingon
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_valdore_bridge_decision_romulan
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_keldon_bridge_decision_cardassian
+	}
+
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.44.a
+		custom_tooltip = mission.44.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.44.b
+		custom_tooltip = mission.44.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.44.c
+		custom_tooltip = mission.44.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.44.d
+		custom_tooltip = mission.44.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+###################
+# UNUSUAL GRAVITY #
+###################
+
+# Pick Star for the Event
+# If yes = trigger mission.53
+# If no = loop itself (mission.52)
+country_event = {
+	id = mission.52
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_country = {
+			random_planet_within_border = {
+				limit = {
+					is_star = yes
+					solar_system = {
+						has_access_fleet = ROOT
+						has_access_fleet = event_target:minor_state_event_country
+						NOT = {
+							any_fleet_in_system = {
+								owner = { 
+									is_hostile = ROOT
+									is_hostile = event_target:minor_state_event_country
+								}
+							}
+						}
+					}
+				}
+				save_event_target_as = minor_state_event_star
+			}
+		}
+		
+		if = {
+			limit = { exists = event_target:minor_state_event_star }
+			event_target:minor_state_event_star = {
+				solar_system = {
+					save_event_target_as = minor_state_event_system
+				}
+			}
+			country_event = { id = mission.53 } #Triggers Special Project
+			event_target:minor_state_event_country = {
+				set_closed_borders = {
+					who = event_target:major_state_country
+					status = no
+					forced = 1
+				}
+			}
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Planet Conditions
+			set_country_flag = unusual_gravity_not_triggered
+		}
+	}	
+}
+
+### UNUSUAL GRAVITY - Trigger Special Project
+country_event = {
+	id = mission.53
+	title = "mission.53.name"
+	desc = "mission.53.desc"
+	show_sound = event_space_travel
+	location = event_target:minor_state_event_star
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_space_enterprise_travel_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_space_vorcha_travel_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_moon_space_valdore_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_space_keldon_travel_cardassian
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.53.a
+		custom_tooltip = mission.53.a.tt
+
+		enable_special_project = {
+			name = "RESEARCH_MINOR_STAR_GRAVITY"
+			location = event_target:minor_state_event_star
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.53.b
+		custom_tooltip = mission.53.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.55 days = 1 #30
+			}	
+		}
+	}
+}
+
+# QUANTUM HICCUPS
+country_event = {
+	id = mission.54
+	title = "mission.54.name"
+	desc = "mission.54.desc"
+	show_sound = event_space_travel
+	location = event_target:minor_state_event_star
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_space_enterprise_travel_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_space_vorcha_travel_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_moon_space_valdore_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_space_keldon_travel_cardassian
+	}	
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.54.a
+		custom_tooltip = mission.54.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.54.b
+		custom_tooltip = mission.54.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.54.c
+		custom_tooltip = mission.54.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.54.d
+		custom_tooltip = mission.54.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		add_resource = {
+			gravitons = 25
+		}
+		add_modifier = {
+			modifier = mipo_research_speed_increase days = 1800
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# JOINT DECLINED
+country_event = {
+	id = mission.55
+	title = "mission.55.name"
+	desc = "mission.55.desc"
+	show_sound = event_space_travel
+	location = event_target:minor_state_event_star
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_space_enterprise_travel_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_space_vorcha_travel_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_moon_space_valdore_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_space_keldon_travel_cardassian
+	}	
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.55.a
+		custom_tooltip = mission.55.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.55.b
+		custom_tooltip = mission.55.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.55.c
+		custom_tooltip = mission.55.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.55.d
+		custom_tooltip = mission.55.d.tt
+	}
+
+	after = {
+		add_resource = {
+		 	research = @reward_tier_1
+		}
+		
+		# This particular event doesn't harm relations on a failure
+		# Harm Relations Minor State
+		# event_target:minor_state_event_country = {
+		# 	add_opinion_modifier = {
+		# 		who = event_target:major_state_country
+		# 		modifier = opinion_mipo_mission_failure
+		# 	}
+		# }
+	}
+}
+
+##################
+# PARTICLE SPILL #
+##################
+
+# Pick System for the Event
+# If yes = trigger mission.63
+# If no = loop itself (mission.62)
+country_event = {
+	id = mission.62
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_country = {
+			random_system_within_border = {
+				limit = {
+					has_access_fleet = ROOT
+					has_access_fleet = event_target:minor_state_event_country
+					NOT = {
+						any_fleet_in_system = {
+							owner = { 
+								is_hostile = ROOT
+								is_hostile = event_target:minor_state_event_country
+							}
+						}
+					}
+					any_ship_in_system = {
+						is_ship_class = shipclass_mining_station
+					}
+				}
+				set_star_flag = mining_station_to_repair_system
+				save_event_target_as = minor_state_event_system
+			}	
+		}
+		
+		if = {
+			limit = { exists = event_target:minor_state_event_system }
+			country_event = { id = mission.63 } #Triggers Starbase Disableing
+			event_target:minor_state_event_country = {
+				set_closed_borders = {
+					who = event_target:major_state_country
+					status = no
+					forced = 1
+				}
+			}
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Starbase Conditions
+			set_country_flag = particle_spill_not_triggered
+		}
+	}	
+}
+
+# Pick Mining Station for the Event
+country_event = {
+	id = mission.63
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_system = {
+			random_ship_in_system = {
+				limit = {
+					is_ship_class = shipclass_mining_station
+				}
+				save_event_target_as = minor_state_event_mining_station
+			}
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.64 } #Triggers Special Project
+		}
+	}
+}
+
+### PARTICLE SPILL - Trigger Special Project
+country_event = {
+	id = mission.64
+	title = "mission.64.name"
+	desc = "mission.64.desc"
+	picture = GFX_evt_space_distress_ship_minor
+	show_sound = event_space_travel
+	location = event_target:minor_state_event_mining_station
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.64.a
+		custom_tooltip = mission.64.a.tt
+
+		enable_special_project = {
+			name = "CLEAN_MINOR_MINING_STATION"
+			location = event_target:minor_state_event_mining_station
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.64.b
+		custom_tooltip = mission.64.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.66 days = 1 #30
+			}	
+		}
+	}
+}
+
+# SPARKLING CLEAN AND EMPTY
+country_event = {
+	id = mission.65
+	title = "mission.65.name"
+	desc = "mission.65.desc"
+	show_sound = event_generic_success
+	location = event_target:minor_state_event_mining_station
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_space_enterprise_travel_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_space_vorcha_travel_klingon
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_space_valdore_travel_romulan
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_space_keldon_travel_cardassian
+	}		
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.65.a
+		custom_tooltip = mission.65.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.65.b
+		custom_tooltip = mission.65.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.65.c
+		custom_tooltip = mission.65.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.65.d
+		custom_tooltip = mission.65.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		add_resource = {
+			tetryons = @reward_strategic_tier_1
+		}
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# TETRYON STORMS
+country_event = {
+	id = mission.66
+	title = "mission.66.name"
+	desc = "mission.66.desc"
+	picture = GFX_evt_space_distress_ship_minor_destroyed
+	show_sound = event_explosion_minor_ship
+	location = event_target:minor_state_event_mining_station
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.66.a
+		custom_tooltip = mission.66.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.66.b
+		custom_tooltip = mission.66.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.66.c
+		custom_tooltip = mission.66.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.66.d
+		custom_tooltip = mission.66.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+#############
+# REBELLION #
+#############
+
+# Pick Planet for the Event
+# If yes = trigger mission.33
+# If no = loop itself (mission.32)
+country_event = {
+	id = mission.72
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+
+		random_system_within_warp_area = {
+			limit = {
+				exists = owner
+				owner = {
+					is_same_value = event_target:minor_state_event_country
+				}
+				any_system_planet = {
+					is_colony = yes
+					solar_system = {
+						has_access_fleet = ROOT
+						has_access_fleet = event_target:minor_state_event_country
+						NOT = {
+							any_fleet_in_system = {
+								owner = { 
+									is_hostile = ROOT
+									is_hostile = event_target:minor_state_event_country
+								}
+							}
+						}
+					}
+				}
+			}
+			random_system_planet = {
+				limit = {
+					is_colony = yes
+					solar_system = {
+						has_access_fleet = ROOT
+						has_access_fleet = event_target:minor_state_event_country
+						NOT = {
+							any_fleet_in_system = {
+								owner = { 
+									is_hostile = ROOT
+									is_hostile = event_target:minor_state_event_country
+								}
+							}
+						}
+					}
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+		}
+				
+		if = {
+			limit = { exists = event_target:minor_state_event_planet }
+			country_event = { id = mission.73 } #Triggers Special Project
+			event_target:minor_state_event_country = {
+				set_closed_borders = {
+					who = event_target:major_state_country
+					status = no
+					forced = 2
+				}
+			}
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Planet Conditions
+			set_country_flag = rebellion_not_triggered
+		}
+	}	
+}
+
+### REBELLION - Trigger Special Project
+country_event = {
+	id = mission.73
+	title = "mission.73.name"
+	desc = "mission.73.desc"
+	picture = GFX_evt_ship_base_pirates
+	show_sound = event_the_pirate_rebellion
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.73.a
+		custom_tooltip = mission.73.a.tt
+
+		enable_special_project = {
+			name = "DEFEAT_MINOR_REBELLION"
+			location = event_target:minor_state_event_planet
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.73.b
+		custom_tooltip = mission.73.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.75 days = 1 #30
+			}	
+		}
+	}
+}
+
+# REBELS DEFEATED
+country_event = {
+	id = mission.74
+	title = "mission.74.name"
+	desc = "mission.74.desc"
+	show_sound = event_empire_fleet
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_empire_fleet_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_empire_fleet_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_empire_fleet_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_empire_fleet_cardassian	
+	}		
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.74.a
+		custom_tooltip = mission.74.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.74.b
+		custom_tooltip = mission.74.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.74.c
+		custom_tooltip = mission.74.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.74.d
+		custom_tooltip = mission.74.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# THE REBELLION GROWS
+country_event = {
+	id = mission.75
+	title = "mission.75.name"
+	desc = "mission.75.desc"
+	picture = GFX_evt_ship_base_pirates
+	show_sound = event_the_pirate_rebellion
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.75.a
+		custom_tooltip = mission.75.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.75.b
+		custom_tooltip = mission.75.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.75.c
+		custom_tooltip = mission.75.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.75.d
+		custom_tooltip = mission.75.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+#####################
+# BUILDUP OF FORCES #
+#####################
+
+# Pick Planet for the Event
+# If yes = trigger mission.33
+# If no = loop itself (mission.32)
+country_event = {
+	id = mission.82
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_country = {
+			closest_system = {
+				limit = {
+					exists = owner
+					owner = {
+						has_communications = event_target:major_state_country
+						is_minor = yes
+						NOT = {	is_country = event_target:major_state_country }
+						NOT = { is_country = event_target:minor_state_event_country }
+						is_subject = no
+					}
+				}
+				owner = {
+					save_event_target_as = minor_state_event_country_3rd_party	
+				}
+			}
+		}
+
+		random_system_within_warp_area = {
+			limit = {
+				has_owner = no
+				closest_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_same_value = event_target:minor_state_event_country
+						}
+					}
+					max_steps = 1
+				}
+				solar_system = {
+					NOT = {
+						is_star_class = sc_highway_node
+					}
+					has_access_fleet = event_target:major_state_country
+					has_access_fleet = event_target:minor_state_event_country
+					has_access_fleet = event_target:minor_state_event_country_3rd_party
+					NOT = {
+						any_fleet_in_system = {
+							owner = { 
+								is_hostile = event_target:major_state_country
+								is_hostile = event_target:minor_state_event_country
+								is_hostile = event_target:minor_state_event_country_3rd_party
+							}
+						}
+					}
+					any_system_planet = {
+						is_moon = no
+						is_star = no
+						is_asteroid = no
+					}
+				}
+			}
+			save_event_target_as = minor_state_event_system
+			random_system_planet = {
+				limit = {
+					is_moon = no
+					is_star = no
+					is_asteroid = no
+				}
+				save_event_target_as = minor_state_event_planet	
+			}
+		}
+
+		if = {
+			limit = { 
+				exists = event_target:minor_state_event_country_3rd_party
+				exists = event_target:minor_state_event_planet
+			}
+			country_event = { id = mission.83 } #Triggers Special Project
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Planet Conditions
+			set_country_flag = buildup_of_forces_not_triggered
+		}
+	}	
+}
+
+### BUILDUP OF FORCES - Trigger Special Projects
+country_event = {
+	id = mission.83
+	title = "mission.83.name"
+	desc = "mission.83.desc"
+	show_sound = event_generic_tension
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_enterprise_bridge_decision_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_vorcha_bridge_decision_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_valdore_bridge_decision_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_keldon_bridge_decision_cardassian	
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission - 2nd party
+	option = {
+		name = mission.83.a
+		custom_tooltip = mission.83.a.tt
+
+		enable_special_project = {
+			name = "BIG_STICK_MINOR"
+			location = event_target:minor_state_event_planet
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Accept Mission - 3rd party
+	option = {
+		name = mission.83.b
+		custom_tooltip = mission.83.b.tt
+
+		enable_special_project = {
+			name = "ESCALATION_MINOR"
+			location = event_target:minor_state_event_planet
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.83.c
+		custom_tooltip = mission.83.c.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.85 days = 1 #30
+			}	
+		}
+	}
+}
+
+# BIG STICK DIPLOMACY
+country_event = {
+	id = mission.84
+	title = "mission.84.name"
+	desc = "mission.84.desc"
+	show_sound = event_empire_fleet
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_empire_fleet_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_empire_fleet_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_empire_fleet_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_empire_fleet_cardassian	
+	}		
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.84.a
+		custom_tooltip = mission.84.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.84.b
+		custom_tooltip = mission.84.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.84.c
+		custom_tooltip = mission.84.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.84.d
+		custom_tooltip = mission.84.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		event_target:minor_state_event_country_3rd_party = {
+			add_opinion_modifier = {
+				who = event_target:minor_state_event_country_3rd_party
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+
+# TEMPERATURES LOWERED
+country_event = {
+	id = mission.85
+	title = "mission.85.name"
+	desc = "mission.85.desc"
+	show_sound = event_empire_fleet
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_empire_fleet_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_empire_fleet_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_empire_fleet_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_empire_fleet_cardassian	
+	}		
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.85.a
+		custom_tooltip = mission.85.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.85.b
+		custom_tooltip = mission.85.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.85.c
+		custom_tooltip = mission.85.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.85.d
+		custom_tooltip = mission.85.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+		event_target:minor_state_event_country_3rd_party = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# TEMPERATURE NEARLY BOILING
+country_event = {
+	id = mission.86
+	title = "mission.86.name"
+	desc = "mission.86.desc"
+	show_sound = event_generic_tension
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_enterprise_bridge_decision_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_vorcha_bridge_decision_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_valdore_bridge_decision_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_keldon_bridge_decision_cardassian	
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+		
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.86.a
+		custom_tooltip = mission.86.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.86.b
+		custom_tooltip = mission.86.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.86.c
+		custom_tooltip = mission.86.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.86.d
+		custom_tooltip = mission.86.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+		event_target:minor_state_event_country_3rd_party = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+
+#############
+# WAR GAMES #
+#############
+
+# Pick an asteroid for the training.
+# If yes = trigger mission.93
+# If no = loop itself (mission.92)
+country_event = {
+	id = mission.92
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system_within_warp_area = {
+			limit = {
+				closest_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_same_value = event_target:minor_state_event_country
+						}
+					}
+					max_steps = 1
+				}
+				has_access_fleet = event_target:major_state_country
+				has_access_fleet = event_target:minor_state_event_country
+				
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = event_target:major_state_country
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+
+				any_system_planet = {
+					is_asteroid = yes
+				}
+			}
+
+			random_system_planet = {
+				limit = {
+					is_asteroid = yes
+					solar_system = {
+						has_access_fleet = ROOT
+						has_access_fleet = event_target:minor_state_event_country
+						NOT = {
+							any_fleet_in_system = {
+								owner = { 
+									is_hostile = ROOT
+									is_hostile = event_target:minor_state_event_country
+								}
+							}
+						}
+					}
+				}
+				save_event_target_as = minor_state_event_asteroid
+			}
+		}
+		
+		if = {
+			limit = { exists = event_target:minor_state_event_asteroid }
+			country_event = { id = mission.93 } #Triggers Special Project
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } # Loops if asteroid wasn't found
+			set_country_flag = war_games_not_triggered
+		}
+	}	
+}
+
+### WAR GAMES - Trigger Special Project
+country_event = {
+	id = mission.93
+	title = "mission.93.name"
+	desc = "mission.93.desc"
+	show_sound = event_empire_fleet
+	location = event_target:minor_state_event_asteroid
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_empire_fleet_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_empire_fleet_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_empire_fleet_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_empire_fleet_cardassian	
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.93.a
+		custom_tooltip = mission.93.a.tt
+
+		enable_special_project = {
+			name = "MINOR_WAR_GAMES"
+			location = event_target:minor_state_event_asteroid
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.93.b
+		custom_tooltip = mission.93.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.95 days = 1 #30
+			}	
+		}
+	}
+}
+
+### WAR GAMES - THE GRANDEST OF STRATEGY GAMES - Special Project Successful
+country_event = {
+	id = mission.94
+	title = "mission.94.name"
+	desc = "mission.94.desc"
+	show_sound = event_war_games
+	location = event_target:minor_state_event_asteroid
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_combat_onboard_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_combat_onboard_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_combat_onboard_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_combat_onboard_cardassian	
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	option = {
+		name = mission.94.a
+		custom_tooltip = mission.94.a.tt
+	}
+	
+	after = {
+		add_resource = {
+			unity = @reward_tier_1
+		}
+
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+### WAR GAMES - THANKS, I'LL JUST WATCH YOU PLAY
+country_event = {
+	id = mission.95
+	title = "mission.95.name"
+	desc = "mission.95.desc"
+	show_sound = event_empire_fleet
+	location = event_target:minor_state_event_asteroid
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_empire_fleet_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_empire_fleet_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_empire_fleet_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_empire_fleet_cardassian	
+	}		
+	
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.95.a
+		custom_tooltip = mission.95.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.95.b
+		custom_tooltip = mission.95.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.95.c
+		custom_tooltip = mission.95.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.95.d
+		custom_tooltip = mission.95.d.tt
+	}
+
+	after = {
+		add_resource = {
+			research = @reward_tier_1
+		}
+	}
+}
+
+
+#########################
+# FLIPPING FERENGI #
+#########################
+
+# FLIPPING FERENGI
+country_event = {
+	id = mission.102
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+
+		random_system_within_warp_area = {
+			limit = {
+				exists = owner
+				owner = {
+					is_same_value = event_target:minor_state_event_country
+				}
+				has_access_fleet = ROOT
+				has_access_fleet = event_target:minor_state_event_country
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = ROOT
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+				any_ship_in_system = {
+					is_ship_class = shipclass_research_station
+				}
+			}
+			save_event_target_as = minor_state_event_system
+			random_ship_in_system = {
+				limit = {
+					is_ship_class = shipclass_research_station
+				}
+				save_event_target_as = minor_state_event_location
+			}
+		}
+
+		if = {
+			limit = {
+				exists = event_target:minor_state_event_location
+				any_owned_leader = { leader_class = spy }
+			}
+			country_event = { id = mission.103 } #Triggers Special Project
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 }
+			set_country_flag = not_secret_weapons_not_triggered
+		}
+	}	
+}
+
+### FLIPPING FERENGI - Trigger Special Project
+country_event = {
+	id = mission.103
+	title = "mission.103.name"
+	desc = "mission.103.desc"
+	show_sound = event_the_orbital_scan
+	location = event_target:minor_state_event_location
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_orbital_research_barren_world
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_orbital_research_barren_world_klingon
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_orbital_research_barren_world_romulan
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_orbital_research_barren_world_cardassian
+	}		
+
+	is_triggered_only = yes
+
+	### Accept Mission
+	option = {
+		name = mission.103.a
+		custom_tooltip = mission.103.a.tt
+
+		enable_special_project = {
+			name = "NOT_SO_SECRET_WEAPONS"
+			location = event_target:minor_state_event_location
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.103.b
+		custom_tooltip = mission.103.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.106 days = 1 #30
+			}	
+		}
+	}
+}
+
+# FLIPPING FERENGI - NO WEAPONS HERE
+country_event = {
+	id = mission.104
+	title = "mission.104.name"
+	desc = "mission.104.desc"
+	show_sound = event_generic_tension
+	location = event_target:minor_state_event_location
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_spy_mission_ufop
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_spy_mission_klingon
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_spy_mission_romulan
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_spy_mission_cardassian
+	}		
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.104.a
+		custom_tooltip = mission.104.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.104.b
+		custom_tooltip = mission.104.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.104.c
+		custom_tooltip = mission.104.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.104.d
+		custom_tooltip = mission.104.d.tt
+	}
+	
+	after = {
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# FLIPPING FERENGI - ILLEGAL WEAPONS EXPOSED
+country_event = {
+	id = mission.105
+	title = "mission.105.name"
+	desc = "mission.105.desc"
+	picture = GFX_evt_weapons_underground_base
+	show_sound = event_generic_success
+	location = event_target:minor_state_event_location
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+		
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.105.a
+		custom_tooltip = mission.105.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.105.b
+		custom_tooltip = mission.105.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.105.c
+		custom_tooltip = mission.105.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.105.d
+		custom_tooltip = mission.105.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+		event_target:minor_state_event_country_3rd_party = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+
+		add_resource = {
+			tetryons = @reward_tier_1
+		}
+	}
+}
+
+# FLIPPING FERENGI - MIND YOUR OWN NOSE CONE
+country_event = {
+	id = mission.106
+	title = "mission.106.name"
+	desc = "mission.106.desc"
+	picture = GFX_evt_diplomatic_visit_fail
+	show_sound = event_diplomatic_visit_fail
+	location = event_target:minor_state_event_location
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+		
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.106.a
+		custom_tooltip = mission.106.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.106.b
+		custom_tooltip = mission.106.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.106.c
+		custom_tooltip = mission.106.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.106.d
+		custom_tooltip = mission.106.d.tt
+	}
+
+	after = {
+		add_resource = {
+			influence = @reward_tier_1
+		}
+	}
+}
+
+############################
+# ASSASSINATION ATTEMPT
+############################
+
+# ASSASSINATION ATTEMPT
+country_event = {
+	id = mission.112
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system_within_warp_area = {
+			limit = {
+				exists = owner
+				owner = {
+					has_communications = event_target:major_state_country
+					is_minor = yes
+					NOT = {	is_country = event_target:major_state_country }
+					NOT = { is_country = event_target:minor_state_event_country }
+				}
+				any_system_planet = {
+					is_star = no
+				}
+			}
+			owner = {
+				save_event_target_as = minor_state_event_country_3rd_party	
+			}
+			random_system_planet = {
+				limit = {
+					is_star = no
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+		}
+
+		if = {
+			limit = { 
+				exists = event_target:minor_state_event_planet 
+				any_owned_leader = { leader_class = spy }
+			}
+			country_event = { id = mission.113 } #Triggers Special Project
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 }
+			set_country_flag = assassination_attempt_not_triggered
+		}
+	}	
+}
+
+# ASSASSINATION ATTEMPT - Trigger Special Project
+country_event = {
+	id = mission.113
+	title = "mission.113.name"
+	desc = "mission.113.desc"
+	show_sound = event_generic_tension
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_spy_mission_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_spy_mission_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_spy_mission_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_spy_mission_cardassian	
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.113.a
+		custom_tooltip = mission.113.a.tt
+
+		enable_special_project = {
+			name = "ASSASSINATION_ATTEMPT"
+			location = event_target:minor_state_event_planet
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.113.b
+		custom_tooltip = mission.113.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.115 days = 1
+			}	
+		}
+
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+# ASSASSINATION ATTEMPT - ESCALATION PLOT EXPOSED
+country_event = {
+	id = mission.114
+	title = "mission.114.name"
+	desc = "mission.114.desc"
+	picture = GFX_evt_ship_base_pirates
+	show_sound = event_generic_tension
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.114.a
+		custom_tooltip = mission.114.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.114.b
+		custom_tooltip = mission.114.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.114.c
+		custom_tooltip = mission.114.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.114.d
+		custom_tooltip = mission.114.d.tt
+	}
+	
+	after = {
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		event_target:minor_state_event_country_3rd_party = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# ASSASSINATION ATTEMPT - TERROR REIGNS
+country_event = {
+	id = mission.115
+	title = "mission.115.name"
+	desc = "mission.115.desc"
+	show_sound = event_generic_tension
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_spy_mission_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_spy_mission_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_spy_mission_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_spy_mission_cardassian	
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+		
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.115.a
+		custom_tooltip = mission.115.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.115.b
+		custom_tooltip = mission.115.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.115.c
+		custom_tooltip = mission.115.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.115.d
+		custom_tooltip = mission.115.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+#################################
+# NEVER KNOW WHO'S LISTENING
+#################################
+
+# NEVER KNOW WHO'S LISTENING
+country_event = {
+	id = mission.122
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_country = {
+			closest_system = {
+				limit = {
+					exists = owner
+					owner = {
+						has_communications = event_target:major_state_country
+						is_minor = yes
+						NOT = {	is_country = event_target:major_state_country }
+						NOT = { is_country = event_target:minor_state_event_country }
+					}
+				}
+				owner = {
+					save_event_target_as = minor_state_event_country_3rd_party	
+				}
+			}
+		}
+
+		random_system_within_warp_area = {
+			limit = {
+				exists = owner
+				owner = {
+					is_same_value = event_target:minor_state_event_country
+				}
+				has_access_fleet = ROOT
+				has_access_fleet = event_target:minor_state_event_country
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = ROOT
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+				any_system_planet = {
+					is_moon = yes
+				}
+			}
+			random_system_planet = {
+				limit = {
+					is_moon = yes
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+		}
+
+		random_country = {
+			limit = {
+				is_minor = yes
+				NOR = {
+					is_same_value = event_target:minor_state_event_country
+					is_same_value = event_target:minor_state_event_country_3rd_party
+				}
+			}
+			save_event_target_as = minor_state_event_country_4th_party
+		}
+
+		if = {
+			limit = {
+				exists = event_target:minor_state_event_planet
+				any_owned_leader = { leader_class = spy }
+			}
+			country_event = { id = mission.123 } #Triggers Special Project
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 }
+			set_country_flag = know_listening_not_triggered
+			log = "Not Triggered"
+		}
+	}	
+}
+
+# NEVER KNOW WHO'S LISTENING - Trigger Special Project
+country_event = {
+	id = mission.123
+	title = "mission.123.name"
+	desc = "mission.123.desc"
+	show_sound = event_generic_suspense
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_moon_space_enterprise_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_moon_space_vorcha_klingon
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_moon_space_valdore_romulan
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_moon_space_keldon_cardassian
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.123.a
+		custom_tooltip = mission.113.a.tt
+
+		enable_special_project = {
+			name = "NEVER_KNOW_WHOS_LISTENING"
+			location = event_target:minor_state_event_planet
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.123.b
+		custom_tooltip = mission.123.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.125 days = 1
+			}	
+		}
+
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+# NEVER KNOW WHO'S LISTENING - COUNTER-COUNTER-SURVEILLANCE
+country_event = {
+	id = mission.124
+	title = "mission.124.name"
+	desc = "mission.124.desc"
+	show_sound = event_generic_success
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_crater_moon_space_enterprise_ufop
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_crater_moon_space_vorcha_klingon
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_crater_moon_space_valdore_romulan
+	}	
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_crater_moon_space_keldon_cardassian
+	}		
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.124.a
+		custom_tooltip = mission.124.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.124.b
+		custom_tooltip = mission.124.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.124.c
+		custom_tooltip = mission.124.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.124.d
+		custom_tooltip = mission.124.d.tt
+	}
+	
+	after = {
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# NEVER KNOW WHO'S LISTENING - BURN AFTER LISTENING
+country_event = {
+	id = mission.125
+	title = "mission.125.name"
+	desc = "mission.125.desc"
+	show_sound = event_generic_fail
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_moon_space_enterprise_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_moon_space_vorcha_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_moon_space_valdore_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_moon_space_keldon_cardassian	
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.125.a
+		custom_tooltip = mission.125.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.125.b
+		custom_tooltip = mission.125.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.125.c
+		custom_tooltip = mission.125.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.125.d
+		custom_tooltip = mission.125.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+##########################
+# THE PERKS OF DIPLOMACY #
+##########################
+
+# Pick Planet for the Event
+# If yes = trigger mission.33
+# If no = loop itself (mission.32)
+country_event = {
+	id = mission.132
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+
+		random_system_within_warp_area = {
+			limit = {
+				exists = owner
+				owner = {
+					is_same_value = event_target:minor_state_event_country
+				}
+				has_access_fleet = ROOT
+				has_access_fleet = event_target:minor_state_event_country
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = ROOT
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+				any_system_planet = {
+					OR = {
+						is_wet = yes
+						is_dry = yes
+						is_cold = yes
+					}
+				}
+			}
+			random_system_planet = {
+				limit = {
+					OR = {
+						is_wet = yes
+						is_dry = yes
+						is_cold = yes
+					}
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+			random_ship_in_system = {
+				limit = {
+					is_ship_class = shipclass_starbase
+				}
+				save_event_target_as = minor_state_event_starbase
+			}
+		}
+
+		# Note: if minor_state_event_starbase exists, every other check has passed
+		if = {
+			limit = { exists = event_target:minor_state_event_starbase }
+			country_event = { id = mission.133 } #Triggers Special Project
+			event_target:minor_state_event_country = {
+				set_closed_borders = {
+					who = event_target:major_state_country
+					status = no
+					forced = 1
+				}
+			}
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Planet Conditions
+			set_country_flag = perks_diplomacy_not_triggered
+		}
+	}	
+}
+
+### THE PERKS OF DIPLOMACY - Trigger Special Project
+country_event = {
+	id = mission.133
+	title = "mission.133.name"
+	desc = "mission.133.desc"
+	picture = GFX_evt_space_garden_landscape
+	show_sound = event_space_garden_landscape
+	location = event_target:minor_state_event_starbase
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.133.a
+		custom_tooltip = mission.133.a.tt
+
+		enable_special_project = {
+			name = "DIPLOMATIC_STAY"
+			location = event_target:minor_state_event_starbase
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.133.b
+		custom_tooltip = mission.133.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.135 days = 1 #30
+			}	
+		}
+	}
+}
+
+# THE ART OF COZINESS
+country_event = {
+	id = mission.134
+	title = "mission.134.name"
+	desc = "mission.134.desc"
+	picture = GFX_evt_space_garden_landscape
+	show_sound = event_space_garden_landscape
+	location = event_target:minor_state_event_starbase
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.134.a
+		custom_tooltip = mission.134.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.134.b
+		custom_tooltip = mission.134.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.134.c
+		custom_tooltip = mission.134.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.134.d
+		custom_tooltip = mission.134.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# WE'LL HANG OUT SOON, PROMISE
+country_event = {
+	id = mission.135
+	title = "mission.135.name"
+	desc = "mission.135.desc"
+	show_sound = event_generic_popup
+	location = event_target:minor_state_event_starbase
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_rocky_planet_pod_loot_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_rocky_planet_pod_loot_klingon
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_rocky_planet_pod_loot_romulan
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_rocky_planet_pod_loot_cardassian
+	}		
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.135.a
+		custom_tooltip = mission.135.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.135.b
+		custom_tooltip = mission.135.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.135.c
+		custom_tooltip = mission.135.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.135.d
+		custom_tooltip = mission.135.d.tt
+	}
+
+	after = {
+		add_resource = {
+			food = @reward_tier_1
+			energy = @reward_tier_1
+		}
+	}
+}
+
+#########################
+# GALACTIC PEACE SUMMIT #
+#########################
+
+# Pick Planet for the Event
+# If yes = trigger mission.143
+# If no = loop itself (mission.142)
+country_event = {
+	id = mission.142
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+
+		random_system_within_warp_area = {
+			limit = {
+				has_owner = no
+				closest_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_same_value = event_target:minor_state_event_country
+						}
+					}
+					max_steps = 1
+				}
+
+				has_access_fleet = event_target:major_state_country
+				has_access_fleet = event_target:minor_state_event_country
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = event_target:major_state_country
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+			}
+
+			save_event_target_as = minor_state_event_system
+
+			random_system_planet = {
+				save_event_target_as = minor_state_event_planet	
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:minor_state_event_planet }
+			country_event = { id = mission.143 } #Triggers Special Project
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Planet Conditions
+			set_country_flag = galactic_summit_not_triggered
+		}
+	}	
+}
+
+### GALACTIC PEACE SUMMIT - Trigger Special Project
+country_event = {
+	id = mission.143
+	title = "mission.143.name"
+	desc = "mission.143.desc"
+	picture = GFX_evt_galactic_peace_summit_minor
+	show_sound = event_positive_sound
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_ambient_object = {
+			type = "mipo_diplomatic_vessel"
+			entity_offset_height = { min = 10 max = -10 }
+			location = event_target:minor_state_event_planet	
+		}
+		last_created_ambient_object = {
+			save_event_target_as = minor_state_vessel
+		}
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.143.a
+		custom_tooltip = mission.143.a.tt
+
+		enable_special_project = {
+			name = "PEACE_CONFERENCE"
+			location = event_target:minor_state_vessel
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.143.b
+		custom_tooltip = mission.143.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.145 days = 1 #30
+			}	
+		}
+	}
+}
+
+# WE CONFERENCE IN PEACE
+country_event = {
+	id = mission.144
+	title = "mission.144.name"
+	desc = "mission.144.desc"
+	picture = GFX_evt_galactic_peace_summit_minor
+	show_sound = event_galactic_peace_summit
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+
+			destroy_ambient_object = event_target:minor_state_vessel
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.144.a
+		custom_tooltip = mission.144.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.144.b
+		custom_tooltip = mission.144.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.144.c
+		custom_tooltip = mission.144.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.144.d
+		custom_tooltip = mission.144.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+
+		# Improve Relations With 5 closests Minor Powers
+		event_target:minor_state_event_country = {
+			closest_system = {
+				min_steps = 1
+				max_steps = 100
+				limit = {
+					exists = owner
+					owner = {
+						is_minor = yes
+						NOR = {
+							is_country = event_target:minor_state_event_country
+							is_country = event_target:major_state_country
+						}
+					}
+				}
+				owner = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_success
+					}
+					save_event_target_as = minor_4th
+				}
+			}
+		}
+		event_target:minor_state_event_country = {
+			closest_system = {
+				min_steps = 1
+				max_steps = 100
+				limit = {
+					exists = owner
+					owner = {
+						is_minor = yes
+						NOR = {
+							is_country = event_target:minor_state_event_country
+							is_country = event_target:major_state_country
+							is_country = event_target:minor_4th
+						}
+					}
+				}
+				owner = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_success
+					}
+					save_event_target_as = minor_5th
+				}
+			}
+		}
+		event_target:minor_state_event_country = {
+			closest_system = {
+				min_steps = 1
+				max_steps = 100
+				limit = {
+					exists = owner
+					owner = {
+						is_minor = yes
+						NOR = {
+							is_country = event_target:minor_state_event_country
+							is_country = event_target:major_state_country
+							is_country = event_target:minor_4th
+							is_country = event_target:minor_5th
+						}
+					}
+				}
+				owner = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_success
+					}
+					save_event_target_as = minor_6th
+				}
+			}
+		}
+		event_target:minor_state_event_country = {
+			closest_system = {
+				min_steps = 1
+				max_steps = 100
+				limit = {
+					exists = owner
+					owner = {
+						is_minor = yes
+						NOR = {
+							is_country = event_target:minor_state_event_country
+							is_country = event_target:major_state_country
+							is_country = event_target:minor_4th
+							is_country = event_target:minor_5th
+							is_country = event_target:minor_6th
+						}
+					}
+				}
+				owner = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_success
+					}
+					save_event_target_as = minor_7th
+				}
+			}
+		}
+		event_target:minor_state_event_country = {
+			closest_system = {
+				min_steps = 1
+				max_steps = 100
+				limit = {
+					exists = owner
+					owner = {
+						is_minor = yes
+						NOR = {
+							is_country = event_target:minor_state_event_country
+							is_country = event_target:major_state_country
+							is_country = event_target:minor_4th
+							is_country = event_target:minor_5th
+							is_country = event_target:minor_6th
+							is_country = event_target:minor_7th
+						}
+					}
+				}
+				owner = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_success
+					}
+				}
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+
+		#HRB_TODO: FIX THIS WHILE - It should find the 4 closest minor powers and increase their opinion of you
+		# while = {
+		# 	count = 4
+		# 	event_target:minor_state_event_country = {
+		# 		closest_system = {
+		# 			min_steps = 1
+		# 			max_steps = 1000
+		# 			limit = {
+		#					exists = owner
+		# 					owner = { is_minor = yes }
+		# 				NOT = {
+		# 					owner = { 
+		# 						has_country_flag = summit_participant	
+		# 						is_country = event_target:minor_state_country 
+		# 					}
+		# 				}
+		# 				# NOR = {
+		# 				# 	owner = { is_country = event_target:major_state_country }
+		# 				# 	owner = { is_country = event_target:minor_state_country }
+		# 				# 	owner = { has_country_flag = summit_participant }
+		# 				#}
+		# 			}
+
+		# 			owner = {
+		# 				set_country_flag = summit_participant
+		# 				add_opinion_modifier = {
+		# 					who = event_target:major_state_country
+		# 					modifier = opinion_mipo_mission_success
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# }
+		
+		# every_country = {
+		# 	remove_country_flag = summit_participant
+		# }
+	}
+}
+
+# ANTI-CONFERENCE BLUES
+country_event = {
+	id = mission.145
+	title = "mission.145.name"
+	desc = "mission.145.desc"
+	picture = GFX_evt_galactic_peace_summit_minor
+	show_sound = event_generic_popup
+	location = event_target:minor_state_event_planet	
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { 
+					exists = event_target:minor_state_vessel
+				}
+				destroy_ambient_object = event_target:minor_state_vessel
+			}
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.145.a
+		custom_tooltip = mission.145.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.145.b
+		custom_tooltip = mission.145.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.145.c
+		custom_tooltip = mission.145.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.145.d
+		custom_tooltip = mission.145.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+############################
+# CALORIES IN SHORT SUPPLY #
+############################
+
+# Pick Planet for the Event
+# If yes = trigger mission.153
+# If no = loop itself (mission.152)
+country_event = {
+	id = mission.152
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system_within_warp_area = {
+			limit = {
+				exists = owner
+				owner = {
+					is_same_value = event_target:minor_state_event_country
+				}
+				has_access_fleet = ROOT
+				has_access_fleet = event_target:minor_state_event_country
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = ROOT
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+			save_event_target_as = minor_state_event_system
+			random_system_planet = {
+				limit = {
+					is_capital = yes
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+			random_ship_in_system = {
+				limit = {
+					is_ship_class = shipclass_starbase
+				}
+				save_event_target_as = minor_state_event_starbase
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:minor_state_event_starbase }
+			country_event = { id = mission.153 } #Triggers Special Project
+			event_target:minor_state_event_country = {
+				set_closed_borders = {
+					who = event_target:major_state_country
+					status = no
+					forced = 1
+				}
+			}
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Planet Conditions
+			set_country_flag = calories_supply_not_triggered
+		}
+	}	
+}
+
+### CALORIES IN SHORT SUPPLY - Trigger Special Project
+country_event = {
+	id = mission.153
+	title = "mission.153.name"
+	desc = "mission.153.desc"
+	picture = GFX_evt_barren_forest_civilization_landscape
+	show_sound = event_generic_suspense
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	### Accept Mission
+	option = {
+		name = mission.153.a
+		custom_tooltip = mission.153.a.tt
+
+		enable_special_project = {
+			name = "MINOR_FOOD_SHIPMENT"
+			location = event_target:minor_state_event_planet
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Send aid once
+	option = {
+		name = mission.153.b
+		custom_tooltip = mission.153.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.155 days = 30
+			}	
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.153.c
+		custom_tooltip = mission.153.c.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.156 days = 30
+			}	
+		}
+	}
+}
+
+# Triggers "EMERGENCY AID" 5 times and finishes the mission.
+country_event = {
+	id = mission.1541
+	hide_window = yes 
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			country_event = { id = mission.154 days = 1 }
+			country_event = { id = mission.154 days = 360 } #360
+			country_event = { id = mission.154 days = 720 } #720
+			country_event = { id = mission.154 days = 1080 } #1080
+			country_event = { id = mission.154 days = 1440 } #1440
+		}
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+}
+
+# EMERGENCY AID
+country_event = {
+	id = mission.154
+	title = "mission.154.name"
+	desc = "mission.154.desc"
+	show_sound = event_empire_fleet
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_empire_fleet_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_empire_fleet_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_empire_fleet_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_empire_fleet_cardassian	
+	}	
+
+	is_triggered_only = yes
+	
+	immediate = {
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.154.a
+		custom_tooltip = mission.154.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.154.b
+		custom_tooltip = mission.154.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.154.c
+		custom_tooltip = mission.154.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.154.d
+		custom_tooltip = mission.154.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+
+		add_resource = {
+			food = -100
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# SHORT-TERM RELIEF
+country_event = {
+	id = mission.155
+	title = "mission.155.name"
+	desc = "mission.155.desc"
+	show_sound = event_empire_fleet
+	location = event_target:minor_state_event_planet
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_empire_fleet_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_empire_fleet_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_empire_fleet_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_empire_fleet_cardassian	
+	}	
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Our work is done
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.155.a
+		custom_tooltip = mission.155.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.155.b
+		custom_tooltip = mission.155.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.155.c
+		custom_tooltip = mission.155.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.155.d
+		custom_tooltip = mission.155.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+
+		add_resource = {
+			food = -300
+		}
+	}
+}
+
+# STILL HUNGRY…
+country_event = {
+	id = mission.156
+	title = "mission.156.name"
+	desc = "mission.156.desc"
+	picture = GFX_evt_barren_forest_civilization_landscape
+	show_sound = event_generic_suspense
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Unfortunate
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.156.a
+		custom_tooltip = mission.156.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.156.b
+		custom_tooltip = mission.156.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.156.c
+		custom_tooltip = mission.156.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.156.d
+		custom_tooltip = mission.156.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+################
+# SPY MISSIONS #
+################
+
+# Spy Mission Fail, triggered from Spy Mission on_fail
+# THIS = Fleet (Spy Fleet)
+# FROM.FROM = Mission Target (Fleet/Galactic Object (System)/Planet/Starbase)
+fleet_event = {
+	id = mission.1000
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		from.from.owner = {
+			trigger_silent_alarm = { location = from.from }
+		}
+
+		set_detected = { detected_by = from.from.owner }
+
+		add_global_tension = {
+			amount = @spy_mission_fail_global_tension
+			type = spy_mission_failed
+			country = this.owner
+		}
+
+		from.from.owner = {
+			add_opinion_modifier = {
+				who = root.owner
+				modifier = opinion_spy_mission_fail
+			}
+		}
+	}
+}
+
+#####################
+# GOVERNOR MISSIONS #
+#####################
+
+#Event Trigger - For testing only
+fleet_event = {
+	id = country.8888
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		leader = {
+			add_experience = 300
+		}
+	}
+}
+
+######################
+# CRIMES OF THE PAST #
+######################
+
+# CRIMES OF THE PAST
+country_event = {
+	id = mission.160
+	title = "mission.160.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.160.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.160.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.160.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.160.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:crimes_of_the_past_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#ALL: Send Governor [Governor] to [Colony]
+	option = {
+
+		name = mission.160.a
+		custom_tooltip = mission.160.a.tt
+		
+		enable_special_project = {
+			name = "INVESTIGATING_THE_PAST"
+			location = event_target:crimes_of_the_past_colony
+			owner = this
+		}
+	}
+
+	#Romulan: Kill them all to cover our tracks. 
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.160.b
+		custom_tooltip = mission.160.b.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 500 }
+			event_target:crimes_of_the_past_colony = {
+				any_owned_pop = {
+					has_job_category = specialist
+				}
+			}
+		}
+
+		owner = {
+			add_resource = { energy = -500 }
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.163 days = 1 }
+		}
+	}
+
+	#Cardassian: Time for a purge. 
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.160.c
+		custom_tooltip = mission.160.c.tt	
+		
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 500 }
+			event_target:crimes_of_the_past_colony = {
+				any_owned_pop = {
+					has_job_category = specialist
+				}
+			}
+		}
+
+		owner = {
+			add_resource = { energy = -500 }
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.164 days = 1 }
+		}
+	}
+
+	#ALL: Not now.
+	option = {
+
+		name = mission.160.d
+		custom_tooltip = mission.160.d.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 100 }
+		}
+
+		owner = {
+			add_resource = { energy = -100 }
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.162 days = 30 }
+		}
+	}
+}
+
+# WE HAVE NOT FORGOTTEN
+country_event = {
+	id = mission.161
+	title = "mission.161.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.161.ufop.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.161.klingon.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.161.romulan.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.161.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:crimes_of_the_past_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: We will not forget their sacrifice.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.161.a
+		custom_tooltip = mission.161.a.tt
+		
+		owner = {
+			event_target:crimes_of_the_past_leader = {
+				add_trait = leader_trait_truthseeker
+				hidden_effect = {
+					remove_trait = leader_trait_governor_past_investigator
+				}
+			}
+		}
+	}
+
+	#Klingon: tIqDaq HoSna' tu'lu'. 
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.161.b
+		custom_tooltip = mission.161.b.tt
+		
+		owner = {
+			event_target:crimes_of_the_past_leader = {
+				add_trait = leader_trait_truthseeker
+				hidden_effect = {
+					remove_trait = leader_trait_governor_past_investigator
+				}
+			}
+		}
+	}
+
+	#Romulan: Khitomer? Where's that? 
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.161.c
+		custom_tooltip = mission.161.c.tt
+		
+		owner = {
+			event_target:crimes_of_the_past_leader = {
+				add_trait = leader_trait_truthseeker
+				hidden_effect = {
+					remove_trait = leader_trait_governor_past_investigator
+				}
+			}
+		}
+	}
+
+	#Cardassian: Appropriate the sculptures. 
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.161.d
+		custom_tooltip = mission.161.d.tt
+		
+		owner = {
+			event_target:crimes_of_the_past_leader = {
+				add_trait = leader_trait_truthseeker
+				hidden_effect = {
+					remove_trait = leader_trait_governor_past_investigator
+				}
+			}
+		}
+	}
+
+	# ALL: Close file.
+	option = {
+
+		name = mission.161.e
+		custom_tooltip = mission.161.e.tt
+
+		add_monthly_resource_mult = {
+			resource = influence
+			value = @tier2influencereward
+			min = @tier2influencemin
+			max = @tier2influencemax
+		}
+
+		owner = {
+			event_target:crimes_of_the_past_leader = {
+				hidden_effect = {
+					remove_trait = leader_trait_governor_past_investigator
+				}
+			}
+		}
+	}
+}
+
+# HISTORY BURIED ON [COLONY]
+country_event = {
+	id = mission.162
+	title = "mission.162.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.162.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.162.klingon.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.162.romulan.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.162.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:crimes_of_the_past_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: A shameful outcome.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.162.a
+		custom_tooltip = mission.162.a.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Klingon: Empty threats are worse than dishonor. 
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.162.b
+		custom_tooltip = mission.162.b.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Romulan: Sedition has consequences.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.162.c
+		custom_tooltip = mission.162.c.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Cardassian: We do not trust intellectuals.
+	option = {		
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.162.d
+		custom_tooltip = mission.162.d.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	after = {
+		owner = {
+			event_target:crimes_of_the_past_leader = {
+				leader = { add_experience = 100 }
+				hidden_effect = {
+					remove_trait = leader_trait_governor_past_investigator
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_modifier = {
+				modifier = gov_remove_monthly_unity
+				years = 5
+			}
+		}
+	}
+}
+
+# YOU MAY BURN AFTER READING (ROMULAN ONLY)
+country_event = {
+	id = mission.163
+	title = "mission.163.name"
+	desc = "mission.163.desc"
+	
+	picture_event_data = {
+		portrait = event_target:crimes_of_the_past_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#Romulan: A tragedy.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.163.a
+		custom_tooltip = mission.163.a.tt
+		
+		owner = {
+			event_target:crimes_of_the_past_leader = {
+				leader = { add_experience = 300 }
+				hidden_effect = {
+					remove_trait = leader_trait_governor_past_investigator
+				}
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2unityreward
+				min = @tier2unitymin
+				max = @tier2unitymax
+			}
+		}
+
+		kill_specialist_pop_from_target_planet = {
+			PLANET = event_target:crimes_of_the_past_colony
+		}
+	}
+}
+
+# PURGE! PURGE! PURGE! (CARDASSIAN ONLY)
+country_event = {
+	id = mission.164
+	title = "mission.164.name"
+	desc = "mission.164.desc"
+	
+	picture_event_data = {
+		portrait = event_target:crimes_of_the_past_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#Cardassian: There are no sculptors in prison.
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.164.a
+		custom_tooltip = mission.164.a.tt
+		
+		owner = {
+			event_target:crimes_of_the_past_leader = {
+				leader = { add_experience = 300 }
+				hidden_effect = {
+					remove_trait = leader_trait_governor_past_investigator
+				}
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2unityreward
+				min = @tier2unitymin
+				max = @tier2unitymax
+			}
+		}
+
+		kill_artisan_pop_from_target_planet = {
+			PLANET = event_target:crimes_of_the_past_colony
+		}
+	}
+}
+
+############################
+# # DISORDER ON [COLONY] # #
+############################
+
+# DISORDER ON [COLONY]
+country_event = {
+	id = mission.165
+	title = "mission.165.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.165.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.165.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.165.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.165.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:disorder_on_colony_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	#ALL: Send Governor [Governor] to [Colony]
+	option = {
+
+		name = mission.165.a
+		custom_tooltip = mission.165.a.tt
+		
+		#TBD Check if this triggers the Special Project correctly.
+		enable_special_project = {
+			name = "HARD_STANCE_ON_CRIME"
+			location = event_target:disorder_on_colony_colony
+			owner = this
+		}
+	}
+
+	#ALL: Not now.
+	option = {
+
+		name = mission.165.b
+		custom_tooltip = mission.165.b.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 100 }
+		}
+
+		owner = {
+			add_resource = { energy = -100 }
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.167 days = 30 }
+		}
+	}
+}
+
+# CRIME WAVE PETERING OUT
+country_event = {
+	id = mission.166
+	title = "mission.166.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.166.ufop.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.166.klingon.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.166.romulan.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.166.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:disorder_on_colony_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: Mission accomplished.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.166.a
+		custom_tooltip = mission.166.a.tt
+		
+		owner = {
+			event_target:disorder_on_colony_leader = {
+				add_trait = leader_trait_crimefighter
+				hidden_effect = {
+					remove_trait = leader_trait_governor_disorder_investigator
+				}
+			}
+		}
+	}
+
+	#Klingon: Well-fought.
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.166.b
+		custom_tooltip = mission.166.b.tt
+		
+		owner = {
+			event_target:disorder_on_colony_leader = {
+				add_trait = leader_trait_crimefighter
+				hidden_effect = {
+					remove_trait = leader_trait_governor_disorder_investigator
+				}
+			}
+		}
+	}
+
+	#Romulan: Until the next hidden blade. 
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.166.c
+		custom_tooltip = mission.166.c.tt
+		
+		owner = {
+			event_target:disorder_on_colony_leader = {
+				add_trait = leader_trait_crimefighter
+				hidden_effect = {
+					remove_trait = leader_trait_governor_disorder_investigator
+				}
+			}
+		}
+	}
+
+	#Cardassian: Let the crackdowns begin. 
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.166.d
+		custom_tooltip = mission.166.d.tt
+		
+		owner = {
+			event_target:disorder_on_colony_leader = {
+				add_trait = leader_trait_crimefighter
+				hidden_effect = {
+					remove_trait = leader_trait_governor_disorder_investigator
+				}
+			}
+		}
+	}
+
+	#ALL: Close file.
+	option = { 
+
+		name = mission.166.e
+		custom_tooltip = mission.166.e.tt
+		
+		event_target:disorder_on_colony_colony = {
+			add_modifier = { 
+				modifier = safe_haven
+			}
+		}
+
+		owner = {
+			event_target:disorder_on_colony_leader = {
+				hidden_effect = {
+					remove_trait = leader_trait_governor_disorder_investigator
+				}
+			}
+		}
+	}
+}
+
+# TURMOIL TURNS FOR THE WORSE
+country_event = {
+	id = mission.167
+	title = "mission.167.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.167.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.167.klingon.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.167.romulan.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.167.cardassian.desc"
+	}
+	
+	picture_event_data = {
+		portrait = event_target:disorder_on_colony_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: We hope [colony] stabilizes soon.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.167.a
+		custom_tooltip = mission.167.a.tt
+		custom_tooltip = "gov_remove_energy_tt"
+
+	}
+
+	#Klingon: May the strongest Klingon win. 
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.167.b
+		custom_tooltip = mission.167.b.tt
+		custom_tooltip = "gov_remove_energy_tt"
+
+	}
+
+	#Romulan: Assassinations are part of the game.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.167.c
+		custom_tooltip = mission.167.c.tt
+		custom_tooltip = "gov_remove_energy_tt"
+
+	}
+
+	#Cardassian: Future strikes will not be tolerated.
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.167.d
+		custom_tooltip = mission.167.d.tt
+		custom_tooltip = "gov_remove_energy_tt"
+
+	}
+
+	after = {
+		owner = {
+			event_target:disorder_on_colony_leader = {
+				leader = { add_experience = 100 }
+				hidden_effect = {
+					remove_trait = leader_trait_governor_disorder_investigator
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_modifier = {
+				modifier = gov_remove_energy
+				years = 5
+			}
+		}
+	}
+}
+
+###########################
+# ADDRESSING INEQUALITY # #
+###########################
+
+# ADDRESSING INEQUALITY
+country_event = {
+	id = mission.170
+	title = "mission.170.name"
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.170.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.170.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.170.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.170.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:addressing_inequality_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#ALL: Send Governor [Governor] to [Colony]
+	option = {
+
+		name = mission.170.a
+		custom_tooltip = mission.170.a.tt
+		
+		enable_special_project = {
+			name = "INEQUALITY_GAP"
+			location = event_target:addressing_inequality_colony
+			owner = this
+		}
+	}
+
+	#ALL: Not now.
+	option = {
+
+		name = mission.170.b
+		custom_tooltip = mission.170.b.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 100 }
+		}
+
+		owner = {
+			add_resource = { energy = -100 }
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.172 days = 30 }
+		}
+	}
+}
+
+# RESOURCEFUL REDISTRIBUTION
+country_event = {
+	id = mission.171
+	title = "mission.171.name"
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.171.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.171.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.171.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.171.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:addressing_inequality_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: Survival should be the minimum.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.171.a
+		custom_tooltip = mission.171.a.tt
+		
+		owner = {
+			event_target:addressing_inequality_leader = {
+				add_trait = leader_trait_producer
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inequality_investigator
+				}
+			}
+		}
+	}
+
+	#Klingon: Such is our duty.
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.171.b
+		custom_tooltip = mission.171.b.tt
+		
+		owner = {
+			event_target:addressing_inequality_leader = {
+				add_trait = leader_trait_producer
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inequality_investigator
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				exists = event_target:romulan_country
+			}
+			
+			add_opinion_modifier = {
+				who = event_target:romulan_country
+				modifier = opinion_mipo_mission_failure # HRB_TODO_OPINION
+			}
+		}
+	}
+
+	#Romulan: Neat trick. 
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.171.c
+		custom_tooltip = mission.171.c.tt
+		
+		owner = {
+			event_target:addressing_inequality_leader = {
+				add_trait = leader_trait_producer
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inequality_investigator
+				}
+			}
+		}
+	}
+
+	#Cardassian: Half of all conquest happens on paper. 
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.171.d
+		custom_tooltip = mission.171.d.tt
+		
+		owner = {
+			event_target:addressing_inequality_leader = {
+				add_trait = leader_trait_producer
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inequality_investigator
+				}
+			}
+		}
+	}
+
+	#ALL: Close file.
+	option = { 
+
+		name = mission.171.e
+		custom_tooltip = mission.171.e.tt
+		
+		event_target:addressing_inequality_colony = {
+			add_modifier = { 
+				modifier = boomplanet
+			}
+		}
+
+		owner = {
+			event_target:addressing_inequality_leader = {
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inequality_investigator
+				}
+			}
+		}
+	}
+}
+
+# NO ONE TAUGHT US HOW TO SHARE
+country_event = {
+	id = mission.172
+	title = "mission.172.name"
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.172.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.172.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.172.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.172.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:addressing_inequality_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: Unacceptable.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.172.a
+		custom_tooltip = mission.172.a.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Klingon: Survival of the fittest. 
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.172.b
+		custom_tooltip = mission.172.b.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Romulan: It's our stockpile to enjoy.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.172.c
+		custom_tooltip = mission.172.c.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Cardassian: Why can't they eat each other?
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.172.d
+		custom_tooltip = mission.172.d.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	after = {
+		owner = {
+			event_target:addressing_inequality_leader = {
+				leader = { add_experience = 100 }
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inequality_investigator
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_modifier = {
+				modifier = gov_remove_monthly_unity
+				years = 5
+			}
+		}
+	}
+}
+
+###########################
+# PLANETARY INAUGURATION #
+###########################
+
+# PLANETARY INAUGURATION
+country_event = {
+	id = mission.175
+	title = "mission.175.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.175.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.175.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.175.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.175.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:planetary_inauguration_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#ALL: Send Governor [Governor] to [Colony]
+	option = {
+
+		name = mission.175.a
+		custom_tooltip = mission.175.a.tt
+		
+		enable_special_project = {
+			name = "INAUGURATION_PARTY"
+			location = event_target:planetary_inauguration_colony
+			owner = this
+		}
+	}
+
+	#ALL: Not now.
+	option = {
+
+		name = mission.175.b
+		custom_tooltip = mission.175.b.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 100 }
+		}
+
+		owner = {
+			add_resource = { energy = -100 }
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.177 days = 30 }
+		}
+	}
+}
+
+# PARTY TIME
+country_event = {
+	id = mission.176
+	title = "mission.176.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.176.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.176.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.176.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.176.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:planetary_inauguration_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: Some vacations require another vacation.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.176.a
+		custom_tooltip = mission.176.a.tt
+		
+		owner = {
+			event_target:planetary_inauguration_leader = {
+				add_trait = leader_trait_party_animal
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inauguration_investigator
+				}
+			}
+		}
+	}
+	
+	#Klingon: reH pong Hutlhlu'DI' reH ponglu'choHlu'. 
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.176.b
+		custom_tooltip = mission.176.b.tt
+		
+		owner = {
+			event_target:planetary_inauguration_leader = {
+				add_trait = leader_trait_party_animal
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inauguration_investigator
+				}
+			}
+		}
+	}
+
+	#Romulan: Mhiohs! 
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.176.c
+		custom_tooltip = mission.176.c.tt
+		
+		owner = {
+			event_target:planetary_inauguration_leader = {
+				add_trait = leader_trait_party_animal
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inauguration_investigator
+				}
+			}
+		}
+	}
+
+	#Cardassian: Monitor everyone who dares celebrate. 
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.176.d
+		custom_tooltip = mission.176.d.tt
+		
+		owner = {
+			event_target:planetary_inauguration_leader = {
+				add_trait = leader_trait_party_animal
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inauguration_investigator
+				}
+			}
+		}
+	}
+
+	# ALL: Close file.
+	option = {
+
+		name = mission.176.e
+		custom_tooltip = mission.176.e.tt
+
+		add_monthly_resource_mult = {
+			resource = influence
+			value = @tier2influencereward
+			min = @tier2influencemin
+			max = @tier2influencemax
+		}
+
+		owner = {
+			event_target:planetary_inauguration_leader = {
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inauguration_investigator
+				}
+			}
+		}
+	}
+}
+
+# GOOD TIMES CANCELED ON [COLONY]
+
+country_event = {
+	id = mission.177
+	title = "mission.177.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.177.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.177.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.177.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.177.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:planetary_inauguration_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: No drinking on duty.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.177.a
+		custom_tooltip = mission.177.a.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Klingon: We will remember their insults. 
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.177.b
+		custom_tooltip = mission.177.b.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Romulan: We only attend the most exclusive parties.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.177.c
+		custom_tooltip = mission.177.c.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	#Cardassian: Military parades are the best parades. 
+	option = {		
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.177.d
+		custom_tooltip = mission.177.d.tt
+		custom_tooltip = "gov_remove_monthly_unity_tt"
+
+	}
+
+	after = {
+		owner = {
+			event_target:planetary_inauguration_leader = {
+				leader = { add_experience = 100 }
+				hidden_effect = {
+					remove_trait = leader_trait_governor_inauguration_investigator
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_modifier = {
+				modifier = gov_remove_monthly_unity
+				years = 5
+			}
+		}
+	}
+}
+
+###########################
+# TOO MANY BLOCKERS #
+###########################
+
+# Too Many Blockers
+country_event = {
+	id = mission.180
+	title = "mission.180.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.180.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.180.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.180.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.180.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:too_many_blockers_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#ALL: Send Governor [Governor] to [Colony]
+	option = {
+
+		name = mission.180.a
+		custom_tooltip = mission.180.a.tt
+		
+		enable_special_project = {
+			name = "DIFFICULT_TERRAIN"
+			location = event_target:too_many_blockers_colony
+			owner = this
+		}
+	}
+
+	#ALL: Send them a care package.
+	option = {
+
+		name = mission.180.b
+		custom_tooltip = mission.180.b.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = food value >= 500 }
+		}
+
+		owner = {
+			add_resource = { food = -500 }
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.183 days = 30 }
+		}
+	}
+
+	#ALL: Not now.
+	option = {
+
+		name = mission.180.c
+		custom_tooltip = mission.180.c.tt
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= 100 }
+		}
+
+		owner = {
+			add_resource = { energy = -100 }
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.182 days = 30 }
+		}
+	}
+}
+
+# TOUGH TOPOGRAPHY TAMED
+country_event = {
+	id = mission.181
+	title = "mission.181.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.181.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.181.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.181.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.181.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:too_many_blockers_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: Peace is prosperity.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.181.a
+		custom_tooltip = mission.181.a.tt
+		
+		owner = {
+			event_target:too_many_blockers_leader = {
+				add_trait = leader_trait_farseer
+				hidden_effect = {
+					remove_trait = leader_trait_governor_blockers_investigator
+				}
+			}
+		}
+	}
+
+	#Klingon: A good time for a feast! 
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.181.b
+		custom_tooltip = mission.181.b.tt
+		
+		owner = {
+			event_target:too_many_blockers_leader = {
+				add_trait = leader_trait_farseer
+				hidden_effect = {
+					remove_trait = leader_trait_governor_blockers_investigator
+				}
+			}
+		}
+	}
+
+	#Romulan: Mhiohs! 
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.181.c
+		custom_tooltip = mission.181.c.tt
+		
+		owner = {
+			event_target:too_many_blockers_leader = {
+				add_trait = leader_trait_farseer
+				hidden_effect = {
+					remove_trait = leader_trait_governor_blockers_investigator
+				}
+			}
+		}
+	}
+
+	#Cardassian: Monitor everyone who dares celebrate. 
+	option = {
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.181.d
+		custom_tooltip = mission.181.d.tt
+		
+		owner = {
+			event_target:too_many_blockers_leader = {
+				add_trait = leader_trait_farseer
+				hidden_effect = {
+					remove_trait = leader_trait_governor_blockers_investigator
+				}
+			}
+		}
+	}
+
+	# ALL: Close file.
+	option = {
+
+		name = mission.181.e
+		custom_tooltip = mission.181.e.tt
+
+		add_monthly_resource_mult = {
+			resource = influence
+			value = @tier2influencereward
+			min = @tier2influencemin
+			max = @tier2influencemax
+		}
+
+		owner = {
+			
+			event_target:too_many_blockers_colony = {
+				add_modifier = { 
+					modifier = high_output
+					years = 5
+				}
+			}
+			
+			event_target:too_many_blockers_leader = {
+				hidden_effect = {
+					remove_trait = leader_trait_governor_blockers_investigator
+				}
+			}
+		}
+	}
+}
+
+# POORLY PLANNED PLANET
+country_event = {
+	id = mission.182
+	title = "mission.182.name"
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text = "mission.182.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text = "mission.182.klingon.desc"
+	}
+
+	desc = {	
+		trigger = {
+			is_romulan = yes
+		}
+		text = "mission.182.romulan.desc"
+	}
+	
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text = "mission.182.cardassian.desc"
+	}
+
+	picture_event_data = {
+		portrait = event_target:too_many_blockers_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: Heartbreaking.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.182.a
+
+	}
+
+	#Klingon: Let them fight for their meals. 
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.182.b
+
+	}
+
+	#Romulan: Inconsequential.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.182.c
+
+	}
+
+	#Cardassian: Inefficiency will be punished. 
+	option = {		
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.182.d
+
+	}
+
+	after = {
+		owner = {
+			event_target:too_many_blockers_leader = {
+				leader = { add_experience = 100 }
+				hidden_effect = {
+					remove_trait = leader_trait_governor_blockers_investigator
+				}
+			}
+		}
+
+		event_target:too_many_blockers_colony = {
+			add_modifier = { 
+				modifier = low_yields
+				years = 5
+			}
+		}
+	}
+}
+
+# EVERYONE LOVES A CARE PACKAGE
+country_event = {
+	id = mission.183
+	title = "mission.183.name"
+	desc = "mission.183.desc"
+
+	picture_event_data = {
+		portrait = event_target:too_many_blockers_leader
+		room = ROOT.owner
+	}
+
+	diplomatic = yes
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	#UFOP: A show of support.
+	option = {
+
+		trigger = {
+			is_ufop = yes
+		}
+
+		name = mission.183.a
+		custom_tooltip = mission.183.a.tt
+
+	}
+
+	#Klingon: ylmev.
+	option = {
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = mission.183.b
+		custom_tooltip = mission.183.b.tt
+
+	}
+
+	#Romulan: Hlluoi.
+	option = {
+
+		trigger = {
+			is_romulan = yes
+		}
+
+		name = mission.183.c
+		custom_tooltip = mission.183.c.tt
+
+	}
+
+	#Cardassian: More thankless mouths. 
+	option = {		
+
+		trigger = {
+			is_cardassian = yes
+		}
+
+		name = mission.183.d
+		custom_tooltip = mission.183.d.tt
+
+	}
+
+	after = {
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+
+			event_target:too_many_blockers_leader = {
+				hidden_effect = {
+					remove_trait = leader_trait_governor_blockers_investigator
+				}
+			}
+		}
+	}
+}
+
+###############
+# PHYSICS 101 #
+###############
+
+### PHYSICS 101 - Trigger Special Project
+country_event = {
+	id = mission.192
+	title = "mission.192.name"
+	desc = "mission.192.desc"
+	show_sound = event_the_plague_is_coming
+	location = FROM
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_highway_ftl_travel_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_highway_ftl_travel_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}	
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_country = {
+			random_planet_within_border = {
+				limit = {
+					is_capital = yes
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+		}
+	}
+
+	### Contribute to their research.
+	option = {
+		name = mission.192.a
+		custom_tooltip = mission.192.a.tt
+
+		owner = {
+			enable_special_project = {
+				name = "PHYSICS_101_MINOR"
+			}	
+		}
+		
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.192.b
+		custom_tooltip = mission.192.b.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.194 days = 180
+			}	
+		}
+	}
+}
+
+# Explosive Increments
+country_event = {
+	id = mission.193
+	title = "mission.193.name"
+	desc = "mission.193.desc"
+	show_sound = event_generic_success
+	location = FROM
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_black_hole_enterprise_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_black_hole_vorcha_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_black_hole_valdore_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_black_hole_keldon_cardassian
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### More experiments will be needed.
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.193.a
+		custom_tooltip = mission.193.a.tt
+	}
+
+	### A minor step is still a step.
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.193.b
+		custom_tooltip = mission.193.b.tt
+	}
+
+	### We give the best advice.
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.193.c
+		custom_tooltip = mission.193.c.tt
+	}
+
+	### Situation report: success.
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.193.d
+		custom_tooltip = mission.193.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# Research Dead-End
+country_event = {
+	id = mission.194
+	title = "mission.194.name"
+	desc = "mission.194.desc"
+	show_sound = event_the_plague #HRB_TODO_SOUND
+	location = FROM
+
+	is_triggered_only = yes
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_space_supernova_explosion
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_space_supernova_explosion
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_space_supernova_explosion
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_space_supernova_explosion
+	}
+
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Failure can be a great teacher.
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.194.a
+		custom_tooltip = mission.194.a.tt
+	}
+
+	### Quitters.
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.194.b
+		custom_tooltip = mission.194.b.tt
+	}
+
+	### Perhaps they are too stupid.
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.194.c
+		custom_tooltip = mission.194.c.tt
+	}
+
+	### A pointless waste of labor.
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.194.d
+		custom_tooltip = mission.194.d.tt
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+###############
+# SHIPPING IT #
+###############
+
+# Pick System for the Event
+country_event = {
+	id = mission.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_country = {
+			random_system_within_border = {
+				limit = {
+					has_access_fleet = ROOT
+					has_access_fleet = event_target:minor_state_event_country
+					NOT = {
+						any_fleet_in_system = {
+							owner = { 
+								is_hostile = ROOT
+								is_hostile = event_target:minor_state_event_country
+							}
+						}
+					}
+					any_ship_in_system = {
+						is_ship_class = shipclass_starbase
+					}
+				}
+				save_event_target_as = minor_state_event_system
+			}	
+		}
+		
+		if = {
+			limit = { exists = event_target:minor_state_event_system }
+			country_event = { id = mission.201 } #Triggers Starbase Selection
+			event_target:minor_state_event_country = {
+				set_closed_borders = {
+					who = event_target:major_state_country
+					status = no
+					forced = 1
+				}
+			}
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Starbase Conditions
+			set_country_flag = shipping_it_not_triggered
+		}
+	}	
+}
+
+# Pick Starbase for the Event
+country_event = {
+	id = mission.201
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:minor_state_event_system = {
+			random_ship_in_system = {
+				limit = {
+					is_ship_class = shipclass_starbase
+				}
+				save_event_target_as = minor_state_event_starbase
+			}
+		}
+
+		hidden_effect = {
+			country_event = { id = mission.202 } #Triggers Special Project
+		}
+	}
+}
+
+### SHIPPING IT - Trigger Special Project
+country_event = {
+	id = mission.202
+	title = "mission.202.name"
+	desc = "mission.202.desc"
+	show_sound = event_space_travel
+	location = event_target:minor_state_event_starbase
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_shipyard_repair_service_ufop	
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_shipyard_repair_service_klingon	
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_shipyard_repair_service_romulan	
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_shipyard_repair_service_cardassian	
+	}	
+
+	is_triggered_only = yes
+
+	### Exchange the schematics for a cultural exhibit.
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.202.a
+		custom_tooltip = mission.202.a.tt
+		
+		enable_special_project = {
+			name = "TECH_SUPPORT"
+			location = event_target:minor_state_event_starbase
+			owner = event_target:major_state_country
+		}
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 2
+		}
+	}
+
+	### Give them a taste of Klingon power.
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.202.b
+		custom_tooltip = mission.202.b.tt
+		
+		enable_special_project = {
+			name = "TECH_SUPPORT"
+			location = event_target:minor_state_event_starbase
+			owner = event_target:major_state_country
+		}
+
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 2
+		}
+	}
+
+	### Bug the schematics first.
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.202.c
+		custom_tooltip = mission.202.c.tt
+		
+		enable_special_project = {
+			name = "TECH_SUPPORT"
+			location = event_target:minor_state_event_starbase
+			owner = event_target:major_state_country
+		}
+
+		add_intel = {
+			who = event_target:minor_state_event_country
+			amount = 10
+		}
+	}
+
+	### Give them the schematics with spyware installed.
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.202.d
+		custom_tooltip = mission.202.d.tt
+		
+		enable_special_project = {
+			name = "TECH_SUPPORT"
+			location = event_target:minor_state_event_starbase
+			owner = event_target:major_state_country
+		}	
+
+		add_intel = {
+			who = event_target:minor_state_event_country
+			amount = 10
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.202.e
+		custom_tooltip = mission.202.e.tt
+		hidden_effect = {
+			country_event = {
+				id = mission.204 days = 180
+			}	
+		}
+	}
+}
+
+# Shared Advantage
+country_event = {
+	id = mission.203
+	title = "mission.203.name"
+	desc = "mission.203.desc"
+	show_sound = event_generic_success
+	location = event_target:minor_state_event_starbase
+	
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_space_distress_ship_minor
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_space_distress_ship_minor
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_space_distress_ship_minor
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_space_distress_ship_minor
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+		}
+	}
+
+	### Knowledge is meant to be shared.
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.203.a
+		custom_tooltip = mission.203.a.tt
+	}
+
+	### We are sharing the fire.
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.203.b
+		custom_tooltip = mission.203.b.tt
+	}
+
+	### Benevolence has its uses.
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.203.c
+		custom_tooltip = mission.203.c.tt
+	}
+
+	### The State supports its friends.
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.203.d
+		custom_tooltip = mission.203.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# Unshippable
+country_event = {
+	id = mission.204
+	title = "mission.204.name"
+	desc = "mission.204.desc"
+	show_sound = event_space_travel
+	location = event_target:minor_state_event_starbase
+
+	is_triggered_only = yes
+
+	picture = {		
+		trigger = {	
+			is_ufop = yes
+		}	
+		picture = GFX_evt_space_debris
+	}		
+	picture = {		
+		trigger = {	
+			is_klingon = yes
+		}	
+		picture = GFX_evt_space_debris
+	}		
+	picture = {		
+		trigger = {	
+			is_romulan = yes
+		}	
+		picture = GFX_evt_space_debris
+	}		
+	picture = {		
+		trigger = {	
+			is_cardassian = yes
+		}	
+		picture = GFX_evt_space_debris
+	}
+
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### We cannot share classified information.
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.204.a
+		custom_tooltip = mission.204.a.tt
+	}
+
+	### The weak always envy the strong.
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.204.b
+		custom_tooltip = mission.204.b.tt
+	}
+
+	### Better luck next time.
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.204.c
+		custom_tooltip = mission.204.c.tt
+	}
+
+	### The State does not share its secrets.
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.204.d
+		custom_tooltip = mission.204.d.tt
+	}
+}
+
+#######################
+# DEMANDING DIGNITARY #
+#######################
+
+# Pick System for the Event
+country_event = {
+	id = mission.212
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+
+		random_system = {
+			limit = {
+				is_star_class = sc_highway_node
+				has_access_fleet = ROOT
+				has_access_fleet = event_target:minor_state_event_country
+				NOT = {
+					any_fleet_in_system = {
+						owner = { 
+							is_hostile = ROOT
+							is_hostile = event_target:minor_state_event_country
+						}
+					}
+				}
+			}
+			save_event_target_as = minor_state_event_system
+			random_system_planet = {
+				limit = {
+					is_star_class = sc_highway_node
+				}
+				save_event_target_as = minor_state_event_planet
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:minor_state_event_planet }
+			country_event = { id = mission.213 } #Triggers Special Project
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 } #Loops Check Planet Conditions
+			set_country_flag = demanding_dignatary_not_triggered
+		}
+	}	
+}
+
+### Demanding Dignitary - Trigger Special Project
+country_event = {
+	id = mission.213
+	title = "mission.213.name"
+	desc = "mission.213.desc"
+	show_sound = event_positive_sound
+	location = event_target:minor_state_event_planet
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_star_chart_meeting_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_star_chart_meeting_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_ambient_object = {
+			type = "mipo_diplomatic_vessel"
+			entity_offset_height = { min = 10 max = -10 }
+			location = event_target:minor_state_event_planet	
+		}
+		last_created_ambient_object = {
+			save_event_target_as = minor_state_vessel
+		}
+	}
+
+	### Escort the dignitary.
+	option = {
+		name = mission.213.a
+		custom_tooltip = mission.213.a.tt
+
+		enable_special_project = {
+			name = "ESCORT_MISSION"
+			location = event_target:minor_state_vessel
+			owner = event_target:major_state_country
+		}
+	}
+
+	### Challenge Dignitary to a duel
+	option = {
+		name = mission.213.b
+		custom_tooltip = mission.213.b.tt
+
+		trigger = {
+			is_klingon = yes
+		}
+
+		hidden_effect = {
+			set_country_flag = dignitary_challenge
+			country_event = {
+				id = mission.215 days = 30
+			}	
+		}
+	}
+
+	### Decline Mission
+	option = {
+		name = mission.213.c
+		custom_tooltip = mission.213.c.tt
+		hidden_effect = {
+			set_country_flag = dignitary_declined
+			country_event = {
+				id = mission.215 days = 30
+			}	
+		}
+	}
+}
+
+# V.I.P. Experience
+country_event = {
+	id = mission.214
+	title = "mission.214.name"
+	desc = "mission.214.desc"
+	show_sound = event_galactic_peace_summit
+	location = event_target:minor_state_event_planet
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_black_hole_enterprise_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_black_hole_vorcha_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_black_hole_valdore_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_black_hole_keldon_cardassian
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+
+			destroy_ambient_object = event_target:minor_state_vessel
+		}
+	}
+
+	### Federation Security is Second to None.
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.214.a
+		custom_tooltip = mission.214.a.tt
+	}
+
+	### It was an honor.
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.214.b
+		custom_tooltip = mission.214.b.tt
+	}
+
+	### Naturally.
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.214.c
+		custom_tooltip = mission.214.c.tt
+	}
+
+	### Award the security detail.
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.214.d
+		custom_tooltip = mission.214.d.tt
+	}
+	
+	after = {
+		# Improve Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# Securely Insecure
+country_event = {
+	id = mission.215
+	title = "mission.215.name"
+	picture = GFX_evt_pc_black_hole_sky
+	show_sound = event_generic_popup
+	location = event_target:minor_state_event_planet	
+
+	desc = {
+		trigger = { is_ufop = yes }
+		text =  "mission.215.ufop.desc"
+	}
+
+	desc = {
+		trigger = { is_klingon = yes }
+		text =  "mission.215.klingon.desc"
+	}
+
+	desc = {
+		trigger = { is_romulan = yes }
+		text =  "mission.215.romulan.desc"
+	}
+
+	desc = {
+		trigger = { is_cardassian = yes }
+		text =  "mission.215.cardassian.desc"
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { 
+					exists = event_target:minor_state_vessel
+				}
+				destroy_ambient_object = event_target:minor_state_vessel
+			}
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+	
+	### Send our humblest apologies.
+	option = {
+		trigger = { 
+			is_ufop = yes
+			has_country_flag = dignitary_declined
+		}
+		name = mission.215.a
+		custom_tooltip = mission.215.a.tt
+
+		hidden_effect = {
+			remove_country_flag = dignitary_declined
+		}
+	}
+	
+	### Cowardly petaQ.
+	option = {
+		trigger = { 
+			is_klingon = yes 
+			has_country_flag = dignitary_declined
+		}
+		name = mission.215.b
+		custom_tooltip = mission.215.b.tt
+
+		hidden_effect = {
+			remove_country_flag = dignitary_declined
+		}
+	}
+
+	### Dishonorable.
+	option = {
+		trigger = { 
+			is_klingon = yes
+			has_country_flag = dignitary_challenge
+		}
+		name = mission.215.c
+		custom_tooltip = mission.215.c.tt
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+		}
+		hidden_effect = {
+			remove_country_flag = dignitary_challenge
+		}
+	}
+
+	### Dismiss these claims.
+	option = {
+		trigger = { 
+			is_romulan = yes
+			has_country_flag = dignitary_declined 
+		}
+		name = mission.215.d
+		custom_tooltip = mission.215.d.tt
+
+		hidden_effect = {
+			remove_country_flag = dignitary_declined
+		}
+	}
+
+	### Irrelevant.
+	option = {
+		trigger = { 
+			is_cardassian = yes
+			has_country_flag = dignitary_declined 
+		}
+		name = mission.215.e
+		custom_tooltip = mission.215.e.tt
+
+		hidden_effect = {
+			remove_country_flag = dignitary_declined
+		}
+	}
+
+	after = {
+		# Harm Relations Minor State
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_failure
+			}
+		}
+	}
+}
+
+####################
+# Original Mission #
+####################
+
+
+# country_event = {
+# 	id = mission.1
+# 	hide_window = yes 
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		ROOT = {
+# 			save_event_target_as = major_state_country
+# 		}
+
+# 		FROM = {
+# 			save_event_target_as = minor_state_event_country
+# 		}
+
+# 		hidden_effect = {
+# 			country_event = { id = mission.2 } #Triggers Check Fleet Spawn Conditions
+# 		}
+# 	}
+# }
+
+# # Check Fleet Spawn Conditions
+# # If yes = trigger mission.3
+# # If no = loop itself (mission.2)
+# country_event = {
+# 	id = mission.2
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		random_system_within_warp_area = {
+# 			limit = {
+# 				NOT = { is_star_class = sc_highway_node }
+# 				NOT = { has_star_flag = fleet_to_rescue_system } # This flag is the same for all instances of this event
+# 				NOT = { is_inside_border = ROOT }
+				
+# 				has_access_fleet = ROOT
+# 				has_access_fleet = event_target:minor_state_event_country
+				
+# 				NOT = {
+#                     any_fleet_in_system = {
+#                         owner = { 
+#                             is_hostile = ROOT
+# 							is_hostile = event_target:minor_state_event_country
+#                         }
+#                     }
+#                 }
+# 			}
+
+# 			set_star_flag = fleet_to_rescue_system
+# 			save_event_target_as = minor_state_event_system
+# 		}
+
+# 		if = {
+# 			limit = { exists = event_target:minor_state_event_system }
+# 			country_event = { id = mission.3 } #Triggers Spawn Disabled Minor State Fleet
+# 		}
+# 		else = {
+# 			country_event = { id = mission.2 days = 1 } #Loops Check Fleet Spawn Conditions
+# 		}
+# 	}	
+# }
+
+# # Spawn Disabled Minor State Fleet
+# country_event = {
+# 	id = mission.3
+# 	hide_window = yes
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		event_target:minor_state_event_system = {
+# 			#Can only spawn a fleet within a planet scope
+# 			random_system_planet = { 
+# 				limit = { }
+# 				save_event_target_as = minor_state_event_fleet_location
+# 			}
+# 		}
+
+# 		create_fleet = {		
+# 			effect = {
+# 				set_owner = event_target:minor_state_event_country
+				
+# 				create_ship = {
+# 					design = "NAME_C2"
+# 					effect = {
+# 						set_disabled = yes
+# 					}
+# 				}
+				
+# 				set_location = {
+# 					target = event_target:minor_state_event_fleet_location
+# 					distance = 140
+# 					angle = random
+# 				}
+				
+# 				set_fleet_stance = passive
+# 			}
+
+# 			settings = {
+# 				can_upgrade = no
+# 				can_disband = no
+# 				can_change_composition = no
+# 				can_change_leader = no
+# 				#HRB_TODO: naval capacity was removed.   
+# 				#uses_naval_capacity = no
+# 				spawn_debris = yes
+# 			}
+# 		}
+
+# 		last_created_fleet = {
+# 			save_event_target_as = minor_state_event_fleet
+
+# 			create_ambient_object = {
+# 				type = "ship_spawn_object"
+# 				location = THIS
+# 				use_3d_location = yes
+# 				duration = 1
+# 			}
+# 		}
+
+# 		hidden_effect = {
+# 			country_event = { id = mission.4 } #Triggers Mission Event Chain & Special Project
+# 		}
+# 	}
+# }
+
+# ### Trigger Mission Event Chain & Special Project
+# country_event = {
+# 	id = mission.4
+# 	title = "mission.4.name"
+# 	desc = "mission.4.desc"
+# 	picture = GFX_evt_space_distress_ship_minor #HRB_TODO
+# 	show_sound = event_red_alert #HRB_TODO
+# 	location = event_target:minor_state_event_fleet
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		if = {
+# 			limit = {
+# 				NOT = { has_event_chain = "ship_in_peril_mission_chain" } 
+# 			}
+
+# 			begin_event_chain = {
+# 				event_chain = "ship_in_peril_mission_chain"
+# 				target = THIS
+# 			}
+
+# 			set_variable = {
+# 				which = number_of_ships_to_rescue
+# 				value = 1
+# 			}
+# 		}
+# 		else = {
+# 			change_variable = {
+# 				which = number_of_ships_to_rescue
+# 				value = 1
+# 			}
+# 		}
+# 	}
+
+# 	### Accept Mission
+# 	option = {
+# 		name = ACCEPT
+
+# 		enable_special_project = {
+# 			name = "RESCUE_MINOR_SHIP"
+# 			location = event_target:minor_state_event_fleet
+# 			owner = event_target:major_state_country
+# 		}
+# 	}
+# }
+
+# # Check Distance Trigger Event
+# # country_event = {
+# # 	id = mission.5
+# # 	hide_window = yes
+# # 	is_triggered_only = yes
+
+# # 	immediate = {
+# # 		every_owned_fleet = {
+# # 			limit = {
+# # 				OR = {
+# # 					is_ship_class = shipclass_constructor
+# # 					is_ship_class = shipclass_science_ship
+# # 					is_ship_class = shipclass_military
+# # 					is_ship_class = shipclass_transport
+# # 				}
+
+# # 				exists = solar_system
+# # 				solar_system = {
+# # 					is_same_value = event_target:minor_state_event_system
+# # 				}
+
+# # 				distance = {
+# # 					same_solar_system = yes
+# # 					source = event_target:minor_state_event_fleet
+# # 					max_distance <= 5
+# # 					min_distance >= 0
+# # 				}
+# # 			}
+# # 			owner = {
+# # 				set_country_flag = mission_event_encounter@event_target:minor_state_event_country
+# # 			}
+# # 		}
+
+# # 		if = {
+# # 			limit = { 
+# # 				owner = { has_country_flag =  mission_event_encounter@event_target:minor_state_event_country }
+# # 			}
+# # 			country_event = { id = mission.6 }
+# # 		}
+# # 		else_if = {
+# # 			limit = {
+# # 				owner = { NOT = { has_country_flag =  mission_event_failed@event_target:minor_state_event_country } }
+# # 			}
+# # 			country_event = { id = mission.5 days = 1 }
+# # 		}
+# # 	}
+# # }
+
+# # Mission Completed
+# country_event = {
+# 	id = mission.6
+# 	title = "mission.6.name"
+# 	desc = "mission.6.desc"
+# 	picture = GFX_evt_space_distress_ship_minor #HRB_TODO_IMAGE
+# 	show_sound = event_ship_explosion #HRB_TODO_SOUND
+# 	location = event_target:minor_state_event_fleet
+
+# 	is_triggered_only = yes
+	
+# 	immediate = {
+# 		hidden_effect = {
+# 			event_target:minor_state_event_system = {
+# 				remove_star_flag = fleet_to_rescue_system
+# 			}
+
+# 			finished_major_minor_mission = {
+# 				minor_country = event_target:minor_state_event_country
+# 				finished_successfully = yes
+# 			}
+
+# 			set_country_first_contact_stage = {
+# 				country = event_target:minor_state_event_country
+# 				stage = default_end_stage_hrb
+# 			}
+
+# 			change_variable = {
+# 				which = number_of_ships_to_rescue
+# 				value = -1
+# 			}
+
+# 			if = {
+# 				limit = {
+# 					check_variable = {
+# 						which = number_of_ships_to_rescue
+# 						value <= 0
+# 					}
+# 				}
+# 				end_event_chain = "ship_in_peril_mission_chain"
+# 			}
+# 		}
+# 	}
+
+# 	### Job Well Done
+# 	option = {
+# 		name = mission.6.a
+# 	}
+	
+# 	after = {
+# 		# Improve Relations Minor State
+# 		event_target:minor_state_event_country = {
+# 			add_opinion_modifier = {
+# 				who = event_target:major_state_country
+# 				modifier = opinion_mipo_mission_success
+# 			}
+# 		}
+
+# 		hidden_effect = {
+# 			destroy_fleet = event_target:minor_state_event_fleet
+# 		}
+# 	}
+# }
+
+# # Mission Failed
+# country_event = {
+# 	id = mission.7
+# 	title = "mission.7.name"
+# 	desc = "mission.7.desc"
+# 	picture = GFX_evt_space_distress_ship_minor #HRB_TODO_IMAGE
+# 	show_sound = event_ship_explosion #HRB_TODO_SOUND
+# 	location = event_target:minor_state_event_fleet
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		hidden_effect = {
+# 			event_target:minor_state_event_system = {
+# 				remove_star_flag = fleet_to_rescue_system
+# 			}
+						
+# 			destroy_fleet = event_target:minor_state_event_fleet
+			
+# 			finished_major_minor_mission = {
+# 				minor_country = event_target:minor_state_event_country
+# 				finished_successfully = no
+# 			}
+
+# 			set_country_first_contact_stage = {
+# 				country = event_target:minor_state_event_country
+# 				stage = fail_end_stage_hrb
+# 			}
+# 		}
+
+# 		owner = { 
+# 			change_variable = {
+# 				which = number_of_ships_to_rescue
+# 				value = -1
+# 			}
+
+# 			if = {
+# 				limit = {
+# 					check_variable = {
+# 						which = number_of_ships_to_rescue
+# 						value <= 0
+# 					}
+# 				}
+# 				end_event_chain = "ship_in_peril_mission_chain"
+# 			}
+# 		}
+# 	}
+	
+# 	### Unfortunate
+# 	option = {
+# 		name = mission.7.a
+# 	}
+
+# 	after = {
+# 		# Harm Relations Minor State
+# 		event_target:minor_state_event_country = {
+# 			add_opinion_modifier = {
+# 				who = event_target:major_state_country
+# 				modifier = opinion_mipo_mission_failure
+# 			}
+# 		}
+# 	}
+# }

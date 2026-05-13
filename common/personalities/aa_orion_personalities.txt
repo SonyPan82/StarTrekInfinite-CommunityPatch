@@ -4,7 +4,7 @@ hegemonic_imperialists_orion = {
 	bravery = 0.9
 	combat_bravery = 0.5
 
-	military_spending = 0.9
+	military_spending = 0.7
 	colony_spending = 1.1
 
 	federation_acceptance = -100

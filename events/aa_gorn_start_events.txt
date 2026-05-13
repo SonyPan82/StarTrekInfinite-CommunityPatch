@@ -352,7 +352,7 @@ event = {
 						set_owner = event_target:gorn_country
 
 						while = {
-							count = 4
+							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = gorncorvette
@@ -360,7 +360,7 @@ event = {
 							}
 						}
 						while = {
-							count = 3
+							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = gorndestroyer

@@ -2053,7 +2053,12 @@ special_project = {
 	}
 	
 	on_fail = {
-		event_target:planetary_inauguration_country = { country_event = { id = mission.177 days = 30 } }
+		if = {
+			limit = {
+				exists = event_target:planetary_inauguration_country
+			}
+			event_target:planetary_inauguration_country = { country_event = { id = mission.177 days = 30 } }
+		}
 	}
 }
 

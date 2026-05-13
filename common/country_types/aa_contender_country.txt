@@ -21,7 +21,8 @@ contender = {
 	ai = {
 		enabled = yes
 		declare_war = yes
-		min_navy_for_wars = 0.30
+		# CP26 reduced-fleet scale: contenders should fight with compact task forces.
+		min_navy_for_wars = 0.18
 		min_assault_armies_for_wars = @armies_for_declaring_war	
 		colonizer = yes
 		internal_policies = yes
@@ -101,9 +102,17 @@ contender = {
 			
 			tholianbattleship = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_id = "tholian"
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
-						add = 5
+						add = 14
 						has_country_id = "tholian"
 						OR = {
 							has_technology = tech_battleship_unlock
@@ -115,9 +124,17 @@ contender = {
 
 			tholiandestroyer = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_id = "tholian"
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
-						add = 25
+						add = 30
 						has_country_id = "tholian"
 						has_technology = tech_destroyer_unlock
 					}
@@ -134,7 +151,15 @@ contender = {
 
 			tholiancorvette = {
 				fraction = {
-					base = 100
+					modifier = {
+						factor = 0
+						has_country_id = "tholian"
+						count_owned_ship = {
+							count >= 8
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 55
 					modifier = {
 						add = -25
 						has_technology = tech_destroyer_unlock
@@ -147,9 +172,17 @@ contender = {
 			
 			gornbattleship = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_id = "gorn"
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
-						add = 5
+						add = 14
 						has_country_id = "gorn"
 						OR = {
 							has_technology = tech_battleship_unlock
@@ -161,9 +194,17 @@ contender = {
 
 			gorndestroyer = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_id = "gorn"
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
-						add = 25
+						add = 30
 						has_country_id = "gorn"
 						has_technology = tech_destroyer_unlock
 					}
@@ -180,7 +221,15 @@ contender = {
 
 			gorncorvette = {
 				fraction = {
-					base = 100
+					modifier = {
+						factor = 0
+						has_country_id = "gorn"
+						count_owned_ship = {
+							count >= 8
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 55
 					modifier = {
 						add = -25
 						has_technology = tech_destroyer_unlock
@@ -193,9 +242,17 @@ contender = {
 			
 			orionbattleship = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_id = "orion"
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
-						add = 5
+						add = 12
 						has_country_id = "orion"
 						OR = {
 							has_technology = tech_battleship_unlock
@@ -207,9 +264,17 @@ contender = {
 
 			oriondestroyer = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_id = "orion"
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
-						add = 25
+						add = 32
 						has_country_id = "orion"
 						has_technology = tech_destroyer_unlock
 					}
@@ -226,7 +291,15 @@ contender = {
 
 			orioncorvette = {
 				fraction = {
-					base = 100
+					modifier = {
+						factor = 0
+						has_country_id = "orion"
+						count_owned_ship = {
+							count >= 8
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 60
 					modifier = {
 						add = -25
 						has_technology = tech_destroyer_unlock
@@ -239,9 +312,17 @@ contender = {
 			
 			breenbattleship = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_id = "breen"
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
-						add = 5
+						add = 14
 						has_country_id = "breen"
 						OR = {
 							has_technology = tech_battleship_unlock
@@ -253,9 +334,17 @@ contender = {
 
 			breendestroyer = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_id = "breen"
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
-						add = 25
+						add = 30
 						has_country_id = "breen"
 						has_technology = tech_destroyer_unlock
 					}
@@ -272,7 +361,15 @@ contender = {
 
 			breencorvette = {
 				fraction = {
-					base = 100
+					modifier = {
+						factor = 0
+						has_country_id = "breen"
+						count_owned_ship = {
+							count >= 8
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 55
 					modifier = {
 						add = -25
 						has_technology = tech_destroyer_unlock
@@ -286,6 +383,13 @@ contender = {
 				fraction = {
 					modifier = {
 						factor = 0
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					modifier = {
+						factor = 0
 						or = {
 							has_country_id = "breen"
 							has_country_id = "tholian"
@@ -294,7 +398,7 @@ contender = {
 						}
 					}
 					modifier = {
-						add = 35
+						add = 45
 						has_technology = tech_battleship_unlock
 					}
 				}
@@ -302,6 +406,13 @@ contender = {
 
 			medium_nausicaan = {
 				fraction = {
+					modifier = {
+						factor = 0
+						count_owned_ship = {
+							count >= 18
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						factor = 0
 						or = {
@@ -324,7 +435,14 @@ contender = {
 
 			small_nausicaan = {
 				fraction = {
-					base = 100
+					modifier = {
+						factor = 0
+						count_owned_ship = {
+							count >= 8
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 55
 					modifier = {
 						factor = 0
 						or = {

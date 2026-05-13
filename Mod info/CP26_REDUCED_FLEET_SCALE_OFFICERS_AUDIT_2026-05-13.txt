@@ -1,0 +1,265 @@
+CP26 - Reduced Fleet Scale / Officers System Audit
+Date: 2026-05-13
+
+Scope audited
+-------------
+- Vanilla Infinite game files under:
+  /Users/yohanmbp/Library/Application Support/Steam/steamapps/common/Infinite
+- CP26 mod files under:
+  /Users/yohanmbp/Documents/Paradox Interactive/Infinite/mod/CP26
+
+Goal
+----
+Reduce late-game ship object spam by pushing the game toward compact military
+forces, around 15 non-hero military ships per empire where possible, while
+keeping the result coherent for AI empires, contenders, crises, factions and
+scripted fleets.
+
+Main conclusion
+---------------
+The best implementation is not a brutal purge event and not a vanilla resource
+economy rewrite. Infinite already has a native empire-wide pressure system:
+officers. The coherent model is:
+
+1. AI stops preferring new military ships once it already owns about 18 military
+   ships, with the design target still being around 15 in normal play.
+2. Small hulls are suppressed earlier, at about 8 military ships, so the AI
+   naturally shifts toward fewer heavier hulls when technology allows it.
+3. If scripted spawns or war losses still create edge cases, the officers system
+   makes oversized fleets under-crewed and weak instead of deleting ships.
+4. Crises and factions are compacted at their scripted spawn source.
+
+Why not naval capacity
+----------------------
+Infinite has naval-capacity logic mostly removed or commented out. The vanilla
+alloys budget still contains references to naval-capacity conditions, but the
+important "over naval capacity" spending logic is commented. Rebuilding the
+system through ai_budget or resource costs is risky and can destabilize
+construction queues. That path was rejected.
+
+Why not command limit alone
+---------------------------
+Command limit exists, but it is a per-fleet limit. Lowering it alone can make
+the AI split the same number of ships into more fleets. It is useful as a
+supporting bound, but it is not an empire-wide hull cap.
+
+Why officers are the correct native system
+------------------------------------------
+The game already tracks officers in the top bar:
+- interface/main.gui uses tb_officers_group.
+- interface/resource_groups/topbar_single_resource_groups.txt defines the
+  officers resource group.
+- fleet_view.gui and fleet_manager_view.gui expose prioritize_officers.
+
+If the top bar shows +6 but the current officer stock remains 0, that is not
+necessarily a bug: new officers can be immediately assigned to active ships.
+The meaningful checks are the top-bar tooltip and each fleet's officer fill.
+
+Implemented changes
+-------------------
+1. Removed the risky ai_budget/resource-cost direction.
+   - No CP26 common/ai_budget/00_alloys_budget.txt override is active.
+   - No custom cp26_fleet_scale_over_soft_cap modifier remains.
+   - No automatic AI ship deletion was added.
+
+2. Bounded fleet command growth and strengthened officer pressure.
+   File:
+   - common/defines/zz_cp26_reduced_fleet_scale_defines.txt
+
+   Values:
+   - COMMAND_LIMIT_BASE = 18
+   - COMMAND_LIMIT_MAX = 45
+   - SHIP_OFFICERS_ADD_PERCENTAGE = 0.12
+   - SHIP_OFFICERS_OPERATIVE_THRESHOLD = 0.9
+   - OFFICERS_MAX_FIRE_RATE_BONUS = 0.1
+   - OFFICERS_MAX_FIRE_RATE_PENALTY = 1.25
+   - OFFICERS_MAX_EVASION_BONUS = 0.05
+   - OFFICERS_MAX_EVASION_PENALTY = 0.3
+
+3. Restored officer cost pressure on CP26 combat computers.
+   File:
+   - common/component_templates/00_hornblower_utilities_roles.txt
+
+   Change:
+   - @operative_officers1 changed from -10 to 0 in the mod override.
+
+   Reason:
+   The old value reduced officer requirements on many military ships, which
+   worked against the new compact-fleet model.
+
+4. AI production model adjusted for major empires.
+   File:
+   - common/country_types/zz_cp26_default_country_type.txt
+
+   Changes:
+   - min_navy_for_wars reduced to 0.14.
+   - Small military hulls stop being preferred once the AI has about 8 military
+     ships.
+   - Medium/heavy/titan-style military hulls now stop being preferred once the
+     AI has about 18 military ships. This small headroom prevents an AI with an
+     old small-hull navy from being stuck and unable to add newer heavy hulls.
+   - This applies to Federation, Klingon, Romulan, Cardassian, minor, Nausicaan
+     and crisis ship_data entries present in the default country type.
+
+5. AI production model adjusted for contenders/minor factions.
+   File:
+   - common/country_types/aa_contender_country.txt
+
+   Changes:
+   - min_navy_for_wars reduced to 0.18.
+   - Gorn, Breen, Orion and Tholian small hulls stop around 8 military ships.
+   - Their medium/heavy hulls stop around 18 military ships, for the same
+     replacement-headroom reason.
+   - Generic Nausicaan fallback contender fleets also stop around 15 military
+     ships.
+
+6. Military spending reduced for compact-fleet factions.
+   Files:
+   - common/personalities/aa_gorn_personalities.txt
+   - common/personalities/aa_breen_personalities.txt
+   - common/personalities/aa_orion_personalities.txt
+   - common/personalities/aa_tholian_personalities.txt
+
+   New values:
+   - Gorn: 0.95
+   - Breen: 0.80
+   - Orion: 0.70
+   - Tholian: 0.85
+
+7. Minor-faction combat doctrines added to keep fewer ships meaningful.
+   File:
+   - common/static_modifiers/zz_cp26_minor_faction_modifiers.txt
+
+   Intent:
+   - Gorn: tougher hull/armor, slower and less evasive.
+   - Tholian: stronger shields/regeneration, weaker hull.
+   - Orion: faster, evasive, higher fire rate, weaker armor.
+   - Breen: heavier armor and damage, slower cadence.
+
+8. Starting and scripted faction fleets compacted.
+   Files include:
+   - events/game_start.txt
+   - events/aa_gorn_start_events.txt
+   - events/aa_breen_start_events.txt
+   - events/aa_orion_start_events.txt
+   - events/aa_tholian_events.txt
+   - events/hornblower_country_events.txt
+   - events/hornblower_global_situation_events.txt
+
+   Examples:
+   - generic start fleet reduced from 3 to 2 corvettes.
+   - Gorn/Breen/Orion/Tholian starts reduced from 4/3/1 to 2/2/1.
+   - several scripted major reset/spawn fleets reduced.
+   - defense platform spam in global situations reduced.
+
+9. Dominion and wormhole scale reviewed and compacted.
+   Files:
+   - common/scripted_effects/zz_cp26_dominion_threat_effects.txt
+   - events/zz_cp26_bajoran_wormhole_events.txt
+   - events/zz_cp26_dominion_threat_events.txt
+
+   Note:
+   Dominion content may be partly inactive/commented depending on the current
+   mod state, but the active CP26 Dominion hooks that still use
+   create_fleet_from_naval_cap were reduced so they do not explode under the new
+   scale if enabled.
+
+10. Crisis, marauder, Khan, mercenary, Borg and Prethoryn scripted effects
+    compacted.
+    File:
+    - common/scripted_effects/zz_cp26_reduced_fleet_scale_effects.txt
+
+    Intent:
+    Reduce hull counts at the effect source while preserving threat identity.
+
+Expected gameplay result
+------------------------
+- AI empires should build fewer ships and stop actively preferring more military
+  hulls around 18 ships, while normal pressure should keep them closer to the
+  intended 15-ish scale.
+- The AI should naturally replace losses with heavier ships once tech unlocks
+  them, because small hulls are suppressed earlier.
+- The AI is not expected to proactively delete a corvette just to build a
+  heavier hull. The engine does not expose a reliable safe "delete small ship
+  to upgrade composition" behavior in the audited files. Because of this, the
+  medium/heavy build stop uses 18 rather than a hard 15, while small hulls are
+  still suppressed at 8.
+- Oversized fleets can still happen through events, gifts, crisis scripts or
+  saves already in progress, but they should be weaker if officers are short.
+- Hero ships are not counted separately by the AI ship_data checks. Fully
+  exempting hero ships from officer needs would require custom hero component
+  variants or deeper design overrides. They are, however, excluded from the AI
+  hull-count suppression through cp26_is_non_hero_military_ship.
+
+UI status
+---------
+- The officers display already exists in the vanilla top bar.
+- A direct "current military ships / max military ships" top-bar counter was not
+  implemented. The audited UI exposes resources cleanly, but not an obvious safe
+  binding for a scripted ship-count display in the top bar.
+- Recommended visible proxy for now: top-bar officers + fleet officer fill.
+
+Known constraints and risks
+---------------------------
+- This is a soft/native cap model, not an engine-enforced hard cap.
+- A saved game with existing oversized AI fleets will not instantly shrink.
+- Scripted-effect overrides can create duplicate-definition log warnings. These
+  are expected when CP26 intentionally replaces vanilla/Infinite effects.
+- Endgame crisis balance still needs live testing because "fewer but stronger"
+  crisis waves can feel too spiky or too weak depending on galaxy year and
+  difficulty.
+- Officer cost is built from both ship sizes and components, so exact per-ship
+  officer math can vary by design loadout.
+
+Validation already done
+-----------------------
+- Checked relevant vanilla files for naval capacity, command limit, officers,
+  top-bar officers and fleet officer priority.
+- Checked relevant CP26 AI, personality, faction, Dominion, crisis and spawn
+  files.
+- 2026-05-13 repair pass: restored malformed country type edits and reapplied
+  the reduced-fleet AI limits cleanly. The attempted hero-ship exclusion inside
+  count_owned_ship was removed from country_types because it had broken modifier
+  nesting and should be handled only in a dedicated later pass.
+- 2026-05-13 follow-up: added scripted trigger cp26_is_non_hero_military_ship
+  and switched AI fleet-count limits to that trigger. Current excluded hero
+  sizes: voyager, california_hero, odyssey, dderidex_hero, enterprise,
+  enterprise_sovereign.
+- 2026-05-13 second validation: searched CP26 and Infinite for remaining
+  ship_data, count_owned_ship, create_fleet, create_ship and
+  create_fleet_from_naval_cap paths. The active AI construction path is covered
+  by CP26 default/contender country types. Dominion naval-cap spawns are reduced
+  to compact values. Crisis/faction scripted effect overrides are compacted.
+  Remaining large count values found in Gorn/Breen/Orion/Tholian effects,
+  Klingon/Romulan initializers and game_start are pop creation counts, not ship
+  creation counts, so they were intentionally left untouched.
+- Verified brace depth returns to zero for the core modified files:
+  - common/country_types/zz_cp26_default_country_type.txt
+  - common/country_types/aa_contender_country.txt
+  - common/country_types/00_country_types.txt
+  - common/defines/zz_cp26_reduced_fleet_scale_defines.txt
+  - common/scripted_effects/zz_cp26_reduced_fleet_scale_effects.txt
+  - events/zz_cp26_ai_pulse_events.txt
+- Verified no CP26 reference remains to cp26_fleet_scale_over_soft_cap.
+
+Recommended test protocol
+-------------------------
+1. Start a fresh test game.
+2. Confirm no construction-queue crash on unpause and first monthly tick.
+3. Confirm officers appear in the top bar and fleet officer fill changes when
+   ships are created.
+4. Let the game run until several AI empires unlock medium/heavy hulls.
+5. Check AI military ship counts:
+   - small hull spam should stop early.
+   - total military count should hover much closer to 15 than before.
+   - scripted crises/factions should spawn fewer objects than vanilla scale.
+6. Review error.log after the test. Expected: possible duplicate override
+   warnings. Not expected: construction queue, invalid event target or missing
+   ship design crashes.
+
+Final recommendation
+--------------------
+This is the right direction: compact AI construction + compact scripted spawns +
+native officer pressure. It matches Infinite's existing systems and avoids the
+two dangerous paths: deleting AI ships by script or rewriting vanilla resource
+budgets.

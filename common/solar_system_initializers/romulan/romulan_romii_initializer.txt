@@ -21,8 +21,11 @@ romulan_romii_initializer = {
 		}
 
 		late_init_effect = {
-			create_mining_station = {
-				owner = event_target:klingon_country
+			if = {
+				limit = { exists = event_target:romulan_country }
+				create_mining_station = {
+					owner = event_target:romulan_country
+				}
 			}
 		}
 	}

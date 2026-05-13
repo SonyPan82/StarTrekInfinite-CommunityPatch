@@ -1,0 +1,18 @@
+NGameplay = {
+	# CP26 reduced-fleet scale: keep scripted command-limit based fleets from
+	# growing back into late-game hull spam. This bounds per-fleet command
+	# inflation; empire-wide pressure is handled by the native officers system.
+	COMMAND_LIMIT_BASE = 18
+	COMMAND_LIMIT_MAX = 45
+
+	# CP26 reduced-fleet scale: officers are Infinite's native fleet pressure.
+	# Keep understaffed fleets from recovering too quickly, and make officer
+	# shortages matter enough that compact, fully crewed fleets are preferable
+	# to large numbers of hollow hulls.
+	SHIP_OFFICERS_ADD_PERCENTAGE = 0.12
+	SHIP_OFFICERS_OPERATIVE_THRESHOLD = 0.9
+	OFFICERS_MAX_FIRE_RATE_BONUS = 0.1
+	OFFICERS_MAX_FIRE_RATE_PENALTY = 1.25
+	OFFICERS_MAX_EVASION_BONUS = 0.05
+	OFFICERS_MAX_EVASION_PENALTY = 0.3
+}

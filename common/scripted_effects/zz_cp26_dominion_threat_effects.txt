@@ -85,7 +85,7 @@ cp26_spawn_jem_hadar_patrol = {
 		limit = { has_star_flag = bajoran_system }
 		save_event_target_as = cp26_bajoran_spawn_system
 	}
-	create_fleet_from_naval_cap = 0.03
+	create_fleet_from_naval_cap = 0.015
 	last_created_fleet = {
 		set_name = "Jem'Hadar Strike Force"
 		set_location = event_target:cp26_bajoran_spawn_system
@@ -98,7 +98,7 @@ cp26_spawn_jem_hadar_strike = {
 		limit = { has_star_flag = bajoran_system }
 		save_event_target_as = cp26_bajoran_spawn_system
 	}
-	create_fleet_from_naval_cap = 0.07
+	create_fleet_from_naval_cap = 0.025
 	last_created_fleet = {
 		set_name = "Jem'Hadar Attack Wing"
 		set_location = event_target:cp26_bajoran_spawn_system
@@ -111,7 +111,7 @@ cp26_spawn_jem_hadar_armada = {
 		limit = { has_star_flag = bajoran_system }
 		save_event_target_as = cp26_bajoran_spawn_system
 	}
-	create_fleet_from_naval_cap = 0.15
+	create_fleet_from_naval_cap = 0.05
 	last_created_fleet = {
 		set_name = "Dominion Armada"
 		set_location = event_target:cp26_bajoran_spawn_system

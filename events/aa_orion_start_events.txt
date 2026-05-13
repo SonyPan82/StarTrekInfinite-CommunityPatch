@@ -99,10 +99,11 @@ event = {
 					}				
 				}
 			}
-			every_system = {
-				limit = {
-					is_inside_border = event_target:klingon_country
-				}
+				every_system = {
+					limit = {
+						exists = event_target:klingon_country
+						is_inside_border = event_target:klingon_country
+					}
 				every_neighbor_system = {
 					limit = {
 						is_not_used_space = yes
@@ -296,14 +297,26 @@ event = {
 					establish_communications_no_message = event_target:orion_country
 				}
 				event_target:orion_country = {
-					establish_contact = { who = event_target:ufop_country hidden = yes }
-					establish_communications_no_message = event_target:ufop_country
-					establish_contact = { who = event_target:klingon_country hidden = yes }
-					establish_communications_no_message = event_target:klingon_country
-					establish_contact = { who = event_target:romulan_country hidden = yes }
-					establish_communications_no_message = event_target:romulan_country
-					establish_contact = { who = event_target:cardassian_country hidden = yes }
-					establish_communications_no_message = event_target:cardassian_country
+					if = {
+						limit = { exists = event_target:ufop_country }
+						establish_contact = { who = event_target:ufop_country hidden = yes }
+						establish_communications_no_message = event_target:ufop_country
+					}
+					if = {
+						limit = { exists = event_target:klingon_country }
+						establish_contact = { who = event_target:klingon_country hidden = yes }
+						establish_communications_no_message = event_target:klingon_country
+					}
+					if = {
+						limit = { exists = event_target:romulan_country }
+						establish_contact = { who = event_target:romulan_country hidden = yes }
+						establish_communications_no_message = event_target:romulan_country
+					}
+					if = {
+						limit = { exists = event_target:cardassian_country }
+						establish_contact = { who = event_target:cardassian_country hidden = yes }
+						establish_communications_no_message = event_target:cardassian_country
+					}
 				}
 				event_target:orion_country = {
 					set_adjective = "Orion"
@@ -328,7 +341,7 @@ event = {
 						set_owner = event_target:orion_country
 
 						while = {
-							count = 4
+							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = orioncorvette
@@ -336,7 +349,7 @@ event = {
 							}
 						}
 						while = {
-							count = 3
+							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = oriondestroyer

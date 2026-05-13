@@ -4,7 +4,7 @@ hegemonic_imperialists_gorn = {
 	bravery = 1.5
 	combat_bravery = 1.5
 
-	military_spending = 1.5
+	military_spending = 0.95
 	colony_spending = 0.5
 
 	federation_acceptance = -999

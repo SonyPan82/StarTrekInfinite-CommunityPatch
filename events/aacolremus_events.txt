@@ -6,55 +6,58 @@ event = {
 	is_triggered_only = yes
 
 	immediate = {
-		create_species = {
-			class = "HRB"
-			portrait = "reman2"
-			name = "Reman"
-			plural = "Remans"
-			adjective = "Reman"
-			name_list = "RML1"
-			
-			traits = {
-				trait = "trait_enduring"
-				trait = "trait_strong"
-				trait = "trait_unruly"
-				trait = "trait_reman_homeworld"
-				
-			}
-			effect = {
-				save_global_event_target_as = reman_species
-			}
-		}
-		
-		random_galaxy_planet = {
-			limit = {
-				has_planet_flag = planet_remus
-			}
-			clear_deposits = yes
-			set_owner = event_target:romulan_country
-			set_colony_type = col_default
-			add_building = building_capital
-		}
+		if = {
+			limit = { exists = event_target:romulan_country }
+			create_species = {
+				class = "HRB"
+				portrait = "reman2"
+				name = "Reman"
+				plural = "Remans"
+				adjective = "Reman"
+				name_list = "RML1"
 
-		event_target:romulan_country = {
-			random_owned_planet = {
+				traits = {
+					trait = "trait_enduring"
+					trait = "trait_strong"
+					trait = "trait_unruly"
+					trait = "trait_reman_homeworld"
+
+				}
+				effect = {
+					save_global_event_target_as = reman_species
+				}
+			}
+
+			random_galaxy_planet = {
 				limit = {
 					has_planet_flag = planet_remus
 				}
-				while = {
-					count = 6
-					create_pop = { species = event_target:reman_species }
-				}
-				add_district_and_planet_size_if_needed_effect = {
-					district = district_remus
-				}
-				add_district_and_planet_size_if_needed_effect = {
-					district = soldier_camp_remus
-				}
-				add_district_and_planet_size_if_needed_effect = {
-					district = district_remans_living
-				}
+				clear_deposits = yes
+				set_owner = event_target:romulan_country
+				set_colony_type = col_default
+				add_building = building_capital
+			}
 
+			event_target:romulan_country = {
+				random_owned_planet = {
+					limit = {
+						has_planet_flag = planet_remus
+					}
+					while = {
+						count = 6
+						create_pop = { species = event_target:reman_species }
+					}
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_remus
+					}
+					add_district_and_planet_size_if_needed_effect = {
+						district = soldier_camp_remus
+					}
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_remans_living
+					}
+
+				}
 			}
 		}
 	}

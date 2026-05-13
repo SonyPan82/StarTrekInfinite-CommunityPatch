@@ -1,0 +1,756 @@
+# CP26 reduced-fleet scale overrides.
+# These effects replace high-volume vanilla/Infinite scripted spawns with
+# compact task forces so late-game object counts stay sane.
+
+create_war_situation_mercenary_fleet_effect = {
+	IF = {
+		limit = { command_limit <= 20 }
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						design = "NAME_Small_War_Sit_Mercenary"
+						prefix = no
+						graphical_culture = nausicaan_01
+						initial_officers_perc = 1
+					}
+				}
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						design = "NAME_Medium_War_Sit_Mercenary"
+						prefix = no
+						graphical_culture = nausicaan_01
+						initial_officers_perc = 1
+					}
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { command_limit <= 35 }
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 3
+					create_ship = {
+						name = random
+						design = "NAME_Small_War_Sit_Mercenary"
+						prefix = no
+						graphical_culture = nausicaan_01
+						initial_officers_perc = 1
+					}
+				}
+				while = {
+					count = 3
+					create_ship = {
+						name = random
+						design = "NAME_Medium_War_Sit_Mercenary"
+						prefix = no
+						graphical_culture = nausicaan_01
+						initial_officers_perc = 1
+					}
+				}
+			}
+		}
+	}
+	else = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 4
+					create_ship = {
+						name = random
+						design = "NAME_Small_War_Sit_Mercenary"
+						prefix = no
+						graphical_culture = nausicaan_01
+						initial_officers_perc = 1
+					}
+				}
+				while = {
+					count = 4
+					create_ship = {
+						name = random
+						design = "NAME_Medium_War_Sit_Mercenary"
+						prefix = no
+						graphical_culture = nausicaan_01
+						initial_officers_perc = 1
+					}
+				}
+			}
+		}
+	}
+	last_created_fleet = {
+		set_fleet_flag = mercenary_fleet@event_target:current_war_scope
+	}
+}
+
+create_ufop_starting_military_fleet = {
+	create_fleet = {
+		name = "NAME_UFOP_First_Fleet"
+		settings = {
+			spawn_debris = no
+		}
+
+		effect = {
+			set_fleet_stance = passive
+			set_owner = root
+
+			while = {
+				count = 2
+				create_ship = {
+					name = ""
+					prefix = no
+					random_existing_design = miranda
+					initial_officers_perc = 1
+					graphical_culture = prev
+				}
+			}
+
+			set_location = event_target:ufop_military_station
+		}
+	}
+
+	last_created_fleet = {
+		save_global_event_target_as = ufop_main_fleet
+	}
+}
+
+create_war_situation_repurposed_fleet_effect = {
+	create_fleet = {
+		effect = {
+			set_owner = root
+			while = {
+				count = 3
+				create_ship = {
+					name = random
+					design = "NAME_Small_War_Sit_Mercenary"
+					prefix = no
+					graphical_culture = nausicaan_01
+					initial_officers_perc = 1
+				}
+			}
+			while = {
+				count = 2
+				create_ship = {
+					name = random
+					design = "NAME_Medium_War_Sit_Mercenary"
+					prefix = no
+					graphical_culture = nausicaan_01
+					initial_officers_perc = 1
+				}
+			}
+		}
+	}
+	last_created_fleet = {
+		set_fleet_flag = repurposed_fleet@event_target:current_war_scope
+	}
+}
+
+create_armada_of_the_voidborn = {
+	while = {
+		count = 4
+		create_ship = {
+			name = random
+			design = "NAME_Skeletal_Transport"
+			prefix = no
+			graphical_culture = nausicaan_01
+		}
+	}
+	while = {
+		count = 3
+		create_ship = {
+			name = random
+			design = "NAME_Medium_Nausicaan"
+			prefix = no
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 1
+		}
+	}
+	while = {
+		count = 2
+		create_ship = {
+			name = random
+			design = "NAME_Large_Nausicaan"
+			prefix = no
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 1
+		}
+	}
+}
+
+create_star_rider_flotilla = {
+	while = {
+		count = 3
+		create_ship = {
+			name = random
+			prefix = no
+			design = "NAME_Small_Nausicaan"
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 1
+		}
+	}
+	while = {
+		count = 2
+		create_ship = {
+			name = random
+			prefix = no
+			design = "NAME_Medium_Nausicaan"
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 1
+		}
+	}
+	create_ship = {
+		name = random
+		prefix = no
+		design = "NAME_Large_Nausicaan"
+		graphical_culture = nausicaan_01
+		initial_officers_perc = 1
+	}
+}
+
+create_first_storm_wing = {
+	while = {
+		count = 2
+		create_ship = {
+			name = random
+			prefix = no
+			design = "NAME_Small_Nausicaan"
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 0.9
+		}
+	}
+	while = {
+		count = 2
+		create_ship = {
+			name = random
+			prefix = no
+			design = "NAME_Medium_Nausicaan"
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 0.9
+		}
+	}
+	create_ship = {
+		name = random
+		prefix = no
+		design = "NAME_Large_Nausicaan"
+		graphical_culture = nausicaan_01
+		initial_officers_perc = 0.9
+	}
+}
+
+create_dwamak_bashers = {
+	create_star_rider_flotilla = yes
+}
+
+create_unhinged_screamer_flotilla = {
+	create_star_rider_flotilla = yes
+}
+
+create_frenzied_volunteer_squadron = {
+	create_first_storm_wing = yes
+}
+
+create_her_chosen_champions = {
+	create_armada_of_the_voidborn = yes
+}
+
+create_order_of_eternal_night = {
+	create_star_rider_flotilla = yes
+}
+
+create_twilight_congregation = {
+	create_first_storm_wing = yes
+}
+
+create_marauder_raiders = {
+	if = {
+		limit = { years_passed < 40 }
+		create_first_storm_wing = yes
+		set_fleet_flag = marauder_raider_fleet_1
+	}
+	if = {
+		limit = {
+			years_passed > 39
+			years_passed < 60
+		}
+		create_star_rider_flotilla = yes
+		set_fleet_flag = marauder_raider_fleet_2
+	}
+	if = {
+		limit = {
+			years_passed > 59
+			years_passed < 80
+		}
+		create_armada_of_the_voidborn = yes
+		set_fleet_flag = marauder_raider_fleet_3
+	}
+	if = {
+		limit = { years_passed > 80 }
+		create_armada_of_the_voidborn = yes
+		set_fleet_flag = marauder_raider_fleet_4
+	}
+}
+
+spawn_borg_cube_mid_wave_at_location = {
+	create_fleet = {
+		name = "NAME_BORG_Wave_Fleet"
+		settings = {
+			spawn_debris = no
+			can_upgrade = no
+			can_disband = no
+			can_change_composition = no
+			can_change_leader = no
+		}
+
+		effect = {
+			set_owner = event_target:borg_crisis_country
+
+			create_ship = {
+				name = "NAME_FROM_BORG"
+				prefix = no
+				design = "NAME_BorgCube_mid"
+				graphical_culture = event_target:borg_crisis_country
+				initial_officers_perc = @starting_officers
+			}
+
+			set_location = {
+				target = $LOCATION$
+				distance = 300
+				angle = random
+			}
+
+			queue_actions = {
+				move_to = $LOCATION$
+			}
+		}
+	}
+}
+
+spawn_borg_cube_large_wave_at_location = {
+	create_fleet = {
+		name = "NAME_BORG_Wave_Fleet"
+		settings = {
+			spawn_debris = no
+			can_upgrade = no
+			can_disband = no
+			can_change_composition = no
+			can_change_leader = no
+		}
+
+		effect = {
+			set_owner = event_target:borg_crisis_country
+
+			while = {
+				count = 2
+				create_ship = {
+					name = "NAME_FROM_BORG"
+					prefix = no
+					design = "NAME_BorgCube_mid"
+					graphical_culture = event_target:borg_crisis_country
+					initial_officers_perc = @starting_officers
+				}
+			}
+
+			set_location = {
+				target = $LOCATION$
+				distance = 300
+				angle = random
+			}
+
+			queue_actions = {
+				move_to = $LOCATION$
+			}
+		}
+	}
+}
+
+cp26_create_compact_nausicaan_ships = {
+	while = {
+		count = $SMALL$
+		create_ship = {
+			name = random
+			design = "NAME_Small_Nausicaan"
+			prefix = no
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 1
+		}
+	}
+	while = {
+		count = $MEDIUM$
+		create_ship = {
+			name = random
+			design = "NAME_Medium_Nausicaan"
+			prefix = no
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 1
+		}
+	}
+	while = {
+		count = $LARGE$
+		create_ship = {
+			name = random
+			design = "NAME_Large_Nausicaan"
+			prefix = no
+			graphical_culture = nausicaan_01
+			initial_officers_perc = 1
+		}
+	}
+}
+
+create_1st_khan_fleet = {
+	create_fleet = {
+		name = "NAME_Chosen_of_the_Great_Khan"
+		effect = {
+			set_owner = event_target:raider_khanate
+			cp26_create_compact_nausicaan_ships = { SMALL = 5 MEDIUM = 4 LARGE = 3 }
+			assign_leader = last_created_leader
+			set_location = {
+				target = event_target:marauder_rally_point
+				distance = 45
+				angle = random
+			}
+		}
+		settings = {
+			can_upgrade = no
+			can_disband = no
+			can_change_composition = no
+			can_change_leader = no
+		}
+	}
+}
+
+create_2nd_khan_fleet = {
+	create_fleet = {
+		name = "NAME_Chosen_of_the_Great_Khan"
+		effect = {
+			set_owner = event_target:raider_khanate
+			cp26_create_compact_nausicaan_ships = { SMALL = 5 MEDIUM = 4 LARGE = 3 }
+			set_leader = exiled_khan
+			set_location = {
+				target = event_target:marauder_rally_point
+				distance = 45
+				angle = random
+			}
+		}
+		settings = {
+			can_upgrade = no
+			can_disband = no
+			can_change_composition = no
+			can_change_leader = no
+		}
+	}
+}
+
+create_marauder_fleet = {
+	create_leader = {
+		class = admiral
+		species = owner_main_species
+		name = random
+		skill = 3
+		leader_age_min = 25
+		leader_age_max = 45
+		traits = { trait = random_trait }
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:raider_khanate
+			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
+			assign_leader = last_created_leader
+			set_location = {
+				target = event_target:marauder_rally_point
+				distance = 45
+				angle = random
+			}
+		}
+		settings = {
+			can_upgrade = no
+			can_change_composition = no
+		}
+	}
+}
+
+create_small_marauder_auxiliaries = {
+	create_leader = {
+		class = admiral
+		species = event_target:satrapy_species
+		name = random
+		leader_age_min = 34
+		leader_age_max = 45
+		traits = { trait = random_trait }
+	}
+	create_fleet = {
+		name = "NAME_Horde_Auxiliary_Fleet"
+		effect = {
+			set_owner = event_target:raider_khanate
+			set_fleet_flag = horde_auxuliaries
+			cp26_create_compact_nausicaan_ships = { SMALL = 3 MEDIUM = 2 LARGE = 1 }
+			assign_leader = last_created_leader
+			set_location = { target = root distance = 10 angle = random }
+		}
+		settings = {
+			can_upgrade = no
+			can_disband = no
+			can_change_composition = no
+			can_change_leader = no
+		}
+	}
+}
+
+create_medium_marauder_auxiliaries = {
+	create_leader = {
+		class = admiral
+		species = event_target:satrapy_species
+		name = random
+		leader_age_min = 34
+		leader_age_max = 45
+		traits = { trait = random_trait }
+	}
+	create_fleet = {
+		name = "NAME_Horde_Auxiliary_Fleet"
+		effect = {
+			set_owner = event_target:raider_khanate
+			set_fleet_flag = horde_auxuliaries
+			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
+			assign_leader = last_created_leader
+			set_location = { target = root distance = 10 angle = random }
+		}
+		settings = {
+			can_upgrade = no
+			can_disband = no
+			can_change_composition = no
+			can_change_leader = no
+		}
+	}
+}
+
+create_large_marauder_auxiliaries = {
+	create_leader = {
+		class = admiral
+		species = event_target:satrapy_species
+		name = random
+		leader_age_min = 34
+		leader_age_max = 45
+		traits = { trait = random_trait }
+	}
+	create_fleet = {
+		name = "NAME_Horde_Auxiliary_Fleet"
+		effect = {
+			set_owner = event_target:raider_khanate
+			set_fleet_flag = horde_auxuliaries
+			cp26_create_compact_nausicaan_ships = { SMALL = 5 MEDIUM = 4 LARGE = 3 }
+			assign_leader = last_created_leader
+			set_location = { target = root distance = 10 angle = random }
+		}
+		settings = {
+			can_upgrade = no
+			can_disband = no
+			can_change_composition = no
+			can_change_leader = no
+		}
+	}
+}
+
+create_very_large_marauder_auxiliaries = {
+	create_leader = {
+		class = admiral
+		species = event_target:satrapy_species
+		name = random
+		traits = { trait = random_trait }
+	}
+	last_created_leader = { set_age = 37 }
+	create_fleet = {
+		name = "NAME_Horde_Auxiliary_Fleet"
+		effect = {
+			set_owner = event_target:raider_khanate
+			set_fleet_flag = horde_auxuliaries
+			cp26_create_compact_nausicaan_ships = { SMALL = 6 MEDIUM = 5 LARGE = 4 }
+			assign_leader = last_created_leader
+			set_location = { target = root distance = 10 angle = random }
+		}
+		settings = {
+			can_upgrade = no
+			can_disband = no
+			can_change_composition = no
+			can_change_leader = no
+		}
+	}
+}
+
+create_marauder_successor_fleet = {
+	random_owned_planet = { save_event_target_as = fleet_position }
+	create_leader = {
+		class = admiral
+		species = owner_main_species
+		name = random
+		skill = 3
+		leader_age_min = 25
+		leader_age_max = 45
+		traits = { trait = random_trait }
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev
+			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
+			assign_leader = last_created_leader
+			set_location = { target = event_target:fleet_position distance = 45 angle = random }
+		}
+		settings = {
+			can_upgrade = no
+			can_change_composition = no
+		}
+	}
+}
+
+swarm_vanguard = {
+	create_fleet = {
+		name = "NAME_Prethoryn_Vanguard"
+		effect = {
+			set_owner = PREV
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Small"
+					graphical_culture = "swarm_01"
+				}
+			}
+			set_location = { target = PREVPREV distance = 35 angle = random }
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+			set_fleet_bombardment_stance = armageddon
+		}
+	}
+}
+
+swarm_brood = {
+	create_fleet = {
+		name = "NAME_Prethoryn_Star_Brood"
+		effect = {
+			set_owner = event_target:prethoryn
+			create_ship = {
+				name = random
+				design = "NAME_Swarm_Queen"
+				graphical_culture = "swarm_01"
+			}
+			while = {
+				count = 2
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Large"
+					graphical_culture = "swarm_01"
+				}
+			}
+			while = {
+				count = 2
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Carrier"
+					graphical_culture = "swarm_01"
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Small"
+					graphical_culture = "swarm_01"
+				}
+			}
+			set_location = event_target:spawn_location
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+			set_fleet_bombardment_stance = armageddon
+		}
+	}
+}
+
+feral_prethoryn_garrison_1 = {
+	create_fleet = {
+		name = "NAME_Feral_Prethoryn"
+		effect = {
+			set_owner = event_target:feral_prethoryn
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Small"
+					graphical_culture = "swarm_01"
+				}
+			}
+			set_location = { target = prev distance = 35 angle = random }
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+		}
+		settings = { garrison = yes }
+	}
+}
+
+feral_prethoryn_garrison_2 = {
+	create_fleet = {
+		name = "NAME_Feral_Prethoryn"
+		effect = {
+			set_owner = event_target:feral_prethoryn
+			while = {
+				count = 3
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Large"
+					graphical_culture = "swarm_01"
+				}
+			}
+			while = {
+				count = 2
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Carrier"
+					graphical_culture = "swarm_01"
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Small"
+					graphical_culture = "swarm_01"
+				}
+			}
+			set_location = { target = prev distance = 35 angle = random }
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+		}
+		settings = { garrison = yes }
+	}
+}
+
+feral_prethoryn_roaming_1 = {
+	create_fleet = {
+		name = "NAME_Feral_Prethoryn"
+		effect = {
+			set_owner = event_target:feral_prethoryn
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					design = "NAME_Swarm_Small"
+					graphical_culture = "swarm_01"
+				}
+			}
+			set_location = { target = prev distance = 35 angle = random }
+			set_fleet_flag = roaming_prethoryn_fleet
+			set_fleet_stance = aggressive
+			set_aggro_range = 500
+			set_aggro_range_measure_from = self
+		}
+	}
+}

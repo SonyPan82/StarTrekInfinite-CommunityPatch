@@ -60,13 +60,19 @@ event = {
 		if = {
 			limit = { not = { exists = event_target:tholian_country }}			
 			every_system = {
-				limit = {
-					exists = space_owner
-					or = {
-						is_inside_border = event_target:ufop_country
-						is_inside_border = event_target:betazoid_country
+					limit = {
+						exists = space_owner
+						or = {
+							and = {
+								exists = event_target:ufop_country
+								is_inside_border = event_target:ufop_country
+							}
+							and = {
+								exists = event_target:betazoid_country
+								is_inside_border = event_target:betazoid_country
+							}
+						}
 					}
-				}
 				every_neighbor_system = {
 					limit = { is_not_used_space = yes }
 					set_star_flag = sf_tholiancandidate1
@@ -74,13 +80,19 @@ event = {
 				}
 			}
 			every_system = {
-				limit = {
-					exists = space_owner
-					or = {
-						is_inside_border = event_target:cardassian_country
-						is_inside_border = event_target:bajoran_country
+					limit = {
+						exists = space_owner
+						or = {
+							and = {
+								exists = event_target:cardassian_country
+								is_inside_border = event_target:cardassian_country
+							}
+							and = {
+								exists = event_target:bajoran_country
+								is_inside_border = event_target:bajoran_country
+							}
+						}
 					}
-				}
 				every_neighbor_system = {
 					limit = { is_not_used_space = yes }
 					set_star_flag = sf_tholiancandidate2
@@ -109,10 +121,11 @@ event = {
 				}				
 			}
 			
-			every_system = {
-				limit = {
-					is_inside_border = event_target:bajoran_country
-				}
+				every_system = {
+					limit = {
+						exists = event_target:bajoran_country
+						is_inside_border = event_target:bajoran_country
+					}
 				while = {
 					count = 2
 					random_neighbor_system = {
@@ -298,12 +311,18 @@ event = {
 			establish_communications_no_message = event_target:tholian_country
 		}
 
-		event_target:cardassian_country = {
-			add_intel = { amount = 35 who = event_target:tholian_country }
-		}		
-		event_target:ufop_country = {
-			add_intel = { amount = 35 who = event_target:tholian_country }
-		}
+			if = {
+				limit = { exists = event_target:cardassian_country }
+				event_target:cardassian_country = {
+					add_intel = { amount = 35 who = event_target:tholian_country }
+				}
+			}
+			if = {
+				limit = { exists = event_target:ufop_country }
+				event_target:ufop_country = {
+					add_intel = { amount = 35 who = event_target:tholian_country }
+				}
+			}
 
 		event_target:tholian_country = {
 			set_adjective = "Tholian"
@@ -316,23 +335,38 @@ event = {
 				give_technology = { tech = tech_reactor_2 message = no }
 				give_technology = { tech = tech_destroyer_unlock message = no }
 				give_technology = { tech = tech_cruiser_unlock message = no }
-				establish_contact = { who = event_target:ufop_country hidden = yes }
-			establish_communications_no_message = event_target:ufop_country
-			establish_contact = { who = event_target:cardassian_country hidden = yes }
-			establish_communications_no_message = event_target:cardassian_country
-			establish_contact = { who = event_target:romulan_country hidden = yes }
-			establish_communications_no_message = event_target:romulan_country
-			establish_contact = { who = event_target:klingon_country hidden = yes }
-			establish_communications_no_message = event_target:klingon_country
-			set_truce = {
-				target = event_target:ufop_country
-				type = none
-				start_date = 2345.06.03
-			}		
-			add_opinion_modifier = {
-				who = event_target:ufop_country
-				modifier = opinion_insult
-			}
+				if = {
+					limit = { exists = event_target:ufop_country }
+					establish_contact = { who = event_target:ufop_country hidden = yes }
+					establish_communications_no_message = event_target:ufop_country
+					set_truce = {
+						target = event_target:ufop_country
+						type = none
+						start_date = 2345.06.03
+					}
+				}
+				if = {
+					limit = { exists = event_target:cardassian_country }
+					establish_contact = { who = event_target:cardassian_country hidden = yes }
+					establish_communications_no_message = event_target:cardassian_country
+				}
+				if = {
+					limit = { exists = event_target:romulan_country }
+					establish_contact = { who = event_target:romulan_country hidden = yes }
+					establish_communications_no_message = event_target:romulan_country
+				}
+				if = {
+					limit = { exists = event_target:klingon_country }
+					establish_contact = { who = event_target:klingon_country hidden = yes }
+					establish_communications_no_message = event_target:klingon_country
+				}
+				if = {
+					limit = { exists = event_target:ufop_country }
+					add_opinion_modifier = {
+						who = event_target:ufop_country
+						modifier = opinion_insult
+					}
+				}
 			every_planet_within_border = {
 				limit = {
 					has_deposit_for = shipclass_mining_station
@@ -352,7 +386,7 @@ event = {
 					set_owner = prev
 
 					while = {
-						count = 4
+						count = 2
 						create_ship = {
 							name = random
 							random_existing_design = tholiancorvette

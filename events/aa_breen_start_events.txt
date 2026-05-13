@@ -53,28 +53,31 @@ event = {
 		if = {
 			limit = { not = { exists = event_target:breen_country }}
 
-			every_system = {
-				limit = {
-					is_inside_border = event_target:romulan_country
-				}
+				every_system = {
+					limit = {
+						exists = event_target:romulan_country
+						is_inside_border = event_target:romulan_country
+					}
 				every_neighbor_system = {
 					limit = { is_not_used_space = yes }
 					set_star_flag = sf_breencandidate1
 				}
 			}
-			every_system = {
-				limit = {
-					is_inside_border = event_target:cardassian_country
-				}
+				every_system = {
+					limit = {
+						exists = event_target:cardassian_country
+						is_inside_border = event_target:cardassian_country
+					}
 				every_neighbor_system = {
 					limit = { is_not_used_space = yes }
 					set_star_flag = sf_breencandidatex
 				}
 			}
-			every_system = {
-				limit = {
-					is_inside_border = event_target:cardassian_country
-					has_star_flag = colony
+				every_system = {
+					limit = {
+						exists = event_target:cardassian_country
+						is_inside_border = event_target:cardassian_country
+						has_star_flag = colony
 					any_system_planet = { has_planet_flag = planet_septimus }
 				}
 				every_neighbor_system = {
@@ -211,39 +214,63 @@ event = {
 				establish_communications_no_message = event_target:breen_country
 			}
 
-			event_target:breen_country = {
-				set_adjective = "Breen"
-				give_technology = { tech = tech_destroyer_unlock message = no }
-				give_technology = { tech = tech_cruiser_unlock message = no }
-				establish_contact = { who = event_target:ufop_country hidden = yes }
-				establish_communications_no_message = event_target:ufop_country
-				establish_contact = { who = event_target:cardassian_country hidden = yes }
-				establish_communications_no_message = event_target:cardassian_country
-				establish_contact = { who = event_target:romulan_country hidden = yes }
-				establish_communications_no_message = event_target:romulan_country
-				establish_contact = { who = event_target:klingon_country hidden = yes }
-				establish_communications_no_message = event_target:klingon_country
-				#every_first_contact = {
-				#	finish_first_contact = yes
-				#}
-				set_truce = {
-					target = event_target:cardassian_country
-					type = none
-					start_date = 2342.06.03
-				}
-				set_truce = {
-					target = event_target:romulan_country
-					type = none
-					start_date = 2343.06.03
-				}
-				add_opinion_modifier = {
-					who = event_target:romulan_country
-					modifier = opinion_insult
-				}
-				add_opinion_modifier = {
-					who = event_target:cardassian_country
-					modifier = opinion_insult
-				}
+				event_target:breen_country = {
+					set_adjective = "Breen"
+					give_technology = { tech = tech_destroyer_unlock message = no }
+					give_technology = { tech = tech_cruiser_unlock message = no }
+					if = {
+						limit = { exists = event_target:ufop_country }
+						establish_contact = { who = event_target:ufop_country hidden = yes }
+						establish_communications_no_message = event_target:ufop_country
+					}
+					if = {
+						limit = { exists = event_target:cardassian_country }
+						establish_contact = { who = event_target:cardassian_country hidden = yes }
+						establish_communications_no_message = event_target:cardassian_country
+					}
+					if = {
+						limit = { exists = event_target:romulan_country }
+						establish_contact = { who = event_target:romulan_country hidden = yes }
+						establish_communications_no_message = event_target:romulan_country
+					}
+					if = {
+						limit = { exists = event_target:klingon_country }
+						establish_contact = { who = event_target:klingon_country hidden = yes }
+						establish_communications_no_message = event_target:klingon_country
+					}
+					#every_first_contact = {
+					#	finish_first_contact = yes
+					#}
+					if = {
+						limit = { exists = event_target:cardassian_country }
+						set_truce = {
+							target = event_target:cardassian_country
+							type = none
+							start_date = 2342.06.03
+						}
+					}
+					if = {
+						limit = { exists = event_target:romulan_country }
+						set_truce = {
+							target = event_target:romulan_country
+							type = none
+							start_date = 2343.06.03
+						}
+					}
+					if = {
+						limit = { exists = event_target:romulan_country }
+						add_opinion_modifier = {
+							who = event_target:romulan_country
+							modifier = opinion_insult
+						}
+					}
+					if = {
+						limit = { exists = event_target:cardassian_country }
+						add_opinion_modifier = {
+							who = event_target:cardassian_country
+							modifier = opinion_insult
+						}
+					}
 
 				every_planet_within_border = {
 					limit = {
@@ -264,7 +291,7 @@ event = {
 						set_owner = prev
 
 						while = {
-							count = 4
+							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = breencorvette
@@ -272,7 +299,7 @@ event = {
 							}
 						}
 						while = {
-							count = 3
+							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = breendestroyer
@@ -290,23 +317,32 @@ event = {
 				}
 			}
 
-			event_target:ufop_country = {
-				add_intel = { amount = 15 who = event_target:breen_country }
-			}
-			event_target:cardassian_country = {
-				add_opinion_modifier = {
-					who = event_target:breen_country
-					modifier = opinion_insult
+				if = {
+					limit = { exists = event_target:ufop_country }
+					event_target:ufop_country = {
+						add_intel = { amount = 15 who = event_target:breen_country }
+					}
 				}
-				add_intel = { amount = 50 who = event_target:breen_country }
-			}
-			event_target:romulan_country = {
-				add_opinion_modifier = {
-					who = event_target:breen_country
-					modifier = opinion_insult
+				if = {
+					limit = { exists = event_target:cardassian_country }
+					event_target:cardassian_country = {
+						add_opinion_modifier = {
+							who = event_target:breen_country
+							modifier = opinion_insult
+						}
+						add_intel = { amount = 50 who = event_target:breen_country }
+					}
 				}
-				add_intel = { amount = 40 who = event_target:breen_country }
-			}
+				if = {
+					limit = { exists = event_target:romulan_country }
+					event_target:romulan_country = {
+						add_opinion_modifier = {
+							who = event_target:breen_country
+							modifier = opinion_insult
+						}
+						add_intel = { amount = 40 who = event_target:breen_country }
+					}
+				}
 		}
 	}
 }

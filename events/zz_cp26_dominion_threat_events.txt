@@ -788,7 +788,7 @@ country_event = {
 		# Jem'Hadar strike wing spawned at the investigation site
 		random_country = {
 			limit = { has_country_flag = the_dominion }
-			create_fleet_from_naval_cap = 0.05
+			create_fleet_from_naval_cap = 0.02
 			last_created_fleet = {
 				set_name = "Jem'Hadar Strike Wing"
 				set_location = event_target:cp26_colony_invest_system
@@ -1432,7 +1432,7 @@ country_event = {
 				save_event_target_as = cp26_cardassian_revolt_system
 			}
 		}
-		create_fleet_from_naval_cap = 0.05
+		create_fleet_from_naval_cap = 0.02
 		last_created_fleet = {
 			set_name = "Cardassian Resistance"
 			set_location = event_target:cp26_cardassian_revolt_system

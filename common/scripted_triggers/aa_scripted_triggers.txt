@@ -1,11 +1,43 @@
 is_not_used_space = {
 	not = { exists = space_owner }
-	not = { is_inside_border = event_target:cardassian_country }
-	not = { is_inside_border = event_target:bajoran_country }
-	not = { is_inside_border = event_target:ufop_country }
-	not = { is_inside_border = event_target:betazoid_country }
-	not = { is_inside_border = event_target:klingon_country }
-	not = { is_inside_border = event_target:romulan_country }
+	or = {
+		not = { exists = event_target:cardassian_country }
+		not = { is_inside_border = event_target:cardassian_country }
+	}
+	or = {
+		not = { exists = event_target:bajoran_country }
+		not = { is_inside_border = event_target:bajoran_country }
+	}
+	or = {
+		not = { exists = event_target:ufop_country }
+		not = { is_inside_border = event_target:ufop_country }
+	}
+	or = {
+		not = { exists = event_target:betazoid_country }
+		not = { is_inside_border = event_target:betazoid_country }
+	}
+	or = {
+		not = { exists = event_target:klingon_country }
+		not = { is_inside_border = event_target:klingon_country }
+	}
+	or = {
+		not = { exists = event_target:romulan_country }
+		not = { is_inside_border = event_target:romulan_country }
+	}
 	not = { has_star_flag = qt_ufop_blocked_neutral_zone }
 	not = { is_highway_node = yes }
+}
+
+cp26_is_non_hero_military_ship = {
+	is_ship_class = shipclass_military
+	NOT = {
+		OR = {
+			is_ship_size = voyager
+			is_ship_size = california_hero
+			is_ship_size = odyssey
+			is_ship_size = dderidex_hero
+			is_ship_size = enterprise
+			is_ship_size = enterprise_sovereign
+		}
+	}
 }

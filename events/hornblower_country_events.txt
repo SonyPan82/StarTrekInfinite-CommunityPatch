@@ -2491,7 +2491,7 @@ country_event = {
 					set_owner = root
 					
 					while = {
-						count = 7
+						count = 4
 
 						create_ship = {
 							name = ""
@@ -2569,7 +2569,7 @@ country_event = {
 					set_owner = root
 					
 					while = {
-						count = 4
+						count = 3
 
 						create_ship = {
 							name = ""
@@ -2646,7 +2646,7 @@ country_event = {
 					set_owner = root
 
 					while = {
-						count = 5
+						count = 3
 
 						create_ship = {
 							name = ""

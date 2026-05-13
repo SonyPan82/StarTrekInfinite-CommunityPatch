@@ -232,7 +232,7 @@ country_event = {
 		}
 		random_country = {
 			limit = { has_country_flag = the_dominion }
-			create_fleet_from_naval_cap = 0.03
+			create_fleet_from_naval_cap = 0.015
 			last_created_fleet = {
 				set_name = "Jem'Hadar Strike Force"
 				set_location = event_target:cp26_denorios_system

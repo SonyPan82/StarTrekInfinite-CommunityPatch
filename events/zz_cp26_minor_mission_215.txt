@@ -1,6 +1,224 @@
 namespace = cp26_minor_mission
 
 country_event = {
+	id = cp26_minor_mission.16
+	title = "cp26_minor_mission.16.name"
+	desc = "cp26_minor_mission.16.desc"
+	picture = GFX_evt_space_distress_ship_minor
+	show_sound = event_space_travel
+	location = event_target:minor_state_event_fleet
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { exists = event_target:minor_state_event_system }
+				event_target:minor_state_event_system = {
+					remove_star_flag = fleet_to_rescue_system
+				}
+			}
+
+			if = {
+				limit = { exists = event_target:minor_state_event_country }
+				finished_major_minor_mission = {
+					minor_country = event_target:minor_state_event_country
+					finished_successfully = yes
+				}
+				event_target:minor_state_event_country = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_success
+					}
+				}
+			}
+
+			rescue_minor_ship_sp_removed_effect = yes
+			first_contact_mission_extra_rewards = yes
+			mission_successful_gt_decrease = yes
+		}
+	}
+
+	option = {
+		name = cp26_minor_mission.16.a
+		custom_tooltip = cp26_minor_mission.16.a.tt
+		ai_chance = { factor = 1 }
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = { exists = event_target:minor_state_event_fleet }
+				destroy_fleet = event_target:minor_state_event_fleet
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_minor_mission.145
+	title = "cp26_minor_mission.145.name"
+	desc = "cp26_minor_mission.145.desc"
+	picture = GFX_evt_galactic_peace_summit_minor
+	show_sound = event_generic_popup
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = event_target:minor_state_vessel
+				}
+				destroy_ambient_object = event_target:minor_state_vessel
+			}
+			if = {
+				limit = {
+					exists = event_target:minor_state_event_country
+				}
+				finished_major_minor_mission = {
+					minor_country = event_target:minor_state_event_country
+					finished_successfully = no
+				}
+				event_target:minor_state_event_country = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_failure
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = cp26_minor_mission.145.a
+		custom_tooltip = cp26_minor_mission.145.a.tt
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = {
+	id = cp26_minor_mission.177
+	title = "cp26_minor_mission.177.name"
+	desc = "cp26_minor_mission.177.desc"
+	picture = GFX_evt_pc_barren_sky
+	show_sound = event_generic_popup
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_minor_mission.177.a
+		custom_tooltip = cp26_minor_mission.177.a.tt
+		ai_chance = { factor = 1 }
+	}
+
+	after = {
+		owner = {
+			if = {
+				limit = {
+					exists = event_target:planetary_inauguration_leader
+				}
+				event_target:planetary_inauguration_leader = {
+					leader = { add_experience = 100 }
+					hidden_effect = {
+						remove_trait = leader_trait_governor_inauguration_investigator
+					}
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_modifier = {
+				modifier = gov_remove_monthly_unity
+				years = 5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_minor_mission.214
+	title = "cp26_minor_mission.214.name"
+	desc = "cp26_minor_mission.214.desc"
+	show_sound = event_galactic_peace_summit
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+	picture = GFX_evt_pc_black_hole_sky
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = event_target:minor_state_event_country
+				}
+				finished_major_minor_mission = {
+					minor_country = event_target:minor_state_event_country
+					finished_successfully = yes
+				}
+				event_target:minor_state_event_country = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_success
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = event_target:minor_state_vessel
+				}
+				destroy_ambient_object = event_target:minor_state_vessel
+			}
+			first_contact_mission_extra_rewards = yes
+			mission_successful_gt_decrease = yes
+			remove_country_flag = dignitary_declined
+			remove_country_flag = dignitary_challenge
+		}
+	}
+
+	option = {
+		name = cp26_minor_mission.214.a
+		custom_tooltip = cp26_minor_mission.214.a.tt
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = {
+	id = cp26_minor_mission.75
+	title = "cp26_minor_mission.75.name"
+	desc = "cp26_minor_mission.75.desc"
+	picture = GFX_evt_ship_base_pirates
+	show_sound = event_the_pirate_rebellion
+	location = event_target:minor_state_event_planet
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { exists = event_target:minor_state_event_country }
+				finished_major_minor_mission = {
+					minor_country = event_target:minor_state_event_country
+					finished_successfully = no
+				}
+				event_target:minor_state_event_country = {
+					add_opinion_modifier = {
+						who = event_target:major_state_country
+						modifier = opinion_mipo_mission_failure
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = cp26_minor_mission.75.a
+		custom_tooltip = cp26_minor_mission.75.a.tt
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = {
 	id = cp26_minor_mission.215
 	title = "cp26_minor_mission.215.name"
 	desc = "cp26_minor_mission.215.desc"

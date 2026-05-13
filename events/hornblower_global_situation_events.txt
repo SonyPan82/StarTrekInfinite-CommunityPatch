@@ -7357,7 +7357,7 @@ country_event = {
 
 		#CREATE DEFENSE PLATFORMS
 		while = {
-			count = 10
+			count = 4
 			random_owned_starbase = {
 				limit = {
 					has_starbase_size > starbase_outpost

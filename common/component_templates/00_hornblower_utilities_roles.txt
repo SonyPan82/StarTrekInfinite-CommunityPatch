@@ -11,7 +11,7 @@
 #############
 # OFFICERS  #
 #############
-@operative_officers1 = -10
+@operative_officers1 = 0
 
 ################
 # HRB DEFAULTS #
