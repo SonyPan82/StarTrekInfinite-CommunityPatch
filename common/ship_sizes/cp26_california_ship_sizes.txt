@@ -91,6 +91,8 @@ california_hero = {
 	# CP26 fix : was ship_shield_mult = 0.9 (likely typo for -0.1, broke balance with +90% shields).
 	# Aligned with Dderidex_hero pattern (no_admiral penalties) and slightly nerfed hull to
 	# reflect California's utility-cruiser lore (not a frontline capital ship).
+	# CP26 2026-05-14 : ship_speed_mult passé de 1 (+100%, second typo de la même série)
+	# à -0.1 pour rester cohérent avec le reste du bloc "no_admiral penalties".
 	ship_modifier = {
 		ship_evasion_add = 48
 		ship_fire_rate_mult = -0.1
@@ -99,7 +101,7 @@ california_hero = {
 		ship_shield_penetration_mult = -0.1
 		ship_tracking_mult = -0.1
 		ship_hull_mult = -0.1
-		ship_speed_mult = 1
+		ship_speed_mult = -0.1
 	}
 
 	size_multiplier = 1

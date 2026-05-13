@@ -106,7 +106,7 @@ contender = {
 						factor = 0
 						has_country_id = "tholian"
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -128,7 +128,7 @@ contender = {
 						factor = 0
 						has_country_id = "tholian"
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -155,7 +155,7 @@ contender = {
 						factor = 0
 						has_country_id = "tholian"
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -176,7 +176,7 @@ contender = {
 						factor = 0
 						has_country_id = "gorn"
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -198,7 +198,7 @@ contender = {
 						factor = 0
 						has_country_id = "gorn"
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -225,7 +225,7 @@ contender = {
 						factor = 0
 						has_country_id = "gorn"
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -246,7 +246,7 @@ contender = {
 						factor = 0
 						has_country_id = "orion"
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -268,7 +268,7 @@ contender = {
 						factor = 0
 						has_country_id = "orion"
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -295,7 +295,7 @@ contender = {
 						factor = 0
 						has_country_id = "orion"
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -316,7 +316,7 @@ contender = {
 						factor = 0
 						has_country_id = "breen"
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -338,7 +338,7 @@ contender = {
 						factor = 0
 						has_country_id = "breen"
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -365,7 +365,7 @@ contender = {
 						factor = 0
 						has_country_id = "breen"
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -384,7 +384,7 @@ contender = {
 					modifier = {
 						factor = 0
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -409,7 +409,7 @@ contender = {
 					modifier = {
 						factor = 0
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -438,7 +438,7 @@ contender = {
 					modifier = {
 						factor = 0
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}

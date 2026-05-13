@@ -37,6 +37,37 @@ important "over naval capacity" spending logic is commented. Rebuilding the
 system through ai_budget or resource costs is risky and can destabilize
 construction queues. That path was rejected.
 
+ai_budget = crash confirmé : tentatives passées de scripter un soft cap via
+common/ai_budget/*.txt ont produit des SIGSEGV dans CConstructionQueueManager::
+DailyUpdate et CSaveGameTaskManager::CreateMemoryFiles. La queue de
+construction interne du moteur ne supporte pas qu'un script lui dicte de
+"vendre des alloys au-dessus du cap" — elle déréfère un pointeur invalide
+quand un AI sous-priorise un building. Voir CP26_CONSTRUCTION_QUEUE_CRASH_FIX
+pour le pattern.
+
+Donc la stratégie EFFECTIVE est :
+   - Pas de manipulation de naval_cap.
+   - Pas d'ai_budget custom.
+   - PRESSION OFFICIERS : le système natif d'Infinite suffit. Les ships
+     consomment des officiers (variable d'empire affichée en top-bar). Une
+     flotte sous-officiée tire moins (jusqu'à -125% fire rate clampé à 0%
+     sans officiers, voir defines OFFICERS_MAX_FIRE_RATE_PENALTY). L'AI
+     préfère donc maintenir des flottes compactes correctement crewées
+     plutôt que d'empiler des hulls vides.
+   - COMMAND_LIMIT plus bas : limite per-fleet à 18 (base) + 27 (max bonus
+     amiral) = 45 absolu. Force la fragmentation en plusieurs flottes ou
+     l'arrêt de production.
+   - CAPS ship_data : factor=0 dans le ship_data quand l'AI a déjà 15+ ships
+     militaires (cible design alignée 2026-05-14). Pas un hard cap (l'AI
+     peut overshoot en chantier), mais une pression de préférence forte.
+   - DOCTRINES de combat : 4 minor factions sont plus puissantes par hull
+     (Gorn lourd, Tholian shields, Orion punchy, Breen armor) → quantité
+     compensée par qualité.
+   - SPAWNS SCRIPTÉS COMPACTÉS : crises (Borg/Prethoryn/Khan), marauders,
+     mercenary, faction start fleets — réduits à la source.
+
+Le tout = soft cap multi-couches sans toucher au moteur de queue.
+
 Why not command limit alone
 ---------------------------
 Command limit exists, but it is a per-fleet limit. Lowering it alone can make
@@ -93,13 +124,20 @@ Implemented changes
 
    Changes:
    - min_navy_for_wars reduced to 0.14.
-   - Small military hulls stop being preferred once the AI has about 8 military
-     ships.
+   - Small military hulls stop being preferred once the AI has about 6 military
+     ships (was 8 before 2026-05-14 audit).
    - Medium/heavy/titan-style military hulls now stop being preferred once the
-     AI has about 18 military ships. This small headroom prevents an AI with an
-     old small-hull navy from being stuck and unable to add newer heavy hulls.
+     AI has about 15 military ships (was 18 before 2026-05-14 audit).
+   - 2026-05-14 update : seuils baissés de 18→15 et 8→6 pour absorber l'overshoot
+     dû au fait que count_owned_ship ne compte pas les ships en chantier. Avec
+     un buffer typique de 3-4 ships en queue, le réel final atterit autour de
+     18-19 ships militaires (≈ ancien comportement nominal "à 18 fixe" mais
+     cible design désormais alignée sur 15).
    - This applies to Federation, Klingon, Romulan, Cardassian, minor, Nausicaan
      and crisis ship_data entries present in the default country type.
+   - California (utility class) est désormais EXCLU de la cap militaire via
+     le trigger cp26_is_non_hero_military_ship (2026-05-14 audit). Avant, le
+     min=1/max=2 forcé consommait 1-2 slots du cap "vrais military".
 
 5. AI production model adjusted for contenders/minor factions.
    File:
@@ -107,11 +145,13 @@ Implemented changes
 
    Changes:
    - min_navy_for_wars reduced to 0.18.
-   - Gorn, Breen, Orion and Tholian small hulls stop around 8 military ships.
-   - Their medium/heavy hulls stop around 18 military ships, for the same
-     replacement-headroom reason.
+   - Gorn, Breen, Orion and Tholian small hulls stop around 6 military ships
+     (was 8 before 2026-05-14 audit).
+   - Their medium/heavy hulls stop around 15 military ships (was 18 before
+     2026-05-14 audit), aligned with the Nausicaan fallback.
    - Generic Nausicaan fallback contender fleets also stop around 15 military
-     ships.
+     ships (inchangé — c'était déjà 15 ; les autres caps ont été ramenées au
+     même seuil pour cohérence).
 
 6. Military spending reduced for compact-fleet factions.
    Files:

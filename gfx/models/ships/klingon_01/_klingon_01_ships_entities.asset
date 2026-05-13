@@ -1132,7 +1132,11 @@ entity = {
 	name = "klingon_01_military_station_small_entity"
 	pdxmesh = "klingon_01_military_station_mesh"
 
-	# locator = { name = "part1" 			position = { 0 	0 	0 } }
+	# CP26 fix (2026-05-14) : missing part1/part2 locators caused heap corruption
+	# and SIGABRT during CullAndUpdateEntitiesRecursive after enough render passes.
+	# Vanilla had part1 commented out; engine actually queries part2 → adding both.
+	locator = { name = "part1" 			position = { 0 0 0 } }
+	locator = { name = "part2" 			position = { 0 0 0 } }
 
 	default_state = "idle"
 

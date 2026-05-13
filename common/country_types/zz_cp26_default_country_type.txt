@@ -218,7 +218,7 @@ default = {
 						factor = 0
 						is_ufop = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -240,7 +240,7 @@ default = {
 						factor = 0
 						is_ufop = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -258,7 +258,7 @@ default = {
 						factor = 0
 						is_ufop = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -281,7 +281,7 @@ default = {
 						factor = 0
 						is_ufop = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -309,7 +309,7 @@ default = {
 						factor = 0
 						is_ufop = yes
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -357,7 +357,7 @@ default = {
 						factor = 0
 						is_ufop = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -401,7 +401,7 @@ default = {
 						factor = 0
 						is_klingon = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -423,7 +423,7 @@ default = {
 						factor = 0
 						is_klingon = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -441,7 +441,7 @@ default = {
 						factor = 0
 						is_klingon = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -464,7 +464,7 @@ default = {
 						factor = 0
 						is_klingon = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -492,7 +492,7 @@ default = {
 						factor = 0
 						is_klingon = yes
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -546,7 +546,7 @@ default = {
 						factor = 0
 						is_romulan = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -567,7 +567,7 @@ default = {
 						factor = 0
 						is_romulan = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -585,7 +585,7 @@ default = {
 						factor = 0
 						is_romulan = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -608,7 +608,7 @@ default = {
 						factor = 0
 						is_romulan = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -636,7 +636,7 @@ default = {
 						factor = 0
 						is_romulan = yes
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -681,7 +681,7 @@ default = {
 						factor = 0
 						is_cardassian = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -703,7 +703,7 @@ default = {
 						factor = 0
 						is_cardassian = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -721,7 +721,7 @@ default = {
 						factor = 0
 						is_cardassian = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -744,7 +744,7 @@ default = {
 						factor = 0
 						is_cardassian = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -772,7 +772,7 @@ default = {
 						factor = 0
 						is_cardassian = yes
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -815,7 +815,7 @@ default = {
 						factor = 0
 						is_minor = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -837,7 +837,7 @@ default = {
 						factor = 0
 						is_minor = yes
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -864,7 +864,7 @@ default = {
 						factor = 0
 						is_minor = yes
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -898,7 +898,7 @@ default = {
 						factor = 0
 						has_country_flag = nausicaan
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -920,7 +920,7 @@ default = {
 						factor = 0
 						has_country_flag = nausicaan
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -947,7 +947,7 @@ default = {
 						factor = 0
 						has_country_flag = nausicaan
 						count_owned_ship = {
-							count >= 8
+							count >= 6
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -980,7 +980,7 @@ default = {
 					modifier = {
 						factor = 0
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -996,7 +996,7 @@ default = {
 					modifier = {
 						factor = 0
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}
@@ -1016,7 +1016,7 @@ default = {
 					modifier = {
 						factor = 0
 						count_owned_ship = {
-							count >= 18
+							count >= 15
 							limit = { cp26_is_non_hero_military_ship = yes }
 						}
 					}

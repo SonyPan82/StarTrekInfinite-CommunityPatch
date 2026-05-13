@@ -668,11 +668,11 @@ trait_enlightened_jnaii = {
 }
 
 trait_conformist_jnaii = {
-	cost = 2
+	cost = -1
 	potential_crossbreeding_chance = 1.0
 	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_adaptive_lithoid" }
 	allowed_archetypes = { BIOLOGICAL }
 	modifier = {
-		planet_stability_add = 0.10
+		planet_jobs_specialist_produces_mult = -0.10
 	}
 }

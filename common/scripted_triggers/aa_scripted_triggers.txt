@@ -30,9 +30,17 @@ is_not_used_space = {
 
 cp26_is_non_hero_military_ship = {
 	is_ship_class = shipclass_military
+	# CP26 2026-05-14 : exclu également de la cap military les vaisseaux utility
+	# qui sont déclarés shipclass_military mais is_civilian = yes (rôle support
+	# uniquement, jamais en frontline). California (Lower Decks utility cruiser)
+	# est dans ce cas — voir cp26_california_ship_sizes.txt:1-77 (class=shipclass_military
+	# + is_civilian=yes). Sans cette exclusion, le min=1/max=2 forcé du
+	# ship_data UFOP consommait 1-2 slots du cap de 15-18 dédiés aux vrais
+	# vaisseaux de combat.
 	NOT = {
 		OR = {
 			is_ship_size = voyager
+			is_ship_size = california
 			is_ship_size = california_hero
 			is_ship_size = odyssey
 			is_ship_size = dderidex_hero

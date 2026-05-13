@@ -1,6 +1,17 @@
 # CP26 reduced-fleet scale overrides.
 # These effects replace high-volume vanilla/Infinite scripted spawns with
 # compact task forces so late-game object counts stay sane.
+#
+# Paliers command_limit utilisés ci-dessous, calibrage vs defines :
+#   COMMAND_LIMIT_BASE = 18 (zz_cp26_reduced_fleet_scale_defines.txt)
+#   COMMAND_LIMIT_MAX  = 45
+#
+#   <= 20   → empire fresh ou avec petit bonus amiral (le plus fréquent)
+#   <= 35   → empire avec amiral expérimenté / techs de fleet command
+#   else    → empire avec stack maximal de bonus (rare, ~command_limit 36-45)
+#
+# Le palier le plus haut est volontairement laissé en "else" (pas <=45) pour
+# absorber tout éventuel modifier exotique qui pousserait au-delà du MAX engine.
 
 create_war_situation_mercenary_fleet_effect = {
 	IF = {

@@ -20,13 +20,13 @@ country_event = {
 					set_closed_borders = {
 						who = prev
 						status = no
-						forced = 5
+						forced = 35
 					}
 				}
 				set_closed_borders = {
 					who = event_target:cp26_war_access_country
 					status = no
-					forced = 5
+					forced = 35
 				}
 			}
 		}
@@ -37,13 +37,15 @@ country_event = {
 			set_closed_borders = {
 				who = event_target:cp26_war_access_country
 				status = no
-				forced = 5
+				forced = 35
 			}
 		}
 	}
 }
 
 # Keeps active wars traversable, including wars already running when CP26 is loaded.
+# CP26 2026-05-14 : déclenché mensuellement (vs daily) avec forced=35 pour couvrir
+# le cycle de 30 jours + 5 de buffer. cf zz_cp26_war_access_on_actions.txt.
 country_event = {
 	id = cp26_war_access.2
 	hide_window = yes
@@ -66,13 +68,13 @@ country_event = {
 					set_closed_borders = {
 						who = prev
 						status = no
-						forced = 5
+						forced = 35
 					}
 				}
 				set_closed_borders = {
 					who = event_target:cp26_war_access_country
 					status = no
-					forced = 5
+					forced = 35
 				}
 			}
 		}
@@ -83,7 +85,7 @@ country_event = {
 			set_closed_borders = {
 				who = event_target:cp26_war_access_country
 				status = no
-				forced = 5
+				forced = 35
 			}
 		}
 	}
