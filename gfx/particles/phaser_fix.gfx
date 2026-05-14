@@ -1,0 +1,9 @@
+objectTypes = {
+
+	# CP26 — Canon VFX phaser muzzle: entity phaser_fix.asset references this particle name.
+	pdxparticle = {
+		name = "phaser_fix_muzzle_particle"
+		type = "particle_lance_muzzle"
+		scale = 1.1
+	}
+}

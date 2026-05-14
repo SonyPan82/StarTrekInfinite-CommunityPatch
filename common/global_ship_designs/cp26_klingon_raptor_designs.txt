@@ -1,0 +1,73 @@
+# CP26 — Klingon Raptor
+
+ship_design = {
+	name = "NAME_CP26_Klingon_Raptor"
+	ship_size = cp26_klingon_raptor
+	is_event_design = yes
+
+	section = {
+		template = "CP26_KLINGON_RAPTOR_MID"
+		slot = "mid"
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_PLASMA_LAUNCHER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PLASMA_LAUNCHER"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "SMALL_NEGATRON_DISRUPTOR"
+		}
+
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "SMALL_NEGATRON_DISRUPTOR"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_4"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_5"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_1"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_2"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_3"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "CLOAKING_DEVICE_1"
+		}
+	}
+
+	required_component = "DESTROYER_FUSION_REACTOR"
+	required_component = "WARP_DRIVE_1"
+	required_component = "DESTROYER_IMPULSE_ENGINE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT"
+}

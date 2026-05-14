@@ -428,6 +428,22 @@ country_event = {
 		custom_tooltip = mission.17.d.tt
 	}
 
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = MIPO_MISSION_GENERIC_OPTION
+		custom_tooltip = MIPO_MISSION_GENERIC_OPTION_TT
+		ai_chance = {
+			factor = 100
+		}
+	}
+
 	after = {
 		# Harm Relations Minor State
 		event_target:minor_state_event_country = {
@@ -695,6 +711,24 @@ country_event = {
 		trigger = { is_cardassian = yes }
 		name = mission.25.d
 		custom_tooltip = mission.25.d.tt
+	}
+
+	# CP26 — Talarian and other « major » minors use this mission chain but are not
+	# UFOP/Klingon/Romulan/Cardassian; without this option the event has no valid choice for AI.
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = mission.25.e
+		custom_tooltip = mission.25.e.tt
+		ai_chance = {
+			factor = 100
+		}
 	}
 	
 	after = {
@@ -1202,6 +1236,22 @@ country_event = {
 		trigger = { is_cardassian = yes }
 		name = mission.44.d
 		custom_tooltip = mission.44.d.tt
+	}
+
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = MIPO_MISSION_GENERIC_OPTION
+		custom_tooltip = MIPO_MISSION_GENERIC_OPTION_TT
+		ai_chance = {
+			factor = 100
+		}
 	}
 
 	after = {
@@ -2321,6 +2371,22 @@ country_event = {
 		name = mission.85.d
 		custom_tooltip = mission.85.d.tt
 	}
+
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = MIPO_MISSION_GENERIC_OPTION
+		custom_tooltip = MIPO_MISSION_GENERIC_OPTION_TT
+		ai_chance = {
+			factor = 100
+		}
+	}
 	
 	after = {
 		# Improve Relations Minor State
@@ -3329,8 +3395,9 @@ country_event = {
 				is_minor = yes
 				NOR = {
 					is_same_value = event_target:minor_state_event_country
-					is_same_value = event_target:minor_state_event_country_3rd_party
 				}
+				# CP26: do not reference minor_state_event_country_3rd_party here — it is often
+				# never saved, which logs "Undefined event target" and breaks the limit.
 			}
 			save_event_target_as = minor_state_event_country_4th_party
 		}
@@ -7123,6 +7190,22 @@ country_event = {
 		name = mission.204.d
 		custom_tooltip = mission.204.d.tt
 	}
+
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = MIPO_MISSION_GENERIC_OPTION
+		custom_tooltip = MIPO_MISSION_GENERIC_OPTION_TT
+		ai_chance = {
+			factor = 100
+		}
+	}
 }
 
 #######################
@@ -7318,6 +7401,22 @@ country_event = {
 		name = mission.214.d
 		custom_tooltip = mission.214.d.tt
 	}
+
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = MIPO_MISSION_GENERIC_OPTION
+		custom_tooltip = MIPO_MISSION_GENERIC_OPTION_TT
+		ai_chance = {
+			factor = 100
+		}
+	}
 	
 	after = {
 		# Improve Relations Minor State
@@ -7448,6 +7547,33 @@ country_event = {
 
 		hidden_effect = {
 			remove_country_flag = dignitary_declined
+		}
+	}
+
+	### Non–great-power majors (and edge cases): acknowledge outcome and clear flags.
+	option = {
+		trigger = {
+			NOR = {
+				is_ufop = yes
+				is_klingon = yes
+				is_romulan = yes
+				is_cardassian = yes
+			}
+		}
+		name = MIPO_MISSION_GENERIC_OPTION
+		custom_tooltip = MIPO_MISSION_GENERIC_OPTION_TT
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = dignitary_declined }
+				remove_country_flag = dignitary_declined
+			}
+			if = {
+				limit = { has_country_flag = dignitary_challenge }
+				remove_country_flag = dignitary_challenge
+			}
 		}
 	}
 

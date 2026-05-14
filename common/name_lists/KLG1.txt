@@ -62,7 +62,13 @@ KLG1 = {
 			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
 			Malpara Gr'oth K'Tanco Par'tok 
 		}
-		
+
+		cp26_klingon_raptor = {
+			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
+			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem
+			Malpara Gr'oth K'Tanco Par'tok 
+		}
+
 		ktinga = {
 			Fek'Ihr Goroth Hor'Cha K'mpec Laneth ShiVang Iwmang SuvwI' Ip Suto'vo'qor Murgagh Chamartas Mat'Ihr Ivoth Aleth GasVang Sar'Cha Adr'Ihr Ja'mpec Gab'tem Cha'ruk Marianar Anra'Var Abruthos Jon'tok Grethga Qo'tang Garros Yrdos Rachta 
 			Koraga Pagh Bor'Tas Klothos Groth Amar T'Acog T'Ong B'Moth Korinar Qevin M'Char Buruk Ch'Tang Rotarran Etam Ma'Para Vorn Hegh'ta Ning'Tau Ki'Tang Orantho SamRaH Vor'nak Drovna Yavang Maht-H'a P'Rang Qu'Vat Toh'Kaht Bortas Silvin Y'tem

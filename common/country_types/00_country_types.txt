@@ -490,6 +490,26 @@ default = {
 				}
 			}
 
+			cp26_klingon_raptor = {
+				fraction = {
+					modifier = {
+						add = 40
+						has_technology = tech_cp26_klingon_raptor_unlock
+						is_klingon = yes
+					}
+					modifier = {
+						add = -12
+						has_technology = tech_cruiser_unlock
+						is_klingon = yes
+					}
+					modifier = {
+						add = -8
+						has_technology = tech_battleship_unlock
+						is_klingon = yes
+					}
+				}
+			}
+
 			bird_of_prey = {
 				fraction = {
 					base = 35

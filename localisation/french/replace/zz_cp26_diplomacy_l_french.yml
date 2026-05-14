@@ -16,6 +16,7 @@
  ACTION_start_puppet_state_process_OFFER_DESC:0 "§H[Actor.GetName]§! propose que nous devenions son vassal."
  ACTION_start_puppet_state_process_COST:0 "$ACTION_START_PUPPET_STATE_PROCESS_DESC$"
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_TYPE:0 "Demander la capitulation"
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE:0 "Demander la capitulation"
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_TITLE:0 "Proposer d'accepter le but de guerre"
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_DESC:0 "Propose à §H[Recipient.GetName]§! d'accepter notre but de guerre. L'empire ciblé peut accepter ou refuser."
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_OFFER_DESC:0 "§H[Actor.GetName]§! propose que nous acceptions son but de guerre."

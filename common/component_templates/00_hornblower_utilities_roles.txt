@@ -214,7 +214,7 @@ utility_component_template = {
 	# HRB_TODO: no restriction for now
 	size_restriction = {
 		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
-		bird_of_prey warbird ktinga kvort kamarag # KLINGON
+		bird_of_prey warbird ktinga kvort kamarag cp26_klingon_raptor # KLINGON
 		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
@@ -259,7 +259,7 @@ utility_component_template = {
 	# HRB_TODO: no restriction for now
 	size_restriction = {
 		miranda defiant intrepid california  # UFOP
-		warbird bird_of_prey # KLINGON
+		warbird bird_of_prey cp26_klingon_raptor # KLINGON
 		ferrax vindius # ROMULAN
 		hideki galor # CARDASSIAN
 		small_minor medium_minor # MINORS
@@ -1051,7 +1051,7 @@ utility_component_template = {
 	# HRB_TODO: no restriction for now
 	size_restriction = {
 		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
-		bird_of_prey warbird ktinga kvort kamarag # KLINGON
+		bird_of_prey warbird ktinga kvort kamarag cp26_klingon_raptor # KLINGON
 		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
@@ -1096,7 +1096,7 @@ utility_component_template = {
 	# HRB_TODO: no restriction for now
 	size_restriction = {
 		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
-		bird_of_prey warbird ktinga kvort kamarag # KLINGON
+		bird_of_prey warbird ktinga kvort kamarag cp26_klingon_raptor # KLINGON
 		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
@@ -1240,7 +1240,7 @@ utility_component_template = {
 	# HRB_TODO: no restriction for now
 	size_restriction = {
 		miranda defiant intrepid california  # UFOP
-		warbird bird_of_prey # KLINGON
+		warbird bird_of_prey cp26_klingon_raptor # KLINGON
 		ferrax vindius # ROMULAN
 		hideki galor # CARDASSIAN
 		small_minor medium_minor # MINORS
@@ -1284,7 +1284,7 @@ utility_component_template = {
 	# HRB_TODO: no restriction for now
 	size_restriction = {
 		miranda defiant intrepid california  # UFOP
-		warbird bird_of_prey # KLINGON
+		warbird bird_of_prey cp26_klingon_raptor # KLINGON
 		ferrax vindius # ROMULAN
 		hideki galor # CARDASSIAN
 		small_minor medium_minor # MINORS

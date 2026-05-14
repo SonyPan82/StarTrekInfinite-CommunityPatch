@@ -77,3 +77,43 @@ tech_cp26_kvort_unlock = {
 		}
 	}
 }
+
+tech_cp26_klingon_raptor_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_destroyer_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_klingon = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_klingon = yes
+		}
+		title = tech_cp26_klingon_raptor
+		desc = tech_cp26_klingon_raptor_desc
+		icon = tech_big_bomb_1
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_CP26_KLINGON_RAPTOR_CONSTRUCTION_TITLE
+				desc = tech_cp26_klingon_raptor_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1
+			years_passed < 6
+		}
+		modifier = {
+			factor = 5
+			years_passed > 8
+		}
+	}
+}

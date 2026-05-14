@@ -1,0 +1,10 @@
+entity = {
+	name = "phaser_fix_muzzle_entity"
+	cull_radius = 2.0
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 0.8 looping = no
+		event = { time = 0 particle = "phaser_fix_muzzle_particle" keep_particle = yes sound = { soundeffect = energy_lance_fire } }
+		event = { trigger_once = yes sound = { soundeffect = "distance_energy_lance_fire" } }
+	}
+}

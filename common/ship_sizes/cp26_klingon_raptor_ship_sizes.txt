@@ -1,0 +1,98 @@
+# CP26 — Klingon Raptor (destroyer-tier military hull)
+
+@base_operative_officers = 20
+@base_officers_escape_perc = 15
+
+@destroyer_size_icon_frame = 3
+
+cp26_klingon_raptor = {
+	formation_priority = @warbird_formation_priority
+	max_speed = @warbird_speed
+	acceleration = 0.28
+	rotation_speed = 0.3
+	collision_radius = @warbird_collision_radius
+	max_hitpoints = @warbird_hp
+	operative_officers = @base_operative_officers
+	officers_escape_perc = @base_officers_escape_perc
+	fleet_view_background = "military_warbird"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @no_admiral_fire_rate_mult
+		ship_shield_mult = @no_admiral_shield_mult
+		ship_shield_damage_mult = @no_admiral_shield_damage_mult
+		ship_shield_penetration_mult = @no_admiral_shield_penetration_mult
+		ship_tracking_mult = @no_admiral_tracking_mult
+		ship_evasion_add = @warbird_evasion
+	}
+
+	size_multiplier = 3
+	fleet_slot_size = 2
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = @destroyer_size_icon_frame
+	base_buildtime = @warbird_build_time
+	can_have_federation_design = yes
+	enable_default_design = no
+
+	default_behavior = "hrb_interceptor"
+
+	prerequisites = { "tech_cp26_klingon_raptor_unlock" }
+
+	potential_country = {
+		has_country_id = klingon
+	}
+
+	combat_disengage_chance = 0.45
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @warbird_upkeep_deuterium
+		}
+
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+
+		upkeep = {
+			alloys = @warbird_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}

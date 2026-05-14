@@ -1,0 +1,22 @@
+objectTypes = {
+
+	pdxmesh = {
+		name = "cp26_klingon_raptor_mesh"
+		file = "gfx/models/ships/klingon_01/cp26_kli_raptor_ship.mesh"
+		scale = 0.55
+
+		animation = { id = "idle"			type = "medium_idle_animation" }
+		animation = { id = "death"			type = "medium_death_animation" }
+		animation = { id = "warp_01"			type = "medium_warp_01_animation" }
+		animation = { id = "warp_02"			type = "medium_warp_02_animation" }
+		animation = { id = "warp_03"			type = "medium_warp_03_animation" }
+
+		meshsettings = {
+			texture_diffuse = "cp26_kli_raptor_diffuse.dds"
+			texture_normal = "cp26_kli_raptor_normal.dds"
+			texture_specular = "cp26_kli_raptor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+
+}
