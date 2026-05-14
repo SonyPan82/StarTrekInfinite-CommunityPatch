@@ -58,12 +58,12 @@ contender = {
 		ship_data = {
 			constructor = {
 				min = 2
-				max = 2
+				max = 3
 			}
 
 			science	= {
 				min = 2
-				max = 2
+				max = 3
 			}
 
 			colonizer = {
@@ -102,14 +102,6 @@ contender = {
 			
 			tholianbattleship = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "tholian"
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 0
 					modifier = {
 						add = 14
@@ -124,14 +116,6 @@ contender = {
 
 			tholiandestroyer = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "tholian"
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 0
 					modifier = {
 						add = 30
@@ -151,14 +135,6 @@ contender = {
 
 			tholiancorvette = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "tholian"
-						count_owned_ship = {
-							count >= 6
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 55
 					modifier = {
 						add = -25
@@ -172,14 +148,6 @@ contender = {
 			
 			gornbattleship = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "gorn"
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 0
 					modifier = {
 						add = 14
@@ -194,14 +162,6 @@ contender = {
 
 			gorndestroyer = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "gorn"
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 0
 					modifier = {
 						add = 30
@@ -221,14 +181,6 @@ contender = {
 
 			gorncorvette = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "gorn"
-						count_owned_ship = {
-							count >= 6
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 55
 					modifier = {
 						add = -25
@@ -242,14 +194,6 @@ contender = {
 			
 			orionbattleship = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "orion"
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 0
 					modifier = {
 						add = 12
@@ -264,14 +208,6 @@ contender = {
 
 			oriondestroyer = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "orion"
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 0
 					modifier = {
 						add = 32
@@ -291,14 +227,6 @@ contender = {
 
 			orioncorvette = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "orion"
-						count_owned_ship = {
-							count >= 6
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 60
 					modifier = {
 						add = -25
@@ -312,14 +240,6 @@ contender = {
 			
 			breenbattleship = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "breen"
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 0
 					modifier = {
 						add = 14
@@ -334,14 +254,6 @@ contender = {
 
 			breendestroyer = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "breen"
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 0
 					modifier = {
 						add = 30
@@ -361,14 +273,6 @@ contender = {
 
 			breencorvette = {
 				fraction = {
-					modifier = {
-						factor = 0
-						has_country_id = "breen"
-						count_owned_ship = {
-							count >= 6
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 55
 					modifier = {
 						add = -25
@@ -381,13 +285,6 @@ contender = {
 			### Default for contenders without own shipset ###
 			large_nausicaan = {
 				fraction = {
-					modifier = {
-						factor = 0
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					modifier = {
 						factor = 0
 						or = {
@@ -406,13 +303,6 @@ contender = {
 
 			medium_nausicaan = {
 				fraction = {
-					modifier = {
-						factor = 0
-						count_owned_ship = {
-							count >= 15
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					modifier = {
 						factor = 0
 						or = {
@@ -435,13 +325,6 @@ contender = {
 
 			small_nausicaan = {
 				fraction = {
-					modifier = {
-						factor = 0
-						count_owned_ship = {
-							count >= 6
-							limit = { cp26_is_non_hero_military_ship = yes }
-						}
-					}
 					base = 55
 					modifier = {
 						factor = 0

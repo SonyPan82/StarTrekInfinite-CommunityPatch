@@ -4,6 +4,8 @@
  cp26_fleet_museum:0 "Musée de la Flotte"
  cp26_fleet_museum_DESC:0 "Une station-musée préservée exposant des vaisseaux historiques de Starfleet, dont le NX-01 et le NX-02."
  cp26_fleet_museum_MEGASTRUCTURE_DETAILS:0 "Une station-musée préservée exposant des vaisseaux historiques de Starfleet, dont le NX-01 et le NX-02."
+ cp26_ufop_sector_governance_charter:0 "Charte de gouvernance sectorielle"
+ cp26_ufop_sector_governance_charter_desc:0 "Assise administrative fédérale pour une Fédération multi-secteurs, atténuant l’étalement de l’empire en début de partie sans remplacer la bureaucratie des mondes membres."
  cp26_options.10.name:0 "Options diplomatiques CP26"
  cp26_options.10.desc:0 "Voulez-vous activer les options diplomatiques de vassalisation CP26 pour cette campagne ?"
  cp26_options.10.enable:0 "Activer la vassalisation diplomatique"

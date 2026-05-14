@@ -17,7 +17,9 @@ Synthèse exécutive
 Option recommandée (stable, perf-friendly) — « Stack 3 natives »
   A) NGameplay : COMMAND_LIMIT_BASE / COMMAND_LIMIT_MAX (déjà zz_cp26_reduced_fleet_scale_defines.txt)
   B) Même fichier : SHIP_OFFICERS_* (pression native sur les coques, pas de boucle script)
-  C) country_types : ship_data min/max pour militaires + civils (IA alignée sur le moteur)
+  C) country_types : ship_data min/max pour civils + fractions militaires (tech / pays) ;
+     plafond dur 20 militaires de ligne : possible_construction sur ship_sizes + trigger
+     cp26_under_reduced_fleet_military_cap (voir CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt).
 
   Éviter en routine : scripts mensuels/hebdo qui parcourent toutes les flottes / tous
   les pays pour « corriger » le nombre de vaisseaux. Réserver tout filet de sécurité
@@ -64,7 +66,7 @@ et la volumétrie du fichier global situation du mod (hérité Hornblower).
 2.2 IA « taille d’empire » pour ship_data (granularité raisonnable)
   Fichiers : events/zz_cp26_ai_pulse_events.txt + on_actions/zz_cp26_ai_pulse_on_actions.txt
     - on_yearly_pulse_country (+ fire au game start via zz_cp26_on_game_start.txt)
-    - trigger limité : is_ai = yes, is_country_type = default
+    - trigger limité : is_ai = yes
     - effet : count_owned_planet + set de flags cp26_empire_size_*
   → Une fois par an par IA « default », acceptable.
 
@@ -86,14 +88,17 @@ et la volumétrie du fichier global situation du mod (hérité Hornblower).
 3. Constats CP26 — charge MOYENNE ou à surveiller
 --------------------------------------------------------------------------------
 
-3.1 country_types — densité de count_owned_ship
-  Fichiers : zz_cp26_default_country_type.txt (~1311 lignes), aa_contender_country.txt,
-             00_country_types.txt (replace_path)
-  Le bloc ship_data + nombreuses branches fraction avec count_owned_ship pour militaires
-  sont évaluées quand l’IA recalcule ses objectifs de construction.
-  → Coût : « lecture » répétée mais borné ; acceptable si on ne rajoute PAS d’autres
-    layers scriptés équivalents. Risque gameplay déjà documenté : count_owned_ship n’inclut
-    pas les coques en file de chantier (voir CP26_REDUCED_FLEET_SCALE_OFFICERS_AUDIT).
+3.1 country_types — ship_data (2026-05-14)
+  Fichiers : 00_country_types.txt, aa_contender_country.txt (replace_path).
+  - Civils : fractions / min-max toujours présents ; colonizer utilise encore
+    count_owned_ship pour des conditions OR (pas un plafond militaire).
+  - Militaires : les anciens modifiers « factor = 0 + count_owned_ship >= 6|15 »
+    ont été retirés. Le plafond 20 navires de ligne est appliqué au chantier
+    via possible_construction sur les tailles ship_sizes + trigger
+    cp26_under_reduced_fleet_military_cap (voir Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt).
+  → Moins de branches count_owned_ship dans ship_data pour l’IA ; coût toujours
+    borné lors du recalcul des priorités de construction. Les spawns scriptés
+    restent hors de ce mécanisme tant qu’ils ne passent pas par le chantier.
 
 3.2 War access (mensuel global)
   Fichiers : common/on_actions/zz_cp26_war_access_on_actions.txt,
@@ -160,7 +165,7 @@ Composant                          | Coût CPU relatif | Stabilité | Action CP2
 -----------------------------------|------------------|-----------|---------------------------
 Defines COMMAND_LIMIT / officers   | Bas              | Haute     | Conserver comme socle
 ship_data (country_types)          | Bas–moyen        | Haute     | Ajuster min/max si besoin
-count_owned_ship (fractions)       | Moyen           | Haute     | Ne pas densifier davantage
+count_owned_ship (ship_data civils)  | Moyen           | Haute     | Ne pas densifier sans besoin
 cp26_ai_pulse (annuel, IA default)  | Bas              | Haute     | Conserver
 cp26_war_access.100 (mensuel global) | Bas–moyen        | Haute     | FAIT — 1×/mois tout empire
 hornblower_global_situation        | Élevé (actif)   | Variable  | Revue ciblée hors scope immédiat
@@ -171,7 +176,9 @@ hornblower_global_situation        | Élevé (actif)   | Variable  | Revue cibl�
 
 La voie la plus STABLE et la plus PERFORMANTE pour « moins de flottes » dans CP26 est de
 continuer à s’appuyer sur le TRIANGLE NATIF : command limit + officiers + ship_data, en
-évitant d’ajouter des couches scriptées correctives. La mutualisation mensuelle globale
+évitant d’ajouter des couches scriptées correctives (purges, boucles mensuelles flotte).
+Le plafond militaire au chantier (possible_construction + trigger, 2026-05-14) complète
+ce triangle sans parcourir les flottes en script. La mutualisation mensuelle globale
 de cp26_war_access (event .100) est en place depuis 2026-05-14.
 
 ================================================================================

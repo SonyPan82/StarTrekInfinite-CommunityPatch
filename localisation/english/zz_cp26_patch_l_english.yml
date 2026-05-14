@@ -50,6 +50,8 @@
  cp26_fleet_museum:0 "Fleet Museum"
  cp26_fleet_museum_DESC:0 "A preserved museum station showcasing historic Starfleet vessels, including the NX-01 and NX-02."
  cp26_fleet_museum_MEGASTRUCTURE_DETAILS:0 "A preserved museum station showcasing historic Starfleet vessels, including the NX-01 and NX-02."
+ cp26_ufop_sector_governance_charter:0 "Sector Governance Charter"
+ cp26_ufop_sector_governance_charter_desc:0 "Baseline federal administration for a multi-sector United Federation of Planets, easing early empire sprawl without replacing member-world bureaucracy."
  cp26_options.1.name:0 "CP26 Game Options"
  cp26_options.1.desc:0 "Configure optional Community Patch 2026 gameplay changes for this campaign."
  cp26_options.1.keep:0 "Keep pirates enabled"

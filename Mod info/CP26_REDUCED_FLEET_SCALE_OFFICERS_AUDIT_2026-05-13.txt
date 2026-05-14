@@ -11,9 +11,18 @@ Scope audited
 Goal
 ----
 Reduce late-game ship object spam by pushing the game toward compact military
-forces, around 15 non-hero military ships per empire where possible, while
+forces, around 20 non-hero military ships per empire where possible, while
 keeping the result coherent for AI empires, contenders, crises, factions and
 scripted fleets.
+
+STATUS 2026-05-14 — hard cap at shipyard (canonical: Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt)
+  The 20-ship limit for line combat hulls is enforced for player and AI via
+  possible_construction + scripted trigger cp26_under_reduced_fleet_military_cap
+  on military ship_sizes. The old ship_data pattern (factor = 0 when
+  count_owned_ship >= 15 or >= 6 with cp26_is_non_hero_military_ship) was removed
+  from country_types as redundant UI-less duplication. Early corvette “soft”
+  throttles described below in bullets 1–2 are partially superseded for the hard
+  cap; technology-based fraction modifiers remain.
 
 Main conclusion
 ---------------
@@ -124,17 +133,17 @@ Implemented changes
 
    Changes:
    - min_navy_for_wars reduced to 0.14.
-   - Small military hulls stop being preferred once the AI has about 6 military
-     ships (was 8 before 2026-05-14 audit).
-   - Medium/heavy/titan-style military hulls now stop being preferred once the
-     AI has about 15 military ships (was 18 before 2026-05-14 audit).
-   - 2026-05-14 update : seuils baissés de 18→15 et 8→6 pour absorber l'overshoot
-     dû au fait que count_owned_ship ne compte pas les ships en chantier. Avec
-     un buffer typique de 3-4 ships en queue, le réel final atterit autour de
-     18-19 ships militaires (≈ ancien comportement nominal "à 18 fixe" mais
-     cible design désormais alignée sur 15).
+   - Hard cap for line military hulls : possible_construction + trigger
+     cp26_under_reduced_fleet_military_cap (20 ships since 2026-05-15 ; 15 before
+     that date) — same rule for player and AI at the shipyard. The old ship_data
+     pattern (factor = 0 when count_owned_ship reached 6 / 15 with
+     cp26_is_non_hero_military_ship) was removed 2026-05-14 as redundant.
+   - 2026-05-14..15 : la cap « soft » ship_data (18→15, petites coques 8→6) n’est
+     plus en jeu pour l’IA ; l’overshoot file d’attente chantier vs count_owned_ship
+     ne s’applique plus à cette couche (le refus est au clic / file d’attente).
    - This applies to Federation, Klingon, Romulan, Cardassian, minor, Nausicaan
-     and crisis ship_data entries present in the default country type.
+     and crisis ship_data entries present in the default country type (fractions
+     tech / pays ; pas le plafond dur ligne).
    - California (utility class) est désormais EXCLU de la cap militaire via
      le trigger cp26_is_non_hero_military_ship (2026-05-14 audit). Avant, le
      min=1/max=2 forcé consommait 1-2 slots du cap "vrais military".
@@ -145,13 +154,9 @@ Implemented changes
 
    Changes:
    - min_navy_for_wars reduced to 0.18.
-   - Gorn, Breen, Orion and Tholian small hulls stop around 6 military ships
-     (was 8 before 2026-05-14 audit).
-   - Their medium/heavy hulls stop around 15 military ships (was 18 before
-     2026-05-14 audit), aligned with the Nausicaan fallback.
-   - Generic Nausicaan fallback contender fleets also stop around 15 military
-     ships (inchangé — c'était déjà 15 ; les autres caps ont été ramenées au
-     même seuil pour cohérence).
+   - Line military hulls : same shipyard hard cap as majors (20, trigger
+     cp26_under_reduced_fleet_military_cap). Old ship_data 6/15 count_owned_ship
+     soft stops removed 2026-05-14.
 
 6. Military spending reduced for compact-fleet factions.
    Files:

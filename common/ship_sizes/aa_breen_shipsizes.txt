@@ -83,6 +83,13 @@ breencorvette = {
 
 	combat_disengage_chance = 1.00
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -169,6 +176,13 @@ breendestroyer = {
 
 	combat_disengage_chance = 1.50
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -254,6 +268,13 @@ breenbattleship = {
 	}
 
 	combat_disengage_chance = 1
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard

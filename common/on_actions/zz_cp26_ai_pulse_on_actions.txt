@@ -1,7 +1,6 @@
 # CP26 — AI pulse hooks
 #
-# Annual update of the cp26_empire_size_* flag used by the dynamic ship_data
-# block in common/country_types/00_country_types.txt (`default`).
+# Annual update of cp26_empire_size_* for all AI (drapeaux lus par ship_data du type `default`).
 #
 # We also fire it once on game start so the AI doesn't wait a full in-game
 # year before its flag is set.

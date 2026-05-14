@@ -1,9 +1,11 @@
 namespace = cp26_start_balance
 
-# CP26 — équilibrage départ (HUD jour 1 des 4 majors, 2346.01.01).
+# CP26 — équilibrage départ (2346.01.01, même tick que game_start).
 # Tampons stockpile + petits ajustements ciblés ; les Romuliens restent la
 # référence « haute » (pas de buff). Féd : déficit énergie/minéraux lourd sur
 # capture — runway stockpile (la structure starbases / upkeep reste vanilla).
+# Admin UFP : le musée Athan reste modeste ; un léger complément pays évite
+# d’être déjà au-dessus de la capacité au premier pause.
 
 country_event = {
 	id = cp26_start_balance.1
@@ -19,6 +21,7 @@ country_event = {
 				minerals = 600
 				food = 400
 			}
+			add_modifier = { modifier = cp26_ufop_sector_governance_charter }
 		}
 
 		# Klingon Empire — capture : 300 énergie +11, 100 minéraux ~0, 200 nourriture

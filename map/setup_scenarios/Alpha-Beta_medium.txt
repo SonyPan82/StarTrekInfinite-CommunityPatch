@@ -5,7 +5,7 @@ bespoke_procedural_scenario = {
 	priority = 2
 
 	# Everything below this line should be copied to tutorial.txt
-	num_stars = 1300
+	num_stars = 1000
 	# CP26 — radius MUST stay <= 500 (engine hard limit, see Stellaris wiki:
 	# "the map is a box 1000x1000x10, from -500 to 500"). Going above 500
 	# (was 570) caused random access-violation / SIGSEGV crashes in

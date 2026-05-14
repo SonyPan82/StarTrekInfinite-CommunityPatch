@@ -1,0 +1,102 @@
+================================================================================
+CP26 — Système de plafonds vaisseaux (référence)
+Date : 2026-05-14 — cap militaire ligne mis à 20 le 2026-05-15
+================================================================================
+
+Objectif : une seule limite claire par catégorie, même règle joueur et IA,
+feedback vanilla au chantier (option grisée + tooltip), sans scripts qui
+détruisent des navires.
+
+--------------------------------------------------------------------------------
+1. Civils (science, constructor)
+--------------------------------------------------------------------------------
+
+- Fichier : common/ship_sizes/00_ship_sizes.txt
+  empire_limit = { base = 3 max = 3 } sur les tailles science et constructor.
+
+- Comportement : au-delà de 3 par taille, construction refusée ; le jeu affiche
+  le libellé vanilla associé à SHIP_SIZE_LIMIT.
+
+- ship_data (common/country_types/00_country_types.txt, contender dans
+  aa_contender_country.txt) : min/max et fractions (science modulée par les
+  drapeaux cp26_empire_size_* mis à jour par events/zz_cp26_ai_pulse_events.txt
+  cp26_ai_pulse.1). Pas de duplication par count_owned_ship pour imiter ce plafond.
+
+--------------------------------------------------------------------------------
+2. Militaires de ligne (cap global 20)
+--------------------------------------------------------------------------------
+
+Qui est soumis au plafond ?
+  Tout pays (joueur ou IA) qui construit au chantier une taille définie avec
+  class = shipclass_military ET le bloc possible_construction CP26 (fichiers
+  common/ship_sizes : Hornblower majors, coques annexes Luna/Akira/etc., mineurs
+  Gorn/Tholian/Orion/Breen, 00_ship_sizes corvette–battleship, etc.). Donc en
+  pratique : Fédération, Klingons, Romuliens, Cardassiens, Bajorans, mineurs
+  « contender », et tout empire utilisant ces tailles moddées — même règle.
+
+Qui n’est PAS (ou pas pareil) ?
+  - Tailles exclues du comptage cp26_is_non_hero_military_ship : elles ne
+    consomment pas les 20 slots « ligne » (voyager, california, california_hero,
+    odyssey, dderidex_hero, enterprise, enterprise_sovereign, …). Certaines ont
+    leur propre empire_limit ou règles héros.
+  - Vaisseaux civils (science, constructor, colonizer, transports) : caps
+    séparés (empire_limit 3 pour science/constructor, ship_data pour colo).
+  - Stations militaires (shipclass_military_station) : hors cap ligne.
+  - Spawns événements (create_ship hors chantier) : peuvent contourner le
+    possible_construction du joueur ; à surveiller au cas par cas.
+
+- Décompte : trigger scripted cp26_is_non_hero_military_ship
+  (common/scripted_triggers/aa_scripted_triggers.txt).
+
+- Cap pays : cp26_under_reduced_fleet_military_cap (même fichier) :
+  count_owned_ship { count < 20 limit = { cp26_is_non_hero_military_ship = yes } }.
+
+- Application : sur chaque taille shipclass_military concernée,
+  possible_construction avec custom_tooltip { fail_text = SHIP_SIZE_LIMIT
+  owner = { cp26_under_reduced_fleet_military_cap = yes } } dans les fichiers
+  common/ship_sizes/*.txt. Les titans avec Titan Yards ont un second
+  custom_tooltip dans le même bloc possible_construction.
+
+- ship_data : les anciens modifiers « factor = 0 + count_owned_ship » militaires
+  redondants ont été retirés (2026-05-14).
+
+- Gameplay : à 20 navires comptés dans la limite, toute nouvelle coque de ligne
+  est refusée au chantier jusqu’à destruction / vente / perte d’un navire compté.
+  Même logique pour l’IA (pas de purge mensuelle).
+
+--------------------------------------------------------------------------------
+3. Fichiers clés
+--------------------------------------------------------------------------------
+
+  common/scripted_triggers/aa_scripted_triggers.txt
+  common/ship_sizes/00_ship_sizes.txt (+ autres ship_sizes du mod)
+  common/country_types/00_country_types.txt
+  common/country_types/aa_contender_country.txt
+  events/zz_cp26_ai_pulse_events.txt (cp26_ai_pulse.1 uniquement)
+  common/on_actions/zz_cp26_ai_pulse_on_actions.txt
+  common/on_actions/zz_cp26_on_game_start.txt (lancement .1 au start)
+
+--------------------------------------------------------------------------------
+4. Faire évoluer le cap « 20 »
+--------------------------------------------------------------------------------
+
+  Ajuster l’entier dans cp26_under_reduced_fleet_military_cap : count < 20 signifie
+  « strictement moins de 20 navires comptés » → construction autorisée avec
+  0 à 19 navires ; à 20 la ligne est bloquée jusqu’à destruction d’un navire
+  compté. Pour un cap N, utiliser count < N.
+
+--------------------------------------------------------------------------------
+5. Performance (ancienne vs nouvelle couche)
+--------------------------------------------------------------------------------
+
+  Ancienne pile : des dizaines de modifiers ship_data « factor = 0 » avec
+  count_owned_ship sur presque chaque coque militaire → réévalués quand l’IA
+  recalcule ses priorités de flotte (coût répété même sans construction).
+
+  Nouvelle pile : plus ces branches militaires dans ship_data ; un seul
+  count_owned_ship ciblé dans cp26_under_reduced_fleet_military_cap, surtout
+  quand le chantier teste possible_construction. Gain typiquement modeste mais
+  réel sur le coût « ship_data IA » ; le gros de la perf flotte reste defines
+  (command limit, officiers) et éviter les boucles script lourdes.
+
+================================================================================

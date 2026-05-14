@@ -1,8 +1,12 @@
 CP26 — Correction de country.27500 (UFOP First Contact Bonus)
 =============================================================
-Date : 2026-05-11
-Fichier vanilla : events/hornblower_country_events.txt (ligne 6136)
-Fichier CP26 : events/zz_cp26_fix_country_events.txt
+Date : 2026-05-11 (emplacement corrigé 2026-05-14)
+Fichier vanilla d'origine : events/hornblower_country_events.txt
+Fichier CP26 : la définition corrigée est intégrée dans la copie replace_path
+`events/hornblower_country_events.txt` (bloc `first_contact_event` country.27500).
+L'ancien fichier séparé `events/zz_cp26_fix_country_events.txt` a été retiré :
+le chargeur d'events est « first-loaded-wins » ; un second fichier redéfinissant
+le même id produisait un warning « already exists » et pouvait ignorer notre fix.
 
 1. QU'EST-CE QUE C'EST ?
 ------------------------
@@ -42,7 +46,8 @@ il est resté dans le codebase vanilla.
 
 4. COMMENT CP26 LE CORRIGE ?
 ------------------------------
-Le fichier zz_cp26_fix_country_events.txt redéfinit l'event country.27500
+Le même `first_contact_event` country.27500 est patché directement dans
+`events/hornblower_country_events.txt` (fichier entièrement remplacé par CP26),
 avec deux changements :
 
 A. Remplacement de "who = root.from" par "who = from"

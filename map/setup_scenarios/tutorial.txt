@@ -4,7 +4,7 @@ bespoke_procedural_scenario = {
 	priority = 0					#priority decides in which order the scenarios are listed
 
 	# Everything below this line should be a copy of Alpha-Beta_medium
-	num_stars = 1300
+	num_stars = 1000
 	# CP26 — radius MUST stay <= 500 (engine hard limit). See Alpha-Beta_medium.txt
 	# header comment for full reasoning. Synced with main scenario.
 	radius = 498

@@ -82,6 +82,13 @@ miranda = {
 
 	combat_disengage_chance = 1.00
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -167,6 +174,13 @@ intrepid = {
 	}
 
 	combat_disengage_chance = 1.50
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -254,6 +268,13 @@ excelsior = {
 
 	combat_disengage_chance = 1.8
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -339,6 +360,13 @@ galaxy = {
 	}
 
 	combat_disengage_chance = 1
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -429,6 +457,10 @@ sovereign = {
 			is_scope_type = starbase
 			has_starbase_building = titan_yards
 			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
 
@@ -530,6 +562,13 @@ bird_of_prey = {
 
 	combat_disengage_chance = 0.30
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -615,6 +654,13 @@ warbird = {
 	}
 
 	combat_disengage_chance = 0.45
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -702,6 +748,13 @@ ktinga = {
 
 	combat_disengage_chance = 0.75
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -787,6 +840,13 @@ vorcha = {
 	}
 
 	combat_disengage_chance = 0.75
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -877,6 +937,10 @@ neghvar = {
 			is_scope_type = starbase
 			has_starbase_building = titan_yards
 			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
 
@@ -978,6 +1042,13 @@ ferrax = {
 
 	combat_disengage_chance = 1.20
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -1063,6 +1134,13 @@ vindius = {
 	}
 
 	combat_disengage_chance = 1.3
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -1150,6 +1228,13 @@ valdore = {
 
 	combat_disengage_chance = 1.30
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -1235,6 +1320,13 @@ dderidex = {
 	}
 
 	combat_disengage_chance = 1.20
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -1325,6 +1417,10 @@ majestus = {
 			is_scope_type = starbase
 			has_starbase_building = titan_yards
 			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
 
@@ -1430,6 +1526,13 @@ hideki = {
 
 	combat_disengage_chance = 0.3
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -1520,6 +1623,13 @@ galor = {
 
 	combat_disengage_chance = 0.45
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -1608,6 +1718,13 @@ keldon = {
 	}
 
 	combat_disengage_chance = 1.8
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -1699,6 +1816,13 @@ kazikai = {
 
 	combat_disengage_chance = 1.5
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -1788,6 +1912,10 @@ nokoram = {
 			is_scope_type = starbase
 			has_starbase_building = titan_yards
 			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
 	
@@ -1884,6 +2012,13 @@ small_minor = {
 
 	combat_disengage_chance = 1.00
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -1969,6 +2104,13 @@ medium_minor = {
 
 	combat_disengage_chance = 1.00
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -2053,6 +2195,13 @@ large_minor = {
 	}
 
 	combat_disengage_chance = 1.00
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -2145,6 +2294,13 @@ small_nausicaan = {
 
 	combat_disengage_chance = 1.00
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -2229,6 +2385,13 @@ medium_nausicaan = {
 	}
 
 	combat_disengage_chance = 1.00
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -2315,6 +2478,13 @@ large_nausicaan = {
 
 	combat_disengage_chance = 1.00
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -2392,6 +2562,13 @@ borgcube_size_small = {
 
 	default_behavior = "hrb_artillery"
 	
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	required_component_set = "power_core"
 	required_component_set = "ftl_components"
@@ -2429,6 +2606,13 @@ borgcube_size_mid = {
 
 	default_behavior = "hrb_artillery"
 	
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	required_component_set = "power_core"
 	required_component_set = "ftl_components"
@@ -2465,6 +2649,13 @@ borgcube_size_large = {
 
 	default_behavior = "hrb_artillery"
 	
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	required_component_set = "power_core"
 	required_component_set = "ftl_components"
@@ -2849,6 +3040,13 @@ dreadnought = {
 	num_target_locators = 0
 	is_space_station = no
 	icon_frame = @titan_size_icon_frame
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	is_designable = no
 	default_behavior = "hrb_artillery"
@@ -2900,6 +3098,13 @@ defiant = {
 	}
 
 	combat_disengage_chance = 1.00
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -3041,6 +3246,13 @@ small_minor_mercenary = {
 
 	combat_disengage_chance = 1.00
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -3128,6 +3340,13 @@ medium_minor_mercenary = {
 	}
 
 	combat_disengage_chance = 1.00
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard

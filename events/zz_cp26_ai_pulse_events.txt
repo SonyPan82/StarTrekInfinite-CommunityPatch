@@ -26,7 +26,6 @@ country_event = {
 
 	trigger = {
 		is_ai = yes
-		is_country_type = default
 	}
 
 	immediate = {

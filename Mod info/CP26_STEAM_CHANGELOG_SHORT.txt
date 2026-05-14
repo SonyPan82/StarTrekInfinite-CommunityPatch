@@ -50,3 +50,9 @@
 [*] Removed experimental bespoke_procedural.txt that caused worse core density.
 [*] [b]Note :[/b] 570 is highly experimental. Vanilla safe zone is ~460. Monitor for stability and report any crash on save.
 [/list]
+
+[h2]Shipyard caps (2026-05-14)[/h2]
+[list]
+[*] [b]Science & construction ships[/b]: [b]empire_limit[/b] (3 each) with vanilla [b]SHIP_SIZE_LIMIT[/b] when blocked.
+[*] [b]Line military hulls[/b]: shared [b]20-ship[/b] cap (non-hero sizes) at the shipyard via [b]possible_construction[/b]; scrap a hull to queue another. Same for AI — no monthly purge.
+[/list]

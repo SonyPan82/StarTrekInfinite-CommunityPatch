@@ -49,3 +49,13 @@ cp26_is_non_hero_military_ship = {
 		}
 	}
 }
+
+# Country scope — même dénominateur que ship_data (20 vaisseaux militaires
+# comptés par cp26_is_non_hero_military_ship). Utilisé en possible_construction
+# pour réutiliser le libellé vanilla SHIP_SIZE_LIMIT (comme empire_limit civils).
+cp26_under_reduced_fleet_military_cap = {
+	count_owned_ship = {
+		count < 20
+		limit = { cp26_is_non_hero_military_ship = yes }
+	}
+}

@@ -6,6 +6,35 @@ Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
 
 --------------------------------------------------------------------------------
+Session du 2026-05-15 (cap militaires ligne 15 → 20)
+--------------------------------------------------------------------------------
+
+[BAL][LOW] Plafond global vaisseaux militaires « de ligne » : count < 20 dans
+  cp26_under_reduced_fleet_military_cap (common/scripted_triggers/aa_scripted_triggers.txt).
+  possible_construction sur ship_sizes inchangé (référence au trigger). Doc :
+  Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt (qui est le référentiel).
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (système de caps vaisseaux : UI + nettoyage ship_data)
+--------------------------------------------------------------------------------
+
+[BAL][MED] Plafond militaire global (15 hors héros / utility) appliqué au chantier
+  pour toutes les tailles shipclass_military concernées : possible_construction
+  + fail_text = SHIP_SIZE_LIMIT + owner = { cp26_under_reduced_fleet_military_cap = yes }.
+  Même dénominateur que le trigger scripted cp26_is_non_hero_military_ship (exclusions
+  voyager, california, odyssey, enterprise, dderidex_hero, etc.).
+  Fichiers : common/ship_sizes/*.txt (patch massif), common/scripted_triggers/aa_scripted_triggers.txt.
+
+[CLEAN][LOW] Suppression des modifiers ship_data « factor = 0 + count_owned_ship >= 6|15 »
+  sur les fractions militaires dans common/country_types/00_country_types.txt et
+  aa_contender_country.txt : redondants avec le bloc possible_construction ; l’IA
+  et le joueur voient la même limite au chantier (grisé + tooltip vanilla).
+
+[DOC][LOW] Référence unique : Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt
+  (civils empire_limit, militaires trigger, héros exclus). Mises à jour croisées
+  dans CP26_PERF_AUDIT_2026-05-14.txt et CP26_REDUCED_FLEET_SCALE_OFFICERS_AUDIT_2026-05-13.txt.
+
+--------------------------------------------------------------------------------
 Session du 2026-05-14 (perf : war access global mensuel)
 --------------------------------------------------------------------------------
 
@@ -330,9 +359,11 @@ Session du 2026-05-14 (IA constructors / freeze ~2351 + doc officiers)
     Constructors  : 2
     Science       : 2
     Colonizers    : 2
-    Militaires    : 15 (cap count_owned_ship existant)
+    Militaires    : 15 (à l'époque : cap ship_data count_owned_ship ; remplacé en 2026-05-14
+                       par possible_construction, porté à 20 le 2026-05-15)
     ------------------------------
-    TOTAL plafond : ~21 vaisseaux / empire (cible joueur respectée)
+    TOTAL plafond : ~21 vaisseaux / empire (cible joueur respectée) — chiffres civils ci-dessus ;
+                    ligne militaire : voir doc ship cap à jour.
 
   Rationale :
     1. Le scaling dynamique précédent (max 6/5/6) ajoutait jusqu'à 17 civils

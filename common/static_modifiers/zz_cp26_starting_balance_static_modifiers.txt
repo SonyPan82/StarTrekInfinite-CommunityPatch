@@ -1,0 +1,6 @@
+# CP26 — modificateurs appliqués au pays via add_modifier (départ / balance).
+
+cp26_ufop_sector_governance_charter = {
+	country_admin_cap_add = 20
+	icon = "gfx/interface/icons/planet_modifiers/pm_faith_in_science.dds"
+}

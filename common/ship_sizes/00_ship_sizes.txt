@@ -55,6 +55,13 @@ corvette = {
 
 	combat_disengage_chance = 1.00
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -131,6 +138,13 @@ destroyer = {
 
 	combat_disengage_chance = 1.50
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"
@@ -205,6 +219,13 @@ cruiser = {
 	}
 
 	combat_disengage_chance = 1.50
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -281,6 +302,13 @@ battleship = {
 	}
 
 	combat_disengage_chance = 1.25
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -408,6 +436,10 @@ titan = {
 				}
 			}
 		}
+		custom_tooltip = {
+			fail_text = SHIP_SIZE_LIMIT
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
 	}
 
 	empire_limit = {
@@ -493,6 +525,12 @@ science = {
 	auto_upgrade = yes
 	ignores_warp_range = yes
 
+	# CP26 — plafond empire (base+max sans naval_cap_div = plafond dur 3).
+	empire_limit = {
+		base = 3
+		max = 3
+	}
+
 	resources = {
 		category = ships
 		cost = {
@@ -570,6 +608,12 @@ constructor = {
 	required_component_set = "sensor_components"
 	valid_target_aggressive_stance = no
 	auto_upgrade = yes
+
+	# CP26 — plafond empire constructeurs (base+max = 3).
+	empire_limit = {
+		base = 3
+		max = 3
+	}
 
 	resources = {
 		category = ships
