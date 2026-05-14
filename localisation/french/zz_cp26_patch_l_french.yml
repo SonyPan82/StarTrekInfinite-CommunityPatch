@@ -1,6 +1,6 @@
 ﻿l_french:
- lunar_one_colony_cp26:0 "Colonie de Lunar One"
- lunar_one_colony_cp26_desc:0 "Lunar One est le premier avant-poste scientifique en gravité réduite que l'humanité a construit sur sa propre Lune — un berceau de recherche qui attire encore les esprits les plus curieux de la Fédération."
+ lunar_one_colony:0 "Colonie de Lunar One"
+ lunar_one_colony_desc:0 "Lunar One est le premier avant-poste scientifique en gravité réduite que l'humanité a construit sur sa propre Lune — un berceau de recherche qui attire encore les esprits les plus curieux de la Fédération."
  cp26_fleet_museum:0 "Musée de la Flotte"
  cp26_fleet_museum_DESC:0 "Une station-musée préservée exposant des vaisseaux historiques de Starfleet, dont le NX-01 et le NX-02."
  cp26_fleet_museum_MEGASTRUCTURE_DETAILS:0 "Une station-musée préservée exposant des vaisseaux historiques de Starfleet, dont le NX-01 et le NX-02."
@@ -12,6 +12,7 @@
  cp26_options.10.disable.tt:0 "L'option diplomatique de vassalisation CP26 reste désactivée."
  casus_belli_cb_liberation_war:0 "Indépendance"
  casus_belli_cb_liberation_war_acquire_hint:0 "Nous devons d'abord exiger que ce suzerain libère sa dépendance. En cas de refus, nous pourrons déclarer une guerre d'indépendance."
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_TYPE:0 "Demander la capitulation"
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_TITLE:0 "Proposer d'accepter le but de guerre"
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_DESC:0 "Propose à §H[Recipient.GetName]§! d'accepter notre but de guerre. L'empire ciblé peut accepter ou refuser."
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_OFFER_DESC:0 "§H[Actor.GetName]§! propose que nous acceptions son but de guerre."
@@ -709,6 +710,21 @@
  cp26_bajoran_wormhole.21.name:0 "2369 — L'Anomalie de Denorios s'Intensifie"
  cp26_bajoran_wormhole.21.desc:0 "Les moniteurs scientifiques enregistrent une forte augmentation des émissions de neutrinos dans la Ceinture Denorios. Les relevés défient tous les modèles stellaires connus.\n\nLe Ministère des Sciences Bajoran a classé cela comme investigation prioritaire. Une mission d'investigation a été autorisée — stationnez un vaisseau scientifique avec un scientifique sur le site de l'anomalie dans le système Bajoran."
  cp26_bajoran_wormhole.21.ok:0 "Dépêcher immédiatement l'équipe d'investigation."
+
+ # CP26 2026-05-14 : ajout traduction FR pour tech warp niveau 3 (audit a8 — seule clé EN sans FR)
+ tech_warp_speed_increase_3:0 "Géométrie Transwarp"
+ tech_warp_speed_increase_3_desc:0 "En cartographiant la courbure de l'espace-temps le long des corridors de distorsion établis, nos systèmes de navigation peuvent exploiter les géométries subspatiales naturelles pour atteindre des §Hvitesses de niveau transwarp§! — l'ultime frontière de la propulsion à distorsion conventionnelle."
+
+ # CP26 2026-05-14 : Infinite localisation/french/l_french.yml ~18803-18806
+ # utilise £pop_cat_slave£ pour slave, worker, specialist ET ruler (bug copier/coller).
+ # Nos anciennes entrées :0 ne s'appliquaient pas : le moteur préfère la version la plus
+ # haute (vanilla = :2 pour specialist/worker/ruler, :1 pour slave). D'où l'icône
+ # d'esclave partout. Alignement sur megacorp_l_english.yml + version :3.
+ mod_planet_jobs_slave_produces_mult:3 "$pop_cat_slave$ Production de ressources des pops"
+ mod_planet_jobs_worker_produces_mult:3 "$pop_cat_worker$ Production de ressources des pops"
+ mod_planet_jobs_specialist_produces_mult:3 "$pop_cat_specialist$ Production de ressources des pops"
+ mod_planet_jobs_ruler_produces_mult:3 "$pop_cat_ruler$ Production de ressources des pops"
+
  voyager_plural:0 "Voyager"
  START_SCREEN_DOOMSDAY:0 "Votre monde natal est condamné. Votre peuple doit quitter son berceau avant qu'il ne soit trop tard."
  START_SCREEN_LITHOID:0 "Votre civilisation est issue de formes de vie minérales, endurantes et adaptées à des mondes que d'autres jugeraient hostiles."

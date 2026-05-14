@@ -1,0 +1,755 @@
+###################
+# Ruler Jobs
+###################
+		
+# High Councilor
+high_councilor_klingon = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_capital
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_administrators
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+		
+		produces = {
+			officers = 2
+			unity = 10
+		}
+		
+	}
+	
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+# High Cleric
+high_cleric_klingon = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_pilgramage_site_klingon # HRB_TODO: Rework Icon
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_priests
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+		produces = {
+			unity = 3
+		}
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 10
+		planet_stability_add = 5
+	}
+		
+	triggered_planet_modifier= {
+		potential = {
+			exists = planet
+			planet = {
+				has_building = building_pilgramage_site_klingon
+			}
+		}
+		trade_value_add = 1
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+
+# Noble
+noble_klingon = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_palace
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_nobles
+		upkeep = {
+			energy = 1
+			food = 1
+		}
+		
+		produces = {
+			unity = 5
+		}
+				
+	}
+	
+	pop_modifier = {
+		pop_defense_armies_add = 5
+	}
+		
+	planet_modifier = {
+		planet_amenities_add = 2
+		planet_stability_add = 2
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+		
+###################
+# Worker Jobs
+###################
+		
+# Warrior
+warrior_klingon = {
+	category = worker
+	condition_string = SOLDIER_JOB_TRIGGER
+	building_icon = building_stronghold
+	clothes_texture_index = 4
+		
+	#HRB_TODO: How about Naval Capacity. Now has being reworked to Country Admin Capacity
+		
+	planet_modifier = {
+		planet_stability_add = 0.5
+	}
+		
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+		
+	resources = {
+		category = planet_soldiers
+		upkeep = {
+			food = 0
+		}
+		
+				
+		produces = {
+			officers = 3
+		}
+			
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					planet = { has_designation = col_fortress }
+				}
+			}
+			influence = 0.1
+		}
+			
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_tradition = tr_defense_oath_citizenship }
+			}
+			unity = 1
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_quest_tree_node = qt_klingon_e2 }
+			}
+			unity = 1
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				planet = {
+					has_modifier = kahless_festival
+				}
+			}
+			unity = 3
+		}
+
+		# Form Training Camps, Klingon Decision
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					has_modifier = klingon_training_camps
+				}
+			}
+			energy = 3
+		}
+
+		# Recruitment Campaign, Decision
+		produces = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					has_modifier = recruitment_campaign
+				}
+			}
+			officers = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_modifier = martial_law_klingon
+			}
+		}
+		modifier = {
+			planet_stability_add = 5
+		}
+    }
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			exists = owner
+			owner = {
+				has_tradition = tr_klingon_finish
+			}
+		}
+		modifier = {
+			planet_crime_add = -2
+		}
+	}
+
+	# Form Training Camps, Klingon Decision
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_modifier = klingon_training_camps
+			}
+		}
+		modifier = {
+			planet_stability_add = 2
+		}
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_modifier = klingon_training_camps
+			}
+		}
+		pop_defense_armies_add = 1
+	}
+
+	# War Measures, Decision
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			exists = planet
+			planet = {
+				has_modifier = war_measures
+			}
+		}
+		pop_defense_armies_add = 1
+	}
+
+	# Fortress World, Planet Designation
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		pop_defense_armies_add = 2
+	}
+
+	# Extra Ration, Edict
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = extra_rations }
+		}
+		pop_defense_armies_add = 1
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		soldier_job_check_trigger = yes
+	}
+		
+	weight = {
+		weight = @soldier_job_weight
+	}
+}
+		
+		
+###################
+# Specialist Jobs
+###################
+		
+# Martial Artist
+martial_artist_klingon = {
+	category = specialist
+	condition_string = BATTLE_THRALL_JOB_TRIGGER
+	building_icon = building_holo_theatres
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		battle_thrall_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_entertainers
+		
+		produces = {
+			unity = 6
+		}
+		
+		#From Sporting Arenas tech
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_sports_ufop_klingon }
+			}
+			alloys = 1
+		}
+
+		# Mok'bara Tournament, Klingon Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = klingon_mokbara_tournament }
+			}
+			unity = 1
+		}
+		upkeep = {
+			food = 3
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = klingon_mokbara_tournament }
+			}
+			energy = 2
+		}
+	}
+		
+	planet_modifier = {
+		trade_value_add = 2
+		planet_crime_add = -5
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+# Imperial Guardian
+imperial_guardian_klingon = {
+	category = specialist
+	condition_string = BATTLE_THRALL_JOB_TRIGGER
+	building_icon = building_precinct_house
+	clothes_texture_index = 5
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		battle_thrall_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_enforcers
+		upkeep = {
+			food = 1
+		}
+		
+		produces = {
+			officers = 1
+		}
+		
+		produces = {
+			trigger = {
+				owner = { has_civic = civic_followers_of_kahless }
+			}
+			unity = 0.5
+		}
+			
+		produces = {
+			trigger = {
+				owner = { has_civic = civic_devoted_to_kahless }
+			}
+			unity = 1.5
+		}
+
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = anticrime_campaign }
+			}
+			energy = 2
+		}
+	}
+	
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+		
+	planet_modifier = {
+		planet_crime_add = -15
+		trade_value_add = 2
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_modifier = anticrime_campaign }
+		}
+		modifier = {
+			planet_crime_add = -10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+# HRB: This job has been removed due to beeing redundant with the Martial Artist job
+# # Legendary Warrior
+# legendary_warrior_klingon = {
+# 	category = specialist
+# 	condition_string = BATTLE_THRALL_JOB_TRIGGER
+# 	building_icon = building_precinct_house
+# 	clothes_texture_index = 5
+		
+# 	possible_pre_triggers = {
+# 		has_owner = yes
+# 		is_being_purged = no
+# 		is_being_assimilated = no
+# 		is_sapient = yes
+# 	}
+		
+# 	possible = {
+# 		battle_thrall_job_check_trigger = yes
+# 	}
+		
+# 	resources = {
+# 		category = planet_enforcers
+# 		produces = {
+# 			unity = 3
+# 		}
+# 		# HRB_TODO: Civics. Conserning Minor
+# 		# produces = {
+# 		# 	trigger = {
+# 		# 		exists = owner
+# 		# 		owner = { has_valid_civic = civic_police_state }
+# 		# 	}
+# 		# 	unity = 1
+# 		# }
+# 		upkeep = {
+# 			trigger = {
+# 				exists = planet
+# 				planet = { has_modifier = anticrime_campaign }
+# 			}
+# 			energy = 4
+# 		}
+# 	}
+		
+# 	pop_modifier = {
+# 		pop_defense_armies_add = 3
+# 	}
+		
+# 	planet_modifier = {
+# 		planet_crime_add = -40
+# 	}
+		
+# 	#HRB_TODO: naval capacity was removed. 
+# 	# country_modifier = {
+# 	# 	country_naval_cap_add = 2
+# 	# }
+		
+# 	# HRB_TODO: What about the anticrime campaing desicion?
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = planet
+# 			planet = { has_modifier = anticrime_campaign }
+# 		}
+# 		modifier = {
+# 			planet_crime_add = -10
+# 		}
+# 	}
+		
+# 	weight = {
+# 		weight = @specialist_job_weight
+# 		modifier = {
+# 			factor = 0.2
+# 			is_enslaved = yes #has_species_profile_full = no
+# 		}
+# 		modifier = {
+# 			factor = 2
+# 			has_trait = trait_resilient
+# 		}
+# 		modifier = {
+# 			factor = 2
+# 			has_trait = trait_very_strong
+# 		}
+# 		modifier = {
+# 			factor = 1.5
+# 			has_trait = trait_strong
+# 		}
+# 		modifier = {
+# 			factor = 10
+# 			is_enslaved = yes
+# 			has_slavery_type = { type = slavery_military }
+# 		}
+# 		modifier = {
+# 			factor = 0.50
+# 			has_trait = trait_weak
+# 		}
+# 		modifier = {
+# 			factor = 0.1
+# 			can_take_servant_job = yes
+# 		}
+# 		modifier = {
+# 			factor = 10
+# 			has_job = enforcer
+# 		}
+# 		modifier = {
+# 			factor = 1.1
+# 			has_trait = trait_cybernetic
+# 		}
+# 		modifier = {
+# 			factor = 2
+# 			has_trait = trait_presapient_earthbound
+# 		}
+# 		modifier = {
+# 			factor = 1.1
+# 			has_trait = trait_limited_regeneration
+# 		}
+# 		modifier = {
+# 			factor = 1.1
+# 			has_trait = trait_presapient_proles
+# 		}
+# 		modifier = {
+# 			factor = 1.1
+# 			has_trait = trait_brainslug
+# 			exists = owner
+# 			owner = { has_valid_civic = civic_police_state }
+# 		}
+# 		modifier = {
+# 			factor = 1.05
+# 			has_trait = trait_presapient_natural_intellectuals
+# 			exists = owner
+# 			owner = { has_valid_civic = civic_police_state }
+# 		}
+# 		modifier = {
+# 			factor = 1.1
+# 			has_trait = trait_traditional
+ 
+# 			exists = owner
+# 			owner = { has_valid_civic = civic_police_state }
+# 		}
+# 		modifier = {
+# 			factor = 0.9
+# 			has_trait = trait_quarrelsome
+# 		}
+# 		modifier = {
+# 			factor = 0.8
+# 			is_enslaved = yes
+# 			has_slavery_type = { type = slavery_indentured }
+# 		}
+# 		modifier = {
+# 			factor = 2
+# 			has_trait = trait_lithoid
+# 		}
+# 	}
+# }
+		
+# Followers of Kahless
+follower_of_kahless_klingon = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_temple
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_priests
+		
+		produces = {
+			unity = 8
+		}
+				
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					planet = { has_designation = col_sanctum }
+				}
+			}
+			unity = 3
+			research = 2
+		}
+
+		# Fervent Followers, Klingon Decisions
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					has_modifier = klingon_fervent_followers
+				}
+			}
+			unity = 1.5
+			influence = 0.15
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_tradition = tr_klingon_legendary }
+			}
+			research = 2
+		}
+		upkeep = {
+			food = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			# Amenities output removed with Fervent Followers decision
+			planet = {
+				exists = owner
+				NOT = {
+					has_modifier = klingon_fervent_followers
+				}
+			}
+		}
+		planet_amenities_add = 3
+	}
+		
+	triggered_planet_modifier= {
+		potential = {
+			exists = planet
+			planet = {
+				has_building = building_pilgramage_site_klingon
+			}
+		}
+		trade_value_add = 1
+	}
+
+	triggered_planet_modifier= {
+		potential = {
+			exists = planet
+			planet = {
+				has_building = building_hall_of_warriors_klingon
+			}
+		}
+		trade_value_add = 2
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+

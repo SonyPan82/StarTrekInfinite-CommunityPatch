@@ -86,7 +86,10 @@
 #	}
 #}
 
+
+# CP26: single `default` block (merged from former zz_cp26_default_country_type.txt).
 default = {
+	ignores_warp_range = yes
 	has_difficulty_bonuses = yes
 	counts_for_victory = yes
 	pop_growth = yes
@@ -107,7 +110,8 @@ default = {
 	ai = {
 		enabled = yes
 		declare_war = yes
-		min_navy_for_wars = 0.01
+		# CP26 reduced-fleet scale: avoid pushing the AI toward oversized late-game navies.
+		min_navy_for_wars = 0.14
 		min_assault_armies_for_wars = @armies_for_declaring_war	
 		colonizer = yes
 		internal_policies = yes
@@ -140,21 +144,59 @@ default = {
 			}
 		}
 
+		# CP26 — Dynamic ship_data scaling
+		#
+		# Vanilla used hard-coded min/max for constructor/science/colonizer,
+		# which left late-game AIs under-staffed once their empire grew.
+		#
+		# The cp26_empire_size_* country flags are updated yearly by event
+		# cp26_ai_pulse.1 (events/zz_cp26_ai_pulse_events.txt) based on
+		# count_owned_planet :
+		#   small  : 0 - 3
+		#   medium : 4 - 7
+		#   large  : 8 - 14
+		#   huge   : 15+
+		#
+		# Each ship category below uses these flags as fraction modifiers,
+		# growing the AI's construction priorities as its empire scales.
+		#
+		# CP26 2026-05-14 (fourth pass) : strict cap 21 ships/empire.
+		# `default` n'existe plus qu'une fois (fusion 00_country_types) — plus de merge moteur.
+		# Constructor : 2/2 (aligné contender).
+		#
+		# Budget indicatif civils (IA default, plafonds ship_data) :
+		#   2 const + 2 sci + jusqu'à 2 col = 6 civils
+		#   + 15 militaires (caps count_owned_ship + factor=0 ailleurs)
+		#
+		# Historique :
+		#   - Vanilla CP26 initial      : 3/6 + 3/5 + 0/6 = jusqu'à 17 civils
+		#   - Second pass (alignement)  : 1/2 + 2/2 + 0/2 = 6 civils max
+		#   - Third pass (23 ships)     : 1/3 + 2/3 + 0/2 = 8 civils max
+		#   - Fourth pass (21 strict)   : 1/1 + 2/3 + 0/2 = 6 civils max
+		#   - Fifth pass (sci spam fix) : 1/1 + 1/2 + 0/2 = 5 civils max
+		#   - Sixth pass                : 2/2 const ; colonizer 00 aligné sur zz
 		ship_data = {
 			constructor = {
-				min = 3
-				max = 3
-				# system_mult = 0.20
+				min = 2
+				max = 2
 			}
 
 			science	= {
-				min = 3
-				max = 3
-				# system_mult = 0.30
+				min = 1
+				max = 2
+				fraction = {
+					base = 0.03
+					modifier = {
+						has_country_flag = cp26_empire_size_large
+						add = 0.03
+					}
+					modifier = {
+						has_country_flag = cp26_empire_size_huge
+						add = 0.05
+					}
+				}
 			}
 
-			# HRB_NOTE: this will log a warning but works correctly
-			# HRB_TODO: fix how ship_data works, add suppport for dynamic modifiers
 			colonizer = {
 				fraction = {
 					base = 0.1
@@ -179,9 +221,21 @@ default = {
 						}
 						factor = 0
 					}
+					modifier = {
+						has_country_flag = cp26_empire_size_medium
+						add = 0.05
+					}
+					modifier = {
+						has_country_flag = cp26_empire_size_large
+						add = 0.10
+					}
+					modifier = {
+						has_country_flag = cp26_empire_size_huge
+						add = 0.15
+					}
 				}
 				min = 0
-				max = 1
+				max = 2
 			}
 			
 			# # Stellaris Military ships
@@ -250,6 +304,14 @@ default = {
 			# UFOP Military ships
 			sovereign = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_ufop = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
 						is_ufop = yes
@@ -265,6 +327,14 @@ default = {
 			galaxy = {
 				fraction = {
 					modifier = {
+						factor = 0
+						is_ufop = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					modifier = {
 						add = 25
 						has_technology = tech_battleship_unlock
 						is_ufop = yes
@@ -274,6 +344,14 @@ default = {
 
 			excelsior = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_ufop = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 35
 						has_technology = tech_cruiser_unlock
@@ -289,6 +367,14 @@ default = {
 
 			intrepid = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_ufop = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 50
 						has_technology = tech_destroyer_unlock
@@ -309,7 +395,15 @@ default = {
 
 			miranda = {
 				fraction = {
-					base = 50
+					modifier = {
+						factor = 0
+						is_ufop = yes
+						count_owned_ship = {
+							count >= 6
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 35
 					modifier = {
 						factor = 0
 						is_ufop = no
@@ -349,6 +443,14 @@ default = {
 
 			defiant = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_ufop = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 100
 					modifier = {
 						factor = 0
@@ -385,6 +487,14 @@ default = {
 			# Klingon Military ships
 			neghvar = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_klingon = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
 						is_klingon = yes
@@ -400,6 +510,14 @@ default = {
 			vorcha = {
 				fraction = {
 					modifier = {
+						factor = 0
+						is_klingon = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					modifier = {
 						add = 25
 						has_technology = tech_battleship_unlock
 						is_klingon = yes
@@ -409,6 +527,14 @@ default = {
 
 			ktinga = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_klingon = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 35
 						has_technology = tech_cruiser_unlock
@@ -424,6 +550,14 @@ default = {
 
 			warbird = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_klingon = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 50
 						has_technology = tech_destroyer_unlock
@@ -444,7 +578,15 @@ default = {
 
 			bird_of_prey = {
 				fraction = {
-					base = 50
+					modifier = {
+						factor = 0
+						is_klingon = yes
+						count_owned_ship = {
+							count >= 6
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 35
 					modifier = {
 						factor = 0
 						is_klingon = no
@@ -490,6 +632,14 @@ default = {
 			# Romulan Military ships
 			majestus = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_romulan = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
 						is_romulan = yes
@@ -504,6 +654,14 @@ default = {
 			dderidex = {
 				fraction = {
 					modifier = {
+						factor = 0
+						is_romulan = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					modifier = {
 						add = 25
 						has_technology = tech_battleship_unlock
 						is_romulan = yes
@@ -513,6 +671,14 @@ default = {
 
 			valdore = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_romulan = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 35
 						has_technology = tech_cruiser_unlock
@@ -528,6 +694,14 @@ default = {
 
 			vindius = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_romulan = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 50
 						has_technology = tech_destroyer_unlock
@@ -548,7 +722,15 @@ default = {
 
 			ferrax = {
 				fraction = {
-					base = 100
+					modifier = {
+						factor = 0
+						is_romulan = yes
+						count_owned_ship = {
+							count >= 6
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 55
 					modifier = {
 						factor = 0
 						is_romulan = no
@@ -585,6 +767,14 @@ default = {
 			# Cardassian Military ships
 			nokoram = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_cardassian = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					base = 0
 					modifier = {
 						is_cardassian = yes
@@ -600,6 +790,14 @@ default = {
 			kazikai = {
 				fraction = {
 					modifier = {
+						factor = 0
+						is_cardassian = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					modifier = {
 						add = 25
 						has_technology = tech_battleship_unlock
 						is_cardassian = yes
@@ -609,6 +807,14 @@ default = {
 
 			keldon = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_cardassian = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 35
 						has_technology = tech_cruiser_unlock
@@ -624,6 +830,14 @@ default = {
 
 			galor = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_cardassian = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 50
 						has_technology = tech_destroyer_unlock
@@ -644,7 +858,15 @@ default = {
 
 			hideki = {
 				fraction = {
-					base = 50
+					modifier = {
+						factor = 0
+						is_cardassian = yes
+						count_owned_ship = {
+							count >= 6
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 35
 					modifier = {
 						factor = 0
 						is_cardassian = no
@@ -681,6 +903,14 @@ default = {
 				fraction = {
 					modifier = {
 						factor = 0
+						is_minor = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					modifier = {
+						factor = 0
 						is_minor = no
 					}
 					modifier = {
@@ -693,6 +923,14 @@ default = {
 
 			medium_minor = {
 				fraction = {
+					modifier = {
+						factor = 0
+						is_minor = yes
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						factor = 0
 						is_minor = no
@@ -712,7 +950,15 @@ default = {
 
 			small_minor = {
 				fraction = {
-					base = 100
+					modifier = {
+						factor = 0
+						is_minor = yes
+						count_owned_ship = {
+							count >= 6
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 55
 					modifier = {
 						factor = 0
 						is_minor = no
@@ -740,6 +986,14 @@ default = {
 				fraction = {
 					modifier = {
 						factor = 0
+						has_country_flag = nausicaan
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					modifier = {
+						factor = 0
 						NOT = { has_country_flag = nausicaan }
 					}
 					modifier = {
@@ -752,6 +1006,14 @@ default = {
 
 			medium_nausicaan = {
 				fraction = {
+					modifier = {
+						factor = 0
+						has_country_flag = nausicaan
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						factor = 0
 						NOT = { has_country_flag = nausicaan }
@@ -771,7 +1033,15 @@ default = {
 
 			small_nausicaan = {
 				fraction = {
-					base = 100
+					modifier = {
+						factor = 0
+						has_country_flag = nausicaan
+						count_owned_ship = {
+							count >= 6
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					base = 55
 					modifier = {
 						factor = 0
 						NOT = { has_country_flag = nausicaan }
@@ -798,6 +1068,13 @@ default = {
 			crisis_cruiser = {
 				fraction = {
 					modifier = {
+						factor = 0
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
+					modifier = {
 						add = 35
 						has_crisis_level = crisis_level_4
 					}
@@ -806,6 +1083,13 @@ default = {
 
 			crisis_destroyer = {
 				fraction = {
+					modifier = {
+						factor = 0
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 50
 						has_crisis_level = crisis_level_3
@@ -819,6 +1103,13 @@ default = {
 
 			crisis_corvette = {
 				fraction = {
+					modifier = {
+						factor = 0
+						count_owned_ship = {
+							count >= 15
+							limit = { cp26_is_non_hero_military_ship = yes }
+						}
+					}
 					modifier = {
 						add = 100
 						has_crisis_level = crisis_level_2
@@ -1104,6 +1395,7 @@ default = {
 		}
 	}
 }
+
 
 # Global Event Country - Do Not Remove
 global_event = {

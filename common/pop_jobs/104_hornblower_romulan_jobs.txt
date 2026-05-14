@@ -1,0 +1,378 @@
+##############################
+###      Romulan Jobs      ###
+##############################
+		
+########################
+###    Ruler Jobs    ###
+########################
+		
+# Senator
+senator_romulan = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_capital
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_administrators
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+		
+        produces = {
+			unity = 10
+		}
+        
+		# Bug Senatorial Residences, Romulan Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = romulan_bug_senators }
+			}
+			unity = 2
+			energy = 3
+		}
+					
+	}
+	
+	country_modifier = {
+		country_admin_cap_add = 4
+	}
+    
+	# Bug Senatorial Residences, Romulan Decision
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_modifier = romulan_bug_senators }
+		}
+		modifier = {
+			planet_crime_add = 10
+		}
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+		
+# Imperial Kin
+imperial_kin_romulan = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_hall_of_state_romulan
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_priests
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+		
+		produces = {
+			influence = 0.1
+		}
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 10
+		planet_stability_add = 5
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+# Aristocrat
+aristocrat_romulan = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_palace #HRB_TODO: TBD
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_nobles
+		upkeep = {
+			energy = 1
+			food = 1
+		}
+		
+		produces = {
+			food = 3
+			unity = 5
+		}
+				
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 2
+		planet_stability_add = 2
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+########################
+###    Worker Jobs   ###
+########################
+		
+		
+# Centurion
+centurion_romulan = {
+	category = worker
+	condition_string = SOLDIER_JOB_TRIGGER
+	building_icon = building_stronghold # HRB_TODO: TBD
+	clothes_texture_index = 4
+		
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+		
+	resources = {
+		category = planet_soldiers
+		upkeep = {
+			food = 0
+		}
+		
+		produces = {
+			officers = 3
+			research = 1
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					planet = { has_designation = col_fortress }
+				}
+			}
+			influence = 0.1
+		}
+			
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_tradition = tr_defense_oath_citizenship }
+			}
+			unity = 1
+		}
+
+		# Recruitment Campaign, Decision
+		produces = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					has_modifier = recruitment_campaign
+				}
+			}
+			officers = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_modifier = martial_law_romulan
+			}
+		}
+		modifier = {
+			planet_stability_add = 5
+		}
+   }
+
+	# War Measures, Decision
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			exists = planet
+			planet = {
+				has_modifier = war_measures
+			}
+		}
+		pop_defense_armies_add = 1
+	}
+	
+	# Fortress World, Planet Designation
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		pop_defense_armies_add = 2
+	}
+
+	# Extra Ration, Edict
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = extra_rations }
+		}
+		pop_defense_armies_add = 1
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		soldier_job_check_trigger = yes
+	}
+		
+	weight = {
+		weight = @soldier_job_weight
+	}
+}
+		
+		
+###########################
+###   Specialist Jobs   ###
+###########################
+		
+# Praetorian Guard
+praetorian_guard_romulan = {
+	category = specialist
+	condition_string = BATTLE_THRALL_JOB_TRIGGER
+	building_icon = building_precinct_house
+	clothes_texture_index = 5
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		battle_thrall_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_enforcers
+		upkeep = {
+			food = 1
+		}
+		
+		produces = {
+			officers = 1
+			influence = 0.05
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_quest_tree_node = qt_romulan_d1 }
+			}
+			unity = 1
+		}
+		
+		# Honor Military Heroes, Romulan Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_modifier = romulan_honor_military_heroes
+				}
+			}
+			unity = 2
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_modifier = romulan_honor_military_heroes
+				}
+			}
+			energy = 3
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = anticrime_campaign }
+			}
+			energy = 2
+		}
+	}
+	
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+		
+	planet_modifier = {
+		planet_crime_add = -15
+	}
+		
+    triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_modifier = anticrime_campaign }
+		}
+		modifier = {
+			planet_crime_add = -10
+		}
+	}  
+    
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+

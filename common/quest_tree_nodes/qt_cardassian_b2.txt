@@ -15,12 +15,13 @@ qt_cardassian_b2 = {
 	} 
  
 	possible = {
+		# CP26: évite owner = { } depuis scope planète (error.log Invalid context switch [owner]).
+		exists = event_target:bajoran_planet
 		custom_tooltip = { 
 			success_text = qt_cardassian_b2_bajor_is_cardassian_succes
 			fail_text = qt_cardassian_b2_bajor_is_cardassian_fail
 			event_target:bajoran_planet = {
-				
-				owner = { is_cardassian = yes }
+				is_owned_by = event_target:cardassian_country
 			}
 		}
 

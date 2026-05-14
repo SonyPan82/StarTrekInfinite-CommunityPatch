@@ -1,6 +1,6 @@
 ﻿l_english:
- lunar_one_colony_cp26:0 "Lunar One Colony"
- lunar_one_colony_cp26_desc:0 "Lunar One is the first deep-space research outpost humanity built on its own moon — a cradle of zero-g science that still draws the Federation's most curious minds."
+ lunar_one_colony:0 "Lunar One Colony"
+ lunar_one_colony_desc:0 "Lunar One is the first deep-space research outpost humanity built on its own moon — a cradle of zero-g science that still draws the Federation's most curious minds."
  tech_ambassador:0 "Ambassador Schematics"
  tech_ambassador_desc:0 "Ambassador-class explorers are capable of operating without support in a variety of mission scenarios."
  tech_constellation:0 "Constellation Schematics"
@@ -64,6 +64,7 @@
  cp26_options.10.disable.tt:0 "The CP26 vassalization diplomacy option stays disabled."
  casus_belli_cb_liberation_war:0 "Independence"
  casus_belli_cb_liberation_war_acquire_hint:0 "We must first demand that this overlord release its subject. If they refuse, we may declare an Independence War."
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_TYPE:0 "Demand Surrender"
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_TITLE:0 "Offer War Goal Peace"
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_DESC:0 "Ask §H[Recipient.GetName]§! to accept our war goal. The target empire may accept or refuse."
  ACTION_CP26_OFFER_WAR_GOAL_PEACE_OFFER_DESC:0 "§H[Actor.GetName]§! asks us to accept their war goal."

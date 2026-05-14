@@ -1,0 +1,47 @@
+namespace = cp26_start_balance
+
+# CP26 — équilibrage départ (HUD jour 1 des 4 majors, 2346.01.01).
+# Tampons stockpile + petits ajustements ciblés ; les Romuliens restent la
+# référence « haute » (pas de buff). Féd : déficit énergie/minéraux lourd sur
+# capture — runway stockpile (la structure starbases / upkeep reste vanilla).
+
+country_event = {
+	id = cp26_start_balance.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# United Federation of Planets — capture : ~1k énergie, -89/mois, minéraux -2/mois
+		if = {
+			limit = { has_country_id = ufop }
+			add_resource = {
+				energy = 8000
+				minerals = 600
+				food = 400
+			}
+		}
+
+		# Klingon Empire — capture : 300 énergie +11, 100 minéraux ~0, 200 nourriture
+		if = {
+			limit = { has_country_id = klingon }
+			add_resource = {
+				energy = 500
+				minerals = 800
+				food = 200
+			}
+		}
+
+		# Romulan Star Empire — capture : déjà le plus confortable (900 énergie +9, etc.)
+		# Aucun add_resource volontaire.
+
+		# Cardassian Union — capture : 700 énergie -1/mois, 100 nourriture, minéraux OK
+		if = {
+			limit = { has_country_id = cardassian }
+			add_resource = {
+				energy = 500
+				minerals = 200
+				food = 450
+			}
+		}
+	}
+}

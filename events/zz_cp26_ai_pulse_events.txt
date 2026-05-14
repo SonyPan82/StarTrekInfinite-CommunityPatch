@@ -2,7 +2,7 @@
 #
 # Sets a country flag describing the AI's empire size every year.
 # This flag is then read by ship_data fraction modifiers in
-# common/country_types/zz_cp26_default_country_type.txt to dynamically
+# common/country_types/00_country_types.txt (`default`) to dynamically
 # scale the AI's target counts of constructors / colonizers / science ships
 # proportionally to its actual empire size — instead of being stuck on
 # vanilla's static min/max.

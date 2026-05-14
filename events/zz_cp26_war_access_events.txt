@@ -43,49 +43,72 @@ country_event = {
 	}
 }
 
-# Keeps active wars traversable, including wars already running when CP26 is loaded.
-# CP26 2026-05-14 : déclenché mensuellement (vs daily) avec forced=35 pour couvrir
-# le cycle de 30 jours + 5 de buffer. cf zz_cp26_war_access_on_actions.txt.
-country_event = {
-	id = cp26_war_access.2
+# Keeps active wars traversable (frontières ouvertes entre belligérants + zones neutres).
+# CP26 2026-05-14 : ancien country_event .2 sur on_monthly_pulse_country (N× par mois si
+# N empires en guerre) — remplacé par event global .100 sur on_monthly_pulse (1×/mois).
+# forced = 35 couvre le cycle mensuel + marge. Voir zz_cp26_war_access_on_actions.txt.
+#
+# IMPORTANT : on_monthly_pulse n'a pas de scope racine pays/guerre fiable.
+# - every_war à la racine → scope none (crash).
+# - every_war + every_war_participant + event_target guerre → erreurs / instabilité
+#   selon build (save_event_target sur war, double participant, etc.).
+# - Stratégie stable : uniquement des scopes PAYS — double every_country sur les
+#   paires en guerre (symétrique, idempotent si doublons A|B et B|A).
+event = {
+	id = cp26_war_access.100
 	hide_window = yes
 	is_triggered_only = yes
 
-	trigger = {
-		is_at_war = yes
-	}
-
 	immediate = {
-		save_event_target_as = cp26_war_access_country
-		every_war = {
-			every_war_participant = {
+		# Toutes les paires d'empires mutuellement en guerre : frontières forcées ouvertes.
+		every_country = {
+			limit = {
+				is_at_war = yes
+			}
+			save_event_target_as = cp26_war_ac_outer
+			every_country = {
 				limit = {
-					event_target:cp26_war_access_country = {
-						is_at_war_with = prev
+					NOT = { is_same_value = event_target:cp26_war_ac_outer }
+					event_target:cp26_war_ac_outer = {
+						is_at_war_with = this
 					}
 				}
-				event_target:cp26_war_access_country = {
+				save_event_target_as = cp26_war_ac_inner
+				event_target:cp26_war_ac_outer = {
 					set_closed_borders = {
-						who = prev
+						who = event_target:cp26_war_ac_inner
 						status = no
 						forced = 35
 					}
 				}
-				set_closed_borders = {
-					who = event_target:cp26_war_access_country
-					status = no
-					forced = 35
+				event_target:cp26_war_ac_inner = {
+					set_closed_borders = {
+						who = event_target:cp26_war_ac_outer
+						status = no
+						forced = 35
+					}
 				}
 			}
 		}
+		# Chaque pays « neutral_zone » ouvre vers chaque empire actuellement en guerre
+		# (équivalent à l’ancien .2 cumulé sur tous les belligérants, mais en un passage).
 		every_country = {
 			limit = {
 				is_country_type = neutral_zone
 			}
-			set_closed_borders = {
-				who = event_target:cp26_war_access_country
-				status = no
-				forced = 35
+			save_event_target_as = cp26_war_ac_nz
+			every_country = {
+				limit = {
+					is_at_war = yes
+				}
+				save_event_target_as = cp26_war_ac_warrior
+				event_target:cp26_war_ac_nz = {
+					set_closed_borders = {
+						who = event_target:cp26_war_ac_warrior
+						status = no
+						forced = 35
+					}
+				}
 			}
 		}
 	}

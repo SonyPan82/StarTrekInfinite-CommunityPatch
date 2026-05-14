@@ -1,0 +1,3082 @@
+# HRB: Cardassian Unique Mechanic: Exploitation
+# CP26: replace_path — jobs artisan/purge fusionnés depuis zz_cp26_pop_job_fixes (exists=planet).
+@cardassian_exploitation_production_penalty = -0.10
+@cardassian_exploitation_production_bonus = 0.10
+@cardassian_exploitation_production_bonus_increased = 0.20
+		
+################################################
+###				Hornblower Jobs				 ###
+################################################
+		
+@bureaucrat_influence_from_techs = 0.1
+		
+########################
+###    Ruler Jobs    ###
+########################
+		
+# Official
+administrator = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_capital
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_administrators
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+				
+		produces = {
+			energy = 1
+			minerals = 1
+			unity = 10
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+# Adviser
+adviser = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_citadel_of_faith
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_priests
+		upkeep = {
+			energy = 1
+			#food = 1
+		}
+		
+
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 8
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+		
+# Science Director
+head_researcher = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_institute
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_researchers
+
+		upkeep = {
+			minerals = 1
+			food = 1
+		}
+		
+		produces = {
+			research = 12
+		}
+	}
+	
+	country_modifier = {
+		country_admin_cap_add = 1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+
+	weight = {
+		weight = @ruler_job_weight
+		modifier = {
+			factor = 5
+			has_job = head_researcher
+		}
+	}
+}
+		
+		
+		
+########################
+###    Worker Jobs   ###
+########################
+		
+		
+# Clerk
+clerk = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_residence
+	clothes_texture_index = 2
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		worker_job_check_trigger = yes
+	}
+		
+		
+	# Special Effect by Deposit
+	resources = {
+		category = planet_farmers
+
+		upkeep = {
+			food = 0
+		}
+			
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_frozen_lakes
+				}
+			}
+			food = 3
+		}
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 4
+		trade_value_add = 4
+	}
+			
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_gigantic_annelids
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 4 
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_ice_gems
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 3 
+		}
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_perfect_climate
+				}
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 2 
+		}
+	}
+		
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			is_same_species = owner_species
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @clerk_job_weight
+	}
+}
+		
+# Crystal Miner
+dilithium_miner = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_crystal_mines
+	clothes_texture_index = 2
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		worker_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_miners
+		
+		produces = {
+			dilithium = 1
+		}
+
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_wellfare_wealth_distribution
+				}
+			}
+			energy = -0.1
+		}
+	}
+		
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			is_same_species = owner_species
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+# Farmer
+farmer = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_food_processing_facility
+	clothes_texture_index = 2
+  
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		hidden_trigger = { exists = owner }
+		worker_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_farmers
+					
+		produces = {
+			food = 6
+		}
+		
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_wellfare_wealth_distribution
+				}
+			}
+			energy = -0.1
+		}
+		
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_food_processing_facility }
+			}
+			food = 1
+		}
+		
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_food_processing_center }
+			}
+			food = 2
+		}
+		
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_chateau_ufop }
+			}
+			unity = 1
+		}
+		
+		# Special Effect by Deposit
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_mineral_flora
+				}
+			}
+			minerals = 3
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_ore_rich_slopes
+				}
+			}
+			minerals = 2
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_infertile_land
+				}
+			}
+			minerals = 4
+			energy = 4
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_gigantic_aquatic_life
+				}
+			}
+			research = 3
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_enriched_soild
+				}
+			}
+			food = 3
+		}
+		
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_commerce_intersectional_agronomics
+				}
+			}
+			minerals = 1
+		}
+		
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_infertile_land
+				}
+			}
+			food = 2
+		}
+		
+		#Recalibrate Replicators, UFOP Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = ufop_recalibrate_replicators }
+			}
+			food = 2
+		}
+	}
+	
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		AND = {
+	# 			exists = planet
+	# 			exists = owner
+	# 			planet = {
+	# 				has_deposit = d_salt_flats
+	# 			}
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		trade_value_add = 2 
+	# 	}
+	# }
+
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_bountiful_oasis
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 2 
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_gigantic_annelids
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 4 
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_sirocco_winds
+				}
+			}
+		}
+		modifier = {
+			planet_amenities_add = 2
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_abundant_fishing_zones
+				}
+			}
+		}
+		modifier = {
+			planet_amenities_add = 2
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_fur_lined_fauna
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 3
+		}
+	}
+
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			is_same_species = owner_species
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+	# ~HRB: Cardassian Unique Mechanic: Exploitation
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	# Minerally Fortified Bloodwine tradition
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			exists = owner
+			owner = {
+				has_active_tradition = tr_bloodwine_competitions_klingon_r
+			}
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		modifier = {
+			factor = 3
+			has_trait = trait_agrarian
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 0.25
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_syncretic_proles
+		}
+		modifier = {
+			factor = 1.2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.9
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_syncretic_proles
+		}
+		modifier = {
+			factor = 1.4
+			has_trait = trait_presapient_proles
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_void_dweller_1
+		}
+		
+		# low income modifier
+		modifier = {
+			factor = 1.2
+		
+			OR = {
+				is_unemployed = yes
+				has_job = farmer
+			}
+			exists = planet
+			planet = {
+				has_available_jobs = farmer
+			}
+			exists = owner
+			owner = {
+				has_monthly_income = {
+					resource = food
+					value < 10
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.5
+			has_trait = trait_lithoid
+		
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				has_monthly_income = {
+					resource = food
+					value >= 0
+				}
+			}
+		}
+		modifier = {
+			factor = 0.75
+			has_trait = trait_necrophage
+		}
+	}
+}
+		
+# HRB_TODO: not valid anymore
+# Compounds Extractor
+# gas_extractor = {
+# 	category = worker
+# 	condition_string = WORKER_JOB_TRIGGER
+# 	building_icon = building_gas_extractors
+# 	clothes_texture_index = 2
+		
+# 	possible_pre_triggers = {
+# 		has_owner = yes
+# 		is_being_purged = no
+# 		is_being_assimilated = no
+# 		is_sapient = yes
+# 	}
+		
+# 	possible = {
+# 		worker_job_check_trigger = yes
+# 	}
+		
+# 	resources = {
+# 		category = planet_miners
+# 		produces = {
+# 			# HRB_TODO: not valid anymore
+# 			#exotic_gases = 2
+# 			minerals = 2 # Placeholder
+# 		}
+# 		upkeep = {
+# 			trigger = {
+# 				exists = owner
+# 				owner = {
+# 					has_edict = mining_subsidies
+# 				}
+# 			}
+# 			energy = 0.5
+# 		}
+# 	}
+# 		weight = @specialist_job_weight # Important job
+# 		modifier = {
+# 			factor = 10
+# 			is_enslaved = yes
+# 			can_take_servant_job = no
+# 		}
+# 		modifier = {
+# 			factor = 0.1
+# 			can_take_servant_job = yes
+# 		}
+# 		modifier = {
+# 			factor = 5
+# 			has_trait = trait_syncretic_proles
+# 		}
+# 		modifier = {
+# 			factor = 2
+# 			species = {
+# 				has_species_flag = racket_species_flag
+# 			}
+# 		}
+# 		modifier = {
+# 			factor = 3
+# 			has_trait = trait_very_strong
+# 		}
+# 		modifier = {
+# 			factor = 1.5
+# 			has_trait = trait_strong
+# 		}
+# 		modifier = {
+# 			factor = 0.1
+# 			has_trait = trait_weak
+# 		}
+# 		modifier = {
+# 			factor = 3
+# 			has_trait = trait_void_dweller_1
+# 		}
+# 		modifier = {
+# 			factor = 0.75
+# 			has_trait = trait_necrophage
+# 		}
+# 	}
+# }
+		
+# Miner
+miner = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_mineral_purification_plant
+	clothes_texture_index = 2
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		hidden_trigger = { exists = owner }
+		worker_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_miners
+		
+		produces = {
+			minerals = 6
+		}
+		
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_wellfare_wealth_distribution
+				}
+			}
+			energy = -0.1
+		}
+				
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_mineral_purification_plant }
+			}
+			minerals = 1
+		}
+		
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_mineral_purification_hub }
+			}
+			minerals = 2
+		}
+		
+		produces = {
+			trigger = {
+				planet = { has_modifier = femnova_research_miner_jobs }
+			}
+			research = 0.25
+		}
+
+		# Special Effect by Deposit
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_dry_heat
+				}
+			}
+			energy = 2
+		}
+		# produces = {
+		# 	trigger = {
+		# 		exists = planet
+		# 		planet = {
+		# 			has_deposit = d_majestic_peaks
+		# 		}
+		# 	}
+		# 	minerals = 2
+		# }
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_moss_caves
+				}
+			}
+			food = 4
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_planet_modifier = femnova_research_miners
+				}
+			}
+			research = 0.25
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_commerce_intersectional_agronomics
+				}
+			}
+			food = 1
+		}
+
+		# Pre-Planned Construction, Decision
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_modifier = preplanned_construction
+				}
+			}
+			energy = 1
+		}
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		AND = {
+	# 			exists = planet
+	# 			exists = owner
+	# 			planet = {
+	# 				has_deposit = d_salt_flats
+	# 			}
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		trade_value_add = 2 
+	# 	}
+	# }
+
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_gigantic_annelids
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 4 
+		}
+	}
+
+	# Pre-Planned Construction, Decision
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			exists = owner
+			planet = {
+				has_modifier = preplanned_construction
+			}
+		}
+		modifier = {
+			planet_building_build_speed_mult = 0.02
+			planet_clear_blocker_time_mult = -0.01
+		}
+	}
+
+	# Streamline Alloy Production, Decision
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			exists = owner
+			planet = {
+				has_modifier = streamline_production
+			}
+		}
+		planet_metallurgists_alloys_produces_mult = 0.03
+		planet_metallurgists_minerals_upkeep_mult = 0.05
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		AND = {
+	# 			exists = planet
+	# 			exists = owner
+	# 			planet = {
+	# 				has_deposit = d_majestic_peaks
+	# 			}
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		trade_value_add = 2 
+	# 	}
+	# }
+
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_ice_gems
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 3 
+		}
+	}
+		
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			owner = { has_country_id = "cardassian" }
+			is_same_species = owner_species
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			owner = { has_country_id = "cardassian" }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+			NOT = { is_same_species = owner_species }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			owner = { has_country_id = "cardassian" }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+			NOT = { is_same_species = owner_species }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	# Minerally Fortified Bloodwine tradition
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			exists = owner
+			owner = {
+				has_active_tradition = tr_bloodwine_competitions_klingon_r
+			}
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		
+		# low income modifier
+		modifier = {
+			factor = 1.1
+		
+			OR = {
+				is_unemployed = yes
+				has_job = "miner"
+			}
+			exists = planet
+			planet = {
+				has_available_jobs = "miner"
+			}
+			exists = owner
+			owner = {
+				has_monthly_income = {
+					resource = minerals
+					value < 0
+				}
+			}
+		}
+	}
+}
+		
+# Tetryon Harvester
+tetryon_harvester = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_mote_harvesting_traps
+	clothes_texture_index = 2
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		worker_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_miners
+		
+		produces = {
+			tetryons = 1
+		}
+			
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_wellfare_wealth_distribution
+				}
+			}
+			energy = -0.1
+		}
+	}
+	
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			is_same_species = owner_species
+			exists = owner
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			NOT = { is_same_species = owner_species }
+			exists = owner
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			NOT = { is_same_species = owner_species }
+			exists = owner
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+# Guard
+soldier = {
+	category = worker
+	condition_string = SOLDIER_JOB_TRIGGER
+	building_icon = building_stronghold
+	clothes_texture_index = 4
+		
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+		
+	resources = {
+		category = planet_soldiers
+		upkeep = {
+			food = 0
+		}
+				
+		produces = {
+			officers = 3
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					planet = { has_designation = col_fortress }
+				}
+			}
+			influence = 0.1
+		}
+			
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_tradition = tr_defense_oath_citizenship }
+			}
+			unity = 1
+		}
+
+		# Recruitment Campaign, Decision
+		produces = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					has_modifier = recruitment_campaign
+				}
+			}
+			officers = 1
+		}
+	}
+	
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		soldier_job_check_trigger = yes
+	}
+
+	# War Measures, Decision
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			exists = planet
+			planet = {
+				has_modifier = war_measures
+			}
+		}
+		pop_defense_armies_add = 1
+	}
+
+	# Fortress World, Planet Designation
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		pop_defense_armies_add = 2
+	}
+
+	# Extra Ration, Edict
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = extra_rations }
+		}
+		pop_defense_armies_add = 1
+	}
+
+	weight = {
+		weight = @soldier_job_weight
+	}
+}
+		
+# Technician
+technician = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_energy_grid
+	clothes_texture_index = 2
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		worker_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_technician
+		
+		produces = {
+			energy = 6
+		}
+		
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_wellfare_wealth_distribution
+				}
+			}
+			energy = -0.1
+		}
+		
+		produces = {
+			trigger = {
+				has_trait = trait_introspective
+			}
+			research = 0.50
+		}
+
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_energy_grid }
+			}
+			energy = 1
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_energy_nexus }
+			}
+			energy = 2
+		}
+		
+		# Special Effect by Deposit
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_searing_heat
+				}
+			}
+			energy = 3
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_ore_rich_slopes
+				}
+			}
+			minerals = 2
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_high_winds
+				}
+			}
+			energy = 4
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_powerful_currents
+				}
+			}
+			energy = 3
+		}
+		
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_gigantic_annelids
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 4 
+		}
+	}
+		
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			is_same_species = owner_species
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @worker_job_weight
+				
+		# low income modifier
+		modifier = {
+			factor = 250
+		
+			OR = {
+				is_unemployed = yes
+				has_job = "technician"
+			}
+			exists = planet
+			planet = {
+				has_available_jobs = "technician"
+			}
+			exists = owner
+			owner = {
+				is_ai = yes
+				has_monthly_income = {
+					resource = energy
+					value < 20
+				}
+			}
+		}
+	}
+}
+		
+		
+		
+#############################
+###    Specialist Jobs    ###
+#############################
+		
+# Artisan
+artisan = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_replicator_1
+	clothes_texture_index = 3
+			
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+			
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+			
+	resources = {
+		category = planet_artisans
+		
+		produces = {
+			deuterium = 2
+			food = 3
+		}
+		
+		upkeep = {
+			energy = 1
+			minerals = 2
+		}
+		
+		upkeep = {
+			trigger = {
+				planet = { has_active_building = building_replicator_2 }
+			}
+			minerals = 1
+		}
+		
+		upkeep = {
+			trigger = {
+				planet = { has_active_building = building_replicator_3 }
+			}
+			minerals = 2
+		}
+
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_active_building = building_replicator_3 }
+			}
+			food = 1
+			deuterium = 1
+		}
+
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_active_building = building_replicator_4_a }
+			}
+			food = 1
+			deuterium = 1
+		}
+
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_active_building = building_replicator_4_b }
+			}
+			food = 1
+			deuterium = 1
+		}
+
+		# Recalibrate Replicators, UFOP Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = ufop_recalibrate_replicators }
+			}
+			food = 6
+		}
+
+		# Honor Military Heroes, Romulan Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_modifier = romulan_honor_military_heroes
+				}
+			}
+			unity = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_modifier = romulan_honor_military_heroes
+				}
+			}
+			minerals = 2
+		}
+	}
+		
+	planet_modifier = {
+		planet_amenities_add = 3
+		trade_value_add = 3
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_active_building = building_replicator_2
+			}
+		}	
+		#planet_amenities_add = 1
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_active_building = building_replicator_4_b
+			}
+		}	
+		#planet_amenities_add = 2
+		trade_value_add = 3
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+# Supervising Official
+bureaucrat = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_capital
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_bureaucrats
+		
+		upkeep = {
+			food = 1
+		}
+
+		# Optimize Communication Infrastructure, Decision
+		produces = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					has_modifier = communication_infrastructure
+				}
+			}
+			unity = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					has_modifier = communication_infrastructure
+				}
+			}
+			energy = 2
+		}
+	}
+
+	country_modifier = {
+		country_admin_cap_add = 10
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+	
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			exists = planet
+			planet = {
+				has_modifier = communication_infrastructure
+			}
+		}
+		country_admin_cap_add = 2
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_designation = col_bureau }
+		}
+		modifier = {
+			country_admin_cap_add = 8
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+# Subspace Physicist
+subspace_physicist = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_chemical_plant
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_chemists
+		
+		produces = {
+			tetryons = 2
+		}
+		
+		upkeep = {
+			energy = 10
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+				
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+# Nanite Smith
+nanite_smith = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_chemical_plant #HRB_TODO: Create icon if this feature is incorporated
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_chemists
+		
+		produces = {
+			nanites = 2
+		}
+		
+		upkeep = {
+			minerals = 2
+			alloys = 2
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+			
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+# Settler
+colonist = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_colony_shelter
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+		
+	planet_modifier = {
+		pop_growth_speed = 0.05
+		planet_amenities_add = 2
+	}
+		
+	resources = {
+		category = planet_jobs
+		upkeep = {
+			food = 2
+		}
+		
+		produces = {
+			food = 4
+		}
+		
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @colonist_job_weight
+	}
+}
+		
+		
+# Culture Worker
+culture_worker = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_autochthon_monument
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_culture_workers
+		
+		produces = { #HRB_Research_Rework
+			unity = 6
+		}
+		
+		upkeep = {
+			food = 2
+		}
+		
+		# Create Cultural Index, Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = ufop_cultural_index }
+			}
+			unity = 1
+			research = 1
+		}
+		
+		# Create Cultural Index, Decision
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = ufop_cultural_index }
+			}
+			energy = 3
+		}
+	}
+		
+	planet_modifier = {
+		trade_value_add = 4
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+	
+	triggered_pop_modifier = {
+		potential = {
+			owner = {
+				has_tradition = tr_defense_cultural_attraction
+			}
+		}
+		pop_defense_armies_add = 1
+	}
+			
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			is_same_species = owner_species
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+			
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+			owner = { has_country_id = "cardassian" }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+		
+# Warden
+enforcer = {
+	category = specialist
+	condition_string = BATTLE_THRALL_JOB_TRIGGER
+	building_icon = building_precinct_house
+	clothes_texture_index = 5
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		battle_thrall_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_enforcers
+		upkeep = {
+			food = 1
+		}
+		
+		produces = {
+			officers = 1
+		}
+			
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = anticrime_campaign }
+			}
+			energy = 2
+		}
+	}
+	
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+		
+	planet_modifier = {
+		planet_crime_add = -15
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+		
+# Entertainer
+entertainer = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_holo_theatres
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		entertainer_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_entertainers
+		
+		
+		#From Sporting Arenas tech
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_sports_ufop_klingon }
+			}
+			alloys = 1
+		}
+		upkeep = {
+			food = 1
+		}
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_modifier = romulan_viinerine_and_circuses
+				}
+			}
+			unity = 1
+		}
+	}
+		
+	planet_modifier = {
+		planet_amenities_add = 10
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_modifier = romulan_viinerine_and_circuses
+			}
+		}
+		modifier = {
+			planet_stability_add = 2
+		}
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+			
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+# Graviton Attuner
+graviton_attuner = {
+ 	category = specialist
+	
+ 	condition_string = SPECIALIST_JOB_TRIGGER
+ 	building_icon = building_refinery
+ 	clothes_texture_index = 3
+ 	possible_pre_triggers = {
+ 		has_owner = yes
+ 		is_being_purged = no
+ 		is_being_assimilated = no
+ 		is_sapient = yes
+ 	}
+ 	possible = {
+ 		specialist_job_check_trigger = yes
+ 	}
+ 	resources = {
+ 		category = planet_refiners
+					
+		produces = {
+			gravitons = 2
+		}
+			
+		upkeep = {
+			minerals = 5
+			energy = 5
+		}
+	}
+			
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+			
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+			
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+# Civil Overseer
+# manager = {
+# 	category = specialist
+# 	condition_string = SPECIALIST_JOB_TRIGGER
+# 	building_icon = building_autochthon_monument
+# 	clothes_texture_index = 3
+		
+# 	possible_pre_triggers = {
+# 		has_owner = yes
+# 		is_being_purged = no
+# 		is_being_assimilated = no
+# 		is_sapient = yes
+# 	}
+		
+# 	possible = {
+# 		specialist_job_check_trigger = yes
+# 	}
+		
+# 	planet_modifier = {
+# 		trade_value_add = 3
+# 	}
+		
+# 	resources = {
+# 		upkeep = {
+# 			energy = 3
+# 		}
+# 	}
+		
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			has_trait = trait_thrifty
+# 		}
+# 		modifier = {
+# 			trade_value_add = 0.75
+# 		}
+# 	}
+		
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			has_trait = trait_nuumismatic_administration
+# 		}
+# 		modifier = {
+# 			trade_value_add = 0.75
+# 		}
+# 	}
+		
+# 	resources = {
+# 		category = planet_managers
+# 		produces = {
+# 			unity = 3
+# 			research = 2 #HRB_Research_Rework
+# 		}
+# 		upkeep = {
+# 			food = 2
+# 		}
+# 	}
+# 		weight = @specialist_job_weight
+# 		modifier = {
+# 			factor = 0.2
+# 			is_enslaved = yes #has_species_profile_full = no
+# 		}
+# 		modifier = {
+# 			factor = 1.5
+# 			has_trait = trait_traditional
+ 
+# 		}
+# 		modifier = {
+# 			factor = 0.5
+# 			has_trait = trait_quarrelsome
+# 		}
+# 		modifier = {
+# 			factor = 0.1
+# 			can_take_servant_job = yes
+# 		}
+# 		modifier = {
+# 			factor = 1.5
+# 			has_trait = trait_natural_sociologists
+# 		}
+# 		modifier = {
+# 			factor = 1.5
+# 			has_trait = trait_thrifty
+# 		}
+# 		modifier = {
+# 			factor = 1.5
+# 			has_trait = trait_nuumismatic_administration
+# 		}
+# 		modifier = {
+# 			factor = 1.5
+# 			has_job = manager
+# 		}
+# 		modifier = {
+# 			factor = 3
+# 			has_trait = trait_brainslug
+# 		}
+# 		modifier = {
+# 			factor = 2
+# 			has_trait = trait_presapient_natural_intellectuals
+# 		}
+# 		modifier = {
+# 			factor = 1.4
+# 			has_trait = trait_intelligent
+# 		}
+# 		modifier = {
+# 			factor = 0.5
+# 			has_trait = trait_presapient_proles
+# 		}
+# 		modifier = {
+# 			factor = 1.1
+# 			has_trait = trait_latent_psionic
+# 		}
+# 		modifier = {
+# 			factor = 1.2
+# 			has_trait = trait_psionic
+# 		}
+# 		modifier = {
+# 			factor = 0.5
+# 			has_trait = trait_enigmatic_intelligence_failed
+# 		}
+# 		modifier = {
+# 			factor = 1.4
+# 			OR = {
+# 				has_trait = trait_enigmatic_intelligence
+# 				has_trait = trait_enigmatic_intelligence_poor
+# 			}
+# 		}
+# 		modifier = {
+# 			factor = 0.1
+# 			is_enslaved = yes
+# 			has_slavery_type = { type = slavery_indentured }
+# 		}
+# 		modifier = {
+# 			factor = 1.25
+# 			has_trait = trait_necrophage
+# 		}
+# 	}
+		
+# 	triggered_country_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			has_species_profile = {
+# 				country = owner
+# 				type = species_profile_cardassian_subterfuge_economy 
+# 			}
+# 		}
+# 		modifier = {
+# 			country_admin_cap_add = 1
+# 		}
+# 	}
+# }
+		
+		
+# Medical Worker
+healthcare = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_clinic
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+		
+	planet_modifier = {
+		planet_amenities_add = 5
+		pop_growth_speed = 0.05
+	}
+		
+	resources = {
+		category = planet_doctors
+		
+		upkeep = {
+			food = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_modifier = qt_ufop_doctors_orders_27_effect
+			}
+		}
+		modifier = {
+			planet_amenities_add = 2
+			pop_growth_speed = 0.1
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @spawner_drone_job_weight
+	}
+}
+		
+# Researcher
+researcher = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_research_lab_1
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_researchers
+				
+		produces = { #HRB_Research_Rework
+			research = 6
+		}
+				
+		upkeep = {
+			minerals = 2
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				exists = owner
+				owner = {
+					has_tradition = tr_klingon_legendary
+				}
+			}
+			unity = 2
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_whispering_mounds
+				}
+			}
+			energy = 2
+		}
+		
+		# Special Effect by Deposit
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_apex_predators
+				}
+			}
+			research = 2
+			food = 3
+		}
+		
+		# Special Effect by Deposit
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_behemotic_fossils
+				}
+			}
+			research = 3
+			unity = 2
+		}
+		
+		# Special Effect by Deposit
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_abandoned_ruins
+				}
+			}
+			research = 2
+		}
+		
+		# Scout For Talent, Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = ufop_scout_for_talent }
+			}
+			research = 2
+		}
+	}	
+			
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_abandoned_ruins
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+		
+# Dilithium Geophysicist
+dilithium_geophysicist = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_crystal_plant
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_translucers
+				
+		produces = {
+			dilithium = 2
+		}
+		
+		upkeep = {
+			minerals = 10
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+			
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+# Metallurgist
+foundry = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_foundry_1
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+		
+	possible = {
+		specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_metallurgists
+		
+		produces = {
+			alloys = 3
+		}
+		
+		upkeep = {
+			minerals = 6
+		}
+		
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_foundry_2 }
+			}
+			alloys = 1
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_foundry_3 }
+			}
+			alloys = 3
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_technology = tech_batleth_klingon }
+			}
+			alloys = 1
+		}
+		
+		# From qt_klingon_b1
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_quest_tree_node = qt_klingon_b1 }
+			}
+			alloys = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = { has_quest_tree_node = qt_klingon_b1 }
+			}
+			minerals = 1
+		}
+		
+		# Special Effect by Deposit
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_active_volcanoes
+				}
+			}
+			alloys = 2
+		}
+		
+		
+		upkeep = {
+			trigger = {
+				planet = { has_active_building = building_foundry_2 }
+			}
+			minerals = 2
+		}
+		upkeep = {
+			trigger = {
+				planet = { has_active_building = building_foundry_3 }
+			}
+			minerals = 4
+		}
+
+		# Streamline Alloy Production, Decision
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_modifier = streamline_production
+				}
+			}
+			energy = 1
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+			
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+		
+##############################
+###      Special Jobs      ###
+##############################
+		
+		
+# Criminal
+criminal = {
+	category = criminal
+	is_capped_by_modifier = yes
+	can_set_priority = no
+	clothes_texture_index = 2
+	building_icon = building_residence
+	contributes_to_diplo_weight = no
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_sapient = yes
+	}
+		
+	possible = {
+	}
+		
+	planet_modifier = {
+		trade_value_add = -5
+		planet_stability_add = -1
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @criminal_job_weight
+	}
+}
+
+# Purge
+purge = {
+	category = purge
+	is_capped_by_modifier = no
+	clothes_texture_index = 2
+		
+	ignores_sapience = yes
+		
+	possible = {
+		OR = {
+			NOT = { has_purge_type = { type = purge_none } }
+			has_pop_flag = event_purge
+		}
+	}
+		
+	resources = {
+		category = planet_jobs
+
+		produces = { # regular processing
+			trigger = {
+				has_purge_type = { type = purge_processing }
+				is_lithoid = no
+			}
+			food = 6
+		}
+		produces = { # regular processing
+			trigger = {
+				has_purge_type = { type = purge_processing }
+				is_lithoid = yes
+			}
+			minerals = 4
+		}
+		produces = {
+			trigger = {
+				has_purge_type = { type = purge_matrix }
+			}
+			energy = 6
+		}
+		produces = {
+			trigger = {
+				has_purge_type = { type = purge_labor_camps }
+			}
+			research = 10
+			unity = 10
+		
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_food_processing_facility }
+				OR = {
+					has_purge_type = { type = purge_labor_camps }
+					AND = {
+						has_purge_type = { type = purge_processing }
+						is_lithoid = no
+					}
+				}
+			}
+			food = 1
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_food_processing_center }
+				OR = {
+					has_purge_type = { type = purge_labor_camps }
+					AND = {
+						has_purge_type = { type = purge_processing }
+						is_lithoid = no
+					}
+				}
+			}
+			food = 2
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_mineral_purification_plant }
+				OR = {
+					has_purge_type = { type = purge_labor_camps }
+					AND = {
+						has_purge_type = { type = purge_processing }
+						is_lithoid = yes
+					}
+				}
+			}
+			minerals = 1
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_mineral_purification_hub }
+				OR = {
+					has_purge_type = { type = purge_labor_camps }
+					AND = {
+						has_purge_type = { type = purge_processing }
+						is_lithoid = yes
+					}
+				}
+			}
+			minerals = 2
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_energy_grid }
+				has_purge_type = { type = purge_matrix }
+			}
+			energy = 1
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_energy_nexus }
+				has_purge_type = { type = purge_matrix }
+			}
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 10
+		planet_crime_add = 5
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @special_job_weight
+		
+		modifier = {
+			factor = 200 # brings @special_job_weight up to 2
+			exists = planet
+			exists = planet.controller
+			OR = {
+				has_pop_flag = event_purge
+				planet.controller = {
+					OR = {
+						is_country_type = swarm
+						is_country_type = ai_empire
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 9999 # u die when flagged
+			has_pop_flag = event_purge
+		}
+		
+		modifier = {
+			factor = 9999 # u die when crisis'd
+			exists = planet
+			exists = planet.controller
+			planet.controller = {
+				OR = {
+					is_country_type = swarm
+					is_country_type = ai_empire
+					# extradimensionals just bombard you
+				}
+			}
+		}
+	}
+}
+

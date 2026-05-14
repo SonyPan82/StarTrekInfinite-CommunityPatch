@@ -1,5 +1,14 @@
 # CP26 AI Defines Fix — Level 1: Core NAI Tweaks
 # These values make the AI more proactive in building, expanding, and fighting.
+#
+# CP26 2026-05-14 (rollback) : Phase 1 "combat engagement" defines retirées
+# suite à crash récurrent dans CPlanet::DailyUpdateAllUnhabitableSelfDontReadOthers
+# (SIGSEGV → SIGABRT). L'hypothèse : AI_JUMP_DRIVE_BRAVERY=0.10 + 
+# FLEET_COMBAT_INTERVENTION_MULT=0.30 forçaient l'IA à cancel/reroute des flottes
+# en chaîne pendant le daily update, invalidant des pointeurs lus ensuite par
+# le planet manager parallèle (FleetManager update tourne avant
+# PlanetManager update dans le même tick).
+# Voir crash dump infinite_20260514_014611.
 
 NAI = {
 	# BUILDING & DISTRICTS — AI builds more aggressively
@@ -21,7 +30,7 @@ NAI = {
 	
 	# FLEET BEHAVIOR — less flip-flopping
 	FLEET_GROUP_ABORT_MISSION_MULT = 1.5	# Vanilla = 1.2. AI commits harder to missions.
-	
+
 	# TECH — values rare techs a bit more, spams repeatables a bit less
 	AI_TECHNOLOGY_RARE_WEIGHT_MULT = 6		# Vanilla = 5.
 	AI_TECHNOLOGY_INFINITELY_REPEATABLE_WEIGHT_MULT = 0.02	# Vanilla = 0.01.

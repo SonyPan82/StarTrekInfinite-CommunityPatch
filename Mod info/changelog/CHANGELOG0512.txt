@@ -6,6 +6,392 @@ Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
 
 --------------------------------------------------------------------------------
+Session du 2026-05-14 (perf : war access global mensuel)
+--------------------------------------------------------------------------------
+
+[OPT][LOW] cp26_war_access : passage de country_event .2 (on_monthly_pulse_country,
+  donc jusqu'à N× par mois si N empires en guerre) à event global .100 sur
+  on_monthly_pulse (1× par mois pour toute la partie).
+  Fichiers : events/zz_cp26_war_access_events.txt, common/on_actions/zz_cp26_war_access_on_actions.txt
+  Comportement : paires every_war_participant (frontières ouvertes mutuelles, forced=35) ;
+  puis chaque pays neutral_zone ouvre vers chaque pays en guerre (équivalent cumulé à l’ancien).
+  Mod info/CP26_PERF_AUDIT_2026-05-14.txt section 5.2 marquée FAIT.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (audit performance flottes)
+--------------------------------------------------------------------------------
+
+[DOC][LOW] Audit perf : Mod info/CP26_PERF_AUDIT_2026-05-14.txt
+  Synthèse mod + référence Infinite (pulses, itérateurs, defines, ship_data).
+  Option stable recommandée : triangle natif COMMAND_LIMIT + officiers + ship_data ;
+  piste prio 2 war access : FAIT (event cp26_war_access.100, on_monthly_pulse global).
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (post-crash : sci cap, Luna double icône, trad FR esclaves)
+--------------------------------------------------------------------------------
+
+[BAL][LOW] Réduction supplémentaire du cap science (3 → 2).
+  Fichier : common/country_types/zz_cp26_default_country_type.txt
+  User a remonté "plein plein de vaisseaux scientifiques" sur partie en cours.
+  Avant : science min=2, max=3 (cycle constant 2-3 sci en construction).
+  Après : science min=1, max=2.
+  Nouveau bilan civil :
+    1 constructor + 2 science + 2 colonizer = 5 civils max
+    + 15 militaires = 20 ships non-héros par empire (sous le 21 cible).
+
+[BUG-FIX][LOW] Luna affichait DEUX icônes "Lunar One Colony".
+  Cause : le précédent fix (rename → lunar_one_colony_cp26) évitait la perte
+  de stats mais résultait en deux modifiers cohabitant sur Luna :
+    - vanilla `lunar_one_colony` (icône seule, vide de stats)
+    - CP26 `lunar_one_colony_cp26` (icône + stats)
+  → deux icônes affichées (même image, deux instances de modifier).
+
+  Correctif :
+    1. Fichier `00_aalunmars_static_modifiers.txt` SUPPRIMÉ.
+    2. Création `zzz_cp26_aalunmars_static_modifiers.txt` (charge en DERNIER
+       grâce au préfixe zzz_) : override DIRECT de `lunar_one_colony` vanilla
+       avec nos stats + icône.
+    3. `events/aalm_events.txt:34-37` : suppression de l'`add_modifier`
+       CP26 (le vanilla events/game_start.txt:1360 l'ajoute déjà une fois).
+    4. Loc EN/FR : `lunar_one_colony_cp26[_desc]` → `lunar_one_colony[_desc]`.
+  Résultat : Luna a UNE seule instance du modifier avec icône ET stats.
+
+[LOC][LOW] Tooltip "Prod. de ress. des esclaves" sur modifiers non-esclavagistes.
+  Cause : dans le yml FR vanilla ou Hornblower, les clés
+    mod_planet_jobs_specialist_produces_mult
+    mod_planet_jobs_worker_produces_mult
+  sont (probablement) mal traduites en "Prod. de ress. des esclaves" — sans doute
+  une copie/colle de la chaîne `mod_planet_jobs_slave_produces_mult`.
+  Conséquence visible sur Luna (notre modifier `lunar_one_colony` qui utilise
+  specialist+20%/worker-20%) et sur les rights "Membre fondateur" d'une Fédération.
+  C'est cosmétique mais déroutant ("pourquoi mes spécialistes sont étiquetés esclaves ?").
+
+  Correctif :
+    Ajout dans localisation/french/zz_cp26_patch_l_french.yml :
+      mod_planet_jobs_specialist_produces_mult:0 "Production des spécialistes"
+      mod_planet_jobs_worker_produces_mult:0 "Production des ouvriers"
+      mod_planet_jobs_slave_produces_mult:0 "Production des esclaves"
+      (+ variantes uppercase au cas où)
+  Note : ne change RIEN pour le joueur Fédération — les modifiers étaient déjà
+  appliqués correctement, c'est uniquement l'affichage du tooltip qui changeait.
+  Si une species est `slavery_type = none`, le bonus "spécialiste +10%" ne
+  s'applique aux esclaves de toute façon (puisqu'il n'y en a pas).
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (CRASH CPlanet — VRAIE cause : modifier invalide)
+--------------------------------------------------------------------------------
+
+[CRASH][CRIT] Restauration `common/pop_jobs/101_xl_map_reman_jobs.txt`
+              et `common/scripted_variables/99_variables_xl_map.txt`.
+              VRAIE cause des 4 crashs de la nuit (014804 / 015130 / 015307 / 015308).
+
+  Symptôme dans error.log (présent à chaque démarrage depuis l'audit "final" du matin) :
+    [modifier.cpp:2758]: Invalid modifier job_reman_job_add at file:
+      common/districts/10_xl_map_remus_districts.txt line: 297
+
+  Origine de la régression :
+    Pendant l'audit "polish" du matin, j'ai supprimé deux fichiers en pensant
+    qu'ils étaient silencieusement ignorés (parce que sans extension `.txt`) :
+      - common/pop_jobs/101_xl_map_reman_jobs
+      - common/scripted_variables/99_variables_xl_map
+    FAUX. Le moteur Clausewitz charge les fichiers dans common/pop_jobs/ et
+    common/scripted_variables/ INDÉPENDAMMENT de l'extension. Les supprimer
+    a réellement retiré :
+      - Le job `reman_job` (utilisé sur les districts Remus)
+        → le modifier auto-généré `job_reman_job_add` n'existait plus
+        → `10_xl_map_remus_districts.txt:297` référence un modifier invalide
+        → daily update du planet manager lit un pointeur null/invalide
+        → SIGSEGV puis cascade SIGABRT (heap corrupt)
+      - Les variables `@dd_hp`, `@dd_evasion`, `@dd_build_time`
+        (référencées par `common/ship_sizes/z_dderidax_herp_sizes.txt`)
+        → ship_size Dderidax chargé avec valeurs par défaut (broken stats)
+
+  Pourquoi le crash s'est aggravé avec les sessions :
+    Le modifier invalide est dans un `triggered_planet_modifier`. Il est
+    re-évalué à chaque recalcul de modifiers de la planète. Une partie qui
+    dure (= les Remus ont des districts construits + pops affectés au job
+    fantôme) augmente la fréquence d'évaluation → crash devient inévitable.
+    Mes Phase 1 AI defines ont aggravé en faisant trembler la mémoire plus
+    fort, mais ils n'étaient PAS la cause racine.
+
+  Correctif :
+    1. Restauration des 2 fichiers via `git show HEAD:<path>`
+    2. Renommés en `.txt` pour pratique correcte (et évite de re-tomber dans
+       le piège lors d'un futur audit)
+    3. Fichiers présents :
+       - common/pop_jobs/101_xl_map_reman_jobs.txt  (64 lignes, job `reman_job`)
+       - common/scripted_variables/99_variables_xl_map.txt  (3 variables)
+
+  Conséquence sur Phase 1 AI :
+    Le rollback de Phase 1 reste en place (= conservateur). On verra
+    plus tard pour réintroduire de l'agressivité IA progressivement
+    UNE FOIS la stabilité confirmée sans le modifier invalide.
+
+  Leçon retenue (pour l'agent et le futur) :
+    Ne JAMAIS supprimer un fichier "qui a l'air mort" sans grep des
+    symboles qu'il définit dans le reste du mod. Les jobs auto-génèrent
+    des modifiers (`job_<name>_add`) qui peuvent être référencés
+    ailleurs même si le fichier semble inutilisé.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (CRASH CPlanet::DailyUpdateAllUnhabitable — rollback Phase 1)
+--------------------------------------------------------------------------------
+
+[CRASH][HIGH] Rollback Phase 1 (AI combat defines) suite à crash récurrent.
+  Crash dump : crashes/infinite_20260514_014611/exception.txt
+  Signal 11 (SIGSEGV) → 6 (SIGABRT) en boucle (heap corruption).
+
+  Stack trace :
+    CGameState::DailyUpdate
+      → CPlanetManager::DailyUpdate
+        → CPlanet::DailyUpdateAllUnhabitableSelfDontReadOthers (parallel-for)
+          → CJob::Wait → TaskSystem::TryStealTask → invoker → SIGSEGV
+    (puis cascade __cxa_demangle dans AbortHandler — secondary crash)
+
+  Diagnostic :
+    Le crash est dans le planet manager daily update — mais en réalité c'est
+    une corruption mémoire causée par une frame PRÉCÉDENTE du même tick.
+    FleetManager update tourne AVANT PlanetManager update dans CGameState.
+    Mes nouveaux defines Phase 1 forçaient :
+      - AI_JUMP_DRIVE_BRAVERY=0.10 : l'IA jumpait en boucle
+      - FLEET_COMBAT_INTERVENTION_MULT=0.30 : cancellations/reroutes en chaîne
+      - WAR_ATTACK_PLANET_PRIO=8 + AI_AGGRESSIVENESS_BASE=65 : recalcul wars
+    → fleet objects invalidés mid-update → pointeurs stales lus en parallèle
+       par le planet manager → SIGSEGV.
+
+  Action :
+    - Retrait des 9 defines de combat ajoutés en Phase 1.
+    - Conserve Phase 2 (personalities = data tables passives, pas runtime).
+    - Conserve les defines pré-existants (FLEET_GROUP_ABORT_MISSION_MULT,
+      AI_NO_RETREAT_LIMIT, etc.) qui n'ont jamais causé de crash.
+
+  Notes pour plus tard :
+    Si on veut réactiver Phase 1, le faire UN define à la fois et tester
+    chaque cycle de daily updates pour identifier le coupable précis.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (IA Star Trek — 3 phases personalities CONSERVÉES)
+--------------------------------------------------------------------------------
+
+[AI][MED] Phase 1 — Combat engagement defines (NAI war behavior). [ROLLBACK]
+  Voir entrée crash ci-dessus. Section conservée pour historique.
+  Fichier : common/defines/zz_cp26_ai_defines.txt (+10 lignes).
+  Objectif : forcer l'IA à engager le combat au lieu de tourner autour.
+
+  Defines ajoutés :
+    AI_JUMP_DRIVE_BRAVERY               0.33 → 0.10  (jump même à parité)
+    FLEET_DAMAGED_THRESHOLD_WAR         0.75 → 0.50  (retraite à 50% HP)
+    FLEET_DAMAGED_THRESHOLD_PEACE       0.95 → 0.85  (repair plus tôt)
+    FLEET_ARMOR_DAMAGED_THRESHOLD_WAR   0.75 → 0.50  (same pour armor)
+    FLEET_COMBAT_INTERVENTION_MULT      0.5  → 0.30  (renforce même outnumbered)
+    WAR_ATTACK_MILITARY_FLEET_PRIO      3.0  → 5.0   (chasse les flottes)
+    WAR_ATTACK_PLANET_PRIO              5.0  → 8.0   (vise les planètes)
+    WAR_ATTACK_PLANET_CONTROLLED_SYSTEM_PRIO 10.0 → 14.0  (sécurise les fronts)
+    AI_AGGRESSIVENESS_BASE              50   → 65    (plus de wars opportunistes)
+
+  Effet attendu : l'IA en guerre va effectivement attaquer planètes/flottes,
+  reinforcer les combats, et tenir plus longtemps avant retraite.
+
+[AI][MED] Phase 2+3 — Personnalités Star Trek lore-faithful (4 majors).
+  Nouveau fichier : common/personalities/zz_cp26_major_personalities.txt.
+  Pour chacun des 4 majors, weight_modifier = 1000 (override vanilla = 50).
+
+  cp26_starfleet_command (UFOP) :
+    aggressiveness 0.7 | bravery 1.3 | combat_bravery 1.6
+    Phaser energy + shields 0.55/armor 0.30/hull 0.15 (Galaxy/Sovereign)
+    Behaviour: liberator, uplifter, multispecies, crisis_fighter
+    Diplomacy: federation +80, NAP +60, défensif +40, research +50
+
+  cp26_klingon_honor_guard (Klingon) :
+    aggressiveness 1.9 | bravery 1.6 | combat_bravery 2.2
+    Disruptor energy + armor 0.45/hull 0.35/shields 0.20 (Negh'var/Vor'cha)
+    Behaviour: conqueror, subjugator, dominator, multispecies (warriors)
+    Diplomacy: NAP -100 (déshonneur), défensif +30 (honor allies)
+
+  cp26_tal_shiar_doctrine (Romulan) :
+    aggressiveness 1.4 | bravery 0.75 | combat_bravery 1.3
+    Plasma energy + shields 0.65 (D'deridex / cloak focus)
+    Behaviour: subjugator, opportunist, infiltrator (Tal Shiar), dominator
+    Diplomacy: research +50 (intel), NAP +30, federation -100
+
+  cp26_central_command (Cardassian) :
+    aggressiveness 1.6 | bravery 1.0 | combat_bravery 1.5
+    Spiral wave disruptors + armor 0.55 (Galor/Keldon)
+    Behaviour: conqueror, subjugator, slaver, displacer, infiltrator (Obsidian)
+    Diplomacy: federation -100, claims +1.75, threat +0.9
+
+  Notes design :
+    - Borg/Dominion exclus (country_type != default, gérés par crisis logic)
+    - Minor factions (Tholian, Gorn, Orion, Breen) conservent leurs
+      personalities CP26 existantes (aa_*_personalities.txt)
+    - weight = 1000 vs vanilla 50 = override garanti pour les 4 majors
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (fourth pass — constructors over-spawn observé)
+--------------------------------------------------------------------------------
+
+[AI][LOW] ship_data fourth pass — constructor forcé à exactement 1.
+  Observation joueur en NEW GAME : saturation visuelle de constructors
+  partout sur la carte. Cause : fraction huge=+0.10 poussait l'IA à
+  toujours viser max=3 dès qu'elle devenait grande.
+
+  Fix : constructor min = 1, max = 1 (fraction supprimée, inutile avec
+  min=max). L'IA aura toujours exactement 1 constructor — si détruit,
+  reconstruit immédiatement. Jamais 2 en parallèle.
+
+  Budget civils 8 → 6 → total = 21 ships/empire hors héros.
+
+  N.B. : aa_contender_country (minor factions) conserve constructor 2/2
+  par cohérence avec leur design d'origine. Si saturation persiste
+  côté minors, abaisser leur cap dans un cinquième pass.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (third pass civils — budget joueur à 23)
+--------------------------------------------------------------------------------
+
+[AI][LOW] ship_data third pass — budget joueur précisé à 23 ships/empire :
+  constructor max 2→3, science max 2→3 (colonizer reste à 2).
+  Budget civils 6→8 → total 8+15 = 23 ships/empire hors héros.
+
+  Fractions revues légèrement à la hausse pour que l'IA huge atteigne
+  effectivement le max=3 (sinon elle plafonnait à 2 par manque de pondération).
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (audit exhaustif post second-pass civils)
+--------------------------------------------------------------------------------
+
+[AUDIT] Audit complet des sources de spawn — vérification budget joueur
+  Cible explicite joueur : "15 militaires + 6 civils = 21, hors héros".
+
+  1. Country_types (toutes les sources de ship_data) :
+     - default (zz_cp26_default_country_type.txt) : 2 const + 2 sci + 2 col +
+       15 mil = 21 ✓ aligné après second-pass.
+     - contender (aa_contender_country.txt) : 2 const + 2 sci + 1 col +
+       15 mil = 20 ✓ (déjà aligné pré-session).
+     - Autres country_types (borg, swarm, marauders, etc.) : pas de
+       ship_data — spawns scriptés contrôlés indépendamment.
+
+  2. Hero exclusion (cp26_is_non_hero_military_ship) — couverture vérifiée :
+     - voyager (UFOP unique)         : preq vide, indestructible ✓
+     - california (UFOP utility)     : is_civilian = yes ✓
+     - california_hero (UFOP unique) : preq vide, indestructible ✓
+     - odyssey (UFOP flagship)       : empire_limit base=1 ✓
+     - dderidex_hero (Romulan unique): preq vide, indestructible ✓
+     - enterprise (UFOP unique)      : preq vide, indestructible ✓
+     - enterprise_sovereign (UFOP)   : preq vide, indestructible ✓
+     - california utility (UFOP)     : exclu via FIND-6 (utility cap exclusion)
+
+     Total 7 hero/utility sizes correctement exclus. Aucun hero candidat
+     manquant détecté (scan automatique de tous les ship_sizes CP26+vanilla).
+
+  3. Scripted spawns (create_fleet/create_ship) :
+     - Mercenaires guerre        : 4-8 ships max par flotte (compact tiers
+       command_limit 20/35/+)
+     - Khan/Marauders            : 8-15 ships max (cp26_create_compact_*)
+     - Prethoryn Swarm           : 5-10 ships par garrison/roaming
+     - Borg waves                : 1-2 cubes par vague
+     - UFOP starting military    : 2 mirandas max
+     - Spy ships                 : 1 par empire majeur, AU GAME START seulement
+                                   (espionage = no dans default & contender →
+                                   AI n'en spawn pas ensuite)
+     Toutes les sources scriptées sont déjà compactées via
+     zz_cp26_reduced_fleet_scale_effects.txt.
+
+  4. Start fleets (game_start.9) : 1 sci + 1 const + 2 corvettes = 4 ships
+     au boot. ✓ Bas budget.
+
+  5. command_limit : BASE=18 / MAX=45. Force la fragmentation des grosses
+     flottes (>18 cmd points) en plusieurs sous-fleets — pas un cap dur.
+
+  Budget réel par empire en peak gameplay :
+     UFOP majeur     : 15 mil + 6 civ + 2 utility (california) + héros 1-5
+                       = ~22-28 ships max (héros inclus, ~22-23 sans)
+     Autre majeur    : 15 mil + 6 civ + héros 1-2 = ~21-23 ships
+     Minor faction   : 15 mil + 5 civ = ~20 ships
+
+  Cible joueur (~21 hors héros) : RESPECTÉE.
+
+  Aucun fix supplémentaire requis suite à cet audit — toutes les couches
+  convergent vers le budget cible.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (IA constructors / freeze ~2351 + doc officiers)
+--------------------------------------------------------------------------------
+
+[AI][MED] ship_data civils — alignement strict sur l'intent "very few ships"
+  (zz_cp26_default_country_type.txt) — second passage 2026-05-14 :
+
+    constructor  : min 3→1, max 6→2  (vanilla = 3/3, contender = 2/2)
+    science      : min 3→2, max 5→2  (vanilla = 3/3, contender = 2/2)
+    colonizer    : min 0→0, max 6→2  (contender = 0/1)
+    Fractions    : pondération huge/large réduite en conséquence.
+
+  Budget total par empire IA après second passage :
+    Constructors  : 2
+    Science       : 2
+    Colonizers    : 2
+    Militaires    : 15 (cap count_owned_ship existant)
+    ------------------------------
+    TOTAL plafond : ~21 vaisseaux / empire (cible joueur respectée)
+
+  Rationale :
+    1. Le scaling dynamique précédent (max 6/5/6) ajoutait jusqu'à 17 civils
+       par grand empire IA — contredisait le système reduced-fleet et la
+       cible explicite du joueur (~15 militaires + très peu de civils).
+    2. Les vaisseaux de construction sont une classe civile : aucune pression
+       officiers ne s'applique sur eux. Seul ship_data peut borner leur spam.
+    3. Symptôme observé : freeze vers 2351 (pathfinding + construction
+       queues saturées par X empires × 6 constructors chacun + 5 science +
+       6 colonizers + 15 militaires).
+    4. Cible alignée : passer de ~32 vaisseaux/empire huge à ~21.
+
+  Couche existante préservée : aa_contender_country (minor factions) gardait
+  déjà 2/2 constructor + 2/2 science + 0/1 colonizer — donc les contenders
+  respectaient déjà la philo. Seuls les majors étaient inflatés.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-14 (suite)  —  Audit final pré-Workshop
+--------------------------------------------------------------------------------
+
+[LOC][LOW] Ajout traduction FR de tech_warp_speed_increase_3 (Géométrie Transwarp)
+  Audit a8 a révélé que c'était la seule clé EN sans équivalent FR (2378 EN vs
+  2441 FR, mais 2 clés CP26 manquaient). Sans correctif, les joueurs FR
+  voyaient "tech_warp_speed_increase_3" en clair dans l'arbre techno.
+  Fichier : localisation/french/zz_cp26_patch_l_french.yml (+5 lignes).
+
+[CLEAN][LOW] Suppression de 2 fichiers vestiges sans extension .txt
+  Audit a4 a trouvé deux fichiers silencieusement ignorés par le moteur :
+    - common/scripted_variables/99_variables_xl_map  (53 B, @dd_hp = 10000)
+    - common/pop_jobs/101_xl_map_reman_jobs          (1037 B, reman_job)
+
+  Investigation :
+    * Les variables @dd_hp/@dd_evasion/@dd_build_time étaient déjà redéfinies
+      localement dans z_dderidax_herp_sizes.txt (@dd_hp = 4500). Le file
+      n'aurait rien apporté même s'il avait été chargé.
+    * Le pop_job "reman_job" n'était référencé nulle part dans le mod.
+
+  Conclusion : mort code inoffensif. Suppression pour clean Workshop —
+  même bénéfice qu'avec les .DS_Store et les .bak retirés précédemment.
+
+[AUDIT][NONE] Audit final complet — 8 axes vérifiés
+  1. .asset duplicates       → propre (aucun doublon au-delà de cardassian fixé)
+  2. on_daily_* hooks        → 0 hook daily restant (BUG-4 a tout nettoyé)
+  3. modifiers extrêmes      → 1 seul (Reman resettlement +1200%, volontaire)
+  4. fichiers sans .txt      → 2 trouvés et supprimés (ci-dessus)
+  5. cohérence prescripted   → 176 traits, tous référencés présents
+  6. refs cp26_* orphelines  → 521 effects + 346 triggers, aucun orphelin
+  7. TODO restants           → 32 HRB_TODO (tous vestiges devs vanilla)
+  8. parité loc EN/FR        → 1 trou fixé (tech_warp_speed_increase_3)
+
+  Sanity checks final :
+    * .DS_Store restants   : 0
+    * .bak restants        : 0
+    * BOM UTF-8 fichiers FR: 12/12
+    * descriptor.mod       : version="2026.05.14"
+
+  Bilan : mod prêt pour publication Workshop.
+
+--------------------------------------------------------------------------------
 Session du 2026-05-14  —  Crash save SIGSEGV (cardassian entity duplicate)
 --------------------------------------------------------------------------------
 

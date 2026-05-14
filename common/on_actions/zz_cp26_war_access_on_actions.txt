@@ -4,14 +4,13 @@ on_war_beginning = {
 	}
 }
 
-# CP26 2026-05-14 : déplacé de on_daily_pulse_country (365×/an/pays) vers
-# on_monthly_pulse_country (12×/an/pays). cp26_war_access.2 ré-affirme les
-# borders open pour tous les pays en guerre. Avec forced = 35 jours côté
-# event (> 30 jours d'un cycle mensuel), l'invariant reste respecté et le
-# coût CPU est divisé par ~30 en mid/late game. Le filtre is_at_war=yes
-# limite déjà l'exécution aux pays concernés.
-on_monthly_pulse_country = {
+# CP26 2026-05-14 : déplacé de on_daily_pulse_country → on_monthly_pulse_country (.2),
+# puis 2026-05-14 (audit perf) : event global cp26_war_access.100 sur on_monthly_pulse
+# (1× par mois). cp26_war_access.100 : double every_country (pays en guerre) — pas
+# d'every_war / event_target guerre (scopes fragiles). Voir events/zz_cp26_war_access_events.txt.
+# forced = 35 conserve l'invariant.
+on_monthly_pulse = {
 	events = {
-		cp26_war_access.2
+		cp26_war_access.100
 	}
 }

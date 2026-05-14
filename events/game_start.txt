@@ -185,6 +185,19 @@ event = {
 			limit = { is_ufop = yes }
 			save_global_event_target_as = major_power_best_scored # Temporal assignment ~ Modified in country.2830
 		}
+
+		# CP26 — équilibrage départ jour 1 (events/zz_cp26_major_start_balance.txt)
+		every_country = {
+			limit = {
+				OR = {
+					has_country_id = ufop
+					has_country_id = klingon
+					has_country_id = romulan
+					has_country_id = cardassian
+				}
+			}
+			country_event = { id = cp26_start_balance.1 days = 1 }
+		}
 	}
 }
 
@@ -499,6 +512,8 @@ planet_event = {
 }
 
 # on_initialize_advanced_colony: upgrade colony shelter
+# CP26: différer remove+add d'un jour — même tick = corruption file construction
+# (voir Mod info/CP26_CONSTRUCTION_QUEUE_CRASH_FIX.txt, crash DailyUpdate).
 planet_event = {
 	id = game_start.21
 	hide_window = yes
@@ -507,9 +522,22 @@ planet_event = {
 	immediate = {
 		if = {
 			limit = { has_building = building_colony_shelter }
+			planet_event = { id = game_start.211 days = 1 }
+			break = yes
+		}
+	}
+}
+
+planet_event = {
+	id = game_start.211
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_building = building_colony_shelter }
 			remove_building = building_colony_shelter
 			add_building = building_capital
-			break = yes
 		}
 	}
 }
