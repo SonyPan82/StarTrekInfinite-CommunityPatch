@@ -166,7 +166,7 @@ Implemented changes
    - common/personalities/aa_tholian_personalities.txt
 
    New values:
-   - Gorn: 0.95
+   - Gorn: 1.08 (was 0.95 compact-fleet pass ; 2026-05-16 bump for war prosecution)
    - Breen: 0.80
    - Orion: 0.70
    - Tholian: 0.85

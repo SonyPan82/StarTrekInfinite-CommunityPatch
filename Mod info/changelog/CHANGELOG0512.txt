@@ -17,6 +17,10 @@ Session du 2026-05-16 (cap ligne 3×12 = 36 + crises resserrées)
   zz_cp26_reduced_fleet_scale_effects.txt ; Borg cube spawn inchangé (2).
   Doc : CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt, audits PERF / REDUCED, Steam.
 
+[BAL][LOW] IA Gorn (contender) : perso hegemonic_imperialists_gorn — bravery
+  1.5→1.85, combat_bravery 1.5→2.05, military_spending 0.95→1.08 (aggressiveness
+  inchangé = 2.0). Cible : offensives et poursuite de combat plus tenaces.
+
 --------------------------------------------------------------------------------
 Session du 2026-05-15 (California science + tooltip cap militaire)
 --------------------------------------------------------------------------------
