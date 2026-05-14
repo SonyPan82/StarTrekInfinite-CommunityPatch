@@ -6,13 +6,33 @@ Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
 
 --------------------------------------------------------------------------------
-Session du 2026-05-15 (cap militaires ligne 15 → 20)
+Session du 2026-05-16 (cap ligne 3×12 = 36 + crises resserrées)
 --------------------------------------------------------------------------------
 
-[BAL][LOW] Plafond global vaisseaux militaires « de ligne » : count < 20 dans
-  cp26_under_reduced_fleet_military_cap (common/scripted_triggers/aa_scripted_triggers.txt).
-  possible_construction sur ship_sizes inchangé (référence au trigger). Doc :
-  Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt (qui est le référentiel).
+[BAL][MED] Plafond militaires de ligne : count < 37 (36 max ; cible 3×12) dans
+  cp26_under_reduced_fleet_military_cap. COMMAND_LIMIT_BASE=24, COMMAND_LIMIT_MAX=96.
+  Mercenaires / situations de guerre : seuils command_limit ≤36 / ≤68 ;
+  flottes mercenaires palier haut 3+3 (au lieu de 4+4). Crises : nausicaans / Khan
+  / Prethoryn / flottiles annexes réduites ~×0,8 dans
+  zz_cp26_reduced_fleet_scale_effects.txt ; Borg cube spawn inchangé (2).
+  Doc : CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt, audits PERF / REDUCED, Steam.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-15 (California science + tooltip cap militaire)
+--------------------------------------------------------------------------------
+
+[BAL][MED] California utility (non-héros) : shipclass_science_ship, sans
+  combat_computers, valid_target_aggressive_stance = no, empire_limit 2 sur la
+  taille california (hors cap ligne militaire ; héros california_hero inchangé).
+  Fichier : common/ship_sizes/cp26_california_ship_sizes.txt ; exclusion
+  california retirée de cp26_is_non_hero_military_ship (inutile).
+
+[LOC][LOW] Message chantier blocage ligne : cp26_military_fleet_cap_fail (EN/FR)
+  remplace SHIP_SIZE_LIMIT dans tous les possible_construction militaires
+  (common/ship_sizes/*.txt).
+
+[BAL][LOW] (Obsolète — voir session 2026-05-16.) Ancien palier intermédiaire :
+  count < 46 / COMMAND 30/120 puis mercenaires ≤45/≤85 ; remplacé par 36 / 24/96 / ≤36/≤68.
 
 --------------------------------------------------------------------------------
 Session du 2026-05-14 (système de caps vaisseaux : UI + nettoyage ship_data)
@@ -20,7 +40,7 @@ Session du 2026-05-14 (système de caps vaisseaux : UI + nettoyage ship_data)
 
 [BAL][MED] Plafond militaire global (15 hors héros / utility) appliqué au chantier
   pour toutes les tailles shipclass_military concernées : possible_construction
-  + fail_text = SHIP_SIZE_LIMIT + owner = { cp26_under_reduced_fleet_military_cap = yes }.
+  + fail_text = cp26_military_fleet_cap_fail + owner = { cp26_under_reduced_fleet_military_cap = yes }.
   Même dénominateur que le trigger scripted cp26_is_non_hero_military_ship (exclusions
   voyager, california, odyssey, enterprise, dderidex_hero, etc.).
   Fichiers : common/ship_sizes/*.txt (patch massif), common/scripted_triggers/aa_scripted_triggers.txt.
@@ -329,8 +349,8 @@ Session du 2026-05-14 (audit exhaustif post second-pass civils)
   4. Start fleets (game_start.9) : 1 sci + 1 const + 2 corvettes = 4 ships
      au boot. ✓ Bas budget.
 
-  5. command_limit : BASE=18 / MAX=45. Force la fragmentation des grosses
-     flottes (>18 cmd points) en plusieurs sous-fleets — pas un cap dur.
+  5. command_limit : BASE=24 / MAX=96 (était 30/120 puis 18/45). Fragmentation
+     des grosses flottes — pas un cap dur. Cap ligne militaire : 36 (voir session 2026-05-16).
 
   Budget réel par empire en peak gameplay :
      UFOP majeur     : 15 mil + 6 civ + 2 utility (california) + héros 1-5
@@ -605,8 +625,8 @@ Session du 2026-05-14  —  Audit approfondi reduced fleet scale (round 2)
 [DOC][LOW] FIND-4 — Documenter calibrage paliers command_limit mercenary
   Ajout d'un bloc de commentaires en tête de
   common/scripted_effects/zz_cp26_reduced_fleet_scale_effects.txt
-  expliquant que les paliers `<=20` / `<=35` / `else` sont calibrés vs
-  COMMAND_LIMIT_BASE=18 et COMMAND_LIMIT_MAX=45 du fichier defines.
+  expliquant que les paliers `<=36` / `<=68` / `else` sont calibrés vs
+  COMMAND_LIMIT_BASE=24 et COMMAND_LIMIT_MAX=96 du fichier defines.
   Aide à la maintenance future : si jamais on bouge COMMAND_LIMIT_*, on
   sait quoi ajuster côté scripts.
 

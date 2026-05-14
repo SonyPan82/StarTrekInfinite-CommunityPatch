@@ -30,6 +30,12 @@
  NAME_uss_cerritos:0 "Cerritos"
  NAME_uss_cerritos_fleet:0 "U.S.S. Cerritos"
 
+ cp26_military_fleet_cap_fail:0 "Maximum combat hulls for your empire (36 — design: up to 3 full fleets of 12). Scuttle or decommission a ship to build another."
+
+ cp26_merc_fleet_tt_small:0 "The mercenary flotilla will be a compact task force sized for empires with modest fleet command capacity."
+ cp26_merc_fleet_tt_medium:0 "The mercenary flotilla will be a medium task force sized to match solid fleet command capacity."
+ cp26_merc_fleet_tt_large:0 "The mercenary flotilla will be the largest package your fleet command capacity can reasonably absorb."
+
  district_remus:0 "Reman Mining Camp"
  district_remus_desc:0 "Mining camps built around Remus' harsh mineral-rich terrain."
  district_remans_living:0 "Reman Living Quarters"

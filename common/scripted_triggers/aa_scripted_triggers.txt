@@ -33,14 +33,11 @@ cp26_is_non_hero_military_ship = {
 	# CP26 2026-05-14 : exclu également de la cap military les vaisseaux utility
 	# qui sont déclarés shipclass_military mais is_civilian = yes (rôle support
 	# uniquement, jamais en frontline). California (Lower Decks utility cruiser)
-	# est dans ce cas — voir cp26_california_ship_sizes.txt:1-77 (class=shipclass_military
-	# + is_civilian=yes). Sans cette exclusion, le min=1/max=2 forcé du
-	# ship_data UFOP consommait 1-2 slots du cap de 15-18 dédiés aux vrais
-	# vaisseaux de combat.
+	# était dans ce cas — désormais shipclass_science_ship (voir cp26_california_ship_sizes.txt).
+	# california_hero reste militaire héros.
 	NOT = {
 		OR = {
 			is_ship_size = voyager
-			is_ship_size = california
 			is_ship_size = california_hero
 			is_ship_size = odyssey
 			is_ship_size = dderidex_hero
@@ -50,12 +47,14 @@ cp26_is_non_hero_military_ship = {
 	}
 }
 
-# Country scope — même dénominateur que ship_data (20 vaisseaux militaires
-# comptés par cp26_is_non_hero_military_ship). Utilisé en possible_construction
-# pour réutiliser le libellé vanilla SHIP_SIZE_LIMIT (comme empire_limit civils).
+# Country scope — cible design 3 flottes × jusqu'à 12 coques de ligne = 36 max
+# (comptés par cp26_is_non_hero_military_ship). Le moteur n'impose pas « 3 flottes »
+# tout seul : c'est un plafond empire au chantier ; le joueur peut répartir en
+# plus de 3 flottes si les coques sont plus petites. possible_construction +
+# cp26_military_fleet_cap_fail (localisation). Civils : empire_limit → SHIP_SIZE_LIMIT.
 cp26_under_reduced_fleet_military_cap = {
 	count_owned_ship = {
-		count < 20
+		count < 37
 		limit = { cp26_is_non_hero_military_ship = yes }
 	}
 }

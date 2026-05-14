@@ -1,4 +1,6 @@
 california = {
+	# UFP utility : classe science, hors cap militaire ligne ; déblocable uniquement
+	# après tech_cp26_california_unlock (cf. common/technology/cp26_california_tech.txt).
 	formation_priority = 10
 	entity = california_entity
 	max_speed = 160
@@ -52,15 +54,22 @@ california = {
 		}
 	}
 
-	combat_disengage_chance = 1.00
-	class = shipclass_military
+	combat_disengage_chance = 2.0
+	# Utility Lower Decks : classe scientifique (pas de combat_computers) ; héros inchangé.
+	class = shipclass_science_ship
 	construction_type = starbase_shipyard
+	valid_target_aggressive_stance = no
 
 	required_component_set = "power_core"
 	required_component_set = "ftl_components"
 	required_component_set = "thruster_components"
 	required_component_set = "sensor_components"
-	required_component_set = "combat_computers"
+
+	# Plafond propre à la taille (ship_data UFOP min 1 max 2) — distinct des 3 Oberth.
+	empire_limit = {
+		base = 2
+		max = 2
+	}
 
 	resources = {
 		category = ships

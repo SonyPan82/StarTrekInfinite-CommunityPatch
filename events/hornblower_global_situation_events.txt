@@ -3609,18 +3609,18 @@ country_event = {
 		name = global_situation.2602.a
 		if = {
 			limit = {
-				command_limit <= 20
+				command_limit <= 36
 			}
-			custom_tooltip = global_situation.2602.a.tt.20
+			custom_tooltip = cp26_merc_fleet_tt_small
 		}
 		else_if = {
 			limit = {
-				command_limit <= 35
+				command_limit <= 68
 			}
-			custom_tooltip = global_situation.2602.a.tt.35
+			custom_tooltip = cp26_merc_fleet_tt_medium
 		}
 		else = {
-			custom_tooltip = global_situation.2602.a.tt.50
+			custom_tooltip = cp26_merc_fleet_tt_large
 		}
 
 		#CREATE MERCENARY FLEET
@@ -4434,18 +4434,18 @@ country_event = {
 		name = global_situation.600.a
 		if = {
 			limit = {
-				command_limit <= 20
+				command_limit <= 36
 			}
-			custom_tooltip = global_situation.600.a.tt.20
+			custom_tooltip = cp26_merc_fleet_tt_small
 		}
 		else_if = {
 			limit = {
-				command_limit <= 35
+				command_limit <= 68
 			}
-			custom_tooltip = global_situation.600.a.tt.35
+			custom_tooltip = cp26_merc_fleet_tt_medium
 		}
 		else = {
-			custom_tooltip = global_situation.600.a.tt.50
+			custom_tooltip = cp26_merc_fleet_tt_large
 		}
 
 		allow = {
@@ -4605,18 +4605,18 @@ country_event = {
 		name = global_situation.601.a
 		if = {
 			limit = {
-				command_limit <= 20
+				command_limit <= 36
 			}
-			custom_tooltip = global_situation.601.a.tt.20
+			custom_tooltip = cp26_merc_fleet_tt_small
 		}
 		else_if = {
 			limit = {
-				command_limit <= 35
+				command_limit <= 68
 			}
-			custom_tooltip = global_situation.601.a.tt.35
+			custom_tooltip = cp26_merc_fleet_tt_medium
 		}
 		else = {
-			custom_tooltip = global_situation.601.a.tt.50
+			custom_tooltip = cp26_merc_fleet_tt_large
 		}
 	}	
 }	
@@ -4671,18 +4671,18 @@ country_event = {
 		name = global_situation.603.a
 		if = {
 			limit = {
-				command_limit <= 20
+				command_limit <= 36
 			}
-			custom_tooltip = global_situation.603.a.tt.20
+			custom_tooltip = cp26_merc_fleet_tt_small
 		}
 		else_if = {
 			limit = {
-				command_limit <= 35
+				command_limit <= 68
 			}
-			custom_tooltip = global_situation.603.a.tt.35
+			custom_tooltip = cp26_merc_fleet_tt_medium
 		}
 		else = {
-			custom_tooltip = global_situation.603.a.tt.50
+			custom_tooltip = cp26_merc_fleet_tt_large
 		}
 	}	
 }	

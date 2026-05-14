@@ -164,7 +164,7 @@ default = {
 		#   sur science/constructor dans common/ship_sizes/00_ship_sizes.txt (UI
 		#   SHIP_SIZE_LIMIT). Pas de purge mensuelle IA.
 		#
-		# Militaires (ligne + mineurs) : plafond global 20 « vrais » navires de
+		# Militaires (ligne + mineurs) : plafond global 36 « vrais » navires de
 		# guerre via possible_construction + trigger cp26_under_reduced_fleet_military_cap
 		# (common/scripted_triggers/aa_scripted_triggers.txt + ship_sizes). Le bloc
 		# ship_data ci‑dessous ne duplique plus ce plafond (fractions tech / pays

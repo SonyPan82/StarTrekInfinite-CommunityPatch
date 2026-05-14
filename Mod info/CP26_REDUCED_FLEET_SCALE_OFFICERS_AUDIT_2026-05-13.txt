@@ -16,7 +16,7 @@ keeping the result coherent for AI empires, contenders, crises, factions and
 scripted fleets.
 
 STATUS 2026-05-14 — hard cap at shipyard (canonical: Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt)
-  The 20-ship limit for line combat hulls is enforced for player and AI via
+  The 36-ship limit for line combat hulls (design: 3×12) is enforced for player and AI via
   possible_construction + scripted trigger cp26_under_reduced_fleet_military_cap
   on military ship_sizes. The old ship_data pattern (factor = 0 when
   count_owned_ship >= 15 or >= 6 with cp26_is_non_hero_military_ship) was removed
@@ -63,9 +63,9 @@ Donc la stratégie EFFECTIVE est :
      sans officiers, voir defines OFFICERS_MAX_FIRE_RATE_PENALTY). L'AI
      préfère donc maintenir des flottes compactes correctement crewées
      plutôt que d'empiler des hulls vides.
-   - COMMAND_LIMIT plus bas : limite per-fleet à 18 (base) + 27 (max bonus
-     amiral) = 45 absolu. Force la fragmentation en plusieurs flottes ou
-     l'arrêt de production.
+   - COMMAND_LIMIT (CP26, defines) : base 24 / max moteur 96 (cible 3×12, perf ;
+     avant 30 / 120 pour 3×15 ; 18 / 45 plus ancien). Encadre la taille pratique
+     d'une flotte ; ne fixe pas le nombre de flottes à l'échelle empire.
    - CAPS ship_data : factor=0 dans le ship_data quand l'AI a déjà 15+ ships
      militaires (cible design alignée 2026-05-14). Pas un hard cap (l'AI
      peut overshoot en chantier), mais une pression de préférence forte.
@@ -107,8 +107,8 @@ Implemented changes
    - common/defines/zz_cp26_reduced_fleet_scale_defines.txt
 
    Values:
-   - COMMAND_LIMIT_BASE = 18
-   - COMMAND_LIMIT_MAX = 45
+   - COMMAND_LIMIT_BASE = 24
+   - COMMAND_LIMIT_MAX = 96
    - SHIP_OFFICERS_ADD_PERCENTAGE = 0.12
    - SHIP_OFFICERS_OPERATIVE_THRESHOLD = 0.9
    - OFFICERS_MAX_FIRE_RATE_BONUS = 0.1
@@ -134,8 +134,8 @@ Implemented changes
    Changes:
    - min_navy_for_wars reduced to 0.14.
    - Hard cap for line military hulls : possible_construction + trigger
-     cp26_under_reduced_fleet_military_cap (20 ships since 2026-05-15 ; 15 before
-     that date) — same rule for player and AI at the shipyard. The old ship_data
+     cp26_under_reduced_fleet_military_cap (36 ships, design 3×12 ; was 45 / 3×15,
+     20, then 15 earlier in May 2026) — same rule for player and AI at the shipyard. The old ship_data
      pattern (factor = 0 when count_owned_ship reached 6 / 15 with
      cp26_is_non_hero_military_ship) was removed 2026-05-14 as redundant.
    - 2026-05-14..15 : la cap « soft » ship_data (18→15, petites coques 8→6) n’est
@@ -154,7 +154,7 @@ Implemented changes
 
    Changes:
    - min_navy_for_wars reduced to 0.18.
-   - Line military hulls : same shipyard hard cap as majors (20, trigger
+   - Line military hulls : same shipyard hard cap as majors (36, trigger
      cp26_under_reduced_fleet_military_cap). Old ship_data 6/15 count_owned_ship
      soft stops removed 2026-05-14.
 

@@ -18,7 +18,7 @@ Option recommandée (stable, perf-friendly) — « Stack 3 natives »
   A) NGameplay : COMMAND_LIMIT_BASE / COMMAND_LIMIT_MAX (déjà zz_cp26_reduced_fleet_scale_defines.txt)
   B) Même fichier : SHIP_OFFICERS_* (pression native sur les coques, pas de boucle script)
   C) country_types : ship_data min/max pour civils + fractions militaires (tech / pays) ;
-     plafond dur 20 militaires de ligne : possible_construction sur ship_sizes + trigger
+     plafond dur 36 militaires de ligne (cible 3×12) : possible_construction sur ship_sizes + trigger
      cp26_under_reduced_fleet_military_cap (voir CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt).
 
   Éviter en routine : scripts mensuels/hebdo qui parcourent toutes les flottes / tous
@@ -57,8 +57,8 @@ et la volumétrie du fichier global situation du mod (hérité Hornblower).
 
 2.1 Defines flotte (native, très bon rapport stabilité/perf)
   Fichier : common/defines/zz_cp26_reduced_fleet_scale_defines.txt
-    COMMAND_LIMIT_BASE = 18
-    COMMAND_LIMIT_MAX   = 45
+    COMMAND_LIMIT_BASE = 24
+    COMMAND_LIMIT_MAX   = 96
     SHIP_OFFICERS_ADD_PERCENTAGE, SHIP_OFFICERS_OPERATIVE_THRESHOLD,
     OFFICERS_MAX_FIRE_RATE_*, OFFICERS_MAX_EVASION_*
   → Tout cela est appliqué par le moteur C++ sans coût script récurrent.
@@ -93,7 +93,7 @@ et la volumétrie du fichier global situation du mod (hérité Hornblower).
   - Civils : fractions / min-max toujours présents ; colonizer utilise encore
     count_owned_ship pour des conditions OR (pas un plafond militaire).
   - Militaires : les anciens modifiers « factor = 0 + count_owned_ship >= 6|15 »
-    ont été retirés. Le plafond 20 navires de ligne est appliqué au chantier
+    ont été retirés. Le plafond 36 navires de ligne est appliqué au chantier
     via possible_construction sur les tailles ship_sizes + trigger
     cp26_under_reduced_fleet_military_cap (voir Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt).
   → Moins de branches count_owned_ship dans ship_data pour l’IA ; coût toujours

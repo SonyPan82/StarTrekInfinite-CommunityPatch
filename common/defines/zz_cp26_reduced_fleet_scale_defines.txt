@@ -1,9 +1,9 @@
 NGameplay = {
-	# CP26 reduced-fleet scale: keep scripted command-limit based fleets from
-	# growing back into late-game hull spam. This bounds per-fleet command
-	# inflation; empire-wide pressure is handled by the native officers system.
-	COMMAND_LIMIT_BASE = 18
-	COMMAND_LIMIT_MAX = 45
+	# CP26 — cible « jusqu'à 12 navires de ligne par flotte » (fleet_slot_size)
+	# et plafond empire 36 coques (3 × 12). Perf : moins d'objets qu'avec 3×15.
+	# BASE : début ; MAX : fin de partie / grosses coques (slot 4–8).
+	COMMAND_LIMIT_BASE = 24
+	COMMAND_LIMIT_MAX = 96
 
 	# CP26 reduced-fleet scale: officers are Infinite's native fleet pressure.
 	# Keep understaffed fleets from recovering too quickly, and make officer

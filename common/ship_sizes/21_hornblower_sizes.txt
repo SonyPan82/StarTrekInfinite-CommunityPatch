@@ -84,7 +84,7 @@ miranda = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -177,7 +177,7 @@ intrepid = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -270,7 +270,7 @@ excelsior = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -363,7 +363,7 @@ galaxy = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -459,7 +459,7 @@ sovereign = {
 			fail_text = starbase_titan_yards_trigger
 		}
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -564,7 +564,7 @@ bird_of_prey = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -657,7 +657,7 @@ warbird = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -750,7 +750,7 @@ ktinga = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -843,7 +843,7 @@ vorcha = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -939,7 +939,7 @@ neghvar = {
 			fail_text = starbase_titan_yards_trigger
 		}
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1044,7 +1044,7 @@ ferrax = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1137,7 +1137,7 @@ vindius = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1230,7 +1230,7 @@ valdore = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1323,7 +1323,7 @@ dderidex = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1419,7 +1419,7 @@ majestus = {
 			fail_text = starbase_titan_yards_trigger
 		}
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1528,7 +1528,7 @@ hideki = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1625,7 +1625,7 @@ galor = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1721,7 +1721,7 @@ keldon = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1818,7 +1818,7 @@ kazikai = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1914,7 +1914,7 @@ nokoram = {
 			fail_text = starbase_titan_yards_trigger
 		}
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2014,7 +2014,7 @@ small_minor = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2106,7 +2106,7 @@ medium_minor = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2198,7 +2198,7 @@ large_minor = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2296,7 +2296,7 @@ small_nausicaan = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2388,7 +2388,7 @@ medium_nausicaan = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2480,7 +2480,7 @@ large_nausicaan = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2564,7 +2564,7 @@ borgcube_size_small = {
 	
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2608,7 +2608,7 @@ borgcube_size_mid = {
 	
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -2651,7 +2651,7 @@ borgcube_size_large = {
 	
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -3042,7 +3042,7 @@ dreadnought = {
 	icon_frame = @titan_size_icon_frame
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -3101,7 +3101,7 @@ defiant = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -3248,7 +3248,7 @@ small_minor_mercenary = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -3343,7 +3343,7 @@ medium_minor_mercenary = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}

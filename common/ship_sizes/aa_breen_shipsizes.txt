@@ -85,7 +85,7 @@ breencorvette = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -178,7 +178,7 @@ breendestroyer = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -271,7 +271,7 @@ breenbattleship = {
 
 	possible_construction = {
 		custom_tooltip = {
-			fail_text = SHIP_SIZE_LIMIT
+			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}

@@ -1,11 +1,19 @@
 ================================================================================
 CP26 — Système de plafonds vaisseaux (référence)
-Date : 2026-05-14 — cap militaire ligne mis à 20 le 2026-05-15
+Date : 2026-05-14 — cap militaire ligne 36 + command 24/96 (recalé 2026-05-16, 3×12)
 ================================================================================
 
 Objectif : une seule limite claire par catégorie, même règle joueur et IA,
-feedback vanilla au chantier (option grisée + tooltip), sans scripts qui
-détruisent des navires.
+feedback au chantier (option grisée + tooltip), sans scripts qui détruisent
+des navires.
+
+Cible design joueur : **jusqu’à 3 flottes « pleines » de 12 coques de ligne**
+→ **36** navires militaires de ligne comptés au maximum à l’échelle de
+l’empire (priorité perf vs ancienne cible 3×15). La limite **« exactement 3 flottes »**
+n’existe pas en natif dans les defines : le moteur ne compte pas les flottes pour
+le cap chantier ; on obtient la cible par **36 coques max** + **limite de commandement**
+par flotte (voir §6). Pour forcer mécaniquement « pas plus de 3 flottes », il faudrait
+un script (merge / split / mensuel) — lourd et fragile ; non implémenté.
 
 --------------------------------------------------------------------------------
 1. Civils (science, constructor)
@@ -23,7 +31,7 @@ détruisent des navires.
   cp26_ai_pulse.1). Pas de duplication par count_owned_ship pour imiter ce plafond.
 
 --------------------------------------------------------------------------------
-2. Militaires de ligne (cap global 20)
+2. Militaires de ligne (cap global 36 = 3 × 12)
 --------------------------------------------------------------------------------
 
 Qui est soumis au plafond ?
@@ -36,9 +44,11 @@ Qui est soumis au plafond ?
 
 Qui n’est PAS (ou pas pareil) ?
   - Tailles exclues du comptage cp26_is_non_hero_military_ship : elles ne
-    consomment pas les 20 slots « ligne » (voyager, california, california_hero,
-    odyssey, dderidex_hero, enterprise, enterprise_sovereign, …). Certaines ont
-    leur propre empire_limit ou règles héros.
+    consomment pas les 36 slots « ligne » (voyager, california_hero,
+    odyssey, dderidex_hero, enterprise, enterprise_sovereign, …). La California
+    utility est shipclass_science_ship (hors cap ligne), débloquée par
+    tech_cp26_california_unlock (common/technology/cp26_california_tech.txt).
+    Certaines ont leur propre empire_limit ou règles héros.
   - Vaisseaux civils (science, constructor, colonizer, transports) : caps
     séparés (empire_limit 3 pour science/constructor, ship_data pour colo).
   - Stations militaires (shipclass_military_station) : hors cap ligne.
@@ -49,10 +59,11 @@ Qui n’est PAS (ou pas pareil) ?
   (common/scripted_triggers/aa_scripted_triggers.txt).
 
 - Cap pays : cp26_under_reduced_fleet_military_cap (même fichier) :
-  count_owned_ship { count < 20 limit = { cp26_is_non_hero_military_ship = yes } }.
+  count_owned_ship { count < 37 limit = { cp26_is_non_hero_military_ship = yes } }
+  → au plus **36** navires comptés (37ᵉ construction refusée).
 
 - Application : sur chaque taille shipclass_military concernée,
-  possible_construction avec custom_tooltip { fail_text = SHIP_SIZE_LIMIT
+  possible_construction avec custom_tooltip { fail_text = cp26_military_fleet_cap_fail
   owner = { cp26_under_reduced_fleet_military_cap = yes } } dans les fichiers
   common/ship_sizes/*.txt. Les titans avec Titan Yards ont un second
   custom_tooltip dans le même bloc possible_construction.
@@ -60,7 +71,7 @@ Qui n’est PAS (ou pas pareil) ?
 - ship_data : les anciens modifiers « factor = 0 + count_owned_ship » militaires
   redondants ont été retirés (2026-05-14).
 
-- Gameplay : à 20 navires comptés dans la limite, toute nouvelle coque de ligne
+- Gameplay : à 36 navires comptés dans la limite, toute nouvelle coque de ligne
   est refusée au chantier jusqu’à destruction / vente / perte d’un navire compté.
   Même logique pour l’IA (pas de purge mensuelle).
 
@@ -72,18 +83,23 @@ Qui n’est PAS (ou pas pareil) ?
   common/ship_sizes/00_ship_sizes.txt (+ autres ship_sizes du mod)
   common/country_types/00_country_types.txt
   common/country_types/aa_contender_country.txt
+  common/defines/zz_cp26_reduced_fleet_scale_defines.txt
+  common/scripted_effects/zz_cp26_reduced_fleet_scale_effects.txt (crises / mercenaires)
+  events/hornblower_global_situation_events.txt (seuils command_limit mercenaires)
   events/zz_cp26_ai_pulse_events.txt (cp26_ai_pulse.1 uniquement)
   common/on_actions/zz_cp26_ai_pulse_on_actions.txt
   common/on_actions/zz_cp26_on_game_start.txt (lancement .1 au start)
 
 --------------------------------------------------------------------------------
-4. Faire évoluer le cap « 20 »
+4. Faire évoluer le cap « 36 » ou la cible 3 × 12
 --------------------------------------------------------------------------------
 
-  Ajuster l’entier dans cp26_under_reduced_fleet_military_cap : count < 20 signifie
-  « strictement moins de 20 navires comptés » → construction autorisée avec
-  0 à 19 navires ; à 20 la ligne est bloquée jusqu’à destruction d’un navire
-  compté. Pour un cap N, utiliser count < N.
+  Pour un plafond **N** navires comptés : dans cp26_under_reduced_fleet_military_cap,
+  utiliser **count < (N+1)** (ex. N=36 → count < 37).
+
+  Pour changer la cible « 12 par flotte » : ajuster surtout **COMMAND_LIMIT_***
+  (§6) en fonction des fleet_slot_size des coques (miranda = 1, galaxy = 4,
+  titan = 8, etc.).
 
 --------------------------------------------------------------------------------
 5. Performance (ancienne vs nouvelle couche)
@@ -98,5 +114,49 @@ Qui n’est PAS (ou pas pareil) ?
   quand le chantier teste possible_construction. Gain typiquement modeste mais
   réel sur le coût « ship_data IA » ; le gros de la perf flotte reste defines
   (command limit, officiers) et éviter les boucles script lourdes.
+
+--------------------------------------------------------------------------------
+6. Limite de commandement (COMMAND_LIMIT) — alignement ~12 coques / flotte
+--------------------------------------------------------------------------------
+
+  Fichier : common/defines/zz_cp26_reduced_fleet_scale_defines.txt
+    COMMAND_LIMIT_BASE = 24
+    COMMAND_LIMIT_MAX   = 96
+
+  La commande est une ressource **par flotte** (somme des fleet_slot_size des
+  coques). Exemples : 12 Miranda (slot 1) = 12 ; 12 Galaxy (slot 4) = 48 ;
+  flotte de titans (slot 8) remplit vite le plafond.
+
+  - **BASE = 24** : flottes plus légères qu’avec l’ancien 30 (cible 12 petites coques).
+  - **MAX = 96** : marge haute fin de partie (équivalent 4/5 de l’ancien 120).
+
+  Le cap **36** au chantier est **empire** ; il ne remplace pas la limite par
+  flotte : tu peux avoir 36 navires mais devoir les **répartir** sur plusieurs
+  flottes si une seule dépasserait le commandement. L’inverse : avec peu de
+  commandement, tu pourrais avoir moins de 12 coques par flotte même avant 36.
+
+--------------------------------------------------------------------------------
+7. Crises et spawns scriptés
+--------------------------------------------------------------------------------
+
+  Les effets create_ship / create_fleet (ex. zz_cp26_reduced_fleet_scale_effects,
+  crise Borg, etc.) **ne passent pas** par possible_construction du chantier :
+  ils peuvent donner des flottes **au-dessus** du 36 tant que le script ne borne
+  pas lui-même. Le cap 36 s’applique surtout à la **construction joueur/IA**
+  normale. Les compacts « cp26_create_compact_* » et flottes Prethoryn / Borg
+  dans ce fichier ont été resserrés (~×0,8 vs ancienne coche 3×15) pour rester
+  cohérents avec moins de vaisseaux en jeu.
+
+--------------------------------------------------------------------------------
+8. Tooltip chantier militaire & California utility
+--------------------------------------------------------------------------------
+
+  fail_text : clé localisée cp26_military_fleet_cap_fail (EN/FR dans
+  localisation/*/zz_cp26_patch_l_*.yml).
+
+  California (non-héros) : shipclass_science_ship, sans combat_computers,
+  valid_target_aggressive_stance = no, empire_limit 2 sur la taille california
+  (distinct des 3 Oberth). Prérequis tech_cp26_california_unlock + chantier
+  seulement après recherche. california_hero reste militaire.
 
 ================================================================================

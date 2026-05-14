@@ -14,7 +14,7 @@ Steam Workshop short changelog. Full internal notes remain in [b]Mod info/change
 [*] [b]Constellation[/b] class: increased 3D entity [b]scale[/b] (stronger on-map presence; gameplay [b]size_multiplier[/b] unchanged).
 [*] [b]Construction ships[/b]: [b]max count raised from 2 to 3[/b] for [b]default[/b] and [b]contender[/b] country types ([b]min[/b] stays [b]2[/b]). This is a hard cap in [b]ship_data[/b] — the AI cannot exceed three constructors from this rule alone.
 [*] [b]Science ships[/b]: [b]max raised to 3[/b] for [b]default[/b] ([b]min 1[/b]) and [b]contender[/b] ([b]min 2[/b]), same hard-cap pattern as constructors; [b]fraction[/b] modifiers for large/huge empires unchanged.
-[*] [b]Fleet hard caps (player = AI)[/b]: [b]science[/b] / [b]constructor[/b] use vanilla [b]empire_limit[/b] (tooltip [b]SHIP_SIZE_LIMIT[/b]). [b]Line combat hulls[/b] share a [b]20-ship[/b] empire cap (non-hero military only) enforced at the shipyard via [b]possible_construction[/b] + the same [b]SHIP_SIZE_LIMIT[/b] string — scrap a ship to make room. [b]Hero / flagship[/b] sizes stay on their own rules. Internal doc: [b]Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt[/b].
+[*] [b]Fleet hard caps (player = AI)[/b]: [b]science[/b] / [b]constructor[/b] use vanilla [b]empire_limit[/b] (tooltip [b]SHIP_SIZE_LIMIT[/b]). [b]Line combat hulls[/b] share a [b]36-ship[/b] empire cap (non-hero military; design ~3×12) enforced at the shipyard via [b]possible_construction[/b] + [b]cp26_military_fleet_cap_fail[/b] — scrap a ship to make room. [b]Hero / flagship[/b] sizes stay on their own rules. Internal doc: [b]Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt[/b].
 [/list]
 
 [h2]Logs — “already exists” / first contact fix[/h2]

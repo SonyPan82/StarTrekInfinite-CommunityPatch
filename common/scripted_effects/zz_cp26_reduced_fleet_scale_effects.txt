@@ -3,19 +3,19 @@
 # compact task forces so late-game object counts stay sane.
 #
 # Paliers command_limit utilisés ci-dessous, calibrage vs defines :
-#   COMMAND_LIMIT_BASE = 18 (zz_cp26_reduced_fleet_scale_defines.txt)
-#   COMMAND_LIMIT_MAX  = 45
+#   COMMAND_LIMIT_BASE = 24 (zz_cp26_reduced_fleet_scale_defines.txt)
+#   COMMAND_LIMIT_MAX  = 96
 #
-#   <= 20   → empire fresh ou avec petit bonus amiral (le plus fréquent)
-#   <= 35   → empire avec amiral expérimenté / techs de fleet command
-#   else    → empire avec stack maximal de bonus (rare, ~command_limit 36-45)
+#   <= 36   → BASE + petits bonus (majorité début / milieu de partie)
+#   <= 68   → commande flotte élevée sans être au plafond moteur
+#   else    → fin de partie / stack maximal vers COMMAND_LIMIT_MAX
 #
-# Le palier le plus haut est volontairement laissé en "else" (pas <=45) pour
-# absorber tout éventuel modifier exotique qui pousserait au-delà du MAX engine.
+# Le palier le plus haut est volontairement en "else" (pas <=96) pour absorber
+# tout modifier exotique au-delà des seuils listés.
 
 create_war_situation_mercenary_fleet_effect = {
 	IF = {
-		limit = { command_limit <= 20 }
+		limit = { command_limit <= 36 }
 		create_fleet = {
 			effect = {
 				set_owner = root
@@ -43,7 +43,7 @@ create_war_situation_mercenary_fleet_effect = {
 		}
 	}
 	else_if = {
-		limit = { command_limit <= 35 }
+		limit = { command_limit <= 68 }
 		create_fleet = {
 			effect = {
 				set_owner = root
@@ -75,7 +75,7 @@ create_war_situation_mercenary_fleet_effect = {
 			effect = {
 				set_owner = root
 				while = {
-					count = 4
+					count = 3
 					create_ship = {
 						name = random
 						design = "NAME_Small_War_Sit_Mercenary"
@@ -85,7 +85,7 @@ create_war_situation_mercenary_fleet_effect = {
 					}
 				}
 				while = {
-					count = 4
+					count = 3
 					create_ship = {
 						name = random
 						design = "NAME_Medium_War_Sit_Mercenary"
@@ -138,7 +138,7 @@ create_war_situation_repurposed_fleet_effect = {
 		effect = {
 			set_owner = root
 			while = {
-				count = 3
+				count = 2
 				create_ship = {
 					name = random
 					design = "NAME_Small_War_Sit_Mercenary"
@@ -166,7 +166,7 @@ create_war_situation_repurposed_fleet_effect = {
 
 create_armada_of_the_voidborn = {
 	while = {
-		count = 4
+		count = 3
 		create_ship = {
 			name = random
 			design = "NAME_Skeletal_Transport"
@@ -175,7 +175,7 @@ create_armada_of_the_voidborn = {
 		}
 	}
 	while = {
-		count = 3
+		count = 2
 		create_ship = {
 			name = random
 			design = "NAME_Medium_Nausicaan"
@@ -198,7 +198,7 @@ create_armada_of_the_voidborn = {
 
 create_star_rider_flotilla = {
 	while = {
-		count = 3
+		count = 2
 		create_ship = {
 			name = random
 			prefix = no
@@ -420,7 +420,7 @@ create_1st_khan_fleet = {
 		name = "NAME_Chosen_of_the_Great_Khan"
 		effect = {
 			set_owner = event_target:raider_khanate
-			cp26_create_compact_nausicaan_ships = { SMALL = 5 MEDIUM = 4 LARGE = 3 }
+			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
 			assign_leader = last_created_leader
 			set_location = {
 				target = event_target:marauder_rally_point
@@ -442,7 +442,7 @@ create_2nd_khan_fleet = {
 		name = "NAME_Chosen_of_the_Great_Khan"
 		effect = {
 			set_owner = event_target:raider_khanate
-			cp26_create_compact_nausicaan_ships = { SMALL = 5 MEDIUM = 4 LARGE = 3 }
+			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
 			set_leader = exiled_khan
 			set_location = {
 				target = event_target:marauder_rally_point
@@ -472,7 +472,7 @@ create_marauder_fleet = {
 	create_fleet = {
 		effect = {
 			set_owner = event_target:raider_khanate
-			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
+			cp26_create_compact_nausicaan_ships = { SMALL = 3 MEDIUM = 2 LARGE = 2 }
 			assign_leader = last_created_leader
 			set_location = {
 				target = event_target:marauder_rally_point
@@ -501,7 +501,7 @@ create_small_marauder_auxiliaries = {
 		effect = {
 			set_owner = event_target:raider_khanate
 			set_fleet_flag = horde_auxuliaries
-			cp26_create_compact_nausicaan_ships = { SMALL = 3 MEDIUM = 2 LARGE = 1 }
+			cp26_create_compact_nausicaan_ships = { SMALL = 2 MEDIUM = 2 LARGE = 1 }
 			assign_leader = last_created_leader
 			set_location = { target = root distance = 10 angle = random }
 		}
@@ -528,7 +528,7 @@ create_medium_marauder_auxiliaries = {
 		effect = {
 			set_owner = event_target:raider_khanate
 			set_fleet_flag = horde_auxuliaries
-			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
+			cp26_create_compact_nausicaan_ships = { SMALL = 3 MEDIUM = 2 LARGE = 2 }
 			assign_leader = last_created_leader
 			set_location = { target = root distance = 10 angle = random }
 		}
@@ -555,7 +555,7 @@ create_large_marauder_auxiliaries = {
 		effect = {
 			set_owner = event_target:raider_khanate
 			set_fleet_flag = horde_auxuliaries
-			cp26_create_compact_nausicaan_ships = { SMALL = 5 MEDIUM = 4 LARGE = 3 }
+			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
 			assign_leader = last_created_leader
 			set_location = { target = root distance = 10 angle = random }
 		}
@@ -581,7 +581,7 @@ create_very_large_marauder_auxiliaries = {
 		effect = {
 			set_owner = event_target:raider_khanate
 			set_fleet_flag = horde_auxuliaries
-			cp26_create_compact_nausicaan_ships = { SMALL = 6 MEDIUM = 5 LARGE = 4 }
+			cp26_create_compact_nausicaan_ships = { SMALL = 5 MEDIUM = 4 LARGE = 3 }
 			assign_leader = last_created_leader
 			set_location = { target = root distance = 10 angle = random }
 		}
@@ -608,7 +608,7 @@ create_marauder_successor_fleet = {
 	create_fleet = {
 		effect = {
 			set_owner = prev
-			cp26_create_compact_nausicaan_ships = { SMALL = 4 MEDIUM = 3 LARGE = 2 }
+			cp26_create_compact_nausicaan_ships = { SMALL = 3 MEDIUM = 2 LARGE = 2 }
 			assign_leader = last_created_leader
 			set_location = { target = event_target:fleet_position distance = 45 angle = random }
 		}
@@ -625,7 +625,7 @@ swarm_vanguard = {
 		effect = {
 			set_owner = PREV
 			while = {
-				count = 5
+				count = 4
 				create_ship = {
 					name = random
 					design = "NAME_Swarm_Small"
@@ -668,7 +668,7 @@ swarm_brood = {
 				}
 			}
 			while = {
-				count = 5
+				count = 4
 				create_ship = {
 					name = random
 					design = "NAME_Swarm_Small"
@@ -690,7 +690,7 @@ feral_prethoryn_garrison_1 = {
 		effect = {
 			set_owner = event_target:feral_prethoryn
 			while = {
-				count = 8
+				count = 6
 				create_ship = {
 					name = random
 					design = "NAME_Swarm_Small"
@@ -712,7 +712,7 @@ feral_prethoryn_garrison_2 = {
 		effect = {
 			set_owner = event_target:feral_prethoryn
 			while = {
-				count = 3
+				count = 2
 				create_ship = {
 					name = random
 					design = "NAME_Swarm_Large"
@@ -728,7 +728,7 @@ feral_prethoryn_garrison_2 = {
 				}
 			}
 			while = {
-				count = 6
+				count = 5
 				create_ship = {
 					name = random
 					design = "NAME_Swarm_Small"
@@ -750,7 +750,7 @@ feral_prethoryn_roaming_1 = {
 		effect = {
 			set_owner = event_target:feral_prethoryn
 			while = {
-				count = 5
+				count = 4
 				create_ship = {
 					name = random
 					design = "NAME_Swarm_Small"
