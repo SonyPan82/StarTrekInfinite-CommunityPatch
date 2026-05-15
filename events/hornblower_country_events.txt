@@ -6224,6 +6224,8 @@ fleet_event = {
 	hide_window = yes
 
 	trigger = {
+		# CP26 2026-05-15 PERF: emergency runtime disable during freeze hunt.
+		always = no
 		From = {
 			any_ship_in_system = {
 				is_ship_class = shipclass_starbase
@@ -6395,6 +6397,11 @@ event = {
 	hide_window = yes
 	is_triggered_only = yes
 
+	trigger = {
+		# CP26 2026-05-15 PERF: emergency runtime disable during freeze hunt.
+		always = no
+	}
+
 	immediate = {
 		every_country = {
 			limit = {
@@ -6544,6 +6551,11 @@ event = {
 	id = country.27030
 	hide_window = yes
 	is_triggered_only = yes
+
+	trigger = {
+		# CP26 2026-05-15 PERF: emergency runtime disable during freeze hunt.
+		always = no
+	}
 
 	immediate = {
 		every_country = {
@@ -6756,6 +6768,11 @@ event = {
 	hide_window = yes
 	is_triggered_only = yes
 
+	trigger = {
+		# CP26 2026-05-15 PERF: emergency runtime disable during freeze hunt.
+		always = no
+	}
+
 	immediate = {
 		every_country = {
 			limit = {
@@ -6808,6 +6825,11 @@ event = {
 	id = country.27060
 	hide_window = yes
 	is_triggered_only = yes
+
+	trigger = {
+		# CP26 2026-05-15 PERF: emergency runtime disable during freeze hunt.
+		always = no
+	}
 
 	immediate = {
 		every_country = {

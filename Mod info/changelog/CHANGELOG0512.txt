@@ -6,6 +6,19 @@ Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
 
 --------------------------------------------------------------------------------
+Session du 2026-05-15 (stabilité runtime test_colony)
+--------------------------------------------------------------------------------
+
+[PERF][MED] Désactivation ciblée de hooks secondaires pour test de stabilité.
+  - `country.29100` (contagion "hack starbase" sur `on_entering_system_fleet`)
+  - `country.27010` (civic Talarian)
+  - `country.27030` (civic Acamarian)
+  - `country.27050` (civic Cairn)
+  - `country.27060` (civic Betazoid)
+  Motif : isoler les hotpaths de guerre / mouvement de flotte sans embarquer les
+  autres changements runtime de la branche `test`.
+
+--------------------------------------------------------------------------------
 Session du 2026-05-16 (cap ligne 3×12 = 36 + crises resserrées)
 --------------------------------------------------------------------------------
 
@@ -1620,4 +1633,3 @@ Session du 2026-05-10  —  Refonte complète de l'initialisation des colonies
     → Bug vanilla first_contact_NPC_country_types_events.txt. Non lié.
   - bitmapfont "Could not find coloring for character ' '"
     → Problème de police/localisation. Non lié.
-
