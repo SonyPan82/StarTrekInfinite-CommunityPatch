@@ -1,58 +1,44 @@
 ########################################################
 ##########        QUESTS, MISSION TREES    #############
 ########################################################
-
-- Federation FLagship customization event chains
-- KDF Flagship customization event chains
-- Romulan Flagship customization event chains
-- Cardassian Flagship customization event chains
+- Federation FLagship customization event chains (D - E - F) 
+- Romulan Flagship customization event chains (? - ? - ?)
+- Cardassian Flagship customization event chains (? - ? - ?)
 - Romulan-federation Neutral zone events
 - Cardassian-Federation Border wars event
 - Carsassian-federation border wars missions
-- Borg fleet building missions and events (builld anti-borg fleet)
-- Iconia event chain
-- Acamerian "Gatherers" raiders, quest line to pacify them.
-- Fenris rangers event after romulan supernova
+- Iconia event chain ( like suppr steam game, what is the name of?)
 
 ########################################################
-##########        More Empires             #############
+##########        FIXES                    #############
 ########################################################
-- Add ferengi
-- add Sheliac
-- Add Gorn
-- add tholians
-- add Son'a
-- add Breen
-- add dominion
-- Add Tzenkethi
-- Fenris rangers (After supernova)
+
 ########################################################
-##########        Species                   ############
+##########        Empires                  #############
 ########################################################
-- Add Aenar 
-- Add Remans 
-- Add Species for all previously mentioned empires
-- Add Denobulans
+- Add dominion (A2)
+
+########################################################
+##########        Canon Locations           ############
+########################################################
+- Improve Galaxy size (if it’s possible)
+- Add canon equivalent systems for added empires 
+- Bajoran wormhole (A2)
 
 
 ########################################################
-##########        Canon locations           ############
+##########        Canon Megastructure       ############
 ########################################################
-- Add canon equivalent systems for empires
-- add canon structures to the game for example (or support through other modders):
- - Utopia Planetia 
- - mars colony
- - luna colony 
- - Midas array
- - argolus cluster listening post (fed-dominion war)
-- refine Nebulas
-- add nebula galaxy map system icon (similar to ST:NH)
-- Add bajoran wormhole (leading to small part of gamma quadrant, for mid-game crisis)
+- Utopia Planitia
+
+
+
 
 ########################################################
-##########        Exploration               ############
+##########        NOTES         #############
 ########################################################
-- experiment with adding back in archeological sites
-- add more Anomalies
-- add more event to account for bigger man
-- Iconia event chain
+
+(A1) Events : after obtaining the citadelle expansion, propose (or unlock megastructure) building Fleet Museum in orbit of Athan Prime. Fleet Museum improve fleet capacity. (Same is needed for other empires) 
+
+(A2) Bajoran wormhole teleport the player at an another star system location, unacessbile via wrap if this creation is possible , same as stellaris the system outdoor the galaxy. 
+
