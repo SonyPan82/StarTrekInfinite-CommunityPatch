@@ -1,0 +1,13 @@
+# CP26 — modificateurs appliqués au pays via add_modifier (départ / balance).
+
+cp26_ufop_sector_governance_charter = {
+	country_admin_cap_add = 20
+	icon = "gfx/interface/icons/planet_modifiers/pm_faith_in_science.dds"
+}
+
+# Départ UFP : le bilan énergie mensuel reste très négatif en vanilla (gros réseau) ;
+# petit bonus production sur ~6 ans pour ne pas rester coincé à −100+/mois dès le 1er mois.
+cp26_ufop_federal_power_bootstrap = {
+	country_energy_produces_mult = 0.12
+	icon = "gfx/interface/icons/planet_modifiers/pm_faith_in_science.dds"
+}

@@ -7,9 +7,20 @@ event = {
 	fire_only_once = yes
 
 	immediate = {
-		every_system = {
+		every_country = {
 			limit = {
-				OR = {
+				has_country_flag = gorn
+			}
+			save_global_event_target_as = gorn_country
+		}
+
+		if = {
+			limit = {
+				NOT = { exists = event_target:gorn_country }
+			}
+			every_system = {
+				limit = {
+					OR = {
 					has_star_flag = gorn_anchor
 					has_star_flag = sf_gorncandidate1
 					has_star_flag = sf_gorncandidate2
@@ -165,6 +176,7 @@ event = {
 
 		if = {
 			limit = {
+				NOT = { exists = event_target:gorn_country }
 				any_system = { has_star_flag = gorn_anchor }
 			}
 			random_system = {
@@ -222,6 +234,40 @@ event = {
 					last_created_system = {
 						setup_gorn_territory = yes
 					}
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				exists = event_target:gorn_country
+				NOT = { any_system = { has_star_flag = gorn_anchor } }
+				any_system = {
+					has_star_flag = gorn_home_system
+				}
+			}
+			random_system = {
+				limit = {
+					has_star_flag = gorn_home_system
+				}
+				set_star_flag = gorn_anchor
+				setup_gorn_capital = yes
+
+				spawn_finibus_system = yes
+				last_created_system = {
+					set_name = "Finibus"
+					setup_gorn_territory = yes
+				}
+
+				spawn_galdonterre_system = yes
+				last_created_system = {
+					setup_gorn_territory = yes
+				}
+
+				spawn_cestus_system = yes
+				last_created_system = {
+					setup_gorn_territory = yes
 				}
 			}
 		}
@@ -307,7 +353,7 @@ event = {
 						set_owner = event_target:gorn_country
 
 						while = {
-							count = 4
+							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = gorncorvette
@@ -315,7 +361,7 @@ event = {
 							}
 						}
 						while = {
-							count = 3
+							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = gorndestroyer

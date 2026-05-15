@@ -1,0 +1,26 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+    pdxmesh = {
+        name = "dominion_01_base_mesh"
+        file = "gfx/models/ships/dominion_01/asteroid_prison/asteroid_base.mesh"
+        scale = 1.0
+
+        meshsettings = {
+            name = "1_rock1"
+            index = 0
+            texture_diffuse = "rock_texture.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "2_fresear"
+            index = 0
+            texture_diffuse = "station_texture.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

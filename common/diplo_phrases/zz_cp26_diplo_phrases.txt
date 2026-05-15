@@ -1,0 +1,32 @@
+# CP26 — phrases d’action diplo (tokens référencés par le moteur / UI).
+# Sans bloc action_cp26_offer_war_goal_peace, error.log : « Diplomatic action is missing token ».
+
+action_cp26_offer_war_goal_peace = {
+	opinion = {
+		01_CP26_OFFER_WAR_GOAL_PEACE_CONSIDER = {
+			trigger = {
+				always = yes
+			}
+		}
+		01_CP26_OFFER_WAR_GOAL_PEACE_SELECT = {
+			trigger = {
+				always = yes
+			}
+		}
+		01_CP26_OFFER_WAR_GOAL_PEACE_PROPOSE = {
+			trigger = {
+				always = yes
+			}
+		}
+		01_CP26_OFFER_WAR_GOAL_PEACE_ACCEPT = {
+			trigger = {
+				always = yes
+			}
+		}
+		01_CP26_OFFER_WAR_GOAL_PEACE_REFUSE = {
+			trigger = {
+				always = yes
+			}
+		}
+	}
+}

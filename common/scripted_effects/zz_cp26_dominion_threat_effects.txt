@@ -8,7 +8,7 @@
 # Usage: cp26_dtl_increase = { AMOUNT = 10 }
 cp26_dtl_increase = {
 	random_country = {
-		limit = { has_country_flag = the_dominion }
+		limit = { cp26_is_dominion_empire = yes }
 		change_variable = { which = cp26_dtl value = $AMOUNT$ }
 		if = {
 			limit = { check_variable = { which = cp26_dtl value > 100 } }
@@ -55,7 +55,7 @@ cp26_dtl_increase = {
 # Usage: cp26_dtl_decrease = { AMOUNT = 5 }
 cp26_dtl_decrease = {
 	random_country = {
-		limit = { has_country_flag = the_dominion }
+		limit = { cp26_is_dominion_empire = yes }
 		change_variable = { which = cp26_dtl value = -$AMOUNT$ }
 		if = {
 			limit = { check_variable = { which = cp26_dtl value < 0 } }
@@ -64,57 +64,35 @@ cp26_dtl_decrease = {
 	}
 }
 
-# Spawns a small Jem'Hadar scout element from the Dominion country at the Bajoran system.
-# Must be called from Dominion country scope.
+# Spawns a small Jem'Hadar scout element at Bajor (explicit ships; naval_cap spawn was often empty).
+# Call from any scope — finds the Dominion country.
 cp26_spawn_jem_hadar_scouts = {
-	random_system = {
-		limit = { has_star_flag = bajoran_system }
-		save_event_target_as = cp26_bajoran_spawn_system
-	}
-	create_fleet_from_naval_cap = 0.01
-	last_created_fleet = {
-		set_name = "Jem'Hadar Scout"
-		set_location = event_target:cp26_bajoran_spawn_system
-	}
+	cp26_spawn_jem_scouts_bajor = yes
 }
 
-# Spawns a medium Jem'Hadar patrol from the Dominion country at the Bajoran system.
-# Must be called from Dominion country scope.
+# Spawns a medium Jem'Hadar patrol at Bajor.
 cp26_spawn_jem_hadar_patrol = {
-	random_system = {
-		limit = { has_star_flag = bajoran_system }
-		save_event_target_as = cp26_bajoran_spawn_system
-	}
-	create_fleet_from_naval_cap = 0.03
-	last_created_fleet = {
-		set_name = "Jem'Hadar Strike Force"
-		set_location = event_target:cp26_bajoran_spawn_system
-	}
+	cp26_spawn_jem_patrol_bajor = yes
 }
 
-# Spawns a Jem'Hadar strike wing (Phase 5 raids). Must be called from Dominion scope.
+# Spawns a Jem'Hadar strike wing at Bajor.
 cp26_spawn_jem_hadar_strike = {
-	random_system = {
-		limit = { has_star_flag = bajoran_system }
-		save_event_target_as = cp26_bajoran_spawn_system
-	}
-	create_fleet_from_naval_cap = 0.07
-	last_created_fleet = {
-		set_name = "Jem'Hadar Attack Wing"
-		set_location = event_target:cp26_bajoran_spawn_system
-	}
+	cp26_spawn_jem_strike_bajor = yes
 }
 
-# Spawns a full Dominion armada (Phase 5 DS9 assault). Must be called from Dominion scope.
+# Spawns a Dominion armada at Bajor.
 cp26_spawn_jem_hadar_armada = {
-	random_system = {
-		limit = { has_star_flag = bajoran_system }
-		save_event_target_as = cp26_bajoran_spawn_system
-	}
-	create_fleet_from_naval_cap = 0.15
-	last_created_fleet = {
-		set_name = "Dominion Armada"
-		set_location = event_target:cp26_bajoran_spawn_system
+	cp26_spawn_jem_armada_bajor = yes
+}
+
+# Saves the Denorios survey body (Bajor Prime) for special_project location = planet scope.
+cp26_save_bajor_denorios_project_location = {
+	random_galaxy_planet = {
+		limit = {
+			has_planet_flag = denorios_belt_target
+			solar_system = { has_star_flag = bajoran_system }
+		}
+		save_event_target_as = cp26_bajoran_project_system
 	}
 }
 
@@ -122,7 +100,7 @@ cp26_spawn_jem_hadar_armada = {
 # Usage: cp26_changeling_infiltration_increase = { AMOUNT = 3 }
 cp26_changeling_infiltration_increase = {
 	random_country = {
-		limit = { has_country_flag = the_dominion }
+		limit = { cp26_is_dominion_empire = yes }
 		change_variable = { which = cp26_changeling_infiltration value = $AMOUNT$ }
 		if = {
 			limit = { check_variable = { which = cp26_changeling_infiltration value > 10 } }
@@ -135,7 +113,7 @@ cp26_changeling_infiltration_increase = {
 # Usage: cp26_changeling_infiltration_decrease = { AMOUNT = 3 }
 cp26_changeling_infiltration_decrease = {
 	random_country = {
-		limit = { has_country_flag = the_dominion }
+		limit = { cp26_is_dominion_empire = yes }
 		change_variable = { which = cp26_changeling_infiltration value = -$AMOUNT$ }
 		if = {
 			limit = { check_variable = { which = cp26_changeling_infiltration value < 0 } }

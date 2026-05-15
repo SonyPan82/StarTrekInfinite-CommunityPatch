@@ -4,8 +4,7 @@ on_war_beginning = {
 	}
 }
 
-on_monthly_pulse_country = {
-	events = {
-		cp26_war_access.2
-	}
-}
+# CP26 PERF 2026-05-15 : monthly refresh disabled.
+# Opening fleet access is still applied once on_war_beginning by cp26_war_access.1.
+# The monthly global refresh used a double every_country + set_closed_borders pass,
+# which can cause expensive access/pathfinding recalculations during large wars.

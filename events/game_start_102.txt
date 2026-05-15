@@ -6,11 +6,17 @@ event = {
 
 	immediate = {
 		# HRB_NOTE: this creates a truce both ways
-		event_target:ufop_country = {
-			set_truce = {
-				target = event_target:romulan_country
-				type = none
-				start_date = 2345.06.03
+		if = {
+			limit = {
+				exists = event_target:ufop_country
+				exists = event_target:romulan_country
+			}
+			event_target:ufop_country = {
+				set_truce = {
+					target = event_target:romulan_country
+					type = none
+					start_date = 2345.06.03
+				}
 			}
 		}
 	}

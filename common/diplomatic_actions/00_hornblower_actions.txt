@@ -616,6 +616,9 @@ action_break_integration_process = {
 	}
 }
 
+# En guerre : même chaîne que l’édit cp26_open_war_negotiation → cp26_vassalization.6.
+# Réintroduit : certains builds / UI semblent dépendre de l’existence de l’action diplo
+# (en parallèle de l’édit) ; n’impacte pas « Proposer la vassalisation » (paix, autre slot).
 action_cp26_offer_war_goal_peace = {
 	icon = "GFX_diplomacy_status_war"
 	is_listed = yes
@@ -653,6 +656,12 @@ action_cp26_offer_war_goal_peace = {
 			from = {
 				NOT = { has_country_flag = cp26_wargoal_peace_pending_target }
 			}
+		}
+	}
+
+	proposable = {
+		hidden_trigger = {
+			always = yes
 		}
 	}
 
@@ -957,23 +966,41 @@ action_start_puppet_state_process = {
 			fail_text = "ACTION_SUBJECT_OVERLORD_IS_SUBJECT"
 			is_subject = no
 		}
-	}
-
-	proposable = {
-		hidden_trigger = {
-			OR = {
-				is_ai = no
-				AND = {
-					is_ai = yes
+		# Joueur : uniquement les garde-fous ci-dessus (pas d'if = { limit = is_ai } : sur
+		# certaines évaluations « possible » l'if sans branche joueur laissait l'action grisée).
+		# IA : opinion / puissance / fédération / pactes / cooldown (même logique qu'avant).
+		OR = {
+			is_ai = no
+			AND = {
+				is_ai = yes
+				custom_tooltip = {
+					fail_text = "CP26_VASSALIZATION_AI_COOLDOWN"
 					NOT = { has_country_flag = cp26_vassalization_ai_cooldown }
+				}
+				custom_tooltip = {
+					fail_text = "CP26_VASSALIZATION_AI_POWER"
 					relative_power = { who = from value >= superior }
+				}
+				custom_tooltip = {
+					fail_text = "CP26_VASSALIZATION_AI_NO_SAME_FEDERATION"
 					NOT = { is_in_federation_with = from }
+				}
+				custom_tooltip = {
+					fail_text = "CP26_VASSALIZATION_AI_NO_DEFENSIVE_PACT"
 					NOT = { has_defensive_pact = from }
+				}
+				custom_tooltip = {
+					fail_text = "CP26_VASSALIZATION_AI_NO_GUARANTEE"
 					NOT = { is_guaranteeing = from }
+				}
+				custom_tooltip = {
+					fail_text = "CP26_VASSALIZATION_AI_RECENT_TARGET"
 					from = {
-						is_subject = no
 						NOT = { has_country_flag = cp26_vassalization_recent_target }
 					}
+				}
+				custom_tooltip = {
+					fail_text = "NOT_A_POSSITIVE_RELATION"
 					OR = {
 						opinion_level = { who = from level >= good }
 						has_embassy = from
@@ -986,6 +1013,14 @@ action_start_puppet_state_process = {
 					}
 				}
 			}
+		}
+	}
+
+	# hidden_trigger + always = yes : pattern vanilla pour « toujours proposable si possible passe ».
+	# proposable = { } seul a laissé l'UI grisée chez certains joueurs (Infinite 1.0.7).
+	proposable = {
+		hidden_trigger = {
+			always = yes
 		}
 	}
 

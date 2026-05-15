@@ -4,6 +4,7 @@ qt_ufop_starburst = {
 
 	potential = {
 		has_country_id = ufop
+		NOT = { has_global_flag = cp26_block_supernova_arc }
 	}
 
 	parents = { 

@@ -19,6 +19,6 @@ cp26_fleet_museum = {
 	}
 
 	country_modifier = {
-		country_admin_cap_add = 60
+		country_admin_cap_add = 20
 	}
 }

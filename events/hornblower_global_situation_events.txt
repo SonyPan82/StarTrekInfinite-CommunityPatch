@@ -147,56 +147,15 @@ country_event = {
 				}
 			}
 	
-			every_country = {
-				limit = {
-					not = {
-						OR = {
-							owner = {
-								is_same_value = event_target:war_situation_attackers_leader
-							}
-							owner = {
-								is_same_value = event_target:war_situation_defenders_leader
-							}
-						}
-					}
-	
-					# HRB: Commenting opinion requirement for now
-					# OR = {
-					# 	NOT = {
-					# 		opinion_level = {
-					# 			who = event_target:war_situation_attackers_leader
-					# 			level = neutral
-					# 		}
-					# 	}
-					# 	NOT = {
-					# 		opinion_level = {
-					# 			who = event_target:war_situation_defenders_leader
-					# 			level = neutral
-					# 		}
-					# 	}
-					# }
-					
-					has_communications = event_target:war_situation_attackers_leader
-					has_communications = event_target:war_situation_defenders_leader
-					is_country_type = default
-					NOT = {
-						is_war_participant = fromfrom
-					}
-					# CP26 FIX: replaced "event_target:war_situation_scope = { NOT = { any_situation_participant_country ... } }"
-					# which caused "Invalid context switch from [country]" errors at line 175 (vanilla).
-					# Infinite does not support situation-scope context switches in trigger limit blocks.
-					# Using the simpler cp26_war_situation_participant flag set on all war participants above.
-					NOT = { has_country_flag = cp26_war_situation_participant }
-				}
-				event_target:war_situation_scope = {
-					add_participants_to_global_situation = {
-						who = prev
-					}
-				}
-				set_country_flag = participant_in_situation@event_target:war_situation_scope
-				set_country_flag = cp26_war_situation_participant
-			}
-			# CP26 FIX: clean up the temporary flag after every_country is done
+			# CP26 PERF 2026-05-15: do not add non-belligerent observers to the
+			# war situation. The vanilla logic scanned every default country and
+			# added third parties with communications to both war leaders, which
+			# made each war situation much heavier during monthly updates.
+			# Direct war participants were already added by every_war_participant
+			# above; keeping only them preserves the war situation core while
+			# avoiding large late-game participant sets.
+
+			# CP26 FIX: clean up the temporary participant flag
 			every_country = {
 				limit = { has_country_flag = cp26_war_situation_participant }
 				remove_country_flag = cp26_war_situation_participant
@@ -3609,18 +3568,18 @@ country_event = {
 		name = global_situation.2602.a
 		if = {
 			limit = {
-				command_limit <= 20
+				command_limit <= 36
 			}
-			custom_tooltip = global_situation.2602.a.tt.20
+			custom_tooltip = cp26_merc_fleet_tt_small
 		}
 		else_if = {
 			limit = {
-				command_limit <= 35
+				command_limit <= 68
 			}
-			custom_tooltip = global_situation.2602.a.tt.35
+			custom_tooltip = cp26_merc_fleet_tt_medium
 		}
 		else = {
-			custom_tooltip = global_situation.2602.a.tt.50
+			custom_tooltip = cp26_merc_fleet_tt_large
 		}
 
 		#CREATE MERCENARY FLEET
@@ -4434,18 +4393,18 @@ country_event = {
 		name = global_situation.600.a
 		if = {
 			limit = {
-				command_limit <= 20
+				command_limit <= 36
 			}
-			custom_tooltip = global_situation.600.a.tt.20
+			custom_tooltip = cp26_merc_fleet_tt_small
 		}
 		else_if = {
 			limit = {
-				command_limit <= 35
+				command_limit <= 68
 			}
-			custom_tooltip = global_situation.600.a.tt.35
+			custom_tooltip = cp26_merc_fleet_tt_medium
 		}
 		else = {
-			custom_tooltip = global_situation.600.a.tt.50
+			custom_tooltip = cp26_merc_fleet_tt_large
 		}
 
 		allow = {
@@ -4605,18 +4564,18 @@ country_event = {
 		name = global_situation.601.a
 		if = {
 			limit = {
-				command_limit <= 20
+				command_limit <= 36
 			}
-			custom_tooltip = global_situation.601.a.tt.20
+			custom_tooltip = cp26_merc_fleet_tt_small
 		}
 		else_if = {
 			limit = {
-				command_limit <= 35
+				command_limit <= 68
 			}
-			custom_tooltip = global_situation.601.a.tt.35
+			custom_tooltip = cp26_merc_fleet_tt_medium
 		}
 		else = {
-			custom_tooltip = global_situation.601.a.tt.50
+			custom_tooltip = cp26_merc_fleet_tt_large
 		}
 	}	
 }	
@@ -4671,18 +4630,18 @@ country_event = {
 		name = global_situation.603.a
 		if = {
 			limit = {
-				command_limit <= 20
+				command_limit <= 36
 			}
-			custom_tooltip = global_situation.603.a.tt.20
+			custom_tooltip = cp26_merc_fleet_tt_small
 		}
 		else_if = {
 			limit = {
-				command_limit <= 35
+				command_limit <= 68
 			}
-			custom_tooltip = global_situation.603.a.tt.35
+			custom_tooltip = cp26_merc_fleet_tt_medium
 		}
 		else = {
-			custom_tooltip = global_situation.603.a.tt.50
+			custom_tooltip = cp26_merc_fleet_tt_large
 		}
 	}	
 }	
@@ -7357,7 +7316,7 @@ country_event = {
 
 		#CREATE DEFENSE PLATFORMS
 		while = {
-			count = 10
+			count = 4
 			random_owned_starbase = {
 				limit = {
 					has_starbase_size > starbase_outpost

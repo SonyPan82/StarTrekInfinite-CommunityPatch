@@ -5,7 +5,7 @@ bespoke_procedural_scenario = {
 	priority = 2
 
 	# Everything below this line should be copied to tutorial.txt
-	num_stars = 1300
+	num_stars = 1000
 	# CP26 — radius MUST stay <= 500 (engine hard limit, see Stellaris wiki:
 	# "the map is a box 1000x1000x10, from -500 to 500"). Going above 500
 	# (was 570) caused random access-violation / SIGSEGV crashes in
@@ -13,7 +13,7 @@ bespoke_procedural_scenario = {
 	# CreateMemoryFiles. All 258 system positions stay within hypot 405
 	# from origin, so 500 (engine hard cap) leaves a 95-unit safety margin.
 	radius = 498
-	num_empires = { min = 24 max = 24 }	# HRB_NOTE: { min = 1 max = 24 }, out of this values the game may crash. Use the max value to ensure appear the 4 Mapos.
+	num_empires = { min = 24 max = 24 }	# CP26: vanilla-style 24 slots; Breen removed, Gorn/Orion/Tholian replace low-impact minors.
 	num_empire_default = 24		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.
 	advanced_empire_default = 0
 	fallen_empire_default = 0
@@ -351,7 +351,7 @@ bespoke_procedural_scenario = {
 
 	system = {
 		name = "NAME_Farian" position = { x = 26.7 y = 290.3 }
-		initializer = farian_initializer spawn_weight = { base = 1 }
+	#	initializer = farian_initializer spawn_weight = { base = 1 } # CP26: replaced by contender slot
 	}
 
 	system = {
@@ -365,18 +365,18 @@ bespoke_procedural_scenario = {
 	#}
 
 	system = {
-		name = "NAME_Hupyrian" position = { x = 54.5 y = 236.1 }
-		initializer = hupyrian_initializer spawn_weight = { base = 1 }
+		name = "Breenus" position = { x = 54.5 y = 236.1 }
+	#	initializer = breen_system_initializer spawn_weight = { base = 1 } # CP26: Breen removed from guaranteed setup
 	}
 
 	system = {
 		name = "NAME_Idanian" position = { x = 435.4 y = 211.1 }
-		initializer = idanian_initializer spawn_weight = { base = 1 }
+	#	initializer = idanian_initializer spawn_weight = { base = 1 } # CP26: replaced by contender slot
 	}
 
 	system = {
 		name = "NAME_Iyaaran" position = { x = -426.6 y = 179.1 }
-		initializer = iyaaran_initializer spawn_weight = { base = 1 }
+	#	initializer = iyaaran_initializer spawn_weight = { base = 1 } # CP26: replaced by contender slot
 	}
 
 	system = {
@@ -395,8 +395,8 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
-		name = "NAME_Kesprytt" position = { x = 85.1 y = 366.8 }
-		initializer = kesprytt_initializer spawn_weight = { base = 1 }
+		name = "Tau Lacertae" position = { x = 85.1 y = 366.8 }
+		initializer = gorn_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
@@ -661,10 +661,10 @@ bespoke_procedural_scenario = {
 		initializer = ktarian_initializer spawn_weight = { base = 1 }
 	}
 
-	system = {
-		name = "NAME_Lissepian" position = { x = 48.9 y = 247.2 }
-		initializer = lissepian_initializer spawn_weight = { base = 1 }
-	}
+	#system = {
+	#	name = "NAME_Lissepian" position = { x = 48.9 y = 247.2 }
+	#	initializer = lissepian_initializer spawn_weight = { base = 1 }
+	#}
 
 	system = {
 		name = "NAME_Malcorian" position = { x = 12.8 y = 315.3 }
@@ -879,10 +879,10 @@ bespoke_procedural_scenario = {
 		initializer = talarian_talar_initializer spawn_weight = { base = 1 }
 	}
 
-	system = {
-		name = "NAME_Tanugan" position = { x = -332 y = 134.6 }
-		initializer = tanugan_initializer spawn_weight = { base = 1 }
-	}
+	#system = {
+	#	name = "NAME_Tanugan" position = { x = -332 y = 134.6 }
+	#	initializer = tanugan_initializer spawn_weight = { base = 1 }
+	#}
 
 	system = {
 		name = "NAME_Trill" position = { x = 30.8 y = 286.1 }
@@ -1083,7 +1083,7 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
-		name = "NAME_Setlik" position = { x = 26.7 y = 312.6 }
+		name = "NAME_Setlik" position = { x = 18.8 y = 316.9 }
 		initializer = ufop_setlik_initializer spawn_weight = { base = 1 }
 	}
 

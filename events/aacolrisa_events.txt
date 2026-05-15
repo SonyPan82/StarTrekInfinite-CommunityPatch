@@ -27,9 +27,9 @@ event = {
 			limit = {
 				has_planet_flag = planet_risa
 			}
-			create_colony = {
-				owner = event_target:ufop_country
-			}
+			set_owner = event_target:ufop_country
+			set_colony_type = col_pleasure
+			add_building = building_capital
 		}
 
 		event_target:ufop_country = {
@@ -38,7 +38,7 @@ event = {
 					has_planet_flag = planet_risa
 				}
 				while = {
-					count = 5
+					count = 6
 					create_pop = { species = event_target:risan_species }
 				}
 				add_district_and_planet_size_if_needed_effect = {
@@ -47,7 +47,6 @@ event = {
 				add_district_and_planet_size_if_needed_effect = {
 					district = district_farming
 				}
-				set_colony_type = col_pleasure
 			}
 		}
 	}

@@ -86,7 +86,10 @@
 #	}
 #}
 
+
+# CP26: single `default` block (merged from former zz_cp26_default_country_type.txt).
 default = {
+	ignores_warp_range = yes
 	has_difficulty_bonuses = yes
 	counts_for_victory = yes
 	pop_growth = yes
@@ -107,7 +110,8 @@ default = {
 	ai = {
 		enabled = yes
 		declare_war = yes
-		min_navy_for_wars = 0.01
+		# CP26 reduced-fleet scale: avoid pushing the AI toward oversized late-game navies.
+		min_navy_for_wars = 0.14
 		min_assault_armies_for_wars = @armies_for_declaring_war	
 		colonizer = yes
 		internal_policies = yes
@@ -140,21 +144,53 @@ default = {
 			}
 		}
 
+		# CP26 — Dynamic ship_data scaling
+		#
+		# Vanilla used hard-coded min/max for constructor/science/colonizer,
+		# which left late-game AIs under-staffed once their empire grew.
+		#
+		# The cp26_empire_size_* country flags are updated yearly by event
+		# cp26_ai_pulse.1 (events/zz_cp26_ai_pulse_events.txt) based on
+		# count_owned_planet :
+		#   small  : 0 - 3
+		#   medium : 4 - 7
+		#   large  : 8 - 14
+		#   huge   : 15+
+		#
+		# Each ship category below uses these flags as fraction modifiers,
+		# growing the AI's construction priorities as its empire scales.
+		#
+		# CP26 2026-05-14 — civils : ship_data (min/max + fractions) + empire_limit
+		#   sur science/constructor dans common/ship_sizes/00_ship_sizes.txt (UI
+		#   SHIP_SIZE_LIMIT). Pas de purge mensuelle IA.
+		#
+		# Militaires (ligne + mineurs) : plafond global 36 « vrais » navires de
+		# guerre via possible_construction + trigger cp26_under_reduced_fleet_military_cap
+		# (common/scripted_triggers/aa_scripted_triggers.txt + ship_sizes). Le bloc
+		# ship_data ci‑dessous ne duplique plus ce plafond (fractions tech / pays
+		# seulement). Voir Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt.
 		ship_data = {
 			constructor = {
-				min = 3
+				min = 2
 				max = 3
-				# system_mult = 0.20
 			}
 
 			science	= {
-				min = 3
+				min = 1
 				max = 3
-				# system_mult = 0.30
+				fraction = {
+					base = 0.03
+					modifier = {
+						has_country_flag = cp26_empire_size_large
+						add = 0.03
+					}
+					modifier = {
+						has_country_flag = cp26_empire_size_huge
+						add = 0.05
+					}
+				}
 			}
 
-			# HRB_NOTE: this will log a warning but works correctly
-			# HRB_TODO: fix how ship_data works, add suppport for dynamic modifiers
 			colonizer = {
 				fraction = {
 					base = 0.1
@@ -179,9 +215,21 @@ default = {
 						}
 						factor = 0
 					}
+					modifier = {
+						has_country_flag = cp26_empire_size_medium
+						add = 0.05
+					}
+					modifier = {
+						has_country_flag = cp26_empire_size_large
+						add = 0.10
+					}
+					modifier = {
+						has_country_flag = cp26_empire_size_huge
+						add = 0.15
+					}
 				}
 				min = 0
-				max = 1
+				max = 2
 			}
 			
 			# # Stellaris Military ships
@@ -309,7 +357,7 @@ default = {
 
 			miranda = {
 				fraction = {
-					base = 50
+					base = 35
 					modifier = {
 						factor = 0
 						is_ufop = no
@@ -442,9 +490,29 @@ default = {
 				}
 			}
 
+			cp26_klingon_raptor = {
+				fraction = {
+					modifier = {
+						add = 40
+						has_technology = tech_cp26_klingon_raptor_unlock
+						is_klingon = yes
+					}
+					modifier = {
+						add = -12
+						has_technology = tech_cruiser_unlock
+						is_klingon = yes
+					}
+					modifier = {
+						add = -8
+						has_technology = tech_battleship_unlock
+						is_klingon = yes
+					}
+				}
+			}
+
 			bird_of_prey = {
 				fraction = {
-					base = 50
+					base = 35
 					modifier = {
 						factor = 0
 						is_klingon = no
@@ -548,7 +616,7 @@ default = {
 
 			ferrax = {
 				fraction = {
-					base = 100
+					base = 55
 					modifier = {
 						factor = 0
 						is_romulan = no
@@ -644,7 +712,7 @@ default = {
 
 			hideki = {
 				fraction = {
-					base = 50
+					base = 35
 					modifier = {
 						factor = 0
 						is_cardassian = no
@@ -712,7 +780,7 @@ default = {
 
 			small_minor = {
 				fraction = {
-					base = 100
+					base = 55
 					modifier = {
 						factor = 0
 						is_minor = no
@@ -771,7 +839,7 @@ default = {
 
 			small_nausicaan = {
 				fraction = {
-					base = 100
+					base = 55
 					modifier = {
 						factor = 0
 						NOT = { has_country_flag = nausicaan }
@@ -1104,6 +1172,7 @@ default = {
 		}
 	}
 }
+
 
 # Global Event Country - Do Not Remove
 global_event = {

@@ -1,0 +1,78 @@
+Community Patch 2026 — correctifs / pistes à voir
+==================================================
+Dernière mise à jour : 2026-05-14
+Fichier de suivi interne (backlog technique et log), pas un changelog joueur.
+
+----------------------------------------------------------------------
+1. Missions MIPO — cible 3e pays (minor_state_event_country_3rd_party)
+----------------------------------------------------------------------
+Symptôme possible : erreur log ou scope si la chaîne n’a pas sauvegardé
+la cible avant un bloc after / effet.
+
+Action : dans events/hornblower_mission_events.txt, entourer chaque usage
+de event_target:minor_state_event_country_3rd_party par un test du type :
+  if = { limit = { exists = event_target:minor_state_event_country_3rd_party }
+    … effets …
+  }
+
+À vérifier en priorité (non exhaustif) : blocs after autour des missions
+84, 85, et les autres occurrences listées par recherche sur le nom de la
+cible dans ce fichier.
+
+----------------------------------------------------------------------
+2. Missions MIPO — IA sans option positive (ai_chance)
+----------------------------------------------------------------------
+Si de nouveaux messages du type « Triggered Event mission.X … no options
+with positive ai_chance » apparaissent : repérer l’événement concerné et
+ajouter soit une option générique (hors quatre grandes puissances) avec
+ai_chance, soit un ai_chance explicite sur une option toujours valide pour
+l’IA.
+
+Déjà traités dans une passe récente : mission.17, 44, 85, 204, 214, 215
+(option générique MIPO_MISSION_GENERIC_OPTION + loc EN/FR).
+
+----------------------------------------------------------------------
+3. Espionnage — spy_mission_spy_global
+----------------------------------------------------------------------
+Symptôme : « Trying to remove undefined event target: spy_mission_spy_global »
+Fichier : events/hornblower_country_events.txt (clear_global_event_target
+dans un after).
+
+Contexte documenté dans Mod info/changelog/CHANGELOG0512.txt : garde
+« exists » sur cible globale peu claire en STI ; fix propre = revue de
+chaîne complète ou accepter le warning.
+
+----------------------------------------------------------------------
+4. Log « Object … already exists » (districts, scripted effects, casus)
+----------------------------------------------------------------------
+Fichiers typiques : common/districts/zz_cp26_district_fixes.txt,
+common/scripted_effects/zz_cp26_reduced_fleet_scale_effects.txt,
+common/casus_belli/zz_cp26_contender_casus_belli.txt.
+
+C’est souvent volontaire (shadow / surcharge vanilla avec contender). Pas
+de micro-fix sans renommer des clés (cassant) ou fusion lourde avec vanilla.
+À garder comme bruit log connu si le comportement en jeu est correct.
+
+----------------------------------------------------------------------
+5. GFX projectiles / VFX Canon
+----------------------------------------------------------------------
+Le dossier gfx/projectiles/ peut rester vide pour éviter les doublons de
+noms avec Infinite. Si on réintroduit des overrides : noms uniques côté
+mod (préfixe cp26_) et pas de copie byte-à-byte des defs vanilla sous le
+même identifiant.
+
+----------------------------------------------------------------------
+6. Repo Git / localisation
+----------------------------------------------------------------------
+Vérifier les fichiers localisation/french/ non suivis ou doublons potentiels
+avec d’autres mods ; grep des clés dupliquées avant release.
+
+----------------------------------------------------------------------
+7. Dette HRB_TODO / placeholders
+----------------------------------------------------------------------
+Recherche globale HRB_TODO / TODO : placeholders sons, images, prescripted
+mineurs, balance ship roles. Pas bloquant runtime en général ; tri par
+priorité cosmétique ou lore.
+
+----------------------------------------------------------------------
+Fin du fichier — à compléter au fil des playtests et des error.log.

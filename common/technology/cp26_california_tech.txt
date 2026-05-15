@@ -26,17 +26,23 @@ tech_cp26_california_unlock = {
 		}
 	}
 
+	# Poids deck recherche : la California ne doit pas sortir trop tôt (support science).
 	weight_modifier = {
 		modifier = {
-			factor = 1
-			years_passed < 9
+			factor = 0.15
+			years_passed < 20
+		}
+		modifier = {
+			factor = 1.5
+			years_passed > 19
+			years_passed < 29
 		}
 		modifier = {
 			factor = 6
-			years_passed > 10
+			years_passed > 28
 		}
 		modifier = {
-			factor = 4
+			factor = 2
 			any_neighbor_country = {
 				has_communications = ROOT
 			}

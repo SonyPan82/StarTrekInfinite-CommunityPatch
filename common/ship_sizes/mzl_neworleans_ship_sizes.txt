@@ -77,6 +77,13 @@ neworleans = {
 
 	combat_disengage_chance = 1.50
 
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
 	class = shipclass_military
 	construction_type = starbase_shipyard
 	required_component_set = "power_core"

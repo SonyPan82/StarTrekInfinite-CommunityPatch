@@ -1,0 +1,28 @@
+namespace = STH_bajoran_story
+
+# CP26 — MUST load before other mods' STH_bajoran_story files (Stellaris events: first file wins).
+# Routes wormhole survey success into CP26 activation instead of vanilla/STH bypass behaviour.
+country_event = {
+	id = STH_bajoran_story.1010
+	title = "STH_bajoran_story.1010.name"
+	desc = "STH_bajoran_story.1010.desc_02"
+	picture = GFX_evt_first_contact_ufop_bajoran_stage3
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = bajoran_wormhole_discovered
+		set_country_flag = encountered_first_wormhole
+		set_country_flag = wormhole_discoverer
+		save_event_target_as = wormhole_discoverer
+		add_seen_bypass_type = wormhole
+
+		if = {
+			limit = { NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created } }
+			country_event = { id = cp26_bajoran_wormhole.200 }
+		}
+	}
+
+	option = {
+		name = STH_bajoran_story.1010.a
+	}
+}

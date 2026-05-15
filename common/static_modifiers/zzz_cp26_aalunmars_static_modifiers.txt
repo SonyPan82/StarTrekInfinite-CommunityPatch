@@ -1,0 +1,21 @@
+# CP26 fix (2026-05-14) — Override DIRECT de lunar_one_colony (vanilla)
+# Le précédent fix (rename → lunar_one_colony_cp26) résolvait la perte de stats,
+# mais créait DEUX modifiers sur Luna (vanilla cosmétique + CP26 stats) → 2 icônes.
+#
+# Stratégie :
+#   1. Ce fichier charge en DERNIER (préfixe zzz_) donc gagne last-loaded-wins
+#      contre vanilla 100_hornblower_static_modifiers.txt:2253.
+#   2. Notre lunar_one_colony remplace celui de vanilla (avec stats + icône).
+#   3. events/aalm_events.txt n'ajoute PLUS le modifier en doublon ; on laisse
+#      vanilla events/game_start.txt:1360 l'appliquer une seule fois.
+#   4. Résultat : Luna a UNE seule instance du modifier avec icône ET stats.
+
+lunar_one_colony = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_research_grants.dds"
+	pop_amenities_usage_mult = 0.25
+	pop_growth_speed = -0.5
+	job_researcher_add = 2
+	planet_housing_add = 2
+	planet_jobs_specialist_produces_mult = 0.2
+	planet_jobs_worker_produces_mult = -0.2
+}

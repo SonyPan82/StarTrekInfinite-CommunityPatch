@@ -16,7 +16,8 @@ cp26_minor_gorn_combat_doctrine = {
 	icon = "GFX_modifier_ship_hull"
 	icon_frame = 1
 
-	ship_hull_mult       = 0.20
+	ship_hull_mult       = 0.35
+	ship_armor_mult      = 0.10
 	ship_speed_mult      = -0.10
 	ship_evasion_mult    = -0.15
 }
@@ -25,8 +26,8 @@ cp26_minor_tholian_combat_doctrine = {
 	icon = "GFX_modifier_shield"
 	icon_frame = 1
 
-	ship_shield_mult           = 0.25
-	ship_shield_regen_add_perc = 0.30
+	ship_shield_mult           = 0.45
+	ship_shield_regen_add_perc = 0.40
 	ship_hull_mult             = -0.10
 }
 
@@ -34,8 +35,8 @@ cp26_minor_orion_combat_doctrine = {
 	icon = "GFX_modifier_ship_fire_rate"
 	icon_frame = 1
 
-	ship_fire_rate_mult = 0.15
-	ship_evasion_add    = 10
+	ship_fire_rate_mult = 0.25
+	ship_evasion_add    = 12
 	ship_armor_mult     = -0.15
 }
 
@@ -43,7 +44,7 @@ cp26_minor_breen_combat_doctrine = {
 	icon = "GFX_modifier_ship_armor"
 	icon_frame = 1
 
-	ship_armor_mult     = 0.25
-	ship_weapon_damage  = 0.10
+	ship_armor_mult     = 0.40
+	ship_weapon_damage  = 0.18
 	ship_fire_rate_mult = -0.10
 }

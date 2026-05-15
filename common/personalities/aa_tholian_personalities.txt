@@ -4,7 +4,7 @@ hegemonic_imperialists_tholian = {
 	bravery = 1.1
 	combat_bravery = 0.9
 
-	military_spending = 1.2
+	military_spending = 0.85
 	colony_spending = 0.8
 
 	federation_acceptance = 0

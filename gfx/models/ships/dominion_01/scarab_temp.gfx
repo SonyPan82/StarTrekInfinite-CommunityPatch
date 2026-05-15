@@ -1,0 +1,102 @@
+# pdxmesh = { 
+	# name = "dominion_01_sovereign_coreA_mesh"		
+	# file = "gfx/models/ships/dominion_01/dominion_01_scarab.mesh"
+	# meshsettings = {
+		# name = "Hull"
+		# index = 0
+		# texture_diffuse = "dominion_hull_diffuse.dds"
+		# texture_normal = "nonormal.dds"
+		# texture_specular = "light_metal_specular.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 1
+		# texture_diffuse = "dominion_hull_dark_diffuse.dds"
+		# texture_normal = "nonormal.dds"
+		# texture_specular = "light_metal_specular.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 2
+		# texture_diffuse = "dominion_hull_lilac_diffuse.dds"
+		# texture_normal = "nonormal.dds"
+		# texture_specular = "light_metal_specular.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 3
+		# texture_diffuse = "dominion_hull_purple_diffuse.dds"
+		# texture_normal = "nonormal.dds"
+		# texture_specular = "light_metal_specular.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 4
+		# texture_diffuse = "dominion_hull_blue_diffuse.dds"
+		# texture_normal = "nonormal.dds"
+		# texture_specular = "light_metal_specular.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 5
+		# texture_diffuse = "dominion_hull_orange_diffuse.dds"
+		# texture_normal = "nonormal.dds"
+		# texture_specular = "light_metal_specular.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 6
+		# texture_diffuse = "gold_texture.dds"
+		# texture_normal = "nonormal.dds"
+		# texture_specular = "metal_specular.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 7
+		# texture_diffuse = "grid_2_grey_diffuse.dds"
+		# texture_normal = "grid_2_normal.dds"
+		# texture_specular = "nospec.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 8
+		# texture_diffuse = "glow_red_diffuse.dds"
+		# texture_normal = "glows_normal.dds"
+		# texture_specular = "nospec.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 9
+		# texture_diffuse = "glow_purple_diffuse.dds"
+		# texture_normal = "glows_normal.dds"
+		# texture_specular = "nospec.dds"
+		# shader = "PdxMeshShip"
+	# }
+
+	# meshsettings = {
+		# name = "Hull"
+		# index = 10
+		# texture_diffuse = "glow_white_diffuse.dds"
+		# texture_normal = "glows_normal.dds"
+		# texture_specular = "nospec.dds"
+		# shader = "PdxMeshShip"
+	# }
+# }

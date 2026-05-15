@@ -37,7 +37,7 @@ setup_breen_capital = {
 				has_planet_flag = breen_capital
 			}
 			while = {
-				count = 22
+				count = 23
 				create_pop = { species = "Breen" }
 			}
 			clear_blockers = yes
@@ -52,15 +52,14 @@ setup_breen_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			add_district_and_planet_size_if_needed_effect = { district = district_civil_forum_breen }
-			set_planet_flag = cp26_needs_capital_upgrade
+			add_building = building_capital
 		}
 		random_system_planet = {
 			limit = {
 				has_planet_flag = breenus_secundus
 			}
-			create_colony = {
-				owner = event_target:breen_country
-			}
+			set_owner = event_target:breen_country
+			set_colony_type = col_default
 			add_deposit = d_underworld_caverns
 			add_deposit = d_ore_rich_slopes
 			clear_blockers = yes
@@ -70,7 +69,7 @@ setup_breen_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_labor_camp_breen }
 
 			while = {
-				count = 4
+				count = 5
 				create_pop = { species = "Breen" }
 			}
 
@@ -78,14 +77,19 @@ setup_breen_capital = {
 			create_pop = { species = "Romulan" }
 			create_pop = { species = "Cardassian" }
 			create_pop = { species = "Klingon" }
-			set_planet_flag = cp26_needs_capital_upgrade
+			add_building = building_capital
 		}
-		create_starbase = {
-			size = starbase_starport
-			owner = event_target:breen_country
-			module = shipyard
-			building = crew_quarters
-		}
+			if = {
+				limit = {
+					NOT = { exists = starbase }
+				}
+				create_starbase = {
+					size = starbase_starport
+					owner = event_target:breen_country
+					module = shipyard
+					building = crew_quarters
+				}
+			}
 	}
 }
 

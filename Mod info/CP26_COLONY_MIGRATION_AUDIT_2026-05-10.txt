@@ -1,0 +1,123 @@
+================================================================================
+CP26 — Audit migration colony pattern (session 2026-05-10)
+Branche git : test_colony
+================================================================================
+
+CONTEXTE
+--------
+Le moteur Clausewitz crashe (SIGSEGV CConstructionQueueManager::DailyUpdate) quand
+une colonie est initialisee avec `create_colony` suivie d'un `add_building` ou
+`remove_building` sur le meme tick ou trop tot. Le vanilla evite ce pattern sur
+ses colonies "bespoke" (Vulcan, Andor, Tellar, Khitomer) en utilisant directement
+`set_owner` + `set_colony_type` + `add_building` sans passer par `create_colony`.
+
+OBJECTIF
+--------
+Migrer TOUTES les colonies CP26 du pattern dangereux vers le pattern vanilla.
+
+ETAT AVANT
+----------
+- create_colony + cp26_needs_capital_upgrade flag + deferred upgrade J+3
+  (cp26_delayed_capital_upgrade.txt)
+- 46 fichiers concernes
+
+ETAT APRES
+----------
+- 0 create_colony dans CP26
+- 0 flag cp26_needs_capital_upgrade
+- cp26_delayed_capital_upgrade.txt supprime
+- Toutes les colonies utilisent set_owner + set_colony_type + add_building direct
+
+--------------------------------------------------------------------------------
+1. MAJORS CP26 (capitales d'empires entiers)
+--------------------------------------------------------------------------------
+
+| Colonie               | Fichier(s)                                       | Bâtiment | Pops  |
+|-----------------------|--------------------------------------------------|----------|-------|
+| Tholia (capital)      | aa_tholian_initializer.txt + aa_tholian_effects.txt | capital  | 21    |
+| Orion (capital)       | aa_orion_initializer.txt + aa_orion_effects.txt     | capital  | 21+3  |
+| Verex III             | aa_orion_effects.txt (setup_verex_colony)           | capital  | 11    |
+| Breenus Prime         | aa_breen_initializers.txt + aa_breen_effects.txt    | capital  | 23    |
+| Breenus Secundus      | aa_breen_effects.txt                                | capital  | 5+4   |
+| Gornar                | aa_gorn_initializer.txt + aa_gorn_effects.txt       | capital  | 21    |
+
+Recommandation : GARDER building_capital. Ce sont des capitales.
+
+--------------------------------------------------------------------------------
+2. EVENTS CUSTOM (colonies importantes de l'histoire)
+--------------------------------------------------------------------------------
+
+| Colonie   | Fichier                | Bâtiment              | Pops  |
+|-----------|------------------------|-----------------------|-------|
+| Denobula  | aacoldenob_events.txt  | capital + clinic      | 13    |
+| Vega IX   | vgcol_events.txt       | capital + foundry     | 10    |
+| Terra Nova| tncol_events.txt       | capital               | 5     |
+| Risa      | aacolrisa_events.txt   | capital               | 6     |
+| Remus     | aacolremus_events.txt  | capital               | 6     |
+| Luna      | aalm_events.txt        | capital               | 4     |
+| Mars      | aalm_events.txt        | capital               | 5     |
+
+Recommandation : GARDER building_capital. Colonies historiques/importantes.
+
+--------------------------------------------------------------------------------
+3. COLONIES VANILLA SECONDAIRES (pattern B vanilla)
+--------------------------------------------------------------------------------
+
+| Colonie     | Fichier(s)                                      | Bâtiment | Pops  |
+|-------------|-------------------------------------------------|----------|-------|
+| Glintara    | romulan_glintara_initializer.txt + 01_romulus_glintara_effect.txt | capital  | 11    |
+| Cardassia V | cardassian_cardassia_initializer.txt (vanilla create_cardassia_v_colony gère) | capital  | 1+vanilla |
+
+Recommandation : GARDER. Glintara = colonie romulaine etablie. Cardassia V laisse
+le scripted effect vanilla gerer (il met deja building_capital).
+
+--------------------------------------------------------------------------------
+4. MINORS other_owned (20 empires prescripted)
+--------------------------------------------------------------------------------
+
+Acamarian, Betazoid, Bolian, Boslic, Cairn, Farian, Hupyrian, Idanian, Iyaaran,
+Jnaii, Kaelon, Kesprytt, Ktarian, Lissepian, Malcorian, Pelian, Talarian,
+Tanugan, Trill.
+
+Actuel : set_owner + set_colony_type + add_building = building_capital + create_pop
+Vanilla : create_colony (→ building_colony_shelter implicit)
+
+Recommandation : Remplacer building_capital par building_colony_shelter pour
+respecter le lore vanilla (petites colonies). C'est safe car pas de remove_building.
+A DECIDER PAR L'EQUIPE.
+
+--------------------------------------------------------------------------------
+5. PROBLEME DETECTE DANS LES LOGS (a corriger)
+--------------------------------------------------------------------------------
+
+[00:57:04][effect_impl_pop.cpp:248]: Attempting to get a random pop species on
+planet Glintara with no pops at file: scripted effect create_glintara_colony
+
+Cause : create_glintara_colony utilise `species = romulan`. Sans le create_colony
+precedent, la planete est vide au moment du create_pop. Le moteur ne peut pas
+resoudre l'espece "romulan" sur une planete sans pops.
+
+Fix propose :
+- Remplacer `species = romulan` par `species = owner_main_species` dans
+  01_romulus_glintara_effect.txt (set_owner a deja ete appele).
+- OU ajouter 1 pop `owner_main_species` dans l'initializer avant create_glintara_colony,
+  et reduire le while count de 11 a 10.
+
+--------------------------------------------------------------------------------
+6. FICHIERS NETTOYES / SUPPRIMES
+--------------------------------------------------------------------------------
+
+- events/cp26_delayed_capital_upgrade.txt (supprime)
+- cp26_capital_upgrade.1 retire de common/on_actions/zz_cp26_on_game_start.txt
+
+--------------------------------------------------------------------------------
+7. STATS GIT (branche test_colony)
+--------------------------------------------------------------------------------
+
+46 fichiers modifies
+252 insertions(+), 185 deletions(-)
+2 commits :
+  - ad3a284 Migration colony pattern: replace create_colony...
+  - ac17c7c fixup: Orion pop count 20→21, Cardassia V remove redundant building_capital
+
+================================================================================

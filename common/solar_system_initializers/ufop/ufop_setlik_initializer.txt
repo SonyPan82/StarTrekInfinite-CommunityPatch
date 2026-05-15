@@ -1,8 +1,7 @@
 ufop_setlik_initializer = {
 	class = "rl_all_stars"
-	flags = { outpost ufop_system ufop }
+	flags = { outpost ufop_system ufop setlik }
 	usage = static_system_init
-	flags = { setlik }
 
 	planet = {
 		class = star

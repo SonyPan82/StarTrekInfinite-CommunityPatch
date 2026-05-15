@@ -19,21 +19,20 @@ event = {
 			add_deposit = d_underworld_caverns
 			add_deposit = d_ore_rich_slopes
 
-			create_colony = {
-				owner = event_target:ufop_country
-			}
+			set_owner = event_target:ufop_country
+			set_colony_type = col_default
+			add_building = building_capital
 			
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
+			create_pop = { species = owner_main_species }
 			set_planet_flag = research_habitat
-			# CP26 fix : utilise notre modifier renommé lunar_one_colony_cp26
-			# pour ne pas être écrasé par la définition vanilla (vide de stats).
-			# Voir 00_aalunmars_static_modifiers.txt pour le contexte.
-			add_modifier = {
-				modifier = lunar_one_colony_cp26
-				days = -1
-			}
+			# CP26 fix (2026-05-14) : on NE rajoute PLUS le modifier ici.
+			# Vanilla events/game_start.txt:1360 l'applique déjà à Luna, et
+			# notre zzz_cp26_aalunmars_static_modifiers.txt override directement
+			# `lunar_one_colony` avec les stats. Ajouter ici en plus créait
+			# une 2e icône sur la planète.
 			add_district_and_planet_size_if_needed_effect = {
 				district = district_city
 			}
@@ -56,10 +55,11 @@ event = {
 			add_deposit = d_infertile_land
 			add_deposit = d_ore_rich_slopes
 			
-			create_colony = {
-				owner = event_target:ufop_country
-			}
+			set_owner = event_target:ufop_country
+			set_colony_type = col_default
+			add_building = building_capital
 			
+			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }
 			create_pop = { species = owner_main_species }

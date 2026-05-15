@@ -1,0 +1,186 @@
+================================================================================
+CP26 — Audit performance & flottes (code mod + référence jeu Infinite)
+Date : 2026-05-14
+================================================================================
+
+Objectif du document
+----------------------
+1) Cartographier ce qui coûte du CPU côté CP26 (scripts, pulses, itérateurs).
+2) Comparer aux patterns « lourds » du jeu de base (Infinite) où pertinent.
+3) Proposer UNE option stable pour réduire les flottes ET la charge script,
+   sans empiler de garde-fous contradictoires.
+
+--------------------------------------------------------------------------------
+Synthèse exécutive
+--------------------------------------------------------------------------------
+
+Option recommandée (stable, perf-friendly) — « Stack 3 natives »
+  A) NGameplay : COMMAND_LIMIT_BASE / COMMAND_LIMIT_MAX (déjà zz_cp26_reduced_fleet_scale_defines.txt)
+  B) Même fichier : SHIP_OFFICERS_* (pression native sur les coques, pas de boucle script)
+  C) country_types : ship_data min/max pour civils + fractions militaires (tech / pays) ;
+     plafond dur 36 militaires de ligne (cible 3×12) : possible_construction sur ship_sizes + trigger
+     cp26_under_reduced_fleet_military_cap (voir CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt).
+
+  Éviter en routine : scripts mensuels/hebdo qui parcourent toutes les flottes / tous
+  les pays pour « corriger » le nombre de vaisseaux. Réserver tout filet de sécurité
+  scripté à des événements rares si indispensable.
+
+Réduction de charge CP26 déjà obtenue (à conserver)
+  - cp26_war_access : passage daily → monthly (BUG-4), puis event global .100 sur
+    on_monthly_pulse (2026-05-14) : 1×/mois pour toute la partie au lieu de N× si N
+    belligérants (voir section 5.2).
+  - cp26_ai_pulse.1 : annuel (on_yearly_pulse_country) + une fois au game start : coût
+    négligeable vs mensuel ; count_owned_planet reste O(planets) une fois/an/IA.
+
+Point d’attention CP26 (résolu 2026-05-14)
+  - Ancien cp26_war_access.2 sur on_monthly_pulse_country (facteur N) → remplacé par
+    cp26_war_access.100 sur on_monthly_pulse (section 5.2).
+
+--------------------------------------------------------------------------------
+1. Méthodologie d’audit (mod)
+--------------------------------------------------------------------------------
+
+Recherches effectuées sur le workspace CP26 :
+  - Hooks temporels : on_daily / on_weekly / on_monthly (fichiers .txt)
+  - Itérateurs lourds : every_country, every_owned_fleet, every_owned_ship, any_owned_*
+  - count_owned_ship (présence dans country_types et events)
+  - on_actions zz_cp26_* (fréquence des pulses)
+  - Taille indicative des fichiers « hotspot » (wc -l)
+
+Le jeu de base Infinite n’a pas été entièrement scanné (dizaines de milliers de lignes) ;
+référence ciblée : common/on_actions/00_on_actions.txt (pulses globaux vs country),
+et la volumétrie du fichier global situation du mod (hérité Hornblower).
+
+--------------------------------------------------------------------------------
+2. Constats CP26 — ce qui est DÉJÀ bien pour la perf
+--------------------------------------------------------------------------------
+
+2.1 Defines flotte (native, très bon rapport stabilité/perf)
+  Fichier : common/defines/zz_cp26_reduced_fleet_scale_defines.txt
+    COMMAND_LIMIT_BASE = 24
+    COMMAND_LIMIT_MAX   = 96
+    SHIP_OFFICERS_ADD_PERCENTAGE, SHIP_OFFICERS_OPERATIVE_THRESHOLD,
+    OFFICERS_MAX_FIRE_RATE_*, OFFICERS_MAX_EVASION_*
+  → Tout cela est appliqué par le moteur C++ sans coût script récurrent.
+
+2.2 IA « taille d’empire » pour ship_data (granularité raisonnable)
+  Fichiers : events/zz_cp26_ai_pulse_events.txt + on_actions/zz_cp26_ai_pulse_on_actions.txt
+    - on_yearly_pulse_country (+ fire au game start via zz_cp26_on_game_start.txt)
+    - trigger limité : is_ai = yes
+    - effet : count_owned_planet + set de flags cp26_empire_size_*
+  → Une fois par an par IA « default », acceptable.
+
+2.3 AI shipyard one-shot
+  Fichier : events/zz_cp26_ai_shipyard_fix.txt (fire_only_once, scope capital)
+  → Pas de charge récurrente.
+
+2.4 Scripted effects « reduced fleet scale »
+  Fichier : common/scripted_effects/zz_cp26_reduced_fleet_scale_effects.txt (~767 lignes)
+  → Surtout des create_fleet / create_ship ponctuels (crises, mercenaires, départs) ;
+    pas de every_owned_ship massif dans ce fichier (échantillon grep).
+
+2.5 NAI « safe » (post-rollback combat defines)
+  Fichier : common/defines/zz_cp26_ai_defines.txt
+    AI_MAX_DISTANCE = 230 : réduit le coût de planification guerre / expansion IA vs 300.
+  → Bon pour perf ET stabilité (moins de re-routages extrêmes qu’avec defines combat agressifs).
+
+--------------------------------------------------------------------------------
+3. Constats CP26 — charge MOYENNE ou à surveiller
+--------------------------------------------------------------------------------
+
+3.1 country_types — ship_data (2026-05-14)
+  Fichiers : 00_country_types.txt, aa_contender_country.txt (replace_path).
+  - Civils : fractions / min-max toujours présents ; colonizer utilise encore
+    count_owned_ship pour des conditions OR (pas un plafond militaire).
+  - Militaires : les anciens modifiers « factor = 0 + count_owned_ship >= 6|15 »
+    ont été retirés. Le plafond 36 navires de ligne est appliqué au chantier
+    via possible_construction sur les tailles ship_sizes + trigger
+    cp26_under_reduced_fleet_military_cap (voir Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt).
+  → Moins de branches count_owned_ship dans ship_data pour l’IA ; coût toujours
+    borné lors du recalcul des priorités de construction. Les spawns scriptés
+    restent hors de ce mécanisme tant qu’ils ne passent pas par le chantier.
+
+3.2 War access (mensuel global)
+  Fichiers : common/on_actions/zz_cp26_war_access_on_actions.txt,
+             events/zz_cp26_war_access_events.txt
+  cp26_war_access.100 (event, on_monthly_pulse) : 1× par mois pour toute la partie ;
+  every_war + paires de participants + neutral_zone × belligérants (voir section 5.2).
+  → Ancien .2 (on_monthly_pulse_country) supprimé : plus de facteur N empires en guerre
+    sur ce hook.
+
+3.3 Vassalisation / négociation / menace dominion
+  on_actions : zz_cp26_vassalization_*, zz_cp26_dominion_threat_* (partiellement commenté)
+  → Événements déclenchés par situations / hooks ponctuels ; pas un pulse global lourd identifié
+    dans cette passe.
+
+--------------------------------------------------------------------------------
+4. Risque perf MAJEUR (héritage contenu, pas spécifique CP26 seul)
+--------------------------------------------------------------------------------
+
+4.1 hornblower_global_situation_events.txt (~8938 lignes dans le mod)
+  Très nombreux every_country / branches situation ; coût surtout quand situations actives
+  et événements de situation se déclenchent.
+  → Ce n’est pas le « petit » correctif ship_data : toute optimisation sérieuse du late-game
+    devrait inclure une revue ciblée de ce fichier (garde-fous, limites, early-outs), mais
+    c’est un chantier à part (risque gameplay).
+
+--------------------------------------------------------------------------------
+5. Option stable recommandée (détail opérationnel)
+--------------------------------------------------------------------------------
+
+5.1 Piliers (ne pas les multiplier)
+  [P1] COMMAND_LIMIT_* : borne dure la taille des flottes en combat (déjà en place).
+  [P2] Officers defines : rend les grandes flottes « creuses » sans script (déjà en place).
+  [P3] ship_data : seule source de vérité pour le nombre CIBLE de vaisseaux IA (civils +
+      cadre militaire). Ajuster min/max plutôt que rajouter des effets qui détruisent des ships.
+
+5.2 Piste d’amélioration perf CP26 (priorité 2, faible risque) — FAIT 2026-05-14
+  Refactor cp26_war_access :
+    - Retiré : on_monthly_pulse_country + country_event cp26_war_access.2
+    - Ajouté : on_monthly_pulse + event global cp26_war_access.100
+      (events/zz_cp26_war_access_events.txt, on_actions/zz_cp26_war_access_on_actions.txt)
+    - Logique : every_war → paires de participants (ouverture mutuelle, forced=35) ;
+      puis chaque neutral_zone ouvre vers chaque pays is_at_war = yes.
+  Gain : 1 passage mensuel au lieu de N (N = empires en guerre) pour ce hook ; sensible
+    quand beaucoup de belligérants coexistent.
+
+5.3 Piste de simplification gameplay (priorité 3, à valider design)
+  Supprimer les flags cp26_empire_size_* + fractions dynamiques dans ship_data, et passer sur
+  des min/max STATIQUES pour civils/militaires.
+  - Gain perf : modeste (un peu moins de branches évaluées + plus besoin du pulse annuel
+    pour cette logique — le pulse peut rester pour autre chose ou être retiré).
+  - Gain conception : moins de « magie » taille d’empire, comportement plus prévisible.
+
+5.4 Ce qu’il vaut mieux NE PAS faire pour la perf/stabilité
+  - Boucles scriptées fréquentes every_owned_ship / every_owned_fleet sur tous les empires.
+  - Nouveaux hooks on_daily_pulse_country pour la flotte.
+  - NAI defines « combat engagement » agressifs (historique crash / instabilité).
+  - Conversion massée de toutes les coques en « hero event-only » (complexité, casse IA).
+
+--------------------------------------------------------------------------------
+6. Tableau récapitulatif
+--------------------------------------------------------------------------------
+
+Composant                          | Coût CPU relatif | Stabilité | Action CP26
+-----------------------------------|------------------|-----------|---------------------------
+Defines COMMAND_LIMIT / officers   | Bas              | Haute     | Conserver comme socle
+ship_data (country_types)          | Bas–moyen        | Haute     | Ajuster min/max si besoin
+count_owned_ship (ship_data civils)  | Moyen           | Haute     | Ne pas densifier sans besoin
+cp26_ai_pulse (annuel, IA default)  | Bas              | Haute     | Conserver
+cp26_war_access.100 (mensuel global) | Bas–moyen        | Haute     | FAIT — 1×/mois tout empire
+hornblower_global_situation        | Élevé (actif)   | Variable  | Revue ciblée hors scope immédiat
+
+--------------------------------------------------------------------------------
+7. Conclusion
+--------------------------------------------------------------------------------
+
+La voie la plus STABLE et la plus PERFORMANTE pour « moins de flottes » dans CP26 est de
+continuer à s’appuyer sur le TRIANGLE NATIF : command limit + officiers + ship_data, en
+évitant d’ajouter des couches scriptées correctives (purges, boucles mensuelles flotte).
+Le plafond militaire au chantier (possible_construction + trigger, 2026-05-14) complète
+ce triangle sans parcourir les flottes en script. La mutualisation mensuelle globale
+de cp26_war_access (event .100) est en place depuis 2026-05-14.
+
+================================================================================
+Fin du document
+================================================================================

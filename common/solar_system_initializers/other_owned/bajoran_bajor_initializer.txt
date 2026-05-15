@@ -15,9 +15,6 @@ bajoran_bajor_initializer = {
 
 		init_effect = {
 			change_pc = pc_g_star
-			# denorios_belt ambient objects removed — sth_denorios_belt type not available in Infinite
-			# denorios_belt_target flag set on star planet instead for survey project location
-			set_planet_flag = denorios_belt_target
 		}
 	}
 
@@ -43,6 +40,14 @@ bajoran_bajor_initializer = {
 
 		init_effect = {
 			prevent_anomaly = yes
+			# Denorios / wormhole site: on Bajor Prime (not the star — avoids VFX sitting on the sun).
+			set_planet_flag = denorios_belt_target
+			create_ambient_object = {
+				type = "cp26_bajoran_wormhole"
+				location = this
+				use_3d_location = yes
+				entity_offset_height = { min = 10 max = 18 }
+			}
 			add_modifier = {
 				modifier = home_planet
 				days = -1

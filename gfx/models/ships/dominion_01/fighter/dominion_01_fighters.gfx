@@ -1,0 +1,63 @@
+objectTypes = {
+    pdxmesh = {
+        name = "dominion_01_fighter_coreA_mesh"
+        file = "gfx/models/ships/dominion_01/fighter/dominion_01_fighter.mesh"
+        scale = 0.5
+
+        meshsettings = {
+            name = "dom_strike"
+            index = 0
+            texture_diffuse = "dominion_hull_purple_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        
+        meshsettings = {
+            name = "warp_glow"
+            index = 0
+            texture_diffuse = "glow_purple_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "window"
+            index = 0
+            texture_diffuse = "window_dark_blue_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_grey"
+            index = 0
+            texture_diffuse = "dominion_hull_blue_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+		
+        meshsettings = {
+            name = "hull_dark"
+            index = 0
+            texture_diffuse = "dominion_hull_dark_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+		
+        meshsettings = {
+            name = "glow_purple"
+            index = 0
+            texture_diffuse = "glow_lilac_diffuse.dds"
+           texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+	}
+}
+
+ 

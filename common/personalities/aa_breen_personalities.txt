@@ -4,7 +4,7 @@ hegemonic_imperialists_breen = {
 	bravery = 0.8
 	combat_bravery = 0.75
 
-	military_spending = 1.1
+	military_spending = 0.8
 	colony_spending = 0.9
 
 	federation_acceptance = -75

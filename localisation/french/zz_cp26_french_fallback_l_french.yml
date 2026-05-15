@@ -17,6 +17,8 @@
  tech_cp26_kamarag_unlock_desc:0 "Les vaisseaux de classe §HKamarag§! ajoutent une option klingonne de ligne de bataille lourde, pensée pour le combat frontal prolongé."
  tech_cp26_kvort_unlock:0 "Schémas du K'vort"
  tech_cp26_kvort_unlock_desc:0 "Les vaisseaux de classe §HK'vort§! offrent une capacité de frappe rapide avec une puissance de feu de niveau croiseur."
+ tech_cp26_klingon_raptor_unlock:0 "Schémas du Raptor"
+ tech_cp26_klingon_raptor_unlock_desc:0 "Les vaisseaux de classe §HRaptor§! combinent des bordées disrupteurs klingonnes avec une coque compacte de type destroyer."
 
  akira_plural:0 "Akira"
  neworleans_plural:0 "New Orleans"

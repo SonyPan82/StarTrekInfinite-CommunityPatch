@@ -996,10 +996,21 @@ special_project = {
 		if = {
 			limit = {
 				exists = OWNER
+				OWNER = { is_minor = yes }
 			}
-			OWNER = { 
+			OWNER = {
 				set_country_flag = dignitary_declined
-				country_event = { id = mission.215 } }
+				country_event = { id = cp26_minor_mission.215 }
+			}
+		}
+		else_if = {
+			limit = {
+				exists = OWNER
+			}
+			OWNER = {
+				set_country_flag = dignitary_declined
+				country_event = { id = mission.215 }
+			}
 		}
 	}
 }
@@ -2042,7 +2053,12 @@ special_project = {
 	}
 	
 	on_fail = {
-		event_target:planetary_inauguration_country = { country_event = { id = mission.177 days = 30 } }
+		if = {
+			limit = {
+				exists = event_target:planetary_inauguration_country
+			}
+			event_target:planetary_inauguration_country = { country_event = { id = mission.177 days = 30 } }
+		}
 	}
 }
 

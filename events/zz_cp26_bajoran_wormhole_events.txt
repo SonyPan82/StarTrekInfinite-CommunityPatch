@@ -1,3 +1,18 @@
+# ============================================================================
+# BAJOR WORMHOLE (CP26) — in-game workflow (short)
+# ----------------------------------------------------------------------------
+# 1) At galaxy gen: ambient "cp26_bajoran_wormhole" on Bajor Prime (flag
+#    denorios_belt_target — not on the star). Entity is vanilla "natural_wormhole_entity".
+# 2) Playable majors (UFOP / Klingon / Romulan / Cardassian = country_type
+#    contender): first fleet entering the Bajor home system before discovery
+#    fires fleet_event .11 → special project CP26_WORMHOLE_SURVEY on the
+#    Denorios body → science ship + scientist → STH_bajoran_story.1010 → .200.
+# 3) AI Bajor (minor, flags bajoran / bajoran_republic): yearly .20 can grant
+#    the same project on Bajor Prime (parallel canon). Bajor is not a playable
+#    major in the Infinite roster.
+# 4) After discovery: fleet_event .10 offers the Gamma expedition when gates met.
+# ============================================================================
+
 namespace = cp26_bajoran_wormhole
 
 # ============================================================================
@@ -17,12 +32,11 @@ country_event = {
 			limit = { NOT = { has_global_flag = cp26_bajoran_wormhole_bypass_created } }
 			set_global_flag = cp26_bajoran_wormhole_bypass_created
 			set_global_flag = bajoran_wormhole_discovered
-			# Ambient object approach removed — sth_denorios_belt_wormhole not available in Infinite.
-			# The star planet in bajoran_bajor_initializer carries set_planet_flag = denorios_belt_target.
+			# Visual wormhole ambient is spawned at galaxy gen on the Bajor star (initializer).
 			# Initialize DTL on the Dominion country so the yearly tick is ready.
 			random_country = {
 				limit = {
-					has_country_flag = the_dominion
+					cp26_is_dominion_empire = yes
 					NOT = { is_variable_set = cp26_dtl }
 				}
 				set_variable = { which = cp26_dtl value = 5 }
@@ -63,8 +77,14 @@ fleet_event = {
 
 		exists = owner
 		owner = {
-			is_country_type = default
-			NOT = { has_country_flag = bajoran_republic }
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
+			NOR = {
+				has_country_flag = bajoran_republic
+				has_country_flag = bajoran
+			}
 			NOT = { has_special_project = CP26_WORMHOLE_SURVEY }
 		}
 		from = { any_system_planet = { has_planet_flag = denorios_belt_target } }
@@ -72,15 +92,21 @@ fleet_event = {
 
 	immediate = {
 		from = {
-			save_event_target_as = cp26_wormhole_survey_location
-		}
-		owner = {
-			enable_special_project = {
-				name = CP26_WORMHOLE_SURVEY
-				location = event_target:cp26_wormhole_survey_location
-				owner = this
+			random_system_planet = {
+				limit = { has_planet_flag = denorios_belt_target }
+				save_event_target_as = cp26_wormhole_survey_location
 			}
-			country_event = { id = cp26_bajoran_wormhole.12 }
+		}
+		if = {
+			limit = { exists = event_target:cp26_wormhole_survey_location }
+			owner = {
+				enable_special_project = {
+					name = CP26_WORMHOLE_SURVEY
+					location = event_target:cp26_wormhole_survey_location
+					owner = this
+				}
+				country_event = { id = cp26_bajoran_wormhole.12 }
+			}
 		}
 	}
 }
@@ -116,7 +142,10 @@ fleet_event = {
 		from = { has_star_flag = bajoran_system }
 		exists = owner
 		owner = {
-			is_country_type = default
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
 			NOT = { has_country_flag = cp26_gamma_expedition_cooldown }
 		}
 	}
@@ -225,20 +254,8 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		# Spawn a Jem'Hadar patrol from the Dominion empire at Bajor (Denorios Belt).
-		random_system = {
-			limit = { has_star_flag = bajoran_system }
-			save_event_target_as = cp26_denorios_system
-		}
-		random_country = {
-			limit = { has_country_flag = the_dominion }
-			create_fleet_from_naval_cap = 0.03
-			last_created_fleet = {
-				set_name = "Jem'Hadar Strike Force"
-				set_location = event_target:cp26_denorios_system
-				set_fleet_stance = aggressive
-			}
-		}
+		# Spawn a visible Jem'Hadar picket at Bajor (naval_cap fleets were often empty).
+		cp26_spawn_jem_gamma_retaliation_bajor = yes
 		# Shorten cooldown so the Dominion keeps pressing
 		remove_country_flag = cp26_gamma_expedition_cooldown
 		set_timed_country_flag = { flag = cp26_gamma_expedition_cooldown days = 1825 }
@@ -266,7 +283,7 @@ country_event = {
 # CANONICAL 2369 TRIGGER — Bajor gets the survey project automatically
 # ============================================================================
 
-# Fires on_yearly_pulse_country in 2369 for the Bajoran empire.
+# Fires on_yearly_pulse_country for the Bajoran player (flags bajoran / bajoran_republic).
 # Enables CP26_WORMHOLE_SURVEY at the wormhole location — canonical discovery.
 country_event = {
 	id = cp26_bajoran_wormhole.20
@@ -274,7 +291,10 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		has_country_flag = bajoran_republic
+		OR = {
+			has_country_flag = bajoran_republic
+			has_country_flag = bajoran
+		}
 
 
 		NOT = { has_global_flag = bajoran_wormhole_discovered }
@@ -282,8 +302,11 @@ country_event = {
 	}
 
 	immediate = {
-		random_system = {
-			limit = { has_star_flag = bajoran_system }
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = denorios_belt_target
+				solar_system = { has_star_flag = bajoran_system }
+			}
 			save_event_target_as = cp26_wormhole_2369_location
 		}
 		if = {

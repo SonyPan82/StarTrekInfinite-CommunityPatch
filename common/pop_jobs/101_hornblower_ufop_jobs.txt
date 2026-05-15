@@ -1,0 +1,322 @@
+#############################
+###    Federation Jobs    ###
+#############################
+		
+########################
+###    Ruler Jobs    ###
+########################
+		
+		
+# Politician
+civil_servant_ufop = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_capital
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_administrators
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+		produces = {
+			food = 3
+			unity = 10
+		}
+	}
+
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+# Councillor
+councilor_ufop = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_federation_headquarters_ufop
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_priests
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+		produces = {
+			research = 3
+
+		}
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 10
+		planet_stability_add = 5
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+########################
+###    Worker Jobs   ###
+########################
+		
+		
+# Starfleet Officer
+starfleet_officer_ufop = {
+	category = worker
+	condition_string = SOLDIER_JOB_TRIGGER
+	building_icon = building_stronghold
+	clothes_texture_index = 4
+		
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+	country_modifier = {
+		country_admin_cap_add = 1
+	}
+		
+	resources = {
+		category = planet_soldiers
+		upkeep = {
+			food = 0
+		}
+		
+		produces = {
+			officers = 3
+		}
+				
+		produces = {
+						
+			trigger = {
+				owner = {
+					is_ufop = yes
+					has_quest_tree_node = qt_ufop_control_demilitarized_zone_21
+				}
+			}
+						
+			unity = 2
+		}
+			
+		produces = {
+			trigger = {
+				owner = { has_quest_tree_node = qt_ufop_inevitable }
+			}
+			officers = 2
+		}
+			
+		produces = { 
+			 
+			trigger = { 
+				owner = { 
+					is_ufop = yes 
+					has_quest_tree_node = qt_ufop_control_neutral_zone
+				} 
+			} 
+			officers = 2
+		} 
+			
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					planet = { has_designation = col_fortress }
+				}
+			}
+			influence = 0.1
+		}
+			
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_tradition = tr_defense_oath_citizenship }
+			}
+			unity = 1
+		}
+
+		# Recruitment Campaign, Decision
+		produces = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					has_modifier = recruitment_campaign
+				}
+			}
+			officers = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+	 	potential = {
+	 		exists = planet
+	 		planet = {
+	 			has_modifier = martial_law_ufop
+	 		}
+	 	}
+	 	modifier = {
+	 		planet_stability_add = 5
+	 	}
+	}
+
+	# War Measures, Decision
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			exists = planet
+			planet = {
+				has_modifier = war_measures
+			}
+		}
+		pop_defense_armies_add = 1
+	}
+
+	# Fortress World, Planet Designation
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		pop_defense_armies_add = 2
+	}
+
+	# Extra Ration, Edict
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = extra_rations }
+		}
+		pop_defense_armies_add = 1
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		soldier_job_check_trigger = yes
+	}
+		
+	weight = {
+		weight = @soldier_job_weight
+	}
+}
+		
+############################
+###    Specialist Jobs   ###
+############################
+		
+# Security Officer
+security_officer_ufop = {
+	category = specialist
+	condition_string = BATTLE_THRALL_JOB_TRIGGER
+	building_icon = building_precinct_house
+	clothes_texture_index = 5
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		battle_thrall_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_enforcers
+		upkeep = {
+			food = 1
+		}
+		
+		produces = {
+			officers = 1
+		}
+		
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = anticrime_campaign }
+			}
+			energy = 2
+		}
+				
+		# Scout For Talent, Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = ufop_scout_for_talent }
+			}
+			officers = 1
+		}
+	}
+	
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+		
+	planet_modifier = {
+		planet_amenities_add = 2
+		planet_crime_add = -15
+	}
+			
+    triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_modifier = anticrime_campaign }
+		}
+		modifier = {
+			planet_crime_add = -10
+		}
+	}
+    
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+

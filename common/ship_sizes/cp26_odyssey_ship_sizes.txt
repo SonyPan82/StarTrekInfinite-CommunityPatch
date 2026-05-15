@@ -18,7 +18,7 @@ odyssey = {
 	rotation_speed = 0.15
 	collision_radius = @odyssey_collision_radius
 	max_hitpoints = @odyssey_hp
-	operative_officers = 90
+	operative_officers = 45
 	officers_escape_perc = 12
 	fleet_view_background = "military_large"
 

@@ -1,5 +1,6 @@
 on_game_start = {
 	events = {
-		aa_breen_game_start.120
+		# CP26: Breen removed from the guaranteed start setup.
+		# aa_breen_game_start.120
 	}
 }

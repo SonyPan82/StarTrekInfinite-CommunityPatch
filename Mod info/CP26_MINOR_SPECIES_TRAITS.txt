@@ -317,8 +317,10 @@ JNAII (parenté étendue, éclairés philosophiquement, conformistes totaux)
     +0.10 unity from jobs
   trait_enlightened_jnaii                cost=+2
     +0.10 society research
-  trait_conformist_jnaii                 cost=+2
-    +0.10 planet stability
+  trait_conformist_jnaii                 cost=-1
+    -0.10 specialist jobs produce
+    (drawback : la conformité étouffe les profils brillants)
+  Total : +3 — drawback culturel obligatoire respecté (parité avec les 19 autres races).
 
 
 SOMMAIRE — IDENTITÉ RECOGNAISSABLE PAR ARCHETYPE

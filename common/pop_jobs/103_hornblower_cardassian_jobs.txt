@@ -1,0 +1,1206 @@
+# HRB: Cardassian Unique Mechanic: Exploitation
+@cardassian_exploitation_production_penalty = -0.10
+@cardassian_exploitation_production_bonus = 0.10
+@cardassian_exploitation_production_bonus_increased = 0.20
+		
+###################
+# Ruler Jobs
+###################
+		
+# Chairperson
+chairperson_cardassian = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_capital
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_administrators
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+		
+		produces = {
+			unity = 10
+		}
+				
+	}
+	
+	planet_modifier = {
+		planet_stability_add = 3
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				owner = { has_quest_tree_node = qt_cardassian_a5 }
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 2
+		}
+	}
+}
+		
+# Censor
+censor_cardassian = {
+	category = ruler
+	condition_string = RULER_JOB_TRIGGER
+	building_icon = building_citadel_of_faith # HRB_TODO: Rework Icon
+	clothes_texture_index = 1
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		ruler_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_priests
+		
+		upkeep = {
+			energy = 2
+			#food = 1
+		}
+	}
+	
+	planet_modifier = {
+		planet_amenities_add = 10
+		planet_crime_add = -5
+		planet_stability_add = 5
+	}
+		
+	weight = {
+		weight = @ruler_job_weight
+	}
+}
+		
+###################
+# Specialist Jobs
+###################
+		
+# Inquisitor
+inquisitor_cardassian = {
+	category = specialist
+	condition_string = BATTLE_THRALL_JOB_TRIGGER
+	building_icon = building_precinct_house
+	clothes_texture_index = 5
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		battle_thrall_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_enforcers
+		upkeep = {
+			food = 1
+		}
+		
+		produces = {
+			officers = 1
+			research = 2
+		}
+
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = anticrime_campaign }
+			}
+			energy = 2
+		}
+		
+		# Outsource Our Suffering, Cardassian Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = cardassian_outsource_our_suffering }
+			}
+			officers = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_modifier = cardassian_outsource_our_suffering
+				}
+			}
+			energy = 2
+		}
+		
+		# Expedited Military Training, Cardassian Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = cardassian_expedited_military_training }
+			}
+			officers = 2
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = cardassian_expedited_military_training }
+			}
+			energy = 2
+		}
+	}
+	
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+		
+	planet_modifier = {
+		planet_crime_add = -15
+	}
+			
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_modifier = anticrime_campaign }
+		}
+		modifier = {
+			planet_crime_add = -10
+		}
+	}
+	
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+# Redactor
+redactor_cardassian = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_temple
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+		
+	resources = {
+		category = planet_priests
+		
+		produces = {
+			unity = 8
+		}
+		
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_modifier = cardassian_burn_unapproved_works }
+			}
+			unity = 2
+			research = 2
+		}
+
+		# produces = {
+		# 	trigger = {
+		# 		exists = owner
+		# 		owner = { has_valid_civic = civic_prophetic_leader }
+		# 	}
+		# 	unity = 3
+		# 	research = 2
+		# }
+		
+		# Burn Unapproved Works, Cardassian Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = cardassian_burn_unapproved_works }
+			}
+			unity = 2
+			research = 2
+		}
+        
+		upkeep = {
+			food = 2
+		}
+		
+		# Burn Unapproved Works, Cardassian Decision
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = cardassian_burn_unapproved_works }
+			}
+			energy = 2
+		}
+	}
+		
+	country_modifier = {
+		country_admin_cap_add = 3
+	}
+		
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			has_species_profile = {
+				country = owner
+				type = species_profile_cardassian_subterfuge_economy 
+			}
+		}
+		modifier = {
+			country_admin_cap_add = 1
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_commerce_expertise }
+		}
+		modifier = {
+			trade_value_add = 1
+		}
+	}
+		
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+###################
+# Worker Jobs
+###################
+		
+# Legate
+legate_cardassian = {
+	category = worker
+	condition_string = SOLDIER_JOB_TRIGGER
+	building_icon = building_stronghold
+	clothes_texture_index = 4
+		
+	planet_modifier = {
+		trade_value_add = 1
+	}
+		
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+	
+	# Expedited Military Training, Decision
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_modifier = cardassian_expedited_military_training }
+		}
+		modifier = {
+			pop_defense_armies_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_soldiers
+		produces = {
+			officers = 3
+		}
+		upkeep = {
+			food = 0
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					exists = owner
+					planet = { has_designation = col_fortress }
+				}
+			}
+			influence = 0.1
+		}
+				
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_tradition = tr_defense_oath_citizenship }
+			}
+			unity = 1
+		}
+		
+		# Expedited Military Training, Cardassian Decision
+		produces = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = cardassian_expedited_military_training }
+			}
+			officers = 2
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = cardassian_expedited_military_training }
+			}
+			energy = 2
+		}
+
+		# Recruitment Campaign, Decision
+		produces = {
+			trigger = {
+				exists = owner
+				exists = planet
+				planet = {
+					has_modifier = recruitment_campaign
+				}
+			}
+			officers = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				has_modifier = martial_law_cardassian
+			}
+		}
+		modifier = {
+			planet_stability_add = 5
+		}
+	}
+	
+	## HRB- Legate worker job must not be penalized ##
+
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	# triggered_pop_modifier = {
+	# 	potential = {
+	# 		is_same_species = owner_species
+	# 	}
+	# 	modifier = {
+	# 		planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+	# 	}
+	# }
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+
+	# Fortress World, Planet Designation
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		pop_defense_armies_add = 2
+	}
+
+	# Extra Ration, Edict
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_edict = extra_rations }
+		}
+		pop_defense_armies_add = 1
+	}
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		soldier_job_check_trigger = yes
+	}
+		
+	weight = {
+		weight = @soldier_job_weight
+	}
+}
+		
+# Torturer
+torturer_cardassian = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_residence
+	clothes_texture_index = 2
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		worker_job_check_trigger = yes
+	}
+		
+	planet_modifier = {
+		planet_crime_add = -5
+	}
+		
+	resources = {
+		category = planet_soldiers
+		upkeep = {
+			energy = 0.5
+		}
+		
+		produces = {
+			unity = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = {
+                is_cardassian = yes
+                has_quest_tree_node = qt_cardassian_c3
+            }
+		}
+		modifier = {
+			planet_amenities_add = 2
+		}
+	}
+	
+	#HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			is_same_species = owner_species
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			NOT = { is_same_species = owner_species }
+			exists = owner
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			NOT = { is_same_species = owner_species }
+			exists = owner
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	weight = {
+		weight = @clerk_job_weight
+	}
+}
+		
+# Forced Miner
+forced_miner_cardassian = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_mineral_purification_plant
+	clothes_texture_index = 2
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		hidden_trigger = { exists = owner }
+		worker_job_check_trigger = yes
+		NOT = { is_species = "Cardassian" }
+				
+	}
+		
+	resources = {
+		category = planet_forced_miners
+
+		produces = {
+			minerals = 8
+		}
+				
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_mineral_purification_plant }
+			}
+			minerals = 1
+		}
+		
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_mineral_purification_hub }
+			}
+			minerals = 2
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_dry_heat
+				}
+			}
+			energy = 2
+		}
+		
+		# produces = {
+		# 	trigger = {
+		# 		exists = planet
+		# 		planet = {
+		# 			has_deposit = d_majestic_peaks
+		# 		}
+		# 	}
+		# 	minerals = 2
+		# }
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_moss_caves
+				}
+			}
+			food = 4
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_intersectional_agronomics_cardassian_r
+				}
+			}
+			food = 1
+		}
+
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_wellfare_wealth_distribution
+				}
+			}
+			energy = -0.1
+		}
+	}
+		
+	planet_modifier = {
+		planet_crime_add = 8
+		trade_value_add = 3
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		AND = {
+	# 			exists = planet
+	# 			exists = owner
+	# 			planet = {
+	# 				has_deposit = d_salt_flats
+	# 			}
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		trade_value_add = 2 
+	# 	}
+	# }
+
+	#Owner has Carrion Mining tech
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				owner = {
+					has_technology = tech_strip_mining_cardassan
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 0.25 
+		}
+	}
+
+	# Streamline Alloy Production, Decision
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			exists = owner
+			planet = {
+				has_modifier = streamline_production
+			}
+		}
+		planet_metallurgists_alloys_produces_mult = 0.03
+		planet_metallurgists_minerals_upkeep_mult = 0.05
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_gigantic_annelids
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 4 
+		}
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		AND = {
+	# 			exists = planet
+	# 			exists = owner
+	# 			planet = {
+	# 				has_deposit = d_majestic_peaks
+	# 			}
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		trade_value_add = 2 
+	# 	}
+	# }
+
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_ice_gems
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 3 
+		}
+	}
+		
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			is_same_species = owner_species
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_foreign_legions_cardassian_r }
+		}
+		modifier = {
+			pop_defense_armies_add = 1
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		
+		# low income modifier
+		modifier = {
+			factor = 1.1
+		
+			OR = {
+				is_unemployed = yes
+				has_job = "miner"
+			}
+			exists = planet
+			planet = {
+				has_available_jobs = "miner"
+			}
+			owner = {
+				has_monthly_income = {
+					resource = minerals
+					value < 0
+				}
+			}
+		}
+	}
+}
+		
+# Forced Farmer
+forced_farmer_cardassian = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_food_processing_facility
+	clothes_texture_index = 2
+		
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+		
+	possible = {
+		hidden_trigger = { exists = owner }
+		worker_job_check_trigger = yes
+		NOT = { is_species = "Cardassian" }
+	}
+		
+	resources = {
+		category = planet_forced_farmers
+
+		produces = {
+			food = 8
+		}
+				
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_food_processing_facility }
+			}
+			food = 1
+		}
+		produces = {
+			trigger = {
+				planet = { has_active_building = building_food_processing_center }
+			}
+			food = 2
+		}
+				
+		# Special Effect by Deposit
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_mineral_flora
+				}
+			}
+			minerals = 3
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_ore_rich_slopes
+				}
+			}
+			minerals = 2
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_infertile_land
+				}
+			}
+			minerals = 4
+			energy = 4
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_gigantic_aquatic_life
+				}
+			}
+			research = 3
+		}
+		
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_enriched_soild
+				}
+			}
+			food = 3
+		}
+		
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_intersectional_agronomics_cardassian_r
+				}
+			}
+			minerals = 1
+		}
+
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = {
+					has_deposit = d_infertile_land
+				}
+			}
+			food = 2
+		}
+	}
+		
+	planet_modifier = {
+		planet_crime_add = 8
+		trade_value_add = 3
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		AND = {
+	# 			exists = planet
+	# 			exists = owner
+	# 			planet = {
+	# 				has_deposit = d_salt_flats
+	# 			}
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		trade_value_add = 2 
+	# 	}
+	# }
+
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_bountiful_oasis
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 2 
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_gigantic_annelids
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 4 
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_sirocco_winds
+				}
+			}
+		}
+		modifier = {
+			planet_amenities_add = 2
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_abundant_fishing_zones
+				}
+			}
+		}
+		modifier = {
+			planet_amenities_add = 2
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			AND = {
+				exists = planet
+				exists = owner
+				planet = {
+					has_deposit = d_fur_lined_fauna
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 3
+		}
+	}
+		
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			is_same_species = owner_species
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			exists = owner
+			NOT = { is_same_species = owner_species }
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_foreign_legions_cardassian_r }
+		}
+		modifier = {
+			pop_defense_armies_add = 1
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		
+		# low income modifier
+		modifier = {
+			factor = 1.2
+		
+			OR = {
+				is_unemployed = yes
+				has_job = farmer
+			}
+			exists = planet
+			planet = {
+				has_available_jobs = farmer
+			}
+			owner = {
+				has_monthly_income = {
+					resource = food
+					value < 10
+				}
+			}
+		}
+	}
+}
+		
+# Favored Serf
+favored_serf_cardassian = {
+	category = worker
+	is_capped_by_modifier = yes
+	building_icon = building_crude_huts
+	clothes_texture_index = 3
+		
+	possible_pre_triggers = {
+		is_enslaved = yes
+		has_planet = yes
+		is_sapient = yes
+	}
+		
+	possible = {
+		NOT = { is_species = "Cardassian" }
+	}
+		
+	resources = {
+		category = planet_enforcers
+		upkeep = {
+			food = 0
+		}
+	}
+
+	pop_modifier = {
+		pop_defense_armies_add = 1
+	}
+	
+	planet_modifier = {
+		planet_stability_add = 1
+		planet_crime_add = -5
+	}
+
+	country_modifier = {
+		country_admin_cap_add = 1
+	}
+		
+	# HRB: Cardassian Unique Mechanic: Exploitation
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			is_same_species = owner_species
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_penalty
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			NOT = { is_same_species = owner_species }
+			exists = owner
+			owner = { NOT = { has_country_flag = cardassian_exploitation_increased_production } }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = pop
+			NOT = { is_same_species = owner_species }
+			exists = owner
+			owner = { has_country_flag = cardassian_exploitation_increased_production }
+		}
+		modifier = {
+			planet_jobs_produces_mult = @cardassian_exploitation_production_bonus_increased
+		}
+	}
+		
+	triggered_pop_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_foreign_legions_cardassian_r }
+		}
+		modifier = {
+			pop_defense_armies_add = 1
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			is_enslaved = yes
+			factor = 8
+		}
+	}
+}

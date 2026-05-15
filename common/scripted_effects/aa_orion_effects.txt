@@ -44,9 +44,9 @@ setup_orion_capital = {
 				add_deposit = d_hot_springs
 				add_deposit = d_geothermal_vent
 				while = {
-					count = 20
+					count = 21
 					create_pop = { species = "Orion" }
-			}
+				}
 			create_pop = { species = "Tellarite" }
 			create_pop = { species = "Klingon" }
 			create_pop = { species = "Andorian" }
@@ -61,7 +61,7 @@ setup_orion_capital = {
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
-			set_planet_flag = cp26_needs_capital_upgrade
+			add_building = building_capital
 		}
 		if = {
 			limit = {
@@ -77,24 +77,19 @@ setup_orion_capital = {
 	}
 }
 
-setup_verex_colony = {
-	if = {
-		limit = {
-			exists = event_target:orion_country
-		}
-		create_starbase = {
-			size = starbase_outpost
-			owner = event_target:orion_country
-		}
-		random_system_planet = {
+	setup_verex_colony = {
+		if = {
 			limit = {
-				has_planet_flag = orion_colony
+				exists = event_target:orion_country
 			}
-			create_colony = {
-				owner = event_target:orion_country
+			random_system_planet = {
+				limit = {
+					has_planet_flag = orion_colony
 			}
+			set_owner = event_target:orion_country
+			set_colony_type = col_default
 			while = {
-				count = 10
+				count = 11
 				create_pop = { species = "Orion" }
 			}
 			clear_blockers = yes
@@ -105,11 +100,20 @@ setup_verex_colony = {
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_orion_market }
 			add_district_and_planet_size_if_needed_effect = { district = district_farming }
-			set_planet_flag = cp26_needs_capital_upgrade
-			set_name = "Verex III"
+				add_building = building_capital
+				set_name = "Verex III"
+			}
+			if = {
+				limit = {
+					NOT = { exists = starbase }
+				}
+				create_starbase = {
+					size = starbase_outpost
+					owner = event_target:orion_country
+				}
+			}
 		}
 	}
-}
 
 setup_orion_territory = {
 	if = {

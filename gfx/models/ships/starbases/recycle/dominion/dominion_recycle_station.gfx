@@ -1,0 +1,75 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+    pdxmesh = {
+        name = "dominion_recycle_station_mesh"
+        file = "gfx/models/ships/starbases/recycle/dominion/dominion_recycle_station.mesh"
+        scale = 1.0
+
+      
+        meshsettings = {
+            name = "Grid_TOS_Pylon"
+            index = 0
+            texture_diffuse = "grid_1_grey_diffuse.dds"
+            texture_normal = "grid_1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Grid_TOS_Pylon_02"
+            index = 0
+            texture_diffuse = "grid_1_grey_diffuse.dds"
+            texture_normal = "grid_1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "1_rock1"
+            index = 0
+            texture_diffuse = "rock_texture.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Hull_TOS"
+            index = 0
+            texture_diffuse = "hull_tos.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Hull_TOS.002"
+            index = 0
+            texture_diffuse = "hull_tos.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "2_fresear"
+            index = 0
+            texture_diffuse = "station_texture.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Hull_TOS_Dark"
+            index = 0
+            texture_diffuse = "hull_tos_dark.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Hull_TOS_Dark.002"
+            index = 0
+            texture_diffuse = "hull_tos_dark.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

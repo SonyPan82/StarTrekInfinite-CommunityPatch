@@ -1,6 +1,9 @@
 on_game_start = {
 	events = {
-		aa_colremus.1000
+		# CP26: disabled. Remus is already handled by game_start.txt, and
+		# creating a separate Reman species here can corrupt country species
+		# updates during the first daily tick.
+		# aa_colremus.1000
 	}
 }
 

@@ -1,7 +1,7 @@
 # CP26 — BAJORAN WORMHOLE DISCOVERY PROJECT
-# Enabled when a fleet first enters the Denorios system (event .11).
-# Requires a science ship with scientist to investigate the neutrino anomaly.
-# On success fires STH_bajoran_story.1010, caught by the CP26 override.
+# Enabled when a playable major (contender/default) fleet first enters the
+# Bajor system (event .11), or yearly for AI Bajor (.20). Science ship +
+# scientist on site; on success → STH_bajoran_story.1010 (CP26 override).
 
 special_project = {
 	key = "CP26_WORMHOLE_SURVEY"

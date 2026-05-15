@@ -1,0 +1,268 @@
+================================================================================
+CP26 — Audit complet : Crashs ConstructionQueue & Colonies
+Date : 2026-05-14
+Auteur : Analyse automatisée (aucun fichier modifié)
+================================================================================
+
+CONTEXTE
+--------
+Les crashs de type SIGABRT avec malloc_vreport / _realloc sont revenus malgré
+les corrections précédentes sur Vega et Denobula. L'approche adoptée était de
+faire les colonies "exactement comme le vanilla" pour éviter toute corruption
+de la ConstructionQueue. Cet audit vérifie si CP26 respecte encore cette règle
+sur Khitomer, Cardassia V et Glintara.
+
+MÉTHODOLOGIE
+------------
+1. Comparaison fichier par fichier entre CP26 (branch test_colony) et le
+   vanilla installé (~/Library/.../Steam/steamapps/common/Infinite/).
+2. Lecture des effets vanilla create_khitomer_colony, create_cardassia_v_colony.
+3. Analyse du crash dump infinite_20260514_001006 + error.log.
+4. Vérification syntaxique des brackets dans events/game_start.txt.
+
+================================================================================
+RÉSULTAT 1 — KHITOMER (klingon_khitomer_initializer.txt)
+================================================================================
+
+VANILLA (hornblower_initializers.txt:4216-4218)
+-----------------------------------------------
+late_init_effect = {
+    create_khitomer_colony = yes
+}
+
+CP26 (common/solar_system_initializers/klingon/klingon_khitomer_initializer.txt:51)
+-----------------------------------------------------------------------------------
+late_init_effect = {
+    create_khitomer_colony = yes
+    add_building = building_bureaucratic_1          # ← AJOUTÉ PAR CP26
+}
+
+ANALYSE
+-------
+L'effet vanilla create_khitomer_colony (00_scripted_effects.txt:7500) fait :
+  - set_owner = ROOT
+  - set_colony_type = col_default
+  - add_deposit = d_mineral_fields
+  - add_deposit = d_fungal_forest
+  - add_building = building_capital                 # ← déjà présent
+  - add_district_and_planet_size_if_needed_effect (×6)
+
+CP26 ajoute building_bureaucratic_1 DANS LE MÊME late_init_effect.
+C'est le pattern exact qui a corrompu la queue sur Vega/Denobula :
+create_colony (ou set_owner/set_colony_type qui en tient lieu) suivi
+immédiatement d'un add_building supplémentaire.
+
+CORRECTION CRÉDIBLE
+-------------------
+Supprimer la ligne add_building = building_bureaucratic_1 de l'initializer.
+Khitomer n'a pas besoin de ce bâtiment supplémentaire (Vulcain et Andor
+n'en ont pas non plus, et le vanilla ne le met pas).
+
+Si le bâtiment est indispensable au design CP26, le déplacer dans un
+event différé (days = 3) avec un planet_flag, comme l'ancien pattern
+Vega/Denobula — MAIS la solution la plus crédible reste le retrait pur.
+
+================================================================================
+RÉSULTAT 2 — CARDASSIA V (cardassian_cardassia_initializer.txt)
+================================================================================
+
+VANILLA (hornblower_initializers.txt:957-962)
+---------------------------------------------
+late_init_effect = {
+    create_colony = {
+        owner = event_target:cardassian_country
+    }
+    create_cardassia_v_colony = yes
+}
+
+CP26 (common/solar_system_initializers/cardassian/cardassian_cardassia_initializer.txt:111)
+-------------------------------------------------------------------------------------------
+late_init_effect = {
+    set_owner = event_target:cardassian_country
+    set_colony_type = col_default
+    create_pop = { species = owner_main_species }
+    create_cardassia_v_colony = yes
+}
+
+ANALYSE
+-------
+L'effet vanilla create_cardassia_v_colony (00_scripted_effects.txt:7670) fait :
+  - set_owner = event_target:cardassian_country       # ← déjà dans CP26
+  - set_colony_type = col_default                     # ← déjà dans CP26
+  - set_name = "NAME_Cardassia_V"
+  - add_deposit = d_veiny_cliffs
+  - add_deposit = d_lush_jungle
+  - add_building = building_capital
+  - add_district_and_planet_size_if_needed_effect (×6)
+
+CP26 DUPLIQUE set_owner et set_colony_type avant l'appel vanilla.
+Pire : CP26 a SUPPRIMÉ le create_colony vanilla.
+
+create_colony n'est pas qu'un set_owner : il initialise la ConstructionQueue,
+les pops de départ, les tile blockers, et lie la planète au pays de manière
+atomique pour le moteur. set_owner + set_colony_type ne remplacent PAS
+create_colony. Cela peut laisser la planète dans un état intermédiaire où
+la queue de construction n'est pas correctement initialisée avant que
+add_building (dans create_cardassia_v_colony) n'intervienne.
+
+CORRECTION CRÉDIBLE
+-------------------
+Remettre EXACTEMENT le pattern vanilla :
+
+late_init_effect = {
+    create_colony = {
+        owner = event_target:cardassian_country
+    }
+    create_cardassia_v_colony = yes
+}
+
+Supprimer les lignes set_owner, set_colony_type et create_pop de CP26.
+
+================================================================================
+RÉSULTAT 3 — GLINTARA (romulan_glintara_initializer.txt)
+================================================================================
+
+VANILLA
+-------
+Le système glintara_system_initializer vanilla (hornblower_initializers.txt:5406)
+ne contient AUCUNE colonie. C'est un système statique avec 3 planètes
+inhabitables + 1 savane + 1 inhabitale. CP26 a AJOUTÉ une colonie Glintara.
+
+CP26 (romulan_glintara_initializer.txt:44-49)
+---------------------------------------------
+late_init_effect = {
+    set_owner = event_target:romulan_country
+    set_colony_type = col_default
+    add_building = building_capital
+    create_glintara_colony = yes
+}
+
+L'effet create_glintara_colony est un effet CUSTOM CP26
+(common/scripted_effects/01_romulus_glintara_effect.txt:2) :
+  - set_owner = event_target:romulan_country          # ← DUPLIQUÉ dans l'initializer
+  - set_colony_type = col_default                     # ← DUPLIQUÉ dans l'initializer
+  - add_deposit = d_veiny_cliffs
+  - add_deposit = d_lush_jungle
+  - add_district_and_planet_size_if_needed_effect (×6)
+  - create_pop (×11)
+
+ANALYSE
+-------
+L'initializer CP26 fait :
+  1. set_owner / set_colony_type
+  2. add_building = building_capital
+  3. PUIS appelle create_glintara_colony qui refait set_owner / set_colony_type
+
+Doublon + add_building placé AVANT l'effet principal. Le vanilla évite
+cette séquence en encapsulant TOUT dans l'effet (voir create_khitomer_colony).
+
+CORRECTION CRÉDIBLE
+-------------------
+Déléguer TOUT à create_glintara_colony, comme le vanilla fait pour Khitomer :
+
+# romulan_glintara_initializer.txt
+late_init_effect = {
+    create_glintara_colony = yes
+}
+
+# 01_romulus_glintara_effect.txt
+create_glintara_colony = {
+    prevent_anomaly = yes
+    set_owner = event_target:romulan_country
+    set_colony_type = col_default
+    add_building = building_capital           # ← DÉPLACÉ ICI
+    add_deposit = d_veiny_cliffs
+    add_deposit = d_lush_jungle
+    ... (districts + pops inchangés)
+}
+
+================================================================================
+RÉSULTAT 4 — events/game_start.txt (replace_path actif)
+================================================================================
+
+DIFFÉRENCES CP26 vs VANILLA
+---------------------------
+Le fichier CP26 remplace entièrement le vanilla. Les seules différences sont :
+
+A) Ligne 367 : fleet scale (3 corvettes → 2 corvettes)
+   → Sans impact sur la ConstructionQueue.
+
+B) Lignes 1109-1403 : ajout de if = { limit = { exists = event_target:... } }
+   autour des blocs pop initializers (UFOP, Klingon, Romulan, Cardassian,
+   Bajoran, Luna, Mars, Remus, Risa).
+   → Ces guards empêchent des erreurs quand un pays n'existe pas (ex: mineur
+   remplaçant un major). Syntaxiquement correct (brackets équilibrés :
+   CP26 = 551/551, vanilla = 528/528).
+
+C) game_start.21 et game_start.22 :
+   → IDENTIQUES au vanilla. Ce ne sont pas des modifications CP26.
+
+LE CRASH "EMPIRE INCONNUS" À 10 MINUTES
+----------------------------------------
+Le error.log du 14/05 montre un déroulement sur ~10 minutes :
+  00:06:40  Bolian Democracy rencontre Bajoran Republic
+  00:07:18  Trying to remove undefined event target: war_situation_scope
+  00:08:19  mission.75 pour AI Bajoran Republic : no options with positive ai_chance!
+  00:10:06  CRASH SIGABRT
+
+La ligne 472 (generate_start_buildings_and_districts) apparaît dans le log
+comme DERNIER effet exécuté au game start, mais le crash survient 10 minutes
+plus tard. Le game_start n'est donc pas la cause directe de CE crash.
+
+L'erreur war_situation_scope orphelin + mission.75 buggé pour l'IA Bajoran
+sont des candidats plus probables pour la corruption de heap indirecte.
+
+Cependant, game_start.21 contient remove_building + add_building dans le
+même immediate block. Bien que vanilla, ce pattern reste dangereux si
+on_initialize_advanced_colony se déclenche pour des empires auxquels le
+vanilla ne l'applique pas (ex: mineurs modifiés par CP26).
+
+================================================================================
+PLAN DE CORRECTION RECOMMANDÉ
+================================================================================
+
+Fichier 1 : common/solar_system_initializers/klingon/klingon_khitomer_initializer.txt
+Action    : Supprimer add_building = building_bureaucratic_1
+Priorité  : 🔴 CRITIQUE — pattern crash connu, facile à corriger
+
+Fichier 2 : common/solar_system_initializers/cardassian/cardassian_cardassia_initializer.txt
+Action    : Remplacer le late_init_effect par le vanilla exact :
+              create_colony = { owner = event_target:cardassian_country }
+              create_cardassia_v_colony = yes
+            Supprimer set_owner, set_colony_type, create_pop de CP26.
+Priorité  : 🔴 CRITIQUE — suppression de create_colony = corruption potentielle
+
+Fichier 3 : common/solar_system_initializers/romulan/romulan_glintara_initializer.txt
+Action    : Supprimer set_owner, set_colony_type, add_building de l'initializer.
+            Ne garder que : create_glintara_colony = yes
+Priorité  : 🔴 CRITIQUE — doublon + add_building mal placé
+
+Fichier 4 : common/scripted_effects/01_romulus_glintara_effect.txt
+Action    : Ajouter add_building = building_capital à l'intérieur de
+            create_glintara_colony, juste après set_colony_type.
+Priorité  : 🔴 CRITIQUE — accompagne le fichier 3
+
+Fichier 5 : events/game_start.txt (optionnel, à surveiller)
+Action    : Si des crashs empire mineur persistent après les 4 corrections
+            ci-dessus, envisager de différer game_start.21 et game_start.22
+            de 1 jour, ou de remplacer remove_building+add_building par un
+            upgrade_building si le moteur le supporte.
+Priorité  : 🟡 MOYENNE — vanilla, mais pattern dangereux exposé par CP26
+
+================================================================================
+RAPPEL : PHILOSOPHIE "VANILLA PUR"
+================================================================================
+
+Vulcain et Andor ne crashent pas car CP26 ne touche pas à leurs initializers.
+Le vanilla gère leur création via create_vulcan_colony / create_andor_colony
+sans ajouter de buildings supplémentaires dans le late_init_effect.
+
+La règle est simple : si le vanilla ne met pas de add_building après
+create_*_colony, CP26 ne doit pas en mettre non plus.
+Si CP26 ajoute une colonie là où le vanilla n'en a pas (Glintara), il faut
+encapsuler TOUT dans un effet unique, comme le vanilla le fait pour
+Khitomer (create_khitomer_colony contient set_owner + add_building + districts).
+
+================================================================================
+Fin de l'audit
+================================================================================

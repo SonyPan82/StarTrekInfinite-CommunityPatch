@@ -1,7 +1,6 @@
 # ============================================================================
-# CP26 — DOMINION THREAT SPECIAL PROJECTS — DISABLED (not yet in game)
-# All three projects have abort_trigger = { always = yes } so they terminate
-# immediately if somehow enabled. Remove those lines when activating the system.
+# CP26 — DOMINION THREAT SPECIAL PROJECTS
+# Aborts while cp26_dominion_arc_blocked (game-start CP26 popup) or owner state invalid.
 # ============================================================================
 
 # Phase 1 — Science Expedition
@@ -24,8 +23,12 @@ special_project = {
 	}
 	on_fail = { }
 	abort_trigger = {
-		always = yes  # DISABLED — remove this line when activating
-		owner = { NOT = { has_country_flag = cp26_gamma_approach_science } }
+		owner = {
+			OR = {
+				has_global_flag = cp26_dominion_arc_blocked
+				NOT = { has_country_flag = cp26_gamma_approach_science }
+			}
+		}
 	}
 }
 
@@ -48,8 +51,12 @@ special_project = {
 	}
 	on_fail = { }
 	abort_trigger = {
-		always = yes  # DISABLED — remove this line when activating
-		owner = { NOT = { has_country_flag = cp26_gamma_approach_military } }
+		owner = {
+			OR = {
+				has_global_flag = cp26_dominion_arc_blocked
+				NOT = { has_country_flag = cp26_gamma_approach_military }
+			}
+		}
 	}
 }
 
@@ -79,8 +86,12 @@ special_project = {
 	}
 	on_fail = { }
 	abort_trigger = {
-		always = yes  # DISABLED — remove this line when activating
-		owner = { NOT = { has_country_flag = cp26_phase2_investigating } }
+		owner = {
+			OR = {
+				has_global_flag = cp26_dominion_arc_blocked
+				NOT = { has_country_flag = cp26_phase2_investigating }
+			}
+		}
 	}
 }
 
@@ -111,8 +122,12 @@ special_project = {
 	}
 	on_fail = { }
 	abort_trigger = {
-		always = yes  # DISABLED — remove this line when activating
-		owner = { NOT = { has_global_flag = cp26_phase3_intro_fired } }
+		owner = {
+			OR = {
+				has_global_flag = cp26_dominion_arc_blocked
+				NOT = { has_global_flag = cp26_phase3_intro_fired }
+			}
+		}
 	}
 }
 
@@ -145,8 +160,12 @@ special_project = {
 	}
 	on_fail = { }
 	abort_trigger = {
-		always = yes  # DISABLED — remove this line when activating
-		owner = { NOT = { has_global_flag = cp26_phase4_intro_fired } }
+		owner = {
+			OR = {
+				has_global_flag = cp26_dominion_arc_blocked
+				NOT = { has_global_flag = cp26_phase4_intro_fired }
+			}
+		}
 	}
 }
 
@@ -185,7 +204,11 @@ special_project = {
 	}
 	on_fail = { }
 	abort_trigger = {
-		always = yes  # DISABLED — remove this line when activating
-		owner = { NOT = { has_global_flag = cp26_ds9_attack_fired } }
+		owner = {
+			OR = {
+				has_global_flag = cp26_dominion_arc_blocked
+				NOT = { has_global_flag = cp26_ds9_attack_fired }
+			}
+		}
 	}
 }

@@ -17,6 +17,8 @@
  tech_cp26_kamarag_unlock_desc:0 "Kamarag-class ships add a heavy Klingon battleline option focused on sustained frontline combat."
  tech_cp26_kvort_unlock:0 "K'vort Schematics"
  tech_cp26_kvort_unlock_desc:0 "K'vort-class ships provide fast strike capability with strong cruiser-level firepower."
+ tech_cp26_klingon_raptor_unlock:0 "Raptor Schematics"
+ tech_cp26_klingon_raptor_unlock_desc:0 "Raptor-class strike ships combine Klingon disruptor broadsides with a compact destroyer hull."
 
  akira_plural:0 "Akiras"
  neworleans_plural:0 "New Orleans"

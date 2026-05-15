@@ -1,10 +1,8 @@
 on_game_start_country = {
 	events = {
 		cp26_options.1
-		cp26_options.10
+		cp26_setlik.1
 		cp26_ai_shipyard.1
-		cp26_capital_upgrade.1
 		cp26_ai_pulse.1
 	}
 }
-
