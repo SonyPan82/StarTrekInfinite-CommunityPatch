@@ -19,13 +19,13 @@ bajoran_bajor_initializer = {
 	}
 
 	change_orbit = 20
-	
+
 	planet = {
 		count = 10
 		orbit_distance = { min = 20 max = 25 }
 		class = "rl_unhabitable_planets"
 	}
-	
+
 	planet = {
 		name = "NAME_Bajor_XI"
 		orbit_distance = 35
@@ -40,14 +40,6 @@ bajoran_bajor_initializer = {
 
 		init_effect = {
 			prevent_anomaly = yes
-			# Denorios / wormhole site: on Bajor Prime (not the star — avoids VFX sitting on the sun).
-			set_planet_flag = denorios_belt_target
-			create_ambient_object = {
-				type = "cp26_bajoran_wormhole"
-				location = this
-				use_3d_location = yes
-				entity_offset_height = { min = 10 max = 18 }
-			}
 			add_modifier = {
 				modifier = home_planet
 				days = -1
@@ -67,16 +59,15 @@ bajoran_bajor_initializer = {
 	init_effect = {
 		generate_home_system_resources = yes
 		every_neighbor_system = { set_star_flag = empire_cluster }
-	
+
 		every_country = {
 			if = {
 				limit = {
 					has_country_flag = bajoran
 				}
-
 				save_global_event_target_as = bajoran_country
 			}
-		}	
+		}
 		save_global_event_target_as = bajoran_system
 	}
 
