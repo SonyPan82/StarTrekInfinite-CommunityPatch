@@ -31,8 +31,8 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		always = no  # DISABLED — re-enable by removing this line and activating on_actions
-		has_country_flag = the_dominion
+		NOT = { has_global_flag = cp26_dominion_arc_blocked }
+		cp26_is_dominion_empire = yes
 		has_global_flag = bajoran_wormhole_discovered
 	}
 
@@ -93,7 +93,7 @@ country_event = {
 			random_country = {
 				limit = {
 					has_country_flag = wormhole_discoverer
-					is_country_type = default
+					cp26_is_major_player_empire = yes
 				}
 				country_event = { id = cp26_dominion_threat.100 days = 15 random = 10 }
 			}
@@ -110,7 +110,7 @@ country_event = {
 			random_country = {
 				limit = {
 					has_country_flag = wormhole_discoverer
-					is_country_type = default
+					cp26_is_major_player_empire = yes
 				}
 				country_event = { id = cp26_dominion_threat.400 days = 30 random = 20 }
 			}
@@ -126,7 +126,7 @@ country_event = {
 			set_global_flag = cp26_phase3_intro_fired
 			set_variable = { which = cp26_changeling_infiltration value = 5 }
 			random_country = {
-				limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+				limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 				country_event = { id = cp26_dominion_threat.500 days = 30 random = 20 }
 			}
 		}
@@ -142,7 +142,7 @@ country_event = {
 			random = {
 				chance = 20
 				random_country = {
-					limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+					limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 					country_event = { id = cp26_dominion_threat.520 days = 5 random = 30 }
 				}
 			}
@@ -157,7 +157,7 @@ country_event = {
 			}
 			set_global_flag = cp26_phase4_intro_fired
 			random_country = {
-				limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+				limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 				country_event = { id = cp26_dominion_threat.600 days = 30 random = 20 }
 			}
 		}
@@ -171,7 +171,7 @@ country_event = {
 			}
 			set_global_flag = cp26_phase5_intro_fired
 			random_country = {
-				limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+				limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 				country_event = { id = cp26_dominion_threat.700 days = 15 random = 10 }
 			}
 		}
@@ -187,7 +187,7 @@ country_event = {
 			random = {
 				chance = 40
 				random_country = {
-					limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+					limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 					country_event = { id = cp26_dominion_threat.701 days = 5 random = 20 }
 				}
 			}
@@ -205,7 +205,7 @@ country_event = {
 			random = {
 				chance = 60
 				random_country = {
-					limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+					limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 					country_event = { id = cp26_dominion_threat.710 days = 5 random = 20 }
 				}
 			}
@@ -220,7 +220,7 @@ country_event = {
 			}
 			set_global_flag = cp26_ds9_attack_fired
 			random_country = {
-				limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+				limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 				country_event = { id = cp26_dominion_threat.720 days = 5 }
 			}
 		}
@@ -238,7 +238,7 @@ country_event = {
 				chance = 20
 				set_global_flag = cp26_prophets_fired
 				random_country = {
-					limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+					limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 					country_event = { id = cp26_dominion_threat.730 days = 5 }
 				}
 			}
@@ -254,7 +254,7 @@ country_event = {
 			}
 			set_global_flag = cp26_dominion_war_victory
 			random_country = {
-				limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+				limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 				country_event = { id = cp26_dominion_threat.800 days = 5 }
 			}
 		}
@@ -272,7 +272,7 @@ country_event = {
 				limit = { check_variable = { which = cp26_occupation_years value >= 10 } }
 				set_global_flag = cp26_dominion_war_defeat
 				random_country = {
-					limit = { has_country_flag = wormhole_discoverer is_country_type = default }
+					limit = { has_country_flag = wormhole_discoverer cp26_is_major_player_empire = yes }
 					country_event = { id = cp26_dominion_threat.810 days = 5 }
 				}
 			}
@@ -292,9 +292,12 @@ country_event = {
 			random_country = {
 				limit = {
 					has_country_flag = wormhole_discoverer
-					is_country_type = default
+					cp26_is_major_player_empire = yes
 					any_country = {
-						has_country_flag = bajoran_republic
+						OR = {
+							has_country_flag = bajoran_republic
+							has_country_flag = bajoran
+						}
 						opinion = { who = prev value >= 30 }
 					}
 				}
@@ -322,11 +325,8 @@ country_event = {
 		name = cp26_dominion_threat.100.a
 		set_country_flag = cp26_gamma_approach_science
 		cp26_dtl_increase = { AMOUNT = 2 }
-		# Save system target for the special project
-		random_system = {
-			limit = { has_star_flag = bajoran_system }
-			save_event_target_as = cp26_bajoran_project_system
-		}
+		# Survey site = Bajor Prime (denorios_belt_target), not the star.
+		cp26_save_bajor_denorios_project_location = yes
 		enable_special_project = {
 			name = "CP26_GAMMA_EXPEDITION_SCIENCE"
 			location = event_target:cp26_bajoran_project_system
@@ -342,10 +342,7 @@ country_event = {
 		name = cp26_dominion_threat.100.b
 		set_country_flag = cp26_gamma_approach_military
 		cp26_dtl_increase = { AMOUNT = 6 }
-		random_system = {
-			limit = { has_star_flag = bajoran_system }
-			save_event_target_as = cp26_bajoran_project_system
-		}
+		cp26_save_bajor_denorios_project_location = yes
 		enable_special_project = {
 			name = "CP26_GAMMA_EXPEDITION_MILITARY"
 			location = event_target:cp26_bajoran_project_system
@@ -365,7 +362,12 @@ country_event = {
 		set_global_flag = cp26_phase1_resolved
 		hidden_effect = {
 			random_country = {
-				limit = { has_country_flag = bajoran_republic }
+				limit = {
+					OR = {
+						has_country_flag = bajoran_republic
+						has_country_flag = bajoran
+					}
+				}
 				add_opinion_modifier = {
 					who = root
 					modifier = opinion_insult
@@ -428,14 +430,16 @@ country_event = {
 		cp26_dtl_increase = { AMOUNT = 1 }
 		hidden_effect = {
 			random_country = {
-				limit = { has_country_flag = bajoran_republic }
+				limit = {
+					OR = {
+						has_country_flag = bajoran_republic
+						has_country_flag = bajoran
+					}
+				}
 				remove_country_flag = cp26_bajor_wormhole_closure_tension
 			}
 			# Open the science path late
-			random_system = {
-				limit = { has_star_flag = bajoran_system }
-				save_event_target_as = cp26_bajoran_project_system
-			}
+			cp26_save_bajor_denorios_project_location = yes
 			enable_special_project = {
 				name = "CP26_GAMMA_EXPEDITION_SCIENCE"
 				location = event_target:cp26_bajoran_project_system
@@ -550,8 +554,8 @@ country_event = {
 		hidden_effect = {
 			# Dominion retaliates with scouts on the Alpha side
 			random_country = {
-				limit = { has_country_flag = the_dominion }
-				cp26_spawn_jem_hadar_scouts = {}
+				limit = { cp26_is_dominion_empire = yes }
+				cp26_spawn_jem_hadar_scouts = yes
 			}
 			country_event = { id = cp26_dominion_threat.211 days = 10 random = 5 }
 		}
@@ -765,8 +769,8 @@ country_event = {
 	immediate = {
 		# A Dominion raiding wing appears near Bajor as consequences accumulate
 		random_country = {
-			limit = { has_country_flag = the_dominion }
-			cp26_spawn_jem_hadar_patrol = {}
+			limit = { cp26_is_dominion_empire = yes }
+			cp26_spawn_jem_hadar_patrol = yes
 		}
 		set_global_flag = cp26_phase2_resolved
 	}
@@ -785,15 +789,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		# Jem'Hadar strike wing spawned at the investigation site
-		random_country = {
-			limit = { has_country_flag = the_dominion }
-			create_fleet_from_naval_cap = 0.02
-			last_created_fleet = {
-				set_name = "Jem'Hadar Strike Wing"
-				set_location = event_target:cp26_colony_invest_system
-			}
-		}
+		cp26_spawn_jem_ambush_at_investigation = yes
 	}
 
 	option = {
@@ -1018,7 +1014,7 @@ country_event = {
 		if = {
 			limit = { has_country_flag = cp26_incident_diplomatic }
 			random_country = {
-				limit = { is_country_type = default NOT = { has_country_flag = the_dominion } }
+				limit = { cp26_is_major_player_empire = yes NOT = { cp26_is_dominion_empire = yes } }
 				add_opinion_modifier = { who = root modifier = opinion_insult }
 			}
 		}
@@ -1109,8 +1105,8 @@ country_event = {
 		cp26_dtl_increase = { AMOUNT = 15 }
 		# Spawn a Dominion fleet in the Bajoran system to simulate presence
 		random_country = {
-			limit = { has_country_flag = the_dominion }
-			cp26_spawn_jem_hadar_patrol = {}
+			limit = { cp26_is_dominion_empire = yes }
+			cp26_spawn_jem_hadar_patrol = yes
 		}
 		random_country = {
 			limit = { has_country_flag = cardassian_union }
@@ -1205,8 +1201,8 @@ country_event = {
 
 	immediate = {
 		random_country = {
-			limit = { has_country_flag = the_dominion }
-			cp26_spawn_jem_hadar_patrol = {}
+			limit = { cp26_is_dominion_empire = yes }
+			cp26_spawn_jem_hadar_patrol = yes
 		}
 	}
 
@@ -1234,8 +1230,8 @@ country_event = {
 
 	immediate = {
 		random_country = {
-			limit = { has_country_flag = the_dominion }
-			cp26_spawn_jem_hadar_strike = {}
+			limit = { cp26_is_dominion_empire = yes }
+			cp26_spawn_jem_hadar_strike = yes
 		}
 	}
 
@@ -1264,8 +1260,8 @@ country_event = {
 	immediate = {
 		# Armada spawns in the Bajoran system
 		random_country = {
-			limit = { has_country_flag = the_dominion }
-			cp26_spawn_jem_hadar_armada = {}
+			limit = { cp26_is_dominion_empire = yes }
+			cp26_spawn_jem_hadar_armada = yes
 		}
 	}
 
@@ -1300,13 +1296,13 @@ country_event = {
 		set_global_flag = cp26_wormhole_mined
 		# Cuts Dominion reinforcements — DTL capped
 		random_country = {
-			limit = { has_country_flag = the_dominion }
+			limit = { cp26_is_dominion_empire = yes }
 			set_variable = { which = cp26_dtl value = 100 }
 		}
 		# Immediate counteroffensive — another armada
 		random_country = {
-			limit = { has_country_flag = the_dominion }
-			cp26_spawn_jem_hadar_armada = {}
+			limit = { cp26_is_dominion_empire = yes }
+			cp26_spawn_jem_hadar_armada = yes
 		}
 		random_country = {
 			limit = { has_country_flag = bajoran_republic }
@@ -1328,7 +1324,7 @@ country_event = {
 		name = cp26_dominion_threat.730.a
 		# The Dominion armada is annihilated in the wormhole
 		random_country = {
-			limit = { has_country_flag = the_dominion }
+			limit = { cp26_is_dominion_empire = yes }
 			every_owned_fleet = {
 				limit = { solar_system = { has_star_flag = bajoran_system } }
 				destroy_fleet = this
@@ -1398,9 +1394,9 @@ country_event = {
 	immediate = {
 		# Spawn Dominion occupation fleets
 		random_country = {
-			limit = { has_country_flag = the_dominion }
-			cp26_spawn_jem_hadar_armada = {}
-			cp26_spawn_jem_hadar_armada = {}
+			limit = { cp26_is_dominion_empire = yes }
+			cp26_spawn_jem_hadar_armada = yes
+			cp26_spawn_jem_hadar_armada = yes
 		}
 	}
 
@@ -1427,16 +1423,7 @@ country_event = {
 		add_monthly_resource_mult = { resource = unity value = 8 min = 200 max = 500 }
 		# Friendly Cardassian resistance fleet in the Bajoran system
 		hidden_effect = {
-			random_system = {
-				limit = { has_star_flag = bajoran_system }
-				save_event_target_as = cp26_cardassian_revolt_system
-			}
-		}
-		create_fleet_from_naval_cap = 0.02
-		last_created_fleet = {
-			set_name = "Cardassian Resistance"
-			set_location = event_target:cp26_cardassian_revolt_system
-			set_owner = root
+			cp26_spawn_cardassian_resistance_at_bajor = yes
 		}
 	}
 

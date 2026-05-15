@@ -1,0 +1,15 @@
+# CP26 — Dominion empire detection (Infinite may use country_id without the_dominion flag).
+cp26_is_dominion_empire = {
+	OR = {
+		has_country_flag = the_dominion
+		has_country_id = dominion
+	}
+}
+
+# Playable majors in Star Trek Infinite (UFOP / Klingon / Romulan / Cardassian) use contender.
+cp26_is_major_player_empire = {
+	OR = {
+		is_country_type = default
+		is_country_type = contender
+	}
+}

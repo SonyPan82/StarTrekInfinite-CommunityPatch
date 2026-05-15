@@ -1,9 +1,7 @@
 namespace = STH_bajoran_story
 
-# Override of STH_bajoran_story.1010 (vanilla wormhole discovery event).
-# Prevents the vanilla event from spawning a bypass at bajoran_system and instead
-# routes discovery through CP26's activation event (.200), which sets the global
-# flag that gates the Gamma expedition pop-up chain.
+# CP26 — MUST load before other mods' STH_bajoran_story files (Stellaris events: first file wins).
+# Routes wormhole survey success into CP26 activation instead of vanilla/STH bypass behaviour.
 country_event = {
 	id = STH_bajoran_story.1010
 	title = "STH_bajoran_story.1010.name"

@@ -8,8 +8,8 @@ bespoke_procedural_scenario = {
 	# CP26 — radius MUST stay <= 500 (engine hard limit). See Alpha-Beta_medium.txt
 	# header comment for full reasoning. Synced with main scenario.
 	radius = 498
-	num_empires = { min = 20 max = 20 }	# CP26: 20 prescripted + 4 dynamiques (Tholian, Orion, Breen, Gorn) = 24 total.
-	num_empire_default = 20		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.
+	num_empires = { min = 24 max = 24 }	# CP26: vanilla-style 24 slots; Breen removed, Gorn/Orion/Tholian replace low-impact minors.
+	num_empire_default = 24		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.
 	advanced_empire_default = 0
 	fallen_empire_default = 0
 	fallen_empire_max = 0
@@ -346,7 +346,7 @@ bespoke_procedural_scenario = {
 
 	system = {
 		name = "NAME_Farian" position = { x = 26.7 y = 290.3 }
-		initializer = farian_initializer spawn_weight = { base = 1 }
+	#	initializer = farian_initializer spawn_weight = { base = 1 } # CP26: replaced by contender slot
 	}
 
 	system = {
@@ -361,17 +361,17 @@ bespoke_procedural_scenario = {
 
 	system = {
 		name = "Breenus" position = { x = 54.5 y = 236.1 }
-		initializer = breen_system_initializer spawn_weight = { base = 1 }
+	#	initializer = breen_system_initializer spawn_weight = { base = 1 } # CP26: Breen removed from guaranteed setup
 	}
 
 	system = {
 		name = "NAME_Idanian" position = { x = 435.4 y = 211.1 }
-		initializer = idanian_initializer spawn_weight = { base = 1 }
+	#	initializer = idanian_initializer spawn_weight = { base = 1 } # CP26: replaced by contender slot
 	}
 
 	system = {
 		name = "NAME_Iyaaran" position = { x = -426.6 y = 179.1 }
-		initializer = iyaaran_initializer spawn_weight = { base = 1 }
+	#	initializer = iyaaran_initializer spawn_weight = { base = 1 } # CP26: replaced by contender slot
 	}
 
 	system = {
@@ -1078,7 +1078,7 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
-		name = "NAME_Setlik" position = { x = 26.7 y = 312.6 }
+		name = "NAME_Setlik" position = { x = 18.8 y = 316.9 }
 		initializer = ufop_setlik_initializer spawn_weight = { base = 1 }
 	}
 

@@ -1,3 +1,4 @@
+# entity = vanilla wormhole mesh (Infinite / Stellaris game data), not shipped in CP26.
 ambient_object = {
 	name = "cp26_bajoran_wormhole"
 	entity = "natural_wormhole_entity"

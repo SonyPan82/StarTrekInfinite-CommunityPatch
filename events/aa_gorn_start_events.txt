@@ -176,6 +176,7 @@ event = {
 
 		if = {
 			limit = {
+				NOT = { exists = event_target:gorn_country }
 				any_system = { has_star_flag = gorn_anchor }
 			}
 			random_system = {

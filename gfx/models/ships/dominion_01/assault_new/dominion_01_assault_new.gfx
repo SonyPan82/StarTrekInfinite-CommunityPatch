@@ -1,0 +1,26 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+    pdxmesh = {
+        name = "dominion_01_assault_cruiser_new_mesh"
+        file = "gfx/models/ships/dominion_01/assault_new/dominion_assault_new.mesh"
+        scale = 1.0
+
+        meshsettings = {
+            name = "dom_assault_01"
+            index = 0
+            texture_diffuse = "new_assault_01.dds"
+            texture_normal = "new_assault_01_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "dom_assault_02"
+            index = 0
+            texture_diffuse = "new_assault_02.dds"
+            texture_normal = "new_assault_01_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

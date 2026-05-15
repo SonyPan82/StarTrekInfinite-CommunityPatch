@@ -170,6 +170,7 @@ finibus_system_initializer = {
 gorn_system_initializer = {
 	name = "Tau Lacertae"
 	class = "rl_all_stars"
+	usage = custom_empire
 	flags = { gornus gornia gorn_system gorn_home_system capital }
 
 	planet = {

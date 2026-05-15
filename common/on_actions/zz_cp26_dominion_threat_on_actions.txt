@@ -1,8 +1,7 @@
-# DOMINION THREAT SYSTEM — DISABLED (not yet in game)
-# Uncomment the block below when ready to activate Phases 1-2.
-#
-# on_yearly_pulse_country = {
-# 	events = {
-# 		cp26_dominion_threat.1
-# 	}
-# }
+# DOMINION THREAT SYSTEM — yearly tick (Dominion country; event trigger filters scope).
+# Skipped for the whole galaxy when cp26_dominion_arc_blocked is set (game-start popup).
+on_yearly_pulse_country = {
+	events = {
+		cp26_dominion_threat.1
+	}
+}

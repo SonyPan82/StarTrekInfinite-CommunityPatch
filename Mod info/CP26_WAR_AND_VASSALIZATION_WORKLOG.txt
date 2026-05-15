@@ -242,7 +242,8 @@ Context
   - `wg_cp26_forced_occupation`
   - `action_start_puppet_state_process` as the CP26 vassalization proposal flow
   - `action_cp26_offer_war_goal_peace` as the wartime "Demand Surrender" bypass flow
-  - `cp26_options.10` in the game-start popup and its trigger in `zz_cp26_on_game_start.txt`
+  - game-start vassalization toggle now merged into the unified `cp26_options.1`
+    CP26 options popup; the old separate `cp26_options.10` popup is no longer active.
   - scripted triggers gating the diplomacy mode
   - wartime access events and their on_actions
 - Important implementation note:

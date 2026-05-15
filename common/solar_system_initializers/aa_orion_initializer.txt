@@ -1,6 +1,7 @@
 orion_system_initializer = {
 	name = "Orion"
 	class = "rl_all_stars"
+	usage = custom_empire
 	flags = { orion orion_system orion_home_system capital }
 
 	planet = {

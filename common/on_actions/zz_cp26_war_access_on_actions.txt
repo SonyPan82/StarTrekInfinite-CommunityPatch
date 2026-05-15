@@ -4,13 +4,7 @@ on_war_beginning = {
 	}
 }
 
-# CP26 2026-05-14 : déplacé de on_daily_pulse_country → on_monthly_pulse_country (.2),
-# puis 2026-05-14 (audit perf) : event global cp26_war_access.100 sur on_monthly_pulse
-# (1× par mois). cp26_war_access.100 : double every_country (pays en guerre) — pas
-# d'every_war / event_target guerre (scopes fragiles). Voir events/zz_cp26_war_access_events.txt.
-# forced = 35 conserve l'invariant.
-on_monthly_pulse = {
-	events = {
-		cp26_war_access.100
-	}
-}
+# CP26 PERF 2026-05-15 : monthly refresh disabled.
+# Opening fleet access is still applied once on_war_beginning by cp26_war_access.1.
+# The monthly global refresh used a double every_country + set_closed_borders pass,
+# which can cause expensive access/pathfinding recalculations during large wars.

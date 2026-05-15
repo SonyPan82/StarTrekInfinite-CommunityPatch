@@ -401,7 +401,7 @@ country_event = {
 			}
 		}
 
-		owner = {
+									owner = {
 			rescue_minor_ship_sp_removed_effect = yes
 		}
 	}
@@ -1287,7 +1287,7 @@ country_event = {
 						has_access_fleet = event_target:minor_state_event_country
 						NOT = {
 							any_fleet_in_system = {
-								owner = { 
+								owner = {
 									is_hostile = ROOT
 									is_hostile = event_target:minor_state_event_country
 								}
@@ -1832,7 +1832,7 @@ country_event = {
 						has_access_fleet = event_target:minor_state_event_country
 						NOT = {
 							any_fleet_in_system = {
-								owner = { 
+								owner = {
 									is_hostile = ROOT
 									is_hostile = event_target:minor_state_event_country
 								}
@@ -2083,49 +2083,54 @@ country_event = {
 			}
 		}
 
-		random_system_within_warp_area = {
+		if = {
 			limit = {
-				has_owner = no
-				closest_system = {
-					limit = {
-						exists = owner
-						owner = {
-							is_same_value = event_target:minor_state_event_country
-						}
-					}
-					max_steps = 1
-				}
-				solar_system = {
-					NOT = {
-						is_star_class = sc_highway_node
-					}
-					has_access_fleet = event_target:major_state_country
-					has_access_fleet = event_target:minor_state_event_country
-					has_access_fleet = event_target:minor_state_event_country_3rd_party
-					NOT = {
-						any_fleet_in_system = {
-							owner = { 
-								is_hostile = event_target:major_state_country
-								is_hostile = event_target:minor_state_event_country
-								is_hostile = event_target:minor_state_event_country_3rd_party
+				exists = event_target:minor_state_event_country_3rd_party
+			}
+			random_system_within_warp_area = {
+				limit = {
+					has_owner = no
+					closest_system = {
+						limit = {
+							exists = owner
+							owner = {
+								is_same_value = event_target:minor_state_event_country
 							}
 						}
+						max_steps = 1
 					}
-					any_system_planet = {
+					solar_system = {
+						NOT = {
+							is_star_class = sc_highway_node
+						}
+						has_access_fleet = event_target:major_state_country
+						has_access_fleet = event_target:minor_state_event_country
+						has_access_fleet = event_target:minor_state_event_country_3rd_party
+						NOT = {
+							any_fleet_in_system = {
+								owner = {
+									is_hostile = event_target:major_state_country
+									is_hostile = event_target:minor_state_event_country
+									is_hostile = event_target:minor_state_event_country_3rd_party
+								}
+							}
+						}
+						any_system_planet = {
+							is_moon = no
+							is_star = no
+							is_asteroid = no
+						}
+					}
+				}
+				save_event_target_as = minor_state_event_system
+				random_system_planet = {
+					limit = {
 						is_moon = no
 						is_star = no
 						is_asteroid = no
 					}
+					save_event_target_as = minor_state_event_planet
 				}
-			}
-			save_event_target_as = minor_state_event_system
-			random_system_planet = {
-				limit = {
-					is_moon = no
-					is_star = no
-					is_asteroid = no
-				}
-				save_event_target_as = minor_state_event_planet	
 			}
 		}
 
