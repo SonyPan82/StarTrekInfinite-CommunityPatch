@@ -966,6 +966,9 @@ fleet_event = {
 	}
 
 	trigger = {
+		# CP26 2026-05-15 PERF: disable first-contact dreadnought popup during
+		# combat/system-entry freeze isolation.
+		always = no
 		from = {
 			any_fleet_in_system = {
 				has_fleet_flag = nausicaan_dreadnought_flag
@@ -1065,6 +1068,9 @@ fleet_event = {
 	}
 
 	trigger = {
+		# CP26 2026-05-15 PERF: disable first-contact redoubt popup during
+		# combat/system-entry freeze isolation.
+		always = no
 		from = {
 			any_fleet_in_system = {
 				has_fleet_flag = nausicaan_redoubt_flag

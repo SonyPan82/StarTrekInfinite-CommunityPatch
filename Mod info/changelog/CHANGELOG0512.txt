@@ -18,6 +18,12 @@ Session du 2026-05-15 (stabilité runtime test_colony)
   Motif : isoler les hotpaths de guerre / mouvement de flotte sans embarquer les
   autres changements runtime de la branche `test`.
 
+[PERF][MED] Désactivation complémentaire des hotpaths d'entrée système / guerre.
+  - `hrb_pirates.140` neutralisé
+  - `hrb_pirates.160` neutralisé
+  Motif : alléger les pop-ups / checks secondaires déclenchés à l'entrée dans les
+  systèmes, sans neutraliser la couche vanilla Neutral Zone ni `war_situation`.
+
 --------------------------------------------------------------------------------
 Session du 2026-05-16 (cap ligne 3×12 = 36 + crises resserrées)
 --------------------------------------------------------------------------------
