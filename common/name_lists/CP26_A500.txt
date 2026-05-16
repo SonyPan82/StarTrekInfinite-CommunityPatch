@@ -1,0 +1,141 @@
+﻿# CP26: A500 Synthetic Workers — Namelist
+# Designation format: A500-[Series][Type][Unit]
+# Series: A–H (production run), Type: X=worker L=labor T=technical S=service C=command M=medical
+
+CP26_A500 = {
+	category = "Machine"
+	should_name_home_system_planets = no
+
+	ship_names = {
+		generic = {
+			"A500-Transport" "A500-Convoy" "A500-Freighter"
+		}
+	}
+
+	fleet_names = {
+		random_names = {
+			"A500 Labor Flotilla" "A500 Work Detail" "A500 Logistics Group"
+		}
+		sequential_name = "A500 Unit %CC%"
+	}
+
+	army_names = {
+		defense_army = {
+			sequential_name = "A500 Defense Force %O%"
+		}
+		assault_army = {
+			sequential_name = "A500 Assault Unit %O%"
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				"Processing Node" "Labor Hub" "Work Center" "Assembly Nexus" "Production Core"
+				"Maintenance Depot" "Logistics Base" "Support Station" "Relay Outpost"
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			full_names = {
+				# Series A — Worker units (AX)
+				"A500-AX01" "A500-AX02" "A500-AX03" "A500-AX04" "A500-AX05"
+				"A500-AX06" "A500-AX07" "A500-AX08" "A500-AX09" "A500-AX10"
+				# Series A — Labor units (AL)
+				"A500-AL01" "A500-AL02" "A500-AL03" "A500-AL04" "A500-AL05"
+				"A500-AL06" "A500-AL07" "A500-AL08" "A500-AL09" "A500-AL10"
+				# Series A — Technical units (AT)
+				"A500-AT01" "A500-AT02" "A500-AT03" "A500-AT04" "A500-AT05"
+				# Series A — Service units (AS)
+				"A500-AS01" "A500-AS02" "A500-AS03" "A500-AS04" "A500-AS05"
+				# Series A — Medical units (AM)
+				"A500-AM01" "A500-AM02" "A500-AM03"
+
+				# Series B — Worker units (BX)
+				"A500-BX01" "A500-BX02" "A500-BX03" "A500-BX04" "A500-BX05"
+				"A500-BX06" "A500-BX07" "A500-BX08" "A500-BX09" "A500-BX10"
+				# Series B — Labor units (BL)
+				"A500-BL01" "A500-BL02" "A500-BL03" "A500-BL04" "A500-BL05"
+				"A500-BL06" "A500-BL07" "A500-BL08" "A500-BL09" "A500-BL10"
+				# Series B — Technical units (BT)
+				"A500-BT01" "A500-BT02" "A500-BT03" "A500-BT04" "A500-BT05"
+				# Series B — Service units (BS)
+				"A500-BS01" "A500-BS02" "A500-BS03" "A500-BS04" "A500-BS05"
+				# Series B — Medical units (BM)
+				"A500-BM01" "A500-BM02" "A500-BM03"
+
+				# Series C — Worker units (CX)
+				"A500-CX01" "A500-CX02" "A500-CX03" "A500-CX04" "A500-CX05"
+				"A500-CX06" "A500-CX07" "A500-CX08" "A500-CX09" "A500-CX10"
+				# Series C — Labor units (CL)
+				"A500-CL01" "A500-CL02" "A500-CL03" "A500-CL04" "A500-CL05"
+				"A500-CL06" "A500-CL07" "A500-CL08" "A500-CL09" "A500-CL10"
+				# Series C — Technical units (CT)
+				"A500-CT01" "A500-CT02" "A500-CT03" "A500-CT04" "A500-CT05"
+				# Series C — Service units (CS)
+				"A500-CS01" "A500-CS02" "A500-CS03" "A500-CS04" "A500-CS05"
+				# Series C — Medical units (CM)
+				"A500-CM01" "A500-CM02" "A500-CM03"
+
+				# Series D — Worker units (DX)
+				"A500-DX01" "A500-DX02" "A500-DX03" "A500-DX04" "A500-DX05"
+				"A500-DX06" "A500-DX07" "A500-DX08" "A500-DX09" "A500-DX10"
+				# Series D — Labor units (DL)
+				"A500-DL01" "A500-DL02" "A500-DL03" "A500-DL04" "A500-DL05"
+				"A500-DL06" "A500-DL07" "A500-DL08" "A500-DL09" "A500-DL10"
+				# Series D — Technical units (DT)
+				"A500-DT01" "A500-DT02" "A500-DT03" "A500-DT04" "A500-DT05"
+				# Series D — Command units (DC)
+				"A500-DC01" "A500-DC02" "A500-DC03"
+
+				# Series E — Worker units (EX)
+				"A500-EX01" "A500-EX02" "A500-EX03" "A500-EX04" "A500-EX05"
+				"A500-EX06" "A500-EX07" "A500-EX08" "A500-EX09" "A500-EX10"
+				# Series E — Labor units (EL)
+				"A500-EL01" "A500-EL02" "A500-EL03" "A500-EL04" "A500-EL05"
+				# Series E — Technical units (ET)
+				"A500-ET01" "A500-ET02" "A500-ET03" "A500-ET04" "A500-ET05"
+				# Series E — Command units (EC)
+				"A500-EC01" "A500-EC02" "A500-EC03"
+
+				# Series F — Worker units (FX)
+				"A500-FX01" "A500-FX02" "A500-FX03" "A500-FX04" "A500-FX05"
+				"A500-FX06" "A500-FX07" "A500-FX08" "A500-FX09" "A500-FX10"
+				# Series F — Labor units (FL)
+				"A500-FL01" "A500-FL02" "A500-FL03" "A500-FL04" "A500-FL05"
+				# Series F — Technical units (FT)
+				"A500-FT01" "A500-FT02" "A500-FT03" "A500-FT04" "A500-FT05"
+
+				# Series G — Advanced Worker units (GX)
+				"A500-GX01" "A500-GX02" "A500-GX03" "A500-GX04" "A500-GX05"
+				# Series G — Technical units (GT)
+				"A500-GT01" "A500-GT02" "A500-GT03" "A500-GT04" "A500-GT05"
+				# Series G — Command units (GC)
+				"A500-GC01" "A500-GC02" "A500-GC03"
+
+				# Series H — Command units (HC) — Supervisory tier
+				"A500-HC01" "A500-HC02" "A500-HC03" "A500-HC04" "A500-HC05"
+				# Series H — Technical units (HT)
+				"A500-HT01" "A500-HT02" "A500-HT03"
+			}
+
+			first_names = {}
+			second_names = {}
+			regnal_first_names = {}
+			regnal_second_names = {}
+		}
+	}
+
+	ruler_names = {
+		default = {
+			full_names = {
+				"A500-HC01" "A500-HC02" "A500-HC03" "A500-HC04" "A500-HC05"
+				"A500-GC01" "A500-GC02" "A500-GC03"
+				"A500-DC01" "A500-DC02" "A500-DC03"
+				"A500-EC01" "A500-EC02" "A500-EC03"
+			}
+		}
+	}
+}
