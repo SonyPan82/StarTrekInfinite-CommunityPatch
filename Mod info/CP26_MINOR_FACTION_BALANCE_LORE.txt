@@ -1,4 +1,4 @@
-CP26 MINOR FACTION BALANCE — LORE-FRIENDLY ADJUSTMENTS
+CP26 MINOR FACTION BALANCE - LORE-FRIENDLY ADJUSTMENTS
 ========================================================
 
 PRINCIPE
@@ -6,13 +6,13 @@ PRINCIPE
 Les civics et traits des factions mineures (Tholien, Gorn, Breen, Orion)
 étaient disproportionnés par rapport aux empires majeurs (Fédération,
 Klingon, Romulien, Cardassien). Cependant, le design vanilla d'Infinite
-n'utilise PAS de malus sur les civics — ils sont tous des bonus cachés.
+n'utilise PAS de malus sur les civics - ils sont tous des bonus cachés.
 
 La correction vise donc à réduire les valeurs numériques tout en
 conservant un "edge" significatif qui reflète le lore Star Trek.
 
 
-THOLIEN — L'ASSEMBLÉE ISOLATIONNISTE
+THOLIEN - L'ASSEMBLÉE ISOLATIONNISTE
 =====================================
 Lore : xénophobes extrêmes, territoriaux agressifs, culture de castes
 précises et disciplinées, maîtres de la Tholian Web.
@@ -34,7 +34,7 @@ Justification :
   culturelle. Leur Web territorial reste redoutable (+25% fire rate).
 
 
-GORN — L'HÉGÉMONIE PRÉDATRICE
+GORN - L'HÉGÉMONIE PRÉDATRICE
 ==============================
 Lore : reptiliens chasseurs impitoyables, considèrent les autres espèces
 comme du gibier, reproduction parasitaire, impossible à négocier.
@@ -55,7 +55,7 @@ Justification :
   alignée (+35% vs +15% Romulien).
 
 
-BREEN — LA CONFÉDÉRATION
+BREEN - LA CONFÉDÉRATION
 =========================
 Lore : pirates, esclavagistes, raids, guerriers secrets. "Never turn your
 back on a Breen."
@@ -73,7 +73,7 @@ Justification :
   bien équilibré avec son léger malus ruler.
 
 
-ORION — LE SYNDICAT
+ORION - LE SYNDICAT
 ====================
 Lore : matriarcat, piraterie, trafic d'esclaves, compétition féroce
 entre familles criminelles.

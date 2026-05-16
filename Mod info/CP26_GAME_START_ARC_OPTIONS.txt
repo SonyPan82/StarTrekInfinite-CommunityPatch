@@ -1,7 +1,7 @@
-CP26 — options de début de partie (arcs narratifs)
+CP26 - options de début de partie (arcs narratifs)
 ===============================================
 
-Événement : events/cp26_game_start_options.txt — cp26_options.1
+Événement : events/cp26_game_start_options.txt - cp26_options.1
 
 Premier affichage (une fois par campagne) : le bloc immediate pose le
 drapeau global cp26_game_start_arc_defaults_v1 puis :
@@ -21,12 +21,12 @@ Drapeaux globaux :
 
   cp26_block_supernova_arc
     Si posé : le nœud de quête UFOP qt_ufop_starburst (fichier qt_ufop_d4.txt)
-    n’apparaît plus (potential) — la quête Supernova / Hobus n’aura pas lieu.
+    n’apparaît plus (potential) - la quête Supernova / Hobus n’aura pas lieu.
 
     Libellés CP26 (popup début) : « quête autorisée » = drapeau absent ;
     « quête bloquée » = drapeau présent. Défaut nouvelle partie : bloqué.
 
-No Supernova (ancien Workshop) : retiré — uniquement CP26 via
+No Supernova (ancien Workshop) : retiré - uniquement CP26 via
 cp26_block_supernova_arc sur qt_ufop_starburst (qt_ufop_d4.txt).
 
 Les nœuds Romulans du monolithique vanilla liés aux suspicious_flares ne sont

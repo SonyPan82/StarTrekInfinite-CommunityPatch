@@ -1,5 +1,5 @@
 # reloadable with 'reload stats'
-# CP26 replace_path: california / california_hero retirés d'ici — voir common/ship_sizes/cp26_california_ship_sizes.txt
+# CP26 replace_path: california / california_hero retirés d'ici - voir common/ship_sizes/cp26_california_ship_sizes.txt
 # This file is where you start when you want to configure something new, then go to sections
 
 ####################

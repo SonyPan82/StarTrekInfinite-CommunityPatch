@@ -1,9 +1,44 @@
 ================================================================================
-CP26 — Changelog
+CP26 - Changelog
 ================================================================================
 
 Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
+
+--------------------------------------------------------------------------------
+Session du 2026-05-16 (arc A500 : invasion, journal, espece rebelle)
+--------------------------------------------------------------------------------
+
+[FIX][LOW] Restauration du parametre `size` dans les game_data des entites
+  neo_constitution, sagan, duderstadt - identique a luna/odyssey qui utilisent
+  trail_width + size. Supprime par erreur dans la session precedente.
+
+[NEW][MED] Arc A500 - mecanique d'invasion planetaire sur Mars
+  Les armees rebelles A500 sont maintenant creees au declenchement de la rebellion
+  (cp26_a500.2) : un pays faction temporaire (auto_delete) est instancie, 5 armees
+  rebel_army sont deposees sur Mars avec l'espece CP26_A500 (recuperee via
+  random_owned_pop sur un pop A500 existant).
+  La victoire est detectee via on_planet_defenders_win -> cp26_a500.12 (cache)
+  -> cp26_a500.10 (popup victoire). Le joueur doit envoyer un transport de troupes
+  et gagner le combat au sol plutot que de simplement approcher avec une flotte.
+  Fichier : events/cp26_a500_mars_arc.txt, on_actions/zz_cp26_synth_on_actions.txt
+
+[NEW][LOW] Arc A500 - journal de mission (situation log)
+  begin_event_chain = { event_chain = "cp26_a500_rebellion_chain" } ajoute dans
+  cp26_a500.2 (rebellion eclate). Le journal affiche l'alerte dans le situation log
+  jusqu'a la resolution (end_event_chain dans cp26_a500.10).
+  Fichier cree : common/event_chains/cp26_a500_chains.txt
+  Localisation : event_chain_cp26_a500_rebellion_chain_title/desc (EN/FR)
+
+[FIX][LOW] Arc A500 - technologies via add_research_option
+  Les technologies de vaisseaux (tech_neo_constitution_unlock, tech_sagan_unlock,
+  tech_duderstadt_unlock, tech_odyssey_unlock) sont maintenant ajoutees au pool
+  de recherche via add_research_option au lieu de give_technology. Le joueur
+  doit les rechercher normalement.
+
+[CLEAN][LOW] Remplacement de tous les tirets cadratins/demi-cadratins (-- -)
+  par des tirets simples (-) dans l'ensemble du mod (87 fichiers).
+  Aucun impact fonctionnel ; normalisation de l'encodage.
 
 --------------------------------------------------------------------------------
 Session du 2026-05-15 (stabilité runtime test_colony)
@@ -36,7 +71,7 @@ Session du 2026-05-16 (cap ligne 3×12 = 36 + crises resserrées)
   zz_cp26_reduced_fleet_scale_effects.txt ; Borg cube spawn inchangé (2).
   Doc : CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt, audits PERF / REDUCED, Steam.
 
-[BAL][LOW] IA Gorn (contender) : perso hegemonic_imperialists_gorn — bravery
+[BAL][LOW] IA Gorn (contender) : perso hegemonic_imperialists_gorn - bravery
   1.5→1.85, combat_bravery 1.5→2.05, military_spending 0.95→1.08 (aggressiveness
   inchangé = 2.0). Cible : offensives et poursuite de combat plus tenaces.
 
@@ -54,7 +89,7 @@ Session du 2026-05-15 (California science + tooltip cap militaire)
   remplace SHIP_SIZE_LIMIT dans tous les possible_construction militaires
   (common/ship_sizes/*.txt).
 
-[BAL][LOW] (Obsolète — voir session 2026-05-16.) Ancien palier intermédiaire :
+[BAL][LOW] (Obsolète - voir session 2026-05-16.) Ancien palier intermédiaire :
   count < 46 / COMMAND 30/120 puis mercenaires ≤45/≤85 ; remplacé par 36 / 24/96 / ≤36/≤68.
 
 --------------------------------------------------------------------------------
@@ -132,7 +167,7 @@ Session du 2026-05-14 (post-crash : sci cap, Luna double icône, trad FR esclave
   Cause : dans le yml FR vanilla ou Hornblower, les clés
     mod_planet_jobs_specialist_produces_mult
     mod_planet_jobs_worker_produces_mult
-  sont (probablement) mal traduites en "Prod. de ress. des esclaves" — sans doute
+  sont (probablement) mal traduites en "Prod. de ress. des esclaves" - sans doute
   une copie/colle de la chaîne `mod_planet_jobs_slave_produces_mult`.
   Conséquence visible sur Luna (notre modifier `lunar_one_colony` qui utilise
   specialist+20%/worker-20%) et sur les rights "Membre fondateur" d'une Fédération.
@@ -144,13 +179,13 @@ Session du 2026-05-14 (post-crash : sci cap, Luna double icône, trad FR esclave
       mod_planet_jobs_worker_produces_mult:0 "Production des ouvriers"
       mod_planet_jobs_slave_produces_mult:0 "Production des esclaves"
       (+ variantes uppercase au cas où)
-  Note : ne change RIEN pour le joueur Fédération — les modifiers étaient déjà
+  Note : ne change RIEN pour le joueur Fédération - les modifiers étaient déjà
   appliqués correctement, c'est uniquement l'affichage du tooltip qui changeait.
   Si une species est `slavery_type = none`, le bonus "spécialiste +10%" ne
   s'applique aux esclaves de toute façon (puisqu'il n'y en a pas).
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14 (CRASH CPlanet — VRAIE cause : modifier invalide)
+Session du 2026-05-14 (CRASH CPlanet - VRAIE cause : modifier invalide)
 --------------------------------------------------------------------------------
 
 [CRASH][CRIT] Restauration `common/pop_jobs/101_xl_map_reman_jobs.txt`
@@ -206,7 +241,7 @@ Session du 2026-05-14 (CRASH CPlanet — VRAIE cause : modifier invalide)
     ailleurs même si le fichier semble inutilisé.
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14 (CRASH CPlanet::DailyUpdateAllUnhabitable — rollback Phase 1)
+Session du 2026-05-14 (CRASH CPlanet::DailyUpdateAllUnhabitable - rollback Phase 1)
 --------------------------------------------------------------------------------
 
 [CRASH][HIGH] Rollback Phase 1 (AI combat defines) suite à crash récurrent.
@@ -218,10 +253,10 @@ Session du 2026-05-14 (CRASH CPlanet::DailyUpdateAllUnhabitable — rollback Pha
       → CPlanetManager::DailyUpdate
         → CPlanet::DailyUpdateAllUnhabitableSelfDontReadOthers (parallel-for)
           → CJob::Wait → TaskSystem::TryStealTask → invoker → SIGSEGV
-    (puis cascade __cxa_demangle dans AbortHandler — secondary crash)
+    (puis cascade __cxa_demangle dans AbortHandler - secondary crash)
 
   Diagnostic :
-    Le crash est dans le planet manager daily update — mais en réalité c'est
+    Le crash est dans le planet manager daily update - mais en réalité c'est
     une corruption mémoire causée par une frame PRÉCÉDENTE du même tick.
     FleetManager update tourne AVANT PlanetManager update dans CGameState.
     Mes nouveaux defines Phase 1 forçaient :
@@ -242,10 +277,10 @@ Session du 2026-05-14 (CRASH CPlanet::DailyUpdateAllUnhabitable — rollback Pha
     chaque cycle de daily updates pour identifier le coupable précis.
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14 (IA Star Trek — 3 phases personalities CONSERVÉES)
+Session du 2026-05-14 (IA Star Trek - 3 phases personalities CONSERVÉES)
 --------------------------------------------------------------------------------
 
-[AI][MED] Phase 1 — Combat engagement defines (NAI war behavior). [ROLLBACK]
+[AI][MED] Phase 1 - Combat engagement defines (NAI war behavior). [ROLLBACK]
   Voir entrée crash ci-dessus. Section conservée pour historique.
   Fichier : common/defines/zz_cp26_ai_defines.txt (+10 lignes).
   Objectif : forcer l'IA à engager le combat au lieu de tourner autour.
@@ -264,7 +299,7 @@ Session du 2026-05-14 (IA Star Trek — 3 phases personalities CONSERVÉES)
   Effet attendu : l'IA en guerre va effectivement attaquer planètes/flottes,
   reinforcer les combats, et tenir plus longtemps avant retraite.
 
-[AI][MED] Phase 2+3 — Personnalités Star Trek lore-faithful (4 majors).
+[AI][MED] Phase 2+3 - Personnalités Star Trek lore-faithful (4 majors).
   Nouveau fichier : common/personalities/zz_cp26_major_personalities.txt.
   Pour chacun des 4 majors, weight_modifier = 1000 (override vanilla = 50).
 
@@ -299,16 +334,16 @@ Session du 2026-05-14 (IA Star Trek — 3 phases personalities CONSERVÉES)
     - weight = 1000 vs vanilla 50 = override garanti pour les 4 majors
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14 (fourth pass — constructors over-spawn observé)
+Session du 2026-05-14 (fourth pass - constructors over-spawn observé)
 --------------------------------------------------------------------------------
 
-[AI][LOW] ship_data fourth pass — constructor forcé à exactement 1.
+[AI][LOW] ship_data fourth pass - constructor forcé à exactement 1.
   Observation joueur en NEW GAME : saturation visuelle de constructors
   partout sur la carte. Cause : fraction huge=+0.10 poussait l'IA à
   toujours viser max=3 dès qu'elle devenait grande.
 
   Fix : constructor min = 1, max = 1 (fraction supprimée, inutile avec
-  min=max). L'IA aura toujours exactement 1 constructor — si détruit,
+  min=max). L'IA aura toujours exactement 1 constructor - si détruit,
   reconstruit immédiatement. Jamais 2 en parallèle.
 
   Budget civils 8 → 6 → total = 21 ships/empire hors héros.
@@ -318,10 +353,10 @@ Session du 2026-05-14 (fourth pass — constructors over-spawn observé)
   côté minors, abaisser leur cap dans un cinquième pass.
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14 (third pass civils — budget joueur à 23)
+Session du 2026-05-14 (third pass civils - budget joueur à 23)
 --------------------------------------------------------------------------------
 
-[AI][LOW] ship_data third pass — budget joueur précisé à 23 ships/empire :
+[AI][LOW] ship_data third pass - budget joueur précisé à 23 ships/empire :
   constructor max 2→3, science max 2→3 (colonizer reste à 2).
   Budget civils 6→8 → total 8+15 = 23 ships/empire hors héros.
 
@@ -332,7 +367,7 @@ Session du 2026-05-14 (third pass civils — budget joueur à 23)
 Session du 2026-05-14 (audit exhaustif post second-pass civils)
 --------------------------------------------------------------------------------
 
-[AUDIT] Audit complet des sources de spawn — vérification budget joueur
+[AUDIT] Audit complet des sources de spawn - vérification budget joueur
   Cible explicite joueur : "15 militaires + 6 civils = 21, hors héros".
 
   1. Country_types (toutes les sources de ship_data) :
@@ -341,9 +376,9 @@ Session du 2026-05-14 (audit exhaustif post second-pass civils)
      - contender (aa_contender_country.txt) : 2 const + 2 sci + 1 col +
        15 mil = 20 ✓ (déjà aligné pré-session).
      - Autres country_types (borg, swarm, marauders, etc.) : pas de
-       ship_data — spawns scriptés contrôlés indépendamment.
+       ship_data - spawns scriptés contrôlés indépendamment.
 
-  2. Hero exclusion (cp26_is_non_hero_military_ship) — couverture vérifiée :
+  2. Hero exclusion (cp26_is_non_hero_military_ship) - couverture vérifiée :
      - voyager (UFOP unique)         : preq vide, indestructible ✓
      - california (UFOP utility)     : is_civilian = yes ✓
      - california_hero (UFOP unique) : preq vide, indestructible ✓
@@ -373,7 +408,7 @@ Session du 2026-05-14 (audit exhaustif post second-pass civils)
      au boot. ✓ Bas budget.
 
   5. command_limit : BASE=24 / MAX=96 (était 30/120 puis 18/45). Fragmentation
-     des grosses flottes — pas un cap dur. Cap ligne militaire : 36 (voir session 2026-05-16).
+     des grosses flottes - pas un cap dur. Cap ligne militaire : 36 (voir session 2026-05-16).
 
   Budget réel par empire en peak gameplay :
      UFOP majeur     : 15 mil + 6 civ + 2 utility (california) + héros 1-5
@@ -383,15 +418,15 @@ Session du 2026-05-14 (audit exhaustif post second-pass civils)
 
   Cible joueur (~21 hors héros) : RESPECTÉE.
 
-  Aucun fix supplémentaire requis suite à cet audit — toutes les couches
+  Aucun fix supplémentaire requis suite à cet audit - toutes les couches
   convergent vers le budget cible.
 
 --------------------------------------------------------------------------------
 Session du 2026-05-14 (IA constructors / freeze ~2351 + doc officiers)
 --------------------------------------------------------------------------------
 
-[AI][MED] ship_data civils — alignement strict sur l'intent "very few ships"
-  (zz_cp26_default_country_type.txt) — second passage 2026-05-14 :
+[AI][MED] ship_data civils - alignement strict sur l'intent "very few ships"
+  (zz_cp26_default_country_type.txt) - second passage 2026-05-14 :
 
     constructor  : min 3→1, max 6→2  (vanilla = 3/3, contender = 2/2)
     science      : min 3→2, max 5→2  (vanilla = 3/3, contender = 2/2)
@@ -405,12 +440,12 @@ Session du 2026-05-14 (IA constructors / freeze ~2351 + doc officiers)
     Militaires    : 15 (à l'époque : cap ship_data count_owned_ship ; remplacé en 2026-05-14
                        par possible_construction, porté à 20 le 2026-05-15)
     ------------------------------
-    TOTAL plafond : ~21 vaisseaux / empire (cible joueur respectée) — chiffres civils ci-dessus ;
+    TOTAL plafond : ~21 vaisseaux / empire (cible joueur respectée) - chiffres civils ci-dessus ;
                     ligne militaire : voir doc ship cap à jour.
 
   Rationale :
     1. Le scaling dynamique précédent (max 6/5/6) ajoutait jusqu'à 17 civils
-       par grand empire IA — contredisait le système reduced-fleet et la
+       par grand empire IA - contredisait le système reduced-fleet et la
        cible explicite du joueur (~15 militaires + très peu de civils).
     2. Les vaisseaux de construction sont une classe civile : aucune pression
        officiers ne s'applique sur eux. Seul ship_data peut borner leur spam.
@@ -420,11 +455,11 @@ Session du 2026-05-14 (IA constructors / freeze ~2351 + doc officiers)
     4. Cible alignée : passer de ~32 vaisseaux/empire huge à ~21.
 
   Couche existante préservée : aa_contender_country (minor factions) gardait
-  déjà 2/2 constructor + 2/2 science + 0/1 colonizer — donc les contenders
+  déjà 2/2 constructor + 2/2 science + 0/1 colonizer - donc les contenders
   respectaient déjà la philo. Seuls les majors étaient inflatés.
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14 (suite)  —  Audit final pré-Workshop
+Session du 2026-05-14 (suite)  -  Audit final pré-Workshop
 --------------------------------------------------------------------------------
 
 [LOC][LOW] Ajout traduction FR de tech_warp_speed_increase_3 (Géométrie Transwarp)
@@ -444,10 +479,10 @@ Session du 2026-05-14 (suite)  —  Audit final pré-Workshop
       n'aurait rien apporté même s'il avait été chargé.
     * Le pop_job "reman_job" n'était référencé nulle part dans le mod.
 
-  Conclusion : mort code inoffensif. Suppression pour clean Workshop —
+  Conclusion : mort code inoffensif. Suppression pour clean Workshop -
   même bénéfice qu'avec les .DS_Store et les .bak retirés précédemment.
 
-[AUDIT][NONE] Audit final complet — 8 axes vérifiés
+[AUDIT][NONE] Audit final complet - 8 axes vérifiés
   1. .asset duplicates       → propre (aucun doublon au-delà de cardassian fixé)
   2. on_daily_* hooks        → 0 hook daily restant (BUG-4 a tout nettoyé)
   3. modifiers extrêmes      → 1 seul (Reman resettlement +1200%, volontaire)
@@ -466,10 +501,10 @@ Session du 2026-05-14 (suite)  —  Audit final pré-Workshop
   Bilan : mod prêt pour publication Workshop.
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14  —  Crash save SIGSEGV (cardassian entity duplicate)
+Session du 2026-05-14  -  Crash save SIGSEGV (cardassian entity duplicate)
 --------------------------------------------------------------------------------
 
-[CRASH][HIGH] Fix Cardassian .asset partial override — root cause crash save
+[CRASH][HIGH] Fix Cardassian .asset partial override - root cause crash save
               CConstructionQueue::WriteMembers
   Symptôme : crash signal 11 (SIGSEGV) à 00:50:59 lors d'une tentative de
   sauvegarde, ~9 minutes après le boot. Aucune erreur runtime entre 00:41:36
@@ -489,7 +524,7 @@ Session du 2026-05-14  —  Crash save SIGSEGV (cardassian entity duplicate)
       Duplicate of hideki_entity added to entity system
 
   Diagnostic complet :
-  Les fichiers .asset sont chargés ADDITIVEMENT par le moteur Clausewitz —
+  Les fichiers .asset sont chargés ADDITIVEMENT par le moteur Clausewitz -
   PAS via "last-loaded-wins" comme les common/ (game_singleobjectdatabase).
   Le moteur a une règle implicite : deux .asset du MÊME NOM dans le même
   path relatif sont traités comme "remplacement" (resolution par path),
@@ -579,10 +614,10 @@ Session du 2026-05-14  —  Crash save SIGSEGV (cardassian entity duplicate)
       apparaissaient sous certaines conditions de rendu).
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14  —  Audit approfondi reduced fleet scale (round 2)
+Session du 2026-05-14  -  Audit approfondi reduced fleet scale (round 2)
 --------------------------------------------------------------------------------
 
-[FIX][MED] BUG-6 — California utility consommait la cap military (trigger
+[FIX][MED] BUG-6 - California utility consommait la cap military (trigger
            cp26_is_non_hero_military_ship incomplet)
   Découverte en relisant à fond le système reduced fleet scale. Le trigger
   d'exclusion des heroes listait 6 ship_sizes (voyager, california_hero,
@@ -604,14 +639,14 @@ Session du 2026-05-14  —  Audit approfondi reduced fleet scale (round 2)
   Fix : ajout de `is_ship_size = california` à la liste d'exclusion du trigger
   cp26_is_non_hero_military_ship (common/scripted_triggers/aa_scripted_triggers.txt).
   California garde son min/max et continue d'être produit, mais ne consomme
-  plus de slot du cap militaire — exactement comme `voyager` (autre utility
+  plus de slot du cap militaire - exactement comme `voyager` (autre utility
   hero qui est déjà exclu).
 
   → Effet : l'AI UFOP retrouve l'équité de cap avec les autres majors
     (15 ships de combat + 1-2 California en bonus utility).
     Lore-cohérent : Lower Decks = support, jamais frontline.
 
-[BAL][MED] FIND-2 — Caps ship_data 18→15 et 8→6 (overshoot chantier compensé)
+[BAL][MED] FIND-2 - Caps ship_data 18→15 et 8→6 (overshoot chantier compensé)
   Découverte par relecture critique : `count_owned_ship` ne compte que les
   ships built, pas ceux en queue de chantier. Si l'AI plafonnait à 17 built
   et lançait 7-8 chantiers en parallèle (pattern normal vu son budget
@@ -634,18 +669,18 @@ Session du 2026-05-14  —  Audit approfondi reduced fleet scale (round 2)
     - zz_cp26_default_country_type.txt : 24× (18→15) + 6× (8→6) = 30 substitutions
     - aa_contender_country.txt         : 10× (18→15) + 5× (8→6) = 15 substitutions
     Total = 45 occurrences alignées, toutes dans le contexte
-    `cp26_is_non_hero_military_ship` (vérifié — aucun count >= 18 ou 8 ailleurs
+    `cp26_is_non_hero_military_ship` (vérifié - aucun count >= 18 ou 8 ailleurs
     dans ces 2 fichiers à part le `count >= 1` colonizer non touché).
 
   Pas de changement sur les paliers `count >= 15` déjà présents
-  (Nausicaan fallback contender, 10 occurrences) — c'est exactement la
+  (Nausicaan fallback contender, 10 occurrences) - c'est exactement la
   même cible 15 par cohérence.
 
   → Effet attendu : empires AI plafonnent désormais autour de 15-19 ships
     militaires réels (vs 18-25 avant), soit le retour effectif à la cible
     design "~15 ships" documentée.
 
-[DOC][LOW] FIND-4 — Documenter calibrage paliers command_limit mercenary
+[DOC][LOW] FIND-4 - Documenter calibrage paliers command_limit mercenary
   Ajout d'un bloc de commentaires en tête de
   common/scripted_effects/zz_cp26_reduced_fleet_scale_effects.txt
   expliquant que les paliers `<=36` / `<=68` / `else` sont calibrés vs
@@ -653,7 +688,7 @@ Session du 2026-05-14  —  Audit approfondi reduced fleet scale (round 2)
   Aide à la maintenance future : si jamais on bouge COMMAND_LIMIT_*, on
   sait quoi ajuster côté scripts.
 
-[VERIFY] FIND-5 — Vanilla @operative_officers1 vérifié
+[VERIFY] FIND-5 - Vanilla @operative_officers1 vérifié
   Confirmé en lisant vanilla
   /Library/Application Support/Steam/steamapps/common/Infinite/common/
   component_templates/00_hornblower_utilities_roles.txt :
@@ -666,17 +701,17 @@ Session du 2026-05-14  —  Audit approfondi reduced fleet scale (round 2)
 
   Les 22 autres component_templates CP26 (aa_breen/gorn/orion/tholian,
   akira, neworleans, lantree, constellation, advcruiser, ...) sont à
-  `@operative_officers1 = 10` — c'est cohérent : ces fichiers définissent
+  `@operative_officers1 = 10` - c'est cohérent : ces fichiers définissent
   leurs propres composants (reactors, engines, roles spécifiques à chaque
   ship) avec une logique propre, indépendante du local define du fichier
   utilities_roles (chaque `@variable` est local au fichier où elle est
   déclarée en Clausewitz).
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14  —  Bugs cachés + cohérence loc + audit reduced fleet
+Session du 2026-05-14  -  Bugs cachés + cohérence loc + audit reduced fleet
 --------------------------------------------------------------------------------
 
-[FIX][LOW] BUG-1 — California Hero ship_speed_mult = 1 (typo +100% speed)
+[FIX][LOW] BUG-1 - California Hero ship_speed_mult = 1 (typo +100% speed)
   Découvert par l'audit ship_sizes. Le bloc "no_admiral penalties" de
   california_hero contenait 7 modifiers à -0.1 puis ship_speed_mult = 1 (soit
   +100% vitesse). Probablement une typo soit pour -0.1 (oublié le tiret) soit
@@ -696,7 +731,7 @@ Session du 2026-05-14  —  Bugs cachés + cohérence loc + audit reduced fleet
   → Effet : le California Hero ralentit comme prévu sans amiral, pattern
     cohérent avec Dderidex_hero. Plus de "ghost ship" indérapable.
 
-[FIX][LOW] BUG-2 — Trait Jnaii sans drawback culturel
+[FIX][LOW] BUG-2 - Trait Jnaii sans drawback culturel
   Découvert par l'audit traits species. Le pattern minor faction = 2 traits
   positifs + 1 drawback (-1 cost) est respecté par 19 races sur 20. Les Jnaii
   (race genderless conformiste, file zz_cp26_minor_species_traits.txt) avaient
@@ -724,7 +759,7 @@ Session du 2026-05-14  —  Bugs cachés + cohérence loc + audit reduced fleet
     deviennent légèrement moins productifs en specialists, mais conservent
     leurs deux bonus signature (kindred = unity, enlightened = research).
 
-[FIX][LOW] BUG-3 — Commentaire AI_MAX_DISTANCE obsolète (radius 630 → 500)
+[FIX][LOW] BUG-3 - Commentaire AI_MAX_DISTANCE obsolète (radius 630 → 500)
   Le commentaire au-dessus de AI_MAX_DISTANCE = 230 mentionnait "Galaxy
   radius is 630" alors que le radius a été baissé à 500 par le fix
   [CRASH][HIGH] de cette session (engine hard cap 500). Cohérence
@@ -736,7 +771,7 @@ Session du 2026-05-14  —  Bugs cachés + cohérence loc + audit reduced fleet
   Fichier modifié :
     common/defines/zz_cp26_ai_defines.txt   (ligne 17)
 
-[OPT][LOW] BUG-4 — cp26_war_access.2 daily → monthly (×30 cheaper)
+[OPT][LOW] BUG-4 - cp26_war_access.2 daily → monthly (×30 cheaper)
   Découvert par l'audit on_actions. cp26_war_access.2 ré-affirme les
   borders open pour tous les pays en guerre. L'event était hooké à
   on_daily_pulse_country, ce qui veut dire 365 évaluations de trigger
@@ -765,7 +800,7 @@ Session du 2026-05-14  —  Bugs cachés + cohérence loc + audit reduced fleet
   → Effet : invariant "borders open en guerre" préservé, charge CPU
     divisée par ~30 sur le hook le plus chaud du mod.
 
-[POLISH][LOW] BUG-5 — 4 fichiers de localisation orphelins (sans counterpart FR)
+[POLISH][LOW] BUG-5 - 4 fichiers de localisation orphelins (sans counterpart FR)
   Découvert par l'audit localisation. 4 fichiers d'anglais existaient
   simultanément au root `localisation/` ET dans `localisation/english/`
   (contenu strictement identique). Pas de version French :
@@ -807,10 +842,10 @@ Session du 2026-05-14  —  Bugs cachés + cohérence loc + audit reduced fleet
     localisation conforme au reste du mod (zz_cp26_*_l_french.yml).
 
 --------------------------------------------------------------------------------
-Session du 2026-05-14  —  Corruption mémoire / crash SIGABRT
+Session du 2026-05-14  -  Corruption mémoire / crash SIGABRT
 --------------------------------------------------------------------------------
 
-[FIX][HIGH] Crash SIGABRT (heap corruption) — 3 nouveaux locators manquants
+[FIX][HIGH] Crash SIGABRT (heap corruption) - 3 nouveaux locators manquants
   Symptôme : crash à 00:10:06 (signal 6 SIGABRT). Le dump exception.txt est
   inexploitable : 24 000+ lignes de récursion infinie du gestionnaire d'erreur
   Paradox dans `__cxa_demangle` → `realloc` → `malloc_vreport` → `abort` →
@@ -842,14 +877,14 @@ Session du 2026-05-14  —  Corruption mémoire / crash SIGABRT
 
   Note : 4 autres locators commentés en vanilla (klingon_01_military_station_medium,
   klingon_01_observation_station, klingon_01_research_station_section, et
-  équivalents romulan) n'erreurent pas pour l'instant — laissés tels quels pour
+  équivalents romulan) n'erreurent pas pour l'instant - laissés tels quels pour
   rester minimal. À patcher si nouveaux symptômes apparaissent.
 
 --------------------------------------------------------------------------------
-Session du 2026-05-12  —  Audit & fixes
+Session du 2026-05-12  -  Audit & fixes
 --------------------------------------------------------------------------------
 
-[FIX][LOW] Luna One Colony — modifier dupliqué (visuel double sur Luna)
+[FIX][LOW] Luna One Colony - modifier dupliqué (visuel double sur Luna)
   Symptôme : Luna affichait deux instances du modifier "Lunar One Colony".
   Cause racine, deux problèmes superposés :
     1) Collision de définition. Le modifier `lunar_one_colony` est défini à
@@ -878,7 +913,7 @@ Session du 2026-05-12  —  Audit & fixes
     - Plus de doublon visuel inutile : la première entrée a son icône et son nom
       vanilla, la seconde porte les bonus chercheurs + logements.
 
-[FIX][LOW] Icons manquantes — 4 species traits Denobulan + Reman
+[FIX][LOW] Icons manquantes - 4 species traits Denobulan + Reman
   Symptôme : dans le panel de population et l'éditeur d'espèces, les traits
   `trait_denob_communal`, `trait_denob_polyamorous`, `trait_denob_family`
   (denobulan_traits.txt) et `trait_reman_homeworld` (remus_traits.txt)
@@ -896,7 +931,7 @@ Session du 2026-05-12  —  Audit & fixes
     - trait_reman_homeworld      → trait_pc_nuked_preference.dds
   Zéro nouveau .dds nécessaire, aucun risque sur la chaîne d'assets.
 
-[FIX][LOW] hrb_colony.75 / hrb_colony.83 — passage à replace_path
+[FIX][LOW] hrb_colony.75 / hrb_colony.83 - passage à replace_path
   Découverte d'aujourd'hui : pour la base de données 'events', Clausewitz
   applique la règle "first-loaded-wins" (eventmanager.cpp:367 logge
   "an event with id [X] already exists!" et IGNORE la nouvelle définition).
@@ -936,7 +971,7 @@ Session du 2026-05-12  —  Audit & fixes
     4. Ajout `replace_path="events/hornblower_colony_events.txt"` dans
        descriptor.mod (insertion alphabétique avant les 3 autres events).
     5. Suppression de `events/zz_cp26_fix_vanilla_colony_events.txt`
-       devenu redondant — l'ancien fichier provoquait simplement deux
+       devenu redondant - l'ancien fichier provoquait simplement deux
        warnings de chargement, et la logique du fix est désormais portée
        directement dans la copie vanilla.
 
@@ -957,17 +992,17 @@ Session du 2026-05-12  —  Audit & fixes
   2024), il faudra re-merger les changements manuellement. Coût minimal.
 
 
-[POLISH][LOW] Nettoyage warnings game error.log — 3 fixes appliqués, 3 laissés
+[POLISH][LOW] Nettoyage warnings game error.log - 3 fixes appliqués, 3 laissés
   Audit de tous les warnings/script errors visibles dans
   /Documents/Paradox Interactive/Infinite/logs/error.log sur partie longue.
   Tri par cause (CP26 vs vanilla) et faisabilité.
 
-  ─── FIX 1 — zz_cp26_fix_country_events.txt:48 (add_opinion_modifier on oneself) ───
+  ─── FIX 1 - zz_cp26_fix_country_events.txt:48 (add_opinion_modifier on oneself) ───
     Notre fichier CP26 dédié au fix de country.27500 (premier contact UFOP)
     avait un check `NOT = { is_same_value = from }` placé au LIMIT racine
     de l'event. Quand le moteur entre dans `fromfrom = { add_opinion_modifier
     = { who = from ... } }`, le scope devient `fromfrom` et la comparaison
-    `is_same_value = from` ne réfère plus au scope racine — donc le check
+    `is_same_value = from` ne réfère plus au scope racine - donc le check
     ne protégeait pas du cas `fromfrom == from`. Résultat : warning
     "Trying to add_opinion_modifier on oneself" à chaque déclenchement
     avec le scope chainé pointant vers le même pays.
@@ -975,7 +1010,7 @@ Session du 2026-05-12  —  Audit & fixes
     pour qu'il compare avec le bon contexte. Les deux blocs (from →
     fromfrom et fromfrom → from) ont été durcis symétriquement.
 
-  ─── FIX 2 — Stella Maris / USS Olympia leader scope error ───
+  ─── FIX 2 - Stella Maris / USS Olympia leader scope error ───
     Vanilla `common/special_projects/00_hornblower_colony_projects.txt`
     ligne 36 et 233 fait `on_success = { leader = { save_event_target_as
     = X } }` sans guard. Si le science ship n'a pas de leader assigné
@@ -990,7 +1025,7 @@ Session du 2026-05-12  —  Audit & fixes
     trait scientifique est skippé si le leader manque (au lieu de crasher
     avec un log error).
 
-  ─── FIX 3 — hrb_colony.75 unsupported scope + hrb_colony.83 undefined target ───
+  ─── FIX 3 - hrb_colony.75 unsupported scope + hrb_colony.83 undefined target ───
     Vanilla `events/hornblower_colony_events.txt` ligne 2978 (hrb_colony.75)
     fait un `country_event = { id = hrb_colony.75001 days = 3600 }` depuis
     le scope planet (`event_target:colony_ruins_uncovered = { ... }`).
@@ -998,14 +1033,14 @@ Session du 2026-05-12  —  Audit & fixes
     on an unsupported scope". L'event de retour à J+3600 (10 ans) était
     silencieusement perdu.
     Vanilla ligne 3484 (hrb_colony.83 option a) consomme
-    `event_target:aqueduct_scientist` sans guard — directement impacté
+    `event_target:aqueduct_scientist` sans guard - directement impacté
     par le bug Stella Maris ci-dessus.
     Fix : créé `events/zz_cp26_fix_vanilla_colony_events.txt` qui redéfinit
     hrb_colony.75 (country_event sorti du bloc planet, fired depuis le
     scope country racine) et hrb_colony.83 (event_target:aqueduct_scientist
     wrapped dans `if exists`).
 
-  ─── NON-FIXÉ 1 — Mission AI no positive ai_chance (mission.16/17/55/86/193/215/...) ───
+  ─── NON-FIXÉ 1 - Mission AI no positive ai_chance (mission.16/17/55/86/193/215/...) ───
     Symptôme : "Triggered Event mission.X for AI Y has no options with
     positive ai_chance!" déclenché ~10x sur une partie longue pour les
     AI minor factions (Farian, Trill, Bolian, Bajoran, Malcorian,
@@ -1023,7 +1058,7 @@ Session du 2026-05-12  —  Audit & fixes
     impliquent légitimement les minors. Test exhaustif requis pour
     chaque event, bénéfice nul (le jeu continue, juste du bruit log).
 
-  ─── NON-FIXÉ 2 — First Contact missing (on_action_events.txt:5105) ───
+  ─── NON-FIXÉ 2 - First Contact missing (on_action_events.txt:5105) ───
     Symptôme : "<X> has encountered <Y> ... but has neither communications
     with them nor an active First Contact site to do so."
     Cause : le `log_error = "..."` est VOLONTAIRE en vanilla. Le moteur
@@ -1034,7 +1069,7 @@ Session du 2026-05-12  —  Audit & fixes
     pour supprimer un log debug par design. Plus de minors actifs =
     plus de logs, c'est attendu.
 
-  ─── NON-FIXÉ 3 — Spy mission cleanup (spy_mission_spy_global undefined) ───
+  ─── NON-FIXÉ 3 - Spy mission cleanup (spy_mission_spy_global undefined) ───
     Symptôme : "Trying to remove undefined event target: spy_mission_spy_global"
     Cause : `clear_global_event_target = spy_mission_spy_global` est
     appelé dans l'`after` block d'events spy. Si le target n'a pas été
@@ -1063,13 +1098,13 @@ Session du 2026-05-12  —  Audit & fixes
     - Les 3 warnings non-fixés restent visibles mais documentés comme
       "vanilla intentionnel" ou "fix risqué non rentable".
 
-[CRASH][HIGH] Fix locators part1/part2 manquants — 3 entities (spy ships + station)
+[CRASH][HIGH] Fix locators part1/part2 manquants - 3 entities (spy ships + station)
   Symptôme : SIGSEGV dans `CullAndUpdateEntitiesRecursive` (rendu d'entités)
   après ~8 minutes de jeu. Stack trace : 5 niveaux récursifs dans le quadtree
   d'entités → crash au moment où une entité essaie de résoudre un attach
   point inexistant.
 
-  Cause (visible dans logs/error.log) — 3 warnings juste avant le crash :
+  Cause (visible dans logs/error.log) - 3 warnings juste avant le crash :
     [pdx_entity.cpp:1260]: ufop_01_military_station_small_entity has no attach point named part2
     [pdx_entity.cpp:1260]: ufop_01_spy_ship_entity has no attach point named part1
     [pdx_entity.cpp:1260]: klingon_01_spy_ship_entity has no attach point named part1
@@ -1101,7 +1136,7 @@ Session du 2026-05-12  —  Audit & fixes
      - Aucun impact gameplay (locator position 0 0 0 = attach point au centre
        du mesh, pattern standard utilisé partout dans le mod).
 
-[CRASH][HIGH] Fix Denobula colony — même pattern que Vega, deuxième occurrence
+[CRASH][HIGH] Fix Denobula colony - même pattern que Vega, deuxième occurrence
   Symptôme : SIGSEGV dans `CConstructionQueueManager::DailyUpdate` après
   ~14 minutes de jeu en partie UFOP. Crash random selon l'AI Denobulan qui
   finit par toucher la queue corrompue. Même signature exacte que le crash
@@ -1138,7 +1173,7 @@ Session du 2026-05-12  —  Audit & fixes
   pour la `CConstructionQueue` dans le mod (events/ + common/scripted_effects/ +
   common/solar_system_initializers/).
 
-  Résultat — TOUS les autres cas sont safe :
+  Résultat - TOUS les autres cas sont safe :
     • Remus, Risa, Lunar One, Mars, Trill northern colony :
       `create_colony` seul, sans `add_building` voisin.
     • Setup capitales Tholian / Orion / Gorn / Breen :
@@ -1163,7 +1198,7 @@ Session du 2026-05-12  —  Audit & fixes
       `add_building = building_capital` interne) sans crash signalé. À
       retirer ou différer si un crash Klingon-spécifique remonte.
 
-[HOTFIX][LOW] Crash SIGSEGV après le load — 3 modifiers research-catégorie invalides
+[HOTFIX][LOW] Crash SIGSEGV après le load - 3 modifiers research-catégorie invalides
   Symptôme : crash signal 11 (SIGSEGV) dans `CullAndUpdateEntitiesRecursive`
   juste après le passage au tick de gameplay. Stack trace propre côté moteur
   (pas de save corrompue), pointait l'entity system du rendu d'objets.
@@ -1178,7 +1213,7 @@ Session du 2026-05-12  —  Audit & fixes
   `planet_jobs_engineering_research_produces_mult` apparaissent en clair dans
   les fichiers vanilla STI (`static_modifiers/02_static_modifers.txt`,
   `species_rights/06_species_rights_profiles.txt`) mais **TOUS commentés**.
-  Vestiges Stellaris non portés en Star Trek: Infinite — l'engine STI ne sait
+  Vestiges Stellaris non portés en Star Trek: Infinite - l'engine STI ne sait
   PAS les évaluer et les marque "Invalid". Les traits species qui les
   référencent retournent des modifiers fantômes, ce qui corrompt l'état des
   pops puis casse le rendu d'entités au premier update.
@@ -1229,7 +1264,7 @@ Session du 2026-05-12  —  Audit & fixes
     vide visible sur le screenshot est désormais comblé. La forme relative
     et le centre visuel de la galaxie sont préservés.
 
-[FEAT][LOW] Second passage d'étalement — hypot max moteur + caméra alignée
+[FEAT][LOW] Second passage d'étalement - hypot max moteur + caméra alignée
   Après le ×1.20, il restait encore ~64 unités de marge sous radius=500
   (hypot max ~435). Le joueur voyait encore du vide en haut / sur les côtés.
   Deuxième scale depuis le même centroïde (-7.5, 289.5), facteur binaire
@@ -1240,8 +1275,8 @@ Session du 2026-05-12  —  Audit & fixes
   Géométrie résultante :
     hypot max ≈ 498.0   bbox X ≈ -427 .. +495   Y ≈ -88 .. +449
 
-  Les limites caméra (steps 2–7) ont été recalculées : le step 2 englobe
-  le bbox + 22 px de marge, les steps 3–7 reprennent les mêmes ratios de
+  Les limites caméra (steps 2-7) ont été recalculées : le step 2 englobe
+  le bbox + 22 px de marge, les steps 3-7 reprennent les mêmes ratios de
   rétrécissement qu'avant (zoom interne), avec clamp [-498, 498] pour
   rester dans la box moteur. Ex. step 2 : max_x=498, max_y=471.
 
@@ -1258,7 +1293,7 @@ Session du 2026-05-12  —  Audit & fixes
 [CRASH][HIGH] Radius galaxie 570 → 500 (limite engine hardcodée)
   Cause racine des crashes aléatoires SIGSEGV / EXC_BAD_ACCESS dans
   CConstructionQueueManager::DailyUpdate et CSaveGameTaskManager::
-  CreateMemoryFiles (Mac et Windows — "access violation 0xc0000005" sous
+  CreateMemoryFiles (Mac et Windows - "access violation 0xc0000005" sous
   Windows, KERN_PROTECTION_FAILURE sous macOS).
 
   Diagnostic :
@@ -1268,13 +1303,13 @@ Session du 2026-05-12  —  Audit & fixes
     "the map in Stellaris is a box 1000x1000x10, from -500 to +500"
     "Map radius (max 500)"
     "should be less than 500, preferably less than ~460"
-    — Stellaris Wiki, Map_modding
+    - Stellaris Wiki, Map_modding
 
   Au-dessus de 500, les structures spatiales internes du moteur
   (quadtree de proximity, grilles pathfinding, indices ConstructionQueue)
   débordent et provoquent des accès mémoire hors zone allouée. Le crash
   apparait au moment où un objet (constructeur, flotte, save serializer)
-  tombe dans la zone fantôme — d'où le caractère aléatoire.
+  tombe dans la zone fantôme - d'où le caractère aléatoire.
 
   État actuel CP26 :
     - Alpha-Beta_medium.txt : radius = 570  (HORS LIMITE)
@@ -1298,7 +1333,7 @@ Session du 2026-05-12  —  Audit & fixes
     "corruption script") étaient des amplificateurs au mieux, pas la cause.
     Le radius était bien le problème.
 
-[CRASH][HIGH] Hotfix — modifier invalide ship_weapon_damage_mult (Breen doctrine)
+[CRASH][HIGH] Hotfix - modifier invalide ship_weapon_damage_mult (Breen doctrine)
   Le modifier cp26_minor_breen_combat_doctrine introduit en B.6 utilisait le
   nom `ship_weapon_damage_mult` qui N'EXISTE PAS dans STI. Le bon nom vanilla
   est `ship_weapon_damage`. Quand le setup_breen_capital appliquait le
@@ -1315,7 +1350,7 @@ Session du 2026-05-12  —  Audit & fixes
     fonctionne désormais comme prévu (+25% armor, +10% weapon damage,
     -10% fire rate).
 
-[CRASH][HIGH] Fix Vega colony — pattern create_colony + add_building same-tick
+[CRASH][HIGH] Fix Vega colony - pattern create_colony + add_building same-tick
   `events/vgcol_events.txt` (vg_col.1000, trigger on_game_start) contenait
   le pattern dangereux documenté dans CP26_CONSTRUCTION_QUEUE_CRASH_FIX.txt :
   `create_colony` suivi immédiatement par `add_building = building_foundry_1`
@@ -1338,7 +1373,7 @@ Session du 2026-05-12  —  Audit & fixes
   → Effet : Vega garde sa fonderie (lore intact), mais la pose est différée
     hors du tick critique. Plus de corruption ConstructionQueue au game-start.
 
-[FIX][LOW] Caméra Galaxy View — systèmes du sud inaccessibles au dézoom
+[FIX][LOW] Caméra Galaxy View - systèmes du sud inaccessibles au dézoom
   Symptôme : impossible d'atteindre les systèmes les plus au sud quand
   on dézoome (Romulan, Cardassian, certains minors).
 
@@ -1356,7 +1391,7 @@ Session du 2026-05-12  —  Audit & fixes
     niveaux de zoom.
 
 
-[FIX][LOW] A.1 — Event country.27500 défini en double
+[FIX][LOW] A.1 - Event country.27500 défini en double
   Le fix CP26 du First Contact Bonus (civic Diplomatic Expertise) coexistait
   avec la version vanilla buguée dans events/hornblower_country_events.txt.
   Le moteur loggait "an event with id [country.27500] already exists!" et
@@ -1368,7 +1403,7 @@ Session du 2026-05-12  —  Audit & fixes
     Diplomatic Expertise donnent désormais bien le bonus d'opinion aux
     deux parties (avant : ~50% des cas le perdaient).
 
-[FIX][LOW] A.2 — Tech warp speed dupliquées
+[FIX][LOW] A.2 - Tech warp speed dupliquées
   tech_warp_speed_increase_1 et _2 étaient définies à la fois dans :
     - common/technology/zz_cp26_warp_techs.txt (valeurs CP26 +30%)
     - vanilla 00_hornblower_eng_techs.txt et 00_hornblower_unsupported_techs.txt
@@ -1382,7 +1417,7 @@ Session du 2026-05-12  —  Audit & fixes
   → Effet : le design warp CP26 est désormais réellement appliqué :
     65% vanilla speed en early → 85% (Warp 5) → 104% (Warp 6) → 120% (Warp 7).
 
-[FIX][LOW] A.5 — District romulan sans extension .txt
+[FIX][LOW] A.5 - District romulan sans extension .txt
   Le fichier common/districts/z_hornblower_romulan_districts n'avait pas
   d'extension .txt → silencieusement ignoré par le parseur. Renommé en
   z_hornblower_romulan_districts.txt.
@@ -1390,7 +1425,7 @@ Session du 2026-05-12  —  Audit & fixes
   → Effet : les districts romulans définis dans ce fichier sont à nouveau
     chargés. L'économie romulan side recouvre sa configuration prévue.
 
-[FIX][LOW] B.3 — California Hero shield bug
+[FIX][LOW] B.3 - California Hero shield bug
   Le California Hero (UFOP) avait `ship_shield_mult = 0.9` (+90% bouclier),
   manifestement une typo de `-0.1` (les 5 autres modifiers étaient bien
   à -0.1, pattern "no admiral"). Le héros était quasi indestructible.
@@ -1400,7 +1435,7 @@ Session du 2026-05-12  —  Audit & fixes
   → Effet : équilibre combat UFOP rétabli. Cohérence avec les autres ships
     héros vanilla (Dderidex_hero, etc.).
 
-[BAL][LOW] B.5 — AI_MAX_DISTANCE 300 → 230
+[BAL][LOW] B.5 - AI_MAX_DISTANCE 300 → 230
   CP26 portait AI_MAX_DISTANCE à 300 (vanilla 200) pour rendre l'IA plus
   agressive. Mais avec une galaxie de rayon 630, 300 = ~½ galaxie : l'IA
   planifiait des guerres jusqu'à l'autre bout du monde, consommait de la
@@ -1411,7 +1446,7 @@ Session du 2026-05-12  —  Audit & fixes
   → Effet attendu : performances mid/late game améliorées, IA plus
     cohérente géographiquement, réduction du risque de crash construction.
 
-[FEAT][MED] B.6 — Différenciation des 4 minor factions (Gorn, Tholian, Orion, Breen)
+[FEAT][MED] B.6 - Différenciation des 4 minor factions (Gorn, Tholian, Orion, Breen)
   Avant : les 4 minors utilisaient les mêmes stats vanilla, identité
   purement visuelle. Tactique de combat indistincte.
   Ajout : `common/static_modifiers/zz_cp26_minor_faction_modifiers.txt`
@@ -1429,14 +1464,14 @@ Session du 2026-05-12  —  Audit & fixes
   → Effet : chaque rencontre avec un minor demande désormais une approche
     tactique différente, ce qui valorise la phase d'exploration.
 
-[FEAT][LOW] C.Civils — Refonte des species classes minor factions
+[FEAT][LOW] C.Civils - Refonte des species classes minor factions
   Avant : 19 prescripted minors partageaient tous la classe "HRB", avec
   14 fichiers contenant "TODO: Create custom class". Pool de portraits
   partagé entre Bajoran (spirituel), Talarian (belliqueux), etc. → aucune
   identité visuelle distincte.
   Ajout : `common/species_classes/zz_cp26_minor_species_classes.txt`
   avec 3 classes thématiques (mêmes paramètres mécaniques, identique au
-  moteur — différenciation purement visuelle) :
+  moteur - différenciation purement visuelle) :
 
     HRB_DIPLO  → Bajoran, Betazoid, Trill, Kaelon, Malcorian, Iyaaran  (6)
     HRB_TRADE  → Bolian, Boslic, Hupyrian, Lissepian, Pelian, Farian   (6)
@@ -1461,7 +1496,7 @@ Session du 2026-05-12  —  Audit & fixes
   d'events, chain finale "The Freed" commentée → crisis qui se termine
   en queue de poisson) + plan en 3 phases (A = fix simple, B = tuning
   des délais, C = anti-Borg fleet missions). Phase A recommandée
-  prioritaire — pas encore appliquée, attend feu vert.
+  prioritaire - pas encore appliquée, attend feu vert.
 
 [DOC]      Mod info/CP26_MINOR_SPECIES_CLASSES.txt
   Documentation détaillée de la refonte des species classes (justification,
@@ -1475,7 +1510,7 @@ Session du 2026-05-12  —  Audit & fixes
     map/setup_scenarios/Alpha-Beta_medium.txt.bak.before_scaleC.
   - Renommage du district romulan (voir A.5 ci-dessus).
 
-[FEAT][MED] C.ShipData — Option A : ship_data dynamique (yearly pulse + flags)
+[FEAT][MED] C.ShipData - Option A : ship_data dynamique (yearly pulse + flags)
   Avant : constructor min=3 max=3, science min=3 max=3, colonizer min=0 max=1
   → l'AI plafonnait dès le début et restait sous-staffée en mid/late game
   (commentaire HRB_TODO "fix how ship_data works, add support for dynamic
@@ -1510,11 +1545,11 @@ Session du 2026-05-12  —  Audit & fixes
     annexes (mining/research stations) sont mieux construits.
   → Impact CPU : 1 trigger eval par AI country par an → négligeable.
 
-[FEAT][LOW] C.Civils — Création des 60 traits species minor factions
+[FEAT][LOW] C.Civils - Création des 60 traits species minor factions
   Les 20 prescripted minor factions de CP26 référençaient chacune 3 traits
   species custom dans leur fichier prescripted_countries/00_*.txt (Bajoran,
   Betazoid, Bolian, etc.), pour un total de 60 noms uniques. Audit : aucun
-  de ces 60 traits n'était défini nulle part — pas de fichier dans
+  de ces 60 traits n'était défini nulle part - pas de fichier dans
   common/traits/, pas de localisation. Le moteur les ignorait silencieusement,
   les pops de ces 20 races démarraient avec ZÉRO trait species effectif.
 
@@ -1567,14 +1602,14 @@ Session du 2026-05-12  —  Audit & fixes
 EN ATTENTE DE DÉCISION (non appliqué)
 ================================================================================
 
-[?] C.Borg Phase A — Décommenter borg_crisis_end_the_freed
+[?] C.Borg Phase A - Décommenter borg_crisis_end_the_freed
     Décision en attente : analyse complète disponible dans
     Mod info/CP26_BORG_CRISIS.txt.
 
 ================================================================================
 
 --------------------------------------------------------------------------------
-Session du 2026-05-10  —  Refonte complète de l'initialisation des colonies
+Session du 2026-05-10  -  Refonte complète de l'initialisation des colonies
 --------------------------------------------------------------------------------
 
 [REFACTOR][HIGH] Migration universelle : create_colony → pattern vanilla set_owner
@@ -1616,7 +1651,7 @@ Session du 2026-05-10  —  Refonte complète de l'initialisation des colonies
 
   Fichier d'audit complet : Mod info/CP26_COLONY_MIGRATION_AUDIT_2026-05-10.txt
 
-[FIX][MED] Glintara — create_pop species "romulan" échoue sur planète vide
+[FIX][MED] Glintara - create_pop species "romulan" échoue sur planète vide
   Détecté dans les logs : [effect_impl_pop.cpp:248] "Attempting to get a random
   pop species on planet Glintara with no pops".
   Cause : sans create_colony précédent, Glintara est vide quand create_glintara_colony
@@ -1639,3 +1674,75 @@ Session du 2026-05-10  —  Refonte complète de l'initialisation des colonies
     → Bug vanilla first_contact_NPC_country_types_events.txt. Non lié.
   - bitmapfont "Could not find coloring for character ' '"
     → Problème de police/localisation. Non lié.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-16 (arc Mars - nouvelles classes + arc synthétiques)
+--------------------------------------------------------------------------------
+
+[FIX][CRITICAL] Gel infini de combat - OFFICERS_MAX_FIRE_RATE_PENALTY
+  Valeur corrigée de 1.25 → 1.0 dans zz_cp26_reduced_fleet_scale_defines.txt.
+  Cause : avec 0 officiers (pirates Dreadnought/Redoubt, vaisseaux de crise),
+  le taux de tir devenait négatif → boucle infinie dans le simulateur.
+  Vanilla cap = 1.0 (zéro, jamais négatif). Validé par test joueur.
+  Doc : CP26_CRASH_FIXES.txt - FIX 11.
+
+[FIX][MED] Crash SIGFPE génération galaxie - bajoran_bajor_initializer manquant
+  Restauration de bajoran_bajor_initializer.txt sans contenu wormhole.
+  Les scénarios Alpha-Beta_medium.txt et tutorial.txt référencent cet
+  initialiseur par nom ; sa suppression causait un SIGFPE.
+  Doc : CP26_CRASH_FIXES.txt - FIX 10.
+
+[NEW][MED] Trois nouvelles classes de vaisseaux UFOP (arc Mars) - 1 tech par classe
+  - Neo-Constitution : tier 2 engineering (prérequis tech_cruiser_unlock)
+    HP 2000, fleet_slot 3, vitesse 115, croiseur léger explorateur
+  - Sagan (Stargazer) : tier 2 (prérequis tech_neo_constitution_unlock)
+    HP 2600, fleet_slot 4, vitesse 105, explorateur puissant (> Neo-Constitution)
+  - Duderstadt : tier 3 (prérequis tech_sagan_unlock)
+    HP 3200, fleet_slot 5, vitesse 95, croisière lourde avancée
+  Chaque classe : réacteurs/moteurs/computers dédiés (size_restriction),
+  section template, design par défaut, localisation FR/EN.
+  Fichiers : cp26_mars_arc_ship_sizes/section_templates/component_templates/
+             technology/global_ship_designs.txt
+
+[FIX][LOW] Correction possible_construction des 3 nouvelles classes
+  Remplacé has_starbase_building = shipyard (bâtiment inexistant) par
+  cp26_under_reduced_fleet_military_cap = yes (pattern CP26 standard).
+
+[FIX][LOW] Localisation clés ship_size manquantes
+  Ajout de neo_constitution/sagan/duderstadt (_plural) dans FR et EN.
+  Sans ces clés, le jeu affichait l'ID interne dans le menu de construction.
+
+[NEW][MED] Arc narratif : Rébellion Synthétique A500 (Utopia Planitia) [TESTING]
+  - Tech UFOP : tech_a500_synthetics (engineering tier 2, prérequis tech_alloys_1)
+  - Décision planétaire : decision_deploy_a500 (1000 énergie + 300 alliages)
+    → 3 pops, modificateur cp26_a500_installed (+2% prod, -5 stab)
+  - Arc Mars (si déployé sur Mars, arc non bloqué) :
+    cp26_a500.1 → choix flotte/science/ignorer
+    cp26_a500.2 → rébellion éclate (+30 j)
+    cp26_a500.3 → pulse mensuel : +5 dévastation OU résolution si flotte ≥1000 puissance
+    cp26_a500.10 → résolution force : shipyard Sol détruit, 4 techs vaisseaux données
+    cp26_a500.11 → résolution diplomatique : 1 tech donnée, chantier intact
+  - Désactivable depuis la popup de début de partie (has_global_flag = cp26_block_synth_arc)
+  Fichiers : events/cp26_a500_mars_arc.txt, decisions/cp26_a500_decisions.txt,
+             technology/cp26_a500_tech.txt, static_modifiers/cp26_a500_modifiers.txt
+
+[NEW][MED] Arc narratif Romulien : Projet Synth [TESTING]
+  Déclenchement : on_tech_increased dès que UFOP recherche tech_a500_synthetics.
+  - cp26_synth_rom.0 (caché) → notifie le joueur Romulien humain
+  - cp26_synth_rom.1 : fenêtre 90 jours pour envoyer spy ship sur Terre
+  - CP26_SOL_SPY_MISSION : projet spécial sur Earth (timelimit 90 j, spy ship requis)
+  - cp26_synth_rom.10 : succès → flag cp26_romulan_projet_synth_unlocked
+  - cp26_synth_rom.2 : fenêtre expirée (arc fermé définitivement)
+  Projet Synth (décision nationale) :
+  - Coût : 500 énergie + 50 influence, cooldown 2 ans
+  - Cible : planète ennemie avec pops robots, hors capitale/Terre/Mars
+  - CP26_PROJET_SYNTH : spy ship requis, 30 jours, timelimit 90 j
+  - Effets sur succès : 15% dévastation, kill toutes pops robot, cp26_synth_unrest 720j
+  - Détection UFOP : opinion_caught_spying si planète UFOP
+  Fichiers : events/cp26_romulan_synth_arc.txt, decisions/cp26_romulan_synth_decisions.txt,
+             special_projects/cp26_romulan_synth_projects.txt,
+             on_actions/zz_cp26_synth_on_actions.txt
+
+[UX][LOW] Popup début de partie : toggle arc synthétique
+  Ajout options cp26_options.1.synth_arc_on/off (activé par défaut).
+  Flag : cp26_block_synth_arc. Positionné après Supernova, avant Confirmer.

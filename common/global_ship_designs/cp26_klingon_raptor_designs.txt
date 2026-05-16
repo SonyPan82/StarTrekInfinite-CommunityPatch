@@ -1,4 +1,4 @@
-# CP26 — Klingon Raptor
+# CP26 - Klingon Raptor
 
 ship_design = {
 	name = "NAME_CP26_Klingon_Raptor"

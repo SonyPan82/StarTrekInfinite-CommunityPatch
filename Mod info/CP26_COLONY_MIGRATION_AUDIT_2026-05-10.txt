@@ -1,5 +1,5 @@
 ================================================================================
-CP26 — Audit migration colony pattern (session 2026-05-10)
+CP26 - Audit migration colony pattern (session 2026-05-10)
 Branche git : test_colony
 ================================================================================
 

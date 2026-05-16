@@ -1,0 +1,224 @@
+# Arc Romulien - Projet Synth
+#
+# Déclenché quand les UFOP recherchent tech_a500_synthetics.
+#
+# cp26_synth_rom.0  - Déclencheur caché (on_tech_increased, scope = UFOP country)
+# cp26_synth_rom.1  - Opportunité : envoyer un spy ship sur Earth (90 jours)
+# cp26_synth_rom.2  - Fenêtre fermée (expiry / déclin)
+# cp26_synth_rom.10 - Mission réussie → débloque Projet Synth
+# cp26_synth_rom.20 - Projet Synth : rébellion déclenchée avec succès
+# cp26_synth_rom.21 - Projet Synth : mission échouée (spy ship détecté)
+# cp26_synth_rom.25 - Incident diplomatique côté UFOP (cible appartient à la Fédération)
+# cp26_synth_rom.30 - Retrait du cooldown (caché)
+
+namespace = cp26_synth_rom
+
+##########################################################################
+# 0 - Déclencheur caché (on_tech_increased, scope = UFOP country)
+#     Fires quand la UFOP termine la recherche de tech_a500_synthetics.
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ufop = yes
+		last_increased_tech = tech_a500_synthetics
+	}
+
+	immediate = {
+		random_country = {
+			limit = {
+				is_romulan = yes
+				is_ai = no
+				NOT = { has_country_flag = cp26_rom_synth_arc_declined }
+				NOT = { has_country_flag = cp26_rom_synth_arc_expired }
+				NOT = { has_country_flag = cp26_rom_synth_completed }
+			}
+			country_event = { id = cp26_synth_rom.1 days = 1 }
+		}
+	}
+}
+
+##########################################################################
+# 1 - Opportunité détectée (country event, Romulien)
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.1
+	title = cp26_synth_rom.1.title
+	desc = cp26_synth_rom.1.desc
+	picture = GFX_evt_spy_mission_romulan
+	show_sound = event_bridge_decision
+	is_triggered_only = yes
+
+	trigger = {
+		is_romulan = yes
+		is_ai = no
+		NOT = { has_country_flag = cp26_rom_synth_arc_declined }
+		NOT = { has_country_flag = cp26_rom_synth_arc_expired }
+		NOT = { has_country_flag = cp26_rom_synth_completed }
+	}
+
+	immediate = {
+		random_galaxy_planet = {
+			limit = { has_planet_flag = planet_earth }
+			save_event_target_as = et_synth_earth
+		}
+	}
+
+	# Option A - Lancer la mission
+	option = {
+		name = cp26_synth_rom.1.a
+		trigger = {
+			exists = event_target:et_synth_earth
+		}
+		set_country_flag = cp26_rom_mission_active
+		hidden_effect = {
+			begin_event_chain = {
+				event_chain = "cp26_rom_spy_mission_chain"
+				target = THIS
+			}
+			event_target:et_synth_earth = {
+				add_modifier = { modifier = cp26_rom_earth_surveillance }
+			}
+		}
+		enable_special_project = {
+			name = "CP26_SOL_SPY_MISSION"
+			location = event_target:et_synth_earth
+			owner = this
+		}
+		country_event = { id = cp26_synth_rom.2 days = 90 }
+	}
+
+	# Option B - Décliner
+	option = {
+		name = cp26_synth_rom.1.b
+		set_country_flag = cp26_rom_synth_arc_declined
+	}
+}
+
+##########################################################################
+# 2 - Fenêtre fermée / expiry
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.2
+	title = cp26_synth_rom.2.title
+	desc = cp26_synth_rom.2.desc
+	picture = GFX_evt_spy_mission_romulan
+	show_sound = event_default
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_rom_synth_completed }
+	}
+
+	option = {
+		name = cp26_synth_rom.2.a
+		set_country_flag = cp26_rom_synth_arc_expired
+		remove_country_flag = cp26_rom_mission_active
+		hidden_effect = {
+			end_event_chain = cp26_rom_spy_mission_chain
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_earth }
+				remove_modifier = cp26_rom_earth_surveillance
+			}
+		}
+	}
+}
+
+##########################################################################
+# 10 - Mission réussie
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.10
+	title = cp26_synth_rom.10.title
+	desc = cp26_synth_rom.10.desc
+	picture = GFX_evt_spy_mission_romulan
+	show_sound = event_bridge_decision
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_synth_rom.10.a
+		set_country_flag = cp26_rom_synth_completed
+		set_country_flag = cp26_romulan_projet_synth_unlocked
+		remove_country_flag = cp26_rom_mission_active
+		hidden_effect = {
+			end_event_chain = cp26_rom_spy_mission_chain
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_earth }
+				remove_modifier = cp26_rom_earth_surveillance
+			}
+		}
+	}
+}
+
+##########################################################################
+# 20 - Projet Synth : rébellion déclenchée avec succès (Romulien)
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.20
+	title = cp26_synth_rom.20.title
+	desc = cp26_synth_rom.20.desc
+	picture = GFX_evt_civil_unrest_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_synth_rom.20.a
+	}
+}
+
+##########################################################################
+# 21 - Projet Synth : mission échouée
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.21
+	title = cp26_synth_rom.21.title
+	desc = cp26_synth_rom.21.desc
+	picture = GFX_evt_spy_mission_romulan
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_synth_rom.21.a
+	}
+}
+
+##########################################################################
+# 25 - Incident diplomatique côté UFOP
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.25
+	title = cp26_synth_rom.25.title
+	desc = cp26_synth_rom.25.desc
+	picture = GFX_evt_spy_mission_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_synth_rom.25.a
+		random_country = {
+			limit = { is_romulan = yes }
+			root = {
+				add_opinion_modifier = {
+					who = prev
+					modifier = opinion_spy_detected
+				}
+			}
+		}
+	}
+}
+
+##########################################################################
+# 30 - Retrait du cooldown (caché)
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = cp26_romulan_synth_cooldown
+	}
+}

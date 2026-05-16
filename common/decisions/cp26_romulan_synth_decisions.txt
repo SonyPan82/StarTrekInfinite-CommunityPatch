@@ -1,0 +1,99 @@
+##########################################################################
+# Décision nationale - Projet Synth (Romuliens uniquement)
+#
+# Disponible dans l'onglet Décisions après avoir complété la mission
+# d'espionnage sur Earth. Active une rébellion synthétique sur une
+# planète ennemie contenant des pops robotiques.
+##########################################################################
+
+decision_romulan_projet_synth = {
+	sound = event_administrative_work
+	icon = decision_cybernetics
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+			influence = 50
+		}
+	}
+
+	potential = {
+		is_romulan = yes
+		has_country_flag = cp26_romulan_projet_synth_unlocked
+		NOT = { has_country_flag = cp26_romulan_synth_cooldown }
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = cp26_romulan_projet_synth_no_spy
+			any_owned_fleet = {
+				is_ship_class = shipclass_spy_ship
+			}
+		}
+		custom_tooltip = {
+			fail_text = cp26_romulan_projet_synth_no_target
+			any_galaxy_planet = {
+				exists = owner
+				owner = { NOT = { is_same_value = root } }
+				NOT = { is_capital = yes }
+				NOT = { has_planet_flag = planet_earth }
+				NOT = { has_planet_flag = planet_mars }
+				any_owned_pop = { species = { species_class = "CP26_A500" } }
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				any_galaxy_planet = {
+					exists = owner
+					owner = { is_ufop = yes }
+					NOT = { is_capital = yes }
+					NOT = { has_planet_flag = planet_earth }
+					NOT = { has_planet_flag = planet_mars }
+					any_owned_pop = { species = { species_class = "CP26_A500" } }
+				}
+			}
+			random_galaxy_planet = {
+				limit = {
+					exists = owner
+					owner = { is_ufop = yes }
+					NOT = { is_capital = yes }
+					NOT = { has_planet_flag = planet_earth }
+					NOT = { has_planet_flag = planet_mars }
+					any_owned_pop = { species = { species_class = "CP26_A500" } }
+				}
+				save_event_target_as = et_synth_target
+			}
+		}
+		else = {
+			random_galaxy_planet = {
+				limit = {
+					exists = owner
+					owner = { NOT = { is_same_value = root } }
+					NOT = { is_capital = yes }
+					NOT = { has_planet_flag = planet_earth }
+					NOT = { has_planet_flag = planet_mars }
+					any_owned_pop = { species = { species_class = "CP26_A500" } }
+				}
+				save_event_target_as = et_synth_target
+			}
+		}
+		if = {
+			limit = { exists = event_target:et_synth_target }
+			enable_special_project = {
+				name = "CP26_PROJET_SYNTH"
+				location = event_target:et_synth_target
+				owner = root
+			}
+		}
+		set_country_flag = cp26_romulan_synth_cooldown
+		country_event = { id = cp26_synth_rom.30 days = 720 }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

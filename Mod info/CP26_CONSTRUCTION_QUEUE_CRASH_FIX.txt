@@ -1,4 +1,4 @@
-CP26 CONSTRUCTION QUEUE CRASH FIX — 2026-05-10
+CP26 CONSTRUCTION QUEUE CRASH FIX - 2026-05-10
 ==============================================
 
 Contexte :
@@ -9,7 +9,7 @@ Contexte :
 
 
 =============================================================================
-PHASE 1 — Système d'upgrade différé des capitaux (J+3)
+PHASE 1 - Système d'upgrade différé des capitaux (J+3)
 =============================================================================
 
 FICHIERS MODIFIES :
@@ -24,7 +24,7 @@ FICHIERS MODIFIES :
   common/solar_system_initializers/romulan/romulan_glintara_initializer.txt (+1 flag)
 
 OBJECTIF :
-  Les fixes 1–7 retiraient le pattern dangereux remove_building/add_building
+  Les fixes 1-7 retiraient le pattern dangereux remove_building/add_building
   immédiat, ce qui laissait certaines colonies avec un building_colony_shelter
   (Colony Shelter) au lieu d'un building_capital (Planetary Capital). Cela
   créait un handicap involontaire pour les factions concernées.
@@ -59,7 +59,7 @@ IMPACT GAMEPLAY :
 
 
 =============================================================================
-FIX 1 — Luna (correction du pattern building_colony_shelter)
+FIX 1 - Luna (correction du pattern building_colony_shelter)
 =============================================================================
 
 FICHIERS MODIFIES :
@@ -86,7 +86,7 @@ IMPACT GAMEPLAY :
 
 
 =============================================================================
-FIX 2 — Mars (retrait du pattern building_colony_shelter → building_capital)
+FIX 2 - Mars (retrait du pattern building_colony_shelter → building_capital)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -113,7 +113,7 @@ IMPACT GAMEPLAY :
 
 
 =============================================================================
-FIX 3 — Romulus & Qonos (create_pop species = random → owner_main_species)
+FIX 3 - Romulus & Qonos (create_pop species = random → owner_main_species)
 =============================================================================
 
 FICHIERS MODIFIES :
@@ -140,7 +140,7 @@ IMPACT GAMEPLAY :
 
 
 =============================================================================
-FIX 4 — Bajor (suppression du create_colony doublon sur home_planet)
+FIX 4 - Bajor (suppression du create_colony doublon sur home_planet)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -163,7 +163,7 @@ IMPACT GAMEPLAY :
 
 
 =============================================================================
-FIX 5 — Factions mineures (retrait du pattern building_colony_shelter)
+FIX 5 - Factions mineures (retrait du pattern building_colony_shelter)
 =============================================================================
 
 FICHIERS MODIFIES :
@@ -197,7 +197,7 @@ IMPACT GAMEPLAY :
 
 
 =============================================================================
-FIX 6 — Denobula (retrait du pattern building_colony_shelter)
+FIX 6 - Denobula (retrait du pattern building_colony_shelter)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -219,7 +219,7 @@ IMPACT GAMEPLAY :
 
 
 =============================================================================
-FIX 7 — Glintara (retrait du building_capital doublon)
+FIX 7 - Glintara (retrait du building_capital doublon)
 =============================================================================
 
 FICHIERS MODIFIES :

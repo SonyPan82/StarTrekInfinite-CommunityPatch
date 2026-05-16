@@ -1,0 +1,84 @@
+##########################################################################
+# Projet Synth - Projets spéciaux Romuliens
+#
+# CP26_SOL_SPY_MISSION : espionnage d'Earth (délai 90 jours)
+# CP26_PROJET_SYNTH    : déclencher une rébellion synthétique (délai 90 jours)
+##########################################################################
+
+# Mission d'espionnage sur Earth
+# Scope: THIS = Earth planet, OWNER = Romulan country
+special_project = {
+	key = "CP26_SOL_SPY_MISSION"
+	cost = 0
+	days_to_research = 30
+	timelimit = 90
+
+	picture = GFX_evt_spy_mission_romulan
+	picture = GFX_evt_orbital_research_barren_world
+
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_spy_ship = 1
+	}
+
+	on_success = {
+		if = {
+			limit = { exists = OWNER }
+			OWNER = { country_event = { id = cp26_synth_rom.10 } }
+		}
+	}
+
+	on_fail = {
+		if = {
+			limit = { exists = OWNER }
+			OWNER = { country_event = { id = cp26_synth_rom.2 } }
+		}
+	}
+}
+
+# Projet Synth - rébellion synthétique à distance
+# Scope: THIS = target planet, OWNER = Romulan country
+special_project = {
+	key = "CP26_PROJET_SYNTH"
+	cost = 0
+	days_to_research = 30
+	timelimit = 90
+
+	picture = GFX_evt_spy_mission_romulan
+	picture = GFX_evt_machine_space_battle
+
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_spy_ship = 1
+	}
+
+	on_success = {
+		if = {
+			limit = { exists = OWNER }
+			THIS = {
+				add_planet_devastation = 15
+				every_owned_pop = {
+					limit = { is_robot_pop = yes }
+					kill_pop = yes
+				}
+				add_modifier = { modifier = cp26_synth_unrest days = 720 }
+				if = {
+					limit = { owner = { is_ufop = yes } }
+					owner = { country_event = { id = cp26_synth_rom.25 } }
+				}
+			}
+			OWNER = { country_event = { id = cp26_synth_rom.20 } }
+		}
+	}
+
+	on_fail = {
+		if = {
+			limit = { exists = OWNER }
+			OWNER = { country_event = { id = cp26_synth_rom.21 } }
+		}
+	}
+}

@@ -1,0 +1,51 @@
+# Initialisation A500 - game start
+#
+# cp26_a500_init.1  - Pose les flags globaux par défaut (fire_only_once)
+# cp26_a500_init.2  - Crée l'espèce A500 pour le joueur UFOP
+
+namespace = cp26_a500_init
+
+##########################################################################
+# 1 - Flags par défaut (fire_only_once, premier pays qui le déclenche)
+##########################################################################
+country_event = {
+	id = cp26_a500_init.1
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# Arc synthétique désactivé par défaut
+		set_global_flag = cp26_block_synth_arc
+	}
+}
+
+##########################################################################
+# 2 - Création de l'espèce A500 (uniquement pour le joueur UFOP)
+##########################################################################
+country_event = {
+	id = cp26_a500_init.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ufop = yes
+		is_ai = no
+	}
+
+	immediate = {
+		create_species = {
+			class = "CP26_A500"
+			portrait = "hum_robot_red"
+			name = "A500"
+			plural = "A500"
+			adjective = "A500"
+			name_list = "MACHINE1_SC"
+			traits = {
+				trait = "trait_a500_efficient_processors"
+				trait = "trait_a500_synthetic_body"
+				trait = "trait_a500_networked"
+			}
+		}
+	}
+}

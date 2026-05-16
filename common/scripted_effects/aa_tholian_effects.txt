@@ -27,7 +27,7 @@ setup_tholian_capital = {
 		limit = {
 			exists = event_target:tholian_country
 		}
-		# CP26 — Tholian combat doctrine : superior energy shields, fragile hulls.
+		# CP26 - Tholian combat doctrine : superior energy shields, fragile hulls.
 		event_target:tholian_country = {
 			if = {
 				limit = { NOT = { has_modifier = cp26_minor_tholian_combat_doctrine } }

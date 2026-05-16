@@ -713,7 +713,7 @@ country_event = {
 		custom_tooltip = mission.25.d.tt
 	}
 
-	# CP26 — Talarian and other « major » minors use this mission chain but are not
+	# CP26 - Talarian and other « major » minors use this mission chain but are not
 	# UFOP/Klingon/Romulan/Cardassian; without this option the event has no valid choice for AI.
 	option = {
 		trigger = {
@@ -3401,7 +3401,7 @@ country_event = {
 				NOR = {
 					is_same_value = event_target:minor_state_event_country
 				}
-				# CP26: do not reference minor_state_event_country_3rd_party here — it is often
+				# CP26: do not reference minor_state_event_country_3rd_party here - it is often
 				# never saved, which logs "Undefined event target" and breaks the limit.
 			}
 			save_event_target_as = minor_state_event_country_4th_party
@@ -7555,7 +7555,7 @@ country_event = {
 		}
 	}
 
-	### Non–great-power majors (and edge cases): acknowledge outcome and clear flags.
+	### Non-great-power majors (and edge cases): acknowledge outcome and clear flags.
 	option = {
 		trigger = {
 			NOR = {

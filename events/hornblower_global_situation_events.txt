@@ -97,7 +97,7 @@ country_event = {
 		# CP26 FIX: save war_situation_scope at the after-block level so it is
 		# accessible in the every_country block below (outside hidden_effect).
 		# In Infinite, event targets saved inside hidden_effect do not persist
-		# into sibling blocks — saving it here ensures line 175 can use it.
+		# into sibling blocks - saving it here ensures line 175 can use it.
 		last_created_situation = {
 			save_event_target_as = war_situation_scope
 		}

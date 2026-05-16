@@ -1,44 +1,81 @@
 ########################################################
+##########   ARCS NARRATIFS - EN COURS / TESTING  #####
+########################################################
+
+[TESTING] Arc Synthétique A500 - Rébellion d'Utopia Planitia (UFOP)
+  Déployé en 2026-05-16. Désactivable dans la popup de début de partie.
+  - Décision planétaire deploy_a500 → rébellion sur Mars → résolution flotte/science
+  - Récompense : plans Neo-Constitution, Sagan, Duderstadt, Odyssey
+  À valider / améliorer :
+  - Visuels événements (images plus spécifiques à ST:Picard / Utopia Planitia)
+  - Équilibrage : durée de la boucle de dévastation, seuil de puissance flotte
+  - Décision purge des A500 post-arc (non encore implémentée)
+
+[TESTING] Projet Synth - Arc Romulien (Espionnage + Sabotage Synthétique)
+  Déployé en 2026-05-16.
+  - Déclenché quand UFOP recherche tech_a500_synthetics
+  - Mission spy ship sur Terre (90 jours) → débloque Projet Synth
+  - Projet Synth : rébellion synthétique sur planète ennemie (hors capitale/Terre/Mars)
+  À valider / améliorer :
+  - Sélection de cible par le joueur (actuellement automatique / priorité UFOP)
+  - Équilibrage coût et cooldown
+  - Conséquences diplomatiques enrichies (pas seulement opinion_caught_spying)
+
+########################################################
+##########   NOUVELLES CLASSES DE VAISSEAUX UFOP  #####
+########################################################
+
+[FAIT] Neo-Constitution - tech_neo_constitution_unlock (tier 2, prérequis cruiser)
+[FAIT] Sagan (Stargazer) - tech_sagan_unlock (tier 2, prérequis Neo-Constitution)
+[FAIT] Duderstadt - tech_duderstadt_unlock (tier 3, prérequis Sagan)
+  → GFX à améliorer (modèles STI actuels, pas de textures custom CP26)
+  → Données données via arc A500 (résolution force) ou tech tree standard
+
+########################################################
 ##########        QUESTS, MISSION TREES    #############
 ########################################################
-- Federation FLagship customization event chains (D - E - F) 
-- Romulan Flagship customization event chains (? - ? - ?)
-- Cardassian Flagship customization event chains (? - ? - ?)
-- Romulan-federation Neutral zone events
-- Cardassian-Federation Border wars event
-- Carsassian-federation border wars missions
-- Iconia event chain ( like suppr steam game, what is the name of?)
+
+- Federation Flagship customization event chains (D - E - F)
+- Romulan Flagship customization event chains
+- Cardassian Flagship customization event chains
+- Romulan-Federation Neutral Zone events
+- Cardassian-Federation Border Wars event chain + missions
+- Iconia event chain (voir : Stellaris "Shard" dragon analogue ?)
 
 ########################################################
-##########        FIXES                    #############
+##########        EMPIRES / FACTIONS       #############
 ########################################################
 
-########################################################
-##########        Empires                  #############
-########################################################
-- Add dominion (A2)
+- Améliorer comportement IA Gorn (agressivité + expansion)
+- Équilibrer IA Klingon (offensives plus réalistes)
 
 ########################################################
-##########        Canon Locations           ############
-########################################################
-- Improve Galaxy size (if it’s possible)
-- Add canon equivalent systems for added empires 
-- Bajoran wormhole (A2)
-
-
-########################################################
-##########        Canon Megastructure       ############
-########################################################
-- Utopia Planitia
-
-
-
-
-########################################################
-##########        NOTES         #############
+##########        CANON LOCATIONS          #############
 ########################################################
 
-(A1) Events : after obtaining the citadelle expansion, propose (or unlock megastructure) building Fleet Museum in orbit of Athan Prime. Fleet Museum improve fleet capacity. (Same is needed for other empires) 
+- Améliorer taille de la galaxie si possible (actuellement ~600 ly)
+- Systèmes canoniques pour empires manquants
+- Bajoran Wormhole (A2) - téléportation vers système inaccessible en warp
 
-(A2) Bajoran wormhole teleport the player at an another star system location, unacessbile via wrap if this creation is possible , same as stellaris the system outdoor the galaxy. 
+########################################################
+##########        CANON MEGASTRUCTURES     #############
+########################################################
 
+- Fleet Museum (orbit Athan Prime) → bonus capacité de flotte (A1)
+- Utopia Planitia : mégastructure de chantier orbital (maintenant partiellement
+  adressé via l'arc A500 qui détruit les chantiers, mais pas comme mégastructure)
+
+########################################################
+##########        NOTES                    #############
+########################################################
+
+(A1) Events : after obtaining the citadel expansion, propose (or unlock megastructure)
+     building Fleet Museum in orbit of Athan Prime. Fleet Museum improves fleet
+     capacity. (Same needed for other empires)
+
+(A2) Bajoran wormhole teleports the player to a star system inaccessible by warp -
+     same concept as systems outside the galaxy boundary in vanilla Stellaris.
+
+(Dominion) Supprimé de la roadmap active. Les événements Dominion existants
+     (threat arc, wormhole arc) ont été retirés en 2026-05-15 pour stabilité.
+     Possibilité de ré-implémenter dans une version future si la performance le permet.

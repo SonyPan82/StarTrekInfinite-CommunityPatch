@@ -1,5 +1,5 @@
 ================================================================================
-  CP26 — WARP MOVEMENT & TRAVEL SPEED DESIGN / Date : 2026-05-10
+  CP26 - WARP MOVEMENT & TRAVEL SPEED DESIGN / Date : 2026-05-10
 
 Ce document explique deux interventions distinctes sur le système de déplacement
 warp en STI : le bypass de la limite de portée pour les vaisseaux non-militaires,
@@ -7,11 +7,11 @@ et la refonte de l'échelle temporelle du voyage warp via la tech tree.
 
 
 ════════════════════════════════════════════════════════════════════════════════
-  PARTIE 1 — BYPASS DE LA LIMITE DE PORTÉE WARP
+  PARTIE 1 - BYPASS DE LA LIMITE DE PORTÉE WARP
 ════════════════════════════════════════════════════════════════════════════════
 
 ────────────────────────────────────────────────────────────────────────────────
-  1.1  Contexte — le problème vanilla
+  1.1  Contexte - le problème vanilla
 ────────────────────────────────────────────────────────────────────────────────
 
 En vanilla STI, les vaisseaux de chaque empire ne peuvent voyager que dans un
@@ -25,7 +25,7 @@ de partie (empire compact, réseau de bases pas encore construit) et incohérent
 avec Star Trek (un vaisseau warp peut aller n'importe où).
 
 De plus, le moteur dessine en permanence une bulle de portée autour de chaque
-starbase sélectionnée — affichage redondant et visuellement parasite dès lors
+starbase sélectionnée - affichage redondant et visuellement parasite dès lors
 que CP26 a déjà donné `ignores_warp_range = yes` à tous les vaisseaux jouables.
 
 
@@ -35,7 +35,7 @@ que CP26 a déjà donné `ignores_warp_range = yes` à tous les vaisseaux jouabl
 
 CP26 a résolu ce problème sur plusieurs niveaux :
 
-  (A) Country type — tous les empires par défaut
+  (A) Country type - tous les empires par défaut
   ──────────────────────────────────────────────
   Fichier : common/country_types/zz_cp26_default_country_type.txt
 
@@ -45,14 +45,14 @@ CP26 a résolu ce problème sur plusieurs niveaux :
     }
 
   Ceci s'applique à TOUS les ships de tout empire de type "default", ce qui
-  couvre militaires, scientifiques, colons, transports — à la volée, sans
+  couvre militaires, scientifiques, colons, transports - à la volée, sans
   toucher aux ship_size individuels.
 
   Étape historique : le define avait été augmenté à 60 (+27% vs vanilla) pour
   les cas où la propriété country_type ne suffisait pas. Voir 1.4 ci-dessous
   pour l'étape finale qui le ramène à 0.
 
-  (B) California class — redéfinie dans CP26
+  (B) California class - redéfinie dans CP26
   ──────────────────────────────────────────
   Fichier : common/ship_sizes/cp26_california_ship_sizes.txt
 
@@ -67,10 +67,10 @@ CP26 a résolu ce problème sur plusieurs niveaux :
 
     voyager_hero = { ignores_warp_range = yes ... }
 
-  Voyager est le seul vaisseau héros qui explore hors des frontières connues —
+  Voyager est le seul vaisseau héros qui explore hors des frontières connues -
   logique narrative de l'avoir libre de toute limite de portée.
 
-  (D) Vaisseaux de transport de troupes — override CP26
+  (D) Vaisseaux de transport de troupes - override CP26
   ──────────────────────────────────────────────────────
   Fichier : common/ship_sizes/zz_cp26_transport_sizes.txt  (nouveau)
 
@@ -103,14 +103,14 @@ Les transports ne doivent pas avoir ignores_borders pour deux raisons :
   1. Cohérence gameplay : un empire ne laisse pas passer des troupes ennemies
      en territoire souverain. Les frontières fermées font sens pour les armées.
   2. Cohérence avec les militaires : les flottes de combat respectent les
-     frontières — les flottes de transport doivent avoir le même comportement.
+     frontières - les flottes de transport doivent avoir le même comportement.
 
 Le spy ship est un cas particulier (rôle d'infiltration = traversée clandestine).
 Les transports ne sont pas des agents clandestins.
 
 
 ────────────────────────────────────────────────────────────────────────────────
-  1.4  OUTPOST_WARP_RANGE_RADIUS = 0 — suppression de la bulle de portée
+  1.4  OUTPOST_WARP_RANGE_RADIUS = 0 - suppression de la bulle de portée
 ────────────────────────────────────────────────────────────────────────────────
 
   CONTEXTE
@@ -167,11 +167,11 @@ Les transports ne sont pas des agents clandestins.
 
 
 ════════════════════════════════════════════════════════════════════════════════
-  PARTIE 2 — REFONTE DE L'ÉCHELLE TEMPORELLE DU VOYAGE WARP
+  PARTIE 2 - REFONTE DE L'ÉCHELLE TEMPORELLE DU VOYAGE WARP
 ════════════════════════════════════════════════════════════════════════════════
 
 ────────────────────────────────────────────────────────────────────────────────
-  2.1  Contexte — le problème vanilla
+  2.1  Contexte - le problème vanilla
 ────────────────────────────────────────────────────────────────────────────────
 
 En vanilla STI, les voyages intersidéraux sont rapides. La galaxie paraît petite,
@@ -186,7 +186,7 @@ multiplie cette valeur (base 1.0 = 100%).
 
 
 ────────────────────────────────────────────────────────────────────────────────
-  2.2  Vanilla vs CP26 — comparaison des tech tree warp
+  2.2  Vanilla vs CP26 - comparaison des tech tree warp
 ────────────────────────────────────────────────────────────────────────────────
 
   VANILLA

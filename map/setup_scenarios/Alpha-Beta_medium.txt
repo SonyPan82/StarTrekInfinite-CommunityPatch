@@ -6,7 +6,7 @@ bespoke_procedural_scenario = {
 
 	# Everything below this line should be copied to tutorial.txt
 	num_stars = 1000
-	# CP26 — radius MUST stay <= 500 (engine hard limit, see Stellaris wiki:
+	# CP26 - radius MUST stay <= 500 (engine hard limit, see Stellaris wiki:
 	# "the map is a box 1000x1000x10, from -500 to 500"). Going above 500
 	# (was 570) caused random access-violation / SIGSEGV crashes in
 	# CConstructionQueueManager::DailyUpdate and CSaveGameTaskManager::
@@ -1350,7 +1350,7 @@ bespoke_procedural_scenario = {
 	# 	camera_limit_min_pitch = 40
 	# 	camera_limit_max_pitch = 85
 	# }
-	# CP26 — camera_limit_max_y bumped on every step so the southernmost
+	# CP26 - camera_limit_max_y bumped on every step so the southernmost
 	# systems (Y up to 404 in the current layout) stay reachable at any
 	# zoom level. Previous values capped at 281-358 made every system
 	# south of Y=281 unclickable when zoomed out.

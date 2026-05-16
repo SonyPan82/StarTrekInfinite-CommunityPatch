@@ -1,6 +1,6 @@
-CP26 — DOMINION THREAT SYSTEM: PHASES 3-5 + FINS
+CP26 - DOMINION THREAT SYSTEM: PHASES 3-5 + FINS
 =================================================
-Document de conception — à implémenter plus tard.
+Document de conception - à implémenter plus tard.
 Phases 1-2 déjà codées (mais désactivées) dans :
   events/zz_cp26_dominion_threat_events.txt
   common/special_projects/zz_cp26_dominion_threat_projects.txt
@@ -20,7 +20,7 @@ POUR ACTIVER PHASES 1-2 QUAND PRÊT
 
 
 ================================================================
-PHASE 3 — INFILTRATION CHANGELING  (DTL 40-60)
+PHASE 3 - INFILTRATION CHANGELING  (DTL 40-60)
 ================================================================
 
 DÉCLENCHEUR
@@ -36,7 +36,7 @@ Stocké comme variable "cp26_changeling_infiltration" sur le pays Dominion (0-10
 
 Effets possibles selon niveau d'infiltration :
   - Sabotage d'une station (malus économique sur planète aléatoire)
-  - Faux ordres militaires (flotte du joueur déplacée — difficile à implementer, simuler via event)
+  - Faux ordres militaires (flotte du joueur déplacée - difficile à implementer, simuler via event)
   - Désactivation de boucliers (malus défense planète)
   - Assassinat politique (leader aléatoire retiré)
   - Traités sabotés (malus opinion vers un allié)
@@ -45,7 +45,7 @@ Génère un événement "incident suspect" aléatoire chaque 2-3 ans tant que
 l'infiltration n'est pas réduite.
 
 
-EVENT .500 — INTRODUCTION PHASE 3 (flavor)
+EVENT .500 - INTRODUCTION PHASE 3 (flavor)
 -------------------------------------------
 "Des anomalies dans les rapports de commandement. Un officier supérieur
 s'est comporté de façon incohérente. Les services de renseignement
@@ -54,24 +54,24 @@ soupçonnent une présence étrangère dans nos structures de pouvoir."
   → ok → fire .510 après 60 jours
 
 
-EVENT .510 — PARANOÏA (choix principal + ship requis)
+EVENT .510 - PARANOÏA (choix principal + ship requis)
 ------------------------------------------------------
 "Le niveau d'infiltration Changeling dans nos systèmes est inconnu.
 Trois options sont sur la table."
 
-CHOIX A — Tests sanguins obligatoires (aucun ship requis, effet immédiat)
+CHOIX A - Tests sanguins obligatoires (aucun ship requis, effet immédiat)
   - Réduit infiltration (changeling_infiltration -3)
   - Malus moral/unité (-unity mensuelle)
   - Malus stabilité planètes
   - DTL -3 (les Changelings sont découverts, reculent temporairement)
   → fire .511 après 30 jours (résultat des tests)
 
-CHOIX B — Préserver les libertés civiles (aucun ship requis)
+CHOIX B - Préserver les libertés civiles (aucun ship requis)
   - Infiltration augmente (+3)
   - Malus science (sabotages discrets)
   - DTL +5 (Dominion profite de l'ouverture)
 
-CHOIX C — Utiliser Section 31 (vaisseau espion requis / ou influence cost)
+CHOIX C - Utiliser Section 31 (vaisseau espion requis / ou influence cost)
   Mécanique : coût influence élevé (300-500) + flag cp26_section31_active
   - Débloque opérations secrètes contre le Dominion
   - Sabotage Dominion : DTL -8
@@ -80,38 +80,38 @@ CHOIX C — Utiliser Section 31 (vaisseau espion requis / ou influence cost)
   → fire .512 après 45 jours
 
 
-EVENT .511 — RÉSULTAT DES TESTS SANGUINS
+EVENT .511 - RÉSULTAT DES TESTS SANGUINS
 -----------------------------------------
 "Les tests ont révélé [N] imposteurs dans nos rangs."
 
-CHOIX A — Emprisonner et interroger
+CHOIX A - Emprisonner et interroger
   - Intelligence bonus (physique/société)
   - DTL -2 supplémentaire
 
-CHOIX B — Exécuter discrètement
+CHOIX B - Exécuter discrètement
   - Infiltration -2 supplémentaire
   - Risque : si un innocet était parmi eux → moral -
 
 
-EVENT .512 — RAPPORT SECTION 31
+EVENT .512 - RAPPORT SECTION 31
 ---------------------------------
 "Nos agents ont infiltré les réseaux Changeling. Les résultats sont..."
 
-CHOIX A — Succès complet
+CHOIX A - Succès complet
   - DTL -10, infiltration -5
   - Bonus influence
 
-CHOIX B — Succès partiel avec fuite
+CHOIX B - Succès partiel avec fuite
   - DTL -5, infiltration -2
   - Dominion désormais au courant → DTL +3 retour
 
 
-EVENT .520 — INCIDENT CHANGELING (se répète tant qu'infiltration > 3)
+EVENT .520 - INCIDENT CHANGELING (se répète tant qu'infiltration > 3)
 -----------------------------------------------------------------------
 Fires aléatoirement (yearly, 20% chance) si cp26_changeling_infiltration > 3
 
 Exemple de random_list d'effets :
-  25% : "Un conseiller militaire était un Changeling — ordres falsifiés"
+  25% : "Un conseiller militaire était un Changeling - ordres falsifiés"
          → malus unité -100, une flotte déplacée (simulé)
   25% : "Sabotage d'une station orbitale"
          → malus économique planète aléatoire (-energy -50)
@@ -126,7 +126,7 @@ SHIP REQUIS pour répondre : ship_event ou special project "CP26_CHANGELING_HUNT
 
 
 ================================================================
-PHASE 4 — ALLIANCE CARDASSIA / DOMINION  (DTL 60-80)
+PHASE 4 - ALLIANCE CARDASSIA / DOMINION  (DTL 60-80)
 ================================================================
 
 DÉCLENCHEUR
@@ -146,25 +146,25 @@ La probabilité est réduite si :
   - Cardassia a un allié fort
 
 
-EVENT .600 — AVERTISSEMENT (flavor)
+EVENT .600 - AVERTISSEMENT (flavor)
 -------------------------------------
 "Des délégués Cardassiens ont été vus en réunion secrète avec des
 représentants inconnus proches de la frontière Bajoran."
 
-CHOIX A — Envoyer un vaisseau espion (special project à un système frontalier)
+CHOIX A - Envoyer un vaisseau espion (special project à un système frontalier)
   - Ship requis : science ship (espionnage)
   - Durée 60 jours → révèle si alliance en cours
   → Si oui : fire .610, DTL +3
   → Si non : false alarm, petite récompense renseignement
 
-CHOIX B — Approcher Cardassia diplomatiquement
+CHOIX B - Approcher Cardassia diplomatiquement
   - Coût influence 200
   - Opinion Cardassia +30
   - Réduit probabilité alliance
   - DTL -2
 
 
-EVENT .610 — CARDASSIA REJOINT LE DOMINION
+EVENT .610 - CARDASSIA REJOINT LE DOMINION
 -------------------------------------------
 "Le préfet de Cardassia Prime a annoncé un traité de protection mutuelle
 avec le Dominion. Les forces Jem'Hadar sont maintenant stationnées dans
@@ -177,31 +177,31 @@ Effets :
   - Spawn d'une flotte Dominion dans l'espace Cardassien (simulation)
   - Fire événements de crise pour tous les empires (if possible)
 
-CHOIX A — Préparer la guerre
+CHOIX A - Préparer la guerre
   - Bonus militaire (unity +, naval cap +)
   - DTL inchangé
 
-CHOIX B — Proposer une médiation d'urgence
+CHOIX B - Proposer une médiation d'urgence
   - Coût influence 400
   - Chance 30% de retarder l'alliance de 5 ans
 
 
-EVENT .620 — CRISE POLITIQUE INTERNE  (déclenché par l'alliance)
+EVENT .620 - CRISE POLITIQUE INTERNE  (déclenché par l'alliance)
 -----------------------------------------------------------------
 Fires pour empires qui ont des traités avec Cardassia.
 "L'alliance Cardassienne avec le Dominion force nos gouvernements à choisir."
 
-CHOIX A — Rompre les traités avec Cardassia
+CHOIX A - Rompre les traités avec Cardassia
   - DTL -3 (signal de résistance)
   - Perte de resources commerciales
 
-CHOIX B — Maintenir des relations neutres
+CHOIX B - Maintenir des relations neutres
   - DTL +5
   - Cardassia utilise la neutralité pour passer des ressources au Dominion
 
 
 ================================================================
-PHASE 5 — GUERRE DU DOMINION  (DTL 80-100)
+PHASE 5 - GUERRE DU DOMINION  (DTL 80-100)
 ================================================================
 
 DÉCLENCHEUR
@@ -213,44 +213,44 @@ SYSTÈME D'INVASION PROGRESSIVE
 --------------------------------
 
 DTL 80-89 : Escarmouches et raids
-  EVENT .700 — "Flotte Dominion détectée à la frontière"
+  EVENT .700 - "Flotte Dominion détectée à la frontière"
   Spawn : cp26_spawn_jem_hadar_patrol (0.03 naval cap)
   Fires every 2-3 years
 
 DTL 90-99 : Attaques de systèmes
-  EVENT .710 — "Attaque en force sur [système]"
+  EVENT .710 - "Attaque en force sur [système]"
   Spawn : create_fleet_from_naval_cap = 0.07 sur un système frontalier
   Choice : défendre (unité +, DTL -2) ou évacuer (DTL +5)
 
 DTL 100 : Invasion totale
-  EVENT .720 — GUERRE TOTALE (voir ci-dessous)
+  EVENT .720 - GUERRE TOTALE (voir ci-dessous)
 
 
-EVENT .720 — ATTAQUE DE DS9 (DTL 100, once)
+EVENT .720 - ATTAQUE DE DS9 (DTL 100, once)
 --------------------------------------------
 "Une armada Dominion approche du système Bajoran.
 Deep Space 9 est directement menacée."
 
-CHOIX A — Défendre la station (ship requis : flotte militaire dans le système Bajoran)
+CHOIX A - Défendre la station (ship requis : flotte militaire dans le système Bajoran)
   Special project CP26_DS9_DEFENSE
   - Vaisseau militaire requis (représente la flotte de défense)
   - Durée 30 jours (bataille simulée)
   - on_success (50%) : DS9 tient → big unity bonus, DTL -10
   - on_fail / random 50% : DS9 subit des dommages → malus économique
 
-CHOIX B — Évacuer DS9
+CHOIX B - Évacuer DS9
   - DS9 "capturée" (global flag cp26_ds9_captured)
   - Flotte préservée
   - Grosse perte unité et influence
   - DTL +8
 
-CHOIX C — Miner le wormhole (décision irréversible)
+CHOIX C - Miner le wormhole (décision irréversible)
   - Coupe les renforts Dominion → DTL figé, ne monte plus
   - Déclenche offensive immédiate massive (spawn grande flotte)
   - Bajor très mécontent
 
 
-EVENT .730 — INTERVENTION DES PROPHÈTES (condition : DTL = 100 + wormhole non miné)
+EVENT .730 - INTERVENTION DES PROPHÈTES (condition : DTL = 100 + wormhole non miné)
 -------------------------------------------------------------------------------------
 Fires aléatoirement (20% chance/year) si cp26_phase6_prophets_possible est actif
 (flag posé si Bajor a une bonne opinion ou si joueur a "fait confiance aux Prophètes"
@@ -259,13 +259,13 @@ dans des événements antérieurs)
 "Une vision. La Sphère de l'Orbe pulse dans la station. L'Émissaire ressent
 la présence des Prophètes dans le wormhole."
 
-CHOIX A — Faire confiance aux Prophètes
+CHOIX A - Faire confiance aux Prophètes
   - Flotte Dominion détruite (kill_fleet ou remove_fleet sur la flotte spawn la plus récente)
   - DTL -20
   - Bajor: grande récompense d'opinion
   - Event .731 : "La flotte du Dominion a disparu dans le wormhole..."
 
-CHOIX B — Refuser l'aide religieuse
+CHOIX B - Refuser l'aide religieuse
   - Gameplay purement militaire
   - DTL inchangé
   - Bajor mécontent
@@ -275,7 +275,7 @@ CHOIX B — Refuser l'aide religieuse
 FINS POSSIBLES
 ================================================================
 
-FIN 1 — VICTOIRE ALLIANCE
+FIN 1 - VICTOIRE ALLIANCE
 --------------------------
 Condition : DTL redescend sous 20 (via choices cumulées) + DS9 survit
 Event unique .800
@@ -290,7 +290,7 @@ Effets :
   - Trêve : wormhole "scellé diplomatiquement" pour 20 ans (flag timed)
 
 
-FIN 2 — VICTOIRE DOMINION
+FIN 2 - VICTOIRE DOMINION
 --------------------------
 Condition : DTL reste à 100 pendant 10 ans + DS9 capturée
 Event unique .810
@@ -304,7 +304,7 @@ Effets :
   - Peut déclencher une mécanique de "résistance" (events rebelles)
 
 
-FIN 3 — FIN CANON DS9 (conditions multiples requises)
+FIN 3 - FIN CANON DS9 (conditions multiples requises)
 ------------------------------------------------------
 Conditions :
   - cp26_cardassia_dominion_ally actif
@@ -316,11 +316,11 @@ Event unique .820
 "Des informations en provenance de Cardassia Prime : une révolte interne.
 Les Cardassiens se battent contre leurs occupants Dominion."
 
-CHOIX A — Soutenir la révolte Cardassienne
+CHOIX A - Soutenir la révolte Cardassienne
   - Spawn "résistance cardassienne" (flotte amie apparaît)
   - DTL -15
 
-CHOIX B — Négocier via Odo
+CHOIX B - Négocier via Odo
   (si le joueur a interagi positivement avec Bajor/Changelings)
   - Odo négocie la reddition des Fondateurs
   - DTL = 0
@@ -369,7 +369,7 @@ RETOUR DES ICONIENS
 
 
 ================================================================
-ARCHITECTURE TECHNIQUE — POUR ACTIVATION FUTURE
+ARCHITECTURE TECHNIQUE - POUR ACTIVATION FUTURE
 ================================================================
 
 Variables à initialiser sur le pays Dominion :
@@ -414,7 +414,7 @@ IDs événements réservés :
   .1-.99    : Yearly ticks et infra
   .100-.199 : Phase 1
   .200-.299 : Phase 1 outcomes
-  .300-.399 : (libre — peut servir Phase 1 expéditions répétées)
+  .300-.399 : (libre - peut servir Phase 1 expéditions répétées)
   .400-.499 : Phase 2
   .500-.599 : Phase 3 (Changeling)
   .600-.699 : Phase 4 (Alliance Cardassia)

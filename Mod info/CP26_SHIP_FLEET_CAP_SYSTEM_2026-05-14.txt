@@ -1,6 +1,6 @@
 ================================================================================
-CP26 — Système de plafonds vaisseaux (référence)
-Date : 2026-05-14 — cap militaire ligne 36 + command 24/96 (recalé 2026-05-16, 3×12)
+CP26 - Système de plafonds vaisseaux (référence)
+Date : 2026-05-14 - cap militaire ligne 36 + command 24/96 (recalé 2026-05-16, 3×12)
 ================================================================================
 
 Objectif : une seule limite claire par catégorie, même règle joueur et IA,
@@ -13,7 +13,7 @@ l’empire (priorité perf vs ancienne cible 3×15). La limite **« exactement 3
 n’existe pas en natif dans les defines : le moteur ne compte pas les flottes pour
 le cap chantier ; on obtient la cible par **36 coques max** + **limite de commandement**
 par flotte (voir §6). Pour forcer mécaniquement « pas plus de 3 flottes », il faudrait
-un script (merge / split / mensuel) — lourd et fragile ; non implémenté.
+un script (merge / split / mensuel) - lourd et fragile ; non implémenté.
 
 --------------------------------------------------------------------------------
 1. Civils (science, constructor)
@@ -38,9 +38,9 @@ Qui est soumis au plafond ?
   Tout pays (joueur ou IA) qui construit au chantier une taille définie avec
   class = shipclass_military ET le bloc possible_construction CP26 (fichiers
   common/ship_sizes : Hornblower majors, coques annexes Luna/Akira/etc., mineurs
-  Gorn/Tholian/Orion/Breen, 00_ship_sizes corvette–battleship, etc.). Donc en
+  Gorn/Tholian/Orion/Breen, 00_ship_sizes corvette-battleship, etc.). Donc en
   pratique : Fédération, Klingons, Romuliens, Cardassiens, Bajorans, mineurs
-  « contender », et tout empire utilisant ces tailles moddées — même règle.
+  « contender », et tout empire utilisant ces tailles moddées - même règle.
 
 Qui n’est PAS (ou pas pareil) ?
   - Tailles exclues du comptage cp26_is_non_hero_military_ship : elles ne
@@ -116,7 +116,7 @@ Qui n’est PAS (ou pas pareil) ?
   (command limit, officiers) et éviter les boucles script lourdes.
 
 --------------------------------------------------------------------------------
-6. Limite de commandement (COMMAND_LIMIT) — alignement ~12 coques / flotte
+6. Limite de commandement (COMMAND_LIMIT) - alignement ~12 coques / flotte
 --------------------------------------------------------------------------------
 
   Fichier : common/defines/zz_cp26_reduced_fleet_scale_defines.txt

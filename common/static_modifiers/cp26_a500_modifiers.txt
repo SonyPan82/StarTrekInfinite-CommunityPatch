@@ -1,0 +1,17 @@
+# A500 Synthetics deployment modifier
+
+cp26_a500_installed = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_robots.dds"
+	planet_jobs_produces_mult = 0.02
+	planet_stability_add = -5
+}
+
+cp26_synth_unrest = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_synth_sabotage.dds"
+	planet_stability_add = -15
+	pop_growth_speed = -0.25
+}
+
+cp26_rom_earth_surveillance = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_synth_sabotage.dds"
+}

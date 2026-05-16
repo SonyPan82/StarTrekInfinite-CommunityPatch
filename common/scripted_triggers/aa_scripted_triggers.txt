@@ -33,7 +33,7 @@ cp26_is_non_hero_military_ship = {
 	# CP26 2026-05-14 : exclu également de la cap military les vaisseaux utility
 	# qui sont déclarés shipclass_military mais is_civilian = yes (rôle support
 	# uniquement, jamais en frontline). California (Lower Decks utility cruiser)
-	# était dans ce cas — désormais shipclass_science_ship (voir cp26_california_ship_sizes.txt).
+	# était dans ce cas - désormais shipclass_science_ship (voir cp26_california_ship_sizes.txt).
 	# california_hero reste militaire héros.
 	NOT = {
 		OR = {
@@ -47,7 +47,7 @@ cp26_is_non_hero_military_ship = {
 	}
 }
 
-# Country scope — cible design 3 flottes × jusqu'à 12 coques de ligne = 36 max
+# Country scope - cible design 3 flottes × jusqu'à 12 coques de ligne = 36 max
 # (comptés par cp26_is_non_hero_military_ship). Le moteur n'impose pas « 3 flottes »
 # tout seul : c'est un plafond empire au chantier ; le joueur peut répartir en
 # plus de 3 flottes si les coques sont plus petites. possible_construction +

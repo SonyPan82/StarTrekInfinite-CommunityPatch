@@ -1,0 +1,262 @@
+@officers = 12
+
+# ════════════════════════════════════════════════════════════════════════════════
+# NEO-CONSTITUTION
+# ════════════════════════════════════════════════════════════════════════════════
+utility_component_template = {
+	key = "REACTOR_NC_1" size = small icon = "GFX_ship_part_fusion_reactor" icon_frame = 1
+	power = 380 operative_officers = @officers prerequisites = { "tech_reactor_1" }
+	component_set = "power_core" size_restriction = { neo_constitution }
+	upgrades_to = "REACTOR_NC_2"
+	resources = { category = ship_components cost = { alloys = 60 } upkeep = { deuterium = 0.85 } upkeep = { alloys = 0.09 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "REACTOR_NC_2" size = small icon = "GFX_ship_part_matter_antimatter_reactor" icon_frame = 1
+	power = 500 operative_officers = @officers prerequisites = { "tech_reactor_2" }
+	component_set = "power_core" size_restriction = { neo_constitution }
+	upgrades_to = "REACTOR_NC_3"
+	resources = { category = ship_components cost = { alloys = 85 } upkeep = { deuterium = 1.10 } upkeep = { alloys = 0.11 } }
+	ai_weight = { weight = 2 }
+}
+utility_component_template = {
+	key = "REACTOR_NC_3" size = small icon = "GFX_ship_part_tetryon_reactor" icon_frame = 1
+	power = 650 operative_officers = @officers prerequisites = { "tech_reactor_3" }
+	component_set = "power_core" size_restriction = { neo_constitution }
+	upgrades_to = "REACTOR_NC_4"
+	resources = { category = ship_components cost = { alloys = 115 } upkeep = { deuterium = 1.40 } upkeep = { alloys = 0.14 } }
+	ai_weight = { weight = 3 }
+}
+utility_component_template = {
+	key = "REACTOR_NC_4" size = small icon = "GFX_ship_part_anti_tetryon_reactor" icon_frame = 1
+	power = 850 operative_officers = @officers prerequisites = { "tech_reactor_4" }
+	component_set = "power_core" size_restriction = { neo_constitution }
+	resources = { category = ship_components cost = { alloys = 150 } upkeep = { deuterium = 1.75 } upkeep = { alloys = 0.18 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "ENGINE_NC_1" size = small icon = "GFX_ship_part_impulse_engine" icon_frame = 1
+	power = -45 operative_officers = @officers prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components" size_restriction = { neo_constitution }
+	upgrades_to = "ENGINE_NC_2"
+	resources = { category = ship_components cost = { alloys = 15 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "ENGINE_NC_2" size = small icon = "GFX_ship_part_advanced_impulse_engine" icon_frame = 1
+	power = -65 operative_officers = @officers modifier = { ship_base_speed_mult = 0.25 ship_evasion_add = 3 }
+	prerequisites = { "tech_engine_2" } component_set = "thruster_components" size_restriction = { neo_constitution }
+	upgrades_to = "ENGINE_NC_3"
+	resources = { category = ship_components cost = { alloys = 30 } }
+	ai_weight = { weight = 2 }
+}
+utility_component_template = {
+	key = "ENGINE_NC_3" size = small icon = "GFX_ship_part_high_energy_impulse_engine" icon_frame = 1
+	power = -90 operative_officers = @officers modifier = { ship_base_speed_mult = 0.50 ship_evasion_add = 5 }
+	prerequisites = { "tech_engine_3" } component_set = "thruster_components" size_restriction = { neo_constitution }
+	upgrades_to = "ENGINE_NC_4"
+	resources = { category = ship_components cost = { alloys = 45 } }
+	ai_weight = { weight = 3 }
+}
+utility_component_template = {
+	key = "ENGINE_NC_4" size = small icon = "GFX_ship_part_omega_engine" icon_frame = 1
+	power = -120 operative_officers = @officers modifier = { ship_base_speed_mult = 0.75 ship_evasion_add = 7 }
+	prerequisites = { "tech_engine_4" } component_set = "thruster_components" size_restriction = { neo_constitution }
+	resources = { category = ship_components cost = { alloys = 60 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "COMPUTER_NC_DEFAULT" size = small icon = "GFX_ship_part_computer_hrb_default_artillery" icon_frame = 1
+	power = -10 operative_officers = @officers ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military } prerequisites = { "tech_computer_1" }
+	size_restriction = { neo_constitution } component_set = "combat_computers"
+	upgrades_to = "COMPUTER_NC_BASIC"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_weapon_range_mult = 0.10 }
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "COMPUTER_NC_BASIC" size = small icon = "GFX_ship_part_computer_hrb_basic_artillery" icon_frame = 1
+	power = -20 operative_officers = @officers ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military } prerequisites = { "tech_computer_2" }
+	size_restriction = { neo_constitution } component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.20 ship_weapon_range_mult = 0.20 }
+	resources = { category = ship_components cost = { alloys = 10 } }
+	ai_weight = { weight = 2 }
+}
+
+# ════════════════════════════════════════════════════════════════════════════════
+# SAGAN
+# ════════════════════════════════════════════════════════════════════════════════
+utility_component_template = {
+	key = "REACTOR_SAGAN_1" size = small icon = "GFX_ship_part_fusion_reactor" icon_frame = 1
+	power = 500 operative_officers = @officers prerequisites = { "tech_reactor_1" }
+	component_set = "power_core" size_restriction = { sagan }
+	upgrades_to = "REACTOR_SAGAN_2"
+	resources = { category = ship_components cost = { alloys = 80 } upkeep = { deuterium = 1.10 } upkeep = { alloys = 0.11 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "REACTOR_SAGAN_2" size = small icon = "GFX_ship_part_matter_antimatter_reactor" icon_frame = 1
+	power = 650 operative_officers = @officers prerequisites = { "tech_reactor_2" }
+	component_set = "power_core" size_restriction = { sagan }
+	upgrades_to = "REACTOR_SAGAN_3"
+	resources = { category = ship_components cost = { alloys = 110 } upkeep = { deuterium = 1.40 } upkeep = { alloys = 0.14 } }
+	ai_weight = { weight = 2 }
+}
+utility_component_template = {
+	key = "REACTOR_SAGAN_3" size = small icon = "GFX_ship_part_tetryon_reactor" icon_frame = 1
+	power = 850 operative_officers = @officers prerequisites = { "tech_reactor_3" }
+	component_set = "power_core" size_restriction = { sagan }
+	upgrades_to = "REACTOR_SAGAN_4"
+	resources = { category = ship_components cost = { alloys = 145 } upkeep = { deuterium = 1.75 } upkeep = { alloys = 0.18 } }
+	ai_weight = { weight = 3 }
+}
+utility_component_template = {
+	key = "REACTOR_SAGAN_4" size = small icon = "GFX_ship_part_anti_tetryon_reactor" icon_frame = 1
+	power = 1100 operative_officers = @officers prerequisites = { "tech_reactor_4" }
+	component_set = "power_core" size_restriction = { sagan }
+	resources = { category = ship_components cost = { alloys = 190 } upkeep = { deuterium = 2.20 } upkeep = { alloys = 0.22 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "ENGINE_SAGAN_1" size = small icon = "GFX_ship_part_impulse_engine" icon_frame = 1
+	power = -55 operative_officers = @officers prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components" size_restriction = { sagan }
+	upgrades_to = "ENGINE_SAGAN_2"
+	resources = { category = ship_components cost = { alloys = 20 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "ENGINE_SAGAN_2" size = small icon = "GFX_ship_part_advanced_impulse_engine" icon_frame = 1
+	power = -80 operative_officers = @officers modifier = { ship_base_speed_mult = 0.25 ship_evasion_add = 2 }
+	prerequisites = { "tech_engine_2" } component_set = "thruster_components" size_restriction = { sagan }
+	upgrades_to = "ENGINE_SAGAN_3"
+	resources = { category = ship_components cost = { alloys = 40 } }
+	ai_weight = { weight = 2 }
+}
+utility_component_template = {
+	key = "ENGINE_SAGAN_3" size = small icon = "GFX_ship_part_high_energy_impulse_engine" icon_frame = 1
+	power = -110 operative_officers = @officers modifier = { ship_base_speed_mult = 0.50 ship_evasion_add = 4 }
+	prerequisites = { "tech_engine_3" } component_set = "thruster_components" size_restriction = { sagan }
+	upgrades_to = "ENGINE_SAGAN_4"
+	resources = { category = ship_components cost = { alloys = 60 } }
+	ai_weight = { weight = 3 }
+}
+utility_component_template = {
+	key = "ENGINE_SAGAN_4" size = small icon = "GFX_ship_part_omega_engine" icon_frame = 1
+	power = -145 operative_officers = @officers modifier = { ship_base_speed_mult = 0.75 ship_evasion_add = 6 }
+	prerequisites = { "tech_engine_4" } component_set = "thruster_components" size_restriction = { sagan }
+	resources = { category = ship_components cost = { alloys = 80 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "COMPUTER_SAGAN_DEFAULT" size = small icon = "GFX_ship_part_computer_hrb_default_artillery" icon_frame = 1
+	power = -10 operative_officers = @officers ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military } prerequisites = { "tech_computer_1" }
+	size_restriction = { sagan } component_set = "combat_computers"
+	upgrades_to = "COMPUTER_SAGAN_BASIC"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_weapon_range_mult = 0.10 }
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "COMPUTER_SAGAN_BASIC" size = small icon = "GFX_ship_part_computer_hrb_basic_artillery" icon_frame = 1
+	power = -20 operative_officers = @officers ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military } prerequisites = { "tech_computer_2" }
+	size_restriction = { sagan } component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.20 ship_weapon_range_mult = 0.20 }
+	resources = { category = ship_components cost = { alloys = 10 } }
+	ai_weight = { weight = 2 }
+}
+
+# ════════════════════════════════════════════════════════════════════════════════
+# DUDERSTADT
+# ════════════════════════════════════════════════════════════════════════════════
+utility_component_template = {
+	key = "REACTOR_DUDER_1" size = small icon = "GFX_ship_part_fusion_reactor" icon_frame = 1
+	power = 600 operative_officers = @officers prerequisites = { "tech_reactor_1" }
+	component_set = "power_core" size_restriction = { duderstadt }
+	upgrades_to = "REACTOR_DUDER_2"
+	resources = { category = ship_components cost = { alloys = 100 } upkeep = { deuterium = 1.30 } upkeep = { alloys = 0.13 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "REACTOR_DUDER_2" size = small icon = "GFX_ship_part_matter_antimatter_reactor" icon_frame = 1
+	power = 780 operative_officers = @officers prerequisites = { "tech_reactor_2" }
+	component_set = "power_core" size_restriction = { duderstadt }
+	upgrades_to = "REACTOR_DUDER_3"
+	resources = { category = ship_components cost = { alloys = 135 } upkeep = { deuterium = 1.70 } upkeep = { alloys = 0.17 } }
+	ai_weight = { weight = 2 }
+}
+utility_component_template = {
+	key = "REACTOR_DUDER_3" size = small icon = "GFX_ship_part_tetryon_reactor" icon_frame = 1
+	power = 1000 operative_officers = @officers prerequisites = { "tech_reactor_3" }
+	component_set = "power_core" size_restriction = { duderstadt }
+	upgrades_to = "REACTOR_DUDER_4"
+	resources = { category = ship_components cost = { alloys = 175 } upkeep = { deuterium = 2.10 } upkeep = { alloys = 0.21 } }
+	ai_weight = { weight = 3 }
+}
+utility_component_template = {
+	key = "REACTOR_DUDER_4" size = small icon = "GFX_ship_part_anti_tetryon_reactor" icon_frame = 1
+	power = 1300 operative_officers = @officers prerequisites = { "tech_reactor_4" }
+	component_set = "power_core" size_restriction = { duderstadt }
+	resources = { category = ship_components cost = { alloys = 230 } upkeep = { deuterium = 2.60 } upkeep = { alloys = 0.26 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "ENGINE_DUDER_1" size = small icon = "GFX_ship_part_impulse_engine" icon_frame = 1
+	power = -65 operative_officers = @officers prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components" size_restriction = { duderstadt }
+	upgrades_to = "ENGINE_DUDER_2"
+	resources = { category = ship_components cost = { alloys = 25 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "ENGINE_DUDER_2" size = small icon = "GFX_ship_part_advanced_impulse_engine" icon_frame = 1
+	power = -95 operative_officers = @officers modifier = { ship_base_speed_mult = 0.25 ship_evasion_add = 2 }
+	prerequisites = { "tech_engine_2" } component_set = "thruster_components" size_restriction = { duderstadt }
+	upgrades_to = "ENGINE_DUDER_3"
+	resources = { category = ship_components cost = { alloys = 50 } }
+	ai_weight = { weight = 2 }
+}
+utility_component_template = {
+	key = "ENGINE_DUDER_3" size = small icon = "GFX_ship_part_high_energy_impulse_engine" icon_frame = 1
+	power = -130 operative_officers = @officers modifier = { ship_base_speed_mult = 0.50 ship_evasion_add = 3 }
+	prerequisites = { "tech_engine_3" } component_set = "thruster_components" size_restriction = { duderstadt }
+	upgrades_to = "ENGINE_DUDER_4"
+	resources = { category = ship_components cost = { alloys = 75 } }
+	ai_weight = { weight = 3 }
+}
+utility_component_template = {
+	key = "ENGINE_DUDER_4" size = small icon = "GFX_ship_part_omega_engine" icon_frame = 1
+	power = -170 operative_officers = @officers modifier = { ship_base_speed_mult = 0.75 ship_evasion_add = 5 }
+	prerequisites = { "tech_engine_4" } component_set = "thruster_components" size_restriction = { duderstadt }
+	resources = { category = ship_components cost = { alloys = 100 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "COMPUTER_DUDER_DEFAULT" size = small icon = "GFX_ship_part_computer_hrb_default_artillery" icon_frame = 1
+	power = -10 operative_officers = @officers ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military } prerequisites = { "tech_computer_1" }
+	size_restriction = { duderstadt } component_set = "combat_computers"
+	upgrades_to = "COMPUTER_DUDER_BASIC"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_weapon_range_mult = 0.10 }
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "COMPUTER_DUDER_BASIC" size = small icon = "GFX_ship_part_computer_hrb_basic_artillery" icon_frame = 1
+	power = -20 operative_officers = @officers ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military } prerequisites = { "tech_computer_2" }
+	size_restriction = { duderstadt } component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.20 ship_weapon_range_mult = 0.20 }
+	resources = { category = ship_components cost = { alloys = 10 } }
+	ai_weight = { weight = 2 }
+}

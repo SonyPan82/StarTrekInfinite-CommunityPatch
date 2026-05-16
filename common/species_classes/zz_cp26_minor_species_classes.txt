@@ -1,4 +1,4 @@
-# CP26 — Minor faction species classes
+# CP26 - Minor faction species classes
 #
 # Vanilla regroupe TOUTES les minor factions (Bajoran, Bolian, Trill, Acamarian,
 # Talarian, etc.) sous la même classe générique "HRB", avec un commentaire
@@ -8,7 +8,7 @@
 #   - Tous les minors partagent le même pool de portraits → identité visuelle floue.
 #   - Mêmes prefer_room, mêmes graphical_culture, aucune différenciation lore.
 #
-# CP26 — Phase 1 : 3 classes thématiques regroupant les minors par archétype.
+# CP26 - Phase 1 : 3 classes thématiques regroupant les minors par archétype.
 # Identique mécaniquement (archetype = BIOLOGICAL, resources = {}) → zero risque
 # de casser l'équilibre. Différenciation purement lore/visuelle :
 #   - portraits propres au thème (cohérents canon)
@@ -16,15 +16,15 @@
 #
 # Mapping :
 #   HRB_DIPLO  → Bajoran, Betazoid, Trill, Kaelon, Malcorian, Iyaaran
-#                "Diplomates / spirituels" — peuples raffinés, contact pacifique
+#                "Diplomates / spirituels" - peuples raffinés, contact pacifique
 #   HRB_TRADE  → Bolian, Boslic, Hupyrian, Lissepian, Pelian, Farian
-#                "Marchands / opportunistes" — civilisations basées sur le commerce
+#                "Marchands / opportunistes" - civilisations basées sur le commerce
 #   HRB_HARDY  → Acamarian, Cairn, Talarian, Tanugan, Kesprytt, Ktarian, Idanian
-#                "Résilients / belliqueux" — peuples endurcis, frontaliers
+#                "Résilients / belliqueux" - peuples endurcis, frontaliers
 #
 # Total couvert = 6 + 6 + 7 = 19 prescripted minors via classes thématiques,
 # + Jnaii (JNA, classe propre vanilla)
-# + 1 reste (à vérifier — devrait être 21 prescripted minors)
+# + 1 reste (à vérifier - devrait être 21 prescripted minors)
 
 HRB_DIPLO = {
 	archetype = BIOLOGICAL

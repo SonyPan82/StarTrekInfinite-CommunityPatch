@@ -1,4 +1,4 @@
-# CP26 AI Defines Fix — Level 1: Core NAI Tweaks
+# CP26 AI Defines Fix - Level 1: Core NAI Tweaks
 # These values make the AI more proactive in building, expanding, and fighting.
 #
 # CP26 2026-05-14 (rollback) : Phase 1 "combat engagement" defines retirées
@@ -11,27 +11,27 @@
 # Voir crash dump infinite_20260514_014611.
 
 NAI = {
-	# BUILDING & DISTRICTS — AI builds more aggressively
+	# BUILDING & DISTRICTS - AI builds more aggressively
 	AI_FREE_JOBS_DISTRICT_BUILD_CAP = 0		# Vanilla = 1. AI will build districts even with 1 free job.
 	AI_FREE_JOBS_BUILDING_BUILD_CAP = 1		# Vanilla = 2. AI builds more buildings.
 	AI_DEFICIT_SCORE_MULT = 150				# Vanilla = 100. AI reacts faster to shortages.
 	AI_UPGRADE_SCORE_MULT = 60				# Vanilla = 40. AI upgrades buildings more eagerly.
 	
-	# ECONOMY FOCUS — slightly more alloys and research priority
+	# ECONOMY FOCUS - slightly more alloys and research priority
 	AI_FOCUS_SCORE_MULT = 50				# Vanilla = 40.
 	AI_AMENITIES_SCORE_MULT = 40			# Vanilla = 50. Slightly less amenity-obsessed.
 	AI_HOUSING_SCORE_MULT = 6.0			# Vanilla = 4.5. Better housing management.
 	
 	# EXPANSION & WARFARE
-	AI_MAX_DISTANCE = 230					# CP26: was 300, lowered to 230 (vanilla 200). Galaxy radius is 500 (engine hard cap) — 300 made AI plan wars across most of the galaxy, costing CPU and feeding into ConstructionQueue crashes. 230 keeps it slightly bolder than vanilla while staying in "local neighborhood" range (~46% of max diameter).
+	AI_MAX_DISTANCE = 230					# CP26: was 300, lowered to 230 (vanilla 200). Galaxy radius is 500 (engine hard cap) - 300 made AI plan wars across most of the galaxy, costing CPU and feeding into ConstructionQueue crashes. 230 keeps it slightly bolder than vanilla while staying in "local neighborhood" range (~46% of max diameter).
 	WAR_ATTACK_CLAIM_PRIO = 15.0			# Vanilla = 11.0. More aggressive claim-taking.
 	WAR_DEFENSE_CLAIM_PRIO = 12.0			# Vanilla = 10.0. Better defense of claims.
 	AI_NO_RETREAT_LIMIT = 2					# Vanilla = 3. Fights to death sooner when cornered.
 	
-	# FLEET BEHAVIOR — less flip-flopping
+	# FLEET BEHAVIOR - less flip-flopping
 	FLEET_GROUP_ABORT_MISSION_MULT = 1.5	# Vanilla = 1.2. AI commits harder to missions.
 
-	# TECH — values rare techs a bit more, spams repeatables a bit less
+	# TECH - values rare techs a bit more, spams repeatables a bit less
 	AI_TECHNOLOGY_RARE_WEIGHT_MULT = 6		# Vanilla = 5.
 	AI_TECHNOLOGY_INFINITELY_REPEATABLE_WEIGHT_MULT = 0.02	# Vanilla = 0.01.
 }

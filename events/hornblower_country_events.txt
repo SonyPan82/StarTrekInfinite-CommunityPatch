@@ -6121,7 +6121,7 @@ country_event = {
 	}
 }
 
-# UFOP First Contact Bonus — country.27500 (CP26)
+# UFOP First Contact Bonus - country.27500 (CP26)
 # Fix intégré ici (fichier replace_path) : évite le rejet « already exists » si un
 # second fichier définissait le même id après le vanilla (first-loaded-wins).
 # `who = from` au lieu de `root.from` ; garde-fous is_same_value dans le bon scope.

@@ -1,4 +1,4 @@
-# CP26 — phrases d’action diplo (tokens référencés par le moteur / UI).
+# CP26 - phrases d’action diplo (tokens référencés par le moteur / UI).
 # Sans bloc action_cp26_offer_war_goal_peace, error.log : « Diplomatic action is missing token ».
 
 action_cp26_offer_war_goal_peace = {

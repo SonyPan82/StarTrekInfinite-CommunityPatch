@@ -1,10 +1,10 @@
-Community Patch 2026 — correctifs / pistes à voir
+Community Patch 2026 - correctifs / pistes à voir
 ==================================================
 Dernière mise à jour : 2026-05-14
 Fichier de suivi interne (backlog technique et log), pas un changelog joueur.
 
 ----------------------------------------------------------------------
-1. Missions MIPO — cible 3e pays (minor_state_event_country_3rd_party)
+1. Missions MIPO - cible 3e pays (minor_state_event_country_3rd_party)
 ----------------------------------------------------------------------
 Symptôme possible : erreur log ou scope si la chaîne n’a pas sauvegardé
 la cible avant un bloc after / effet.
@@ -20,7 +20,7 @@ de event_target:minor_state_event_country_3rd_party par un test du type :
 cible dans ce fichier.
 
 ----------------------------------------------------------------------
-2. Missions MIPO — IA sans option positive (ai_chance)
+2. Missions MIPO - IA sans option positive (ai_chance)
 ----------------------------------------------------------------------
 Si de nouveaux messages du type « Triggered Event mission.X … no options
 with positive ai_chance » apparaissent : repérer l’événement concerné et
@@ -32,7 +32,7 @@ Déjà traités dans une passe récente : mission.17, 44, 85, 204, 214, 215
 (option générique MIPO_MISSION_GENERIC_OPTION + loc EN/FR).
 
 ----------------------------------------------------------------------
-3. Espionnage — spy_mission_spy_global
+3. Espionnage - spy_mission_spy_global
 ----------------------------------------------------------------------
 Symptôme : « Trying to remove undefined event target: spy_mission_spy_global »
 Fichier : events/hornblower_country_events.txt (clear_global_event_target
@@ -75,4 +75,4 @@ mineurs, balance ship roles. Pas bloquant runtime en général ; tri par
 priorité cosmétique ou lore.
 
 ----------------------------------------------------------------------
-Fin du fichier — à compléter au fil des playtests et des error.log.
+Fin du fichier - à compléter au fil des playtests et des error.log.

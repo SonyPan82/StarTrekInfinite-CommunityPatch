@@ -144,7 +144,7 @@ default = {
 			}
 		}
 
-		# CP26 — Dynamic ship_data scaling
+		# CP26 - Dynamic ship_data scaling
 		#
 		# Vanilla used hard-coded min/max for constructor/science/colonizer,
 		# which left late-game AIs under-staffed once their empire grew.
@@ -160,7 +160,7 @@ default = {
 		# Each ship category below uses these flags as fraction modifiers,
 		# growing the AI's construction priorities as its empire scales.
 		#
-		# CP26 2026-05-14 — civils : ship_data (min/max + fractions) + empire_limit
+		# CP26 2026-05-14 - civils : ship_data (min/max + fractions) + empire_limit
 		#   sur science/constructor dans common/ship_sizes/00_ship_sizes.txt (UI
 		#   SHIP_SIZE_LIMIT). Pas de purge mensuelle IA.
 		#

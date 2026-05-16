@@ -1,0 +1,260 @@
+# Arc Mars - Rébellion des synthétiques A500 (Utopia Planitia)
+#
+# Déclenchement : décision decision_deploy_a500 sur Mars (planet_flag = planet_mars)
+#
+# cp26_a500.1  - Alerte : comportement déviant détecté (planet_event sur Mars, is_triggered_only)
+# cp26_a500.2  - Rébellion éclate (country_event, +30 j) - crée des armées rebelles sur Mars
+# cp26_a500.3  - Pulse mensuel : dévastations progressives (country_event caché)
+# cp26_a500.10 - Résolution militaire : combat au sol victorieux (ou suppression forcée)
+# cp26_a500.11 - Résolution diplomatique : vaisseau scientifique envoyé immédiatement
+# cp26_a500.12 - Détection victoire au sol via on_planet_defenders_win (caché)
+
+namespace = cp26_a500
+
+##########################################################################
+# 1 - Alerte (planet event, scope = Mars)
+##########################################################################
+planet_event = {
+	id = cp26_a500.1
+	title = cp26_a500.1.title
+	desc = cp26_a500.1.desc
+	picture = GFX_evt_cp26_a500_rebellion
+	show_sound = event_bridge_decision
+	is_triggered_only = yes
+	location = this
+
+	trigger = {
+		NOT = { has_global_flag = cp26_block_synth_arc }
+	}
+
+	# Option A - Envoyer une équipe de sécurité
+	option = {
+		name = cp26_a500.1.a
+		set_planet_flag = cp26_a500_fleet_response
+		owner = {
+			country_event = { id = cp26_a500.2 days = 30 }
+		}
+	}
+
+	# Option B - Envoyer un vaisseau scientifique
+	option = {
+		name = cp26_a500.1.b
+		set_planet_flag = cp26_a500_science_response
+		owner = {
+			country_event = { id = cp26_a500.11 }
+		}
+	}
+
+	# Option C - Observer la situation
+	option = {
+		name = cp26_a500.1.c
+		owner = {
+			country_event = { id = cp26_a500.2 days = 30 }
+		}
+	}
+}
+
+##########################################################################
+# 2 - Rébellion (country_event) - crée les armées rebelles sur Mars
+##########################################################################
+country_event = {
+	id = cp26_a500.2
+	title = cp26_a500.2.title
+	desc = {
+		trigger = {
+			any_galaxy_planet = {
+				has_planet_flag = planet_mars
+				has_planet_flag = cp26_a500_fleet_response
+			}
+		}
+		desc = cp26_a500.2.desc_fleet
+	}
+	desc = cp26_a500.2.desc_default
+	picture = GFX_evt_red_alert_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_a500_resolved }
+	}
+
+	option = {
+		name = cp26_a500.2.a
+
+		hidden_effect = {
+			# Journal de bord - début de l'arc
+			begin_event_chain = {
+				event_chain = "cp26_a500_rebellion_chain"
+				target = THIS
+			}
+
+			# Créer un pays faction pour les rebelles A500
+			create_country = {
+				name = "NAME_A500_Rebels"
+				type = faction
+				auto_delete = yes
+
+				effect = {
+					set_faction_hostility = {
+						set_hostile = yes
+						set_neutral = no
+						set_friendly = no
+					}
+				}
+			}
+
+			last_created_country = {
+				save_global_event_target_as = et_a500_rebel_country
+			}
+
+			# Spawner les armées rebelles sur Mars (espèce A500)
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_mars }
+				set_planet_flag = cp26_a500_rebellion_active
+				random_owned_pop = {
+					limit = { species = { species_class = "CP26_A500" } }
+					species = { save_event_target_as = et_a500_rebel_species }
+				}
+				while = {
+					count = 5
+					create_army = {
+						owner = event_target:et_a500_rebel_country
+						type = rebel_army
+						species = event_target:et_a500_rebel_species
+					}
+				}
+			}
+		}
+
+		country_event = { id = cp26_a500.3 days = 30 }
+	}
+}
+
+##########################################################################
+# 3 - Pulse mensuel : dévastations progressives
+##########################################################################
+country_event = {
+	id = cp26_a500.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_a500_resolved }
+		any_galaxy_planet = { has_planet_flag = planet_mars }
+	}
+
+	immediate = {
+		random_galaxy_planet = {
+			limit = { has_planet_flag = planet_mars }
+			save_event_target_as = et_a500_mars
+		}
+
+		# Dévastations progressives, victoire détectée via on_planet_defenders_win
+		event_target:et_a500_mars = {
+			add_planet_devastation = 5
+		}
+		country_event = { id = cp26_a500.3 days = 30 }
+	}
+}
+
+##########################################################################
+# 10 - Résolution militaire : combat au sol victorieux
+##########################################################################
+country_event = {
+	id = cp26_a500.10
+	title = cp26_a500.10.title
+	desc = cp26_a500.10.desc
+	picture = GFX_evt_empire_fleet_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_a500_resolved }
+	}
+
+	immediate = {
+		random_galaxy_planet = {
+			limit = { has_planet_flag = planet_mars }
+			save_event_target_as = et_a500_mars
+		}
+	}
+
+	option = {
+		name = cp26_a500.10.a
+
+		set_country_flag = cp26_a500_resolved
+		end_event_chain = cp26_a500_rebellion_chain
+
+		# Détruire le module chantier spatial d'Utopia Planitia
+		event_target:et_a500_mars = {
+			solar_system = {
+				starbase = {
+					remove_starbase_module = { module = shipyard }
+				}
+			}
+			remove_modifier = cp26_a500_installed
+			remove_planet_flag = cp26_a500_installed
+			remove_planet_flag = cp26_a500_rebellion_active
+		}
+
+		# Les plans récupérés apparaissent dans le pool de recherche
+		add_research_option = tech_neo_constitution_unlock
+		add_research_option = tech_sagan_unlock
+		add_research_option = tech_duderstadt_unlock
+		add_research_option = tech_odyssey_unlock
+	}
+}
+
+##########################################################################
+# 11 - Résolution diplomatique : vaisseau scientifique
+##########################################################################
+country_event = {
+	id = cp26_a500.11
+	title = cp26_a500.11.title
+	desc = cp26_a500.11.desc
+	picture = GFX_evt_lab_research_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	immediate = {
+		random_galaxy_planet = {
+			limit = { has_planet_flag = planet_mars }
+			save_event_target_as = et_a500_mars
+		}
+	}
+
+	option = {
+		name = cp26_a500.11.a
+
+		set_country_flag = cp26_a500_resolved
+
+		# Pas de destruction des chantiers - seulement les plans du premier vaisseau
+		event_target:et_a500_mars = {
+			remove_modifier = cp26_a500_installed
+			remove_planet_flag = cp26_a500_installed
+			remove_planet_flag = cp26_a500_rebellion_active
+		}
+
+		add_research_option = tech_neo_constitution_unlock
+	}
+}
+
+##########################################################################
+# 12 - Victoire au sol détectée (caché, déclenché via on_planet_defenders_win)
+# ROOT = joueur (défenseur), FROM = pays rebelle, FROMFROM = planète
+##########################################################################
+country_event = {
+	id = cp26_a500.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_a500_resolved }
+		from_from = { has_planet_flag = planet_mars }
+		from_from = { has_planet_flag = cp26_a500_rebellion_active }
+	}
+
+	immediate = {
+		country_event = { id = cp26_a500.10 }
+	}
+}

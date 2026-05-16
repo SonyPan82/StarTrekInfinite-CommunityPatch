@@ -1,0 +1,157 @@
+# Technologies arc Mars - disponibles dans l'arbre de recherche ET données via l'arc.
+
+tech_neo_constitution_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = { is_ufop = yes }
+		title = tech_neo_constitution
+		desc = tech_neo_constitution_desc
+		icon = tech_sovereign
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_NEO_CONSTITUTION_CONSTRUCTION_TITLE
+				desc = tech_neo_constitution_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1
+			years_passed < 8
+		}
+		modifier = {
+			factor = 8
+			years_passed > 10
+		}
+		modifier = {
+			factor = 5
+			any_neighbor_country = {
+				has_technology = tech_cruiser_unlock
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			research_leader = { area = engineering }
+		}
+	}
+}
+
+tech_sagan_unlock = {
+	cost = @tier2cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_neo_constitution_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = { is_ufop = yes }
+		title = tech_sagan
+		desc = tech_sagan_desc
+		icon = tech_sovereign
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_SAGAN_CONSTRUCTION_TITLE
+				desc = tech_sagan_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			years_passed < 12
+		}
+		modifier = {
+			factor = 8
+			years_passed > 15
+		}
+		modifier = {
+			factor = 5
+			any_neighbor_country = {
+				has_technology = tech_neo_constitution_unlock
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			research_leader = { area = engineering }
+		}
+	}
+}
+
+tech_duderstadt_unlock = {
+	cost = @tier3cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_sagan_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = { is_ufop = yes }
+		title = tech_duderstadt
+		desc = tech_duderstadt_desc
+		icon = tech_sovereign
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_DUDERSTADT_CONSTRUCTION_TITLE
+				desc = tech_duderstadt_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.25
+			years_passed < 18
+		}
+		modifier = {
+			factor = 8
+			years_passed > 22
+		}
+		modifier = {
+			factor = 5
+			any_neighbor_country = {
+				has_technology = tech_sagan_unlock
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 3
+		modifier = {
+			factor = 1.25
+			research_leader = { area = engineering }
+		}
+	}
+}

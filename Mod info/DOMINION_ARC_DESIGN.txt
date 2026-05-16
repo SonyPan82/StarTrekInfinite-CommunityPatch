@@ -1,18 +1,18 @@
 ================================================================================
- CP26 — ARC DOMINION : DOCUMENT DE CONCEPTION COMPLET
- Fichier de référence — mis à jour au 10/05/2026
+ CP26 - ARC DOMINION : DOCUMENT DE CONCEPTION COMPLET
+ Fichier de référence - mis à jour au 10/05/2026
 ================================================================================
 
 TABLE DES MATIÈRES
   1. Vue d'ensemble du système
-  2. DTL (Dominion Threat Level) — mécanique de base
+  2. DTL (Dominion Threat Level) - mécanique de base
   3. Mécanique de l'Infiltration Changeling
-  4. PHASE 1 — Premier Contact (DTL 0-20)
-  5. PHASE 2 — Incidents Jem'Hadar (DTL 20-40)
-  6. PHASE 3 — Infiltration Changeling (DTL 40-60)
-  7. PHASE 4 — Alliance Cardassia/Dominion (DTL 60-80)
-  8. PHASE 5 — Guerre du Dominion (DTL 80-100)
-  9. FINS — Victoire / Défaite / Fin Canonique
+  4. PHASE 1 - Premier Contact (DTL 0-20)
+  5. PHASE 2 - Incidents Jem'Hadar (DTL 20-40)
+  6. PHASE 3 - Infiltration Changeling (DTL 40-60)
+  7. PHASE 4 - Alliance Cardassia/Dominion (DTL 60-80)
+  8. PHASE 5 - Guerre du Dominion (DTL 80-100)
+  9. FINS - Victoire / Défaite / Fin Canonique
  10. Projets spéciaux
  11. Modificateurs de planète
  12. Effets scriptés (cp26_dtl_increase, spawn, etc.)
@@ -46,7 +46,7 @@ Fichiers impliqués :
 
 
 ================================================================================
- 2. DTL (DOMINION THREAT LEVEL) — MÉCANIQUE DE BASE
+ 2. DTL (DOMINION THREAT LEVEL) - MÉCANIQUE DE BASE
 ================================================================================
 
 Variable : cp26_dtl
@@ -98,7 +98,7 @@ AUGMENTATION DE L'INFILTRATION
 
 
 ================================================================================
- 4. PHASE 1 — PREMIER CONTACT (DTL 0-20)
+ 4. PHASE 1 - PREMIER CONTACT (DTL 0-20)
 ================================================================================
 
 CONDITION DE DÉCLENCHEMENT
@@ -107,107 +107,107 @@ CONDITION DE DÉCLENCHEMENT
   - Se déclenche via la ticker annuelle, 15 jours après + aléatoire de 10
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .100 — "The Bajoran Wormhole — Strategic Decision"
+ÉVÉNEMENT .100 - "The Bajoran Wormhole - Strategic Decision"
 Choix de la stratégie d'approche. Se déclenche une seule fois.
 
-  OPTION A — Expédition scientifique [station un vaisseau science au Système Bajoran]
+  OPTION A - Expédition scientifique [station un vaisseau science au Système Bajoran]
     Effets immédiats : cp26_dtl +2, flag cp26_gamma_approach_science
     Active : projet spécial CP26_GAMMA_EXPEDITION_SCIENCE au Système Bajoran
     Suivant : .109 (notification d'instructions), puis projet → .200
 
-  OPTION B — Patrouille militaire [station un vaisseau militaire au Système Bajoran]
+  OPTION B - Patrouille militaire [station un vaisseau militaire au Système Bajoran]
     Effets immédiats : cp26_dtl +6, flag cp26_gamma_approach_military
     Active : projet spécial CP26_GAMMA_EXPEDITION_MILITARY au Système Bajoran
     Suivant : .119 (notification d'instructions), puis projet → .210
 
-  OPTION C — Isolationnisme (fermeture du vortex)
+  OPTION C - Isolationnisme (fermeture du vortex)
     Effets immédiats : cp26_dtl -5, énergie -200
     Bajoran Republic : opinion_insult, flag cp26_bajor_wormhole_closure_tension
     Phase 1 résolue immédiatement (cp26_phase1_resolved)
     Suivant : .102 après 30 jours (pression de Bajor)
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .109 — "Orders: Science Survey — Bajoran System"
+ÉVÉNEMENT .109 - "Orders: Science Survey - Bajoran System"
   Notification pure. Rappelle au joueur d'envoyer un vaisseau science.
   Option unique : "Move the science ship to the Bajoran system."
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .119 — "Orders: Military Patrol — Bajoran System"
+ÉVÉNEMENT .119 - "Orders: Military Patrol - Bajoran System"
   Notification pure. Rappelle au joueur d'envoyer un vaisseau militaire.
   Option unique : "Move the fleet to the Bajoran system."
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .102 — "Bajoran Protest: Wormhole Closure"
+ÉVÉNEMENT .102 - "Bajoran Protest: Wormhole Closure"
   Se déclenche 30 jours après l'option C de .100.
   Le gouvernement bajoran exige la réouverture du vortex.
 
-  OPTION A — Concéder (rouvrir le vortex, lancer l'option science)
+  OPTION A - Concéder (rouvrir le vortex, lancer l'option science)
     Effets : énergie -100, cp26_dtl +1
     Retire le flag cp26_bajor_wormhole_closure_tension
     Active le projet CP26_GAMMA_EXPEDITION_SCIENCE (chemin science tardif)
     Annule cp26_phase1_resolved (la phase reprend)
     Suivant : .109 après 2 jours
 
-  OPTION B — Maintenir la fermeture
+  OPTION B - Maintenir la fermeture
     Effets : unity (malus -2x, min -60, max -20)
     La Phase 1 reste résolue, aucune suite.
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .200 — "Science Survey Complete: Gamma Terminus"
+ÉVÉNEMENT .200 - "Science Survey Complete: Gamma Terminus"
   Se déclenche quand le projet CP26_GAMMA_EXPEDITION_SCIENCE réussit.
 
-  OPTION A — Compiler les données
+  OPTION A - Compiler les données
     Effets : research +6x (200-500), cp26_dtl +1
     Phase 1 résolue (cp26_phase1_resolved)
 
-  OPTION B — Tentativer une transmission de premier contact
+  OPTION B - Tentativer une transmission de premier contact
     Effets : influence +6x (50-150), cp26_dtl +4
     Suivant : .201 après 30 jours + aléatoire 15
 
-  OPTION C — Retirer le vaisseau science
+  OPTION C - Retirer le vaisseau science
     Effets : research +2x (40-100), cp26_dtl -2
     Phase 1 résolue
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .201 — "Gamma Quadrant: A Response"
+ÉVÉNEMENT .201 - "Gamma Quadrant: A Response"
   Le Dominion répond à la transmission de contact.
   Message signé "The Dominion" : "Solides. Quelles sont vos intentions ?"
 
-  OPTION A — Répondre : intentions pacifiques
+  OPTION A - Répondre : intentions pacifiques
     Effets : influence +8x (80-250), cp26_dtl +2
     Phase 1 résolue
 
-  OPTION B — Ne pas répondre, fermer le canal
+  OPTION B - Ne pas répondre, fermer le canal
     Effets : cp26_dtl -1
     Phase 1 résolue
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .210 — "Military Assessment: Wormhole Terminus"
+ÉVÉNEMENT .210 - "Military Assessment: Wormhole Terminus"
   Se déclenche quand le projet CP26_GAMMA_EXPEDITION_MILITARY réussit.
   Des vaisseaux non identifiés observent depuis l'autre côté.
 
-  OPTION A — Envoyer la flotte dans le vortex
+  OPTION A - Envoyer la flotte dans le vortex
     Effets : cp26_dtl +10
     Dominion spawn : Jem'Hadar Scout (cp26_spawn_jem_hadar_scouts)
     Suivant : .211 après 10 jours
 
-  OPTION B — Tenir position au vortex, surveiller
+  OPTION B - Tenir position au vortex, surveiller
     Effets : unity +4x (60-180), cp26_dtl +3
     Phase 1 résolue
 
-  OPTION C — Se retirer vers Bajor
+  OPTION C - Se retirer vers Bajor
     Effets : cp26_dtl -3
     Phase 1 résolue
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .211 — "Jem'Hadar — Alpha Quadrant Incursion"
+ÉVÉNEMENT .211 - "Jem'Hadar - Alpha Quadrant Incursion"
   Riposte Jem'Hadar après le passage dans le vortex.
 
-  OPTION A — Engager le combat
+  OPTION A - Engager le combat
     Effets : unity +5x (80-200), cp26_dtl +3
     Phase 1 résolue
 
-  OPTION B — Se retirer
+  OPTION B - Se retirer
     Effets : cp26_dtl -2
     Phase 1 résolue
 
@@ -217,7 +217,7 @@ FIN DE LA PHASE 1
 
 
 ================================================================================
- 5. PHASE 2 — INCIDENTS JEM'HADAR (DTL 20-40)
+ 5. PHASE 2 - INCIDENTS JEM'HADAR (DTL 20-40)
 ================================================================================
 
 CONDITION DE DÉCLENCHEMENT
@@ -226,75 +226,75 @@ CONDITION DE DÉCLENCHEMENT
   - Délai : 30 jours + aléatoire 20
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .400 — "Jem'Hadar Activity in the Alpha Quadrant"
+ÉVÉNEMENT .400 - "Jem'Hadar Activity in the Alpha Quadrant"
   Alerte de situation : des colonies frontalières disparaissent des radars.
   Option unique : "Raise the readiness level on the frontier."
   Suivant : .410 après 90 jours + aléatoire 30
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .410 — "Colony Gone Silent"
+ÉVÉNEMENT .410 - "Colony Gone Silent"
   Une colonie frontalière n'émet plus depuis 4 jours.
 
-  OPTION A — Envoyer un vaisseau militaire enquêter [station au système de la colonie]
+  OPTION A - Envoyer un vaisseau militaire enquêter [station au système de la colonie]
     Effets : flag cp26_phase2_investigating
     Sélectionne une colonie frontier aléatoire (ou le Système Bajoran en fallback)
     Active : projet CP26_COLONY_INVESTIGATION
     Suivant : .412 (notification), puis projet → .420 ou .430
 
-  OPTION B — Ignorer (pas assez de ressources)
+  OPTION B - Ignorer (pas assez de ressources)
     Effets : unity malus -3x (30-80), cp26_dtl +8, flag cp26_phase2_ignored
     Suivant : .413 après 60 jours + aléatoire 20
 
-  OPTION C — Accuser formellement la Cardassia
+  OPTION C - Accuser formellement la Cardassia
     Effets : cp26_dtl +3, flag cp26_phase2_accused_cardassia
     Cardassia : opinion_insult
     Suivant : .411 après 20 jours + aléatoire 10
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .411 — "Cardassian Denial"
+ÉVÉNEMENT .411 - "Cardassian Denial"
   Gul Dukat nie toute implication.
 
-  OPTION A — Accepter la dénégation
+  OPTION A - Accepter la dénégation
     Effets : cp26_dtl +5
     Phase 2 résolue
 
-  OPTION B — Maintenir l'accusation
+  OPTION B - Maintenir l'accusation
     Effets : Cardassia opinion_insult supplémentaire, cp26_dtl +3
     Phase 2 résolue
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .412 — "Orders: Investigate the Colony"
+ÉVÉNEMENT .412 - "Orders: Investigate the Colony"
   Notification pure. "Station a warship there to conduct a full tactical sweep."
   Option unique : "Understood. Moving assets to the colony."
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .413 — "The Colony Is Gone"
+ÉVÉNEMENT .413 - "The Colony Is Gone"
   Conséquence du choix B (.410). La colonie est vide. Patrouille Jem'Hadar détectée.
   Effet immédiat : cp26_spawn_jem_hadar_patrol, Phase 2 résolue
   Option unique : "Increase the frontier patrols immediately."
 
 ────────────────────────────────────────────────────────────────────────────────
-PROJET → ÉVÉNEMENT .420 — "Ambush — Jem'Hadar at the Colony" (40% de chance)
+PROJET → ÉVÉNEMENT .420 - "Ambush - Jem'Hadar at the Colony" (40% de chance)
   Un escadron Jem'Hadar attendait en embuscade.
   Effet immédiat : cp26_spawn_jem_hadar_patrol au système de la colonie
 
-  OPTION A — Engager, tenir le système
+  OPTION A - Engager, tenir le système
     Effets : unity +6x (100-300), cp26_dtl +6
     Phase 2 résolue
 
-  OPTION B — Se retirer, préserver le vaisseau
+  OPTION B - Se retirer, préserver le vaisseau
     Effets : cp26_dtl +10
     Phase 2 résolue
 
 ────────────────────────────────────────────────────────────────────────────────
-PROJET → ÉVÉNEMENT .430 — "Investigation Complete: Dominion Intel Recovered" (60%)
+PROJET → ÉVÉNEMENT .430 - "Investigation Complete: Dominion Intel Recovered" (60%)
   La colonie était occupée. Des archives de renseignement Dominion récupérées.
 
-  OPTION A — Partager le renseignement avec les alliés
+  OPTION A - Partager le renseignement avec les alliés
     Effets : research +8x (200-400), cp26_dtl -3
     Phase 2 résolue
 
-  OPTION B — Classer les données
+  OPTION B - Classer les données
     Effets : influence +5x (50-150), cp26_dtl -1
     Phase 2 résolue
 
@@ -303,7 +303,7 @@ FIN DE LA PHASE 2
 
 
 ================================================================================
- 6. PHASE 3 — INFILTRATION CHANGELING (DTL 40-60)
+ 6. PHASE 3 - INFILTRATION CHANGELING (DTL 40-60)
 ================================================================================
 
 CONDITION DE DÉCLENCHEMENT
@@ -313,60 +313,60 @@ CONDITION DE DÉCLENCHEMENT
   - À l'activation : cp26_changeling_infiltration initialisé à 5
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .500 — "Anomalies in the Command Structure"
+ÉVÉNEMENT .500 - "Anomalies in the Command Structure"
   Alerte : comportements anormaux de hauts gradés. Les Changelings infiltrent
   la structure de commandement.
   Option unique : "Convene an emergency security review."
   Suivant : .510 après 60 jours + aléatoire 20
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .510 — "The Infiltration Problem"
+ÉVÉNEMENT .510 - "The Infiltration Problem"
   Choix de la réponse à l'infiltration.
 
-  OPTION A — Dépistage sanguin obligatoire
+  OPTION A - Dépistage sanguin obligatoire
     Effets : unity malus -4x (60-120), modificateur cp26_security_protocols 36 mois
              sur la capitale, cp26_dtl -3, infiltration -3
     Suivant : .511 après 30 jours + aléatoire 10
 
-  OPTION B — Préserver les libertés civiles
+  OPTION B - Préserver les libertés civiles
     Effets : research malus -3x (30-90), cp26_dtl +5, infiltration +3
     Phase 3 résolue immédiatement
 
-  OPTION C — Activer la Section 31 [COÛT : 300 Influence, visible si >= 300]
+  OPTION C - Activer la Section 31 [COÛT : 300 Influence, visible si >= 300]
     Effets : influence -300, flag cp26_section31_active, cp26_dtl -8,
              infiltration -5, Bajor Republic opinion_insult
     Suivant : .512 après 45 jours + aléatoire 15
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .511 — "Blood Test Results"
+ÉVÉNEMENT .511 - "Blood Test Results"
   Des individus dont la morphologie sanguine ne correspond pas aux archives
   ont été identifiés.
 
-  OPTION A — Détenir et interroger
+  OPTION A - Détenir et interroger
     Effets : research +4x deux fois (100-300 chacun), cp26_dtl -2
     Phase 3 résolue
 
-  OPTION B — Éliminations discrètes (risque de victime innocente, 30%)
+  OPTION B - Éliminations discrètes (risque de victime innocente, 30%)
     Effets : infiltration -2
     Risque 30% : unity malus -5x (80-150)
     Phase 3 résolue
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .512 — "Section 31 — After Action Report"
+ÉVÉNEMENT .512 - "Section 31 - After Action Report"
   Résultat de l'opération Section 31. Le résultat est prédéterminé dans
   l'immediate block (aléatoire 60/40) avant l'affichage des options.
 
-  OPTION A — Succès complet (60%) [visible si has_country_flag = cp26_s31_full_success]
+  OPTION A - Succès complet (60%) [visible si has_country_flag = cp26_s31_full_success]
     Effets : cp26_dtl -10, infiltration -5, influence +6x (80-200)
     Phase 3 résolue
 
-  OPTION B — Succès partiel (40%) [visible si has_country_flag = cp26_s31_partial_success]
+  OPTION B - Succès partiel (40%) [visible si has_country_flag = cp26_s31_partial_success]
     Le Dominion sait désormais que la Section 31 existe.
     Effets : cp26_dtl -5, infiltration -2, cp26_dtl +3 (net -2)
     Phase 3 résolue
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .520 — "Changeling Incident" [RÉCURRENT, 20%/an tant que infiltration > 3]
+ÉVÉNEMENT .520 - "Changeling Incident" [RÉCURRENT, 20%/an tant que infiltration > 3]
   Un nouvel incident lié aux Changelings. Le type est aléatoire (25/25/25/25) :
     - cp26_incident_military      : malus unity -3x (30-80)
     - cp26_incident_sabotage      : modificateur cp26_sabotaged_infrastructure 24 mois
@@ -374,11 +374,11 @@ CONDITION DE DÉCLENCHEMENT
     - cp26_incident_diplomatic    : opinion_insult d'un pays aléatoire
     - cp26_incident_assassination : mort d'un leader aléatoire
 
-  OPTION A — Ouvrir un projet de chasse aux Changelings au Système Bajoran
+  OPTION A - Ouvrir un projet de chasse aux Changelings au Système Bajoran
     L'incident se produit quand même (effets ci-dessus appliqués).
     Active : projet CP26_CHANGELING_HUNT au Système Bajoran
 
-  OPTION B — Absorber les dégâts, ne rien faire
+  OPTION B - Absorber les dégâts, ne rien faire
     Effets supplémentaires : cp26_dtl +3, infiltration +1
 
 FIN DE LA PHASE 3
@@ -388,7 +388,7 @@ FIN DE LA PHASE 3
 
 
 ================================================================================
- 7. PHASE 4 — ALLIANCE CARDASSIA/DOMINION (DTL 60-80)
+ 7. PHASE 4 - ALLIANCE CARDASSIA/DOMINION (DTL 60-80)
 ================================================================================
 
 CONDITION DE DÉCLENCHEMENT
@@ -397,20 +397,20 @@ CONDITION DE DÉCLENCHEMENT
   - Délai : 30 jours + aléatoire 20
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .600 — "Unusual Movements on the Cardassian Frontier"
+ÉVÉNEMENT .600 - "Unusual Movements on the Cardassian Frontier"
   Des délégués cardassiens rencontrent des vaisseaux à signature Dominion
   dans l'espace profond. Menace d'un traité de protection.
 
-  OPTION A — Envoyer un vaisseau science intercepter les communications
+  OPTION A - Envoyer un vaisseau science intercepter les communications
     Active : projet CP26_CARDASSIA_RECON au Système Bajoran
     Suivant : projet → .610 (60%) ou récompense intelligence (40%)
 
-  OPTION B — Canal diplomatique direct vers Cardassia [COÛT : 200 Influence]
+  OPTION B - Canal diplomatique direct vers Cardassia [COÛT : 200 Influence]
     Effets : influence -200, Cardassia opinion_gift, cp26_dtl -2
     Phase 4 résolue immédiatement (l'alliance est évitée)
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .610 — "Cardassia Joins the Dominion"
+ÉVÉNEMENT .610 - "Cardassia Joins the Dominion"
   L'alliance est officielle. Les soldats Jem'Hadar arrivent dans l'espace
   cardassien. ÉVÉNEMENT MAJEUR.
 
@@ -418,27 +418,27 @@ CONDITION DE DÉCLENCHEMENT
     cp26_dtl +15, spawn cp26_spawn_jem_hadar_patrol (Système Bajoran),
     Cardassia opinion_rivalry
 
-  OPTION A — Préparer la guerre, mobilisation d'urgence
+  OPTION A - Préparer la guerre, mobilisation d'urgence
     Effets : unity +5x (100-300)
     Phase 4 résolue
 
-  OPTION B — Proposer une médiation d'urgence [COÛT : 400 Influence, si >= 400]
+  OPTION B - Proposer une médiation d'urgence [COÛT : 400 Influence, si >= 400]
     Effets : influence -400
     30% de chance : l'alliance est annulée (remove cp26_cardassia_dominion_ally,
                     cp26_dtl -10)
     Phase 4 résolue dans tous les cas
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .620 — "A Question of Loyalty"
+ÉVÉNEMENT .620 - "A Question of Loyalty"
   Crise interne suite à l'alliance. Les accords existants avec Cardassia
   deviennent politiquement problématiques.
   NOTE : Cet événement n'est pas encore connecté à un déclencheur automatique.
          À utiliser comme événement contextuel pour les pays avec traités cardassiens.
 
-  OPTION A — Rompre tous les accords avec Cardassia
+  OPTION A - Rompre tous les accords avec Cardassia
     Effets : cp26_dtl -3, Cardassia opinion_insult
 
-  OPTION B — Maintenir la neutralité technique
+  OPTION B - Maintenir la neutralité technique
     Effets : cp26_dtl +5
 
 FIN DE LA PHASE 4
@@ -448,7 +448,7 @@ FIN DE LA PHASE 4
 
 
 ================================================================================
- 8. PHASE 5 — GUERRE DU DOMINION (DTL 80-100)
+ 8. PHASE 5 - GUERRE DU DOMINION (DTL 80-100)
 ================================================================================
 
 CONDITION DE DÉCLENCHEMENT
@@ -457,7 +457,7 @@ CONDITION DE DÉCLENCHEMENT
   - Délai : 15 jours + aléatoire 10
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .700 — "The Dominion War Begins"
+ÉVÉNEMENT .700 - "The Dominion War Begins"
   Déclaration de guerre. Les flottes Dominion convergent.
   Option unique : "General quarters. All commands to battle readiness."
   Effets : unity +5x (80-200)
@@ -465,44 +465,44 @@ CONDITION DE DÉCLENCHEMENT
                 (débloque l'intervention des Prophètes lors de l'assaut DS9)
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .701 — "Jem'Hadar Raid — Bajoran Frontier" [DTL 80-89, 40%/an]
+ÉVÉNEMENT .701 - "Jem'Hadar Raid - Bajoran Frontier" [DTL 80-89, 40%/an]
   Escadrons Jem'Hadar au Système Bajoran.
   Effet immédiat : cp26_spawn_jem_hadar_patrol (Système Bajoran)
 
-  OPTION A — Engager et repousser les raiders
+  OPTION A - Engager et repousser les raiders
     Effets : unity +4x (80-200), cp26_dtl -2
 
-  OPTION B — Retraite, préserver les forces
+  OPTION B - Retraite, préserver les forces
     Effets : cp26_dtl +5
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .710 — "Dominion Forces Attack" [DTL 90-99, 60%/an]
+ÉVÉNEMENT .710 - "Dominion Forces Attack" [DTL 90-99, 60%/an]
   Attaque de systèmes. Tentative d'occupation.
   Effet immédiat : cp26_spawn_jem_hadar_strike (Système Bajoran)
   Note : passe cp26_phase5_full_assault à la première occurrence.
 
-  OPTION A — Défendre le système coûte que coûte
+  OPTION A - Défendre le système coûte que coûte
     Effets : unity +6x (100-300), cp26_dtl -2
 
-  OPTION B — Évacuer (le système n'en vaut pas le coût)
+  OPTION B - Évacuer (le système n'en vaut pas le coût)
     Effets : cp26_dtl +5
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .720 — "The Battle of Deep Space Nine" [DTL 100, UNE SEULE FOIS]
+ÉVÉNEMENT .720 - "The Battle of Deep Space Nine" [DTL 100, UNE SEULE FOIS]
   Une armada Dominion approche le Système Bajoran. DS9 est en ligne de mire.
   Effet immédiat : cp26_spawn_jem_hadar_armada (Système Bajoran)
   Flag posé : cp26_ds9_attack_fired
 
-  OPTION A — Défendre la station [station un vaisseau militaire au Système Bajoran]
+  OPTION A - Défendre la station [station un vaisseau militaire au Système Bajoran]
     Active : projet CP26_DS9_DEFENSE au Système Bajoran
     Résultat du projet : 50% DS9 tient / 50% DS9 endommagée (voir §10)
 
-  OPTION B — Évacuer Deep Space Nine
+  OPTION B - Évacuer Deep Space Nine
     Effets : flag cp26_ds9_captured, unity malus -8x (150-300),
              influence malus -5x (100-200), cp26_dtl +8
     Mène vers la fin "Défaite" si le DTL reste à 100 pendant 10 ans.
 
-  OPTION C — Miner le vortex (IRRÉVERSIBLE)
+  OPTION C - Miner le vortex (IRRÉVERSIBLE)
     Effets : flag cp26_wormhole_mined, DTL Dominion forcé à 100 (cap),
              spawn d'une armada supplémentaire cp26_spawn_jem_hadar_armada,
              Bajor Republic opinion_insult
@@ -510,7 +510,7 @@ CONDITION DE DÉCLENCHEMENT
            immédiate. Bloque l'intervention des Prophètes.
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .730 — "The Prophets Stir" [20%/an, conditions spéciales]
+ÉVÉNEMENT .730 - "The Prophets Stir" [20%/an, conditions spéciales]
   CONDITIONS REQUISES :
     - cp26_ds9_attack_fired posé
     - cp26_phase6_prophets_possible posé (Bajor opinion >= 40 au début de la guerre)
@@ -519,17 +519,17 @@ CONDITION DE DÉCLENCHEMENT
     - cp26_prophets_fired NON posé
   Le sphère Orb pulse. L'armada est toujours en approche.
 
-  OPTION A — Faire confiance aux Prophètes
+  OPTION A - Faire confiance aux Prophètes
     Effets : DESTRUCTION de toutes les flottes Dominion dans le Système Bajoran,
              cp26_dtl -20, Bajor Republic opinion_gifts
     Suivant : .731 après 5 jours
 
-  OPTION B — Refuser l'intervention religieuse
+  OPTION B - Refuser l'intervention religieuse
     Effets : remove cp26_phase6_prophets_possible, Bajor Republic opinion_insult
     (Les Prophètes ne peuvent plus intervenir)
 
 ────────────────────────────────────────────────────────────────────────────────
-ÉVÉNEMENT .731 — "The Armada Vanishes"
+ÉVÉNEMENT .731 - "The Armada Vanishes"
   Confirmation : l'armada a disparu dans le vortex.
   Option unique : "Record the event. All stations, stand down from battle readiness."
 
@@ -554,11 +554,11 @@ VÉRIFICATION FIN CANONIQUE [ticker annuelle]
 
 
 ================================================================================
- 9. FINS — VICTOIRE / DÉFAITE / FIN CANONIQUE
+ 9. FINS - VICTOIRE / DÉFAITE / FIN CANONIQUE
 ================================================================================
 
 ────────────────────────────────────────────────────────────────────────────────
-FIN A — VICTOIRE : LE DOMINION SE RETIRE (.800)
+FIN A - VICTOIRE : LE DOMINION SE RETIRE (.800)
 "The Dominion Withdraws"
 
   CONDITIONS : DTL < 20 après le début de la Phase 5
@@ -570,7 +570,7 @@ FIN A — VICTOIRE : LE DOMINION SE RETIRE (.800)
     influence +10x (300-600)
 
 ────────────────────────────────────────────────────────────────────────────────
-FIN B — DÉFAITE : LE QUADRANT ALPHA TOMBE (.810)
+FIN B - DÉFAITE : LE QUADRANT ALPHA TOMBE (.810)
 "The Alpha Quadrant Falls"
 
   CONDITIONS : cp26_ds9_captured + DTL 100 pendant 10 ans consécutifs
@@ -582,7 +582,7 @@ FIN B — DÉFAITE : LE QUADRANT ALPHA TOMBE (.810)
     research malus -5x deux fois (100-200 chacun)
 
 ────────────────────────────────────────────────────────────────────────────────
-FIN C — FIN CANONIQUE : LA RÉVOLTE CARDASSIENNE (.820)
+FIN C - FIN CANONIQUE : LA RÉVOLTE CARDASSIENNE (.820)
 "Cardassia Rises Against the Dominion"
 
   CONDITIONS :
@@ -594,12 +594,12 @@ FIN C — FIN CANONIQUE : LA RÉVOLTE CARDASSIENNE (.820)
 
   Les Cardassiens se soulèvent contre leurs occupants Dominion.
 
-  OPTION A — Soutenir la résistance cardassienne
+  OPTION A - Soutenir la résistance cardassienne
     Effets : cp26_dtl -15, unity +8x (200-500)
     Crée une flotte "Cardassian Resistance" au Système Bajoran (5% naval cap)
     appartenant au joueur
 
-  OPTION B — Négocier via Odo [VISIBLE si Bajor opinion >= 50]
+  OPTION B - Négocier via Odo [VISIBLE si Bajor opinion >= 50]
     Les Fondateurs écoutent l'un des leurs.
     Effets : cp26_dtl -100 (victoire immédiate), flag cp26_dominion_war_victory,
              influence +12x (400-800)
@@ -614,7 +614,7 @@ Tous les projets ont abort_trigger = { always = yes } (DÉSACTIVÉS).
 Pour activer : retirer la ligne "always = yes" du abort_trigger de chaque projet.
 
 ────────────────────────────────────────────────────────────────────────────────
-CP26_GAMMA_EXPEDITION_SCIENCE — "Bajoran Wormhole: Science Survey"
+CP26_GAMMA_EXPEDITION_SCIENCE - "Bajoran Wormhole: Science Survey"
   Scope      : ship_event (science ship)
   Lieu       : Système Bajoran
   Durée      : 180 jours
@@ -622,7 +622,7 @@ CP26_GAMMA_EXPEDITION_SCIENCE — "Bajoran Wormhole: Science Survey"
   Abort si   : NOT has_country_flag = cp26_gamma_approach_science
   Succès → .200 (choix d'action après l'étude)
 
-CP26_GAMMA_EXPEDITION_MILITARY — "Bajoran Wormhole: Military Patrol"
+CP26_GAMMA_EXPEDITION_MILITARY - "Bajoran Wormhole: Military Patrol"
   Scope      : ship_event (military ship)
   Lieu       : Système Bajoran
   Durée      : 90 jours
@@ -630,7 +630,7 @@ CP26_GAMMA_EXPEDITION_MILITARY — "Bajoran Wormhole: Military Patrol"
   Abort si   : NOT has_country_flag = cp26_gamma_approach_military
   Succès → .210 (choix d'action après la patrouille)
 
-CP26_COLONY_INVESTIGATION — "Investigate the Silent Colony"
+CP26_COLONY_INVESTIGATION - "Investigate the Silent Colony"
   Scope      : ship_event
   Lieu       : Système de la colonie silencieuse (ou Bajoran en fallback)
   Durée      : 120 jours
@@ -638,7 +638,7 @@ CP26_COLONY_INVESTIGATION — "Investigate the Silent Colony"
   Abort si   : NOT has_country_flag = cp26_phase2_investigating
   Succès → .420 (40% embuscade) ou .430 (60% renseignement)
 
-CP26_CHANGELING_HUNT — "Operation: Changeling Hunt"
+CP26_CHANGELING_HUNT - "Operation: Changeling Hunt"
   Scope      : ship_event
   Lieu       : Système Bajoran
   Durée      : 90 jours
@@ -646,7 +646,7 @@ CP26_CHANGELING_HUNT — "Operation: Changeling Hunt"
   Abort si   : NOT has_global_flag = cp26_phase3_intro_fired
   Succès → infiltration -1 à -3 (aléatoire 33/34/33%)
 
-CP26_CARDASSIA_RECON — "Operation: Cardassia Recon"
+CP26_CARDASSIA_RECON - "Operation: Cardassia Recon"
   Scope      : ship_event
   Lieu       : Système Bajoran
   Durée      : 60 jours
@@ -655,7 +655,7 @@ CP26_CARDASSIA_RECON — "Operation: Cardassia Recon"
   Succès → 60% → .610 (Cardassia rejoint le Dominion)
            40% → fausse alarme : research +4x (80-200), flag cp26_phase4_resolved
 
-CP26_DS9_DEFENSE — "Defense: Deep Space Nine"
+CP26_DS9_DEFENSE - "Defense: Deep Space Nine"
   Scope      : ship_event
   Lieu       : Système Bajoran
   Durée      : 30 jours
@@ -669,17 +669,17 @@ CP26_DS9_DEFENSE — "Defense: Deep Space Nine"
  11. MODIFICATEURS DE PLANÈTE
 ================================================================================
 
-cp26_security_protocols — "Security Protocols"
+cp26_security_protocols - "Security Protocols"
   Durée : 36 mois (depuis .510.a)
   Appliqué sur : capitale du joueur
   Effets : stabilité planétaire -15, vitesse croissance pop -10%
 
-cp26_sabotaged_infrastructure — "Sabotaged Infrastructure"
+cp26_sabotaged_infrastructure - "Sabotaged Infrastructure"
   Durée : 24 mois (depuis incident .520, type sabotage)
   Appliqué sur : planète aléatoire du joueur
   Effets : commodités -5, valeur commerciale -10
 
-cp26_ds9_damaged — "Station Battle Damage"
+cp26_ds9_damaged - "Station Battle Damage"
   Durée : 60 mois (depuis projet DS9_DEFENSE en cas d'échec 50%)
   Appliqué sur : planète aléatoire du joueur
   Effets : commodités -10, valeur commerciale -20, stabilité -5
@@ -766,37 +766,37 @@ cp26_bajoran_wormhole_bypass_created  Bypass vortex créé (système bypass CP26
 
 Le système est entièrement désactivé. Pour l'activer complètement :
 
-ÉTAPE 1 — Activer la ticker annuelle
+ÉTAPE 1 - Activer la ticker annuelle
   Fichier : common/on_actions/zz_cp26_dominion_threat_on_actions.txt
   Retirer ou commenter la ligne qui bloque le déclenchement du .1
   (probablement un always = no ou une absence de hook)
   → L'événement .1 doit être raccroché à "on_yearly_pulse_country"
 
-ÉTAPE 2 — Activer l'event .1 lui-même
+ÉTAPE 2 - Activer l'event .1 lui-même
   Fichier : events/zz_cp26_dominion_threat_events.txt
   Dans l'événement cp26_dominion_threat.1, trigger block :
     Retirer la ligne : always = no
   → Le trigger passera à has_country_flag = the_dominion + bajoran_wormhole_discovered
 
-ÉTAPE 3 — Activer les projets spéciaux
+ÉTAPE 3 - Activer les projets spéciaux
   Fichier : common/special_projects/zz_cp26_dominion_threat_projects.txt
   Dans chaque projet, dans abort_trigger, retirer :
-    always = yes  # DISABLED — remove this line when activating
+    always = yes  # DISABLED - remove this line when activating
   À faire pour : CP26_GAMMA_EXPEDITION_SCIENCE, CP26_GAMMA_EXPEDITION_MILITARY,
                  CP26_COLONY_INVESTIGATION, CP26_CHANGELING_HUNT,
                  CP26_CARDASSIA_RECON, CP26_DS9_DEFENSE
 
-ÉTAPE 4 — Vérifier les localisations
+ÉTAPE 4 - Vérifier les localisations
   English : localisation/english/zz_cp26_dominion_threat_l_english.yml
   French  : localisation/french/zz_cp26_dominion_threat_l_french.yml
   Les deux fichiers sont complets pour les phases 1-5 et les 3 fins.
 
-ÉTAPE 5 — Vérifier les modificateurs statiques
+ÉTAPE 5 - Vérifier les modificateurs statiques
   Fichier : common/static_modifiers/zz_cp26_dominion_threat_modifiers.txt
   Doit contenir : cp26_security_protocols, cp26_sabotaged_infrastructure,
                   cp26_ds9_damaged. Vérifier présence en jeu.
 
-ÉTAPE 6 — Test de fumée recommandé
+ÉTAPE 6 - Test de fumée recommandé
   Utiliser la console pour poser bajoran_wormhole_discovered, the_dominion
   et wormhole_discoverer sur les bons pays, puis déclencher .1 manuellement.
   Vérifier que .100 se déclenche correctement et que les projets s'ouvrent.

@@ -1,4 +1,4 @@
-# CP26 — Klingon Raptor (destroyer-tier military hull)
+# CP26 - Klingon Raptor (destroyer-tier military hull)
 
 @base_operative_officers = 20
 @base_officers_escape_perc = 15

@@ -1,0 +1,54 @@
+##########################################################################
+# A500 Synthetic Workers - Planet Decision
+##########################################################################
+
+decision_deploy_a500 = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_cybernetics
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 300
+		}
+	}
+
+	potential = {
+		owner = {
+			is_ufop = yes
+			has_technology = tech_a500_synthetics
+		}
+		NOT = { has_planet_flag = cp26_a500_installed }
+		is_colony = yes
+	}
+
+	allow = {
+		NOT = { has_planet_flag = cp26_a500_installed }
+	}
+
+	effect = {
+		set_planet_flag = cp26_a500_installed
+		add_modifier = { modifier = cp26_a500_installed days = -1 }
+		create_pop = { species = "A500" }
+		create_pop = { species = "A500" }
+		create_pop = { species = "A500" }
+		if = {
+			limit = {
+				has_planet_flag = planet_mars
+				NOT = { has_global_flag = cp26_block_synth_arc }
+			}
+			# Délai de ~5 ans avant le déclenchement de la rébellion
+			planet_event = { id = cp26_a500.1 days = 1825 }
+		}
+	}
+
+	ai_weight = {
+		weight = 3
+		modifier = {
+			factor = 0
+			has_planet_flag = planet_mars
+		}
+	}
+}

@@ -1,0 +1,16 @@
+# CP26 - Romulan Projet Synth hook
+# Déclenche l'arc Romulien quand la UFOP recherche tech_a500_synthetics.
+
+on_tech_increased = {
+	events = {
+		cp26_synth_rom.0
+	}
+}
+
+# CP26 - Victoire au sol sur Mars (rébellion A500)
+# ROOT = défenseur (joueur), FROM = attaquant (rebelles), FROMFROM = planète
+on_planet_defenders_win = {
+	events = {
+		cp26_a500.12
+	}
+}

@@ -1,5 +1,5 @@
 # HRB: Cardassian Unique Mechanic: Exploitation
-# CP26: replace_path — jobs artisan/purge fusionnés depuis zz_cp26_pop_job_fixes (exists=planet).
+# CP26: replace_path - jobs artisan/purge fusionnés depuis zz_cp26_pop_job_fixes (exists=planet).
 @cardassian_exploitation_production_penalty = -0.10
 @cardassian_exploitation_production_bonus = 0.10
 @cardassian_exploitation_production_bonus_increased = 0.20

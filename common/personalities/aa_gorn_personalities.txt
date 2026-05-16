@@ -1,5 +1,5 @@
 hegemonic_imperialists_gorn = {
-	# CP26 2026-05-16 : aggressiveness déjà au max moteur (2.0) — la passivité en
+	# CP26 2026-05-16 : aggressiveness déjà au max moteur (2.0) - la passivité en
 	# guerre se joue surtout sur combat_bravery / bravery / military_spending.
 	# Bump vs 0.95/1.5 pour pousser l’IA à engager et tenir le combat (premier
 	# peuple ciblé pour tuning « moins seul sur la carte »).

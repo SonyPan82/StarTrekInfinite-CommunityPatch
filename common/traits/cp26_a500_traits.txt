@@ -1,0 +1,34 @@
+trait_a500_efficient_processors = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_robot_efficient_processors.dds"
+	potential_crossbreeding_chance = 0
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_production_mult = 0.10
+		planet_jobs_worker_produces_mult = 0.05
+	}
+}
+
+trait_a500_synthetic_body = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_robot_superconductive.dds"
+	potential_crossbreeding_chance = 0
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_housing_usage_mult = -0.15
+		pop_amenities_usage_mult = -0.20
+		leader_age = 80
+	}
+}
+
+trait_a500_networked = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_robot_high_bandwidth.dds"
+	potential_crossbreeding_chance = 0
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_political_power = -0.50
+		pop_ethic_shift_speed_mult = -0.30
+		planet_researchers_produces_mult = 0.05
+	}
+}

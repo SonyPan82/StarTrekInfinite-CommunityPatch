@@ -1,4 +1,4 @@
-CP26 — Console de test (trou de ver Bajor + arc Dominion)
+CP26 - Console de test (trou de ver Bajor + arc Dominion)
 ===========================================================
 Ouvre la console (~), sans ironman. La commande `event <id>` ignore en général
 les triggers des événements is_triggered_only.
@@ -39,52 +39,52 @@ PRÉREQUIS UTILES
     effect add_global_flag = bajoran_wormhole_discovered
     effect add_global_flag = cp26_bajoran_wormhole_bypass_created
 
-TROU DE VER — namespace cp26_bajoran_wormhole
+TROU DE VER - namespace cp26_bajoran_wormhole
 ---------------------------------------------
-• event cp26_bajoran_wormhole.900   — Active le trou de ver (appelle .200 si pas encore créé)
-• event cp26_bajoran_wormhole.901   — Alias : force .200
-• event cp26_bajoran_wormhole.200   — Logique hide_window (flags + init DTL Dominion + notif .2)
-• event cp26_bajoran_wormhole.2     — Pop-up « trou de ver confirmé actif »
-• event cp26_bajoran_wormhole.12    — Notif « relevés anomaux, enquête » (projet CP26_WORMHOLE_SURVEY séparé)
-• event cp26_bajoran_wormhole.21    — Notif Bajor 2369 (canon)
-• event cp26_bajoran_wormhole.300   — Offre d’expédition Gamma (après phase 1 résolue + cooldown)
-• event cp26_bajoran_wormhole.310 / .311 — Branche Gamma « pacifique »
-• event cp26_bajoran_wormhole.320 / .321 / .322 — Branche « agressive » / avertissement
+• event cp26_bajoran_wormhole.900   - Active le trou de ver (appelle .200 si pas encore créé)
+• event cp26_bajoran_wormhole.901   - Alias : force .200
+• event cp26_bajoran_wormhole.200   - Logique hide_window (flags + init DTL Dominion + notif .2)
+• event cp26_bajoran_wormhole.2     - Pop-up « trou de ver confirmé actif »
+• event cp26_bajoran_wormhole.12    - Notif « relevés anomaux, enquête » (projet CP26_WORMHOLE_SURVEY séparé)
+• event cp26_bajoran_wormhole.21    - Notif Bajor 2369 (canon)
+• event cp26_bajoran_wormhole.300   - Offre d’expédition Gamma (après phase 1 résolue + cooldown)
+• event cp26_bajoran_wormhole.310 / .311 - Branche Gamma « pacifique »
+• event cp26_bajoran_wormhole.320 / .321 / .322 - Branche « agressive » / avertissement
 
 Note : .11 est fleet_event (entrée flotte Denorios), pas pratique en console.
 
-ARC DOMINION — ticker (scope Dominion)
+ARC DOMINION - ticker (scope Dominion)
 --------------------------------------
 • play <id_du_dominion>   puis   event cp26_dominion_threat.1
   (annual tick DTL + enchaînements si flags / variables déjà prêts)
 
-ARC DOMINION — événements joueur (cp26_dominion_threat)
+ARC DOMINION - événements joueur (cp26_dominion_threat)
 -------------------------------------------------------
 Phase 1 :
-  event cp26_dominion_threat.100   — Choix tactique trou de ver (science / militaire / fermer)
-  event cp26_dominion_threat.109   — Consignes science Bajor
-  event cp26_dominion_threat.119   — Consignes militaire Bajor
-  event cp26_dominion_threat.102   — Tension bajorane (fermeture)
-  event cp26_dominion_threat.200   — Fin enquête science
-  event cp26_dominion_threat.201   — Réponse Dominion (contact)
-  event cp26_dominion_threat.210   — Évaluation militaire
-  event cp26_dominion_threat.211   — Incursion Jem’Hadar
+  event cp26_dominion_threat.100   - Choix tactique trou de ver (science / militaire / fermer)
+  event cp26_dominion_threat.109   - Consignes science Bajor
+  event cp26_dominion_threat.119   - Consignes militaire Bajor
+  event cp26_dominion_threat.102   - Tension bajorane (fermeture)
+  event cp26_dominion_threat.200   - Fin enquête science
+  event cp26_dominion_threat.201   - Réponse Dominion (contact)
+  event cp26_dominion_threat.210   - Évaluation militaire
+  event cp26_dominion_threat.211   - Incursion Jem’Hadar
 
 Phase 2 :
-  event cp26_dominion_threat.400   — Intro activité Jem’Hadar
-  event cp26_dominion_threat.410   — Colonie silencieuse
-  event cp26_dominion_threat.411   — Démenti cardassien
-  event cp26_dominion_threat.412   — Ordres enquête colonie
-  event cp26_dominion_threat.413   — Colonie vide
-  event cp26_dominion_threat.420   — Embuscade Jem’Hadar
-  event cp26_dominion_threat.430   — Intel récupérée
+  event cp26_dominion_threat.400   - Intro activité Jem’Hadar
+  event cp26_dominion_threat.410   - Colonie silencieuse
+  event cp26_dominion_threat.411   - Démenti cardassien
+  event cp26_dominion_threat.412   - Ordres enquête colonie
+  event cp26_dominion_threat.413   - Colonie vide
+  event cp26_dominion_threat.420   - Embuscade Jem’Hadar
+  event cp26_dominion_threat.430   - Intel récupérée
 
-Phases 3–5 (aperçu) :
-  .500 .510 .511 .512 .520  — Infiltration / incidents
-  .600 .610 .620            — Cardassia / diplomatie
-  .700 .701 .710            — Guerre / raids
-  .720 .730 .731            — DS9 / wormhole miné / Prophètes
-  .800 .810 .820            — Fins / occupation / révolte
+Phases 3-5 (aperçu) :
+  .500 .510 .511 .512 .520  - Infiltration / incidents
+  .600 .610 .620            - Cardassia / diplomatie
+  .700 .701 .710            - Guerre / raids
+  .720 .730 .731            - DS9 / wormhole miné / Prophètes
+  .800 .810 .820            - Fins / occupation / révolte
 
 Fichier source : events/zz_cp26_dominion_threat_events.txt
 

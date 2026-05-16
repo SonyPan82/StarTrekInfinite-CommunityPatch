@@ -27,7 +27,7 @@ setup_orion_capital = {
 		limit = {
 			exists = event_target:orion_country
 		}
-		# CP26 — Orion combat doctrine : fast pirates, punchy weapons, fragile armor.
+		# CP26 - Orion combat doctrine : fast pirates, punchy weapons, fragile armor.
 		event_target:orion_country = {
 			if = {
 				limit = { NOT = { has_modifier = cp26_minor_orion_combat_doctrine } }

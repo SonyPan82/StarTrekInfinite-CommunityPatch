@@ -1,0 +1,41 @@
+# Technology: A500 Synthetic Workers - UFOP exclusive, arc Mars
+
+tech_a500_synthetics = {
+	cost = @tier2cost2
+	area = engineering
+	category = { industry }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_alloys_1 }
+	weight = @tier2weight2
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = { is_ufop = yes }
+		title = tech_a500_synthetics
+		desc = tech_a500_synthetics_desc
+		icon = tech_robotic_workers
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			years_passed < 8
+		}
+		modifier = {
+			factor = 4
+			years_passed > 15
+		}
+	}
+
+	ai_weight = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = { area = engineering }
+		}
+	}
+}

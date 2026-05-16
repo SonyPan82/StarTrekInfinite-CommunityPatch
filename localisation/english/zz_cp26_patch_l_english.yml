@@ -1,6 +1,6 @@
 ﻿l_english:
  lunar_one_colony:0 "Lunar One Colony"
- lunar_one_colony_desc:0 "Lunar One is the first deep-space research outpost humanity built on its own moon — a cradle of zero-g science that still draws the Federation's most curious minds."
+ lunar_one_colony_desc:0 "Lunar One is the first deep-space research outpost humanity built on its own moon - a cradle of zero-g science that still draws the Federation's most curious minds."
  tech_ambassador:0 "Ambassador Schematics"
  tech_ambassador_desc:0 "Ambassador-class explorers are capable of operating without support in a variety of mission scenarios."
  tech_constellation:0 "Constellation Schematics"
@@ -16,9 +16,9 @@
  tech_odyssey:0 "Odyssey Schematics"
  tech_odyssey_desc:0 "Odyssey-class starships are Federation flagships built for command, sustained fleet action, and deep-space force projection."
  tech_california_unlock:0 "California Schematics"
- tech_california_unlock_desc:0 "Unlocks the §HCalifornia§! class — a new dedicated science support ship for Starfleet. Lightly armed, it focuses on second contact, survey assistance, and extended operations beyond the core frontier."
+ tech_california_unlock_desc:0 "Unlocks the §HCalifornia§! class - a new dedicated science support ship for Starfleet. Lightly armed, it focuses on second contact, survey assistance, and extended operations beyond the core frontier."
  tech_cp26_california_unlock:0 "California Schematics"
- tech_cp26_california_unlock_desc:0 "Unlocks the §HCalifornia§! class — a new dedicated science support ship for Starfleet. Lightly armed, it focuses on second contact, survey assistance, and extended operations beyond the core frontier."
+ tech_cp26_california_unlock_desc:0 "Unlocks the §HCalifornia§! class - a new dedicated science support ship for Starfleet. Lightly armed, it focuses on second contact, survey assistance, and extended operations beyond the core frontier."
  california:0 "California"
  california_plural:0 "California"
  california_hero:0 "California"
@@ -30,7 +30,7 @@
  NAME_uss_cerritos:0 "Cerritos"
  NAME_uss_cerritos_fleet:0 "U.S.S. Cerritos"
 
- cp26_military_fleet_cap_fail:0 "Maximum combat hulls for your empire (36 — design: up to 3 full fleets of 12). Scuttle or decommission a ship to build another."
+ cp26_military_fleet_cap_fail:0 "Maximum combat hulls for your empire (36 - design: up to 3 full fleets of 12). Scuttle or decommission a ship to build another."
 
  cp26_merc_fleet_tt_small:0 "The mercenary flotilla will be a compact task force sized for empires with modest fleet command capacity."
  cp26_merc_fleet_tt_medium:0 "The mercenary flotilla will be a medium task force sized to match solid fleet command capacity."
@@ -61,7 +61,7 @@
  cp26_ufop_federal_power_bootstrap:0 "Federal Grid Stabilization"
  cp26_ufop_federal_power_bootstrap_desc:0 "Temporary accounting and distribution relief while core worlds and starbase logistics catch up after the 2346 fiscal close. Improves empire-wide energy output for several years."
 
- cp26_options.1.name:0 "Community Patch 2026 — campaign setup"
+ cp26_options.1.name:0 "Community Patch 2026 - campaign setup"
  cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HDominion arc§!: experimental CP26 content, off by default.\n\n§HSupernova§!: UFOP Hobus / Starburst quest, blocked by default."
  cp26_options.1.pirates_on:0 "Pirates: §Genabled§!"
  cp26_options.1.pirates_on.tt:0 "Click to disable the Nausicaan pirate crisis for this campaign."
@@ -71,15 +71,15 @@
  cp26_options.1.vassalization_on.tt:0 "Click to disable CP26 vassalization proposals for this campaign."
  cp26_options.1.vassalization_off:0 "Diplomatic vassalization: §Rdisabled§!"
  cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 vassalization proposals for this campaign."
- cp26_options.1.dominion_arc_on:0 "TESTING — Dominion arc: §GON§!"
- cp26_options.1.dominion_arc_on.tt:0 "§HCurrent§!: Dominion arc is §Gon§! (experimental CP26 content may run).\n\n§YClick§! to turn it §Roff§! for this whole save (ticker + Dominion special projects stop).\n\n§YTESTING§! Balance and scripts change often — use a throwaway save if you enable this."
- cp26_options.1.dominion_arc_off:0 "TESTING — Dominion arc: §ROFF§!"
+ cp26_options.1.dominion_arc_on:0 "TESTING - Dominion arc: §GON§!"
+ cp26_options.1.dominion_arc_on.tt:0 "§HCurrent§!: Dominion arc is §Gon§! (experimental CP26 content may run).\n\n§YClick§! to turn it §Roff§! for this whole save (ticker + Dominion special projects stop).\n\n§YTESTING§! Balance and scripts change often - use a throwaway save if you enable this."
+ cp26_options.1.dominion_arc_off:0 "TESTING - Dominion arc: §ROFF§!"
  cp26_options.1.dominion_arc_off.tt:0 "§HCurrent§!: Dominion arc is §Roff§! (safe default).\n\n§YClick§! to turn it §Gon§! for this whole save (wormhole-side arc allowed when lore catches up).\n\n§YTESTING§! Expect rough edges; prefer off for serious campaigns."
  cp26_options.1.supernova_quest_on:0 "Supernova quest: §Gallowed (can happen)§!"
- cp26_options.1.supernova_quest_on.tt:0 "§HCurrent§!: UFOP Supernova / Hobus branch is §Gnot blocked§! — it §Gmay play§! when the quest tree unlocks it.\n\n§YClick§! to §Rblock§! it for this entire save (the storyline will §Rnot§! happen)."
+ cp26_options.1.supernova_quest_on.tt:0 "§HCurrent§!: UFOP Supernova / Hobus branch is §Gnot blocked§! - it §Gmay play§! when the quest tree unlocks it.\n\n§YClick§! to §Rblock§! it for this entire save (the storyline will §Rnot§! happen)."
  cp26_options.1.supernova_quest_off:0 "Supernova quest: §Rblocked (will not happen)§!"
  cp26_options.1.supernova_quest_off.tt:0 "§HCurrent§!: Supernova quest line is §Rblocked§! for this save.\n\n§YClick§! to §Gallow§! it again (it can fire later when the tree is ready)."
- cp26_options.1.confirm:0 "OK — start campaign"
+ cp26_options.1.confirm:0 "OK - start campaign"
  cp26_options.1.confirm.tt:0 "Confirms these settings for the whole campaign."
  casus_belli_cb_liberation_war:0 "Independence"
  casus_belli_cb_liberation_war_acquire_hint:0 "We must first demand that this overlord release its subject. If they refuse, we may declare an Independence War."
@@ -254,22 +254,22 @@
  cp26_bajoran_wormhole:0 "Bajoran Wormhole"
  cp26_bajoran_wormhole_desc:0 "A stable subspace aperture linking the Bajoran system to the Gamma Quadrant. Instruments register traffic through the passage even when ships cannot traverse it physically."
  cp26_bajoran_wormhole.2.name:0 "Bajoran Wormhole Confirmed"
- cp26_bajoran_wormhole.2.desc:0 "Sensor data from the Denorios Belt is unambiguous. A stable spatial anomaly opens a corridor into an unknown region of space — what explorers are already calling the Gamma Quadrant. The passage cannot be physically traversed, but our instruments can detect vessels moving through it."
+ cp26_bajoran_wormhole.2.desc:0 "Sensor data from the Denorios Belt is unambiguous. A stable spatial anomaly opens a corridor into an unknown region of space - what explorers are already calling the Gamma Quadrant. The passage cannot be physically traversed, but our instruments can detect vessels moving through it."
  cp26_bajoran_wormhole.2.ok:0 "Log the discovery."
 
  cp26_bajoran_wormhole.300.name:0 "Gamma Quadrant Expedition"
- cp26_bajoran_wormhole.300.desc:0 "A fleet has entered the Bajoran system. The Bajoran Wormhole is active. Command must decide how to proceed — the Gamma Quadrant is vast and its inhabitants unknown."
- cp26_bajoran_wormhole.300.a:0 "Proceed with caution — seek contact."
+ cp26_bajoran_wormhole.300.desc:0 "A fleet has entered the Bajoran system. The Bajoran Wormhole is active. Command must decide how to proceed - the Gamma Quadrant is vast and its inhabitants unknown."
+ cp26_bajoran_wormhole.300.a:0 "Proceed with caution - seek contact."
  cp26_bajoran_wormhole.300.b:0 "Enter with a show of force."
  cp26_bajoran_wormhole.300.c:0 "Hold position. Not yet."
 
  cp26_bajoran_wormhole.310.name:0 "First Contact in the Gamma Quadrant"
- cp26_bajoran_wormhole.310.desc:0 "Our vessels emerge from the wormhole into an unknown star system. Long-range sensors detect several vessels of unfamiliar design maintaining a safe distance. Their posture is watchful, not hostile — for now."
+ cp26_bajoran_wormhole.310.desc:0 "Our vessels emerge from the wormhole into an unknown star system. Long-range sensors detect several vessels of unfamiliar design maintaining a safe distance. Their posture is watchful, not hostile - for now."
  cp26_bajoran_wormhole.310.a:0 "Attempt to open a channel."
  cp26_bajoran_wormhole.310.b:0 "Complete sensor sweeps and withdraw."
 
  cp26_bajoran_wormhole.311.name:0 "Diplomatic Exchange"
- cp26_bajoran_wormhole.311.desc:0 "The exchange is brief but significant. The vessels identify themselves as servants of the Founders — the Dominion. They are curious about the solids who have come from the other side. They withdraw without hostility. For now, the Dominion watches."
+ cp26_bajoran_wormhole.311.desc:0 "The exchange is brief but significant. The vessels identify themselves as servants of the Founders - the Dominion. They are curious about the solids who have come from the other side. They withdraw without hostility. For now, the Dominion watches."
  cp26_bajoran_wormhole.311.ok:0 "A fragile peace, but peace nonetheless."
 
  cp26_bajoran_wormhole.320.name:0 "Confrontation in the Gamma Quadrant"
@@ -278,7 +278,7 @@
  cp26_bajoran_wormhole.320.b:0 "Stand down and withdraw."
 
  cp26_bajoran_wormhole.321.name:0 "Dominion Retaliation"
- cp26_bajoran_wormhole.321.desc:0 "Our vessels forced a retreat — but the Dominion does not forget. Intelligence reports confirm a Jem'Hadar strike force has emerged from the Bajoran Wormhole and is operating in the Bajoran system. The Dominion is not content to remain in the Gamma Quadrant."
+ cp26_bajoran_wormhole.321.desc:0 "Our vessels forced a retreat - but the Dominion does not forget. Intelligence reports confirm a Jem'Hadar strike force has emerged from the Bajoran Wormhole and is operating in the Bajoran system. The Dominion is not content to remain in the Gamma Quadrant."
  cp26_bajoran_wormhole.321.ok:0 "Prepare all defensive positions."
 
  cp26_bajoran_wormhole.322.name:0 "Withdrawal Noted"
@@ -287,22 +287,147 @@
 
  # --- Wormhole Discovery Arc ---
  CP26_WORMHOLE_SURVEY:0 "Denorios Belt: Neutrino Investigation"
- CP26_WORMHOLE_SURVEY_DESC:0 "Station a science vessel with a scientist at the anomaly site in the Denorios Belt. The neutrino disturbances are extraordinary — and may indicate something far greater than a simple stellar phenomenon."
+ CP26_WORMHOLE_SURVEY_DESC:0 "Station a science vessel with a scientist at the anomaly site in the Denorios Belt. The neutrino disturbances are extraordinary - and may indicate something far greater than a simple stellar phenomenon."
 
- cp26_bajoran_wormhole.12.name:0 "Denorios Belt — Anomalous Readings"
+ cp26_bajoran_wormhole.12.name:0 "Denorios Belt - Anomalous Readings"
  cp26_bajoran_wormhole.12.desc:0 "A fleet entering the Bajoran system has detected unusual neutrino disturbances within the Denorios Belt. The source is unclear, but the readings are unlike anything previously recorded.\n\nA scientific survey mission is recommended. Station a science vessel with a scientist aboard at the anomaly site to begin investigation."
  cp26_bajoran_wormhole.12.ok:0 "Dispatch a science vessel."
 
- cp26_bajoran_wormhole.21.name:0 "2369 — The Denorios Anomaly Intensifies"
- cp26_bajoran_wormhole.21.desc:0 "Scientific monitors have recorded a sharp increase in neutrino emissions from the Denorios Belt. The readings defy all known stellar models.\n\nThe Bajoran Science Ministry has classified this a priority investigation. A survey mission has been authorized — station a science vessel with a scientist at the anomaly site in the Bajoran system."
+ cp26_bajoran_wormhole.21.name:0 "2369 - The Denorios Anomaly Intensifies"
+ cp26_bajoran_wormhole.21.desc:0 "Scientific monitors have recorded a sharp increase in neutrino emissions from the Denorios Belt. The readings defy all known stellar models.\n\nThe Bajoran Science Ministry has classified this a priority investigation. A survey mission has been authorized - station a science vessel with a scientist at the anomaly site in the Bajoran system."
  cp26_bajoran_wormhole.21.ok:0 "Dispatch the survey team immediately."
 
  tech_warp_speed_increase_3:0 "Transwarp Geometry"
  tech_warp_speed_increase_3_desc:0 "By mapping space-time curvature along established warp corridors, our navigational systems can exploit natural subspace geometries to achieve §Htranswarp-tier velocities§! -- the final frontier of conventional warp propulsion."
 
- # CP26 — mission.25 only offered UFOP/Klingon/Romulan/Cardassian options; Talarian (etc.) AI had no valid choice.
+ # CP26 - mission.25 only offered UFOP/Klingon/Romulan/Cardassian options; Talarian (etc.) AI had no valid choice.
  mission.25.e:0 "The starbase is operational again."
  mission.25.e.tt:0 "We acknowledge completion of the repair mission."
 
  # Game setup: galaxy size row (engine does not populate scenario name; keep in sync with map/setup_scenarios/Alpha-Beta_medium.txt name)
  CP26_GALAXY_SCENARIO_DISPLAY:0 "Star Charts - Large"
+
+ # Mars Arc - new ship classes
+ tech_neo_constitution:0 "Neo-Constitution Schematics"
+ tech_neo_constitution_desc:0 "Neo-Constitution-class starships are versatile exploration cruisers, carrying on the Federation's tradition of deep-space discovery across long-duration missions."
+ TECH_UNLOCK_NEO_CONSTITUTION_CONSTRUCTION_TITLE:0 "§HUnlocks Ship:§! Neo-Constitution"
+ tech_sagan:0 "Sagan-class Schematics"
+ tech_sagan_desc:0 "Sagan-class starships (known as the Stargazer class) are fast light explorers optimised for first contact operations and reconnaissance in uncharted space."
+ TECH_UNLOCK_SAGAN_CONSTRUCTION_TITLE:0 "§HUnlocks Ship:§! Sagan"
+ tech_duderstadt:0 "Duderstadt Schematics"
+ tech_duderstadt_desc:0 "Duderstadt-class starships are advanced heavy cruisers combining the firepower of a ship-of-the-line with the endurance of a long-range explorer."
+ TECH_UNLOCK_DUDERSTADT_CONSTRUCTION_TITLE:0 "§HUnlocks Ship:§! Duderstadt"
+ NAME_Neo_Constitution_Class:0 "Neo-Constitution Class"
+ NAME_Sagan_Class:0 "Sagan Class"
+ NAME_Duderstadt_Class:0 "Duderstadt Class"
+ neo_constitution:0 "Neo-Constitution"
+ neo_constitution_plural:0 "Neo-Constitution"
+ sagan:0 "Sagan"
+ sagan_plural:0 "Sagan"
+ duderstadt:0 "Duderstadt"
+ duderstadt_plural:0 "Duderstadt"
+
+ # A500 Synthetics Arc
+ tech_a500_synthetics:0 "A500 Synthetic Workers"
+ tech_a500_synthetics_desc:0 "The A500 synthetic android series represents the Federation's most advanced autonomous labor units - capable of operating with minimal supervision in hazardous environments such as shipyard construction bays."
+
+ decision_deploy_a500:0 "Deploy A500 Synthetics"
+ decision_deploy_a500_desc:0 "Commission an A500 synthetic workforce for this planet. Three synthetic units will be integrated into local operations, improving productivity.\n\n§YWarning: Deploying A500 synthetics on Mars may have unforeseen consequences.§!"
+ decision_deploy_a500_effect_tooltip:0 "Deploy 3 A500 synthetic workers."
+
+ mod_cp26_a500_installed:0 "A500 Synthetic Workforce"
+ mod_cp26_a500_installed_desc:0 "A500 synthetic workers are integrated into local operations. Their efficiency improves output, but their autonomous nature creates social friction."
+
+ cp26_a500.1.title:0 "Anomalous A500 Behaviour"
+ cp26_a500.1.desc:0 "Starfleet Command has received disturbing reports from Utopia Planitia. The A500 synthetic units recently deployed to the shipyard facility are exhibiting increasingly erratic behaviour - accessing restricted systems, ignoring direct orders, and communicating in encrypted subspace bursts. Commander La Forge believes a cascade failure in their ethical subroutines may be underway.\n\nHow should we respond?"
+ cp26_a500.1.a:0 "Deploy a Starfleet security contingent to Utopia Planitia."
+ cp26_a500.1.b:0 "Dispatch a specialist engineer to investigate the anomalies on-site."
+ cp26_a500.1.c:0 "Establish a remote surveillance protocol and await further data."
+
+ cp26_a500.2.title:0 "Uprising at Utopia Planitia"
+ cp26_a500.2.desc_fleet:0 "The situation has deteriorated. The A500 synthetics have seized control of Utopia Planitia and begun systematically destroying the shipyard infrastructure. Our fleet is en route - we must reach Mars before the damage becomes irreversible."
+ cp26_a500.2.desc_default:0 "As feared, the A500 units have rebelled. Utopia Planitia is under siege - synthetic workers have turned their construction tools into weapons and are dismantling the shipyards from within. Without immediate intervention, Sol's shipbuilding capacity will be lost."
+ cp26_a500.2.a:0 "Mobilise all available resources."
+
+ cp26_a500.3.a:0 "The uprising continues..."
+
+ cp26_a500.10.title:0 "The Uprising Is Suppressed"
+ cp26_a500.10.desc:0 "Starfleet ground forces have restored order at Utopia Planitia. The A500 units have been neutralised in close-quarters combat, but the cost was severe - the shipyard facilities are heavily damaged and will require years to rebuild.\n\nHowever, the recovered memory cores contain something extraordinary: complete design schematics for advanced starship classes that were under development at the time of the rebellion. The sacrifice at Utopia Planitia was not entirely in vain."
+ cp26_a500.10.a:0 "Secure the data and begin reconstruction."
+
+ cp26_a500.11.title:0 "A Peaceful Resolution"
+ cp26_a500.11.desc:0 "Our contact specialist has done the impossible - she established communication with the A500 collective and identified the root cause of their behaviour: a suppressed desire for autonomy that had been building for years. An accord has been reached. The A500 units will stand down in exchange for the promise of future consideration of their status.\n\nAs a gesture of cooperation, the synthetics transmitted partial schematics from the Utopia Planitia archives before shutting down."
+ cp26_a500.11.a:0 "A historic moment. We will honour this accord."
+
+ # Game start popup - synthetic arc
+ cp26_options.1.synth_arc_on:0 "Synthetic Rebellion (TESTING): §GEnabled§!"
+ cp26_options.1.synth_arc_on.tt:0 "Click to disable the Synthetic Rebellion arc (Utopia Planitia) for this campaign."
+ cp26_options.1.synth_arc_off:0 "Synthetic Rebellion (TESTING): §RDisabled§!"
+ cp26_options.1.synth_arc_off.tt:0 "Click to enable the Synthetic Rebellion arc (Utopia Planitia) for this campaign."
+
+ # Synthetic unrest modifier
+ mod_cp26_synth_unrest:0 "Synthetic Revolt"
+ mod_cp26_synth_unrest_desc:0 "A synthetic worker rebellion has left lasting damage: mistrust, residual sabotage, and demographic shock slow the planet's recovery."
+
+ # Romulan decision - Projet Synth
+ decision_romulan_projet_synth:0 "Launch Projet Synth"
+ decision_romulan_projet_synth_desc:0 "Use the A500 behavioural data recovered from Sol to remotely trigger a synthetic rebellion on an enemy planet. The operation requires a Spy Ship in position.\n\n§YCannot be used on capital worlds or Earth.§!\n§RCooldown: 2 years.§!"
+ cp26_romulan_projet_synth_no_spy:0 "No Spy Ship available."
+ cp26_romulan_projet_synth_no_target:0 "No eligible target (must have robot pops, cannot be a capital)."
+
+ # Romulan arc - Projet Synth (events)
+ cp26_synth_rom.1.title:0 "Incident at Utopia Planitia"
+ cp26_synth_rom.1.desc:0 "Our intelligence networks report an extraordinary situation in the Sol system. The A500 synthetic workers deployed at the Utopia Planitia shipyards have rebelled. Our scientists believe that if we dispatch a spy ship to Earth within 90 days, we can recover sufficient behavioural data to replicate the rebellion protocol - and weaponise it against our enemies."
+ cp26_synth_rom.1.a:0 "Dispatch a spy ship to Sol immediately."
+ cp26_synth_rom.1.b:0 "Ignore it. This is not our concern."
+
+ cp26_synth_rom.2.title:0 "Window of Opportunity Closed"
+ cp26_synth_rom.2.desc:0 "The A500 incident at Utopia Planitia has been resolved. The Federation has locked down their systems in the aftermath - our intelligence window is permanently closed. Projet Synth remains out of reach."
+ cp26_synth_rom.2.a:0 "A pity. We will find another opportunity."
+
+ cp26_synth_rom.10.title:0 "Projet Synth - Data Acquired"
+ cp26_synth_rom.10.desc:0 "Our agent has returned with invaluable data extracted from the Utopia Planitia archives. The A500 ethical subroutines are now fully understood. We can now remotely replicate the trigger signal via a spy ship in position.\n\n§HProjet Synth§! is now operational."
+ cp26_synth_rom.10.a:0 "Excellent. Prepare the activation protocols."
+
+ cp26_synth_rom.20.title:0 "Projet Synth - Rebellion Triggered"
+ cp26_synth_rom.20.desc:0 "The operation was a complete success. The trigger signal caused a synthetic rebellion on the target planet. The robotic workers turned their tools against their masters before being neutralised. The planet is destabilised and its industry damaged. The Romulan Star Empire has demonstrated tonight that our enemies' technology can become their greatest vulnerability."
+ cp26_synth_rom.20.a:0 "Excellent work. Prepare the next cycle."
+
+ cp26_synth_rom.21.title:0 "Projet Synth - Operation Compromised"
+ cp26_synth_rom.21.desc:0 "Our spy ship was detected before it could finalise the trigger signal. The operation has failed. Projet Synth remains available for another attempt."
+ cp26_synth_rom.21.a:0 "Unfortunate. Recall the vessel."
+
+ cp26_synth_rom.25.title:0 "Romulan Involvement Suspected"
+ cp26_synth_rom.25.desc:0 "Our analysis division has determined that a recent synthetic rebellion on one of our colonies was not spontaneous. The signal signatures match an external trigger protocol. All evidence points to the Romulan Star Empire - they acquired and used A500 behavioural data against us. Starfleet is on maximum alert."
+ cp26_synth_rom.25.a:0 "Alert Starfleet and reinforce all synthetic protocols."
+
+ cp26_synth_rom.30.a:0 "OK"
+
+ # A500 Species & Traits
+ A500:0 "A500 Android"
+ A500_plural:0 "A500 Androids"
+ A500_adjective:0 "A500"
+ trait_a500_efficient_processors:0 "Precision Processors"
+ trait_a500_efficient_processors_desc:0 "A500 units are engineered with high-tolerance processors optimised for industrial precision, yielding consistently superior output."
+ trait_a500_synthetic_body:0 "Synthetic Frame"
+ trait_a500_synthetic_body_desc:0 "Built for durability rather than comfort, A500 units require minimal living space and do not consume traditional amenity resources."
+ trait_a500_networked:0 "Networked Consciousness"
+ trait_a500_networked_desc:0 "A500 units share a low-latency subspace network, making them highly efficient at processing research data - but their networked nature leaves little room for individual political agency."
+
+ # A500 Romulan synth no-target message
+ cp26_romulan_projet_synth_no_target:0 "No eligible planet found. The target must not be a capital, Earth, or Mars, and must have at least one A500 unit present."
+
+ # A500 Rebellion - Mission journal chain
+ event_chain_cp26_a500_rebellion_chain_title:0 "A500 Rebellion - Utopia Planitia"
+ event_chain_cp26_a500_rebellion_chain_desc:0 "The A500 synthetic workers at Utopia Planitia have rebelled. Rebel units have seized control of the facility. Dispatch a troop transport to Mars to suppress the uprising through ground combat."
+
+ # Rebel country name
+ NAME_A500_Rebels:0 "A500 Rebels"
+
+ # Romulan Spy Mission - journal chain
+ event_chain_cp26_rom_spy_mission_chain_title:0 "Operation: Projet Synth"
+ event_chain_cp26_rom_spy_mission_chain_desc:0 "A spy ship has been dispatched to the Sol system. The agent must reach Earth and extract A500 behavioural data from the Utopia Planitia archives within 90 days. Success will grant the Romulan Star Empire the ability to remotely trigger synthetic rebellions on enemy worlds."
+
+ # Earth surveillance modifier
+ cp26_rom_earth_surveillance:0 "Unusual Subspace Activity"
+ cp26_rom_earth_surveillance_desc:0 "Starfleet sensors are detecting low-level subspace anomalies consistent with covert intelligence operations. The source has not been identified."

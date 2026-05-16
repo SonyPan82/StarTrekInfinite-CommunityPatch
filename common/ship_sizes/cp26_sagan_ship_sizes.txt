@@ -1,0 +1,98 @@
+@sagan_speed = 105
+@sagan_hp = 2600
+@sagan_evasion = 12
+@sagan_build_time = 390
+@sagan_upkeep_deuterium = 0.85
+@sagan_upkeep_alloys = 0.75
+@sagan_no_admiral_mult = -0.10
+
+sagan = {
+	formation_priority = 10
+	entity = sagan_entity
+	max_speed = @sagan_speed
+	acceleration = 0.22
+	rotation_speed = 0.18
+	collision_radius = 3.5
+	max_hitpoints = @sagan_hp
+	operative_officers = 20
+	officers_escape_perc = 12
+	fleet_view_background = "military_large"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @sagan_no_admiral_mult
+		ship_shield_mult = @sagan_no_admiral_mult
+		ship_tracking_mult = @sagan_no_admiral_mult
+		ship_evasion_add = @sagan_evasion
+	}
+
+	size_multiplier = 2.5
+	fleet_slot_size = 4
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 3
+	is_space_station = no
+	icon_frame = 5
+	text_icon = military_size_8
+	base_buildtime = @sagan_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+
+	default_behavior = "hrb_artillery"
+
+	prerequisites = { "tech_sagan_unlock" }
+
+	potential_country = {
+		has_country_id = ufop
+	}
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
+	combat_disengage_chance = 1.30
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @sagan_upkeep_deuterium
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = @sagan_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}

@@ -186,7 +186,7 @@ event = {
 			save_global_event_target_as = major_power_best_scored # Temporal assignment ~ Modified in country.2830
 		}
 
-		# CP26 — équilibrage départ même tick que le HUD 2346.01.01 (events/zz_cp26_major_start_balance.txt)
+		# CP26 - équilibrage départ même tick que le HUD 2346.01.01 (events/zz_cp26_major_start_balance.txt)
 		every_country = {
 			limit = {
 				OR = {
@@ -512,7 +512,7 @@ planet_event = {
 }
 
 # on_initialize_advanced_colony: upgrade colony shelter
-# CP26: différer remove+add d'un jour — même tick = corruption file construction
+# CP26: différer remove+add d'un jour - même tick = corruption file construction
 # (voir Mod info/CP26_CONSTRUCTION_QUEUE_CRASH_FIX.txt, crash DailyUpdate).
 planet_event = {
 	id = game_start.21

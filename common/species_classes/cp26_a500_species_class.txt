@@ -1,0 +1,21 @@
+CP26_A500 = {
+	archetype = BIOLOGICAL
+
+	playable = { always = no }
+	randomized = no
+
+	gender = no
+
+	portraits = {
+		"hum_robot_red"
+	}
+
+	non_randomized_portraits = {
+		"hum_robot_red"
+	}
+
+	graphical_culture = ufop_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+
+	resources = {}
+}
