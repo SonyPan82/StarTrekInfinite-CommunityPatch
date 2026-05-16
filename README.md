@@ -1,223 +1,152 @@
-# Community Patch 2026
+# Community Patch 2026 — Star Trek: Infinite
 
-### Star Trek: Infinite
+Unified community patch for **Star Trek: Infinite**. Merged mods, crash fixes, rebalancing, and new narrative content — all in one stable, actively maintained package.
 
-Community Patch 2026 is a unified community patch for **Star Trek: Infinite**.
-It merges, adapts, fixes, and expands multiple Workshop mods into one cleaner
-package, with the goal of making the abandoned game more stable, more complete,
-and easier to mod further.
-
-This is a work in progress and will keep evolving.
+> *Star Trek: Infinite deserved better. We're on it.*
 
 ---
 
-## Project Goals
+## What This Is
 
-- Stabilize Star Trek: Infinite
-- Reduce startup errors, missing definitions, and broken references
-- Merge compatible Workshop content into one maintained package
-- Fix conflicts between ships, factions, events, technologies, and map content
-- Restore unused or unfinished game content where possible
-- Build a stronger base for future gameplay expansions
+CP26 started as a compatibility layer between Workshop mods and grew into a full maintenance and expansion project. The game was abandoned before completion. This patch picks up where the developers left off.
+
+**It is a work in progress and will keep evolving.**
 
 ---
 
-## Main Features
+## New Content
 
-- Single merged package replacing many separate Workshop mods
-- Compatibility fixes across ships, factions, events, maps, and technologies
-- French localisation cleanup and missing localisation additions
-- Optional pirate system controlled at game start
-- Larger galaxy setup based on the Star Charts scenario
-- Restored California Class support
-- New Luna Class cruiser integration
-- New Odyssey Class flagship/titan integration
-- Improved ship class handling to reduce designer conflicts
-- Startup error fixes and missing definition fixes
-- Integrated community bug fixes and balance adjustments
+### Arc — Utopia Planitia Rebellion *(Testing)*
+Narrative arc for the UFOP, inspired by *Star Trek: Picard*.
+
+- New technology: **A500 Synthetic Androids** — deployable as industrial workers on colonies
+- New planetary decision: **Deploy A500 Units** — adds 3 synthetic pops and a production bonus
+- If deployed on **Mars**: the Rebellion arc triggers after 5 in-game years
+- Two resolution paths: **military** (troop transport + ground combat) or **diplomatic** (science vessel)
+- Rewards: Neo-Constitution, Sagan, Duderstadt and Odyssey ship designs added to the research pool
+- Mission log tracking in the situation log until resolution
+- Post-arc management: species profile *Synthetic Worker* (0 housing, 0 amenities, migration locked) and edict *Ban Synthetic Workers* (permanent, irreversible)
+- Can be disabled in the game-start popup
+
+### Romulan Objective — Synth Project *(Testing)*
+- When the Federation activates A500 units, a 90-day window opens to send a spy ship to Earth
+- Success unlocks a national decision to trigger a synthetic rebellion on an enemy planet
 
 ---
 
-## Ships
+## Ship Classes
 
-Included or restored ship content:
+### New UFOP Classes (unlocked via A500 arc)
 
-- Ambassador Class
-- Akira Class
-- California Class
-- Constellation Class
-- Luna Class
-- New Orleans Class
-- Odyssey Class
+| Class | Role | Tier |
+|---|---|---|
+| Neo-Constitution | Versatile exploration cruiser | 2 |
+| Sagan / Stargazer | Fast powerful explorer | 2+ |
+| Duderstadt | Advanced heavy cruiser | 3 |
+
+### Integrated Classes
+
+- Ambassador / Akira / Constellation / Luna / New Orleans / Odyssey
+- California Class (support)
+- USS Voyager (hero) / Enterprise-E (fixed)
+- K'Vort / Kamarag / Raptor (Klingon)
 - USS Lantree
-- USS Voyager hero ship
-- Enterprise-E fix
 
-Hero ships and standard ship classes are handled separately where needed, so
-they do not overwrite each other in the ship designer.
+### Canonical Ship Sizes
 
----
+Full size overhaul across all factions. Reference: **Luna = 454m → size 5**.
 
-## Factions And Content
-
-Added or expanded civilizations and map content:
-
-- Breen Confederacy
-- Gorn Hegemony
-- Orion Empire
-- Tholian Assembly
-- Remans and Remus
-- Risa and Risans
-- Denobula and Denobulans
-- Colonized Terra Nova
-- Colonized Vega
-- Mars and Luna
-- Canonized Map and Events
-- Extended Name Lists
+All ships rescaled proportionally with coherent per-faction visual progression:
+UFOP, Klingon, Romulan, and Cardassian ships corrected. Notable changes: D'deridex (1042m) significantly increased, Sovereign and Negh'Var kept as flagships with clear visual distinction from lower tiers.
 
 ---
 
-## Integrated Fixes
+## AI & Diplomacy
 
-Community Patch 2026 integrates fixes and improvements from several Workshop
-mods, including:
-
-- Ongoing Bug Fixes
-- Integration Adjustments
-- Nebula Refinery and Ice Mining Station Expanded
-- Federation of War
-- Data Is Immortal!
-- USS Voyager - Event Ship Fix
-- Enterprise E Fixed
-
-Gameplay areas touched include:
-
-- Combat computers
-- Quantum torpedo costs and balance
-- Leader traits and events
-- UFOP assimilation behavior
-- Nebula refineries
-- Ice mining stations
-- Federation war rules
-- Hero ship event spawning
+- AI empires start with a shipyard
+- AI evaluates military strength before declaring war, adapted to galaxy size
+- Vassalization wars and liberation wars restored
+- "Propose Vassalization" diplomatic action restored
+- Minor factions with lore-faithful personalities and behaviors
+- First Contact bonuses fixed
 
 ---
 
-## Optional Pirates
+## Balance
 
-CP26 includes a game start option for pirates:
+- Hero ships rebalanced
+- Minor faction distinct combat identities: Gorn (resilient), Tholian (shield regen), Orion (fast), Breen (heavy)
+- Military fleet cap system — coherent limits across all factions
+- Planetary economy rebalanced
 
-- Enable pirates
-- Disable pirates
+---
 
-The goal is to keep event compatibility while giving the player control over
-whether pirate systems should appear in a campaign.
+## Stability & Crash Fixes
+
+11+ documented crash fixes including:
+
+- **Combat freeze** (infinite loop on ships with 0 crew — negative fire rate)
+- **Galaxy generation crash** (SIGFPE — missing Bajoran system initializer)
+- SIGSEGV crashes in planet/construction/district/diplomatic action systems
+- Event and save stability improvements
+
+All fixes documented in [`Mod info/CP26_CRASH_FIXES.txt`](Mod%20info/CP26_CRASH_FIXES.txt).
+
+---
+
+## Factions & Restored Content
+
+- Breen Confederacy / Gorn Hegemony / Orion Empire / Tholian Assembly
+- Remans and Remus / Denobulans / Risans
+- Colonized Terra Nova, Vega, Mars, Luna
+- Restored Federation colonies
+
+---
+
+## Game-Start Options
+
+Configure at launch via popup:
+
+| Option | Default |
+|---|---|
+| Pirates | On |
+| Diplomatic Vassalization | On |
+| Supernova Quest | On |
+| A500 Synthetic Rebellion arc | On |
 
 ---
 
 ## Installation
 
-Use only **Community Patch 2026** in the launcher.
+Enable **only Community Patch 2026** in the launcher.  
+Do not enable included source mods separately — CP26 already merges and overrides their content. Loading both will reintroduce conflicts.
 
-Do not enable the original included Workshop mods at the same time, because CP26
-already merges and overrides their content. Loading both can reintroduce
-conflicts, duplicate definitions, or old errors.
-
-Recommended setup:
-
-- Star Trek: Infinite version 1.0.7
-- CP26 enabled
-- Included source mods disabled
+**Recommended:** Star Trek: Infinite 1.0.7 + CP26 only.
 
 ---
 
-## Included Workshop Mods
+## Integrated Mods
 
-This patch integrates or adapts content from:
+CP26 integrates content from:
 
-- Ambassador Class
-- Akira Class
-- Canonized Map and Events
-- Colonized Terra Nova
-- Colonized Vega
-- Constellation Class
-- Data Is Immortal!
-- Denobula and Denobulans
-- Enterprise E Fixed
-- Extended Name Lists
-- Federation of War
-- Integration Adjustments
-- Mars and Luna
-- Nebula Refinery and Ice Mining Station Expanded
-- New Orleans Class
-- Ongoing Bug Fixes
-- Remans and Remus
-- Risa and Risans
-- The Breen Confederacy
-- The Gorn Hegemony
-- The Orion Empire
-- The Tholian Assembly
-- USS Lantree
-- USS Voyager - Event Ship Fix
+Ongoing Bug Fixes · Integration Adjustments · Nebula Refinery Expanded · Federation of War · USS Voyager Event Fix · Enterprise-E Fixed · Ambassador Class · Akira Class · Constellation Class · New Orleans Class · USS Lantree · Canonized Map and Events · Colonized Terra Nova · Colonized Vega · Mars and Luna · Extended Name Lists · The Breen Confederacy · The Gorn Hegemony · The Orion Empire · The Tholian Assembly · Remans and Remus · Risa and Risans · Denobula and Denobulans · Data Is Immortal!
 
-Full author credits are kept in [CREDITS.txt](CREDITS.txt).
-
----
-
-## CP26 Original Work
-
-In addition to merging Workshop content, CP26 adds its own compatibility and
-maintenance work:
-
-- Conflict resolution between integrated mods
-- Startup log cleanup
-- French localisation additions
-- Optional pirate start option
-- Larger galaxy scenario tuning
-- California Class restoration
-- Luna Class import and technology unlock
-- Odyssey Class import and technology unlock
-- Ship designer compatibility work
-- Crash-risk reduction for imported ship assets
-
----
-
-## Planned Ideas
-
-Future design notes are tracked in text files inside the repository:
-
-- Synthetic crisis inspired by the Mars synth revolt era
-- Dominion War expansion plan
-- Further faction compatibility improvements
-- Additional ship classes and technology unlocks
-- More localisation cleanup
-
-These are design plans, not guaranteed finished features yet.
+Full credits: [CREDITS.txt](CREDITS.txt)
 
 ---
 
 ## Contributing
 
-Suggestions, bug reports, compatibility fixes, and localisation improvements are
-welcome.
+Bug reports, balance feedback, and localisation contributions are welcome.
 
 When reporting an issue, include:
-
-- Game version
-- Enabled mods
-- What faction you played
-- Whether the issue happened on a new game or an existing save
-- Relevant `error.log` lines if available
+- Game version and enabled mods
+- Faction played
+- New game or existing save
+- Relevant lines from `error.log`
 
 ---
 
-## Credits
+*All original mod content belongs to its Workshop authors. CP26 exists to preserve, fix, and connect this work for Star Trek: Infinite players.*
 
-All original mod content belongs to its original Workshop authors.
-
-Community Patch 2026 exists to preserve, fix, and connect this work into a
-single maintained package for Star Trek: Infinite players.
-
-See [CREDITS.txt](CREDITS.txt) for detailed author credits.
-
-Engage.
+**Engage.**
