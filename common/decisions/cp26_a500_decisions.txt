@@ -52,12 +52,8 @@ decision_deploy_a500 = {
 						save_global_event_target_as = et_a500_species_global
 					}
 				}
-				set_species_profile = {
-					species = event_target:et_a500_species_global
-					type = species_profile_ufop_a500_worker
 				}
-			}
-			add_global_flag = cp26_a500_species_created
+			set_global_flag = cp26_a500_species_created
 		}
 
 		create_pop = { species = event_target:et_a500_species_global }

@@ -246,8 +246,8 @@ country_event = {
 
 	trigger = {
 		NOT = { has_country_flag = cp26_a500_resolved }
-		from_from = { has_planet_flag = planet_mars }
-		from_from = { has_planet_flag = cp26_a500_rebellion_active }
+		fromfrom = { has_planet_flag = planet_mars }
+		fromfrom = { has_planet_flag = cp26_a500_rebellion_active }
 	}
 
 	immediate = {

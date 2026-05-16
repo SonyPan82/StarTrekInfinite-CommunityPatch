@@ -919,6 +919,8 @@
  # Arc A500 - Journal de mission (chaîne d'événements)
  event_chain_cp26_a500_rebellion_chain_title:0 "Rébellion A500 - Utopia Planitia"
  event_chain_cp26_a500_rebellion_chain_desc:0 "Les synthétiques A500 d'Utopia Planitia se sont rebellés. Des unités rebelles ont pris le contrôle des installations. Envoyez un transport de troupes vers Mars pour écraser l'insurrection par le combat au sol."
+ cp26_a500_rebellion_chain_title:0 "Rébellion A500 - Utopia Planitia"
+ cp26_a500_rebellion_chain_desc:0 "Les synthétiques A500 d'Utopia Planitia se sont rebellés. Des unités rebelles ont pris le contrôle des installations. Envoyez un transport de troupes vers Mars pour écraser l'insurrection par le combat au sol."
 
  # Nom du pays rebelle
  NAME_A500_Rebels:0 "Rebelles A500"
@@ -926,6 +928,8 @@
  # Arc Romulien - Journal de mission (chaîne d'événements)
  event_chain_cp26_rom_spy_mission_chain_title:0 "Operation : Projet Synth"
  event_chain_cp26_rom_spy_mission_chain_desc:0 "Un vaisseau espion a été envoyé dans le système Sol. L'agent doit atteindre la Terre et extraire les données comportementales A500 des archives d'Utopia Planitia dans les 90 jours. En cas de succès, l'Empire stellaire romulien pourra déclencher à distance des rébellions synthétiques sur les mondes ennemis."
+ cp26_rom_spy_mission_chain_title:0 "Operation : Projet Synth"
+ cp26_rom_spy_mission_chain_desc:0 "Un vaisseau espion a été envoyé dans le système Sol. L'agent doit atteindre la Terre et extraire les données comportementales A500 des archives d'Utopia Planitia dans les 90 jours. En cas de succès, l'Empire stellaire romulien pourra déclencher à distance des rébellions synthétiques sur les mondes ennemis."
 
  # Modificateur de surveillance sur Earth
  cp26_rom_earth_surveillance:0 "Activité subspaciale anormale"

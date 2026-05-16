@@ -356,7 +356,12 @@ bespoke_procedural_scenario = {
 
 	system = {
 		name = "NAME_Ferenginar" position = { x = 47.5 y = 248.6 }
-		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
+		initializer = ferengi_xuracorp_init spawn_weight = { base = 1 }
+	}
+
+	system = {
+		name = "NAME_Elaurian" position = { x = -310 y = 390 }
+		initializer = elaurian_curator_init spawn_weight = { base = 1 }
 	}
 	#system = {
 	#	name = "NAME_Thalos" position = { x = 46.1 y = 245.8 }

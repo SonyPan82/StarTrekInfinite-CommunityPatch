@@ -4,7 +4,7 @@ trait_a500_efficient_processors = {
 	potential_crossbreeding_chance = 0
 	allowed_archetypes = { BIOLOGICAL }
 	modifier = {
-		pop_production_mult = 0.10
+		planet_jobs_produces_mult = 0.10
 		planet_jobs_worker_produces_mult = 0.05
 	}
 }
@@ -29,7 +29,6 @@ trait_a500_networked = {
 	allowed_archetypes = { BIOLOGICAL }
 	modifier = {
 		pop_political_power = -0.50
-		pop_ethic_shift_speed_mult = -0.30
 		planet_researchers_produces_mult = 0.05
 	}
 }

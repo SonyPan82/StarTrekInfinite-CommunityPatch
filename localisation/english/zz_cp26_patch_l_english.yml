@@ -432,6 +432,8 @@
  # A500 Rebellion - Mission journal chain
  event_chain_cp26_a500_rebellion_chain_title:0 "A500 Rebellion - Utopia Planitia"
  event_chain_cp26_a500_rebellion_chain_desc:0 "The A500 synthetic workers at Utopia Planitia have rebelled. Rebel units have seized control of the facility. Dispatch a troop transport to Mars to suppress the uprising through ground combat."
+ cp26_a500_rebellion_chain_title:0 "A500 Rebellion - Utopia Planitia"
+ cp26_a500_rebellion_chain_desc:0 "The A500 synthetic workers at Utopia Planitia have rebelled. Rebel units have seized control of the facility. Dispatch a troop transport to Mars to suppress the uprising through ground combat."
 
  # Rebel country name
  NAME_A500_Rebels:0 "A500 Rebels"
@@ -439,6 +441,8 @@
  # Romulan Spy Mission - journal chain
  event_chain_cp26_rom_spy_mission_chain_title:0 "Operation: Projet Synth"
  event_chain_cp26_rom_spy_mission_chain_desc:0 "A spy ship has been dispatched to the Sol system. The agent must reach Earth and extract A500 behavioural data from the Utopia Planitia archives within 90 days. Success will grant the Romulan Star Empire the ability to remotely trigger synthetic rebellions on enemy worlds."
+ cp26_rom_spy_mission_chain_title:0 "Operation: Projet Synth"
+ cp26_rom_spy_mission_chain_desc:0 "A spy ship has been dispatched to the Sol system. The agent must reach Earth and extract A500 behavioural data from the Utopia Planitia archives within 90 days. Success will grant the Romulan Star Empire the ability to remotely trigger synthetic rebellions on enemy worlds."
 
  # Earth surveillance modifier
  cp26_rom_earth_surveillance:0 "Unusual Subspace Activity"

@@ -28,13 +28,6 @@ cp26_ban_a500 = {
 			remove_modifier = cp26_a500_installed
 			remove_planet_flag = cp26_a500_installed
 		}
-		if = {
-			limit = { has_global_flag = cp26_a500_species_created }
-			set_species_profile = {
-				species = event_target:et_a500_species_global
-				type = species_profile_ufop_a500_undesirable
-			}
-		}
 	}
 
 	ai_weight = {
