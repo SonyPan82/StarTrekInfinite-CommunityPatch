@@ -1,5 +1,5 @@
 # reloadable with 'reload stats'
-# CP26 replace_path: california / california_hero retirés d'ici — voir common/ship_sizes/cp26_california_ship_sizes.txt
+# CP26 replace_path: california / california_hero retirés d'ici - voir common/ship_sizes/cp26_california_ship_sizes.txt
 # This file is where you start when you want to configure something new, then go to sections
 
 ####################
@@ -59,7 +59,7 @@ miranda = {
 		#ship_piracy_suppression_add = 15
 	}
     
-	size_multiplier = 2
+	size_multiplier = 3
 	fleet_slot_size = 1
 	graphical_culture = no
 	
@@ -152,7 +152,7 @@ intrepid = {
 		#ship_piracy_suppression_add = 20
 	}
 
-	size_multiplier = 3
+	size_multiplier = 4
 	fleet_slot_size = 2
 	graphical_culture = no
 
@@ -338,7 +338,7 @@ galaxy = {
 		#ship_piracy_suppression_add = 120
 	}	
 
-	size_multiplier = 8
+	size_multiplier = 7
 	fleet_slot_size = 4
 	graphical_culture = no
 	
@@ -431,7 +431,7 @@ sovereign = {
 		#ship_piracy_suppression_add = 160
 	}
 
-	size_multiplier = 13
+	size_multiplier = 9
 	fleet_slot_size = 8
 	graphical_culture = no
 
@@ -539,7 +539,7 @@ bird_of_prey = {
 		#ship_piracy_suppression_add = 10
 	}
     
-	size_multiplier = 2
+	size_multiplier = 1
 	fleet_slot_size = 1
 	graphical_culture = no
 	
@@ -725,7 +725,7 @@ ktinga = {
 		#ship_piracy_suppression_add = 40
 	}
     
-	size_multiplier = 5
+	size_multiplier = 4
 	fleet_slot_size = 3
 	graphical_culture = no
 	
@@ -818,7 +818,7 @@ vorcha = {
 		#ship_piracy_suppression_add = 120
 	}
 
-	size_multiplier = 8
+	size_multiplier = 6
 	fleet_slot_size = 4
 	graphical_culture = no
 	
@@ -911,7 +911,7 @@ neghvar = {
 		#ship_piracy_suppression_add = 160
 	}
     
-	size_multiplier = 13
+	size_multiplier = 9
 	fleet_slot_size = 8
 	graphical_culture = no
 	
@@ -1205,7 +1205,7 @@ valdore = {
 		#ship_piracy_suppression_add = 40
 	}
     
-	size_multiplier = 5
+	size_multiplier = 7
 	fleet_slot_size = 3
 	graphical_culture = no
 
@@ -1298,7 +1298,7 @@ dderidex = {
 		#ship_piracy_suppression_add = 120
 	}
 
-	size_multiplier = 8
+	size_multiplier = 11
 	fleet_slot_size = 4
 	graphical_culture = no
 
@@ -1391,7 +1391,7 @@ majestus = {
 		#ship_piracy_suppression_add = 240
 	}
     
-	size_multiplier = 13
+	size_multiplier = 14
 	fleet_slot_size = 8
 	graphical_culture = no
 
@@ -1503,7 +1503,7 @@ hideki = {
 		ship_hull_damage_mult = 0.2
 	}
     
-	size_multiplier = 2
+	size_multiplier = 1
 	fleet_slot_size = 1
 	graphical_culture = no
 
@@ -1600,7 +1600,7 @@ galor = {
 		ship_hull_damage_mult = 0.15
 	}
     
-	size_multiplier = 3
+	size_multiplier = 4
 	fleet_slot_size = 2
 	graphical_culture = no
 
@@ -2689,7 +2689,7 @@ enterprise = {
 	can_have_federation_design = yes
 	enable_default_design = yes
 
-	size_multiplier = 8
+	size_multiplier = 7
 	fleet_slot_size = 4
 
 	section_slots = { "mid" = { locator = "part1" } }
@@ -2782,7 +2782,7 @@ enterprise_sovereign = {
 	enable_default_design = yes
 	is_designable = yes
 
-	size_multiplier = 13
+	size_multiplier = 9
 	fleet_slot_size = 8
 	section_slots = { "mid" = { locator = "part1" } }
 	num_target_locators = 2
@@ -3074,7 +3074,7 @@ defiant = {
 		#ship_piracy_suppression_add = 15
 	}
 
-	size_multiplier = 1
+	size_multiplier = 2
 	fleet_slot_size = 1
 	graphical_culture = no
 	

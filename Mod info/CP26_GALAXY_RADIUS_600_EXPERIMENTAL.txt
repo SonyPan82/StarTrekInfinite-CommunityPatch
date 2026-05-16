@@ -1,4 +1,4 @@
-CP26 GALAXY RADIUS 600 — EXPERIMENTAL
+CP26 GALAXY RADIUS 600 - EXPERIMENTAL
 ======================================
 
 CONTEXTE
@@ -23,7 +23,7 @@ RISQUES IDENTIFIES
    - Des crashs lors de la génération de carte
    - Des vides anormaux entre les systèmes statiques (bespoke) et les
      systèmes procéduraux, car les coordonnées des systèmes statiques
-     n'ont PAS été rescalées — ils restent aux positions d'origine.
+     n'ont PAS été rescalées - ils restent aux positions d'origine.
 
 2. Avec 1150 étoiles sur 600 de radius, la densité est plus faible que
    sur 460. Cela peut compenser le risque, ou créer l'effet inverse

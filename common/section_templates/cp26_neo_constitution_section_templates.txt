@@ -1,0 +1,34 @@
+@nc_section_cost = 120
+
+ship_section_template = {
+	key = "NEO_CONSTITUTION_MID"
+	ship_size = neo_constitution
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "neo_constitution_slots_entity"
+	icon = "GFX_ship_part_core_mid"
+
+	prerequisites = { tech_neo_constitution_unlock }
+
+	ai_weight = {
+		modifier = { factor = 10.0 is_preferred_weapons = weapon_type_energy }
+		modifier = { factor = 0.1 NOT = { is_preferred_weapons = weapon_type_energy } }
+	}
+
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "large_gun_01" }
+	component_slot = { name = "MEDIUM_GUN_01" template = "invisible_medium_turret" locatorname = "medium_gun_01" }
+	component_slot = { name = "MEDIUM_GUN_02" template = "invisible_medium_turret" locatorname = "medium_gun_02" }
+	component_slot = { name = "MEDIUM_GUN_03" template = "invisible_medium_turret" locatorname = "medium_gun_03" }
+	component_slot = { name = "SMALL_GUN_01" template = "invisible_small_turret" locatorname = "small_gun_01" }
+	component_slot = { name = "SMALL_GUN_02" template = "invisible_small_turret" locatorname = "small_gun_02" }
+	component_slot = { name = "SMALL_GUN_03" template = "invisible_small_turret" locatorname = "small_gun_03" }
+
+	large_utility_slots = 2
+	medium_utility_slots = 3
+	aux_utility_slots = 2
+
+	resources = {
+		category = ship_sections
+		cost = { alloys = @nc_section_cost }
+	}
+}

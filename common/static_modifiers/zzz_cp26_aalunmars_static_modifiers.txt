@@ -1,4 +1,4 @@
-# CP26 fix (2026-05-14) — Override DIRECT de lunar_one_colony (vanilla)
+# CP26 fix (2026-05-14) - Override DIRECT de lunar_one_colony (vanilla)
 # Le précédent fix (rename → lunar_one_colony_cp26) résolvait la perte de stats,
 # mais créait DEUX modifiers sur Luna (vanilla cosmétique + CP26 stats) → 2 icônes.
 #

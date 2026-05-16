@@ -1,4 +1,4 @@
-# CP26 — Fix vanilla colony special projects (2 scope errors)
+# CP26 - Fix vanilla colony special projects (2 scope errors)
 # ============================================================
 #
 # BUG vanilla (`common/special_projects/00_hornblower_colony_projects.txt`):
@@ -19,7 +19,7 @@
 #   `if = { limit = { exists = leader } ... }` so the scope switch is only
 #   attempted when there actually IS a leader on the ship. If there is none,
 #   the special project still completes (the colony / mission chain proceeds
-#   normally) — only the scientist-specific bonus (trait reward in the
+#   normally) - only the scientist-specific bonus (trait reward in the
 #   downstream event) is skipped, which is the same outcome as today
 #   minus the error log.
 #

@@ -525,7 +525,7 @@ science = {
 	auto_upgrade = yes
 	ignores_warp_range = yes
 
-	# CP26 — plafond empire (base+max sans naval_cap_div = plafond dur 3).
+	# CP26 - plafond empire (base+max sans naval_cap_div = plafond dur 3).
 	empire_limit = {
 		base = 3
 		max = 3
@@ -609,7 +609,7 @@ constructor = {
 	valid_target_aggressive_stance = no
 	auto_upgrade = yes
 
-	# CP26 — plafond empire constructeurs (base+max = 3).
+	# CP26 - plafond empire constructeurs (base+max = 3).
 	empire_limit = {
 		base = 3
 		max = 3

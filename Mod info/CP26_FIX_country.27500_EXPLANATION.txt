@@ -1,4 +1,4 @@
-CP26 — Correction de country.27500 (UFOP First Contact Bonus)
+CP26 - Correction de country.27500 (UFOP First Contact Bonus)
 =============================================================
 Date : 2026-05-11 (emplacement corrigé 2026-05-14)
 Fichier vanilla d'origine : events/hornblower_country_events.txt
@@ -41,7 +41,7 @@ Problèmes :
 -------------------------------------------------
 STI tourne sur un moteur Clausewitz figé (v1.0.7, décembre 2023).
 Paradox / Negonicula ne sortent plus de patchs officiels pour ce jeu.
-Le bug ne provoque pas de crash — juste une erreur dans les logs — donc
+Le bug ne provoque pas de crash - juste une erreur dans les logs - donc
 il est resté dans le codebase vanilla.
 
 4. COMMENT CP26 LE CORRIGE ?

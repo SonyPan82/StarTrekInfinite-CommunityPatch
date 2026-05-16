@@ -1,0 +1,83 @@
+##########################################################################
+# A500 Synthetic Workers - Planet Decision
+##########################################################################
+
+decision_deploy_a500 = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_cybernetics
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 300
+		}
+	}
+
+	potential = {
+		owner = {
+			is_ufop = yes
+			has_technology = tech_a500_synthetics
+			NOT = { has_country_flag = cp26_a500_banned }
+		}
+		NOT = { has_planet_flag = cp26_a500_installed }
+		is_colony = yes
+	}
+
+	allow = {
+		NOT = { has_planet_flag = cp26_a500_installed }
+	}
+
+	effect = {
+		set_planet_flag = cp26_a500_installed
+		add_modifier = { modifier = cp26_a500_installed days = -1 }
+
+		# Première promulgation : crée l'espèce A500 en country scope
+		if = {
+			limit = { NOT = { has_global_flag = cp26_a500_species_created } }
+			owner = {
+				create_species = {
+					class = "CP26_A500"
+					portrait = "hum_robot_red"
+					name = "A500"
+					plural = "A500"
+					adjective = "A500"
+					traits = {
+						trait = "trait_a500_efficient_processors"
+						trait = "trait_a500_synthetic_body"
+						trait = "trait_a500_networked"
+					}
+					effect = {
+						save_global_event_target_as = et_a500_species_global
+					}
+				}
+				set_species_profile = {
+					species = event_target:et_a500_species_global
+					type = species_profile_ufop_a500_worker
+				}
+			}
+			add_global_flag = cp26_a500_species_created
+		}
+
+		create_pop = { species = event_target:et_a500_species_global }
+		create_pop = { species = event_target:et_a500_species_global }
+		create_pop = { species = event_target:et_a500_species_global }
+
+		if = {
+			limit = {
+				has_planet_flag = planet_mars
+				NOT = { has_global_flag = cp26_block_synth_arc }
+			}
+			planet_event = { id = cp26_a500.1 days = 1825 }
+		}
+	}
+
+	ai_weight = {
+		weight = 3
+		modifier = {
+			factor = 0
+			has_planet_flag = planet_mars
+		}
+	}
+}

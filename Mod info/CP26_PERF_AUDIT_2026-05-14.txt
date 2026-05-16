@@ -1,5 +1,5 @@
 ================================================================================
-CP26 — Audit performance & flottes (code mod + référence jeu Infinite)
+CP26 - Audit performance & flottes (code mod + référence jeu Infinite)
 Date : 2026-05-14
 ================================================================================
 
@@ -14,7 +14,7 @@ Objectif du document
 Synthèse exécutive
 --------------------------------------------------------------------------------
 
-Option recommandée (stable, perf-friendly) — « Stack 3 natives »
+Option recommandée (stable, perf-friendly) - « Stack 3 natives »
   A) NGameplay : COMMAND_LIMIT_BASE / COMMAND_LIMIT_MAX (déjà zz_cp26_reduced_fleet_scale_defines.txt)
   B) Même fichier : SHIP_OFFICERS_* (pression native sur les coques, pas de boucle script)
   C) country_types : ship_data min/max pour civils + fractions militaires (tech / pays) ;
@@ -52,7 +52,7 @@ référence ciblée : common/on_actions/00_on_actions.txt (pulses globaux vs cou
 et la volumétrie du fichier global situation du mod (hérité Hornblower).
 
 --------------------------------------------------------------------------------
-2. Constats CP26 — ce qui est DÉJÀ bien pour la perf
+2. Constats CP26 - ce qui est DÉJÀ bien pour la perf
 --------------------------------------------------------------------------------
 
 2.1 Defines flotte (native, très bon rapport stabilité/perf)
@@ -85,10 +85,10 @@ et la volumétrie du fichier global situation du mod (hérité Hornblower).
   → Bon pour perf ET stabilité (moins de re-routages extrêmes qu’avec defines combat agressifs).
 
 --------------------------------------------------------------------------------
-3. Constats CP26 — charge MOYENNE ou à surveiller
+3. Constats CP26 - charge MOYENNE ou à surveiller
 --------------------------------------------------------------------------------
 
-3.1 country_types — ship_data (2026-05-14)
+3.1 country_types - ship_data (2026-05-14)
   Fichiers : 00_country_types.txt, aa_contender_country.txt (replace_path).
   - Civils : fractions / min-max toujours présents ; colonizer utilise encore
     count_owned_ship pour des conditions OR (pas un plafond militaire).
@@ -134,7 +134,7 @@ et la volumétrie du fichier global situation du mod (hérité Hornblower).
   [P3] ship_data : seule source de vérité pour le nombre CIBLE de vaisseaux IA (civils +
       cadre militaire). Ajuster min/max plutôt que rajouter des effets qui détruisent des ships.
 
-5.2 Piste d’amélioration perf CP26 (priorité 2, faible risque) — FAIT 2026-05-14
+5.2 Piste d’amélioration perf CP26 (priorité 2, faible risque) - FAIT 2026-05-14
   Refactor cp26_war_access :
     - Retiré : on_monthly_pulse_country + country_event cp26_war_access.2
     - Ajouté : on_monthly_pulse + event global cp26_war_access.100
@@ -148,7 +148,7 @@ et la volumétrie du fichier global situation du mod (hérité Hornblower).
   Supprimer les flags cp26_empire_size_* + fractions dynamiques dans ship_data, et passer sur
   des min/max STATIQUES pour civils/militaires.
   - Gain perf : modeste (un peu moins de branches évaluées + plus besoin du pulse annuel
-    pour cette logique — le pulse peut rester pour autre chose ou être retiré).
+    pour cette logique - le pulse peut rester pour autre chose ou être retiré).
   - Gain conception : moins de « magie » taille d’empire, comportement plus prévisible.
 
 5.4 Ce qu’il vaut mieux NE PAS faire pour la perf/stabilité
@@ -164,10 +164,10 @@ et la volumétrie du fichier global situation du mod (hérité Hornblower).
 Composant                          | Coût CPU relatif | Stabilité | Action CP26
 -----------------------------------|------------------|-----------|---------------------------
 Defines COMMAND_LIMIT / officers   | Bas              | Haute     | Conserver comme socle
-ship_data (country_types)          | Bas–moyen        | Haute     | Ajuster min/max si besoin
+ship_data (country_types)          | Bas-moyen        | Haute     | Ajuster min/max si besoin
 count_owned_ship (ship_data civils)  | Moyen           | Haute     | Ne pas densifier sans besoin
 cp26_ai_pulse (annuel, IA default)  | Bas              | Haute     | Conserver
-cp26_war_access.100 (mensuel global) | Bas–moyen        | Haute     | FAIT — 1×/mois tout empire
+cp26_war_access.100 (mensuel global) | Bas-moyen        | Haute     | FAIT - 1×/mois tout empire
 hornblower_global_situation        | Élevé (actif)   | Variable  | Revue ciblée hors scope immédiat
 
 --------------------------------------------------------------------------------

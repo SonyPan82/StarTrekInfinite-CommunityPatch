@@ -1115,7 +1115,7 @@ tech_mine_tetryons_3 = {
     }
 }
 
-# CP26 — tech_warp_speed_increase_1 is redefined in common/technology/zz_cp26_warp_techs.txt
+# CP26 - tech_warp_speed_increase_1 is redefined in common/technology/zz_cp26_warp_techs.txt
 # (slower base warp + stronger progressive tech curve). Original block removed here to
 # avoid the "Duplicate technology: tech_warp_speed_increase_1" engine error.
 # Vanilla original kept below as commented reference:

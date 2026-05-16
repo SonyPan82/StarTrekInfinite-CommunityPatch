@@ -1,0 +1,136 @@
+CP26 - Console de test (Arc Mars A500 + Projet Synth Romulien)
+==============================================================
+Ouvre la console (~), sans ironman. Les country_event s'appellent
+directement. Les planet_event demandent une commande effect (voir ci-dessous).
+
+RÉSUMÉ RAPIDE - ARC A500 (jouer en UFOP)
+-----------------------------------------
+1) Poser les flags Mars pour simuler le déploiement A500 :
+    effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } set_planet_flag = cp26_a500_installed add_modifier = { modifier = cp26_a500_installed } } }
+2) Déclencher l'alerte (événement 1 - choix initial) :
+    effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } planet_event = { id = cp26_a500.1 } } }
+3) Déclencher directement la rébellion (passe le choix, armées A500 créées) :
+    event cp26_a500.2
+4) Résolution militaire (après avoir gagné le combat au sol) :
+    event cp26_a500.10
+5) Résolution diplomatique directe :
+    event cp26_a500.11
+
+RÉSUMÉ RAPIDE - PROJET SYNTH (jouer en Romulien)
+--------------------------------------------------
+1) Déverrouiller l'opportunité directement (simule la détection de l'arc A500) :
+    event cp26_synth_rom.1
+2) Mission espionnage réussie (débloque Projet Synth) :
+    event cp26_synth_rom.10
+3) Déclencher Projet Synth directement sans passer par la spy mission :
+    effect set_country_flag = cp26_romulan_projet_synth_unlocked
+4) Tester l'event succès Projet Synth (rébellion déclenchée) :
+    event cp26_synth_rom.20
+5) Tester l'event échec Projet Synth (spy ship détecté) :
+    event cp26_synth_rom.21
+6) Tester l'incident diplomatique côté UFOP :
+    event cp26_synth_rom.25
+7) Retirer le cooldown manuellement :
+    effect remove_country_flag = cp26_romulan_synth_cooldown
+
+PRÉREQUIS ET FLAGS UTILES
+--------------------------
+Bloquer l'arc A500 (si tu veux le désactiver en cours) :
+    effect add_global_flag = cp26_block_synth_arc
+
+Débloquer l'arc A500 (si bloqué) :
+    effect remove_global_flag = cp26_block_synth_arc
+
+Marquer l'arc A500 comme résolu (empêche re-déclenchement) :
+    effect set_country_flag = cp26_a500_resolved
+
+Reset complet flags A500 (pour rejouer l'arc) :
+    effect remove_country_flag = cp26_a500_resolved
+    effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } remove_planet_flag = cp26_a500_rebellion_active remove_planet_flag = cp26_a500_installed } }
+
+Débloquer les 4 technologies manuellement (sans passer par l'arc) :
+    add_research_option tech_neo_constitution_unlock
+    add_research_option tech_sagan_unlock
+    add_research_option tech_duderstadt_unlock
+    add_research_option tech_odyssey_unlock
+
+Débloquer directement les techs (donne immédiatement) :
+    research_technology tech_neo_constitution_unlock
+    research_technology tech_sagan_unlock
+    research_technology tech_duderstadt_unlock
+    research_technology tech_odyssey_unlock
+
+ARC A500 - namespace cp26_a500
+-------------------------------
+• effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } planet_event = { id = cp26_a500.1 } } }
+    Alerte initiale (choix : sécurité / scientifique / observer)
+
+• event cp26_a500.2
+    Rébellion : crée le pays rebelle A500 + 5 armées rebelles sur Mars + journal
+
+• event cp26_a500.3
+    Pulse mensuel de dévstation (+5 devastation sur Mars) - caché, boucle seule
+
+• event cp26_a500.10
+    Résolution militaire (victoire combat au sol) - destruction chantier Sol,
+    ajoute les 4 techs au pool de recherche, ferme le journal
+
+• event cp26_a500.11
+    Résolution diplomatique (vaisseau science) - seulement Neo-Constitution,
+    chantier préservé (pas de journal car lancé via option B de l'event 1)
+
+• event cp26_a500.12
+    Détection victoire au sol (caché, normalement déclenché par on_planet_defenders_win)
+    → appelle directement cp26_a500.10
+
+ARC ROMULIEN - namespace cp26_synth_rom
+-----------------------------------------
+• event cp26_synth_rom.0
+    Déclencheur caché (scope UFOP, normalement via on_tech_increased)
+    → cherche un Romulien joueur et lui envoie .1
+
+• event cp26_synth_rom.1
+    Opportunité (scope Romulien) : fenêtre 90j pour envoyer spy ship sur Earth.
+    Requiert : exists event_target:et_synth_earth (planet_earth doit exister)
+
+• event cp26_synth_rom.2
+    Fenêtre expirée / mission ratée - pose cp26_rom_synth_arc_expired,
+    retire le modifier sur Earth, ferme le journal
+
+• event cp26_synth_rom.10
+    Mission espionnage réussie → débloque Projet Synth
+    (retire modifier Earth, ferme journal)
+
+• event cp26_synth_rom.20
+    Projet Synth réussi (rébellion déclenchée sur planète cible)
+
+• event cp26_synth_rom.21
+    Projet Synth échoué (spy ship détecté avant de finaliser le signal)
+
+• event cp26_synth_rom.25
+    Incident diplomatique côté UFOP (si cible appartient à la Fédération)
+
+• event cp26_synth_rom.30
+    Retire le cooldown (caché, normalement déclenché 720j après usage Projet Synth)
+
+NOTES TECHNIQUES
+----------------
+- cp26_a500.1 est un planet_event : il ne peut pas être appelé directement depuis
+  la console avec `event`. Utiliser la commande effect avec random_galaxy_planet.
+
+- cp26_synth_rom.0 ne se déclenche qu'une fois (via on_tech_increased, scope UFOP).
+  Pour tester le Romulien, appeler directement cp26_synth_rom.1 en jouant le pays
+  romulien (commande `play <id_romulien>` ou via écran de sélection).
+
+- La special_project CP26_SOL_SPY_MISSION apparaît dans l'interface de projets
+  spéciaux ; il faut un spy ship dans le système Sol pour la compléter.
+
+- Pour switcher de pays en console : `play <country_id>`
+  Pour trouver les IDs pays : `debugtooltip` puis survole le pays sur la carte.
+
+Fichiers sources :
+    events/cp26_a500_mars_arc.txt
+    events/cp26_romulan_synth_arc.txt
+    common/decisions/cp26_a500_decisions.txt
+    common/decisions/cp26_romulan_synth_decisions.txt
+    common/special_projects/cp26_romulan_synth_projects.txt

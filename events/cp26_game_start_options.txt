@@ -6,8 +6,6 @@ country_event = {
 	desc = cp26_options.1.desc
 	picture = GFX_evt_lab_research_ufop
 	show_sound = event_space_travel
-	# Anchor the popup to the capital so reopening the same event (each toggle click)
-	# does not float the window around the screen like an unlocated event.
 	location = capital_scope
 	is_triggered_only = yes
 
@@ -16,22 +14,11 @@ country_event = {
 		NOT = { has_country_flag = cp26_game_start_options_confirmed }
 	}
 
-	immediate = {
-		hidden_effect = {
-			if = {
-				limit = { NOT = { has_global_flag = cp26_game_start_arc_defaults_v1 } }
-				set_global_flag = cp26_game_start_arc_defaults_v1
-				set_global_flag = cp26_dominion_arc_blocked
-				set_global_flag = cp26_block_supernova_arc
-			}
-		}
-	}
-
 	option = {
 		name = cp26_options.1.pirates_on
-		trigger = { NOT = { has_global_flag = cp26_no_pirates } }
+		trigger = { has_global_flag = cp26_no_pirates }
 		custom_tooltip = cp26_options.1.pirates_on.tt
-		set_global_flag = cp26_no_pirates
+		remove_global_flag = cp26_no_pirates
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
 		}
@@ -39,9 +26,9 @@ country_event = {
 
 	option = {
 		name = cp26_options.1.pirates_off
-		trigger = { has_global_flag = cp26_no_pirates }
+		trigger = { NOT = { has_global_flag = cp26_no_pirates } }
 		custom_tooltip = cp26_options.1.pirates_off.tt
-		remove_global_flag = cp26_no_pirates
+		set_global_flag = cp26_no_pirates
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
 		}
@@ -72,26 +59,6 @@ country_event = {
 	}
 
 	option = {
-		name = cp26_options.1.dominion_arc_on
-		trigger = { NOT = { has_global_flag = cp26_dominion_arc_blocked } }
-		custom_tooltip = cp26_options.1.dominion_arc_on.tt
-		set_global_flag = cp26_dominion_arc_blocked
-		hidden_effect = {
-			country_event = { id = cp26_options.1 }
-		}
-	}
-
-	option = {
-		name = cp26_options.1.dominion_arc_off
-		trigger = { has_global_flag = cp26_dominion_arc_blocked }
-		custom_tooltip = cp26_options.1.dominion_arc_off.tt
-		remove_global_flag = cp26_dominion_arc_blocked
-		hidden_effect = {
-			country_event = { id = cp26_options.1 }
-		}
-	}
-
-	option = {
 		name = cp26_options.1.supernova_quest_on
 		trigger = { NOT = { has_global_flag = cp26_block_supernova_arc } }
 		custom_tooltip = cp26_options.1.supernova_quest_on.tt
@@ -106,6 +73,26 @@ country_event = {
 		trigger = { has_global_flag = cp26_block_supernova_arc }
 		custom_tooltip = cp26_options.1.supernova_quest_off.tt
 		remove_global_flag = cp26_block_supernova_arc
+		hidden_effect = {
+			country_event = { id = cp26_options.1 }
+		}
+	}
+
+	option = {
+		name = cp26_options.1.synth_arc_on
+		trigger = { NOT = { has_global_flag = cp26_block_synth_arc } }
+		custom_tooltip = cp26_options.1.synth_arc_on.tt
+		set_global_flag = cp26_block_synth_arc
+		hidden_effect = {
+			country_event = { id = cp26_options.1 }
+		}
+	}
+
+	option = {
+		name = cp26_options.1.synth_arc_off
+		trigger = { has_global_flag = cp26_block_synth_arc }
+		custom_tooltip = cp26_options.1.synth_arc_off.tt
+		remove_global_flag = cp26_block_synth_arc
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
 		}

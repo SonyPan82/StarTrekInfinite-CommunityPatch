@@ -1,12 +1,12 @@
-# CP26 — Warp speed tech overrides
+# CP26 - Warp speed tech overrides
 #
 # Base warp speed is reduced to 0.065 (vanilla 0.1 = ~35% slower) via defines.
 # The three tech tiers restore and then exceed vanilla speed progressively:
 #
-#   No tech    : 65% vanilla speed  — early galaxy feels vast
-#   Warp 5 (T1): 85% vanilla speed  — meaningful mid-game improvement
-#   Warp 6 (T2): ~104% vanilla speed — late-game matches vanilla feel
-#   Warp 7 (T3): ~120% vanilla speed — end-game mastery of the warp
+#   No tech    : 65% vanilla speed  - early galaxy feels vast
+#   Warp 5 (T1): 85% vanilla speed  - meaningful mid-game improvement
+#   Warp 6 (T2): ~104% vanilla speed - late-game matches vanilla feel
+#   Warp 7 (T3): ~120% vanilla speed - end-game mastery of the warp
 
 # ── Warp 5 ─────────────────────────────────────────────────────────────────
 # Override of vanilla tech_warp_speed_increase_1: +20% → +30%

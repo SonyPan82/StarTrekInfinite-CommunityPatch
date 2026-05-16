@@ -15,13 +15,13 @@ forces, around 20 non-hero military ships per empire where possible, while
 keeping the result coherent for AI empires, contenders, crises, factions and
 scripted fleets.
 
-STATUS 2026-05-14 — hard cap at shipyard (canonical: Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt)
+STATUS 2026-05-14 - hard cap at shipyard (canonical: Mod info/CP26_SHIP_FLEET_CAP_SYSTEM_2026-05-14.txt)
   The 36-ship limit for line combat hulls (design: 3×12) is enforced for player and AI via
   possible_construction + scripted trigger cp26_under_reduced_fleet_military_cap
   on military ship_sizes. The old ship_data pattern (factor = 0 when
   count_owned_ship >= 15 or >= 6 with cp26_is_non_hero_military_ship) was removed
   from country_types as redundant UI-less duplication. Early corvette “soft”
-  throttles described below in bullets 1–2 are partially superseded for the hard
+  throttles described below in bullets 1-2 are partially superseded for the hard
   cap; technology-based fraction modifiers remain.
 
 Main conclusion
@@ -50,7 +50,7 @@ ai_budget = crash confirmé : tentatives passées de scripter un soft cap via
 common/ai_budget/*.txt ont produit des SIGSEGV dans CConstructionQueueManager::
 DailyUpdate et CSaveGameTaskManager::CreateMemoryFiles. La queue de
 construction interne du moteur ne supporte pas qu'un script lui dicte de
-"vendre des alloys au-dessus du cap" — elle déréfère un pointeur invalide
+"vendre des alloys au-dessus du cap" - elle déréfère un pointeur invalide
 quand un AI sous-priorise un building. Voir CP26_CONSTRUCTION_QUEUE_CRASH_FIX
 pour le pattern.
 
@@ -73,7 +73,7 @@ Donc la stratégie EFFECTIVE est :
      (Gorn lourd, Tholian shields, Orion punchy, Breen armor) → quantité
      compensée par qualité.
    - SPAWNS SCRIPTÉS COMPACTÉS : crises (Borg/Prethoryn/Khan), marauders,
-     mercenary, faction start fleets — réduits à la source.
+     mercenary, faction start fleets - réduits à la source.
 
 Le tout = soft cap multi-couches sans toucher au moteur de queue.
 
@@ -135,7 +135,7 @@ Implemented changes
    - min_navy_for_wars reduced to 0.14.
    - Hard cap for line military hulls : possible_construction + trigger
      cp26_under_reduced_fleet_military_cap (36 ships, design 3×12 ; was 45 / 3×15,
-     20, then 15 earlier in May 2026) — same rule for player and AI at the shipyard. The old ship_data
+     20, then 15 earlier in May 2026) - same rule for player and AI at the shipyard. The old ship_data
      pattern (factor = 0 when count_owned_ship reached 6 / 15 with
      cp26_is_non_hero_military_ship) was removed 2026-05-14 as redundant.
    - 2026-05-14..15 : la cap « soft » ship_data (18→15, petites coques 8→6) n’est

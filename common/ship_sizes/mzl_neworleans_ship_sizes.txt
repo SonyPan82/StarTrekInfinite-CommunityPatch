@@ -54,7 +54,7 @@ neworleans = {
 
 	}
 
-	size_multiplier = 3
+	size_multiplier = 4
 	fleet_slot_size = 2
 	graphical_culture = no
 

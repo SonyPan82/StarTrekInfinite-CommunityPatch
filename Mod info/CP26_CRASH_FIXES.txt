@@ -1,12 +1,74 @@
-CP26 CRASH FIXES — 2026-05-08 (mis à jour)
-==========================================
+CP26 CRASH FIXES - mis à jour 2026-05-16
+========================================
 
-Neuf correctifs appliqués sur la version 1.0.7 du jeu
-(Fixes 1–3 : 2026-05-07 / Fixes 4–9 : 2026-05-08)
+Correctifs listés par ordre chronologique.
+Fixes 1-9 : 2026-05-07/08 / Fix 10 (crash galaxie) : 2026-05-15 / Fix 11 (freeze combat) : 2026-05-16
 
 
 =============================================================================
-FIX 1 — CConstructionQueueManager::DailyUpdate (SIGSEGV)
+FIX 10 - Crash SIGFPE à la génération de la galaxie
+=============================================================================
+
+SYMPTOME :
+  Crash SIGFPE (division par zéro flottante) au lancement d'une nouvelle
+  partie, pendant la phase de génération de la galaxie.
+  Message dans les logs : "invalid initializer 'bajoran_bajor_initializer'"
+
+CAUSE :
+  Les fichiers de scénario de carte Alpha-Beta_medium.txt et tutorial.txt
+  référencent bajoran_bajor_initializer par nom littéral. Le fichier CP26
+  qui définissait cet initialiseur a été supprimé lors du retrait de l'arc
+  Bajoran (wormhole). Le moteur ne trouve plus l'initialiseur → SIGFPE.
+
+CORRECTION :
+  Restauration de bajoran_bajor_initializer.txt dans
+  common/solar_system_initializers/other_owned/ sans le contenu spécifique
+  à l'arc wormhole (pas de create_ambient_object cp26_bajoran_wormhole,
+  pas de set_planet_flag = denorios_belt_target).
+  Le système Bajor est conservé avec sa structure complète (étoile G,
+  10 planètes, Bajor XI comme planète habitable avec pops et flags mapo_colony
+  + mipo_colony, event targets bajoran_planet/country/system).
+
+
+=============================================================================
+FIX 11 - Gel infini pendant les combats (freeze / boucle infinie)
+=============================================================================
+
+SYMPTOME :
+  La partie se bloque indéfiniment pendant les combats impliquant des
+  vaisseaux avec 0 officiers (pirates, vaisseaux de crise).
+  Aucun crash, le jeu gèle sans consommer de CPU excessif.
+
+CAUSE :
+  OFFICERS_MAX_FIRE_RATE_PENALTY = 1.25 dans
+  common/defines/zz_cp26_reduced_fleet_scale_defines.txt.
+  Formule du moteur : fire_rate = base × (1 − penalty × deficit_ratio)
+  Avec 0 officiers sur un vaisseau (pirates : Dreadnought + Redoubt),
+  deficit_ratio = 1.0 → fire_rate = base × (1 − 1.25) = valeur négative.
+  Le simulateur de combat boucle indéfiniment sur un taux de tir négatif.
+
+  La valeur vanilla est 1.0, ce qui donne fire_rate = 0 au minimum.
+  CP26 avait augmenté la pénalité à 1.25 pour amplifier l'effet des officiers,
+  sans réaliser que cela cassait les vaisseaux sans officiers.
+
+CORRECTION :
+  OFFICERS_MAX_FIRE_RATE_PENALTY ramené de 1.25 à 1.0 (valeur vanilla).
+  Fichier : common/defines/zz_cp26_reduced_fleet_scale_defines.txt.
+  Les autres paramètres officers (SHIP_OFFICERS_ADD_PERCENTAGE = 0.12,
+  OFFICERS_MAX_FIRE_RATE_BONUS = 0.1, etc.) restent inchangés.
+
+VALIDATION :
+  Confirmé par le joueur après test en partie : "oui c'est bon je crois
+  que c'était ça ouf".
+
+
+=============================================================================
+Neuf correctifs antérieurs (2026-05-07/08)
+=============================================================================
+
+
+=============================================================================
+FIX 1 - CConstructionQueueManager::DailyUpdate (SIGSEGV)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -23,7 +85,7 @@ CAUSE :
   aux event_targets conquered_planet_scope et new_owner_scope sans verifier
   leur existence au prealable. Le moteur Paradox evalue TOUTES les conditions
   d'un NAND simultanement (pas de court-circuit), donc meme si un scope est
-  null, le code tente quand meme d'y acceder — null pointer dereference.
+  null, le code tente quand meme d'y acceder - null pointer dereference.
 
   Les guards exists avaient ete places en commentaire dans le code original :
     # exists = event_target:conquered_planet_scope
@@ -40,7 +102,7 @@ CAUSE :
 CORRECTION :
   Remplacement du NAND par un OR avec exists guards en premiere position.
   L'OR court-circuite des qu'une branche est vraie, ce qui empeche
-  l'acces aux scopes nuls. current_war_scope retire du abort_trigger —
+  l'acces aux scopes nuls. current_war_scope retire du abort_trigger -
   l'occupation est definie par l'etat de la planete, pas par la guerre active
   (comportement plus fidele : la planete peut rester sous controle cardassien
   apres un status quo). Les blocs on_success et on_fail gerent deja
@@ -48,7 +110,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 2 — CPlanetManager::DailyUpdate / DailyUpdateAllUnhabitableSelfDontReadOthers (SIGSEGV)
+FIX 2 - CPlanetManager::DailyUpdate / DailyUpdateAllUnhabitableSelfDontReadOthers (SIGSEGV)
 =============================================================================
 
 FICHIERS MODIFIES :
@@ -69,7 +131,7 @@ CAUSE :
   (l'empire qui considere la colonisation) sans verifier son existence.
   Ce bloc est evalue sur TOUTES les planetes inhabitables a chaque jour
   de jeu. Dans certains contextes (evaluation en thread parallele, planetes
-  sans colonisateur potentiel), from est null — null pointer dereference.
+  sans colonisateur potentiel), from est null - null pointer dereference.
 
   Exemple du probleme :
     show_on_uncolonized = {
@@ -98,7 +160,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 3 — CConstructionQueueManager::DailyUpdate (SIGSEGV) — meme crash, autre projet
+FIX 3 - CConstructionQueueManager::DailyUpdate (SIGSEGV) - meme crash, autre projet
 =============================================================================
 
 FICHIER MODIFIE :
@@ -106,7 +168,7 @@ FICHIER MODIFIE :
   Projet : MIPO_ASSIMILATION_PROJECT
 
 SYMPTOME :
-  Identique au Fix 1 — meme fonction, meme offset (+816).
+  Identique au Fix 1 - meme fonction, meme offset (+816).
   Se produit quand le minor power cible est detruit ou libere de sa
   vassalisation pendant que le projet d'assimilation est actif.
 
@@ -133,7 +195,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 4 — EXCEPTION_ACCESS_VIOLATION — Action diplomatique mal typée (2026-05-08)
+FIX 4 - EXCEPTION_ACCESS_VIOLATION - Action diplomatique mal typée (2026-05-08)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -145,7 +207,7 @@ CAUSE :
   n'est supportee par aucune autre action dans le jeu de base. Le moteur
   echoue a enregistrer correctement l'action, laissant un pointeur null dans
   la table interne des actions diplomatiques. Quand l'AI itere cette table,
-  elle dereference ce pointeur — crash.
+  elle dereference ce pointeur - crash.
 
 CORRECTION :
   action_type = aggressive remplace par action_type = negative.
@@ -154,7 +216,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 5 — Iterator invalidation — cp26_war_access.2 sur on_daily_pulse (2026-05-08)
+FIX 5 - Iterator invalidation - cp26_war_access.2 sur on_daily_pulse (2026-05-08)
 =============================================================================
 
 FICHIERS MODIFIES :
@@ -179,7 +241,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 6 — add_casus_belli sans communications (2026-05-08)
+FIX 6 - add_casus_belli sans communications (2026-05-08)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -201,7 +263,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 7 — kill_pop sans filtre dans l'evenement Romulien country.9016 (2026-05-08)
+FIX 7 - kill_pop sans filtre dans l'evenement Romulien country.9016 (2026-05-08)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -216,7 +278,7 @@ CAUSE :
   La branche else de l'evenement tuait une pop aleatoire sans filtre sur
   Romulus quand aucune pop avec le job centurion_romulan n'etait presente.
   Le moteur 1.0.7 ne nettoie pas toujours le lien armee-pop lors d'un
-  kill_pop scripte — la pop disparait mais l'armee reste orpheline.
+  kill_pop scripte - la pop disparait mais l'armee reste orpheline.
 
 CORRECTION :
   Suppression du bloc else. Si Romulus n'a plus de centurions, l'evenement
@@ -225,7 +287,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 8 — kill_pop pouvant vider une colonie (unique_mechanic.1 Cardassien) (2026-05-08)
+FIX 8 - kill_pop pouvant vider une colonie (unique_mechanic.1 Cardassien) (2026-05-08)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -242,7 +304,7 @@ CAUSE :
   Le mecanisme unique Cardassien (25% de chance par planete de tuer une
   pop non-cardassienne) pouvait tuer la DERNIERE pop non-cardassienne sur
   une planete ne contenant que des esclaves non-cardassiens. La planete
-  se retrouvait avec un proprietaire mais zero pop — etat instable generant
+  se retrouvait avec un proprietaire mais zero pop - etat instable generant
   des armies orphelines et potentiellement un crash.
 
 CORRECTION :
@@ -253,7 +315,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 9 — CPlanetManager::DailyUpdate — 3 districts jeu de base non couverts (2026-05-08)
+FIX 9 - CPlanetManager::DailyUpdate - 3 districts jeu de base non couverts (2026-05-08)
 =============================================================================
 
 FICHIER CREE :
@@ -273,7 +335,7 @@ CAUSE :
     09_hornblower_cardassian_districts.txt → district_labor_camp
 
   district_civil_forum etait deja override par CP26 (z_hornblower_romulan_districts).
-  Les trois autres (culture, hunting_grounds, labor_camp) ne l'etaient pas —
+  Les trois autres (culture, hunting_grounds, labor_camp) ne l'etaient pas -
   le jeu de base les chargeait avec le bug intact.
 
 CORRECTION :
@@ -283,7 +345,7 @@ CORRECTION :
 
 
 =============================================================================
-FIX 10 — CPlanetManager::DailyUpdate — 4 districts habitat non couverts (2026-05-08)
+FIX 10 - CPlanetManager::DailyUpdate - 4 districts habitat non couverts (2026-05-08)
 =============================================================================
 
 FICHIER MODIFIE :
@@ -308,7 +370,7 @@ CORRECTION :
 
 =============================================================================
 =============================================================================
-FIX 11 — pdx_entity.cpp — part1 locator manquant sur 2 entites Cardassiens (2026-05-09)
+FIX 11 - pdx_entity.cpp - part1 locator manquant sur 2 entites Cardassiens (2026-05-09)
 =============================================================================
 
 FICHIER CREE :
@@ -323,7 +385,7 @@ SYMPTOME :
 CAUSE :
   Le jeu de base a intentionnellement commente le locator part1 sur ces deux
   entites (commentaire HRB_TODO). Leurs ship_sizes correspondants declarent
-  section_slots = { "mid" = { locator = "part1" } } — le moteur cherche ce
+  section_slots = { "mid" = { locator = "part1" } } - le moteur cherche ce
   locator et logue un warning quand il ne le trouve pas.
 
 CORRECTION :
@@ -334,7 +396,7 @@ CORRECTION :
 
 
 =============================================================================
-NOTE — war_situation_scope undefined — global_situation.17 (NON CORRIGE)
+NOTE - war_situation_scope undefined - global_situation.17 (NON CORRIGE)
 =============================================================================
 
 SYMPTOME :

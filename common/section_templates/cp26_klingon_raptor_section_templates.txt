@@ -1,4 +1,4 @@
-# CP26 — Klingon Raptor (weapon layout matches K'vort / warbird hardpoints)
+# CP26 - Klingon Raptor (weapon layout matches K'vort / warbird hardpoints)
 
 @klingon_section_cost = 0
 

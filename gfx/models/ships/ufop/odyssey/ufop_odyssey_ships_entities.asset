@@ -1,7 +1,7 @@
 entity = {
 	name = "odyssey_entity"
 	pdxmesh = "odyssey_ship_mesh"
-	scale = 2.6
+	scale = 2.8
 	default_state = "idle"
 
 	locator = { name = "part1" position = { 0 0 0 } }
@@ -36,7 +36,7 @@ entity = {
 
 	game_data = {
 		trail_width = 1.0
-		size = 42
+		size = 43
 	}
 }
 

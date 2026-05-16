@@ -1,8 +1,8 @@
-CP26 — AI Improvement Plan
+CP26 - AI Improvement Plan
 ==========================
 Document de travail : fixes et améliorations possibles pour l'IA.
 
-NIVEAU 1 — CORE NAI DEFINES (CODÉ)
+NIVEAU 1 - CORE NAI DEFINES (CODÉ)
 ====================================
 Fichier : common/defines/zz_cp26_ai_defines.txt
 Impact : Fort | Difficulté : Facile
@@ -24,7 +24,7 @@ Changements appliqués :
   ADVANCED_EMPIRE_COLONY_CHANCE   75 → 90  (empires avancés colonisent plus)
 
 
-NIVEAU 2 — ECONOMIC PLANS IA (À CODER)
+NIVEAU 2 - ECONOMIC PLANS IA (À CODER)
 =======================================
 Fichier suggéré : common/economic_plans/zz_cp26_ai_plans.txt
 Impact : Fort | Difficulté : Moyenne
@@ -42,7 +42,7 @@ Actions possibles :
   - Ajuster empire_size tolerance selon la faction
 
 
-NIVEAU 3 — AI BUDGETS (À CODER)
+NIVEAU 3 - AI BUDGETS (À CODER)
 ================================
 Fichier suggéré : common/ai_budget/zz_cp26_ai_budget.txt
 Impact : Moyen | Difficulté : Moyenne
@@ -56,7 +56,7 @@ Actions possibles :
   - Réduire légèrement le poids food/energy si surplus
 
 
-NIVEAU 4 — SHIP DESIGNS IA (À CODER)
+NIVEAU 4 - SHIP DESIGNS IA (À CODER)
 =====================================
 Fichier suggéré : common/global_ship_designs/zz_cp26_ai_designs.txt
 Impact : Moyen-Fort | Difficulté : Moyenne-Élevée
@@ -75,7 +75,7 @@ Actions possibles :
       * Minor factions = designs adaptés à leur tech
 
 
-NIVEAU 5 — SHIP BEHAVIORS / COMBAT IA (À ÉTUDIER)
+NIVEAU 5 - SHIP BEHAVIORS / COMBAT IA (À ÉTUDIER)
 ===================================================
 Fichier suggéré : common/ship_behaviors/zz_cp26_ai_behaviors.txt
 Impact : Faible-Moyen | Difficulté : Élevée
@@ -86,7 +86,7 @@ Note : Les behaviors sont assez opaques dans le moteur Stellaris.
 Gains potentiels limités sans tests intensifs.
 
 
-NIVEAU 6 — EXPANSION / COLONISATION (PARTIELLEMENT HARDCODÉ)
+NIVEAU 6 - EXPANSION / COLONISATION (PARTIELLEMENT HARDCODÉ)
 ===============================================================
 Impact : Moyen | Difficulté : Variable
 
@@ -106,8 +106,8 @@ Actions possibles :
 RÉSUMÉ PRIORITAIRE
 ==================
 1. Niveau 1 : DONE (zz_cp26_ai_defines.txt)
-2. Niveau 2 : HIGH VALUE — economic plans par faction
-3. Niveau 3 : MEDIUM VALUE — ai_budget tweaks
-4. Niveau 4 : MEDIUM VALUE — ship designs CP26-aware
-5. Niveau 5 : LOW VALUE / HIGH RISK — ship behaviors
-6. Niveau 6 : LOW VALUE — limited by engine
+2. Niveau 2 : HIGH VALUE - economic plans par faction
+3. Niveau 3 : MEDIUM VALUE - ai_budget tweaks
+4. Niveau 4 : MEDIUM VALUE - ship designs CP26-aware
+5. Niveau 5 : LOW VALUE / HIGH RISK - ship behaviors
+6. Niveau 6 : LOW VALUE - limited by engine

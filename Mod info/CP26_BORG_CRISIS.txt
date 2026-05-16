@@ -1,5 +1,5 @@
 ================================================================================
-CP26 — Borg Crisis : Analyse et Plan
+CP26 - Borg Crisis : Analyse et Plan
 ================================================================================
 Date    : 2026-05
 Statut  : ANALYSE seule, aucun patch déployé pour l'instant
@@ -16,23 +16,23 @@ Le crisis Borg de Star Trek Infinite est COMPLET sur le papier :
 
 Phases scénarisées (chaîne en 9-12 étapes) :
 
-  Phase 1 — Borg Cube (BORGCUBE12)
+  Phase 1 - Borg Cube (BORGCUBE12)
     9-step Fed Lore. Apparition du premier Cube observé, début du crisis.
 
-  Phase 2 — Assimilation (BC-ASSIM7)
+  Phase 2 - Assimilation (BC-ASSIM7)
     Premiers vaisseaux assimilés, événements de disparition.
 
-  Phase 3 — Mysterious Structure (BC-MYST4)
+  Phase 3 - Mysterious Structure (BC-MYST4)
     Découverte de la structure alliage Borg. 3-step Lore.
 
-  Phase 4 — Return of the USS Voyager (BC-VOYAGER9)
+  Phase 4 - Return of the USS Voyager (BC-VOYAGER9)
     Janeway rentre avec des intel anti-Borg. 9-step Lore.
 
-  Phase 5 — Warp Highways Compromised (BC-WARP10)
+  Phase 5 - Warp Highways Compromised (BC-WARP10)
     Les Borg sabotent les hyperlanes. 1-step Lore.
 
-  Phase 6 — The Freed / Saving The Assimilated (BC-FREED12)
-    *** PHASE FINALE — actuellement CASSÉE ***
+  Phase 6 - The Freed / Saving The Assimilated (BC-FREED12)
+    *** PHASE FINALE - actuellement CASSÉE ***
     Le bloc `borg_crisis_end_the_freed` est COMMENTÉ DANS LE FICHIER vanilla
     de chains (lignes 121-126 de 00_hornblower_borg_crisis_chains.txt) :
 
@@ -73,12 +73,12 @@ C) Délais beaucoup trop longs en jeu :
 D) Côté CP26 : aucun patch actuel sur la chaîne Borg. La seule trace
    est une référence à `has_global_flag = borg_crisis_won` dans
    common/quest_tree_nodes/qt_ufop_c6.txt (objectif "Resistance is Futile"
-   du quest tree UFOP) — qui dépend donc d'une chaîne incomplète.
+   du quest tree UFOP) - qui dépend donc d'une chaîne incomplète.
 
 3. PROPOSITIONS DE FIX (par ordre de priorité)
 --------------------------------------------------------------------------------
 
-   ━━━ Phase A — Fix de fin de chaîne (RISQUE = TRÈS FAIBLE) ━━━
+   ━━━ Phase A - Fix de fin de chaîne (RISQUE = TRÈS FAIBLE) ━━━
    Décommenter `borg_crisis_end_the_freed` dans un override CP26 et
    compléter le bloc. À placer dans :
 
@@ -100,7 +100,7 @@ D) Côté CP26 : aucun patch actuel sur la chaîne Borg. La seule trace
 
    Coût : ~30 minutes. ZÉRO casse possible.
 
-   ━━━ Phase B — Tuning des délais (RISQUE = MOYEN) ━━━
+   ━━━ Phase B - Tuning des délais (RISQUE = MOYEN) ━━━
    Resserrer les @timers via un fichier defines/override pour avoir
    un crisis qui se déroule sur 30-40 ans au lieu de 100+.
 
@@ -119,7 +119,7 @@ D) Côté CP26 : aucun patch actuel sur la chaîne Borg. La seule trace
    Risque : si on serre trop, le joueur n'aura pas eu le temps de
    construire son anti-Borg fleet → ajuster aux feedbacks playtest.
 
-   ━━━ Phase C — Anti-Borg fleet missions (RISQUE = MOYEN, COÛT = GROS) ━━━
+   ━━━ Phase C - Anti-Borg fleet missions (RISQUE = MOYEN, COÛT = GROS) ━━━
    Implémenter l'idée n°2 de `Mod info/ideas and future content.txt` :
    "Borg fleet building missions and events (build anti-borg fleet)".
 

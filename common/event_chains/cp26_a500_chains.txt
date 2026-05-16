@@ -1,0 +1,17 @@
+##########################################################################
+# Arc Mars - Chaîne de journal : Rébellion des A500
+##########################################################################
+
+cp26_a500_rebellion_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_alert.dds"
+	picture = GFX_evt_cp26_a500_rebellion
+}
+
+##########################################################################
+# Arc Romulien - Mission d'espionnage sur Earth (Projet Synth)
+##########################################################################
+
+cp26_rom_spy_mission_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_radar.dds"
+	picture = GFX_evt_spy_mission_romulan
+}

@@ -45,7 +45,7 @@ country_event = {
 
 # Keeps active wars traversable (frontières ouvertes entre belligérants + zones neutres).
 # CP26 2026-05-14 : ancien country_event .2 sur on_monthly_pulse_country (N× par mois si
-# N empires en guerre) — remplacé par event global .100 sur on_monthly_pulse (1×/mois).
+# N empires en guerre) - remplacé par event global .100 sur on_monthly_pulse (1×/mois).
 # forced = 3600 keeps access open for long wars without a monthly refresh.
 # Voir zz_cp26_war_access_on_actions.txt.
 #
@@ -53,7 +53,7 @@ country_event = {
 # - every_war à la racine → scope none (crash).
 # - every_war + every_war_participant + event_target guerre → erreurs / instabilité
 #   selon build (save_event_target sur war, double participant, etc.).
-# - Stratégie stable : uniquement des scopes PAYS — double every_country sur les
+# - Stratégie stable : uniquement des scopes PAYS - double every_country sur les
 #   paires en guerre (symétrique, idempotent si doublons A|B et B|A).
 event = {
 	id = cp26_war_access.100

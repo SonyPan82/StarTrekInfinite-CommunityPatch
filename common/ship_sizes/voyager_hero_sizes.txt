@@ -38,7 +38,7 @@ voyager = {
 		ship_hyperlane_range_add = 1
 	}
 
-	size_multiplier = 3
+	size_multiplier = 4
 	fleet_slot_size = 4
 	graphical_culture = no
 

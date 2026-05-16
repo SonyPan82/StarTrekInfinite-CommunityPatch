@@ -1,10 +1,10 @@
 ================================================================================
-CP26 — Refonte des Species Classes pour les Minor Factions
+CP26 - Refonte des Species Classes pour les Minor Factions
 ================================================================================
 Date          : 2026-05
 Fichiers      : common/species_classes/zz_cp26_minor_species_classes.txt
                 prescripted_countries/00_*.txt (19 fichiers patchés)
-Phase         : 1 (quick win — différenciation visuelle / lore)
+Phase         : 1 (quick win - différenciation visuelle / lore)
 ================================================================================
 
 1. PROBLÈME D'ORIGINE (vanilla)
@@ -23,9 +23,9 @@ Conséquences :
     cardassian, fedhuman, etc. mélangés).
   - Tous utilisent la MÊME graphical_culture (ufop_01).
   - Aucune distinction visuelle ou lore entre un Bajoran spirituel et un
-    Talarian belliqueux — mécaniquement identiques au moteur.
+    Talarian belliqueux - mécaniquement identiques au moteur.
 
-2. SOLUTION CP26 — 3 archétypes thématiques
+2. SOLUTION CP26 - 3 archétypes thématiques
 --------------------------------------------------------------------------------
 Au lieu de créer 1 classe par minor (coûteux, 20 classes à maintenir), on
 les regroupe en 3 archétypes thématiquement cohérents.
@@ -84,7 +84,7 @@ Plus : 1 prescripted hors champ minor (mère vérification : on compte 20 fichie
 - Reversibilité : 1 commit de revert (supprimer les patches `class = HRB_*`
   vers `class = HRB`, supprimer le fichier zz_cp26_minor_species_classes.txt).
 
-5. PHASE 2 (FUTURE — non implémentée)
+5. PHASE 2 (FUTURE - non implémentée)
 --------------------------------------------------------------------------------
 Une fois la phase 1 stable, on peut envisager :
   - Traits raciaux propres à chaque classe (ex: HRB_DIPLO +5% diplomatic

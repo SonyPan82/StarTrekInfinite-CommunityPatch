@@ -1,4 +1,4 @@
-# CP26 — Star Trek lore-faithful personalities for the 4 major empires.
+# CP26 - Star Trek lore-faithful personalities for the 4 major empires.
 #
 # These personalities override the vanilla ethics-based personality selection
 # by using weight_modifier = 1000 (vanilla majors are typically at weight 50).
@@ -13,7 +13,7 @@
 
 
 # =============================================================================
-# UNITED FEDERATION OF PLANETS — Diplomatic explorers, firm defenders.
+# UNITED FEDERATION OF PLANETS - Diplomatic explorers, firm defenders.
 # =============================================================================
 # UFOP is canonically a peaceful, science-driven federation but ready to defend
 # its members and uphold the Prime Directive. They forge alliances, share
@@ -24,7 +24,7 @@ cp26_starfleet_command = {
 	aggressiveness = 0.7			# diplomacy first, war as last resort
 	trade_willingness = 1.4			# generous in negotiations
 	bravery = 1.3					# will challenge stronger threats to defend allies
-	combat_bravery = 1.6			# holds the line — Starfleet doesn't run
+	combat_bravery = 1.6			# holds the line - Starfleet doesn't run
 
 	military_spending = 1.0
 	colony_spending = 1.2
@@ -80,7 +80,7 @@ cp26_starfleet_command = {
 
 
 # =============================================================================
-# KLINGON EMPIRE — Honorbound warriors, glory in battle.
+# KLINGON EMPIRE - Honorbound warriors, glory in battle.
 # =============================================================================
 # Klingons fight for honor (BatlH). They despise stealth, dishonor, and weakness.
 # Strong allies in war, terrible at diplomacy with non-warrior races.
@@ -90,7 +90,7 @@ cp26_klingon_honor_guard = {
 	aggressiveness = 1.9			# pre-emptive war is honorable
 	trade_willingness = 0.6			# rarely negotiates from weakness
 	bravery = 1.6					# eagerly engages stronger foes
-	combat_bravery = 2.2			# never retreats — death is glory
+	combat_bravery = 2.2			# never retreats - death is glory
 
 	military_spending = 1.4
 	colony_spending = 0.7
@@ -146,7 +146,7 @@ cp26_klingon_honor_guard = {
 
 
 # =============================================================================
-# ROMULAN STAR EMPIRE — Tal Shiar doctrine, calculating opportunists.
+# ROMULAN STAR EMPIRE - Tal Shiar doctrine, calculating opportunists.
 # =============================================================================
 # Romulans are masters of intrigue, prefer covert ops to open war, and only
 # engage when victory is near-certain. They despise alliances but value
@@ -213,7 +213,7 @@ cp26_tal_shiar_doctrine = {
 
 
 # =============================================================================
-# CARDASSIAN UNION — Central Command militarism, expansionist exploitation.
+# CARDASSIAN UNION - Central Command militarism, expansionist exploitation.
 # =============================================================================
 # Cardassians are militaristic, xenophobic, and prone to occupying weaker
 # neighbours (Bajor). They value military strength and obedience over freedom.
@@ -222,7 +222,7 @@ cp26_tal_shiar_doctrine = {
 cp26_central_command = {
 	aggressiveness = 1.6
 	trade_willingness = 0.8
-	bravery = 1.0					# pragmatic — picks fair fights
+	bravery = 1.0					# pragmatic - picks fair fights
 	combat_bravery = 1.5			# fights hard when committed
 
 	military_spending = 1.3

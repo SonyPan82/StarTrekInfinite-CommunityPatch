@@ -1,0 +1,98 @@
+@duder_speed = 95
+@duder_hp = 3200
+@duder_evasion = 10
+@duder_build_time = 460
+@duder_upkeep_deuterium = 1.10
+@duder_upkeep_alloys = 1.00
+@duder_no_admiral_mult = -0.10
+
+duderstadt = {
+	formation_priority = 12
+	entity = duderstadt_entity
+	max_speed = @duder_speed
+	acceleration = 0.18
+	rotation_speed = 0.14
+	collision_radius = 4.0
+	max_hitpoints = @duder_hp
+	operative_officers = 25
+	officers_escape_perc = 10
+	fleet_view_background = "military_large"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @duder_no_admiral_mult
+		ship_shield_mult = @duder_no_admiral_mult
+		ship_tracking_mult = @duder_no_admiral_mult
+		ship_evasion_add = @duder_evasion
+	}
+
+	size_multiplier = 6.5
+	fleet_slot_size = 5
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 4
+	is_space_station = no
+	icon_frame = 5
+	text_icon = military_size_16
+	base_buildtime = @duder_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+
+	default_behavior = "hrb_artillery"
+
+	prerequisites = { "tech_duderstadt_unlock" }
+
+	potential_country = {
+		has_country_id = ufop
+	}
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
+	combat_disengage_chance = 1.20
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @duder_upkeep_deuterium
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = @duder_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}

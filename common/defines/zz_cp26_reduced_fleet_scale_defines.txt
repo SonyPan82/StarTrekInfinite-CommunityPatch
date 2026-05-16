@@ -1,18 +1,16 @@
 NGameplay = {
-	# CP26 — cible « jusqu'à 12 navires de ligne par flotte » (fleet_slot_size)
+	# CP26 - cible « jusqu'à 12 navires de ligne par flotte » (fleet_slot_size)
 	# et plafond empire 36 coques (3 × 12). Perf : moins d'objets qu'avec 3×15.
-	# BASE : début ; MAX : fin de partie / grosses coques (slot 4–8).
-	COMMAND_LIMIT_BASE = 24
-	COMMAND_LIMIT_MAX = 96
+	# COMMAND_LIMIT_BASE = 24  # désactivé - impact perf à confirmer
+	# COMMAND_LIMIT_MAX = 96
 
-	# CP26 reduced-fleet scale: officers are Infinite's native fleet pressure.
-	# Keep understaffed fleets from recovering too quickly, and make officer
-	# shortages matter enough that compact, fully crewed fleets are preferable
-	# to large numbers of hollow hulls.
+	# Officers : PENALTY plafonné à 1.0 (vanilla).
+	# Au-delà de 1.0, le fire rate devient négatif pour les vaisseaux à 0 officiers
+	# (pirates, crises) ce qui crée une boucle infinie dans le simulateur de combat.
 	SHIP_OFFICERS_ADD_PERCENTAGE = 0.12
 	SHIP_OFFICERS_OPERATIVE_THRESHOLD = 0.9
 	OFFICERS_MAX_FIRE_RATE_BONUS = 0.1
-	OFFICERS_MAX_FIRE_RATE_PENALTY = 1.25
+	OFFICERS_MAX_FIRE_RATE_PENALTY = 1.0
 	OFFICERS_MAX_EVASION_BONUS = 0.05
 	OFFICERS_MAX_EVASION_PENALTY = 0.3
 }

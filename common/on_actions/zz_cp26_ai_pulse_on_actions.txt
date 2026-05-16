@@ -1,4 +1,4 @@
-# CP26 — AI pulse hooks
+# CP26 - AI pulse hooks
 #
 # Annual update of cp26_empire_size_* for all AI (drapeaux lus par ship_data du type `default`).
 #

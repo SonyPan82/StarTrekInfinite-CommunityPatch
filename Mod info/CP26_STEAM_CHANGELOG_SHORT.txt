@@ -12,7 +12,7 @@
 
 [h2]AI Improvements[/h2]
 [list]
-[*] AI Fix 1 — Defines NAI (zz_cp26_ai_defines.txt) : improved construction thresholds, war priorities, research weighting, rare tech multipliers and max fleet distance.
+[*] AI Fix 1 - Defines NAI (zz_cp26_ai_defines.txt) : improved construction thresholds, war priorities, research weighting, rare tech multipliers and max fleet distance.
 [*] AI Shipyard Fix : all AI majors/minors/contenders now start with Starport + Shipyard on their capital.
 [*] Fixed vanilla event country.27500 (UFOP First Contact Bonus) : no more "add_opinion_modifier on oneself" error ; opinion bonus now applies correctly.
 [/list]
@@ -54,5 +54,5 @@
 [h2]Shipyard caps (2026-05-14)[/h2]
 [list]
 [*] [b]Science & construction ships[/b]: [b]empire_limit[/b] (3 each) with vanilla [b]SHIP_SIZE_LIMIT[/b] when blocked.
-[*] [b]Line military hulls[/b]: shared [b]36-ship[/b] cap (non-hero; ~3×12 design) at the shipyard via [b]possible_construction[/b]; scrap a hull to queue another. Same for AI — no monthly purge.
+[*] [b]Line military hulls[/b]: shared [b]36-ship[/b] cap (non-hero; ~3×12 design) at the shipyard via [b]possible_construction[/b]; scrap a hull to queue another. Same for AI - no monthly purge.
 [/list]

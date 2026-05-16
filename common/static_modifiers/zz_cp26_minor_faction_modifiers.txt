@@ -1,4 +1,4 @@
-# CP26 — Minor Faction Combat Doctrines
+# CP26 - Minor Faction Combat Doctrines
 #
 # Identité tactique propre pour chaque minor faction. Appliqué une fois sur le
 # country lors du setup_*_capital (days = -1 = permanent).

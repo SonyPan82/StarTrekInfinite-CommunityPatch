@@ -1,0 +1,80 @@
+objectTypes = {
+	pdxmesh = {
+		name = "duderstadt_ship_mesh"
+		file = "gfx/models/ships/ufop/duderstadt/federation_duderstadt.mesh"
+		scale = 1.1
+
+		meshsettings = {
+			name = "WarpGovernor"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Pylon_S"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Nacelle_S"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "BridgeModule"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Deflector"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Neck"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Nacelle_P"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Pylon_P"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Hull"
+			index = 0
+			texture_diffuse = "Duderstadt_Diffuse.dds"
+			texture_normal = "Duderstadt_Normal.dds"
+			texture_specular = "Duderstadt_Specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

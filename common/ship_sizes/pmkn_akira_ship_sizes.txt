@@ -39,7 +39,7 @@ akira = {
 
 	}
 
-	size_multiplier = 4
+	size_multiplier = 5
 	fleet_slot_size = 3
 	graphical_culture = no
 

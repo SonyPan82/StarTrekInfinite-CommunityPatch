@@ -38,7 +38,7 @@ dderidex_hero = {
 		#ship_piracy_suppression_add = 120
 	}
 
-	size_multiplier = 8
+	size_multiplier = 11
 	fleet_slot_size = 4
 	graphical_culture = no
 

@@ -34,7 +34,7 @@ kamarag = {
 		ship_evasion_add = @galaxy_evasion
 	}
 
-	size_multiplier = 6
+	size_multiplier = 5
 	fleet_slot_size = 4
 	graphical_culture = no
 

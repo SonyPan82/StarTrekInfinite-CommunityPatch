@@ -1,5 +1,5 @@
 ================================================================================
-CP26 — Audit complet : Crashs ConstructionQueue & Colonies
+CP26 - Audit complet : Crashs ConstructionQueue & Colonies
 Date : 2026-05-14
 Auteur : Analyse automatisée (aucun fichier modifié)
 ================================================================================
@@ -21,7 +21,7 @@ MÉTHODOLOGIE
 4. Vérification syntaxique des brackets dans events/game_start.txt.
 
 ================================================================================
-RÉSULTAT 1 — KHITOMER (klingon_khitomer_initializer.txt)
+RÉSULTAT 1 - KHITOMER (klingon_khitomer_initializer.txt)
 ================================================================================
 
 VANILLA (hornblower_initializers.txt:4216-4218)
@@ -60,10 +60,10 @@ n'en ont pas non plus, et le vanilla ne le met pas).
 
 Si le bâtiment est indispensable au design CP26, le déplacer dans un
 event différé (days = 3) avec un planet_flag, comme l'ancien pattern
-Vega/Denobula — MAIS la solution la plus crédible reste le retrait pur.
+Vega/Denobula - MAIS la solution la plus crédible reste le retrait pur.
 
 ================================================================================
-RÉSULTAT 2 — CARDASSIA V (cardassian_cardassia_initializer.txt)
+RÉSULTAT 2 - CARDASSIA V (cardassian_cardassia_initializer.txt)
 ================================================================================
 
 VANILLA (hornblower_initializers.txt:957-962)
@@ -119,7 +119,7 @@ late_init_effect = {
 Supprimer les lignes set_owner, set_colony_type et create_pop de CP26.
 
 ================================================================================
-RÉSULTAT 3 — GLINTARA (romulan_glintara_initializer.txt)
+RÉSULTAT 3 - GLINTARA (romulan_glintara_initializer.txt)
 ================================================================================
 
 VANILLA
@@ -177,7 +177,7 @@ create_glintara_colony = {
 }
 
 ================================================================================
-RÉSULTAT 4 — events/game_start.txt (replace_path actif)
+RÉSULTAT 4 - events/game_start.txt (replace_path actif)
 ================================================================================
 
 DIFFÉRENCES CP26 vs VANILLA
@@ -223,31 +223,31 @@ PLAN DE CORRECTION RECOMMANDÉ
 
 Fichier 1 : common/solar_system_initializers/klingon/klingon_khitomer_initializer.txt
 Action    : Supprimer add_building = building_bureaucratic_1
-Priorité  : 🔴 CRITIQUE — pattern crash connu, facile à corriger
+Priorité  : 🔴 CRITIQUE - pattern crash connu, facile à corriger
 
 Fichier 2 : common/solar_system_initializers/cardassian/cardassian_cardassia_initializer.txt
 Action    : Remplacer le late_init_effect par le vanilla exact :
               create_colony = { owner = event_target:cardassian_country }
               create_cardassia_v_colony = yes
             Supprimer set_owner, set_colony_type, create_pop de CP26.
-Priorité  : 🔴 CRITIQUE — suppression de create_colony = corruption potentielle
+Priorité  : 🔴 CRITIQUE - suppression de create_colony = corruption potentielle
 
 Fichier 3 : common/solar_system_initializers/romulan/romulan_glintara_initializer.txt
 Action    : Supprimer set_owner, set_colony_type, add_building de l'initializer.
             Ne garder que : create_glintara_colony = yes
-Priorité  : 🔴 CRITIQUE — doublon + add_building mal placé
+Priorité  : 🔴 CRITIQUE - doublon + add_building mal placé
 
 Fichier 4 : common/scripted_effects/01_romulus_glintara_effect.txt
 Action    : Ajouter add_building = building_capital à l'intérieur de
             create_glintara_colony, juste après set_colony_type.
-Priorité  : 🔴 CRITIQUE — accompagne le fichier 3
+Priorité  : 🔴 CRITIQUE - accompagne le fichier 3
 
 Fichier 5 : events/game_start.txt (optionnel, à surveiller)
 Action    : Si des crashs empire mineur persistent après les 4 corrections
             ci-dessus, envisager de différer game_start.21 et game_start.22
             de 1 jour, ou de remplacer remove_building+add_building par un
             upgrade_building si le moteur le supporte.
-Priorité  : 🟡 MOYENNE — vanilla, mais pattern dangereux exposé par CP26
+Priorité  : 🟡 MOYENNE - vanilla, mais pattern dangereux exposé par CP26
 
 ================================================================================
 RAPPEL : PHILOSOPHIE "VANILLA PUR"

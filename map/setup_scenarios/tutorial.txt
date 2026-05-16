@@ -5,7 +5,7 @@ bespoke_procedural_scenario = {
 
 	# Everything below this line should be a copy of Alpha-Beta_medium
 	num_stars = 1000
-	# CP26 — radius MUST stay <= 500 (engine hard limit). See Alpha-Beta_medium.txt
+	# CP26 - radius MUST stay <= 500 (engine hard limit). See Alpha-Beta_medium.txt
 	# header comment for full reasoning. Synced with main scenario.
 	radius = 498
 	num_empires = { min = 24 max = 24 }	# CP26: vanilla-style 24 slots; Breen removed, Gorn/Orion/Tholian replace low-impact minors.
@@ -1345,7 +1345,7 @@ bespoke_procedural_scenario = {
 	# 	camera_limit_min_pitch = 40
 	# 	camera_limit_max_pitch = 85
 	# }
-	# CP26 — camera_limit_max_y bumped on every step (kept in sync with
+	# CP26 - camera_limit_max_y bumped on every step (kept in sync with
 	# Alpha-Beta_medium.txt). Southern systems reach Y=404, so any value
 	# below ~440 made them unreachable when zoomed out.
 	# step 2

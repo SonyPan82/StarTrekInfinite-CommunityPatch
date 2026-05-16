@@ -1,11 +1,11 @@
 ================================================================================
-CP26 — Galaxy Radius : ENGINE HARDCODED LIMIT
+CP26 - Galaxy Radius : ENGINE HARDCODED LIMIT
 ================================================================================
 Date    : 2026-05-12
 Statut  : APPLIQUÉ (radius 570 → 500 sur Alpha-Beta_medium.txt + tutorial.txt)
 ================================================================================
 
-1. PROBLÈME — CRASHES ALÉATOIRES SIGSEGV / ACCESS VIOLATION
+1. PROBLÈME - CRASHES ALÉATOIRES SIGSEGV / ACCESS VIOLATION
 --------------------------------------------------------------------------------
 Symptômes observés (Mac et Windows) :
   - macOS : EXC_BAD_ACCESS / SIGSEGV / KERN_PROTECTION_FAILURE
@@ -13,7 +13,7 @@ Symptômes observés (Mac et Windows) :
   - Stack typique : CConstructionQueueManager::DailyUpdate
                     CSaveGameTaskManager::CreateMemoryFiles
                     CConstructionQueue::WriteMembers
-  - Fréquence : ALÉATOIRE — quelques minutes à quelques heures de jeu.
+  - Fréquence : ALÉATOIRE - quelques minutes à quelques heures de jeu.
   - Ne se reproduit pas à la commande.
 
 Diagnostic erroné pendant plusieurs sessions :
@@ -30,7 +30,7 @@ VRAIE cause racine :
 
 2. SOURCE OFFICIELLE
 --------------------------------------------------------------------------------
-Stellaris Wiki — Map modding (paradoxwikis.com/Map_modding) :
+Stellaris Wiki - Map modding (paradoxwikis.com/Map_modding) :
 
     "About Galaxy Modding [...] both dynamic and static maps have some
      default limitations:
@@ -89,7 +89,7 @@ Historique des modifications successives (conversations passées) :
                                      (cap officiel Paradox, 95 unités
                                       de marge sur les positions actuelles)
 
-5. FIX APPLIQUÉ — 2026-05-12
+5. FIX APPLIQUÉ - 2026-05-12
 --------------------------------------------------------------------------------
 Mesure géométrique préalable :
   Total positions       : 258 systèmes

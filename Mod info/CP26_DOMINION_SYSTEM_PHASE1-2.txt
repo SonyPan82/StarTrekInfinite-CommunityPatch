@@ -1,4 +1,4 @@
-CP26 — DOMINION THREAT SYSTEM: PHASES 1-2 (CODÉES)
+CP26 - DOMINION THREAT SYSTEM: PHASES 1-2 (CODÉES)
 ====================================================
 Document de conception reflétant l'implémentation actuelle.
 Fichiers concernés :
@@ -23,7 +23,7 @@ découverte du wormhole (dans cp26_bajoran_wormhole.200, immediate).
 
 
 ================================================================
-MÉCANISME DE BASE — DTL (Dominion Threat Level)
+MÉCANISME DE BASE - DTL (Dominion Threat Level)
 ================================================================
 
 Variable "cp26_dtl" stockée sur le pays Dominion (0-100).
@@ -44,7 +44,7 @@ Effets scriptés disponibles (zz_cp26_dominion_threat_effects.txt) :
 
 
 ================================================================
-PHASE 1 — PREMIER CONTACT (DTL 0-20)
+PHASE 1 - PREMIER CONTACT (DTL 0-20)
 ================================================================
 
 DÉCLENCHEUR
@@ -57,24 +57,24 @@ Event .1 (yearly, Dominion scope) détecte :
 → Fire event .100 pour le pays avec le flag wormhole_discoverer (délai 15j ±10)
 
 
-EVENT .100 — CHOIX D'APPROCHE (fires pour le découvreur du wormhole)
+EVENT .100 - CHOIX D'APPROCHE (fires pour le découvreur du wormhole)
 ---------------------------------------------------------------------
 "Une fenêtre vient de s'ouvrir sur le Quadrant Gamma.
 Comment approcher cette opportunité ?"
 
-OPTION A — Expédition scientifique
+OPTION A - Expédition scientifique
   - Flag : cp26_gamma_approach_science
   - DTL +2
   - Active le projet spécial CP26_GAMMA_EXPEDITION_SCIENCE (science ship à Denorios)
   - Fire .109 (notification instructions) après 3 jours
 
-OPTION B — Patrouille militaire
+OPTION B - Patrouille militaire
   - Flag : cp26_gamma_approach_military
   - DTL +6
   - Active le projet spécial CP26_GAMMA_EXPEDITION_MILITARY (vaisseau militaire à Denorios)
   - Fire .119 (notification instructions) après 3 jours
 
-OPTION C — Isolationnisme
+OPTION C - Isolationnisme
   - Flag : cp26_gamma_approach_isolation
   - Coût : -200 energy
   - DTL -5
@@ -83,35 +83,35 @@ OPTION C — Isolationnisme
   - Fire .102 (tension avec Bajor) après 30 jours
 
 
-EVENT .109 — INSTRUCTIONS : Science ship à Denorios (notification)
+EVENT .109 - INSTRUCTIONS : Science ship à Denorios (notification)
 -------------------------------------------------------------------
 "Envoyez un vaisseau scientifique au système Denorios pour commencer l'analyse."
 → Simple notification, un seul choix d'acquittement.
 
 
-EVENT .119 — INSTRUCTIONS : Flotte militaire à Denorios (notification)
+EVENT .119 - INSTRUCTIONS : Flotte militaire à Denorios (notification)
 -----------------------------------------------------------------------
 "Déployez une flotte militaire au système Denorios."
 → Simple notification, un seul choix d'acquittement.
 
 
-EVENT .102 — TENSION AVEC BAJOR (après Option C Isolationnisme)
+EVENT .102 - TENSION AVEC BAJOR (après Option C Isolationnisme)
 ----------------------------------------------------------------
 "Bajor s'oppose à votre fermeture unilatérale du wormhole."
 
-OPTION A — Changer d'avis, ouvrir la voie scientifique
+OPTION A - Changer d'avis, ouvrir la voie scientifique
   - Retire flag cp26_gamma_approach_isolation, pose cp26_gamma_approach_science
   - Coût : -100 energy, DTL +1
   - Retire le flag tension Bajor
   - Active CP26_GAMMA_EXPEDITION_SCIENCE, fire .109
 
-OPTION B — Maintenir la fermeture
+OPTION B - Maintenir la fermeture
   - Malus unity : -2 mensuel (min -60, max -20)
   - Phase 1 reste résolue (flag déjà posé en Option C)
 
 
 ------------------------------------------------------------------
-BRANCHE A — EXPÉDITION SCIENTIFIQUE
+BRANCHE A - EXPÉDITION SCIENTIFIQUE
 ------------------------------------------------------------------
 
 PROJET CP26_GAMMA_EXPEDITION_SCIENCE
@@ -121,42 +121,42 @@ PROJET CP26_GAMMA_EXPEDITION_SCIENCE
   - on_success → fire .200 pour owner
 
 
-EVENT .200 — RÉSULTAT DE L'EXPÉDITION SCIENTIFIQUE
+EVENT .200 - RÉSULTAT DE L'EXPÉDITION SCIENTIFIQUE
 ---------------------------------------------------
 "Notre vaisseau scientifique a pénétré dans le Quadrant Gamma."
 
-OPTION A — Collecte de données passive
+OPTION A - Collecte de données passive
   - Récompense research : value=6, min=200, max=500
   - DTL +1
   - cp26_phase1_resolved
 
-OPTION B — Tentative de communication
+OPTION B - Tentative de communication
   - Récompense influence : value=6, min=50, max=150
   - DTL +4
   - Fire .201 (réponse du Dominion) après 30j ±15
 
-OPTION C — Retrait au premier contact
+OPTION C - Retrait au premier contact
   - Récompense research : value=2, min=40, max=100
   - DTL -2
   - cp26_phase1_resolved
 
 
-EVENT .201 — LE DOMINION RÉPOND À LA TENTATIVE DE CONTACT
+EVENT .201 - LE DOMINION RÉPOND À LA TENTATIVE DE CONTACT
 ----------------------------------------------------------
 "Des représentants du Dominion ont été aperçus à l'entrée du wormhole."
 
-OPTION A — Accepter le dialogue (Dominion curieux)
+OPTION A - Accepter le dialogue (Dominion curieux)
   - Récompense influence : value=8, min=80, max=250
   - DTL +2
   - cp26_phase1_resolved
 
-OPTION B — Rompre le contact (Dominion perplexe, non hostile)
+OPTION B - Rompre le contact (Dominion perplexe, non hostile)
   - DTL -1
   - cp26_phase1_resolved
 
 
 ------------------------------------------------------------------
-BRANCHE B — PATROUILLE MILITAIRE
+BRANCHE B - PATROUILLE MILITAIRE
 ------------------------------------------------------------------
 
 PROJET CP26_GAMMA_EXPEDITION_MILITARY
@@ -166,41 +166,41 @@ PROJET CP26_GAMMA_EXPEDITION_MILITARY
   - on_success → fire .210 pour owner
 
 
-EVENT .210 — RÉSULTAT DE L'EXPÉDITION MILITAIRE
+EVENT .210 - RÉSULTAT DE L'EXPÉDITION MILITAIRE
 ------------------------------------------------
 "Notre flotte est positionnée à l'entrée du wormhole Bajoran."
 
-OPTION A — Passer dans le Quadrant Gamma
+OPTION A - Passer dans le Quadrant Gamma
   - DTL +10
   - Spawn Jem'Hadar scouts (Dominion, 0.01 naval cap)
   - Fire .211 (représailles Jem'Hadar) après 10j ±5
 
-OPTION B — Tenir position à l'entrée, surveiller le trafic
+OPTION B - Tenir position à l'entrée, surveiller le trafic
   - Récompense unity : value=4, min=60, max=180
   - DTL +3
   - cp26_phase1_resolved
 
-OPTION C — Se replier sur Bajor
+OPTION C - Se replier sur Bajor
   - DTL -3
   - cp26_phase1_resolved
 
 
-EVENT .211 — REPRÉSAILLES JEM'HADAR (après Option A — pénétration Gamma)
+EVENT .211 - REPRÉSAILLES JEM'HADAR (après Option A - pénétration Gamma)
 -------------------------------------------------------------------------
 "Une patrouille Jem'Hadar émerge du wormhole."
 
-OPTION A — Affronter les scouts (victoire, Dominion évalue notre force)
+OPTION A - Affronter les scouts (victoire, Dominion évalue notre force)
   - Récompense unity : value=5, min=80, max=200
   - DTL +3
   - cp26_phase1_resolved
 
-OPTION B — Se retirer vers Bajor (flotte préservée, Dominion ne poursuit pas)
+OPTION B - Se retirer vers Bajor (flotte préservée, Dominion ne poursuit pas)
   - DTL -2
   - cp26_phase1_resolved
 
 
 ================================================================
-PHASE 2 — INCIDENTS JEM'HADAR (DTL 20-40)
+PHASE 2 - INCIDENTS JEM'HADAR (DTL 20-40)
 ================================================================
 
 DÉCLENCHEUR
@@ -214,44 +214,44 @@ Event .1 (yearly) détecte :
 → Fire event .400 pour le pays wormhole_discoverer (délai 30j ±20)
 
 
-EVENT .400 — INTRODUCTION PHASE 2 (flavor, pas de choix stratégique)
+EVENT .400 - INTRODUCTION PHASE 2 (flavor, pas de choix stratégique)
 ---------------------------------------------------------------------
 "Des signaux de détresse en provenance d'une colonie frontalière.
 Le Dominion intensifie ses reconnaissances dans l'Alpha Quadrant."
 → Simple OK → file .410 après 90j ±30
 
 
-EVENT .410 — UNE COLONIE SILENCIEUSE (événement principal Phase 2)
+EVENT .410 - UNE COLONIE SILENCIEUSE (événement principal Phase 2)
 ------------------------------------------------------------------
 "Un poste colonial a cessé toute communication. Acte Dominion, acte
 Cardassien, ou panique locale ?"
 
-OPTION A — Envoyer une flotte enquêter
+OPTION A - Envoyer une flotte enquêter
   - Flag : cp26_phase2_investigating
   - Cible : colonie random (non capitale) si disponible, sinon Denorios
   - Active CP26_COLONY_INVESTIGATION (flotte militaire sur la cible)
   - Fire .412 (notification instructions) après 3 jours
 
-OPTION B — Ignorer le rapport
+OPTION B - Ignorer le rapport
   - Flag : cp26_phase2_ignored
   - Malus unity : value=-3, min=-80, max=-30
   - DTL +8
   - Fire .413 (conséquences) après 60j ±20
 
-OPTION C — Accuser formellement Cardassia
+OPTION C - Accuser formellement Cardassia
   - Flag : cp26_phase2_accused_cardassia
   - DTL +3
   - Opinion_insult sur le pays Cardassien
   - Fire .411 (réponse Cardassia) après 20j ±10
 
 
-EVENT .412 — INSTRUCTIONS : Flotte à la colonie cible (notification)
+EVENT .412 - INSTRUCTIONS : Flotte à la colonie cible (notification)
 --------------------------------------------------------------------
 → Simple notification, un seul choix d'acquittement.
 
 
 ------------------------------------------------------------------
-SOUS-BRANCHE — ENQUÊTE (.410 Option A)
+SOUS-BRANCHE - ENQUÊTE (.410 Option A)
 ------------------------------------------------------------------
 
 PROJET CP26_COLONY_INVESTIGATION
@@ -263,58 +263,58 @@ PROJET CP26_COLONY_INVESTIGATION
       60% → fire .430 (RENSEIGNEMENT TROUVÉ)
 
 
-EVENT .420 — RÉSULTAT : EMBUSCADE
+EVENT .420 - RÉSULTAT : EMBUSCADE
 ----------------------------------
 Immédiat : spawn Jem'Hadar Strike Wing (Dominion, 0.05 naval cap) à la cible.
 
-OPTION A — Tenir et combattre
+OPTION A - Tenir et combattre
   - Récompense unity : value=6, min=100, max=300
   - DTL +6
   - cp26_phase2_resolved
 
-OPTION B — Retraite (flotte préservée, colonie temporairement perdue)
+OPTION B - Retraite (flotte préservée, colonie temporairement perdue)
   - DTL +10
   - cp26_phase2_resolved
 
 
-EVENT .430 — RÉSULTAT : RENSEIGNEMENT TROUVÉ
+EVENT .430 - RÉSULTAT : RENSEIGNEMENT TROUVÉ
 ---------------------------------------------
 "Des transmissions encodées ont été interceptées. Le Dominion planifie."
 
-OPTION A — Analyser et partager le renseignement
+OPTION A - Analyser et partager le renseignement
   - Récompense research : value=8, min=200, max=400
   - DTL -3
   - cp26_phase2_resolved
 
-OPTION B — Garder le renseignement classifié
+OPTION B - Garder le renseignement classifié
   - Récompense influence : value=5, min=50, max=150
   - DTL -1
   - cp26_phase2_resolved
 
 
 ------------------------------------------------------------------
-SOUS-BRANCHE — ACCUSATION CARDASSIA (.410 Option C)
+SOUS-BRANCHE - ACCUSATION CARDASSIA (.410 Option C)
 ------------------------------------------------------------------
 
-EVENT .411 — CARDASSIA RÉPOND À L'ACCUSATION
+EVENT .411 - CARDASSIA RÉPOND À L'ACCUSATION
 ---------------------------------------------
 "L'Union Cardassienne nie toute implication."
 
-OPTION A — Accepter le démenti (Dominion continue dans l'ombre)
+OPTION A - Accepter le démenti (Dominion continue dans l'ombre)
   - DTL +5
   - cp26_phase2_resolved
 
-OPTION B — Maintenir l'accusation (Cardassia de plus en plus hostile)
+OPTION B - Maintenir l'accusation (Cardassia de plus en plus hostile)
   - Opinion_insult sur le pays Cardassien
   - DTL +3
   - cp26_phase2_resolved
 
 
 ------------------------------------------------------------------
-SOUS-BRANCHE — IGNORÉ (.410 Option B)
+SOUS-BRANCHE - IGNORÉ (.410 Option B)
 ------------------------------------------------------------------
 
-EVENT .413 — CONSÉQUENCES (après inaction)
+EVENT .413 - CONSÉQUENCES (après inaction)
 -----------------------------------------
 Immédiat : spawn Jem'Hadar patrol (Dominion, 0.03 naval cap) à Denorios.
 → cp26_phase2_resolved

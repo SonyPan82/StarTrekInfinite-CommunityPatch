@@ -29,7 +29,7 @@ kvort = {
 		ship_evasion_add = @ktinga_evasion
 	}
 
-	size_multiplier = 5
+	size_multiplier = 3
 	fleet_slot_size = 3
 	graphical_culture = no
 

@@ -120,7 +120,7 @@ Analyse :
     JAMAIS atteindre les seuils (250 et 500).
 
 ================================================================================
-4. PRIMITIVE_ODDS = 1.0 — AUCUNE PLANETE COLONISABLE
+4. PRIMITIVE_ODDS = 1.0 - AUCUNE PLANETE COLONISABLE
 ================================================================================
 
 Fichier source (CP26) :
@@ -170,7 +170,7 @@ POURQUOI L'UFOP SEMBLE EXPANDRE
      - create_vulcan_colony
      - create_tellar_colony
      - create_deneva_colony (eventuellement)
-   Ces colonies ne sont PAS construites par l'IA — elles sont spawn par le
+   Ces colonies ne sont PAS construites par l'IA - elles sont spawn par le
    moteur au lancement. L'utilisateur les voit et pense a de l'expansion.
 
 2. JOUEUR HUMAIN
@@ -216,7 +216,7 @@ CE QUE CP26 A DEJA CORRIGE (ne pas modifier)
 CORRECTIONS PROPOSEES
 ================================================================================
 
-Option A — Patch minimal (recommande pour tester rapidement) :
+Option A - Patch minimal (recommande pour tester rapidement) :
   1. Creer common/ai_budget/00_cp26_ai_budget_fix.txt
      - alloys_expenditure_starbases_expand : influence > 10 (au lieu de 75)
      - food_expenditure_colonies_expand    : food > 500 (au lieu de 2000)
@@ -225,7 +225,7 @@ Option A — Patch minimal (recommande pour tester rapidement) :
   3. Modifier map/setup_scenarios/Alpha-Beta_medium.txt
      - primitive_odds = 0.3 (au lieu de 1.0)
 
-Option B — Patch complet (equilibrage long terme) :
+Option B - Patch complet (equilibrage long terme) :
   1. Tout l'Option A, PLUS :
   2. Creer common/country_types/00_cp26_country_types_fix.txt
      - default colonizer   : food < 500 (au lieu de 2000)
