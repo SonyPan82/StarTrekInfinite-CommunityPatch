@@ -52,7 +52,7 @@ lantree = {
 
 	}
 
-	size_multiplier = 2
+	size_multiplier = 3
 	fleet_slot_size = 1
 	graphical_culture = no
 

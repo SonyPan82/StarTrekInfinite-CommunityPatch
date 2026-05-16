@@ -1,13 +1,13 @@
 entity = {
 	name = "sagan_entity"
 	pdxmesh = "sagan_ship_mesh"
-	scale = 1.7
+	scale = 0.9
 	default_state = "idle"
 
 	locator = { name = "part1" position = { 0 0 0 } }
 	locator = { name = "root" position = { 0 0 0 } }
-	locator = { name = "engine_small_01" position = { 1.6 0.3 1.8 } }
-	locator = { name = "engine_small_02" position = { -1.6 0.3 1.8 } }
+	locator = { name = "engine_small_01" position = { 2.2 0.3 1.8 } }
+	locator = { name = "engine_small_02" position = { -2.2 0.3 1.8 } }
 	locator = { name = "large_gun_01" position = { 0 0 0 } }
 	locator = { name = "medium_gun_01" position = { 0 0 0 } }
 	locator = { name = "medium_gun_02" position = { 0 0 0 } }
@@ -32,7 +32,7 @@ entity = {
 
 	game_data = {
 		trail_width = 0.5
-		size = 2
+		size = 21
 	}
 }
 

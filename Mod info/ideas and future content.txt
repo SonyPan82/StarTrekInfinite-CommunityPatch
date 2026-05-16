@@ -9,7 +9,8 @@
   À valider / améliorer :
   - Visuels événements (images plus spécifiques à ST:Picard / Utopia Planitia)
   - Équilibrage : durée de la boucle de dévastation, seuil de puissance flotte
-  - Décision purge des A500 post-arc (non encore implémentée)
+  [FAIT] Profils espèce + édit de bannissement (2026-05-16)
+  [FAIT] Pops A500 : 0 logement, 0 commodités, -20% croissance, migration bloquée
 
 [TESTING] Projet Synth - Arc Romulien (Espionnage + Sabotage Synthétique)
   Déployé en 2026-05-16.

@@ -335,8 +335,10 @@
  decision_deploy_a500_desc:0 "Commission an A500 synthetic workforce for this planet. Three synthetic units will be integrated into local operations, improving productivity.\n\n§YWarning: Deploying A500 synthetics on Mars may have unforeseen consequences.§!"
  decision_deploy_a500_effect_tooltip:0 "Deploy 3 A500 synthetic workers."
 
+ cp26_a500_installed:0 "A500 Synthetic Workforce"
+ cp26_a500_installed_desc:0 "A500 synthetic workers are integrated into local operations, improving industrial output across all job categories."
  mod_cp26_a500_installed:0 "A500 Synthetic Workforce"
- mod_cp26_a500_installed_desc:0 "A500 synthetic workers are integrated into local operations. Their efficiency improves output, but their autonomous nature creates social friction."
+ mod_cp26_a500_installed_desc:0 "A500 synthetic workers are integrated into local operations, improving industrial output across all job categories."
 
  cp26_a500.1.title:0 "Anomalous A500 Behaviour"
  cp26_a500.1.desc:0 "Starfleet Command has received disturbing reports from Utopia Planitia. The A500 synthetic units recently deployed to the shipyard facility are exhibiting increasingly erratic behaviour - accessing restricted systems, ignoring direct orders, and communicating in encrypted subspace bursts. Commander La Forge believes a cascade failure in their ethical subroutines may be underway.\n\nHow should we respond?"
@@ -413,6 +415,16 @@
  trait_a500_synthetic_body_desc:0 "Built for durability rather than comfort, A500 units require minimal living space and do not consume traditional amenity resources."
  trait_a500_networked:0 "Networked Consciousness"
  trait_a500_networked_desc:0 "A500 units share a low-latency subspace network, making them highly efficient at processing research data - but their networked nature leaves little room for individual political agency."
+
+ # A500 species profiles
+ species_profile_ufop_a500_worker:0 "Synthetic Worker Unit"
+ species_profile_ufop_a500_worker_desc:0 "A500 units are assigned as controlled industrial labour. They are not permitted to migrate or colonise independently."
+ species_profile_ufop_a500_undesirable:0 "Undesirable - Decommission"
+ species_profile_ufop_a500_undesirable_desc:0 "These synthetic units are classified as a threat to Federation society. Decommissioning protocols have been authorized."
+
+ # A500 ban edict
+ cp26_ban_a500:0 "Ban Synthetic Workers"
+ cp26_ban_a500_desc:0 "In the wake of the Utopia Planitia incident, the Federation Council has passed a resolution prohibiting further deployment of A500 synthetic units. All existing installations are immediately decommissioned.\n\n§YThis action is permanent and cannot be reversed.§!"
 
  # A500 Romulan synth no-target message
  cp26_romulan_projet_synth_no_target:0 "No eligible planet found. The target must not be a capital, Earth, or Mars, and must have at least one A500 unit present."

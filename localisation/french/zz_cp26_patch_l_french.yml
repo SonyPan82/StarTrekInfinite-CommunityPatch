@@ -822,8 +822,10 @@
  decision_deploy_a500_desc:0 "Commander une main-d'œuvre synthétique A500 pour cette planète. Trois unités synthétiques seront intégrées aux opérations locales, améliorant la productivité.\n\n§YAvertissement : le déploiement de synthétiques A500 sur Mars peut avoir des conséquences imprévues.§!"
  decision_deploy_a500_effect_tooltip:0 "Déployer 3 travailleurs synthétiques A500."
 
- mod_cp26_a500_installed:0 "Main-d'œuvre synthétique A500"
- mod_cp26_a500_installed_desc:0 "Des travailleurs synthétiques A500 sont intégrés aux opérations locales. Leur efficacité améliore la production, mais leur nature autonome crée des tensions sociales."
+ cp26_a500_installed:0 "Main-d'oeuvre synthétique A500"
+ cp26_a500_installed_desc:0 "Des travailleurs synthétiques A500 sont integres aux operations locales, ameliorant la production industrielle dans toutes les categories d'emploi."
+ mod_cp26_a500_installed:0 "Main-d'oeuvre synthétique A500"
+ mod_cp26_a500_installed_desc:0 "Des travailleurs synthétiques A500 sont integres aux operations locales, ameliorant la production industrielle dans toutes les categories d'emploi."
 
  cp26_a500.1.title:0 "Comportement anormal des A500"
  cp26_a500.1.desc:0 "Le commandement de Starfleet a reçu des rapports alarmants en provenance d'Utopia Planitia. Les unités synthétiques A500 récemment déployées dans les chantiers spatiaux présentent un comportement de plus en plus erratique - elles accèdent à des systèmes restreints, ignorent les ordres directs et communiquent via des émissions subspaciales cryptées. Le commandant La Forge pense qu'une défaillance en cascade de leurs sous-routines éthiques est en cours.\n\nComment répondre ?"
@@ -900,6 +902,16 @@
  trait_a500_synthetic_body_desc:0 "Construites pour la durabilité plutôt que le confort, les unités A500 nécessitent un espace de vie minimal et ne consomment pas les ressources d'aménités traditionnelles."
  trait_a500_networked:0 "Conscience en réseau"
  trait_a500_networked_desc:0 "Les unités A500 partagent un réseau subspacial à faible latence, ce qui les rend très efficaces pour traiter les données de recherche - mais leur nature interconnectée laisse peu de place à l'action politique individuelle."
+
+ # Profils d'espece A500
+ species_profile_ufop_a500_worker:0 "Unite de travail synthetique"
+ species_profile_ufop_a500_worker_desc:0 "Les unites A500 sont affectees comme main-d'oeuvre industrielle controlee. Elles ne sont pas autorisees a migrer ou a coloniser de facon independante."
+ species_profile_ufop_a500_undesirable:0 "Indesirable - Decomissionnement"
+ species_profile_ufop_a500_undesirable_desc:0 "Ces unites synthetiques sont classifiees comme une menace pour la societe de la Federation. Les protocoles de decomissionnement ont ete autorises."
+
+ # Edit d'interdiction A500
+ cp26_ban_a500:0 "Interdire les travailleurs synthetiques"
+ cp26_ban_a500_desc:0 "Dans la foulee de l'incident d'Utopia Planitia, le Conseil de la Federation a adopte une resolution interdisant tout nouveau deploiement d'unites synthetiques A500. Toutes les installations existantes sont immediatement decomissionnees.\n\n§YCette action est permanente et irreversible.§!"
 
  # Message d'absence de cible Projet Synth
  cp26_romulan_projet_synth_no_target:0 "Aucune planète éligible trouvée. La cible ne doit pas être une capitale, la Terre ou Mars, et doit compter au moins une unité A500."

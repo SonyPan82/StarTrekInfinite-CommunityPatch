@@ -1,0 +1,72 @@
+# CP26 - A500 Synthetic Workers species profiles
+# Available only for UFOP, only for CP26_A500 species class.
+
+# Default working profile: no migration, no housing consumption.
+species_profile_ufop_a500_worker = {
+	token = species_profile_ufop_a500_worker
+	name = species_profile_ufop_a500_worker
+
+	pop_modifier = {
+	}
+
+	potential = {
+		AND = {
+			exists = from
+			from = {
+				has_country_id = ufop
+			}
+			is_species_class = CP26_A500
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+	}
+
+	ai_will_do = {
+		factor = 1
+	}
+
+	settings = {
+		military_service = military_service_none
+		slavery_type = no
+		purge_type = no
+		colonization_control = yes
+		migration_control = yes
+	}
+}
+
+# Undesirable profile: triggers purge (decommission) of all A500 pops.
+species_profile_ufop_a500_undesirable = {
+	token = species_profile_ufop_a500_undesirable
+	name = species_profile_ufop_a500_undesirable
+
+	pop_modifier = {
+	}
+
+	potential = {
+		AND = {
+			exists = from
+			from = {
+				has_country_id = ufop
+			}
+			is_species_class = CP26_A500
+		}
+	}
+
+	allow = {
+		hidden_trigger = { exists = from }
+	}
+
+	ai_will_do = {
+		factor = 0
+	}
+
+	settings = {
+		military_service = military_service_none
+		slavery_type = no
+		purge_type = purge_normal
+		colonization_control = yes
+		migration_control = yes
+	}
+}

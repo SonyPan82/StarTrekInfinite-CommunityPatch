@@ -3,7 +3,6 @@
 cp26_a500_installed = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_robots.dds"
 	planet_jobs_produces_mult = 0.02
-	planet_stability_add = -5
 }
 
 cp26_synth_unrest = {

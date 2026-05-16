@@ -6,6 +6,69 @@ Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
 
 --------------------------------------------------------------------------------
+Session du 2026-05-16 (A500 complet + tailles canoniques tous vaisseaux)
+--------------------------------------------------------------------------------
+
+[FIX][LOW] Tooltip du modificateur planétaire A500 corrigé
+  Le modificateur cp26_a500_installed affichait sa clé brute au lieu du nom.
+  Ajout de cp26_a500_installed:0 et mod_cp26_a500_installed:0 en localisation EN/FR.
+
+[BAL][LOW] Modificateur A500 : suppression de planet_stability_add = -5
+  Non justifié narrativement (les synthétiques n'ont pas de raison de déstabiliser).
+  Le modificateur ne conserve que planet_jobs_produces_mult = 0.02.
+
+[NEW][MED] Traits espèce A500 (trait_a500_synthetic_body)
+  Pops A500 : 0 logement, 0 commodités, -20 % vitesse de croissance, migration bloquée.
+  Les A500 ne consomment pas de ressources civiles et ne se reproduisent pas normalement.
+
+[NEW][MED] Profil espèce « Synthétique Industriel » (species_profile_ufop_a500_worker)
+  Profil visible uniquement par la UFOP pour la classe CP26_A500.
+  Pas de service militaire, pas d'esclavage, pas de purge. Migration et colonisation bloquées.
+  Fichier créé : common/species_rights/cp26_a500_species_profiles.txt
+
+[NEW][MED] Profil espèce « Indésirable – Décommissionnement » (species_profile_ufop_a500_undesirable)
+  Profil activé automatiquement par l'édit de bannissement.
+  Purge normale (purge_type = purge_normal). Réservé à la UFOP après l'arc.
+
+[NEW][MED] Édit « Interdire les synthétiques » (cp26_ban_a500)
+  Disponible après la résolution de l'arc A500 (flag cp26_a500_resolved).
+  Coût unique : 20 unité. Supprime tous les modificateurs A500 sur les planètes,
+  bascule l'espèce A500 sur le profil Indésirable, pose le flag cp26_a500_banned
+  (bloque tout futur déploiement). Non réversible.
+  Fichier créé : common/edicts/cp26_a500_ban_edict.txt
+
+[BAL][LOW] Traînées moteurs (engine trails) – espacement +0.6 sur X
+  Les trois nouveaux vaisseaux UFOP avaient des traînées trop rapprochées.
+  Positions moteurs (locateurs engine_small_01/02) corrigées :
+    Neo-Constitution : X ±2.0 → ±2.6
+    Sagan           : X ±1.6 → ±2.2
+    Duderstadt      : X ±2.4 → ±3.0
+
+[BAL][MED] Refonte complète des size_multiplier – échelle canonique
+  Référence établie : Luna = 454m → 5. Toutes les tailles recalculées sur cette base
+  tout en maintenant la progression visuelle par faction.
+  Fichiers modifiés : 21_hornblower_sizes.txt + 8 fichiers CP26 spécifiques.
+
+  UFOP :
+    Defiant 1→2 / Miranda+Lantree 2→3 / Intrepid+Voyager 3→4 / New Orleans 3→4
+    Akira 4→5 / Galaxy 8→7 / Enterprise (Galaxy) 8→7
+    Sovereign 13→9 / Enterprise (Sovereign) 13→9
+
+  Klingon :
+    Bird of Prey 2→1 / Raptor 3→2 / K'vort 5→3
+    K'tinga 5→4 / Kamarag 6→5 / Vor'cha 8→6 / Negh'Var 13→9
+
+  Romulan :
+    Valdore 5→7 / D'deridex 8→11 / D'deridex (hero) 8→11 / Majestus 13→14
+
+  Cardassian :
+    Hideki 2→1 / Galor 3→4
+
+  Inchangés : Luna 5, Excelsior 5, Ambassador 6, Sagan 6, Neo-Constitution 6,
+              Duderstadt 6.5, Odyssey 14, California 1, Warbird 3, Keldon 5,
+              Kazikai 8, Nokoram 13, Borgcubes 13/21/21
+
+--------------------------------------------------------------------------------
 Session du 2026-05-16 (arc A500 : invasion, journal, espece rebelle)
 --------------------------------------------------------------------------------
 

@@ -1,0 +1,146 @@
+[h1]COMMUNITY PATCH 2026 - Star Trek: Infinite[/h1]
+
+Un patch communautaire actif pour Star Trek: Infinite. Fusions de mods, correctifs de crash, rééquilibrages et nouveau contenu narratif — tout dans un seul package stable et maintenu en continu.
+
+[i]Star Trek: Infinite méritait mieux. On s'en occupe.[/i]
+
+
+[h2]NOUVEAU CONTENU — ARC A500 (TESTING)[/h2]
+
+[b]Rébellion d'Utopia Planitia[/b] — arc narratif UFOP inspiré de Star Trek: Picard
+
+[list]
+[*] Nouvelle technologie : [b]Androïdes synthétiques A500[/b] — déployables sur vos colonies
+[*] Décision planétaire : [b]Déployer des A500[/b] — ajoute 3 pops synthétiques, améliore la production
+[*] Si déployés sur [b]Mars[/b] : l'arc de la Rébellion se déclenche après 5 ans en jeu
+[*] [b]Deux voies de résolution[/b] : militaire (transport de troupes + combat au sol) ou diplomatique (vaisseau scientifique)
+[*] Récompenses : plans Neo-Constitution, Sagan, Duderstadt et Odyssey ajoutés au pool de recherche
+[*] [b]Journal de bord[/b] : l'arc est suivi dans le situation log jusqu'à sa résolution
+[*] [b]Gestion post-arc[/b] : profil espèce [i]Synthétique Industriel[/i] (0 logement, 0 commodités, migration bloquée) + édit [i]Interdire les synthétiques[/i] (purge définitive, non réversible)
+[*] Désactivable dans la popup de début de partie
+[/list]
+
+[b]Objectif Romulien — Projet Synth[/b]
+
+[list]
+[*] Quand la Fédération active les A500, une fenêtre de 90 jours s'ouvre pour envoyer un spy ship sur Terre
+[*] Mission réussie → décision nationale : déclencher une rébellion synthétique sur une planète ennemie (hors capitales)
+[/list]
+
+
+[h2]NOUVELLES CLASSES DE VAISSEAUX UFOP[/h2]
+
+Trois nouvelles classes exclusives, débloquées via l'arc A500 :
+
+[list]
+[*] [b]Neo-Constitution[/b] — croiseur explorateur polyvalent (tier 2)
+[*] [b]Sagan / Stargazer[/b] — explorateur rapide et puissant (tier 2+)
+[*] [b]Duderstadt[/b] — croiseur lourd avancé (tier 3)
+[/list]
+
+Les plans sont ajoutés au pool de recherche — pas accordés directement.
+
+
+[h2]CLASSES INTÉGRÉES[/h2]
+
+[list]
+[*] Ambassador Class / Akira Class / Constellation Class
+[*] Luna Class / Odyssey Class / California Class
+[*] USS Voyager (héros) / Enterprise-E (corrigée)
+[*] K'Vort Class / Kamarag Class / Raptor Class (Klingon)
+[/list]
+
+
+[h2]TAILLES CANONIQUES — TOUTES LES FACTIONS[/h2]
+
+Refonte complète des tailles visuelles. Référence : [b]Luna = 454m → taille 5[/b].
+
+[list]
+[*] [b]UFOP[/b] : Defiant, Miranda, Intrepid, Galaxy, Sovereign — tous recalculés
+[*] [b]Klingon[/b] : Bird of Prey, K'tinga, Vor'cha, Negh'Var — tous recalculés
+[*] [b]Romulan[/b] : Valdore corrigé, D'deridex fortement revu à la hausse (1042m)
+[*] [b]Cardassien[/b] : Hideki et Galor corrigés
+[/list]
+
+
+[h2]IA & DIPLOMATIE[/h2]
+
+[list]
+[*] IA démarre avec un chantier naval
+[*] IA évalue la force militaire avant de déclarer une guerre
+[*] Vassalisation diplomatique restaurée + guerres de libération
+[*] Factions mineures avec personnalités fidèles au lore Star Trek
+[*] Action diplomatique "Proposer la vassalisation" restaurée
+[*] Bonus de Premier Contact corrigés
+[/list]
+
+
+[h2]WARP & GALAXIE[/h2]
+
+[list]
+[*] Portée Warp étendue, vitesses de fin de partie augmentées
+[*] Progression technologique Warp restaurée
+[*] Optimisé pour des galaxies jusqu'à 1000 étoiles
+[/list]
+
+
+[h2]ÉQUILIBRE[/h2]
+
+[list]
+[*] Vaisseaux héros rééquilibrés
+[*] Identités de combat distinctes par faction mineure (Gorn, Tholian, Orion, Breen)
+[*] Cap de flotte militaire cohérent par faction
+[*] Économie planétaire rééquilibrée
+[/list]
+
+
+[h2]STABILITÉ & CORRECTIFS[/h2]
+
+[list]
+[*] Nombreux crashs corrigés (SIGSEGV, SIGFPE, violations d'accès)
+[*] Freeze de combat infini corrigé (taux de tir négatif sur vaisseaux sans officiers)
+[*] Crash à la génération de la galaxie corrigé
+[*] Stabilité des colonies et des événements améliorée
+[/list]
+
+
+[h2]FACTIONS & CONTENU RESTAURÉ[/h2]
+
+[list]
+[*] Confédération Breen / Hégémonie Gorn / Empire Orion / Assemblée Tholienne
+[*] Remans et Remus / Denobulans / Risans
+[*] Colonies fédérales restaurées
+[/list]
+
+
+[h2]OPTIONS DE DÉBUT DE PARTIE[/h2]
+
+Activez ou désactivez indépendamment au lancement :
+
+[list]
+[*] Pirates
+[*] Vassalisation diplomatique
+[*] Quête Supernova
+[*] Arc narratif — Rébellion Synthétique A500
+[/list]
+
+
+[h2]INSTALLATION[/h2]
+
+[list]
+[*] Activez [b]uniquement ce mod[/b]
+[*] Ne pas activer séparément les mods inclus
+[/list]
+
+
+[h2]MODS INCLUS[/h2]
+
+[list]
+[*] Ongoing Bug Fixes / Nebula Refinery Expanded / Integration Adjustments
+[*] Federation of War / USS Voyager Event Fix / Different Ship Classes
+[/list]
+
+
+[i]Si un développeur passe par là — peut-être un coup de main ? Un bout de code source ? On peut rêver. Après tout, au 24e siècle, la société est différente.[/i]
+
+[h1]Engage ![/h1]

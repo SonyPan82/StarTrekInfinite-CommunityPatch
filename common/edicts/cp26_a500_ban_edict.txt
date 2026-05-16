@@ -1,0 +1,43 @@
+cp26_ban_a500 = {
+	length = 0
+	icon = "GFX_edict_type_policy"
+	edict_cap_usage = 0
+
+	resources = {
+		category = edicts
+		cost = {
+			unity = 20
+		}
+	}
+
+	potential = {
+		is_ai = no
+		is_ufop = yes
+		has_country_flag = cp26_a500_resolved
+		NOT = { has_country_flag = cp26_a500_banned }
+	}
+
+	allow = {
+		NOT = { has_country_flag = cp26_a500_banned }
+	}
+
+	effect = {
+		set_country_flag = cp26_a500_banned
+		every_owned_planet = {
+			limit = { has_planet_flag = cp26_a500_installed }
+			remove_modifier = cp26_a500_installed
+			remove_planet_flag = cp26_a500_installed
+		}
+		if = {
+			limit = { has_global_flag = cp26_a500_species_created }
+			set_species_profile = {
+				species = event_target:et_a500_species_global
+				type = species_profile_ufop_a500_undesirable
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

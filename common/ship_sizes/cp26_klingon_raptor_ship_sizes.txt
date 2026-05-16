@@ -25,7 +25,7 @@ cp26_klingon_raptor = {
 		ship_evasion_add = @warbird_evasion
 	}
 
-	size_multiplier = 3
+	size_multiplier = 2
 	fleet_slot_size = 2
 	graphical_culture = no
 

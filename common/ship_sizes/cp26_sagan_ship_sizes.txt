@@ -25,7 +25,7 @@ sagan = {
 		ship_evasion_add = @sagan_evasion
 	}
 
-	size_multiplier = 2.5
+	size_multiplier = 6
 	fleet_slot_size = 4
 	graphical_culture = no
 
