@@ -111,16 +111,12 @@ country_event = {
 			random_galaxy_planet = {
 				limit = { has_planet_flag = planet_mars }
 				set_planet_flag = cp26_a500_rebellion_active
-				random_owned_pop = {
-					limit = { species = { species_class = "CP26_A500" } }
-					species = { save_event_target_as = et_a500_rebel_species }
-				}
 				while = {
 					count = 5
 					create_army = {
 						owner = event_target:et_a500_rebel_country
 						type = rebel_army
-						species = event_target:et_a500_rebel_species
+						species = event_target:et_a500_species_global
 					}
 				}
 			}

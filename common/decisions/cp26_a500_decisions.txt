@@ -31,15 +31,51 @@ decision_deploy_a500 = {
 	effect = {
 		set_planet_flag = cp26_a500_installed
 		add_modifier = { modifier = cp26_a500_installed days = -1 }
-		create_pop = { species = "A500" }
-		create_pop = { species = "A500" }
-		create_pop = { species = "A500" }
+
+		# Premiere promulgation : creer l'espece A500 dans le registre des especes
+		if = {
+			limit = { NOT = { has_global_flag = cp26_a500_species_created } }
+			create_species = {
+				name = "A500"
+				plural = "A500"
+				adjective = "A500"
+				class = "CP26_A500"
+				portrait = "hum_robot_red"
+				traits = {
+					trait = "trait_a500_efficient_processors"
+					trait = "trait_a500_synthetic_body"
+					trait = "trait_a500_networked"
+				}
+			}
+			last_created_species = {
+				save_global_event_target_as = et_a500_species_global
+			}
+			add_global_flag = cp26_a500_species_created
+		}
+		# Promulgations suivantes : retrouver l'espece deja existante
+		else = {
+			owner = {
+				random_owned_planet = {
+					limit = {
+						any_owned_pop = { species = { species_class = "CP26_A500" } }
+					}
+					random_owned_pop = {
+						limit = { species = { species_class = "CP26_A500" } }
+						species = { save_global_event_target_as = et_a500_species_global }
+					}
+				}
+			}
+		}
+
+		create_pop = { species = event_target:et_a500_species_global }
+		create_pop = { species = event_target:et_a500_species_global }
+		create_pop = { species = event_target:et_a500_species_global }
+
 		if = {
 			limit = {
 				has_planet_flag = planet_mars
 				NOT = { has_global_flag = cp26_block_synth_arc }
 			}
-			# Délai de ~5 ans avant le déclenchement de la rébellion
 			planet_event = { id = cp26_a500.1 days = 1825 }
 		}
 	}

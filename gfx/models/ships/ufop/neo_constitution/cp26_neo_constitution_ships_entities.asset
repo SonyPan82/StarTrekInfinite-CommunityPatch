@@ -34,7 +34,7 @@ entity = {
 
 	game_data = {
 		trail_width = 0.7
-		size = 32
+		size = 1.5
 	}
 }
 
