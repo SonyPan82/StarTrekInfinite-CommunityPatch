@@ -358,6 +358,11 @@ country_event = {
 		name = mission.16.d
 		custom_tooltip = mission.16.d.tt
 	}
+	option = {
+		trigger = { NOT = { OR = { is_ufop = yes is_klingon = yes is_romulan = yes is_cardassian = yes } } }
+		name = mission.16.a
+		ai_chance = { factor = 1 }
+	}
 
 	after = {
 		# Improve Relations Minor State
@@ -788,6 +793,11 @@ country_event = {
 		trigger = { is_cardassian = yes }
 		name = mission.26.d
 		custom_tooltip = mission.26.d.tt
+	}
+	option = {
+		trigger = { NOT = { OR = { is_ufop = yes is_klingon = yes is_romulan = yes is_cardassian = yes } } }
+		name = mission.26.a
+		ai_chance = { factor = 1 }
 	}
 
 	after = {
@@ -1535,6 +1545,11 @@ country_event = {
 		trigger = { is_cardassian = yes }
 		name = mission.55.d
 		custom_tooltip = mission.55.d.tt
+	}
+	option = {
+		trigger = { NOT = { OR = { is_ufop = yes is_klingon = yes is_romulan = yes is_cardassian = yes } } }
+		name = mission.55.a
+		ai_chance = { factor = 1 }
 	}
 
 	after = {
@@ -4630,6 +4645,11 @@ country_event = {
 		name = mission.156.d
 		custom_tooltip = mission.156.d.tt
 	}
+	option = {
+		trigger = { NOT = { OR = { is_ufop = yes is_klingon = yes is_romulan = yes is_cardassian = yes } } }
+		name = mission.156.a
+		ai_chance = { factor = 1 }
+	}
 
 	after = {
 		# Harm Relations Minor State
@@ -6170,8 +6190,8 @@ country_event = {
 
 	}
 
-	#Cardassian: Military parades are the best parades. 
-	option = {		
+	#Cardassian: Military parades are the best parades.
+	option = {
 
 		trigger = {
 			is_cardassian = yes
@@ -6181,6 +6201,12 @@ country_event = {
 		custom_tooltip = mission.177.d.tt
 		custom_tooltip = "gov_remove_monthly_unity_tt"
 
+	}
+
+	option = {
+		trigger = { NOT = { OR = { is_ufop = yes is_klingon = yes is_romulan = yes is_cardassian = yes } } }
+		name = mission.177.a
+		ai_chance = { factor = 1 }
 	}
 
 	after = {
@@ -6528,8 +6554,8 @@ country_event = {
 
 	}
 
-	#Cardassian: Inefficiency will be punished. 
-	option = {		
+	#Cardassian: Inefficiency will be punished.
+	option = {
 
 		trigger = {
 			is_cardassian = yes
@@ -6537,6 +6563,12 @@ country_event = {
 
 		name = mission.182.d
 
+	}
+
+	option = {
+		trigger = { NOT = { OR = { is_ufop = yes is_klingon = yes is_romulan = yes is_cardassian = yes } } }
+		name = mission.182.a
+		ai_chance = { factor = 1 }
 	}
 
 	after = {
@@ -6859,6 +6891,11 @@ country_event = {
 		trigger = { is_cardassian = yes }
 		name = mission.194.d
 		custom_tooltip = mission.194.d.tt
+	}
+	option = {
+		trigger = { NOT = { OR = { is_ufop = yes is_klingon = yes is_romulan = yes is_cardassian = yes } } }
+		name = mission.194.a
+		ai_chance = { factor = 1 }
 	}
 
 	after = {

@@ -112,10 +112,6 @@ Session du 2026-05-16 (arc A500 : invasion, journal, espece rebelle)
   de recherche via add_research_option au lieu de give_technology. Le joueur
   doit les rechercher normalement.
 
-[CLEAN][LOW] Remplacement de tous les tirets cadratins/demi-cadratins (-- -)
-  par des tirets simples (-) dans l'ensemble du mod (87 fichiers).
-  Aucun impact fonctionnel ; normalisation de l'encodage.
-
 --------------------------------------------------------------------------------
 Session du 2026-05-15 (stabilité runtime test_colony)
 --------------------------------------------------------------------------------

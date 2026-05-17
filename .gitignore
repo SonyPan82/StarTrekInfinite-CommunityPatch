@@ -31,3 +31,7 @@ $RECYCLE.BIN/
 # --- Local generation / scratch ---
 /scratch/
 /.cursor-cache/
+
+# --- AI tool configs (local only) ---
+/.claude/
+/.cursor/

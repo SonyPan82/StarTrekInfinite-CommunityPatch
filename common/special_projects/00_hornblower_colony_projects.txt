@@ -79,3 +79,144 @@ special_project = {
 		event_target:colony_stella_maris = { owner = { country_event = { id = hrb_colony.82 days = 5 } } }
 	}
 }
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - BIRTHRIGHT
+special_project = {
+	key = "BIRTHRIGHT"
+	days_to_research = 10
+	tech_department = engineering_technology
+	picture = GFX_evt_building_colosseum_camp_birthright_klingon
+	event_scope = ship_event
+	requirements = {
+		shipclass_science_ship = 1
+	}
+	on_success = {
+		random_list = {
+			90 = { event_target:colony_klingons_romulans = { planet_event = { id = hrb_colony.24 } } }
+			10 = { event_target:colony_klingons_romulans = { planet_event = { id = hrb_colony.25 } } }
+		}
+	}
+}
+
+### COLONY P2E1: OF KLINGONS AND ROMULANS - SHAIPOUIN
+special_project = {
+	key = "SHAIPOUIN"
+	days_to_research = 10
+	tech_department = engineering_technology
+	picture = GFX_evt_building_colosseum_camp_arrival_romulan
+	event_scope = ship_event
+	requirements = {
+		shipclass_science_ship = 1
+	}
+	on_success = {
+		random_list = {
+			70 = { event_target:colony_klingons_romulans = { planet_event = { id = hrb_colony.26 } } }
+			30 = { event_target:colony_klingons_romulans = { planet_event = { id = hrb_colony.27 } } }
+		}
+	}
+}
+
+### STEP 3: ANTI-TECH CULT - ANTI-TECH FIELD
+special_project = {
+	key = "ANTI_TECH_FIELD"
+	days_to_research = 5
+	tech_department = engineering_technology
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_star_chart_meeting_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_star_chart_meeting_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+	picture = GFX_evt_star_chart_meeting_cardassian
+	event_scope = ship_event
+	requirements = {
+		shipclass_science_ship = 1
+	}
+	on_success = {
+		if = {
+			limit = { owner = { OR = { is_ufop = yes is_klingon = yes } } }
+			random_list = {
+				90 = { event_target:colony_paradise = { owner = { country_event = { id = hrb_colony.44 } } } }
+				10 = { event_target:colony_paradise = { owner = { country_event = { id = hrb_colony.45 } } } }
+			}
+		}
+		else = {
+			event_target:colony_paradise = { owner = { country_event = { id = hrb_colony.45 } } }
+		}
+	}
+}
+
+### COLONY P4E1: RUINS UNCOVERED - PLANET OF RUINS
+special_project = {
+	key = "PLANET_OF_RUINS"
+	days_to_research = 5
+	tech_department = engineering_technology
+	picture = GFX_evt_archaeology_excavation
+	event_scope = ship_event
+	requirements = {
+		shipclass_science_ship = 1
+	}
+	on_success = {
+		if = {
+			limit = { owner = { OR = { is_ufop = yes is_klingon = yes } } }
+			random_list = {
+				1 = { modifier = { factor = 0 owner = { has_country_flag = paw_of_protection_flag } }		owner = { country_event = { id = hrb_colony.72 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = lotus_1578_flag } } 				owner = { country_event = { id = hrb_colony.73 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = titanic_precursors_flag } } 		owner = { country_event = { id = hrb_colony.74 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = terminal_terminal_flag } } 		owner = { country_event = { id = hrb_colony.75 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = i_heard_you_like_ruins_flag } } 	owner = { country_event = { id = hrb_colony.76 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = city_of_doors_flag } } 			owner = { country_event = { id = hrb_colony.77 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = chrono_canyon_flag } }			owner = { country_event = { id = hrb_colony.78 } } }
+			}
+		}
+		else_if = {
+			limit = { owner = { is_cardassian = yes } }
+			random_list = {
+				1 = { modifier = { factor = 0 owner = { has_country_flag = titanic_precursors_flag } } 		owner = { country_event = { id = hrb_colony.74 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = terminal_terminal_flag } } 		owner = { country_event = { id = hrb_colony.75 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = i_heard_you_like_ruins_flag } } 	owner = { country_event = { id = hrb_colony.76 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = city_of_doors_flag } } 			owner = { country_event = { id = hrb_colony.77 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = chrono_canyon_flag } }			owner = { country_event = { id = hrb_colony.78 } } }
+			}
+		}
+		else = {
+			random_list = {
+				1 = { modifier = { factor = 0 owner = { has_country_flag = lotus_1578_flag } } 				owner = { country_event = { id = hrb_colony.73 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = titanic_precursors_flag } } 		owner = { country_event = { id = hrb_colony.74 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = terminal_terminal_flag } } 		owner = { country_event = { id = hrb_colony.75 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = i_heard_you_like_ruins_flag } } 	owner = { country_event = { id = hrb_colony.76 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = city_of_doors_flag } } 			owner = { country_event = { id = hrb_colony.77 } } }
+				1 = { modifier = { factor = 0 owner = { has_country_flag = chrono_canyon_flag } }			owner = { country_event = { id = hrb_colony.78 } } }
+			}
+		}
+	}
+}
+
+# WOULD-BE-DEBRIS (Mission Tree Special Project)
+special_project = {
+	key = "WOULD_BE_DEBRIS"
+	days_to_research = 180
+	tech_department = engineering_technology
+	picture = GFX_evt_space_debris
+	show_notification = yes
+	event_scope = ship_event
+	requirements = {
+		shipclass_science_ship = 1
+	}
+	on_success = {
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = { country_event = { id = quest_tree.405 } }
+		}
+	}
+}

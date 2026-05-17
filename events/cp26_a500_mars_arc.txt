@@ -36,12 +36,12 @@ planet_event = {
 		}
 	}
 
-	# Option B - Envoyer un vaisseau scientifique
+	# Option B - Envoyer un vaisseau scientifique (délai ~30j pour la traversée)
 	option = {
 		name = cp26_a500.1.b
 		set_planet_flag = cp26_a500_science_response
 		owner = {
-			country_event = { id = cp26_a500.11 }
+			country_event = { id = cp26_a500.11 days = 30 }
 		}
 	}
 
@@ -88,10 +88,10 @@ country_event = {
 				target = THIS
 			}
 
-			# Créer un pays faction pour les rebelles A500
+			# Créer un pays événement pour les rebelles A500 (global_event = pas de flotte, IA désactivée)
 			create_country = {
 				name = "NAME_A500_Rebels"
-				type = faction
+				type = global_event
 				auto_delete = yes
 
 				effect = {
@@ -108,16 +108,30 @@ country_event = {
 			}
 
 			# Spawner les armées rebelles sur Mars (espèce A500)
+			# Equipe de sécurité déployée = rébellion contenue → 3 armées ; sinon 5
 			random_galaxy_planet = {
 				limit = { has_planet_flag = planet_mars }
 				set_planet_flag = cp26_a500_rebellion_active
 				save_global_event_target_as = et_a500_mars
-				while = {
-					count = 5
-					create_army = {
-						owner = event_target:et_a500_rebel_country
-						type = rebel_army
-						species = event_target:et_a500_species_global
+				if = {
+					limit = { has_planet_flag = cp26_a500_fleet_response }
+					while = {
+						count = 3
+						create_army = {
+							owner = event_target:et_a500_rebel_country
+							type = rebel_army
+							species = event_target:et_a500_species_global
+						}
+					}
+				}
+				else = {
+					while = {
+						count = 5
+						create_army = {
+							owner = event_target:et_a500_rebel_country
+							type = rebel_army
+							species = event_target:et_a500_species_global
+						}
 					}
 				}
 			}
@@ -185,7 +199,10 @@ country_event = {
 		event_target:et_a500_mars = {
 			solar_system = {
 				starbase = {
-					remove_starbase_module = { module = shipyard }
+					while = {
+						limit = { has_starbase_module = shipyard }
+						remove_starbase_module = { module = shipyard }
+					}
 				}
 			}
 			remove_modifier = cp26_a500_installed

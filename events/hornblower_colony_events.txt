@@ -198,8 +198,10 @@ ship_event = {
 	
 	immediate = {
 		save_event_target_as = metamorphosis_ship
-		leader = { 
-			add_experience = 1000 
+		fleet = {
+			leader = {
+				add_experience = 1000
+			}
 		}
 		event_target:colony_metamorphosis = { 
 			planet_event = { id = hrb_colony.13 days = 1 } 

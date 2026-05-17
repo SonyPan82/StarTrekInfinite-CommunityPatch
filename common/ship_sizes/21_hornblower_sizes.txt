@@ -1045,6 +1045,7 @@ ferrax = {
 	possible_construction = {
 		custom_tooltip = {
 			fail_text = cp26_military_fleet_cap_fail
+			exists = owner
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
@@ -1138,6 +1139,7 @@ vindius = {
 	possible_construction = {
 		custom_tooltip = {
 			fail_text = cp26_military_fleet_cap_fail
+			exists = owner
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
