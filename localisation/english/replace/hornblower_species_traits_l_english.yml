@@ -4,10 +4,9 @@
 # Species Traits #
 #########################
 
- trait_traditionalists_ferengi:0 "Traditional Ferengi Culture"
- trait_traditionalists_ferengi_desc:0 "Ferengi have a rigid culture and tradition, they do not welcome changes to them"
- trait_traditionalists_ferengi_effect_desc:0 ""
+ trait_traditionalists_ferengi:0 "Rules-Bound Culture"
+ trait_traditionalists_ferengi_desc:0 "Ferengi society is shaped by old commercial dogma and ingrained habits that do not always reward open-ended inquiry."
+ trait_traditionalists_ferengi_effect_desc:0 "£job_research£ Research from £job£ Jobs: §R-10%§!"
  trait_eye_for_business_ferengi:0 "Eye for Business"
- trait_eye_for_business_ferengi_desc:0 "Ferengi have a keen eye for business; earning a profit is core to their culture."
- trait_eye_for_business_ferengi_effect_desc:0 ""
-
+ trait_eye_for_business_ferengi_desc:0 "Ferengi are trained from childhood to read a deal, spot a margin, and squeeze value out of any exchange."
+ trait_eye_for_business_ferengi_effect_desc:0 "£trade_value£ Trade Value from Pops: §G+1§!\n£job£ Specialist Output: §G+5%§!"

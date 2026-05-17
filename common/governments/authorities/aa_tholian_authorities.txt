@@ -29,6 +29,7 @@ auth_dictatorial_tholian = {
 				value = "breen"
 				value = "gorn"
 				value = "orion"
+				value = "ferengi"
 			}
 		}
 	}

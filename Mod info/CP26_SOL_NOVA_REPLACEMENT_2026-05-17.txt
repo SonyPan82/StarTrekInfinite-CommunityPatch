@@ -1,0 +1,37 @@
+CP26 - Sol Nova replacement - 2026-05-17
+========================================
+
+Objectif
+--------
+Retirer le systeme "Suliban" de la carte bespoke et le remplacer proprement par
+"Sol Nova", avec la planete "Terra Nova", dans un style statique et vanilla-like.
+
+Constat d'audit
+---------------
+- `Suliban` etait place en dur sur la carte bespoke :
+  - `map/setup_scenarios/Alpha-Beta_medium.txt`
+  - `map/setup_scenarios/tutorial.txt`
+- `Sol Nova / Terra Nova` existait deja dans le mod, mais uniquement via un
+  spawn dynamique au `on_game_start` :
+  - `common/on_actions/tn_colonize.txt`
+  - `events/tncol_events.txt`
+  - `common/solar_system_initializers/tn_spawn_init.txt`
+
+Probleme du design precedent
+----------------------------
+Si on placait Sol Nova directement sur la carte sans toucher au vieux script
+`tn_col.1000`, on pouvait obtenir un doublon Terra Nova.
+
+Solution appliquee
+------------------
+1. Creation d'un initializer statique dedie :
+   - `common/solar_system_initializers/cp26_sol_nova_initializer.txt`
+2. Remplacement de `Suliban` par `Sol Nova` sur la carte bespoke.
+3. Conservation de la planete `Terra Nova` dans le systeme, non colonisee.
+4. Desactivation du vieux spawn dynamique `tn_col.1000` pour eviter les doublons.
+
+Notes
+-----
+- Le systeme reste fixe, deterministe et coherent avec une carte bespoke.
+- Terra Nova garde son identite sur la carte sans imposer une colonie UFOP au
+  demarrage.

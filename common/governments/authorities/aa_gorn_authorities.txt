@@ -31,6 +31,7 @@ auth_dictatorial_gorn = {
 				value = "tholian"
 				value = "breen"
 				value = "orion"
+				value = "ferengi"
 			}
 		}
 	}

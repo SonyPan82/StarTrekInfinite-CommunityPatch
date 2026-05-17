@@ -1,0 +1,20 @@
+trait_eye_for_business_ferengi = {
+	cost = 2
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = { BIOLOGICAL }
+	opposites = { "trait_hive_mind" }
+	modifier = {
+		trade_value_add = 1
+		planet_jobs_specialist_produces_mult = 0.05
+	}
+}
+
+trait_traditionalists_ferengi = {
+	cost = -1
+	potential_crossbreeding_chance = 1.0
+	allowed_archetypes = { BIOLOGICAL }
+	opposites = { "trait_hive_mind" }
+	modifier = {
+		planet_jobs_research_produces_mult = -0.10
+	}
+}

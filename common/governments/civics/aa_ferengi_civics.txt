@@ -1,0 +1,21 @@
+civic_ferengi_rules_of_acquisition = {
+	potential = {
+		always = no
+	}
+
+	modifier = {
+		trade_value_mult = 0.3
+		country_energy_produces_mult = 0.05
+	}
+}
+
+civic_ferengi_grand_nagus = {
+	potential = {
+		always = no
+	}
+
+	modifier = {
+		country_unity_produces_mult = 0.10
+		pop_political_power = -0.25
+	}
+}

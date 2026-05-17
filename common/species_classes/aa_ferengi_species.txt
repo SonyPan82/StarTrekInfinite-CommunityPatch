@@ -1,0 +1,16 @@
+AAFERENGI = {
+	archetype = BIOLOGICAL
+
+	portraits = {
+		"ferengi"
+	}
+
+	non_randomized_portraits = {
+		"ferengi"
+	}
+
+	graphical_culture = ferengi_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+
+	resources = {}
+}

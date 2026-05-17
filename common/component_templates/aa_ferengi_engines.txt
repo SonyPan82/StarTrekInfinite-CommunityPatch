@@ -1,0 +1,122 @@
+@ferengi_engine_power_1 = -20
+@ferengi_engine_power_2 = -30
+@ferengi_engine_power_3 = -40
+@ferengi_engine_power_4 = -50
+
+@ferengi_engine_cost_1 = 3
+@ferengi_engine_cost_2 = 6
+@ferengi_engine_cost_3 = 9
+@ferengi_engine_cost_4 = 12
+
+utility_component_template = {
+	key = "DESTROYER_IMPULSE_ENGINE_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_impulse_engine"
+	icon_frame = 1
+	power = @ferengi_engine_power_1
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_engine_cost_1
+		}
+	}
+
+	modifier = {
+	}
+
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { ferengicorvette ferengi_destroyer ferengibattleship }
+	upgrades_to = "DESTROYER_ADVANCED_IMPULSE_ENGINE_FERENGICORVETTE"
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_ADVANCED_IMPULSE_ENGINE_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @ferengi_engine_power_2
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_engine_cost_2
+		}
+	}
+
+	modifier = {
+		ship_base_speed_mult = 0.25
+		ship_evasion_add = 5
+	}
+
+	prerequisites = { "tech_engine_2" }
+	component_set = "thruster_components"
+	size_restriction = { ferengicorvette ferengi_destroyer ferengibattleship }
+	upgrades_to = "DESTROYER_HIGH_ENERGY_IMPULSE_ENGINE_FERENGICORVETTE"
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_HIGH_ENERGY_IMPULSE_ENGINE_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_high_energy_impulse_engine"
+	icon_frame = 1
+	power = @ferengi_engine_power_3
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_engine_cost_3
+		}
+	}
+
+	modifier = {
+		ship_base_speed_mult = 0.50
+		ship_evasion_add = 10
+	}
+
+	prerequisites = { "tech_engine_3" }
+	component_set = "thruster_components"
+	size_restriction = { ferengicorvette ferengi_destroyer ferengibattleship }
+	upgrades_to = "DESTROYER_OMEGA_ENGINE_FERENGICORVETTE"
+
+	ai_weight = {
+		weight = 3
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_OMEGA_ENGINE_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_omega_engine"
+	icon_frame = 1
+	power = @ferengi_engine_power_4
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_engine_cost_4
+		}
+	}
+
+	modifier = {
+		ship_base_speed_mult = 0.75
+		ship_evasion_add = 15
+	}
+
+	prerequisites = { "tech_engine_4" }
+	component_set = "thruster_components"
+	size_restriction = { ferengicorvette ferengi_destroyer ferengibattleship }
+
+	ai_weight = {
+		weight = 4
+	}
+}

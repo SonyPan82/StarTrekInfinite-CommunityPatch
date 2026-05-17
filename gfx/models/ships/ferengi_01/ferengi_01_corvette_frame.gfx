@@ -1,0 +1,20 @@
+#PDG_GFX_FILE
+
+objectTypes = {
+	pdxmesh = {
+		name = "ferengi_01_corvette_frame_mesh"
+		file = "gfx/models/ships/ferengi_01/ferengi_01_corvette_frame.mesh"
+				animation = { id = "idle"			type = "generic_01_corvette_frame_idle_animation" }
+				animation = { id = "death"			type = "ferengi_01_corvette_frame_death_animation" }
+				animation = { id = "death2"			type = "ferengi_01_corvette_frame_death2_animation" }
+				animation = { id = "death3"			type = "ferengi_01_corvette_frame_death3_animation" }
+				animation = { id = "attack"			type = "generic_01_corvette_frame_idle_animation" }				
+				animation = { id = "moving"			type = "ferengi_01_corvette_frame_moving_animation" }				
+		scale = 0.9
+
+		meshsettings = {
+			index = 0
+			shader = "PdxMeshShip"
+		}
+	}
+}

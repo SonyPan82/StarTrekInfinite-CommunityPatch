@@ -350,8 +350,9 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
+		id = "970"
 		name = "NAME_Ferenginar" position = { x = 47.5 y = 248.6 }
-		initializer = ferengi_xuracorp_init spawn_weight = { base = 1 }
+		initializer = ferengi_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
@@ -1048,8 +1049,8 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
-		name = "NAME_Suliban" position = { x = -16.4 y = 304.2 }
-		initializer = ufop_outpost_initializer spawn_weight = { base = 1 }
+		name = "NAME_Sol_Nova" position = { x = -16.4 y = 304.2 }
+		initializer = sol_nova_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {

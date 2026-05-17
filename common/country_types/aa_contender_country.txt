@@ -236,6 +236,60 @@ contender = {
 				}
 			}
 
+			### Ferengi ships ###
+
+			ferengicorvette = {
+				fraction = {
+					base = 0
+					modifier = {
+						add = 30
+						has_country_id = "ferengi"
+						has_technology = tech_corvette_unlock
+					}
+					modifier = {
+						add = -5
+						has_country_id = "ferengi"
+						OR = {
+							has_technology = tech_battleship_unlock
+							has_technology = tech_cruiser_unlock
+						}
+					}
+				}
+			}
+
+			ferengi_destroyer = {
+				fraction = {
+					base = 0
+					modifier = {
+						add = 25
+						has_country_id = "ferengi"
+						has_technology = tech_destroyer_unlock
+					}
+					modifier = {
+						add = -5
+						has_country_id = "ferengi"
+						OR = {
+							has_technology = tech_battleship_unlock
+							has_technology = tech_cruiser_unlock
+						}
+					}
+				}
+			}
+
+			ferengibattleship = {
+				fraction = {
+					base = 0
+					modifier = {
+						add = 12
+						has_country_id = "ferengi"
+						OR = {
+							has_technology = tech_battleship_unlock
+							has_technology = tech_cruiser_unlock
+						}
+					}
+				}
+			}
+
 			### Breen ships ###
 			
 			breenbattleship = {
@@ -292,6 +346,7 @@ contender = {
 							has_country_id = "tholian"
 							has_country_id = "orion"
 							has_country_id = "gorn"
+							has_country_id = "ferengi"
 						}
 					}
 					modifier = {
@@ -310,6 +365,7 @@ contender = {
 							has_country_id = "tholian"
 							has_country_id = "orion"
 							has_country_id = "gorn"
+							has_country_id = "ferengi"
 						}
 					}
 					modifier = {
@@ -333,6 +389,7 @@ contender = {
 							has_country_id = "tholian"
 							has_country_id = "orion"
 							has_country_id = "gorn"
+							has_country_id = "ferengi"
 						}
 					}
 					modifier = {

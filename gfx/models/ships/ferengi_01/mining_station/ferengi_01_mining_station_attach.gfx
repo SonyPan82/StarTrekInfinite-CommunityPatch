@@ -1,0 +1,79 @@
+objectTypes = {
+    pdxmesh = {
+        name = "ferengi_01_mining_station_attach_mesh"
+        file = "gfx/models/ships/ferengi_01/mining_station/ferengi_01_mining_station_attach.mesh"
+        scale = 1
+		
+        meshsettings = {
+            name = "glow_hex_orange"
+            index = 0
+            texture_diffuse = "hex_glow_orange_diffuse.dds"
+            texture_normal = "hex_glow_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+		
+        meshsettings = {
+            name = "glow_yellow"
+            index = 0
+            texture_diffuse = "glow_strong_yellow_diffuse.dds"
+            texture_normal = "glows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "gold"
+            index = 0
+            texture_diffuse = "gold_texture.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "grating"
+            index = 0
+            texture_diffuse = "grid_1_ferengi_diffuse.dds"
+            texture_normal = "grid_1_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull"
+            index = 0
+            texture_diffuse = "ferengi_hull.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_dark"
+            index = 0
+            texture_diffuse = "ferengi_hull_3.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_light"
+            index = 0
+            texture_diffuse = "ferengi_hull_2.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "windows"
+            index = 0
+            texture_diffuse = "windows_01_diffuse.dds"
+            texture_normal = "windows_01_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+}

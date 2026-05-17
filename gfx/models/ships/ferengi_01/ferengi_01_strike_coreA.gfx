@@ -1,0 +1,16 @@
+objectTypes = {
+	pdxmesh = {
+		name = "ferengi_01_strike_coreA_mesh"
+		file = "gfx/models/ships/ferengi_01/ferengi_01_strike_coreA.mesh"
+		scale = 0.8
+
+		meshsettings = {
+			#name = "ST:New Horizons"
+			index = 0
+			texture_diffuse = "ferengi_01_corvette_coreA_diffuse.dds"
+			texture_normal = "ferengi_01_corvette_coreA_normal.dds"
+			texture_specular = "ferengi_01_corvette_coreA_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

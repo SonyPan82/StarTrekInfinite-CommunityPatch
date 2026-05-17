@@ -1,0 +1,111 @@
+namespace = aa_ferengi_game_start
+
+event = {
+	id = aa_ferengi_game_start.110
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				has_country_flag = ferengi
+			}
+			save_global_event_target_as = ferengi_country
+		}
+
+		if = {
+			limit = {
+				exists = event_target:ferengi_country
+			}
+
+			random_system = {
+				limit = {
+					has_star_flag = ferengi_home_system
+				}
+
+					set_surveyed = { surveyed = yes surveyor = event_target:ferengi_country }
+
+				random_system_planet = {
+					limit = {
+						has_planet_flag = ferengi_capital
+					}
+					if = {
+						limit = { is_colony = no }
+						set_owner = event_target:ferengi_country
+						set_colony_type = col_default
+						clear_blockers = yes
+
+						while = {
+							count = 16
+							create_pop = { species = "Ferengi" }
+						}
+
+						add_district_and_planet_size_if_needed_effect = { district = district_city }
+						add_district_and_planet_size_if_needed_effect = { district = district_city }
+						add_district_and_planet_size_if_needed_effect = { district = district_generator }
+						add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+						add_district_and_planet_size_if_needed_effect = { district = district_farming }
+						add_building = building_capital
+					}
+					else = {
+						set_owner = event_target:ferengi_country
+						set_colony_type = col_default
+					}
+				}
+
+				if = {
+					limit = {
+						NOT = { exists = starbase }
+					}
+					create_starbase = {
+						size = starbase_starport
+						owner = event_target:ferengi_country
+						module = shipyard
+					}
+				}
+				else = {
+					starbase = {
+						set_owner = event_target:ferengi_country
+					}
+				}
+			}
+
+			event_target:ferengi_country = {
+				set_adjective = "Ferengi"
+				give_technology = { tech = tech_destroyer_unlock message = no }
+				if = {
+					limit = {
+						NOT = { any_owned_fleet = { is_ship_class = shipclass_constructor } }
+					}
+					create_civilian_fleet = yes
+				}
+
+				if = {
+					limit = {
+						NOT = { any_owned_fleet = { is_ship_class = shipclass_military } }
+					}
+					create_fleet = {
+						set_take_point = yes
+						effect = {
+							set_owner = prev
+
+							create_ship = {
+								name = random
+								random_existing_design = ferengicorvette
+								initial_officers_perc = 0.6
+							}
+							create_ship = {
+								name = random
+								random_existing_design = ferengi_destroyer
+								initial_officers_perc = 0.2
+							}
+
+							set_location = prev.capital_star
+						}
+					}
+				}
+			}
+		}
+	}
+}

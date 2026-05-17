@@ -6,6 +6,19 @@ Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
 
 --------------------------------------------------------------------------------
+Session du 2026-05-17 (carte - Sol Nova / Terra Nova)
+--------------------------------------------------------------------------------
+
+[MAP][LOW] Remplacement de `Suliban` par `Sol Nova` sur la carte bespoke
+  (`Alpha-Beta_medium` + `tutorial`), avec un initializer statique dedie et la
+  planete `Terra Nova` presente dans le systeme, non colonisee.
+
+[CLEAN][LOW] `tn_col.1000` neutralise : l'ancien spawn dynamique Terra Nova au
+  `on_game_start` est desactive pour eviter tout doublon avec le nouveau systeme
+  fixe de carte.
+  Doc : `Mod info/CP26_SOL_NOVA_REPLACEMENT_2026-05-17.txt`.
+
+--------------------------------------------------------------------------------
 Session du 2026-05-16 (A500 complet + tailles canoniques tous vaisseaux)
 --------------------------------------------------------------------------------
 

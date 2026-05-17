@@ -28,6 +28,7 @@ auth_dictatorial_breen = {
 				value = "tholian"
 				value = "gorn"
 				value = "orion"
+				value = "ferengi"
 			}
 		}
 	}

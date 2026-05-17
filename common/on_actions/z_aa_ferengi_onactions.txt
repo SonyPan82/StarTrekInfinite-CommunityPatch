@@ -1,5 +1,5 @@
 on_game_start = {
 	events = {
-		tn_col.1000
+		aa_ferengi_game_start.110
 	}
 }

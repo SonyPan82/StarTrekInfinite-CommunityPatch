@@ -1,0 +1,17 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_ST_empty_room_ferengi"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_minorpowers.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_capital_empty_room_ferengi"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_minorpowers.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_empty_room_ferengi_loadgame"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_minorpowers.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+}

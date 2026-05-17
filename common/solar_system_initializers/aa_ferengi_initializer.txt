@@ -1,0 +1,161 @@
+ferengi_system_initializer = {
+	name = "Ferenginar"
+	class = "rl_all_stars"
+	usage = custom_empire
+	flags = { ferengi ferengi_system ferengi_home_system capital }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+
+		init_effect = {
+			change_pc = pc_k_star
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		orbit_distance = 12
+		size = 4
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_molten
+		home_planet = no
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 10
+		size = 5
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_barren
+		home_planet = no
+	}
+
+	planet = {
+		name = "Ferenginar"
+		count = 1
+		class = pc_continental
+		subclass = psc_class_m
+		size = 16
+		orbit_distance = 22
+		home_planet = yes
+		flags = { mapo_colony ferengi_capital }
+
+		init_effect = {
+			prevent_anomaly = yes
+			add_modifier = {
+				modifier = home_planet
+				days = -1
+			}
+
+			if = {
+				limit = {
+					NOT = { has_built_species = "Ferengi" }
+				}
+				create_species = {
+					class = "AAFERENGI"
+					portrait = "ferengi"
+					name = "Ferengi"
+					plural = "Ferengi"
+					adjective = "Ferengi"
+					name_list = "FERE"
+						traits = {
+							trait = "trait_thrifty"
+							trait = "trait_eye_for_business_ferengi"
+							trait = "trait_traditionalists_ferengi"
+						}
+					}
+				}
+
+			create_country = {
+				species = "Ferengi"
+				country_id = "ferengi"
+				type = contender
+					contact_rule = on_action_only
+				ship_prefix = "FNS"
+				name_list = "FERE"
+				authority = auth_dictatorial_ferengi
+				civics = { civic = civic_ferengi_rules_of_acquisition }
+				civics = { civic = civic_ferengi_grand_nagus }
+				origin = "origin_default"
+				flag = {
+					icon = {
+						category = "emblem"
+						file = "flag_Ferengi_35.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"yellow"
+						"brown"
+						"null"
+						"null"
+					}
+				}
+				ethos = {
+					ethic = ethic_fanatic_materialist
+					ethic = ethic_xenophile
+				}
+				ignore_initial_colony_error = yes
+			}
+			last_created_country = {
+				set_name = "Ferengi Alliance"
+				set_graphical_culture = ferengi_01
+				save_global_event_target_as = ferengi_country
+				set_country_flag = ferengi
+				set_country_flag = ferengi_alliance
+				set_custom_capital_location = prev
+
+				create_leader = {
+					class = ruler
+					species = this
+					name = random
+					skill = 3
+				}
+				set_leader = last_created_leader
+			}
+		}
+
+		late_init_effect = {
+			set_owner = event_target:ferengi_country
+			set_colony_type = col_default
+		}
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 30
+		size = 8
+		orbit_angle = { min = 0 max = 300 }
+		class = pc_arid
+		subclass = psc_class_l
+		home_planet = no
+	}
+
+	init_effect = {
+		generate_home_system_resources = yes
+		every_country = {
+			if = {
+				limit = {
+					has_country_flag = ferengi
+				}
+				save_global_event_target_as = ferengi_country
+			}
+		}
+	}
+
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:ferengi_country
+		}
+	}
+}

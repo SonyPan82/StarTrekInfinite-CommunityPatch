@@ -1,0 +1,159 @@
+@ferengi_computer_cost_0 = 0
+@ferengi_computer_cost_1 = 5
+@ferengi_computer_cost_2 = 10
+@ferengi_computer_cost_3 = 20
+
+@ferengi_computer_power_0 = -5
+@ferengi_computer_power_1 = -10
+@ferengi_computer_power_2 = -15
+@ferengi_computer_power_3 = -25
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_escort"
+	icon_frame = 1
+
+	power = @ferengi_computer_power_0
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_computer_cost_0
+		}
+	}
+	ship_behavior = "hrb_escort"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_1" }
+
+	size_restriction = {
+		ferengicorvette
+		ferengi_destroyer
+		ferengibattleship
+	}
+
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_ESCORT_BASIC_FERENGICORVETTE"
+
+	ship_modifier = {
+		ship_fire_rate_mult = 0.05
+		ship_shield_mult = 0.15
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_interceptor"
+	icon_frame = 1
+
+	power = @ferengi_computer_power_0
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_computer_cost_0
+		}
+	}
+	ship_behavior = "hrb_interceptor"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_1" }
+
+	size_restriction = {
+		ferengicorvette
+		ferengi_destroyer
+		ferengibattleship
+	}
+
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_INTERCEPTOR_BASIC_FERENGICORVETTE"
+
+	ship_modifier = {
+		ship_fire_rate_mult = 0.05
+		ship_speed_mult = 0.10
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ESCORT_BASIC_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_escort"
+	icon_frame = 1
+
+	power = @ferengi_computer_power_1
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_computer_cost_1
+		}
+	}
+	ship_behavior = "hrb_escort"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+
+	size_restriction = {
+		ferengicorvette
+		ferengi_destroyer
+		ferengibattleship
+	}
+
+	component_set = "combat_computers"
+
+	ship_modifier = {
+		ship_fire_rate_mult = 0.10
+		ship_shield_mult = 0.20
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_INTERCEPTOR_BASIC_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_interceptor"
+	icon_frame = 1
+
+	power = @ferengi_computer_power_1
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_computer_cost_1
+		}
+	}
+	ship_behavior = "hrb_interceptor"
+	class_restriction = { shipclass_military }
+
+	prerequisites = { "tech_computer_2" }
+
+	size_restriction = {
+		ferengicorvette
+		ferengi_destroyer
+		ferengibattleship
+	}
+
+	component_set = "combat_computers"
+
+	ship_modifier = {
+		ship_fire_rate_mult = 0.10
+		ship_speed_mult = 0.20
+	}
+
+	ai_weight = {
+		weight = 2
+	}
+}

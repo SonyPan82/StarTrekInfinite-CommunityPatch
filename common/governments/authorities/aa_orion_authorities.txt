@@ -26,6 +26,7 @@ auth_dictatorial_orion = {
 				value = "breen"
 				value = "gorn"
 				value = "tholian"
+				value = "ferengi"
 			}
 		}
 	}

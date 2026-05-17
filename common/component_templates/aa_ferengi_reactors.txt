@@ -1,0 +1,287 @@
+@ferengi_power_1 = 250
+@ferengi_power_2 = 280
+@ferengi_power_3 = 340
+@ferengi_power_4 = 420
+
+@ferengi_cost_corvette = 5
+@ferengi_cost_destroyer = 10
+@ferengi_cost_destroyer_2 = 26
+@ferengi_cost_destroyer_3 = 34
+@ferengi_cost_destroyer_4 = 44
+@ferengi_cost_battleship = 50
+
+utility_component_template = {
+	key = "CORVETTE_FUSION_REACTOR_FERENGICORVETTE"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = 250
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_cost_corvette
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.20
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = 0.02
+		}
+	}
+
+	component_set = "power_core"
+	size_restriction = { ferengicorvette }
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_FUSION_REACTOR_FERENGI_DESTROYER"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @ferengi_power_1
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_cost_destroyer
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.20
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = 0.02
+		}
+	}
+
+	component_set = "power_core"
+	size_restriction = { ferengi_destroyer }
+	upgrades_to = "DESTROYER_MATTER_ANTIMATTER_REACTOR_FERENGI_DESTROYER"
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_MATTER_ANTIMATTER_REACTOR_FERENGI_DESTROYER"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = @ferengi_power_2
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_cost_destroyer_2
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.26
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = 0.026
+		}
+	}
+
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { ferengi_destroyer }
+	upgrades_to = "DESTROYER_TETRYON_REACTOR_FERENGI_DESTROYER"
+
+	ai_weight = {
+		weight = 2
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_TETRYON_REACTOR_FERENGI_DESTROYER"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = @ferengi_power_3
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_cost_destroyer_3
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.34
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = 0.034
+		}
+	}
+
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { ferengi_destroyer }
+	upgrades_to = "DESTROYER_ANTI_TETRYON_REACTOR_FERENGI_DESTROYER"
+
+	ai_weight = {
+		weight = 3
+	}
+}
+
+utility_component_template = {
+	key = "DESTROYER_ANTI_TETRYON_REACTOR_FERENGI_DESTROYER"
+	size = small
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = @ferengi_power_4
+	operative_officers = 5
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_cost_destroyer_4
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.44
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = 0.044
+		}
+	}
+
+	prerequisites = { "tech_reactor_4" }
+	component_set = "power_core"
+	size_restriction = { ferengi_destroyer }
+
+	ai_weight = {
+		weight = 4
+	}
+}
+
+utility_component_template = {
+	key = "BATTLESHIP_FUSION_REACTOR_FERENGIBATTLESHIP"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = 1500
+	operative_officers = 25
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = @ferengi_cost_battleship
+		}
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = 0.5
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = 0.1
+		}
+	}
+
+	component_set = "power_core"
+	size_restriction = { ferengibattleship }
+
+	ai_weight = {
+		weight = 1
+	}
+}

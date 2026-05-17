@@ -4,6 +4,7 @@ on_game_start_country = {
 		cp26_a500_init.2
 		cp26_options.1
 		cp26_setlik.1
+		cp26_setlik.2
 		cp26_ai_shipyard.1
 		cp26_ai_pulse.1
 	}
