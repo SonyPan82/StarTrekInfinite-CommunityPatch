@@ -1,4 +1,4 @@
-version="2026.05.15"
+version="1.5.0"
 tags={
 	"Ships"
 	"Scripting"
