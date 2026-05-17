@@ -1,59 +1,61 @@
 [h1]COMMUNITY PATCH 2026 - Star Trek: Infinite[/h1]
 
-An actively maintained community patch for Star Trek: Infinite. Merged mods, crash fixes, rebalancing, and new narrative content ; all in one clean, stable, continuously updated package.
+The patch Star Trek: Infinite needed. Merged mods, crash fixes, rebalancing, new factions, and narrative content ; one package, actively maintained.
 
-[i]Star Trek: Infinite deserved better. We're on it.[/i]
+[i]Star Trek: Infinite deserved better. We're fixing it.[/i]
 
 
-[h2]NEW CONTENT — A500 ARC (TESTING)[/h2]
+[h2]NEW - FERENGI ALLIANCE[/h2]
 
-[b]Utopia Planitia Rebellion[/b] — UFOP narrative arc inspired by Star Trek: Picard
-
-[list]
-[*] New technology: [b]A500 Synthetic Androids[/b] — deployable on your colonies as industrial workers
-[*] New planetary decision: [b]Deploy A500 Units[/b] — adds 3 synthetic pops and a production bonus
-[*] If deployed on [b]Mars[/b]: the Rebellion arc triggers after 5 in-game years
-[*] [b]Two resolution paths[/b]: military (troop transport + ground combat) or diplomatic (science vessel)
-[*] Rewards: Neo-Constitution, Sagan, Duderstadt and Odyssey ship designs added to the research pool
-[*] [b]Mission log[/b]: the arc is tracked in the situation log until resolution
-[*] [b]Post-arc management[/b]: new [i]Synthetic Worker[/i] species profile (0 housing, 0 amenities, migration locked) + [i]Ban Synthetic Workers[/i] edict (permanent purge, irreversible)
-[*] Can be disabled in the game-start popup
-[/list]
-
-[b]Romulan Objective — Synth Project[/b]
+The Ferengi arrive as a fully independent faction with their own country type, shipset, and diplomatic logic.
 
 [list]
-[*] When the Federation activates A500 units, a 90-day window opens to send a spy ship to Earth
-[*] Successful mission → unlocks a national decision: trigger a synthetic rebellion on an enemy planet (not capitals)
+[*] Dedicated [b]ferengi_alliance[/b] country type — not grouped with generic minor factions
+[*] Ferengi stay hidden until proper first contact is made
+[*] Full diplomatic access: trade, espionage, wars — all correctly wired
+[*] Ferengi shipset integrated with canonical design
 [/list]
 
 
-[h2]NEW UFOP SHIP CLASSES[/h2]
+[h2]NEW CONTENT — A500 ARC (IN TESTING)[/h2]
 
-Three exclusive classes unlocked progressively through the A500 arc:
+[b]Utopia Planitia Rebellion[/b] — a narrative arc for the Federation, inspired by Star Trek: Picard.
 
 [list]
-[*] [b]Neo-Constitution[/b] — versatile exploration cruiser (tier 2)
-[*] [b]Sagan / Stargazer[/b] — fast and powerful explorer (tier 2+)
-[*] [b]Duderstadt[/b] — advanced heavy cruiser (tier 3)
+[*] New technology: [b]A500 Synthetic Androids[/b] — deploy on colonies as industrial workers
+[*] Deploy on [b]Mars[/b] and the Rebellion arc triggers after 5 in-game years
+[*] [b]Two resolution paths[/b]: military (ground assault) or diplomatic (science vessel)
+[*] Rewards: Neo-Constitution, Sagan, Duderstadt and Odyssey blueprints enter the research pool
+[*] Arc tracked in the situation log from start to resolution
+[*] Post-arc: [i]Synthetic Worker[/i] species profile + [i]Ban Synthetic Workers[/i] edict (permanent, irreversible)
+[*] Can be disabled at game start
 [/list]
 
-Designs are added to the research pool — not granted directly.
+[b]Romulan counter-play — Synth Project[/b]
+
+[list]
+[*] When the Federation activates A500 units, a 90-day window opens to infiltrate Earth
+[*] Success unlocks a national decision: trigger a synthetic rebellion on any non-capital enemy planet
+[/list]
+
+
+[h2]NEW SHIP CLASSES — UFOP[/h2]
+
+Unlocked progressively through the A500 arc. Added to the research pool — not granted directly.
 
 
 [h2]INTEGRATED SHIP CLASSES[/h2]
 
 [list]
-[*] Ambassador Class / Akira Class / Constellation Class
-[*] Luna Class / Odyssey Class / California Class
+[*] Ambassador / Akira / Constellation / Luna / Odyssey / California
 [*] USS Voyager (hero) / Enterprise-E (fixed)
-[*] K'Vort Class / Kamarag Class / Raptor Class (Klingon)
+[*] K'Vort / Kamarag / Raptor (Klingon)
 [/list]
 
 
 [h2]CANONICAL SHIP SIZES — ALL FACTIONS[/h2]
 
-Full visual size overhaul across all ships in the mod. Reference: [b]Luna = 454m → size 5[/b].
+Every ship rescaled to match Star Trek canon. Reference: Luna-class = 454m.
 
 [list]
 [*] [b]UFOP[/b]: Defiant, Miranda, Intrepid, Galaxy, Sovereign — all recalculated
@@ -66,10 +68,11 @@ Full visual size overhaul across all ships in the mod. Reference: [b]Luna = 454m
 [h2]AI & DIPLOMACY[/h2]
 
 [list]
-[*] AI empires now start with a shipyard
+[*] AI now starts with a functional shipyard
 [*] AI evaluates military strength before declaring war
-[*] Vassalization wars restored + liberation wars
+[*] Vassalization wars and liberation wars restored
 [*] Minor factions with personalities faithful to Star Trek lore
+[*] Minor factions can declare wars
 [*] "Propose Vassalization" diplomatic action restored
 [*] First Contact bonuses fixed
 [/list]
@@ -78,9 +81,9 @@ Full visual size overhaul across all ships in the mod. Reference: [b]Luna = 454m
 [h2]WARP & GALAXY[/h2]
 
 [list]
-[*] Extended Warp range, increased late-game speeds
+[*] Extended warp range, increased late-game speeds
 [*] Warp technology progression restored
-[*] Optimized for galaxies up to 1000 stars
+[*] Optimized for galaxies up to 1,000 stars
 [/list]
 
 
@@ -88,7 +91,7 @@ Full visual size overhaul across all ships in the mod. Reference: [b]Luna = 454m
 
 [list]
 [*] Hero ships rebalanced
-[*] Distinct combat identities for minor factions (Gorn, Tholian, Orion, Breen)
+[*] Distinct combat identities — Gorn: endurance / Tholian: shields / Orion: speed / Breen: firepower
 [*] Coherent military fleet cap system across all factions
 [*] Planetary economy rebalanced
 [/list]
@@ -100,16 +103,19 @@ Full visual size overhaul across all ships in the mod. Reference: [b]Luna = 454m
 [*] Multiple crashes fixed (SIGSEGV, SIGFPE, access violations)
 [*] Infinite combat freeze fixed (negative fire rate on crewless ships)
 [*] Galaxy generation crash fixed
-[*] Colony and event stability improved
+[*] Mission events now correctly handle minor empire AIs — no more stuck AI
+[*] Ship construction scope error fixed (Romulan corvette/destroyer)
+[*] Bajoran anomaly event guarded — no crash if Bajoran Republic hasn't spawned
+[*] Colony and event stability improved across the board
 [/list]
 
 
 [h2]FACTIONS & RESTORED CONTENT[/h2]
 
 [list]
-[*] Breen Confederacy / Gorn Hegemony / Orion Empire / Tholian Assembly
-[*] Remans and Remus / Denobulans / Risans
-[*] Restored Federation Colonies
+[*] Ferengi Alliance / Gorn Hegemony / Orion Empire / Tholian Assembly
+[*] Remans / Denobulans / Risians
+[*] Federation colonies restored
 [/list]
 
 
@@ -121,7 +127,7 @@ Enable or disable independently at launch:
 [*] Pirates
 [*] Diplomatic Vassalization
 [*] Supernova Quest
-[*] Narrative Arc — A500 Synthetic Rebellion
+[*] A500 Synthetic Rebellion arc
 [/list]
 
 
@@ -129,18 +135,19 @@ Enable or disable independently at launch:
 
 [list]
 [*] Enable [b]this mod only[/b]
-[*] Do not enable included mods separately
+[*] Do not enable included mods separately — they are already merged in
 [/list]
 
 
 [h2]INCLUDED MODS[/h2]
 
 [list]
-[*] Ongoing Bug Fixes / Nebula Refinery Expanded / Integration Adjustments
-[*] Federation of War / USS Voyager Event Fix / Different Ship Classes /
+[*] Ongoing Bug Fixes / Nebula Refinery Expanded / Integration Adjustments / 
+[*] Federation of War / USS Voyager Event Fix / Different Ship Classes / 
 [/list]
 
 
-[i]If any of the game developers ever pass by here maybe a little help? A tiny piece of the source code? One can dream. Maybe let the community finish what capitalism wouldn't let you complete. After all, in the 24th century, society is different.[/i]
+[i]If any of the original developers pass by ; maybe a little help? A line of source code? One can dream... 
+In the 24th century, society is different.[/i]
 
 [h1]Engage![/h1]

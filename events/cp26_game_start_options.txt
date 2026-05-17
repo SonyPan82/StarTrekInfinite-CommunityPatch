@@ -16,9 +16,9 @@ country_event = {
 
 	option = {
 		name = cp26_options.1.pirates_on
-		trigger = { has_global_flag = cp26_no_pirates }
+		trigger = { NOT = { has_global_flag = cp26_no_pirates } }
 		custom_tooltip = cp26_options.1.pirates_on.tt
-		remove_global_flag = cp26_no_pirates
+		set_global_flag = cp26_no_pirates
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
 		}
@@ -26,9 +26,9 @@ country_event = {
 
 	option = {
 		name = cp26_options.1.pirates_off
-		trigger = { NOT = { has_global_flag = cp26_no_pirates } }
+		trigger = { has_global_flag = cp26_no_pirates }
 		custom_tooltip = cp26_options.1.pirates_off.tt
-		set_global_flag = cp26_no_pirates
+		remove_global_flag = cp26_no_pirates
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
 		}

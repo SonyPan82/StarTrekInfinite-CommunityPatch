@@ -1,36 +1,47 @@
-[h1]COMMUNITY PATCH 2026 - Star Trek: Infinite[/h1]
+[h1]COMMUNITY PATCH 2026 — Star Trek: Infinite[/h1]
 
-Un patch communautaire actif pour Star Trek: Infinite. Fusions de mods, correctifs de crash, rééquilibrages et nouveau contenu narratif — tout dans un seul package stable et maintenu en continu.
+Le patch que Star Trek: Infinite attendait. Fusion de mods, correctifs de crash, rééquilibrages, nouvelles factions et contenu narratif — un seul package, maintenu activement.
 
 [i]Star Trek: Infinite méritait mieux. On s'en occupe.[/i]
 
 
-[h2]NOUVEAU CONTENU — ARC A500 (TESTING)[/h2]
+[h2]NOUVEAU — ALLIANCE FERENGI[/h2]
 
-[b]Rébellion d'Utopia Planitia[/b] — arc narratif UFOP inspiré de Star Trek: Picard
+Les Ferengi débarquent comme faction indépendante à part entière, avec leur propre type de pays, leur shipset et leur comportement diplomatique.
+
+[list]
+[*] Type de pays dédié [b]ferengi_alliance[/b] — pas mélangé avec les factions mineures génériques
+[*] Les Ferengi restent cachés jusqu'au premier contact officiel
+[*] Accès diplomatique complet : commerce, espionnage, guerres — tout câblé correctement
+[*] Shipset Ferengi intégré avec design canonique
+[/list]
+
+
+[h2]NOUVEAU CONTENU — ARC A500 (EN TEST)[/h2]
+
+[b]Rébellion d'Utopia Planitia[/b] — arc narratif pour la Fédération, inspiré de Star Trek: Picard.
 
 [list]
 [*] Nouvelle technologie : [b]Androïdes synthétiques A500[/b] — déployables sur vos colonies
-[*] Décision planétaire : [b]Déployer des A500[/b] — ajoute 3 pops synthétiques, améliore la production
-[*] Si déployés sur [b]Mars[/b] : l'arc de la Rébellion se déclenche après 5 ans en jeu
-[*] [b]Deux voies de résolution[/b] : militaire (transport de troupes + combat au sol) ou diplomatique (vaisseau scientifique)
-[*] Récompenses : plans Neo-Constitution, Sagan, Duderstadt et Odyssey ajoutés au pool de recherche
-[*] [b]Journal de bord[/b] : l'arc est suivi dans le situation log jusqu'à sa résolution
-[*] [b]Gestion post-arc[/b] : profil espèce [i]Synthétique Industriel[/i] (0 logement, 0 commodités, migration bloquée) + édit [i]Interdire les synthétiques[/i] (purge définitive, non réversible)
-[*] Désactivable dans la popup de début de partie
+[*] Déployez-les sur [b]Mars[/b] et la Rébellion se déclenche après 5 ans en jeu
+[*] [b]Deux voies de résolution[/b] : militaire (assaut au sol) ou diplomatique (vaisseau scientifique)
+[*] Récompenses : plans Neo-Constitution, Sagan, Duderstadt et Odyssey dans le pool de recherche
+[*] Arc suivi dans le journal de situation jusqu'à sa résolution
+[*] Post-arc : profil espèce [i]Synthétique Industriel[/i] + édit [i]Interdire les synthétiques[/i] (purge permanente, irréversible)
+[*] Désactivable au début de partie
 [/list]
 
-[b]Objectif Romulien — Projet Synth[/b]
+[b]Contre-jeu Romulan — Projet Synth[/b]
 
 [list]
-[*] Quand la Fédération active les A500, une fenêtre de 90 jours s'ouvre pour envoyer un spy ship sur Terre
-[*] Mission réussie → décision nationale : déclencher une rébellion synthétique sur une planète ennemie (hors capitales)
+[*] Quand la Fédération active les A500, une fenêtre de 90 jours s'ouvre pour infiltrer la Terre
+[*] Mission réussie : décision nationale pour déclencher une rébellion synthétique sur une planète ennemie (hors capitales)
 [/list]
 
 
-[h2]NOUVELLES CLASSES DE VAISSEAUX UFOP[/h2]
+[h2]NOUVELLES CLASSES UFOP[/h2]
 
-Trois nouvelles classes exclusives, débloquées via l'arc A500 :
+Débloquées via l'arc A500, ajoutées au pool de recherche — pas accordées directement.
 
 [list]
 [*] [b]Neo-Constitution[/b] — croiseur explorateur polyvalent (tier 2)
@@ -38,22 +49,19 @@ Trois nouvelles classes exclusives, débloquées via l'arc A500 :
 [*] [b]Duderstadt[/b] — croiseur lourd avancé (tier 3)
 [/list]
 
-Les plans sont ajoutés au pool de recherche — pas accordés directement.
-
 
 [h2]CLASSES INTÉGRÉES[/h2]
 
 [list]
-[*] Ambassador Class / Akira Class / Constellation Class
-[*] Luna Class / Odyssey Class / California Class
+[*] Ambassador / Akira / Constellation / Luna / Odyssey / California (UFOP)
 [*] USS Voyager (héros) / Enterprise-E (corrigée)
-[*] K'Vort Class / Kamarag Class / Raptor Class (Klingon)
+[*] K'Vort / Kamarag / Raptor (Klingon)
 [/list]
 
 
 [h2]TAILLES CANONIQUES — TOUTES LES FACTIONS[/h2]
 
-Refonte complète des tailles visuelles. Référence : [b]Luna = 454m → taille 5[/b].
+Chaque vaisseau redimensionné selon le canon Star Trek. Référence : Luna = 454m.
 
 [list]
 [*] [b]UFOP[/b] : Defiant, Miranda, Intrepid, Galaxy, Sovereign — tous recalculés
@@ -66,10 +74,11 @@ Refonte complète des tailles visuelles. Référence : [b]Luna = 454m → taille
 [h2]IA & DIPLOMATIE[/h2]
 
 [list]
-[*] IA démarre avec un chantier naval
-[*] IA évalue la force militaire avant de déclarer une guerre
-[*] Vassalisation diplomatique restaurée + guerres de libération
+[*] L'IA démarre avec un chantier naval fonctionnel
+[*] L'IA évalue la force militaire avant de déclarer la guerre
+[*] Guerres de vassalisation et de libération restaurées
 [*] Factions mineures avec personnalités fidèles au lore Star Trek
+[*] Les factions mineures peuvent déclarer des guerres
 [*] Action diplomatique "Proposer la vassalisation" restaurée
 [*] Bonus de Premier Contact corrigés
 [/list]
@@ -80,7 +89,7 @@ Refonte complète des tailles visuelles. Référence : [b]Luna = 454m → taille
 [list]
 [*] Portée Warp étendue, vitesses de fin de partie augmentées
 [*] Progression technologique Warp restaurée
-[*] Optimisé pour des galaxies jusqu'à 1000 étoiles
+[*] Optimisé pour des galaxies jusqu'à 1 000 étoiles
 [/list]
 
 
@@ -88,7 +97,7 @@ Refonte complète des tailles visuelles. Référence : [b]Luna = 454m → taille
 
 [list]
 [*] Vaisseaux héros rééquilibrés
-[*] Identités de combat distinctes par faction mineure (Gorn, Tholian, Orion, Breen)
+[*] Identités de combat distinctes — Gorn : endurance / Tholian : boucliers / Orion : vitesse / Breen : puissance de feu
 [*] Cap de flotte militaire cohérent par faction
 [*] Économie planétaire rééquilibrée
 [/list]
@@ -100,15 +109,18 @@ Refonte complète des tailles visuelles. Référence : [b]Luna = 454m → taille
 [*] Nombreux crashs corrigés (SIGSEGV, SIGFPE, violations d'accès)
 [*] Freeze de combat infini corrigé (taux de tir négatif sur vaisseaux sans officiers)
 [*] Crash à la génération de la galaxie corrigé
-[*] Stabilité des colonies et des événements améliorée
+[*] Événements de missions corrigés pour les empires mineurs IA — plus d'IA bloquée
+[*] Erreur de scope de construction navale corrigée (corvette/destroyer Romulan)
+[*] Event anomalie Bajoran protégé — plus de crash si la République Bajorienne n'existe pas
+[*] Stabilité globale des colonies et des événements améliorée
 [/list]
 
 
 [h2]FACTIONS & CONTENU RESTAURÉ[/h2]
 
 [list]
-[*] Confédération Breen / Hégémonie Gorn / Empire Orion / Assemblée Tholienne
-[*] Remans et Remus / Denobulans / Risans
+[*] Alliance Ferengi / Hégémonie Gorn / Empire Orion / Assemblée Tholienne
+[*] Remans / Denobulans / Risans
 [*] Colonies fédérales restaurées
 [/list]
 
@@ -129,7 +141,7 @@ Activez ou désactivez indépendamment au lancement :
 
 [list]
 [*] Activez [b]uniquement ce mod[/b]
-[*] Ne pas activer séparément les mods inclus
+[*] Ne pas activer séparément les mods inclus — ils sont déjà fusionnés
 [/list]
 
 
@@ -141,6 +153,6 @@ Activez ou désactivez indépendamment au lancement :
 [/list]
 
 
-[i]Si un développeur passe par là — peut-être un coup de main ? Un bout de code source ? On peut rêver. Après tout, au 24e siècle, la société est différente.[/i]
+[i]Si un développeur passe par là — peut-être un coup de main ? Une ligne de code source ? On peut rêver. Au 24e siècle, la société est différente.[/i]
 
 [h1]Engage ![/h1]
