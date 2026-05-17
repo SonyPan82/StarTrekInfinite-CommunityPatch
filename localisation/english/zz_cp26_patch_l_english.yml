@@ -296,6 +296,8 @@
  cp26_bajoran_wormhole.21.name:0 "2369 - The Denorios Anomaly Intensifies"
  cp26_bajoran_wormhole.21.desc:0 "Scientific monitors have recorded a sharp increase in neutrino emissions from the Denorios Belt. The readings defy all known stellar models.\n\nThe Bajoran Science Ministry has classified this a priority investigation. A survey mission has been authorized - station a science vessel with a scientist at the anomaly site in the Bajoran system."
  cp26_bajoran_wormhole.21.ok:0 "Dispatch the survey team immediately."
+ cp26_minor_mission.ai_fallback:0 "Acknowledge the report."
+ cp26_minor_mission.ai_fallback.tt:0 "AI fallback option for mission events without a major-power-specific response."
 
  tech_warp_speed_increase_3:0 "Transwarp Geometry"
  tech_warp_speed_increase_3_desc:0 "By mapping space-time curvature along established warp corridors, our navigational systems can exploit natural subspace geometries to achieve §Htranswarp-tier velocities§! -- the final frontier of conventional warp propulsion."

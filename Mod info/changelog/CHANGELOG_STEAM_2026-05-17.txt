@@ -1,0 +1,15 @@
+[h1]CP26 - Patch 2026-05-17[/h1]
+
+[h2]Correctifs - Arc A500 Synthétiques[/h2]
+[list]
+[*] [b]Double espèce A500 (B1)[/b] : corrigé un bug où l'espèce A500 était créée deux fois. L'event d'initialisation (cp26_a500_init.2) ne sauvegardait pas l'event target ni le flag cp26_a500_species_created. La décision deploy_a500 créait donc systématiquement une deuxième espèce A500 indépendante. L'initialisation sauvegarde maintenant correctement et pose le flag — la décision réutilise l'espèce existante.
+[*] [b]Boucle de dévastation incontrôlée (B2)[/b] : le pulse mensuel (cp26_a500.3) ne vérifiait pas que la rébellion était toujours active (flag cp26_a500_rebellion_active). Si l'arc se terminait par un chemin inattendu, la boucle continuait d'ajouter +5 dévastation par mois indéfiniment. Le trigger vérifie maintenant ce flag.
+[*] [b]Boucle active à dévastation maximale (D3)[/b] : le pulse continuait de s'exécuter même quand la dévastation de Mars atteignait 100 %. Ajout d'un plafond (planet_devastation < 95) dans le trigger — la boucle s'arrête quand l'effet est nul.
+[*] [b]Optimisation scan galactique (O1)[/b] : le pulse mensuel effectuait un scan de toutes les planètes de la galaxie pour retrouver Mars à chaque exécution. Mars est maintenant sauvegardée en event target global (et_a500_mars) dès le déclenchement de la rébellion (cp26_a500.2) et réutilisée directement dans le pulse.
+[/list]
+
+[h2]Arc Romulien - Projet Synth : accessibilité solo (I4)[/h2]
+[list]
+[*] L'arc Romulien ne se déclenchait jamais en partie solo (joueur UFOP, Romuliens IA), car le déclencheur exigeait un joueur humain côté Romulien. L'arc était donc du contenu mort dans 99 % des parties.
+[*] Ajout d'un chemin IA : si aucun Romulien humain n'est présent, un empire Romulien IA reçoit automatiquement le déblocage du Projet Synth après 180 jours (cp26_synth_rom.10 en silencieux), simulant une mission d'espionnage réussie en coulisse. Le joueur découvre la menace uniquement via l'incident diplomatique déclenché lors de la première utilisation contre une planète UFOP.
+[/list]

@@ -12,6 +12,7 @@ country_event = {
 			is_major = yes
 			is_minor = yes
 			is_country_type = contender
+			is_country_type = ferengi_alliance
 		}
 		exists = capital_scope
 	}

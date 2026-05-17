@@ -27,7 +27,7 @@ entity = {
 	}
 
 	state = { name = "warping" chance = 1 looping = no
-		event = { time = 0 node = "part1" particle = "warpout_effect" trigger_once = yes keep_particle = no sound = { soundeffect = "warpout_effect" } }
+		event = { time = 0 node = "part1" particle = "medium_warpout_effect" trigger_once = yes keep_particle = no sound = { soundeffect = "warpout_effect" } }
 	}
 
 	game_data = {

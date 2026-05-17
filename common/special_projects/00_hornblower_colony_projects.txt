@@ -1,0 +1,81 @@
+# CP26 override - colony special project scope guards
+# Ensures ship_event projects do not attempt a leader scope switch when the
+# science ship has no assigned scientist at completion time.
+
+special_project = {
+	key = "THE_SHADOW_PEOPLE"
+	days_to_research = 120
+	tech_department = engineering_technology
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_enterprise_bridge_conversation_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_vorcha_bridge_conversation_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_valdore_bridge_conversation_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_keldon_bridge_conversation_cardassian
+	}
+
+	picture = GFX_evt_archaeology_excavation
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		if = {
+			limit = { exists = leader }
+			leader = { save_event_target_as = original_scientist }
+		}
+		ship_event = { id = hrb_colony.12001 }
+	}
+}
+
+special_project = {
+	key = "AQUEDUCT_LIFEFORM"
+	days_to_research = 5
+	tech_department = engineering_technology
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_away_team
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_away_team_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_away_team_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_away_team_cardassian
+	}
+
+	picture = GFX_evt_archaeology_excavation
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		if = {
+			limit = { exists = leader }
+			leader = { save_event_target_as = aqueduct_scientist }
+		}
+		event_target:colony_stella_maris = { owner = { country_event = { id = hrb_colony.82 days = 5 } } }
+	}
+}

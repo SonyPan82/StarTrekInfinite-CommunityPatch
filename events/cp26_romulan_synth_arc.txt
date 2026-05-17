@@ -28,6 +28,7 @@ country_event = {
 	}
 
 	immediate = {
+		# Chemin joueur humain : popup de mission
 		random_country = {
 			limit = {
 				is_romulan = yes
@@ -37,6 +38,25 @@ country_event = {
 				NOT = { has_country_flag = cp26_rom_synth_completed }
 			}
 			country_event = { id = cp26_synth_rom.1 days = 1 }
+		}
+		# Chemin IA : si aucun Romulien humain, l'IA réussit silencieusement après 180 jours
+		if = {
+			limit = {
+				NOT = {
+					any_country = {
+						is_romulan = yes
+						is_ai = no
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					is_romulan = yes
+					NOT = { has_country_flag = cp26_rom_synth_completed }
+					NOT = { has_country_flag = cp26_rom_synth_arc_declined }
+				}
+				country_event = { id = cp26_synth_rom.10 days = 180 }
+			}
 		}
 	}
 }

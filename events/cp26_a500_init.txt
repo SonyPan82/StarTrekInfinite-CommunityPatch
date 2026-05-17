@@ -47,5 +47,9 @@ country_event = {
 				trait = "trait_a500_networked"
 			}
 		}
+		last_created_species = {
+			save_global_event_target_as = et_a500_species_global
+		}
+		set_global_flag = cp26_a500_species_created
 	}
 }

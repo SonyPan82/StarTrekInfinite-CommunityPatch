@@ -1,0 +1,105 @@
+CP26 - FERENGI EMPIRE / SHIPSET AUDIT
+Date: 2026-05-17
+
+1) Country type / diplomacy
+
+- The Ferengi were moved off `contender` and into a dedicated country type:
+  `ferengi_alliance`
+- Reason:
+  `contender` made them too visible too early and did not match the intended
+  first-contact behavior.
+- Side effect discovered:
+  many diplomatic actions in vanilla / Hornblower / CP26 were explicitly gated
+  to `default` or `contender`.
+- Result:
+  the Ferengi existed correctly, but several diplomatic actions were missing in
+  the diplomacy view because `ferengi_alliance` was not included in those
+  filters.
+
+Fix applied:
+- `ferengi_alliance` added to regular-empire gating in:
+  - common/scripted_triggers/z_aa_scripted_triggers.txt
+  - common/diplomatic_actions/00_actions.txt
+  - common/diplomatic_actions/00_hornblower_actions.txt
+  - events/zz_cp26_war_negotiation_events.txt
+  - events/zz_cp26_ai_shipyard_fix.txt
+
+Conclusion:
+- Ferengi remain hidden before proper contact
+- Ferengi are now treated as a regular diplomatic empire where the mod/UI was
+  previously filtering them out
+- This is cleaner than forcing them back into `contender`
+
+
+2) Lore-friendly species traits
+
+Current intended Ferengi species setup:
+- trait_thrifty
+- trait_eye_for_business_ferengi
+- trait_traditionalists_ferengi
+
+Reasoning:
+- `trait_thrifty` is the closest vanilla baseline for Ferengi economic instinct
+- `trait_eye_for_business_ferengi` reinforces profit-seeking and specialist
+  economic competence
+- `trait_traditionalists_ferengi` reflects a society shaped by the Rules of
+  Acquisition and a narrower cultural relationship to open-ended research
+
+Important note:
+- existing saves may keep older trait states on already-generated Ferengi pops
+- the clean validation point for species traits is a new game
+
+
+3) Shipset audit
+
+Observed in-game symptoms:
+- magenta / pink blocks and strange panels on some Ferengi ships
+- animation warnings in error.log (`Could not find animation "idle"`)
+
+Confirmed findings:
+- Ferengi frame animation was referencing `generic_01_corvette_frame_idle_animation`
+  instead of the Ferengi animation asset actually present in the imported pack
+- the Ferengi animation pack only defines:
+  - ferengi_01_corvette_frame_idle_animation
+  - ferengi_01_corvette_frame_moving_animation
+  - ferengi_01_corvette_frame_death_animation
+  - ferengi_01_corvette_frame_death2_animation
+  - ferengi_01_corvette_frame_death3_animation
+
+Fix applied:
+- `gfx/models/ships/ferengi_01/ferengi_01_corvette_frame.gfx`
+  now uses:
+  - idle   -> ferengi_01_corvette_frame_idle_animation
+  - attack -> ferengi_01_corvette_frame_idle_animation
+  - moving -> ferengi_01_corvette_frame_moving_animation
+
+Status after this pass:
+- one real animation mismatch is corrected
+- missing shared textures imported into the mod:
+  - gfx/models/ships/shared_assets/windows/windows_01_diffuse.dds
+  - gfx/models/ships/shared_assets/windows/windows_01_normal.dds
+  - gfx/models/ships/shared_assets/grating/grid_1_normal.dds
+  - gfx/models/ships/federation/franklin/Franklin_glow.dds
+- additional missing shared textures imported after in-game Ferengi shipset retest:
+  - gfx/models/ships/shared_assets/window_dark_blue_diffuse.dds
+  - gfx/models/ships/shared_assets/gold_texture.dds
+  - gfx/models/ships/shared_assets/metal_specular.dds
+  - gfx/models/ships/shared_assets/grating/grate.dds
+  - gfx/models/ships/shared_assets/grating/grate_normal.dds
+  - gfx/models/ships/shared_assets/glow/glow_strong_yellow_diffuse.dds
+  - gfx/models/ships/shared_assets/glow/hex_glow_orange_diffuse.dds
+  - gfx/models/ships/shared_assets/glow/glows_normal.dds
+  - gfx/models/ships/federation/cardenas/discovery_shuttlebay_diffuse.dds
+- if magenta geometry remains after relaunch, the next suspects are material /
+  texture assignments on sub-meshes rather than country / entity logic
+
+
+4) Recommended validation
+
+After a full relaunch:
+- check diplomacy view against Ferengi
+- check first contact / visibility behavior on a fresh game
+- check Ferengi military ships in system view again
+- compare new error.log output for:
+  - missing animation warnings
+  - missing Ferengi texture/material warnings

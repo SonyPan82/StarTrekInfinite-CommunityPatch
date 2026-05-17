@@ -39,15 +39,16 @@ ferengi_xuracorp_init = {
 				}
 
 				create_species = {
-					class = "HRB"
+					class = "AAFERENGI"
 					portrait = "ferengi"
 					name = "PRESCRIPTED_species_name_ferengi"
 					plural = "PRESCRIPTED_species_plural_ferengi"
 					adjective = "PRESCRIPTED_species_adjective_ferengi"
 					name_list = "FERE"
 					traits = {
-						trait = trait_entrepreneurial_farians
-						trait = trait_eye_for_business_lissepian
+						trait = trait_thrifty
+						trait = trait_eye_for_business_ferengi
+						trait = trait_traditionalists_ferengi
 					}
 				}
 			}
@@ -64,7 +65,7 @@ ferengi_xuracorp_init = {
 				create_country = {
 					name = "NAME_XuraCorp"
 					species = "Ferengi"
-					country_id = "ferengi"
+					country_id = "ferengi_xuracorp"
 					type = enclave
 					authority = "auth_oligarchic_ferengi_1"
 					civics = {
@@ -97,8 +98,8 @@ ferengi_xuracorp_init = {
 				last_created_country = {
 					set_country_flag = trader_enclave_country
 					set_country_flag = trader_enclave_country_1
-					set_country_flag = ferengi
-					set_graphical_culture = mammalian_01
+					set_country_flag = ferengi_xuracorp
+					set_graphical_culture = ferengi_01
 					create_fleet = {
 						name = "NAME_XuraCorp_HQ"
 						settings = { spawn_debris = no }

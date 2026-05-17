@@ -76,8 +76,7 @@ ferengi_system_initializer = {
 			create_country = {
 				species = "Ferengi"
 				country_id = "ferengi"
-				type = contender
-					contact_rule = on_action_only
+				type = ferengi_alliance
 				ship_prefix = "FNS"
 				name_list = "FERE"
 				authority = auth_dictatorial_ferengi
@@ -95,7 +94,7 @@ ferengi_system_initializer = {
 					}
 					colors = {
 						"yellow"
-						"brown"
+						"dark_green"
 						"null"
 						"null"
 					}

@@ -2478,6 +2478,12 @@ country_event = {
 		name = mission.86.d
 		custom_tooltip = mission.86.d.tt
 	}
+	option = {
+		trigger = { is_ai = yes }
+		name = cp26_minor_mission.ai_fallback
+		custom_tooltip = cp26_minor_mission.ai_fallback.tt
+		ai_chance = { factor = 1 }
+	}
 
 	after = {
 		# Harm Relations Minor State
@@ -4264,6 +4270,12 @@ country_event = {
 		trigger = { is_cardassian = yes }
 		name = mission.145.d
 		custom_tooltip = mission.145.d.tt
+	}
+	option = {
+		trigger = { is_ai = yes }
+		name = cp26_minor_mission.ai_fallback
+		custom_tooltip = cp26_minor_mission.ai_fallback.tt
+		ai_chance = { factor = 1 }
 	}
 
 	after = {
@@ -6756,6 +6768,12 @@ country_event = {
 		trigger = { is_cardassian = yes }
 		name = mission.193.d
 		custom_tooltip = mission.193.d.tt
+	}
+	option = {
+		trigger = { is_ai = yes }
+		name = cp26_minor_mission.ai_fallback
+		custom_tooltip = cp26_minor_mission.ai_fallback.tt
+		ai_chance = { factor = 1 }
 	}
 	
 	after = {

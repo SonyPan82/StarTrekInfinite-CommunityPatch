@@ -111,6 +111,7 @@ country_event = {
 			random_galaxy_planet = {
 				limit = { has_planet_flag = planet_mars }
 				set_planet_flag = cp26_a500_rebellion_active
+				save_global_event_target_as = et_a500_mars
 				while = {
 					count = 5
 					create_army = {
@@ -136,15 +137,14 @@ country_event = {
 
 	trigger = {
 		NOT = { has_country_flag = cp26_a500_resolved }
-		any_galaxy_planet = { has_planet_flag = planet_mars }
+		exists = event_target:et_a500_mars
+		event_target:et_a500_mars = {
+			has_planet_flag = cp26_a500_rebellion_active
+			planet_devastation < 95
+		}
 	}
 
 	immediate = {
-		random_galaxy_planet = {
-			limit = { has_planet_flag = planet_mars }
-			save_event_target_as = et_a500_mars
-		}
-
 		# Dévastations progressives, victoire détectée via on_planet_defenders_win
 		event_target:et_a500_mars = {
 			add_planet_devastation = 5

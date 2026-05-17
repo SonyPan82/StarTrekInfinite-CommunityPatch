@@ -127,7 +127,7 @@ bespoke_procedural_scenario = {
 
 	system = {
 		id = "949"
-		name = "NAME_Bajor" position = { x = 48.9 y = 295.9 }
+		name = "NAME_Bajor" position = { x = 32.2 y = 288.9 }
 		initializer = bajoran_bajor_initializer spawn_weight = { base = 1 }
 	}
 
@@ -1174,7 +1174,7 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
-		name = "NAME_Klaestron" position = { x = 32.2 y = 288.9 }
+		name = "NAME_Klaestron" position = { x = 48.9 y = 295.9 }
 		initializer = uncontrolled_system_initializer spawn_weight = { base = 1 }
 	}
 

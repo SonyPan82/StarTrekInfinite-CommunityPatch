@@ -14,4 +14,24 @@ spriteTypes = {
 		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_minorpowers.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}
+	spriteType = {
+		name = "GFX_flag_Ferengi_35_icon"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "flag_Ferengi_35_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_Ferengi_35_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_Ferengi_35_small"
+		texturefile = "flags/emblem/small/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
 }
