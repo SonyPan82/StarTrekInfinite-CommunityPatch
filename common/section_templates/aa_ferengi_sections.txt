@@ -3,7 +3,7 @@ ship_section_template = {
 	ship_size = ferengicorvette
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "ferengi_01_corvette_coreA_entity"
+	entity = "cp26_ferengi_corvette_entity"
 	icon = "GFX_ship_part_core_mid"
 
 	prerequisites = { tech_big_bomb_1 }
@@ -53,7 +53,7 @@ ship_section_template = {
 	ship_size = ferengi_destroyer
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "ferengi_01_saber_coreA_entity"
+	entity = "cp26_ferengi_destroyer_entity"
 	icon = "GFX_ship_part_core_mid"
 
 	prerequisites = { tech_big_bomb_1 }
@@ -118,7 +118,7 @@ ship_section_template = {
 	ship_size = ferengibattleship
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "ferengi_01_sovereign_coreA_entity"
+	entity = "cp26_ferengi_battleship_entity"
 	icon = "GFX_ship_part_core_mid"
 
 	prerequisites = { tech_big_bomb_1 }

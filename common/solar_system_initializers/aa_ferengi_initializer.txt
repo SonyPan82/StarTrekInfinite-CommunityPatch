@@ -107,7 +107,7 @@ ferengi_system_initializer = {
 			}
 			last_created_country = {
 				set_name = "Ferengi Alliance"
-				set_graphical_culture = ferengi_01
+				set_graphical_culture = ferengi
 				save_global_event_target_as = ferengi_country
 				set_country_flag = ferengi
 				set_country_flag = ferengi_alliance

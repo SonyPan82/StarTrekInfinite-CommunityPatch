@@ -1,0 +1,39 @@
+@cp26_ferengi_scale_corvette = 0.85
+@cp26_ferengi_scale_destroyer = 0.80
+@cp26_ferengi_scale_battleship = 0.85
+
+entity = {
+	name = "cp26_ferengi_corvette_entity"
+	pdxmesh = "ferengi_corvette_mesh"
+	scale = @cp26_ferengi_scale_corvette
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } }
+}
+
+entity = {
+	name = "cp26_ferengi_destroyer_entity"
+	pdxmesh = "ferengi_destroyer_mesh"
+	scale = @cp26_ferengi_scale_destroyer
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } }
+}
+
+entity = {
+	name = "cp26_ferengi_battleship_entity"
+	pdxmesh = "ferengi_battleship_mesh"
+	scale = @cp26_ferengi_scale_battleship
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+	locator = { name = "gun_1" rotation = { 0 0 0 } }
+	locator = { name = "gun_2" rotation = { 0 0 0 } }
+	locator = { name = "xl_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "xl_gun_02" rotation = { 0 0 0 } }
+}

@@ -142,6 +142,7 @@ action_request_mission = {
 			}
 		}
 	}
+
 }
 
 ### HRB_NOTE: Rivalries removal ###

@@ -99,7 +99,8 @@ ferengi_xuracorp_init = {
 					set_country_flag = trader_enclave_country
 					set_country_flag = trader_enclave_country_1
 					set_country_flag = ferengi_xuracorp
-					set_graphical_culture = ferengi_01
+					save_global_event_target_as = ferengi_xuracorp_country
+					set_graphical_culture = ferengi
 					create_fleet = {
 						name = "NAME_XuraCorp_HQ"
 						settings = { spawn_debris = no }

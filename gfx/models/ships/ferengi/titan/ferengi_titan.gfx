@@ -1,0 +1,13 @@
+################
+# Battleship
+################
+objectTypes = {
+	pdxmesh = {
+		name = "ferengi_titan_mesh"
+		file = "gfx/models/ships/ferengi/titan/ferengi_titan.mesh"
+		scale = 1.0
+
+		meshsettings = { name = "ferengi_ooron" index = 0 texture_diffuse = "ferengi_ooron_01_diffuse.dds" texture_normal = "ferengi_ooron_01_normal.dds" texture_specular = "ferengi_ooron_01_specular.dds" shader = "PdxMeshShip" } 
+        meshsettings = { name = "ferengi_ooron" index = 1 texture_diffuse = "ferengi_ooron_02_diffuse.dds" texture_normal = "ferengi_ooron_02_normal.dds" texture_specular = "ferengi_ooron_02_specular.dds" shader = "PdxMeshShip" } 
+	}
+}

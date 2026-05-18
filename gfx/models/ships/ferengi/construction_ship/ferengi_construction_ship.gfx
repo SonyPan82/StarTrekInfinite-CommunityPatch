@@ -1,0 +1,9 @@
+objectTypes = {
+    pdxmesh = {
+        name = "ferengi_construction_ship_mesh"
+        file = "gfx/models/ships/ferengi/construction_ship/ferengi_construction_ship.mesh"
+        scale = 1
+
+		meshsettings = { name = "ferengi_construction_ship" texture_diffuse = "ferengi_construction_ship_diffuse.dds" texture_normal = "ferengi_construction_ship_normal.dds" texture_specular = "ferengi_construction_ship_specular.dds" shader = "PdxMeshShip" } 
+    }
+}

@@ -1,0 +1,30 @@
+objectTypes = {
+	pdxmesh = {
+		name = "ferengi_destroyer_mesh"
+		file = "gfx/models/ships/ferengi/destroyer/ferengi_destroyer.mesh"
+		scale = 1.0
+
+		meshsettings = { name = "ferengi_merat" texture_diffuse = "ferengi_merat_diffuse.dds" texture_normal = "ferengi_merat_normal.dds" texture_specular = "ferengi_merat_specular.dds" shader = "PdxMeshShip" }
+	}
+}
+
+objectTypes = {
+	pdxmesh = {
+		name = "ferengi_destroyer_b_mesh"
+		file = "gfx/models/ships/ferengi/destroyer/ferengi_destroyer_b.mesh"
+		scale = 1.0
+
+		meshsettings = { name = "ferengi_arken" texture_diffuse = "ferengi_arken_diffuse.dds" texture_normal = "ferengi_arken_normal.dds" texture_specular = "ferengi_arken_specular.dds" shader = "PdxMeshShip" }
+	}
+}
+
+
+objectTypes = {
+	pdxmesh = {
+		name = "ferengi_destroyer_c_mesh"
+		file = "gfx/models/ships/ferengi/destroyer/ferengi_destroyer_c.mesh"
+		scale = 1.0
+
+		meshsettings = { name = "ferengi_bor" texture_diffuse = "ferengi_bor_diffuse.dds" texture_normal = "ferengi_bor_normal.dds" texture_specular = "ferengi_bor_specular.dds" shader = "PdxMeshShip" }
+	}
+}

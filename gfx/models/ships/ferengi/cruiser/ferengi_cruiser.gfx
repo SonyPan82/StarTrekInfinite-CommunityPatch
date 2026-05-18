@@ -1,0 +1,18 @@
+objectTypes = {
+	pdxmesh = {
+		name = "ferengi_cruiser_mesh"
+		file = "gfx/models/ships/ferengi/cruiser/ferengi_cruiser.mesh"
+		scale = 1.0
+
+		meshsettings = { name = "ferengi_dkora" texture_diffuse = "ferengi_dkora_diffuse.dds" texture_normal = "ferengi_dkora_normal.dds" texture_specular = "ferengi_dkora_specular.dds" shader = "PdxMeshShip" } 
+        meshsettings = { name = "ferengi_logo" texture_diffuse = "ferengi_flag.dds" texture_normal = "nonormal.dds" texture_specular = "ferengi_flag_specular.dds" shader = "AlphaBlendNoDepth" }
+	}
+    
+    pdxmesh = {
+		name = "ferengi_cruiser_b_mesh"
+		file = "gfx/models/ships/ferengi/cruiser/ferengi_nandi.mesh"
+		scale = 1.0
+
+		meshsettings = { name = "ferengi_nandi" texture_diffuse = "ferengi_nandi_diffuse.dds" texture_normal = "ferengi_nandi_normal.dds" texture_specular = "ferengi_nandi_specular.dds" shader = "PdxMeshShip" } 
+	}
+}

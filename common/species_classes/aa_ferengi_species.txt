@@ -9,7 +9,7 @@ AAFERENGI = {
 		"ferengi"
 	}
 
-	graphical_culture = ferengi_01
+	graphical_culture = ferengi
 	move_pop_sound_effect = "moving_pop_confirmation"
 
 	resources = {}

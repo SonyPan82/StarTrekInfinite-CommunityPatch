@@ -1,0 +1,17 @@
+l_english:
+
+ # CP26: Lissepian Trade Consortium — overrides vanilla caravaneer name keys
+ # All caravaneer event texts reference these keys, so this renames them to Lissepian everywhere.
+
+ NAME_Caravaneer_Home:0 "Lissepian Trade Consortium"
+ NAME_Chors_Compass:0 "Lissep Station"
+ NAME_Tradestation_Tungle:0 "Lissepian Commerce Hub"
+
+ NAME_Caravaneer_Fleet1_country:0 "LTC Alpha Convoy"
+ NAME_Caravaneer_Fleet1_fleet:0 "LTC Alpha Convoy Fleet"
+
+ NAME_Caravaneer_Fleet2:0 "LTC Beta Convoy"
+ NAME_Caravaneer_Fleet2_fleet:0 "LTC Beta Convoy Fleet"
+
+ NAME_Caravaneer_Fleet3:0 "LTC Gamma Convoy"
+ NAME_Caravaneer_Fleet3_fleet:0 "LTC Gamma Convoy Fleet"

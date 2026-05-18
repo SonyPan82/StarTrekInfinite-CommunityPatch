@@ -1,0 +1,9 @@
+objectTypes = {
+	pdxmesh = {
+		name = "ferengi_corvette_mesh"
+		file = "gfx/models/ships/ferengi/corvette/ferengi_corvette.mesh"
+		scale = 1.0
+
+		meshsettings = { name = "ferengi_kelga" texture_diffuse = "ferengi_kelga_diffuse.dds" texture_normal = "ferengi_kelga_normal.dds" texture_specular = "ferengi_kelga_specular.dds" shader = "PdxMeshShip" }
+	}
+}
