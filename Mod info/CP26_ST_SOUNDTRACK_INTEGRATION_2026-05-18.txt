@@ -1,0 +1,14 @@
+CP26 - Integration soundtrack pack workshop 3148760337
+
+Decision:
+- Keep vanilla main menu music (no maintheme override).
+- Merge vanilla ingame playlist with workshop ingame playlist.
+- Copy workshop OGG tracks into CP26/music.
+- Merge English music player labels for workshop tracks.
+
+Reason:
+- The workshop mod overrides songs.asset/songs.txt/maintheme.asset directly, which removes vanilla music.
+- Infinite treats maintheme as a dedicated single entry; no reliable random dual-menu setup was identified in local audit.
+
+Main menu test override:
+- CP26 now uses the workshop maintheme for menu testing.

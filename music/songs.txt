@@ -1,0 +1,429 @@
+song = {
+	name = "song_frontiers"
+}
+
+song = {
+	name = "song_rigelian_fever"
+}
+
+song = {
+	name = "song_farpoint"
+}
+
+song = {
+	name = "song_obsidian"
+}
+
+song = {
+	name = "song_the_empath"
+}
+
+song = {
+	name = "song_kalhyah"
+}
+
+song = {
+	name = "song_alliance"
+}
+
+song = {
+	name = "song_peldor_joi"
+}
+
+song = {
+	name = "song_rules_of_acquisition"
+}
+
+song = {
+	name = "song_resurgence"
+}
+
+song = {
+	name = "song_red_thread"
+}
+
+song = {
+	name = "song_cybernetic"
+}
+
+song = {
+	name = "song_shore_leave"
+}
+
+song = {
+	name = "song_aperture"
+}
+
+song = {
+	name = "song_endgame"
+}
+
+song = {
+	name = "song_call_of_the_void"
+}
+
+song = {
+	name = "song_hourglass"
+}
+
+song = {
+	name = "song_live_long"
+}
+
+song = {
+	name = "song_the_raptors_wing"
+}
+
+song = {
+	name = "song_the_first_hebitians"
+}
+
+song = {
+	name = "song_deep_space"
+}
+
+song = {
+	name = "song_the_enterprise"
+}
+
+song = {
+	name = "song_dark_frontier"
+}
+
+song = {
+	name = "song_time_lapse"
+}
+
+song = {
+	name = "song_hornblower"
+}
+
+song = {
+	name = "song_nivar"
+}
+
+song = {
+	name = "song_make_it_so"
+}
+
+song = {
+	name = "song_paranoia"
+}
+
+song = {
+	name = "song_the_neutral_zone"
+}
+
+song = {
+	name = "song_starfleet"
+}
+
+
+# CP26 integrated ST soundtrack pack
+
+
+#Ingame Music#
+
+song = {
+	name = "song_Star_Trek_Discovery_Opening_Sequence"
+}
+song = {
+	name = "song_Star_Trek_Into_Darkness_01"
+}
+song = {
+	name = "song_Star_Trek_Into_Darkness_03"
+}
+song = {
+	name = "song_Star_Trek_Into_Darkness_04"
+}
+song = {
+	name = "song_New_Romulus"
+}
+song = {
+	name = "song_Romulan_Ambient_1"
+}
+song = {
+	name = "song_Romulan_Ambient_2"
+}
+song = {
+	name = "song_Romulan_Battle_1"
+}
+song = {
+	name = "song_Romulan_Battle_2"
+}
+song = {
+	name = "song_Romulan_Battle_3"
+}
+song = {
+	name = "song_Romulan_Battle_4"
+}
+song = {
+	name = "song_Romulan_Tutorial_Intro"
+}
+song = {
+	name = "song_Star_Trek_Reboot_Intro"
+}
+song = {
+	name = "song_Star_Trek_Voyager_Intro"
+}
+song = {
+	name = "song_The_Next_Generation_theme"
+}
+song = {
+	name = "song_Back_in_Order"
+}
+song = {
+	name = "song_Star_Trek_III_The_Search_for_Spock_1"
+}
+song = {
+	name = "song_Star_Trek_III_The_Search_for_Spock_2"
+}
+song = {
+	name = "song_Star_Trek_II-The_Wrath_of_Khan_Soundtrack_1"
+}
+song = {
+	name = "song_Star_Trek_II-The_Wrath_of_Khan_Soundtrack_2"
+}
+song = {
+	name = "song_Star_Trek_II-The_Wrath_of_Khan_Soundtrack_3"
+}
+song = {
+	name = "song_Star_Trek_II-The_Wrath_of_Khan_Soundtrack_4"
+}
+song = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_1"
+}
+song = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_2"
+}
+song = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_3"
+}
+song = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_4"
+}
+song = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_5"
+}
+song = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_6"
+}
+song = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_7"
+}
+song = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_8"
+}
+song = {
+	name = "song_Star_Trek_The_Undiscovered_Country_1"
+}
+song = {
+	name = "song_Star_Trek_V_The_Final_Frontier_Expanded_1"
+}
+song = {
+	name = "song_Star_Trek_V_The_Final_Frontier_Expanded_2"
+}
+song = {
+	name = "song_Star_Trek_Der_Aufstand"
+}
+song = {
+	name = "song_Star_Trek_Nemesis"
+}
+song = {
+	name = "song_Star_Trek_Online_Ascension_Exploration_1"
+}
+song = {
+	name = "song_Star_Trek_Online_Ascension_Exploration_2"
+}
+song = {
+	name = "song_Star_Trek_Online_Ascension_Exploration_3"
+}
+song = {
+	name = "song_Star_Trek_Online_Ascension_Exploration_7"
+}
+song = {
+	name = "song_Star_Trek_Online_Cardassian_Battle_1"
+}
+song = {
+	name = "song_Star_Trek_Online_Cardassian_Battle_3"
+}
+song = {
+	name = "song_Star_Trek_Online_Chase_2"
+}
+song = {
+	name = "song_Star_Trek_Online_Delta_Rising_Combat_6"
+}
+song = {
+	name = "song_Star_Trek_Online_Delta_Rising_Exploration"
+}
+song = {
+	name = "song_Star_Trek_Online_Discovery_Exploration"
+}
+song = {
+	name = "song_Star_Trek_Online_Drozana_Exploration_2"
+}
+song = {
+	name = "song_Star_Trek_Online_DS9_Ground_Theme"
+}
+song = {
+	name = "song_Star_Trek_Online_Exploration_1"
+}
+song = {
+	name = "song_Star_Trek_Online_Exploration_2"
+}
+song = {
+	name = "song_Star_Trek_Online_Exploration_3"
+}
+song = {
+	name = "song_Star_Trek_Online_Exploration_4"
+}
+song = {
+	name = "song_Star_Trek_Online_Exploration_5"
+}
+song = {
+	name = "song_Star_Trek_Online_Exploration_6"
+}
+song = {
+	name = "song_Star_Trek_Online_Exploration_7"
+}
+song = {
+	name = "song_Star_Trek_Online_Generic_Battle_6"
+}
+song = {
+	name = "song_Star_Trek_Online_Generic_Battle_7"
+}
+song = {
+	name = "song_Star_Trek_Online_Hur'q_Theme"
+}
+song = {
+	name = "song_Star_Trek_Online_Iconian_War_Exploration"
+}
+song = {
+	name = "song_Star_Trek_Online_Klingon_Battle_1"
+}
+song = {
+	name = "song_Star_Trek_Online_Klingon_Battle_2"
+}
+song = {
+	name = "song_Star_Trek_Online_Klingon_Battle_3"
+}
+song = {
+	name = "song_Star_Trek_Online_Klingon_Battle_4"
+}
+song = {
+	name = "song_Star_Trek_Online_Klingon_Battle_5"
+}
+song = {
+	name = "song_Star_Trek_Online_Klingon_Battle_6"
+}
+song = {
+	name = "song_Star_Trek_Online_Klingon_Battle_7"
+}
+song = {
+	name = "song_Star_Trek_Online_Main_Theme_Original"
+}
+song = {
+	name = "song_Star_Trek_Online_Romulan_Battle_1"
+}
+song = {
+	name = "song_Star_Trek_Online_Romulan_Battle_2"
+}
+song = {
+	name = "song_Star_Trek_Online_Romulan_Battle_3"
+}
+song = {
+	name = "song_Star_Trek_Online_Romulan_Battle_4"
+}
+song = {
+	name = "song_Star_Trek_Online_Theme"
+}
+song = {
+	name = "song_Star_Trek_Online_Victory_Is_life_Exploration_1"
+}
+song = {
+	name = "song_Star_Trek_Picard_S1_Borg_Cube"
+}
+song = {
+	name = "song_Star_Trek_Picard_S1_Children_Of_Mars_End_Credits"
+}
+song = {
+	name = "song_Star_Trek_Picard_S1_End_Title"
+}
+song = {
+	name = "song_Star_Trek_Picard_S1_Jeff_Russo_Main_Title_Sequence"
+}
+song = {
+	name = "song_Star_Trek_Picard_S1_Jeff_Russo_Walking_With_Number_One"
+}
+song = {
+	name = "song_Star_Trek_Picard_S1_Page"
+}
+song = {
+	name = "song_Star_Trek_Picard_S1_Talking_To_Data"
+}
+song = {
+	name = "song_Star_Trek_Picard_S1_The_Painting"
+}
+song = {
+	name = "song_Star_Trek_Picard_S2_A_Taste_of_Freedom"
+}
+song = {
+	name = "song_Star_Trek_Picard_S2_Main_Title"
+}
+song = {
+	name = "song_Star_Trek_Picard_S2_Second_Chances"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_A_New_Family"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Catch_Me_First"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Dominion"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Extended_End_Title"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Family_Reunion"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Frontier_Day"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Hail_The_Fleet"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Hello_Beautiful"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Impossible"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_La_Forges"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Leaving_Spacedock"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Legacies"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Make_It_So"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Names_Mean_Everything"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_The_Stars_End_Credits"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_This_Ends_Tonight"
+}
+song = {
+	name = "song_Star_Trek_Picard_S3_Trust_Me"
+}
+song = {
+	name = "song_Star_Trek_Treffen_der_Generationen"
+}

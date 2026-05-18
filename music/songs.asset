@@ -1,0 +1,665 @@
+######### HRB MUSIC ###########
+music = {
+	name = "song_frontiers"
+	file = "frontiers.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_rigelian_fever"
+	file = "rigelianfever.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_farpoint"
+	file = "farpoint.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_obsidian"
+	file = "obsidian.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_the_empath"
+	file = "theempath.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_kalhyah"
+	file = "kalhyah.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_alliance"
+	file = "alliance.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_peldor_joi"
+	file = "peldorjoi.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_rules_of_acquisition"
+	file = "rulesofacquisition.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_resurgence"
+	file = "resurgence.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_red_thread"
+	file = "redthread.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_cybernetic"
+	file = "cybernetic.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_shore_leave"
+	file = "shoreleave.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_aperture"
+	file = "aperture.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_endgame"
+	file = "endgame.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_call_of_the_void"
+	file = "callofthevoid.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_hourglass"
+	file = "hourglass.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_live_long"
+	file = "livelong.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_the_raptors_wing"
+	file = "theraptorswing.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_the_first_hebitians"
+	file = "thefirsthebitians.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_deep_space"
+	file = "deepspace.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_the_enterprise"
+	file = "theenterprise.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_dark_frontier"
+	file = "darkfrontier.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_time_lapse"
+	file = "timelapse.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_hornblower"
+	file = "hornblower.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_nivar"
+	file = "nivar.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_make_it_so"
+	file = "makeitso.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_paranoia"
+	file = "paranoia.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_the_neutral_zone"
+	file = "theneutralzone.ogg"
+	volume = 0.20
+}
+music = {
+	name = "song_starfleet"
+	file = "starfleet.ogg"
+	volume = 0.20
+}
+
+
+# CP26 integrated ST soundtrack pack
+
+
+#Ingame Music#
+
+music = {
+	name = "song_Star_Trek_Discovery_Opening_Sequence"
+	file = "Star Trek Discovery Opening Sequence.ogg"
+	volume = 0.42
+}
+music = {
+	name = "song_Star_Trek_Into_Darkness_01"
+	file = "Star Trek Into Darkness [Soundtrack] - 01 - Logos - Pranking The Natives.ogg"
+	volume = 0.42
+}
+music = {
+	name = "song_Star_Trek_Into_Darkness_03"
+	file = "Star Trek Into Darkness [Soundtrack] - 03 - Sub Prime Directive.ogg"
+	volume = 0.42
+}
+music = {
+	name = "song_Star_Trek_Into_Darkness_04"
+	file = "Star Trek Into Darkness [Soundtrack] - 04 - London Calling.ogg"
+	volume = 0.42
+}
+music = {
+	name = "song_New_Romulus"
+	file = "Star Trek Online (UST)_ Legacy of Romulus - New Romulus.ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Romulan_Ambient_1"
+	file = "Star Trek Online (UST)_ Legacy of Romulus - Romulan Ambient 1 (2013).ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Romulan_Ambient_2"
+	file = "Star Trek Online (UST)_ Legacy of Romulus - Romulan Ambient 2 (2013).ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Romulan_Battle_1"
+	file = "Star Trek Online (UST)_ Legacy of Romulus - Romulan Battle 1 (2013).ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Romulan_Battle_2"
+	file = "Star Trek Online (UST)_ Legacy of Romulus - Romulan Battle 2 (2013).ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Romulan_Battle_3"
+	file = "Star Trek Online (UST)_ Legacy of Romulus - Romulan Battle 3 (2013).ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Romulan_Battle_4"
+	file = "Star Trek Online (UST)_ Legacy of Romulus - Romulan Battle 4 (2013).ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Romulan_Tutorial_Intro"
+	file = "Star Trek Online (UST)_ Legacy of Romulus - Romulan Tutorial Intro.ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Star_Trek_Reboot_Intro"
+	file = "Star Trek Soundtrack - Enterprising Young Men.ogg"
+	volume = 0.38
+}
+music = {
+	name = "song_Star_Trek_Voyager_Intro"
+	file = "Star Trek Voyager - 4k _ HD Intro Recreation-converted.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_The_Next_Generation_theme"
+	file = "Star Trek_ The Next Generation theme (HQ).ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Back_in_Order"
+	file = "Star Trek_ TNG - 11001001 _Back in Order_ (HQ).ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_III_The_Search_for_Spock_1"
+	file = "Star Trek III The Search for Spock 1.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_III_The_Search_for_Spock_2"
+	file = "Star Trek III The Search for Spock 2.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_II-The_Wrath_of_Khan_Soundtrack_1"
+	file = "Star Trek II-The Wrath of Khan Soundtrack 1.ogg"
+	volume = 0.30
+}
+music = {
+	name = "song_Star_Trek_II-The_Wrath_of_Khan_Soundtrack_2"
+	file = "Star Trek II-The Wrath of Khan Soundtrack 2.ogg"
+	volume = 0.30
+}
+music = {
+	name = "song_Star_Trek_II-The_Wrath_of_Khan_Soundtrack_3"
+	file = "Star Trek II-The Wrath of Khan Soundtrack 3.ogg"
+	volume = 0.30
+}
+music = {
+	name = "song_Star_Trek_II-The_Wrath_of_Khan_Soundtrack_4"
+	file = "Star Trek II-The Wrath of Khan Soundtrack 4.ogg"
+	volume = 0.30
+}
+music = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_1"
+	file = "Star Trek The Motion Picture Soundtrack 1.ogg"
+	volume = 0.50
+}
+music = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_2"
+	file = "Star Trek The Motion Picture Soundtrack 2.ogg"
+	volume = 0.50
+}
+music = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_3"
+	file = "Star Trek The Motion Picture Soundtrack 3.ogg"
+	volume = 0.50
+}
+music = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_4"
+	file = "Star Trek The Motion Picture Soundtrack 4.ogg"
+	volume = 0.50
+}
+music = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_5"
+	file = "Star Trek The Motion Picture Soundtrack 5.ogg"
+	volume = 0.50
+}
+music = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_6"
+	file = "Star Trek The Motion Picture Soundtrack 6.ogg"
+	volume = 0.50
+}
+music = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_7"
+	file = "Star Trek The Motion Picture Soundtrack 7.ogg"
+	volume = 0.50
+}
+music = {
+	name = "song_Star_Trek_The_Motion_Picture_Soundtrack_8"
+	file = "Star Trek The Motion Picture Soundtrack 8.ogg"
+	volume = 0.50
+}
+music = {
+	name = "song_Star_Trek_The_Undiscovered_Country_1"
+	file = "Star Trek The Undiscovered Country 1.ogg"
+	volume = 0.35
+}
+music = {
+	name = "song_Star_Trek_V_The_Final_Frontier_Expanded_1"
+	file = "Star Trek V The Final Frontier (Expanded) 1.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_V_The_Final_Frontier_Expanded_2"
+	file = "Star Trek V The Final Frontier (Expanded) 2.ogg"
+	volume = 0.40
+}
+
+
+music = {
+	name = "song_Star_Trek_Der_Aufstand"
+	file = "Star Trek Der Aufstand.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Nemesis"
+	file = "Star Trek Nemesis.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Ascension_Exploration_1"
+	file = "Star Trek Online Ascension Exploration 1.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Ascension_Exploration_2"
+	file = "Star Trek Online Ascension Exploration 2.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Ascension_Exploration_3"
+	file = "Star Trek Online Ascension Exploration 3.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Ascension_Exploration_7"
+	file = "Star Trek Online Ascension Exploration 7.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Cardassian_Battle_1"
+	file = "Star Trek Online Cardassian Battle 1.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Cardassian_Battle_3"
+	file = "Star Trek Online Cardassian Battle 3.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Chase_2"
+	file = "Star Trek Online Chase 2.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Delta_Rising_Combat_6"
+	file = "Star Trek Online Delta Rising Combat 6.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Delta_Rising_Exploration"
+	file = "Star Trek Online Delta Rising Exploration.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Discovery_Exploration"
+	file = "Star Trek Online Discovery Exploration.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Drozana_Exploration_2"
+	file = "Star Trek Online Drozana Exploration 2.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_DS9_Ground_Theme"
+	file = "Star Trek Online DS9 Ground Theme.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Exploration_1"
+	file = "Star Trek Online Exploration 1.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Exploration_2"
+	file = "Star Trek Online Exploration 2.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Exploration_3"
+	file = "Star Trek Online Exploration 3.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Exploration_4"
+	file = "Star Trek Online Exploration 4.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Exploration_5"
+	file = "Star Trek Online Exploration 5.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Exploration_6"
+	file = "Star Trek Online Exploration 6.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Exploration_7"
+	file = "Star Trek Online Exploration 7.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Generic_Battle_6"
+	file = "Star Trek Online Generic Battle 6.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Generic_Battle_7"
+	file = "Star Trek Online Generic Battle 7.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Hur'q_Theme"
+	file = "Star Trek Online Hur'q Theme.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Iconian_War_Exploration"
+	file = "Star Trek Online Iconian War Exploration.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Klingon_Battle_1"
+	file = "Star Trek Online Klingon Battle 1.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Klingon_Battle_2"
+	file = "Star Trek Online Klingon Battle 2.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Klingon_Battle_3"
+	file = "Star Trek Online Klingon Battle 3.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Klingon_Battle_4"
+	file = "Star Trek Online Klingon Battle 4.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Klingon_Battle_5"
+	file = "Star Trek Online Klingon Battle 5.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Klingon_Battle_6"
+	file = "Star Trek Online Klingon Battle 6.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Klingon_Battle_7"
+	file = "Star Trek Online Klingon Battle 7.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Main_Theme_Original"
+	file = "Star Trek Online Main Theme (Original).ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Romulan_Battle_1"
+	file = "Star Trek Online Romulan Battle 1.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Romulan_Battle_2"
+	file = "Star Trek Online Romulan Battle 2.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Romulan_Battle_3"
+	file = "Star Trek Online Romulan Battle 3.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Romulan_Battle_4"
+	file = "Star Trek Online Romulan Battle 4.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Theme"
+	file = "Star Trek Online Theme.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Online_Victory_Is_life_Exploration_1"
+	file = "Star Trek Online Victory Is life Exploration 1.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S1_Borg_Cube"
+	file = "Star Trek Picard S1 Borg Cube.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S1_Children_Of_Mars_End_Credits"
+	file = "Star Trek Picard S1 Children Of Mars End Credits.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S1_End_Title"
+	file = "Star Trek Picard S1 End Title.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S1_Jeff_Russo_Main_Title_Sequence"
+	file = "Star Trek Picard S1 Jeff Russo - Main Title Sequence.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S1_Jeff_Russo_Walking_With_Number_One"
+	file = "Star Trek Picard S1 Jeff Russo - Walking With Number One.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S1_Page"
+	file = "Star Trek Picard S1 Page.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S1_Talking_To_Data"
+	file = "Star Trek Picard S1 Talking To Data.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S1_The_Painting"
+	file = "Star Trek Picard S1 The Painting.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S2_A_Taste_of_Freedom"
+	file = "Star Trek Picard S2 A Taste of Freedom.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S2_Main_Title"
+	file = "Star Trek Picard S2 Main Title.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S2_Second_Chances"
+	file = "Star Trek Picard S2 Second Chances.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_A_New_Family"
+	file = "Star Trek Picard S3 A New Family.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Catch_Me_First"
+	file = "Star Trek Picard S3 Catch Me First.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Dominion"
+	file = "Star Trek Picard S3 Dominion.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Extended_End_Title"
+	file = "Star Trek Picard S3 Extended End Title.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Family_Reunion"
+	file = "Star Trek Picard S3 Family Reunion.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Frontier_Day"
+	file = "Star Trek Picard S3 Frontier Day.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Hail_The_Fleet"
+	file = "Star Trek Picard S3 Hail The Fleet.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Hello_Beautiful"
+	file = "Star Trek Picard S3 Hello, Beautiful.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Impossible"
+	file = "Star Trek Picard S3 Impossible.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_La_Forges"
+	file = "Star Trek Picard S3 La Forges.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Leaving_Spacedock"
+	file = "Star Trek Picard S3 Leaving Spacedock.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Legacies"
+	file = "Star Trek Picard S3 Legacies.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Make_It_So"
+	file = "Star Trek Picard S3 Make It So.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Names_Mean_Everything"
+	file = "Star Trek Picard S3 Names Mean Everything.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_The_Stars_End_Credits"
+	file = "Star Trek Picard S3 The Stars – End Credits.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_This_Ends_Tonight"
+	file = "Star Trek Picard S3 This Ends Tonight.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Picard_S3_Trust_Me"
+	file = "Star Trek Picard S3 Trust Me.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Star_Trek_Treffen_der_Generationen"
+	file = "Star Trek Treffen der Generationen.ogg"
+	volume = 0.40
+}
