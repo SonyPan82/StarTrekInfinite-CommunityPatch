@@ -1839,3 +1839,20 @@ Session du 2026-05-16 (arc Mars - nouvelles classes + arc synthétiques)
 [UX][LOW] Popup début de partie : toggle arc synthétique
   Ajout options cp26_options.1.synth_arc_on/off (activé par défaut).
   Flag : cp26_block_synth_arc. Positionné après Supernova, avant Confirmer.
+
+--------------------------------------------------------------------------------
+Session du 2026-05-19 (polish HRBTODO - localisation visible joueur)
+--------------------------------------------------------------------------------
+
+[FIX][LOW] Nettoyage des placeholders HRBTODO visibles dans l'interface
+  Ajout d'overrides EN/FR pour :
+  - strategic_market_desc
+  - negotiation_situation_type
+  - negotiation_situation_desc
+  - suspicious_flares_situation_type
+  - ACTION_INSTIGATE_RIVALRY_DESC
+  - ACTION_SUPPORT_RIVALRY_DESC
+  - ACTION_DISSOLVE_NEUTRAL_ZONE_COST
+  Impact : aucun changement gameplay ; amélioration directe du polish UI
+  sur le marché stratégique, certaines situations et plusieurs tooltips
+  diplomatiques vanilla restés à l'état placeholder.

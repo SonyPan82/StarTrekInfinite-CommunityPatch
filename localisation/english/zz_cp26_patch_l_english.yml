@@ -449,3 +449,14 @@
  # Earth surveillance modifier
  cp26_rom_earth_surveillance:0 "Unusual Subspace Activity"
  cp26_rom_earth_surveillance_desc:0 "Starfleet sensors are detecting low-level subspace anomalies consistent with covert intelligence operations. The source has not been identified."
+
+ # HRB_TODO cleanup - market, situations, diplomacy
+ strategic_market_desc:0 "Purchase rare materials through an enclave-run strategic market. Stock is limited and prices reflect current demand."
+
+ negotiation_situation_type:0 "Diplomatic Arbitration"
+ negotiation_situation_desc:0 "A diplomatic dispute is being handled through formal arbitration channels. Careful negotiation may defuse tensions or strengthen your position."
+ suspicious_flares_situation_type:0 "Suspicious Flares"
+
+ ACTION_INSTIGATE_RIVALRY_DESC:3 "Encourage tensions between foreign powers and push them toward open rivalry."
+ ACTION_SUPPORT_RIVALRY_DESC:3 "Support one side in an emerging rivalry to worsen relations and deepen the divide."
+ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"

@@ -936,3 +936,14 @@
  # Modificateur de surveillance sur Earth
  cp26_rom_earth_surveillance:0 "Activité subspaciale anormale"
  cp26_rom_earth_surveillance_desc:0 "Les capteurs de Starfleet détectent des anomalies subspaciales de faible intensité compatibles avec des opérations de renseignement clandestines. La source n'a pas été identifiée."
+
+ # Nettoyage HRB_TODO - marche, situations, diplomatie
+ strategic_market_desc:0 "Achetez des matériaux rares via un marché stratégique géré par une enclave. Les stocks sont limités et les prix suivent la demande."
+
+ negotiation_situation_type:0 "Arbitrage diplomatique"
+ negotiation_situation_desc:0 "Un différend diplomatique est traité par des canaux d'arbitrage formels. Une négociation habile peut apaiser les tensions ou renforcer votre position."
+ suspicious_flares_situation_type:0 "Éruptions suspectes"
+
+ ACTION_INSTIGATE_RIVALRY_DESC:3 "Encourage les tensions entre puissances étrangères afin de les pousser vers une rivalité ouverte."
+ ACTION_SUPPORT_RIVALRY_DESC:3 "Soutient un camp dans une rivalité émergente afin d'aggraver les relations et d'approfondir la fracture."
+ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"

@@ -13,7 +13,11 @@
 
 Ces clés de localisation sont encore à leur valeur placeholder dans STI.
 Elles s'affichent directement dans l'interface de jeu.
-CP26 NE les overrides PAS encore.
+État CP26 au 2026-05-19 :
+  - [1] à [7] sont désormais overridés dans
+    localisation/english/zz_cp26_patch_l_english.yml et
+    localisation/french/zz_cp26_patch_l_french.yml.
+  - Ils sont conservés ci-dessous comme trace de l'audit vanilla.
 
   [1] strategic_market_desc
       Fichier : localisation/english/replace/megacorp_l_english.yml
@@ -144,6 +148,21 @@ CP26 NE les overrides PAS encore.
   ✓ caravaneer_events.txt TEST globals (global_player, global_support)
     → Ignorés — variables de test internes sans impact joueur
 
+  ✓ strategic_market_desc
+    → Description de marché stratégique remplacée dans CP26
+
+  ✓ negotiation_situation_type / negotiation_situation_desc
+    → Noms et description de la situation de négociation remplacés dans CP26
+
+  ✓ suspicious_flares_situation_type
+    → Type de situation remplacé dans CP26
+
+  ✓ ACTION_INSTIGATE_RIVALRY_DESC / ACTION_SUPPORT_RIVALRY_DESC
+    → Tooltips diplomatiques placeholders remplacés dans CP26
+
+  ✓ ACTION_DISSOLVE_NEUTRAL_ZONE_COST
+    → Coût/tooltip de dissolution de zone neutre recâblé proprement dans CP26
+
 
 ════════════════════════════════════════════════════════════════════════
  SECTION 5 — HORS PORTÉE MOD (pour information)
@@ -169,9 +188,9 @@ CP26 NE les overrides PAS encore.
 ════════════════════════════════════════════════════════════════════════
 
   FACILE / IMPACT IMMÉDIAT :
-    [1]  strategic_market_desc         — 1 ligne de localisation
-    [2-4] situations placeholders      — 3-4 lignes de localisation
-    [5-7] diplomatic action descs      — 3 lignes de localisation
+    [FAIT] [1]  strategic_market_desc
+    [FAIT] [2-4] situations placeholders
+    [FAIT] [5-7] diplomatic action descs
 
   MOYEN / IMPACT GAMEPLAY :
     [10-11] buildings crystal/mote     — override 2 bâtiments, ajouter job outputs
