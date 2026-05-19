@@ -479,7 +479,7 @@ bespoke_procedural_scenario = {
 
 	system = {
 		name = "NAME_Beta_Penthe" position = { x = -60.9 y = 315.3 }
-		initializer = klingon_outpost_initializer spawn_weight = { base = 1 }
+		initializer = beta_penthe_system_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {

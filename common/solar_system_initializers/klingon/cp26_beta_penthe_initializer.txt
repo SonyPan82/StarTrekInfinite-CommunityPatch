@@ -1,0 +1,68 @@
+beta_penthe_system_initializer = {
+	name = "NAME_Beta_Penthe"
+	class = "rl_all_stars"
+	usage = static_system_init
+	flags = { outpost klingon_system klingon rura_penthe_system }
+
+	planet = {
+		name = "NAME_Beta_Penthe"
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+		size = { min = 20 max = 30 }
+		has_ring = no
+
+		init_effect = {
+			set_planet_flag = ignore_startup_effect
+		}
+	}
+
+	change_orbit = 50
+
+	planet = {
+		count = 3
+		class = rl_unhabitable_planets
+		orbit_distance = { min = 20 max = 30 }
+		home_planet = no
+	}
+
+	planet = {
+		count = 2
+		class = rl_unhabitable_planets
+		orbit_distance = { min = 20 max = 30 }
+		home_planet = no
+	}
+
+	planet = {
+		name = "NAME_Beta_Penthe_Rura"
+		count = 1
+		class = pc_arctic
+		subclass = psc_class_m
+		orbit_distance = { min = 20 max = 30 }
+		size = 11
+		home_planet = no
+		modifiers = none
+		flags = { planet_rura_penthe bespoke_colony mapo_colony }
+
+		late_init_effect = {
+			create_rura_penthe_colony = yes
+		}
+	}
+
+	init_effect = {
+		every_country = {
+			if = {
+				limit = { has_country_flag = klingon }
+				save_global_event_target_as = klingon_country
+			}
+		}
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	late_init_effect = {
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:klingon_country
+		}
+	}
+}
