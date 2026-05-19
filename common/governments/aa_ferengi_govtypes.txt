@@ -2,8 +2,6 @@ gov_social_autocracy_ferengi = {
 	ruler_title = RT_RULER
 	ruler_title_female = RT_RULER_FEMALE
 
-	should_force_rename = yes
-
 	possible = { has_authority = auth_dictatorial_ferengi }
 	weight = { base = 10000 }
 }

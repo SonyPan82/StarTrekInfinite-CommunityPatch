@@ -14,9 +14,6 @@ ferengi_player_initializer = {
 
 		init_effect = {
 			change_pc = pc_k_star
-			set_star_flag = ferengi_home_system
-			set_star_flag = ferengi_system
-			set_star_flag = ferengi
 			save_global_event_target_as = ferengi_primary_star
 		}
 	}
@@ -80,6 +77,9 @@ ferengi_player_initializer = {
 
 	init_effect = {
 		generate_home_system_resources = yes
+		set_star_flag = ferengi_home_system
+		set_star_flag = ferengi_system
+		set_star_flag = ferengi
 		every_neighbor_system = { set_star_flag = empire_cluster }
 	}
 }
@@ -100,9 +100,6 @@ ferengi_system_initializer = {
 
 		init_effect = {
 			change_pc = pc_k_star
-			set_star_flag = ferengi_home_system
-			set_star_flag = ferengi_system
-			set_star_flag = ferengi
 			save_global_event_target_as = ferengi_primary_star
 		}
 	}
@@ -258,6 +255,9 @@ ferengi_system_initializer = {
 
 	init_effect = {
 		generate_home_system_resources = yes
+		set_star_flag = ferengi_home_system
+		set_star_flag = ferengi_system
+		set_star_flag = ferengi
 		every_neighbor_system = { set_star_flag = empire_cluster }
 		every_country = {
 			if = {

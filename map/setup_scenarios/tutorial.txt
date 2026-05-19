@@ -351,7 +351,7 @@ bespoke_procedural_scenario = {
 
 	system = {
 		id = "970"
-		name = "NAME_Ferenginar" position = { x = 7.0 y = 208.0 }
+		name = "NAME_Ferenginar" position = { x = 55.0 y = 220.0 }
 		initializer = ferengi_player_initializer spawn_weight = { base = 1 }
 	}
 

@@ -1,0 +1,22 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_tr_empire_dummy1"
+		textureFile = "gfx/interface/icons/traditions/tradition_diplomacy_open_markets.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_empire_dummy2"
+		textureFile = "gfx/interface/icons/traditions/tradition_prosperity_pursuit_of_profit.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_empire_dummy3"
+		textureFile = "gfx/interface/icons/traditions/tradition_supremacy_master_shipwrights.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_empire_dummy4"
+		textureFile = "gfx/interface/icons/traditions/tradition_discovery_polytechnic_education.dds"
+	}
+	spriteType = {
+		name = "GFX_tr_empire_dummy5"
+		textureFile = "gfx/interface/icons/traditions/tradition_harmony_the_greater_good.dds"
+	}
+}
