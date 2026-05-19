@@ -1,266 +1,124 @@
 ================================================================================
-CP26 — Community Patch 2026
-Historique des versions (maj 2026-05-19)
+CP26 -- Community Patch 2026 | Historique des versions
+Derniere mise a jour : 2026-05-19
 ================================================================================
 
-Format : vX.Y.Z | DATE | HASH | Description
-  X = version majeure (refonte ou rupture de compatibilité)
-  Y = version mineure (nouvelle feature ou contenu significatif)
-  Z = correctif/patch (bugfix, ajustement, contenu mineur)
-
+REGLE DE VERSIONING
 --------------------------------------------------------------------------------
-PHASE 1 — FONDATION (2026-05-02 → 2026-05-04)
---------------------------------------------------------------------------------
+  X.Y.0  ->  merge de dev/test vers main  =  bump de version mineure (Y)
+  X.Y.Z  ->  commits entre deux merges   =  patch (Z) ; traces ici mais
+             non tagues individuellement dans git
 
-v1.0.0 | 2026-05-02 | 118306a | Commit initial — Community Patch 2026
-  - Mise en place de la structure de base du mod
-  - Importation des fichiers CP26 existants
-
-v1.0.1 | 2026-05-03 | 6171eb4 | Contenu communautaire initial
-  - Ajout du contenu de base du patch communautaire
-
-v1.0.2 | 2026-05-03 | 4abf373 | Correctifs communautaires initiaux
-  - Application des premiers correctifs de la communauté
-
-v1.1.0 | 2026-05-04 | 31442b4 | Merge devsynth : correctifs Mars/Luna/Denobula
-  - Restauration des events vanilla manquants
-  - Correction des setups de colonie Mars/Luna/Denobula
-  - Nettoyage des conflits de bâtiments capitaux
-  - Refonte des bonus Mars & Luna (sans effets globaux)
-  - Correction du spam d'erreurs de classe planétaire
-
---------------------------------------------------------------------------------
-PHASE 2 — CONSTRUCTION DU MONDE (2026-05-05 → 2026-05-06)
---------------------------------------------------------------------------------
-
-v1.1.1 | 2026-05-05 | 735b18c | Spawn Gorn + chantier spatial IA + système Athan
-  - Correction du spawn Gorn et des problèmes de couleur
-  - Implémentation du chantier spatial IA
-  - Ajout du système Athan
-
-v1.1.2 | 2026-05-05 | 627ba1c | Correction Athan + intégration Klingon
-  - Fix du système Athan
-  - Ajout des éléments Klingons initiaux
-
-v1.1.3 | 2026-05-05 | bfda101 | Réorganisation des dossiers du mod
-  - Restructuration de l'arborescence de fichiers
-
-v1.1.4 | 2026-05-05 | 2f33c11 | Ajout du Trou de Ver Bajoran
-  - Intégration du système du Trou de Ver Bajoran dans la carte
-
-v1.1.5 | 2026-05-05 | 199cbe2 | Quadrant Gamma
-  - Setup du Quadrant Gamma sur la carte
-
-v1.1.6 | 2026-05-05 | 258e45a | Correction classes Miranda / Governor
-  - Fix des problèmes avec les vaisseaux Miranda et Governor
-
-v1.1.7 | 2026-05-06 | 72a3920 | Correction localisation anglaise
-  - Correction des clés de localisation manquantes en anglais
-
-v1.1.8 | 2026-05-06 | 64fb05d | Fix E-E / Emplacements / Odyssey
-  - Corrections diverses sur les emplacements et le vaisseau Odyssey
-
-v1.1.9 | 2026-05-06 | f5991b1 | Fix Odyssey / Luna / Gorn / Borg (session complète)
-  - Correction des traînées moteur Odyssey et Luna
-  - Fix des mondes barre habitables personnalisés (Luna, Mars, Remus)
-  - Spawn Gorn plus flexible
-  - Correction de l'event de spawn des cubes Borg
-  - Ajout des clés de localisation manquantes pour les tailles de vaisseaux
-  - Nettoyage des chemins d'override du mod
-
---------------------------------------------------------------------------------
-PHASE 3 — KLINGONS & DIPLOMATIE (2026-05-07 → 2026-05-08)
---------------------------------------------------------------------------------
-
-v1.2.0 | 2026-05-07 | 2fe3bab | Diplomatie + Gorn
-  - Améliorations du système diplomatique
-  - Ajustements Gorn
-
-v1.2.1 | 2026-05-07 | fc8c19c | Fix points d'attache Klingon (part1)
-  - Correction des points d'attache des vaisseaux Klingons
-
-v1.2.2 | 2026-05-07 | 8faa327 | Guerre & Vassalisation / Warp
-  - Correctifs sur la guerre, la vassalisation et le système warp
-
-v1.2.3 | 2026-05-07 | 916e353 | Fix Wrap / Guerre / Breen
-  - Corrections supplémentaires pour la guerre, le transport et les Breen
-
-v1.2.4 | 2026-05-08 | adebff6 | Fix crashes majeurs guerre / diplomatie / planètes
-  - Correction des crashs lors des guerres majeures
-  - Fix des crashs diplomatiques
-  - Correction des crashs sur planètes non colonisées
-
---------------------------------------------------------------------------------
-PHASE 4 — SETUP GALACTIQUE (2026-05-10 → 2026-05-11)
---------------------------------------------------------------------------------
-
-v1.3.0 | 2026-05-10 | e1d4d0c | Carte stellaire v2
-  - Refonte/amélioration de la carte stellaire
-
-v1.3.1 | 2026-05-11 | deba256 | Configuration IA galactique
-  - Paramétrage du comportement IA sur la carte
-
-v1.3.2 | 2026-05-11 | c2bbf55 | Galaxy Setup : spawn Gorn + IA
-  - Finalisation du spawn Gorn dans le setup galactique
-  - Optimisation des options IA
-
---------------------------------------------------------------------------------
-PHASE 5 — STABILITÉ & FLOTTES (2026-05-12 → 2026-05-15)
---------------------------------------------------------------------------------
-
-v1.3.3 | 2026-05-12 | d5d9787 | Fix Luna / Traits
-  - Corrections sur Luna et les traits d'espèces
-
-v1.3.4 | 2026-05-14 | 5c6795f | Point de stabilité (stable)
-  - Checkpoint stable avant refonte des flottes
-
-v1.3.5 | 2026-05-14 | f06662f | Ajustements IA Gorn
-  - Optimisation du comportement IA Gorn
-
-v1.3.6 | 2026-05-14 | 7edebe3 | Système de limite de flotte v1
-  - Première implémentation du cap de flottes
-
-v1.3.7 | 2026-05-14 | b2339e7 | Système de limite de flotte v2
-  - Finalisation du cap de flottes (36 vaisseaux de ligne max)
-  - Vaisseaux héros/flagships sur règles séparées
-
-v1.3.8 | 2026-05-14 | ac97f9d | Fix crash SIGSEGV Cardassian + audit flotte round 2
-  - Correction du crash à la sauvegarde (SIGSEGV Cardassian)
-  - 6 correctifs de bugs + 2ème audit flotte réduite
-
-v1.3.9 | 2026-05-15 | 88707ce | Fix GFX / Del Breen / PopUp
-  - Corrections graphiques
-  - Ajustements Breen et popup de démarrage
-
---------------------------------------------------------------------------------
-PHASE 6 — ARC SYNTHÉTIQUE A500 (2026-05-16)
---------------------------------------------------------------------------------
-
-v1.4.0 | 2026-05-16 | d6ee1b0 | Fix gel de combat (OFFICERS_MAX_FIRE_RATE)
-  - CORRECTIF CRITIQUE : freeze infini en combat causé par
-    OFFICERS_MAX_FIRE_RATE_PENALTY=1.25 → ramené à 1.0 (valeur vanilla)
-  - Fix crash génération galaxie (SIGFPE) : restauration bajoran_bajor_initializer
-
-v1.4.1 | 2026-05-16 | a72747d | Arc narratif : Rébellion Synthétique A500
-  - Nouvelle technologie UFOP : Androïdes synthétiques A500
-  - Nouvelle décision planétaire : Déployer des synthétiques A500
-  - Arc narratif complet si déployés sur Mars (Utopia Planitia)
-  - 2 résolutions : militaire (combat) ou diplomatique (vaisseau scientifique)
-  - Profils d'espèces A500 + édit d'interdiction
-  - Journal de bord (situation log)
-
-v1.4.2 | 2026-05-16 | e5b51f4 | Designs de vaisseaux Arc A500
-  - Neo-Constitution, Sagan/Stargazer, Duderstadt
-  - Chaque classe débloquée par arbre de recherche dédié
-
-v1.4.3 | 2026-05-16 | f6e2c5e | Objectif Romulien — Projet Synth + refonte tailles vaisseaux
-  - Objectif Romulien si joueur Romulien présent : espionner Terre (90j)
-  - Projet Synth : décision nationale pour déclencher une rébellion synthétique
-  - Refonte complète des size_multiplier (référence : Luna=454m→5)
-  - UFOP, Klingon, Romulan, Cardassian : tailles canoniques
-
-v1.4.4 | 2026-05-16 | 2344910 | Descriptions Steam
-  - Rédaction et ajout des descriptions pour la page Steam Workshop
-
-v1.4.5 | 2026-05-16 | baccbfe | Enclaves Ferengi/El-Aurien + correctifs A500
-  - XuraCorp (enclave marchande Ferengi) à Ferenginar (47.5, 248.6)
-  - Ordre des Conservateurs El-Auriens (-310, 390)
-  - Fix namelist A500 (A500-AX01, etc.)
-  - Fix création espèce A500 (save_global_event_target_as)
-  - Fix édit d'interdiction (set_species_profile invalide dans Infinite)
-  - Fix traits A500 (pop_production_mult → planet_jobs_produces_mult)
-
---------------------------------------------------------------------------------
-PHASE 7 — FERENGI & CORRECTIFS GÉNÉRAUX (2026-05-17)
---------------------------------------------------------------------------------
-
-v1.4.6 | 2026-05-17 | b82a683 | Correctifs Cardassiens (mai 15)
-  - Compilation des correctifs Cardassiens de la session du 15
-
-v1.4.7 | 2026-05-17 | 03c3504 | Alliance Ferengi jouable
-  - Preset prescripted_countries pour les Ferengi
-  - Start screen dédié + gouvernement Ferengi
-  - Type ferengi_alliance → playable = yes
-  - Initializer hybride (réutilise pays joueur existant)
-
-v1.4.8 | 2026-05-17 | efa2361 | Correctifs réseau Ferengi (FEN)
-  - Correctifs divers sur le réseau Ferengi
-
-v1.4.9 | 2026-05-17 | 80eeb43 | Correctifs Arc Mars
-  - Fix A500 double espèce (B1) : event target et flag cp26_a500_species_created
-  - Fix boucle dévastating incontrôlée (B2) : vérification flag rébellion active
-  - Fix boucle à dévastation max (D3) : plafond planet_devastation < 95
-  - Optimisation scan galactique (O1) : Mars sauvegardée en event target global
-
-v1.5.0 | 2026-05-17 | 80189a4 | Refonte descriptions + Pirates
-  - Réécriture et amélioration des descriptions d'empires
-  - Correctifs sur les pirates
-
-v1.5.1 | 2026-05-17 | 9b37d5a | Ajustements mineurs de sortie (TinyOut)
-  - Petits ajustements d'output et de tuning
-
-v1.5.2 | 2026-05-17 | efa2361 | Arc Romulien solo (Projet Synth solo-accessible)
-  - L'arc Romulien se déclenche maintenant en partie solo (IA Romulienne)
-  - Chemin IA : déblocage automatique après 180 jours via cp26_synth_rom.10
-
---------------------------------------------------------------------------------
-PHASE 8 — CONTENU & POLISH (2026-05-18 → 2026-05-19)
---------------------------------------------------------------------------------
-
-v1.5.3 | 2026-05-18 | 677ca15 | Restauration des Caravaniers
-  - Restauration du contenu des Caravaniers
-
-v1.5.4 | 2026-05-18 | 6596a5e | Ajout de musique
-  - Ajout de nouvelles pistes musicales au mod
-
-v1.5.5 | 2026-05-19 | d0f50d6 | Rura Penthe
-  - Intégration de Rura Penthe dans le système Beta Penthe
-  - Planète rendue visible et colonisée (colonie pénitentiaire Klingonne)
-  - Event on_game_start_country cp26_setlik.3 pour fiabiliser le setup
-
---------------------------------------------------------------------------------
-VERSIONS RÉCENTES
---------------------------------------------------------------------------------
-
-v1.5.6 | 2026-05-19 | ef37dbe | Améliorations musicales
-  - Améliorations et corrections sur les fichiers musicaux
-
-v1.5.7 | 2026-05-19 | 283c4e6 | Index des fichiers
-  - Mise à jour de l'index des fichiers du mod
-
-v1.5.8 | 2026-05-19 | d148387 | Correction des placeholders
-  - Nettoyage des textes placeholder restants
-
-v1.5.9 | 2026-05-19 | a54f19a | Correctifs + descriptions
-  - Correctifs divers et mises à jour de descriptions
-
-v1.6.0 | 2026-05-19 | 49a3e00 | Alliance Ferengi jouable (écran de sélection)
-  - Intégration complète de l'Alliance Ferengi dans l'écran de sélection CP26
-  - Carte 302px dans liste horizontale (5 empires simultanément visibles)
-  - Localisation FR + EN complète (unique_mechanic, gouvernement, description)
-  - Correction empire_list_width_min_max (axe Y = largeur carte)
-  - Documentation interface GUI : Mod info/interface/EMPIRE_SELECTION_SCREEN.md
+  Tant qu'un merge vers main n'a pas eu lieu, on reste sur X.Y.x.
+  Le merge lui-meme est le commit "officiel" de la version X.(Y+1).0.
 
 ================================================================================
-BRANCHES
+v1.0 -- FONDATION (2026-05-02 -> 2026-05-04)
+================================================================================
+  Commits : 118306a -> 5822c8f
+
+  1.0.0  118306a  2026-05-02  Initial commit -- Community Patch 2026
+  1.0.1  6171eb4  2026-05-03  Contenu initial du patch communautaire
+  1.0.2  4abf373  2026-05-03  Correctifs initiaux du patch communautaire
+  1.0.3  5822c8f  2026-05-04  Sauvegarde avant premier merge sur main
+
+================================================================================
+v1.1 -- MERGE #1 : Baseline + Gorn + Klingon (2026-05-07)
+================================================================================
+  Merges sur main : 9e0f3bb, d877843, 2718b28
+
+  1.1.1  7dbb326  2026-05-07  Restauration baseline + fix spawn Gorn
+  1.1.2  fc8c19c  2026-05-07  Fix points d'attache Klingon (part1)
+  1.1.3  8faa327  2026-05-07  Guerre & Vassalisation / Warp
+
+  Contenu : diplomatie, spawn Gorn, points d'attache Klingon, systeme warp.
+
+================================================================================
+v1.2 -- MERGE #2 : Guerre / Breen / Crashes (2026-05-07 -> 2026-05-08)
+================================================================================
+  Merge sur main : aee744f
+
+  1.2.1  916e353  2026-05-07  Fix Wrap / Guerre / Breen
+  1.2.2  adebff6  2026-05-08  Fix crashes majeurs : guerre, diplomatie, planetes
+
+  Contenu : freeze de combat, crashs diplomatiques, planetes non colonisees.
+
+================================================================================
+v1.3 -- MERGE #3 : Carte stellaire & Galaxy Setup (2026-05-10 -> 2026-05-11)
+================================================================================
+  Merges sur main : 660a3ae, bf1d1dc, d49907c
+
+  1.3.1  6260cbc  2026-05-10  Fix Trou de Ver Bajoran / update CP
+  1.3.2  e1d4d0c  2026-05-10  Carte stellaire v2
+  1.3.3  deba256  2026-05-11  Galaxy Setup : configuration IA
+  1.3.4  42fb1cd  2026-05-11  Galaxy Setup : optimisation IA
+  1.3.5  c2bbf55  2026-05-11  Galaxy Setup : spawn Gorn finalise
+
+  Contenu : refonte carte, setup galactique complet, IA, Quadrant Gamma.
+
+================================================================================
+v1.4 -- MERGE #4 : Flottes & Stabilite (2026-05-12 -> 2026-05-15)
+================================================================================
+  Merges sur main : 1dc87c2, 4c9d1c4 (12 mai) + 17ea6ba (15 mai, test_colony)
+
+  1.4.1  d5d9787  2026-05-12  Fix Luna / Traits d'especes
+  1.4.2  ad3a284  2026-05-13  Migration : set_owner/set_colony_type/add_building
+  1.4.3  52a4d71  2026-05-13  Fix Glintara (create_pop -> owner_main_species)
+  1.4.4  c492d85  2026-05-13  Cap empires : 24 max, 4 mineurs desactives
+  1.4.5  ac97f9d  2026-05-14  Fix crash SIGSEGV Cardassian + audit flotte round 2
+  1.4.6  7edebe3  2026-05-14  Systeme limite de flotte v1 (36 vaisseaux de ligne)
+  1.4.7  b2339e7  2026-05-14  Systeme limite de flotte v2 (finalisation)
+  1.4.8  5c6795f  2026-05-14  Checkpoint stable
+  1.4.9  88707ce  2026-05-15  Fix GFX / Breen / PopUp de demarrage
+
+  Contenu : caps de flottes, tailles canoniques vaisseaux (Luna=5), fix SIGSEGV,
+  limite par shipyard (36 max), checkpoints de stabilite.
+
+================================================================================
+v1.5 -- EN COURS (2026-05-16 -> en cours) | PROCHAIN MERGE = v1.6.0
+================================================================================
+  Aucun merge vers main depuis le 15 mai.
+  Ces commits deviendront v1.6.0 au prochain merge vers main.
+
+  1.5.1  d6ee1b0  2026-05-16  [CRITIQUE] Fix gel combat (OFFICERS_MAX_FIRE_RATE 1.25->1.0)
+  1.5.2  a72747d  2026-05-16  Arc : Rebellion Synthetique A500 (Utopia Planitia)
+  1.5.3  e5b51f4  2026-05-16  Designs vaisseaux A500 (Neo-Constitution, Sagan, Duderstadt)
+  1.5.4  f6e2c5e  2026-05-16  Projet Synth Romulien + refonte tailles vaisseaux canoniques
+  1.5.5  2344910  2026-05-16  Descriptions Steam
+  1.5.6  baccbfe  2026-05-16  Enclaves XuraCorp Ferengi + Ordre El-Aurien + fix A500
+  1.5.7  b82a683  2026-05-17  Correctifs Cardassians
+  1.5.8  03c3504  2026-05-17  Alliance Ferengi jouable (prescripted_countries)
+  1.5.9  efa2361  2026-05-17  Correctifs reseau Ferengi (FEN)
+  1.5.10 80eeb43  2026-05-17  Correctifs arc Mars A500 (B1/B2/D3/O1)
+  1.5.11 80189a4  2026-05-17  Refonte descriptions + pirates
+  1.5.12 9b37d5a  2026-05-17  Ajustements mineurs de sortie
+  1.5.13 677ca15  2026-05-18  Restauration des Caravaniers
+  1.5.14 6596a5e  2026-05-18  Ajout de musique
+  1.5.15 d0f50d6  2026-05-19  Rura Penthe (colonie peniteciaire Klingonne)
+  1.5.16 ef37dbe  2026-05-19  Ameliorations musicales
+  1.5.17 283c4e6  2026-05-19  Index des fichiers du mod
+  1.5.18 d148387  2026-05-19  Nettoyage des placeholders
+  1.5.19 a54f19a  2026-05-19  Correctifs + descriptions  (HEAD main)
+
+  Sur dev uniquement (pas encore sur main) :
+  1.5.20 49a3e00  2026-05-19  Ecran selection CP26 : Ferengi jouable (GUI horizontal)
+                              -> deviendra v1.6.0 au merge vers main
+
+================================================================================
+ETAT DES BRANCHES
 ================================================================================
 
-  main   → branche de release stable
-  dev    → branche de développement actif (HEAD actuel)
-  test   → branche de tests / expérimentation
-  backup → snapshot de sauvegarde
+  main    -> release stable  (HEAD : a54f19a, v1.5.19)
+  dev     -> developpement   (HEAD : 49a3e00, v1.5.20 pre-merge)
+  test    -> experimentation (HEAD : a54f19a, aligne sur main)
+  backup  -> snapshot        (HEAD : 80189a4, v1.5.11)
 
 ================================================================================
-NOTES SUR LE VERSIONING
+PROCHAINE VERSION
 ================================================================================
 
-La numérotation sémantique suit la convention X.Y.Z :
-  - X (majeur) : incompatible avec les sauvegardes précédentes
-  - Y (mineur) : nouvelle feature, nouveau contenu jouable
-  - Z (patch)  : correctif, ajustement d'équilibre, contenu mineur
+  v1.6.0 : merge de dev vers main
+  Contenu prevu : Ferengi jouable (ecran selection), GUI empire list (302px),
+  fix empire_list_width_min_max, localisation FR+EN Ferengi complete.
 
-Les commits de merge, stash et les entrées WIP internes n'apparaissent
-pas dans ce fichier.
-
-Dernière mise à jour : 2026-05-19
 ================================================================================
