@@ -1,8 +1,16 @@
+is_ferengi_empire = {
+	OR = {
+		is_country_type = ferengi_alliance
+		has_country_flag = ferengi
+		has_country_id = "ferengi"
+	}
+}
+
 is_regular_empire = {
 	or = {
 		is_country_type = default
 		is_country_type = contender
-		is_country_type = ferengi_alliance
+		is_ferengi_empire = yes
 	}
 }
 

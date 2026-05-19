@@ -9,6 +9,12 @@ Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = e
 Session du 2026-05-19 (Rura Penthe / Beta Penthe)
 --------------------------------------------------------------------------------
 
+[TEST][MED] Ferengi rendus sélectionnables au menu Nouvelle partie
+  Ajout d'un preset `prescripted_countries/00_ferengi.txt`, d'un start screen
+  dédié, d'un gouvernement Ferengi léger et passage du type `ferengi_alliance`
+  en `playable = yes`. L'initializer Ferengi a aussi été rendu hybride afin de
+  réutiliser un pays joueur existant au lieu de créer un doublon.
+
 [FIX][LOW] Bâtiment Cardassien `Centre de contrôle de l'information`
   Override ciblé de `building_information_control_center_cardassian` pour
   supprimer proprement l'ancien faux prérequis Spiritualiste laissé en TODO

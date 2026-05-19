@@ -31,7 +31,7 @@ country_event = {
 				OR = {
 					is_country_type = default
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 

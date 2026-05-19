@@ -50,13 +50,13 @@ action_improve_relation = {
 			or = {
 				is_country_type = default
 				is_country_type = contender
-				is_country_type = ferengi_alliance
+				is_ferengi_empire = yes
 			}
 			from = {
 				or = {
 					is_country_type = default
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 				not = { has_ethic = ethic_fanatic_xenophobe }
 			}
@@ -139,13 +139,13 @@ action_harm_relation = {
 			or = {
 				is_country_type = default
 				is_country_type = contender
-				is_country_type = ferengi_alliance
+				is_ferengi_empire = yes
 			}
 			from = {
 				or = {
 					is_country_type = default
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
@@ -154,7 +154,7 @@ action_harm_relation = {
 				or = {
 					is_major = yes
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
@@ -376,14 +376,14 @@ action_form_defensive_pact = {
 		hidden_trigger = {
 			or = {
 				is_country_type = contender
-				is_country_type = ferengi_alliance
+				is_ferengi_empire = yes
 				is_major = yes
 			}
 			from = {
 				or = {
 					is_major = yes
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 				not = { has_ethic = ethic_fanatic_xenophobe }
 				not = { has_ethic = ethic_fanatic_militarist }
@@ -463,14 +463,14 @@ action_break_defensive_pact = {
 		hidden_trigger = {
 			or = {
 				is_country_type = contender
-				is_country_type = ferengi_alliance
+				is_ferengi_empire = yes
 				is_major = yes
 			}
 			from = {
 				or = {
 					is_major = yes
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
@@ -512,7 +512,7 @@ action_form_non_aggression_pact = {
 				or = {
 					is_major = yes
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 				not = { has_ethic = ethic_fanatic_militarist }
 			}
@@ -567,7 +567,7 @@ action_break_non_aggression_pact = {
 				or = {
 					is_major = yes
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
@@ -1307,7 +1307,7 @@ action_embassy = {
 				or = {
 					is_major = yes
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
@@ -1343,7 +1343,7 @@ action_recall_embassy = {
 				or = {
 					is_major = yes
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}

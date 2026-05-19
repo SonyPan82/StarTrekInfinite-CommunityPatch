@@ -1,0 +1,8 @@
+﻿l_french:
+ EMPIRE_DESIGN_FERENGI:0 "Alliance Ferengi"
+ EMPIRE_SHORT_NAME_ferengi:0 "FERENGI"
+ START_SCREEN_FERENGI:0 "L'Alliance Ferengi est unie par le commerce, le profit et l'autorité du Grand Nagus. Depuis Ferenginar, chaque contrat, chaque concession et chaque opportunité sont évalués selon une seule question : quelle en est la valeur ?\n\nLà où d'autres puissances parlent d'honneur, d'unité ou de destinée, les Ferengis parlent de marges, de levier et d'avantage. Dans une galaxie peuplée d'idéalistes, de guerriers et d'intrigants, le profit pourrait bien être le principe le plus puissant de tous."
+ gov_social_autocracy_ferengi:0 "Conclave commercial"
+ gov_social_autocracy_ferengi_desc:0 "Un État guidé par le Grand Nagus et les grands intérêts commerciaux de la société ferengie, où le pouvoir politique et le pouvoir économique ne font qu'un."
+ ferengi_unique_mechanic:0 "Commerce et profit"
+ ferengi_unique_mechanic_tooltip:0 "L'Alliance Ferengi maîtrise l'art du profit et du commerce. Les Règles d'Acquisition et l'autorité du Grand Nagus confèrent de puissants avantages économiques et diplomatiques qui font de la négociation une arme redoutable."

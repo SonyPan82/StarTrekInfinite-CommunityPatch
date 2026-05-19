@@ -58,12 +58,12 @@ action_send_gift = {
 		hidden_trigger = {
 			OR = {
 				is_country_type = default
-				is_country_type = ferengi_alliance
+				is_ferengi_empire = yes
 			}
 			from = {
 				OR = {
 					is_country_type = default
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
@@ -110,12 +110,12 @@ action_request_mission = {
 		hidden_trigger = {
 			OR = {
 				is_country_type = default
-				is_country_type = ferengi_alliance
+				is_ferengi_empire = yes
 			}
 			from = {
 				OR = {
 					is_country_type = default
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
@@ -258,7 +258,7 @@ action_intervene_in_war = {
 			OR = {
 				from = {
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 				is_major_minor_relation = yes
 				is_major_major_relation = yes
@@ -653,13 +653,13 @@ action_cp26_offer_war_goal_peace = {
 			OR = {
 				is_country_type = default
 				is_country_type = contender
-				is_country_type = ferengi_alliance
+				is_ferengi_empire = yes
 			}
 			from = {
 				OR = {
 					is_country_type = default
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
@@ -956,13 +956,13 @@ action_start_puppet_state_process = {
 			OR = {
 				is_country_type = default
 				is_country_type = contender
-				is_country_type = ferengi_alliance
+				is_ferengi_empire = yes
 			}
 			from = {
 				OR = {
 					is_country_type = default
 					is_country_type = contender
-					is_country_type = ferengi_alliance
+					is_ferengi_empire = yes
 				}
 			}
 		}
