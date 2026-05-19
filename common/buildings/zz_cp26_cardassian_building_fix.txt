@@ -1,0 +1,80 @@
+####################################
+## CP26 - Cardassian Building Fix ##
+####################################
+
+# Information Control Center
+# Vanilla leaves a TODO here about a wrong Spiritualist prerequisite.
+# CP26 keeps the building Cardassian-only and capital-gated, but removes
+# any artificial tech prerequisite to avoid blocking the building behind
+# a thematically incorrect unlock.
+building_information_control_center_cardassian = {
+	base_buildtime = @b2_time
+	base_cap_amount = 1
+
+	category = unity
+
+	potential = {
+		building_basic_income_check = yes
+		exists = owner
+		owner = { is_cardassian = yes }
+	}
+
+	allow = {
+		has_fully_upgraded_capital = yes
+		buildings_upgrade_allow = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	destroy_trigger = {
+		buildings_no_crystals = yes
+	}
+
+	planet_modifier = {
+		job_redactor_cardassian_add = 2
+		job_censor_cardassian_add = 1
+	}
+
+	prerequisites = { }
+
+	triggered_desc = {
+		text = job_redactor_cardassian_effect_desc
+	}
+	triggered_desc = {
+		text = job_censor_cardassian_effect_desc
+	}
+
+	# AI Redactor Production x2
+	ai_resource_production = {
+		trigger = {
+			always = yes
+		}
+		unity = 12
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_modifier = cardassian_burn_unapproved_works }
+		}
+		unity = 4
+		research = 4
+	}
+
+	# ai_resource_production = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = { has_valid_civic = civic_prophetic_leader }
+	# 	}
+	# 	unity = 6
+	# 	research = 4
+	# }
+}

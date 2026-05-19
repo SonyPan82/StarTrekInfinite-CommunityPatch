@@ -71,7 +71,13 @@ Elles s'affichent directement dans l'interface de jeu.
       État : entièrement commenté avec "# HRB_TODO: commented until implemented"
       Ce que c'est : un event de récompense lié aux edicts critical_field_training_1/2
       Ces edicts existent probablement dans le jeu mais l'event d'effet est mort.
-      Action possible : vérifier si les edicts existent, décommenter ou réécrire l'event
+      Audit CP26 : l'édit vanilla actif donne déjà +100 XP de départ aux
+                   amiraux/généraux/scientifiques et +25% de gain d'XP des leaders.
+                   Restaurer en plus le vieux hook on_leader_spawned pour donner
+                   +1 compétence directe à chaque nouveau leader serait très
+                   probablement déséquilibré en l'état.
+      Recommandation CP26 : ne pas réactiver tel quel ; si un jour on le reprend,
+                            le faire comme redesign séparé, pas comme petit fix.
 
   [9] Paiement latinum pour les Mercenaires (DESIGNED MAIS JAMAIS IMPLÉMENTÉ)
       Fichier : events/marauder_events.txt (ligne 2433-2490+)
@@ -107,8 +113,12 @@ Elles s'affichent directement dans l'interface de jeu.
        Commentaire vanilla : "# HRB_TODO: Needs Rework. Cardassian are not Spiritualists"
        Ce que c'est : un bâtiment Cardassien qui a un prerequisite sur une tradition
                       ou éthique Spiritualiste — les Cardassiens ne le sont pas
-       Action possible : lire le bâtiment en question, identifier le prérequis erroné,
-                         l'overrider dans CP26 avec le bon prérequis Cardassien
+       État CP26 : override minimal en place sur
+                   common/buildings/zz_cp26_cardassian_building_fix.txt
+                   pour garder le bâtiment Cardassien-only et sans prérequis
+                   technologique artificiel.
+       Recommandation retenue : pas de techno de remplacement pour le moment ;
+                                le gating par espèce + capitale améliorée suffit.
 
   [13] Designs de vaisseaux non reconnus dans les events de guerre
        Fichier : events/hornblower_country_events.txt (lignes 2508, 2586, 2663)
@@ -163,6 +173,9 @@ Elles s'affichent directement dans l'interface de jeu.
   ✓ ACTION_DISSOLVE_NEUTRAL_ZONE_COST
     → Coût/tooltip de dissolution de zone neutre recâblé proprement dans CP26
 
+  ✓ building_information_control_center_cardassian
+    → Le faux prérequis Spiritualiste a été neutralisé proprement dans CP26
+
 
 ════════════════════════════════════════════════════════════════════════
  SECTION 5 — HORS PORTÉE MOD (pour information)
@@ -194,7 +207,7 @@ Elles s'affichent directement dans l'interface de jeu.
 
   MOYEN / IMPACT GAMEPLAY :
     [10-11] buildings crystal/mote     — override 2 bâtiments, ajouter job outputs
-    [12]    Cardassian building prereq — lire + overrider 1 bâtiment
+    [FAIT] [12] Cardassian building prereq — override minimal propre dans CP26
 
   AMBITIEUX / FORT IMPACT :
     [9]  Latinum mercs                 — décommenter + tester code existant

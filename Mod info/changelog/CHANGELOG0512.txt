@@ -9,6 +9,12 @@ Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = e
 Session du 2026-05-19 (Rura Penthe / Beta Penthe)
 --------------------------------------------------------------------------------
 
+[FIX][LOW] Bâtiment Cardassien `Centre de contrôle de l'information`
+  Override ciblé de `building_information_control_center_cardassian` pour
+  supprimer proprement l'ancien faux prérequis Spiritualiste laissé en TODO
+  dans le vanilla. Le bâtiment reste réservé aux Cardassiens et demande
+  toujours une capitale pleinement améliorée.
+
 [MAP][MED] Intégration finale de `Rura Penthe` dans `Beta Penthe`
   `Beta Penthe` reste le système Klingon existant sur la carte CP26
   (`Alpha-Beta_medium` + `tutorial`), mais il utilise désormais un

@@ -42,6 +42,12 @@ L'objectif de CP26 est simple : offrir une expérience plus stable, plus complè
 
 Ce projet s'appuie aussi sur le travail de plusieurs créateurs et mods de la communauté Workshop ayant servi de base, d'inspiration ou d'aide ponctuelle pour certains correctifs, intégrations ou contenus. Merci à tous les auteurs concernés pour leur travail.
 
+[h2]SUPPORT / CONTRIBUTION[/h2]
+
+[url=https://ko-fi.com/vhsmodding][b]Soutenir mon travail sur Ko-fi[/b][/url]
+
+[url=https://github.com/SonyPan82/StarTrekInfinite-CommunityPatch][b]Contribuer au mod sur GitHub[/b][/url]
+
 [i]Si un développeur du jeu passe par là, peut-être un petit coup de main ? Un minuscule morceau du code source ? On peut rêver. Peut-être laisser la communauté terminer ce que le capitalisme n'a pas laissé finir. Après tout, au 24e siècle, la société est différente.[/i]
 
 [h1]Engage ![/h1]
