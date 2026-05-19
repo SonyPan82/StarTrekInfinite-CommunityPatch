@@ -1,0 +1,214 @@
+================================================================================
+CP26 -- Proposition : Arbre de Missions Ferengi
+Redige le : 2026-05-19
+================================================================================
+
+PHILOSOPHIE
+--------------------------------------------------------------------------------
+Commerce, profit, manipulation, les Regles d'Acquisition.
+Deux chemins exclusifs au niveau C1/D1 (meme pattern que Romulan et Klingon) :
+  - BRANCHE C : Monopole Commercial (trade pur, pacifique)
+  - BRANCHE D : Application des Regles (espionnage, acquisition forcee)
+Convergence finale en BRANCHE E (Grand Nagus) avec un dernier choix exclusif.
+
+COMPARAISON AVEC LES AUTRES EMPIRES
+--------------------------------------------------------------------------------
+  UFoP       : 5 branches, ~27 noeuds (le plus complet)
+  Cardassian : 4 branches, ~14 noeuds
+  Romulan    : 4 branches, ~13 noeuds
+  Klingon    : 6 branches, ~14 noeuds
+  Ferengi    : 5 branches, ~15 noeuds  <-- proposition
+
+================================================================================
+STRUCTURE DE L'ARBRE
+================================================================================
+
+BRANCHE A -- Fondations du Profit  (racine)
+--------------------------------------------------------------------------------
+
+qt_ferengi_a1  "La 1ere Regle d'Acquisition"       x=7, y=0
+  potential    : has_country_id = ferengi
+  parents      : (aucun -- noeud racine)
+  exigences    : trade_value >= 50
+                 energy_income_base >= 20
+  recompense   : modificateur permanent (bonus trade value collectee)
+
+qt_ferengi_a2  "Reseau de Hubs Commerciaux"         x=7, y=1
+  parent       : a1
+  exigences    : 3+ modules trading_hub sur bases stellaires
+  recompense   : modificateur + 500 energie
+
+qt_ferengi_a3  "Le Marche Decide Toujours"          x=7, y=2
+  parent       : a2
+  exigences    : politique trade_conversion active
+                 5+ pactes commerciaux (commercial_pact)
+  recompense   : 1200 Unity
+  --> debloque C1 et D1 (exclusifs l'un avec l'autre)
+
+BRANCHE B -- Production de Latinum  (depuis A1, parallele)
+--------------------------------------------------------------------------------
+
+qt_ferengi_b1  "Les Mines de Ferenginar"            x=11, y=1
+  parent       : a1
+  exigences    : monthly_alloys >= 25
+                 2+ colonies avec designation col_mining
+  recompense   : modificateur production minerale
+
+qt_ferengi_b2  "Raffineries de Latinum"             x=11, y=2
+  parent       : b1
+  exigences    : flag qt_ferengi_b2 (pose par event de production)
+  recompense   : 250 influence
+
+BRANCHE C -- Monopole Commercial  [EXCLUSIF avec D1]
+--------------------------------------------------------------------------------
+
+qt_ferengi_c1  "Commerce d'Etat"                    x=5, y=3
+  parent       : a3
+  BLOQUE PAR   : d1
+  exigences    : trade_value >= 150
+                 4+ commercial_pact
+                 2+ research_agreement
+  recompense   : remplacement civic :
+                   civic_ferengi_trade -> civic_trade_monopoly
+                 + 200 influence
+  tooltip      : qt_ferengi_c1_civic_tooltip
+
+qt_ferengi_c2  "Domination du Quadrant"             x=5, y=4
+  parent       : c1
+  exigences    : trade_value >= 300
+                 3+ enclaves commerciales dans les frontieres
+  recompense   : modificateur permanent (commerce + diplomatie)
+
+qt_ferengi_c3  "Hub Galactique de Ferenginar"       x=5, y=5
+  parent       : c2
+  exigences    : Ferenginar : starbase >= starhold
+                 2+ batiments marche sur Ferenginar
+                 stabilite capitale >= 80
+  recompense   : modificateur planetaire Ferenginar + 3000 energie
+
+BRANCHE D -- Application des Regles  [EXCLUSIF avec C1]
+--------------------------------------------------------------------------------
+
+qt_ferengi_d1  "Les Regles S'Appliquent a Tous"     x=9, y=3
+  parent       : a3
+  BLOQUE PAR   : c1
+  exigences    : 2+ espions actifs (spy leader)
+                 8+ missions d'espionnage reussies sur pays majeurs
+  recompense   : remplacement civic :
+                   civic_ferengi_trade -> civic_acquisition_enforcement
+                 + 250 influence
+  tooltip      : qt_ferengi_d1_civic_tooltip
+
+qt_ferengi_d2  "Espionnage Corporatif"              x=9, y=4
+  parent       : d1
+  exigences    : 15+ spy missions reussies
+                 revenu d'espionnage > 0 (stolen_technology ou autre)
+  recompense   : modificateur permanent (espionnage + trade)
+
+qt_ferengi_d3  "Acquisition Forcee"                 x=9, y=5
+  parent       : d2
+  exigences    : 2+ assimilations reussies
+                 15+ systemes controles
+  recompense   : 100 influence + 2500 Unity
+
+BRANCHE E -- Grand Nagus  (convergence C3 + D3)
+--------------------------------------------------------------------------------
+
+qt_ferengi_e1  "L'Autorite du Grand Nagus"          x=7, y=6
+  parents      : c3, d3   (dotted_parents : les deux)
+  exigences    : fleet_power >= 5000
+                 leader avec flag grand_nagus assigne
+                 energy_stockpile >= 40000
+  recompense   : event ferengi_quest.100
+                 modificateur pays 20 ans
+
+qt_ferengi_e2a "Bourse Galactique"  [EXCLUSIF avec e2b]  x=5, y=7
+  parent       : e1
+  BLOQUE PAR   : e2b
+  exigences    : 4+ commercial_pact
+                 opinion >= neutral avec 3 pays majeurs
+  recompense   : modificateur trade permanent
+
+qt_ferengi_e2b "Predation Commerciale"  [EXCLUSIF avec e2a]  x=9, y=7
+  parent       : e1
+  BLOQUE PAR   : e2a
+  exigences    : 2+ guerres gagnees via wg_conquest
+                 fleet_power >= 6500
+  recompense   : modificateur conquest + income
+
+qt_ferengi_e3  "La Regle Ultime : Tout est a Vendre"  x=7, y=8
+  parents      : e2a, e2b
+  exigences    : energy_income >= 200
+                 100+ technologies recherchees
+                 5+ traditions Ferengi completees
+  recompense   : 80000 energie + modificateur legendaire permanent
+
+================================================================================
+SCHEMA VISUEL
+================================================================================
+
+              A1 (Racine)
+              |
+        +-----+------+
+        |            |
+       A2            B1
+        |             |
+       A3            B2
+       / \
+      /   \
+   [C1]* [D1]*     (* exclusifs l'un avec l'autre)
+     |     |
+    C2    D2
+     |     |
+    C3    D3
+      \   /
+       E1
+      /   \
+  [E2a]* [E2b]*    (* exclusifs l'un avec l'autre)
+      \   /
+       E3
+
+================================================================================
+CIVICS A CREER
+================================================================================
+
+civic_trade_monopoly          (remplace civic_ferengi_trade sur chemin C)
+  - bonus : +15% trade value collectee
+  - bonus : -10% cout des pactes commerciaux
+
+civic_acquisition_enforcement  (remplace civic_ferengi_trade sur chemin D)
+  - bonus : +20% efficacite espionnage
+  - bonus : +10% production espionnage
+
+================================================================================
+LOCALISATIONS A CREER (FR + EN)
+================================================================================
+
+qt_ferengi_a1 / _a1_effect / _a1_tooltip
+qt_ferengi_a2 / _a2_effect / _a2_tooltip
+qt_ferengi_a3 / _a3_effect / _a3_tooltip
+qt_ferengi_b1 / _b1_effect / _b1_tooltip
+qt_ferengi_b2 / _b2_effect / _b2_tooltip
+qt_ferengi_c1 / _c1_effect / _c1_civic_tooltip
+qt_ferengi_c2 / _c2_effect / _c2_tooltip
+qt_ferengi_c3 / _c3_effect / _c3_tooltip
+qt_ferengi_d1 / _d1_effect / _d1_civic_tooltip
+qt_ferengi_d2 / _d2_effect / _d2_tooltip
+qt_ferengi_d3 / _d3_effect / _d3_tooltip
+qt_ferengi_e1 / _e1_effect / _e1_tooltip
+qt_ferengi_e2a / _e2a_effect / _e2a_tooltip
+qt_ferengi_e2b / _e2b_effect / _e2b_tooltip
+qt_ferengi_e3 / _e3_effect / _e3_tooltip
+ferengi_quest.100  (event Grand Nagus)
+
+================================================================================
+NOTES D'IMPLEMENTATION
+================================================================================
+
+- Fichier a creer : common/quest_tree_nodes/00_ferengi_nodes.txt
+- Modificateurs : common/modifiers/ ou dans les nodes directement
+- Event Grand Nagus (e1) : common/events/ferengi_quest_events.txt
+- Civics : common/governments/civics/z_ferengi_civics.txt
+- Verifier que civic_ferengi_trade existe deja ou le creer
+
+================================================================================

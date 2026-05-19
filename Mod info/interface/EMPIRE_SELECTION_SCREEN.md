@@ -69,36 +69,76 @@ Le commentaire dans le fichier indique que `x` est remplacé par `Resolution.x` 
 
 ## Structure de la carte `prescripted_empire_design_entry`
 
+### Layout en zones séparées (design actuel — v1.5.x)
+
+La carte est divisée en **4 zones verticales non superposées**. Le logo n'empiète plus sur le portrait.
+
 ```
-prescripted_empire_design_entry (440×440, clipping=yes)
+CARTE 302×440 (prescripted_empire_design_entry, clipping=yes)
 │
-├── background (GFX_invisible — hitbox)
+│  ┌─────────────────────────────┐  card y=0
+│  │   ZONE LOGO                 │
+│  │   empire_flag               │  scale=0.38 → ~82px
+│  │   x=110, y=0                │
+│  └─────────────────────────────┘  card y=82
 │
-├── entry_container (400×390, position x=20 y=30, clipping=yes)
-│   ├── background (GFX_selectionscreen — sprite de fond)
-│   ├── portrait_window (400×185) — portrait du dirigeant
-│   ├── empire_name (400×50, y=178) — nom de l'empire + ligne dorée
-│   ├── government_and_ethics (400×155, y=232)
-│   │   ├── unique_mechanic_icon + unique_mechanic_name
-│   │   ├── traits (overlappingElementsBoxType)
-│   │   ├── civics (smoothListboxType → species_preview_civic)
-│   │   └── government_authority_icon + background + name
-│   └── origin_window (380×36, y=348) — texte de lore/origine
+├── entry_container (262×420, x=20 y=10, clipping=yes)
+│   │
+│   │  ┌──────────────────────┐  entry y=0  / card y=10
+│   │  │  background          │  GFX_selectionscreen
+│   │  │  (fond de carte)     │
+│   │  │                      │
+│   │  │  ZONE PORTRAIT       │  entry y=70 / card y=80
+│   │  │  portrait_window     │  262×148, scale=0.52
+│   │  │  (tête + épaules)    │
+│   │  │                      │  entry y=218 / card y=228
+│   │  ├──────────────────────┤
+│   │  │  ZONE NOM            │  entry y=220 / card y=230
+│   │  │  empire_name 262×45  │  texte + ligne dorée
+│   │  ├──────────────────────┤  entry y=265 / card y=275
+│   │  │  ZONE GOV/CIVICS     │  entry y=267 / card y=277
+│   │  │  government_and_     │  262×123
+│   │  │  ethics              │  traits y=26, civics y=60
+│   │  │                      │  civics end : entry y=419 ✓
+│   │  └──────────────────────┘  entry y=420 / card y=430
 │
-├── selected_overlay (422×408, position x=8 y=25) — cadre de sélection
+├── selected_overlay (284×408, x=8 y=25) — cadre de sélection
 │
-└── empire_flag (GFX_dummy_flag_216, x=139) — emblème flottant
+└── empire_flag (voir zone logo ci-dessus)
 ```
 
-**Important :** `clipping=yes` sur les deux niveaux (`prescripted_empire_design_entry` ET `entry_container`) est obligatoire. Sans ça, les sprites naturellement larges (`GFX_label_gradiant`, `GFX_government_authority_background`) débordent et le moteur calcule les slots sur les dimensions rendues, pas les dimensions déclarées.
+### Règle critique : les civics doivent rentrer dans entry_container
 
-### Formules de mise à l'échelle
+La `smoothListboxType` `civics` est à `y=60` dans `government_and_ethics`, hauteur `92px`.
+Formule : `gov_y + 60 + 92 ≤ entry_container_height`
 
-Quand on change la largeur de carte (`W`), mettre à jour :
+Avec les valeurs actuelles : `267 + 60 + 92 = 419 ≤ 420` ✓
+
+**PIÈGE :** Si on descend `government_and_ethics` sans agrandir `entry_container`,
+les civics sont coupés par le `clipping=yes` de `entry_container` → icônes manquantes.
+
+### Ordre de rendu (z-order)
+
+Les éléments sont rendus dans l'ordre de déclaration dans le fichier.
+`empire_flag` est déclaré **après** `entry_container` → il s'affiche **par-dessus** le portrait.
+Si on veut que le portrait passe devant le logo, inverser l'ordre de déclaration.
+
+**Important :** `clipping=yes` sur les deux niveaux (`prescripted_empire_design_entry` ET
+`entry_container`) est obligatoire. Sans ça, les sprites larges (`GFX_label_gradiant`,
+`GFX_government_authority_background`) débordent et le moteur calcule les slots sur les
+dimensions rendues, pas les dimensions déclarées.
+
+### Pourquoi on ne peut pas supprimer le fond `GFX_selectionscreen`
+
+Sans ce sprite, le moteur STI affiche les éléments 3D (vaisseaux, stations) directement
+derrière chaque slot de carte. La carte perd son identité visuelle et les éléments 3D
+du jeu passent à travers. Le fond est obligatoire.
+
+### Formules de mise à l'échelle (si on change la largeur W)
 
 ```
 prescripted_empire_design_entry width = W
-empire_list_width_min_max y = W
+empire_list_width_min_max y           = W
 
 entry_container width    = W - 40          (marge 20px chaque côté)
 portrait_window width    = W - 40
@@ -109,10 +149,10 @@ civics size.x            = W - 56          (8px gauche + 8px scrollbar)
 unique_mechanic maxWidth  = W - 40
 origin_window width      = W - 60,  maxWidth = W - 64
 authority name maxWidth  = W - 52
-selected_overlay width   = W - 18         (8px gauche + 10px droite)
-empire_flag x            = (W - 162) / 2  (centrage du drapeau 162px)
+selected_overlay width   = W - 18          (8px gauche + 10px droite)
+empire_flag x            = (W - 216×scale) / 2   (centrage dynamique)
 species_preview_civic    = W - 56
-civic text maxWidth      = W - 116        (50px icône + marges)
+civic text maxWidth      = W - 116         (50px icône + marges)
 ```
 
 ---
@@ -165,12 +205,22 @@ Le `smoothListboxType` nommé `list` est peuplé automatiquement par le C++ via 
 ## Valeurs actuelles (2026-05-19)
 
 ```
-Largeur carte        : 302px
-empire_list_width_min_max : { x=440  y=302 }
-spacing liste        : 0px
-Cards visibles       : 5 (toutes visibles simultanément)
-Résolution testée    : 1512×982 (MacBook Pro 14" Retina 2×)
-Contrainte écran     : 5 × y ≤ 1512px → y_max = 302px
+Largeur carte              : 302px
+Hauteur carte              : 440px
+empire_list_width_min_max  : { x=440  y=302 }
+spacing liste              : 0px
+Cards visibles             : 5 (toutes visibles simultanément)
+Résolution testée          : 1512×982 (MacBook Pro 14" Retina 2×)
+Contrainte écran           : 5 × y ≤ 1512px → y_max = 302px
+
+--- Layout interne (zones séparées) ---
+entry_container     : x=20  y=10   width=262  height=420
+empire_flag         : x=110 y=0    scale=0.38  (~82×82px)
+portrait_window     : y=70  (entry) height=148  scale=0.52
+empire_name         : y=220 (entry) height=45
+government_and_ethics: y=267 (entry) height=123
+  └─ civics         : y=60 (dans gov), height=92 → end=entry y=419 ≤ 420 ✓
+selected_overlay    : x=8   y=25   width=284  height=408
 ```
 
 ---

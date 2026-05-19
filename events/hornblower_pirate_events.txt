@@ -787,6 +787,7 @@ country_event = {
 	}
 
 	trigger = {
+		exists = event_target:nausicaan_redoubt
 		FromFromFrom = {
 			is_same_value = event_target:nausicaan_redoubt
 		}

@@ -1,0 +1,71 @@
+namespace = hrb_planet_modifier
+
+country_event = {
+	id = hrb_planet_modifier.15
+	title = "hrb_planet_modifier.15.name"
+	desc = "hrb_planet_modifier.15.desc"
+	picture = GFX_evt_pc_molten_sky
+	show_sound = event_supervolcano_explosion
+	location = ROOT
+	trackable = yes
+	is_triggered_only = yes
+
+	option = {
+		ai_chance = { factor = 10 }
+		trigger = { owner = { OR = { is_ufop = yes is_klingon = yes } } }
+		name = hrb_planet_modifier.15.a
+		custom_tooltip = hrb_planet_modifier.15.a.tt
+		event_target:colony_gas_dilemma = {
+			remove_modifier = volcanic_eruptions
+			remove_modifier = ash_polluted_air
+			remove_modifier = exotic_fuel_source
+		}
+		add_monthly_resource_mult = { resource = energy value = 2 max = 12000 }
+	}
+
+	option = {
+		ai_chance = { factor = 10 }
+		trigger = { owner = { OR = { is_romulan = yes is_cardassian = yes } } }
+		name = hrb_planet_modifier.15.b
+		custom_tooltip = hrb_planet_modifier.15.b.tt
+		event_target:colony_gas_dilemma = {
+			remove_modifier = volcanic_eruptions
+			remove_modifier = ash_polluted_air
+			remove_modifier = exotic_fuel_source
+		}
+		add_monthly_resource_mult = { resource = energy value = 2 max = 12000 }
+	}
+
+	option = {
+		ai_chance = { factor = 10 }
+		trigger = { owner = { has_country_flag = ferengi } }
+		name = hrb_planet_modifier.15.e
+		custom_tooltip = hrb_planet_modifier.15.e.tt
+		event_target:colony_gas_dilemma = {
+			remove_modifier = volcanic_eruptions
+			remove_modifier = ash_polluted_air
+			remove_modifier = exotic_fuel_source
+		}
+		add_monthly_resource_mult = { resource = energy value = 2 max = 12000 }
+	}
+
+	option = {
+		ai_chance = { factor = 10 }
+		trigger = { owner = { is_major = no } }
+		name = hrb_planet_modifier.15.b
+		custom_tooltip = hrb_planet_modifier.15.b.tt
+		event_target:colony_gas_dilemma = {
+			remove_modifier = volcanic_eruptions
+			remove_modifier = ash_polluted_air
+			remove_modifier = exotic_fuel_source
+		}
+		add_monthly_resource_mult = { resource = energy value = 2 max = 12000 }
+	}
+
+	option = {
+		ai_chance = { factor = 0 }
+		trigger = { NOT = { has_country_flag = hrb_planet_modifier_15_c } }
+		name = hrb_planet_modifier.15.c
+		custom_tooltip = hrb_planet_modifier.15.c.tt
+	}
+}

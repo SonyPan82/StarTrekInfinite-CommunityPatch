@@ -189,6 +189,18 @@ planet_event = {
 		name = hrb_colony.12.d
 		custom_tooltip = hrb_colony.12.d.tt
 	}
+
+	### Ferengi: Count the losses, then secure the asset.
+	option = {
+		trigger = {
+			owner = {
+				has_country_flag = ferengi
+			}
+		}
+		name = hrb_colony.12.e
+		custom_tooltip = hrb_colony.12.e.tt
+		ai_chance = { factor = 1 }
+	}
 }
 
 ship_event = {
@@ -1684,6 +1696,22 @@ country_event = {
 
 		hidden_effect = { 
 			country_event = { id = hrb_colony.36 days = 30 } # Femnova's Qowat Milat
+		}
+	}
+
+	### Ferengi: Re-establish communications and evaluate the opportunity.
+	option = {
+		trigger = {
+			has_country_flag = ferengi
+		}
+		name = hrb_colony.31.c
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			random_list = {
+				1 = { country_event = { id = hrb_colony.32 days = 30 } }
+				1 = { country_event = { id = hrb_colony.34 days = 30 } }
+				1 = { country_event = { id = hrb_colony.35 days = 30 } }
+			}
 		}
 	}
 }
@@ -3433,6 +3461,17 @@ country_event = {
 		}
 
 		name = hrb_colony.82.d
+	}
+
+	### Ferengi: If it talks, it may sell.
+	option = {
+
+		trigger = {
+			has_country_flag = ferengi
+		}
+
+		name = hrb_colony.82.e
+		ai_chance = { factor = 1 }
 	}
 
 	after = {

@@ -1,0 +1,13 @@
+empire_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 1
+			has_government = "gov_social_autocracy_ferengi"
+		}
+	}
+	lookups = "[This.GetSpeciesName] <generic_oli_desc> <generic_states>"
+	format = format.gen_olig.2
+	noun = format.species
+	prefix_format = format_prefix.gen_imp.1
+}

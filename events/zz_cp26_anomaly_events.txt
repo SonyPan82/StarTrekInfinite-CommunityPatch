@@ -1,0 +1,101 @@
+namespace = anomaly
+
+ship_event = {
+	id = anomaly.7507
+	title = "anomaly.7507.name"
+	desc = {
+		trigger = { owner = { has_country_flag = ferengi } }
+		text = "anomaly.7507.ferengi.desc"
+	}
+	desc = "anomaly.7507.desc"
+	picture = GFX_evt_underground_civilization_city_landscape
+	show_sound = event_underground_civilization_city_landscape
+	is_triggered_only = yes
+
+	option = {
+		trigger = { owner = { is_ufop = yes } }
+		name = anomaly.7507.a
+		custom_tooltip = anomaly.7507.a.tt
+		owner = { add_resource = { food = 500 energy = 300 } }
+	}
+	option = {
+		trigger = { owner = { is_klingon = yes } }
+		name = anomaly.7507.b
+		custom_tooltip = anomaly.7507.b.tt
+		owner = { add_resource = { food = 500 energy = 300 } }
+	}
+	option = {
+		trigger = { owner = { is_romulan = yes } }
+		name = anomaly.7507.c
+		custom_tooltip = anomaly.7507.c.tt
+		owner = { add_resource = { food = 500 energy = 300 } }
+	}
+	option = {
+		trigger = { owner = { is_cardassian = yes } }
+		name = anomaly.7507.d
+		custom_tooltip = anomaly.7507.d.tt
+		owner = { add_resource = { food = 500 energy = 300 } }
+	}
+	option = {
+		trigger = { owner = { has_country_flag = ferengi } }
+		name = anomaly.7507.e
+		custom_tooltip = anomaly.7507.e.tt
+		ai_chance = { factor = 1 }
+		owner = { add_resource = { food = 500 energy = 500 } }
+	}
+}
+
+ship_event = {
+	id = anomaly.7627
+	title = "anomaly.7627.name"
+	desc = {
+		trigger = { owner = { is_ufop = yes } }
+		text = "anomaly.7627.ufop.desc"
+	}
+	desc = {
+		trigger = { owner = { is_klingon = yes } }
+		text = "anomaly.7627.klingon.desc"
+	}
+	desc = {
+		trigger = { owner = { is_romulan = yes } }
+		text = "anomaly.7627.romulan.desc"
+	}
+	desc = {
+		trigger = { owner = { is_cardassian = yes } }
+		text = "anomaly.7627.cardassian.desc"
+	}
+	desc = {
+		trigger = { owner = { has_country_flag = ferengi } }
+		text = "anomaly.7627.ferengi.desc"
+	}
+	picture = GFX_evt_space_travel_pirates
+	show_sound = event_space_travel
+	is_triggered_only = yes
+
+	option = {
+		trigger = { owner = { is_ufop = yes } }
+		name = anomaly.7627.a
+		custom_tooltip = anomaly.7627.a.tt
+	}
+	option = {
+		trigger = { owner = { is_klingon = yes } }
+		name = anomaly.7627.b
+		custom_tooltip = anomaly.7627.b.tt
+	}
+	option = {
+		trigger = { owner = { is_romulan = yes } }
+		name = anomaly.7627.c
+		custom_tooltip = anomaly.7627.c.tt
+	}
+	option = {
+		trigger = { owner = { is_cardassian = yes } }
+		name = anomaly.7627.d
+		custom_tooltip = anomaly.7627.d.tt
+	}
+	option = {
+		trigger = { owner = { has_country_flag = ferengi } }
+		name = anomaly.7627.e
+		custom_tooltip = anomaly.7627.e.tt
+		ai_chance = { factor = 1 }
+	}
+}

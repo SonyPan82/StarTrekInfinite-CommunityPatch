@@ -1,0 +1,69 @@
+namespace = action
+
+country_event = {
+	id = action.13
+	title = action.13.name
+	desc = action.13.desc
+
+	location = event_target:contact_empire.capital_scope
+
+	picture_event_data = {
+		portrait = event_target:contact_empire
+		planet_background = event_target:contact_empire
+		graphical_culture = event_target:contact_empire
+		city_level = event_target:contact_empire
+		room = event_target:contact_empire.ruler
+	}
+
+	show_sound = event_hail_frequency
+
+	diplomatic = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = day_0 }
+		from = {
+			NOT = { has_country_flag = day_0 }
+			OR = {
+				is_country_type = default
+				is_country_type = enclave
+			}
+		}
+	}
+
+	immediate = {
+		from = { save_event_target_as = contact_empire }
+	}
+
+	option = {
+		trigger = { is_ufop = yes }
+		name = action.13.a.ufop
+		hidden_effect = { country_event = { id = action.100 } }
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = action.13.a.klingon
+		hidden_effect = { country_event = { id = action.100 } }
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = action.13.a.romulan
+		hidden_effect = { country_event = { id = action.100 } }
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = action.13.a.cardassian
+		hidden_effect = { country_event = { id = action.100 } }
+	}
+	option = {
+		trigger = { has_country_flag = ferengi }
+		name = action.13.a.ferengi
+		ai_chance = { factor = 1 }
+		hidden_effect = { country_event = { id = action.100 } }
+	}
+	option = {
+		trigger = { is_major = no }
+		name = action.13.a.other
+		hidden_effect = { country_event = { id = action.100 } }
+	}
+}

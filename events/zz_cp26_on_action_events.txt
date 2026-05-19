@@ -1,0 +1,77 @@
+namespace = action
+
+planet_event = {
+	id = action.4100
+	title = "action.4100.name"
+	desc = "action.4100.desc"
+	show_sound = event_space_garden_landscape
+	is_triggered_only = yes
+	picture = GFX_evt_archaeology_excavation
+	location = this
+
+	trigger = {
+		NOT = {
+			is_planet_class = pc_habitat
+		}
+		owner = {
+			has_tradition = tr_commerce_new_world_planning
+		}
+	}
+
+	option = {
+		name = action.4100.a
+		add_district_and_planet_size_if_needed_effect = { district = district_city }
+	}
+	option = {
+		name = action.4100.b
+		add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+	}
+	option = {
+		name = action.4100.c
+		add_district_and_planet_size_if_needed_effect = { district = district_generator }
+	}
+	option = {
+		name = action.4100.d
+		add_district_and_planet_size_if_needed_effect = { district = district_mining }
+	}
+	option = {
+		name = action.4100.e
+		add_district_and_planet_size_if_needed_effect = { district = district_farming }
+	}
+	option = {
+		trigger = {
+			owner = {
+				is_ufop = yes
+			}
+		}
+		name = action.4100.f
+		add_district_and_planet_size_if_needed_effect = { district = district_culture }
+	}
+	option = {
+		trigger = {
+			owner = {
+				is_klingon = yes
+			}
+		}
+		name = action.4100.g
+		add_district_and_planet_size_if_needed_effect = { district = district_hunting_grounds }
+	}
+	option = {
+		trigger = {
+			owner = {
+				is_romulan = yes
+			}
+		}
+		name = action.4100.h
+		add_district_and_planet_size_if_needed_effect = { district = district_civil_forum }
+	}
+	option = {
+		trigger = {
+			owner = {
+				is_cardassian = yes
+			}
+		}
+		name = action.4100.i
+		add_district_and_planet_size_if_needed_effect = { district = district_training_camp }
+	}
+}

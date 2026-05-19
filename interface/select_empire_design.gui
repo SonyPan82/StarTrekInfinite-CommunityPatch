@@ -493,8 +493,8 @@ guiTypes = {
 
 		containerWindowType = {
 			name = "entry_container"
-			size = { width = 262 height = 390 }
-			position = { x = 20 y = 30 }
+			size = { width = 262 height = 420 }
+			position = { x = 20 y = 10 }
 			clipping = yes
 
 			buttonType = {
@@ -505,19 +505,19 @@ guiTypes = {
 				alwaysTransparent = yes
 			}
 
-			# Portrait
+			# Portrait — zone portrait, en dessous du logo (logo = ~82px, portrait debute a y=70)
 			containerWindowType = {
 				name = "portrait_window"
-				position = { x = 0 y = 0 }
-				size = { width = 262 height = 185 }
+				position = { x = 0 y = 70 }
+				size = { width = 262 height = 148 }
 				clipping = yes
 				orientation = UPPER_LEFT
 
 				iconType = {
 					name = "portrait"
 					spriteType = "GFX_portrait_character_disable"
-					position = { x = -10 y = 38 }
-					scale = .46
+					position = { x = -10 y = 5 }
+					scale = .52
 					alwaysTransparent = yes
 				}
 			}
@@ -525,8 +525,8 @@ guiTypes = {
 			# Empire name
 			containerWindowType = {
 				name = "empire_name"
-				size = { width = 262 height = 50 }
-				position = { x = 0 y = 178 }
+				size = { width = 262 height = 45 }
+				position = { x = 0 y = 220 }
 				clipping = no
 
 				instantTextBoxType = {
@@ -552,8 +552,8 @@ guiTypes = {
 			# Government and ethics
 			containerWindowType = {
 				name = "government_and_ethics"
-				position = { x = 0 y = 232 }
-				size = { width = 262 height = 110 }
+				position = { x = 0 y = 267 }
+				size = { width = 262 height = 123 }
 
 				iconType = {
 					name = "government_authority_name_background"
@@ -669,12 +669,12 @@ guiTypes = {
 			}
 		}
 
-		# Empire flag centered on 302px card — (302-162)/2 = 70
+		# Empire flag — zone logo en haut de carte, scale 0.38 = ~82px, centré sur 302px = x=110
 		buttonType = {
 			name = "empire_flag"
 			spriteType = "GFX_dummy_flag_216"
-			position = { x = 70 y = 0 }
-			scale = 0.75
+			position = { x = 110 y = 0 }
+			scale = 0.38
 			alwaysTransparent = yes
 		}
 	}

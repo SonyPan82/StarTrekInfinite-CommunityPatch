@@ -1,0 +1,39 @@
+namespace = pre_warp_civ
+
+country_event = {
+	id = pre_warp_civ.11
+	title = "pre_warp_civ.11.name"
+	desc = "pre_warp_civ.11.desc"
+	picture = GFX_evt_idyllic_haven
+	show_sound = event_diplomatic_visit_success
+	is_triggered_only = yes
+	auto_opens = yes
+	force_open = yes
+
+	option = {
+		trigger = { is_ufop = yes }
+		name = "pre_warp_civ.11.a"
+		custom_tooltip = "pre_warp_civ.11.a.tt"
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = "pre_warp_civ.11.b"
+		custom_tooltip = "pre_warp_civ.11.b.tt"
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = "pre_warp_civ.11.c"
+		custom_tooltip = "pre_warp_civ.11.c.tt"
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = "pre_warp_civ.11.d"
+		custom_tooltip = "pre_warp_civ.11.d.tt"
+	}
+	option = {
+		trigger = { has_country_flag = ferengi }
+		name = "pre_warp_civ.11.e"
+		custom_tooltip = "pre_warp_civ.11.e.tt"
+		ai_chance = { factor = 1 }
+	}
+}

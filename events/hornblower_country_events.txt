@@ -4921,12 +4921,15 @@ country_event = {
 		}
 	}
 	
-	after = {
-		hidden_effect = {
-			remove_country_flag = spy_situation_smear_campaign_twofold_chances_flag
-			clear_global_event_target = spy_mission_spy_global
-		}
-		event_target:spy_mission_spy = {
+		after = {
+			hidden_effect = {
+				remove_country_flag = spy_situation_smear_campaign_twofold_chances_flag
+				if = {
+					limit = { exists = event_target:spy_mission_spy_global }
+					clear_global_event_target = spy_mission_spy_global
+				}
+			}
+			event_target:spy_mission_spy = {
 			switch = {
 				trigger = has_level
 
@@ -7193,6 +7196,13 @@ country_event = {
 		}
 		text =  country.2801.cardassian.desc
 	}
+
+	desc = {
+		trigger = {
+			has_country_flag = ferengi
+		}
+		text = country.2801.ferengi.desc
+	}
 	
 	### UFOP
 	option = {
@@ -7232,6 +7242,18 @@ country_event = {
 		trigger = { is_cardassian = yes }
 		name = country.2801.d
 		custom_tooltip = country.2801.d.tt
+		add_monthly_resource_mult = {
+			resource = unity
+			value = 3
+		}
+	}
+
+	### Ferengi fallback
+	option = {
+		trigger = { has_country_flag = ferengi }
+		name = country.2801.e
+		custom_tooltip = country.2801.e.tt
+		ai_chance = { factor = 1 }
 		add_monthly_resource_mult = {
 			resource = unity
 			value = 3

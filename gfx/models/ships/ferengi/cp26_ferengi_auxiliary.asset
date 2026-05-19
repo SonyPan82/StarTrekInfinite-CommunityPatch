@@ -2,6 +2,8 @@ entity = {
 	name = "ferengi_spy_ship_entity"
 	pdxmesh = "ferengi_01_a_mesh"
 	scale = 0.90
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" position = { 0 0 0 } }
 	default_state = "idle"
 	state = {
 		name = "idle"
@@ -14,6 +16,8 @@ entity = {
 	name = "ferengi_governor_ship_entity"
 	pdxmesh = "ferengi_01_b_mesh"
 	scale = 0.90
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" position = { 0 0 0 } }
 	default_state = "idle"
 	state = {
 		name = "idle"
