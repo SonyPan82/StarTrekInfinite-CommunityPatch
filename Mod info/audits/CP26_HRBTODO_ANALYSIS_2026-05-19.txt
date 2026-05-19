@@ -1,0 +1,186 @@
+########################################################################
+##  CP26 — ANALYSE DES HRBTODO VANILLA STI                          ##
+##  Date : 2026-05-19                                                ##
+##  Méthode : grep récursif sur /common, /events, /localisation      ##
+##  Total trouvé dans STI vanilla : ~1 227 occurrences               ##
+##  Filtré ici : éléments actionables par un mod (pas sons/images)   ##
+########################################################################
+
+
+════════════════════════════════════════════════════════════════════════
+ SECTION 1 — TEXTES PLACEHOLDER VISIBLES PAR LE JOUEUR
+════════════════════════════════════════════════════════════════════════
+
+Ces clés de localisation sont encore à leur valeur placeholder dans STI.
+Elles s'affichent directement dans l'interface de jeu.
+CP26 NE les overrides PAS encore.
+
+  [1] strategic_market_desc
+      Fichier : localisation/english/replace/megacorp_l_english.yml
+      Valeur vanilla : "HRB_TODO"
+      Contexte : description du marché stratégique dans l'interface caravanière
+                 (fenêtre enclave_caravaneer_window, onglet marché)
+      Action possible : écrire une vraie description ST (ex: "Achetez des matériaux
+                        rares à prix fixe. L'inventaire est limité et se renouvelle
+                        à chaque visite.")
+
+  [2] negotiation_situation_type
+      Fichier : localisation/english/hornblower_situations_l_english.yml
+      Valeur vanilla : "HRB_TODO Negotiation (type)"
+      Contexte : nom du type affiché dans le panneau Situations
+      Action possible : renommer en quelque chose de canon (ex: "Diplomatic Arbitration")
+
+  [3] negotiation_situation_desc
+      Fichier : même fichier
+      Valeur vanilla : "HRB_TODO Negotiation (desc)"
+      Contexte : description dans le panneau Situations
+      Action possible : rédiger une description lore appropriée
+
+  [4] suspicious_flares_situation_type
+      Fichier : même fichier
+      Valeur vanilla : "HRB_TODO Suspicious Flares (type)"
+      Contexte : situation liée aux Romuliens (arc Starburst / quest tree UFOP D4)
+      Note : CP26 a le quest tree, mais le TYPE de situation est toujours placeholder
+
+  [5] ACTION_INSTIGATE_RIVALRY_DESC
+      Fichier : localisation/english/hornblower_l_english.yml (ligne ~1089)
+      Valeur vanilla : "Desc."
+      Contexte : description de l'action diplomatique "Instiguer une rivalité"
+
+  [6] ACTION_SUPPORT_RIVALRY_DESC
+      Fichier : même fichier (ligne ~1095)
+      Valeur vanilla : "Support Against Rival Description LORE IPSUM"
+      Contexte : description de l'action diplomatique "Soutenir contre un rival"
+
+  [7] ACTION_DISSOLVE_NEUTRAL_ZONE_COST
+      Fichier : même fichier (ligne ~1107)
+      Valeur vanilla : pointe vers ACTION_DISSOLVE_NEUTRAL_ZONE_DESC qui est placeholder
+      Contexte : action diplomatique dissolution de zone neutre
+
+
+════════════════════════════════════════════════════════════════════════
+ SECTION 2 — CONTENU SCRIPTÉ COMMENTÉ OU INCOMPLET
+════════════════════════════════════════════════════════════════════════
+
+  [8] Event action.4051 — Critical Field Training (JAMAIS DÉCLENCHÉ)
+      Fichier : events/on_action_events.txt (ligne 5244)
+      État : entièrement commenté avec "# HRB_TODO: commented until implemented"
+      Ce que c'est : un event de récompense lié aux edicts critical_field_training_1/2
+      Ces edicts existent probablement dans le jeu mais l'event d'effet est mort.
+      Action possible : vérifier si les edicts existent, décommenter ou réécrire l'event
+
+  [9] Paiement latinum pour les Mercenaires (DESIGNED MAIS JAMAIS IMPLÉMENTÉ)
+      Fichier : events/marauder_events.txt (ligne 2433-2490+)
+      État : code complet commenté avec
+             "# HRB_TODO: When we choose to implement the alternative method
+              of paying for mercenary services with Latinum"
+      Ce que c'est : des options "Engager armée X contre Latinum" dans le menu mercenaire
+      La structure est là, les options par tiers (merc_1, merc_2, merc_3) sont codées
+      mais toutes commentées. Les seuils de coût Latinum sont également définis.
+      Action possible : décommenter et tester — c'est le projet le plus avancé
+                        des TODOs ici, il ne manque probablement que le test
+
+  [10] building_crystal_mines — intégration Dilithium incomplète
+       Fichier : common/buildings/24_hornblower_feature_related_buildings.txt (ligne 9-10)
+       État : le commentaire "# HRB_TODO: Dilithium" précède la définition du bâtiment
+       Ce que c'est : building_crystal_mines est un bâtiment vanilla qui devrait
+                      produire du Dilithium dans STI mais l'intégration n'est pas finie
+       Action possible : overrider building_crystal_mines pour ajouter la production
+                         de dilithium dans les outputs de ses jobs
+
+  [11] building_mote_harvesters — intégration Tetryons incomplète
+       Fichier : même fichier (ligne 62-63)
+       État : "# HRB_TODO: Tetryons"
+       Même situation que building_crystal_mines mais pour les Tetryons
+
+
+════════════════════════════════════════════════════════════════════════
+ SECTION 3 — BUGS DE DESIGN CONNUS (NON CORRIGÉS DANS VANILLA)
+════════════════════════════════════════════════════════════════════════
+
+  [12] Bâtiment Cardassien avec prérequis Spiritualiste
+       Fichier : common/buildings/30_hornblower_cardassian_buildings.txt (ligne 725)
+       Commentaire vanilla : "# HRB_TODO: Needs Rework. Cardassian are not Spiritualists"
+       Ce que c'est : un bâtiment Cardassien qui a un prerequisite sur une tradition
+                      ou éthique Spiritualiste — les Cardassiens ne le sont pas
+       Action possible : lire le bâtiment en question, identifier le prérequis erroné,
+                         l'overrider dans CP26 avec le bon prérequis Cardassien
+
+  [13] Designs de vaisseaux non reconnus dans les events de guerre
+       Fichier : events/hornblower_country_events.txt (lignes 2508, 2586, 2663)
+       Commentaire vanilla :
+         #design = "NAME_Bird_Of_Prey"  # HRB_TODO: The game is not recognising this design
+         #design = "NAME_Ferrax"        # même
+         #design = "NAME_Hideki"        # même
+       Ce que c'est : dans les events de situation de guerre, les créations de vaisseaux
+                      utilisent "random_existing_design" car les designs nommés ne fonctionnent pas
+       Action possible : vérifier si ces designs existent dans CP26 et si on peut
+                         passer à la version nommée
+
+  [14] Mission — logique "4 minor powers les plus proches" cassée
+       Fichier : events/hornblower_mission_events.txt (ligne 4109)
+       Commentaire vanilla : "#HRB_TODO: FIX THIS WHILE - It should find the 4 closest
+                              minor powers and increase their opinion of you"
+       Ce que c'est : un effet de mission censé améliorer l'opinion des 4 puissances
+                      mineures les plus proches mais la logique "closest" est broken
+       Action possible : overrider l'event avec une logique de tri correcte
+
+
+════════════════════════════════════════════════════════════════════════
+ SECTION 4 — DÉJÀ ADRESSÉS DANS CP26 (pour mémoire)
+════════════════════════════════════════════════════════════════════════
+
+  Ces items avaient des HRBTODO mais CP26 les a correctement overridés :
+
+  ✓ RESETTLE_PLANET_DISABLED_ROMULAN
+    → Utilisé dans common/game_rules/00_rules.txt (lignes 967, 983)
+
+  ✓ negotiation_situation events
+    → Implémentés dans events/hornblower_global_situation_events.txt (lignes 717+)
+
+  ✓ suspicious_flares quest tree
+    → Géré dans common/quest_tree_nodes/qt_ufop_d4.txt
+
+  ✓ caravaneer_events.txt TEST globals (global_player, global_support)
+    → Ignorés — variables de test internes sans impact joueur
+
+
+════════════════════════════════════════════════════════════════════════
+ SECTION 5 — HORS PORTÉE MOD (pour information)
+════════════════════════════════════════════════════════════════════════
+
+  Ces HRBTODO ne peuvent pas être corrigés via un mod :
+
+  - HRB_TODO_IMAGE / HRB_TODO_SOUND : assets graphiques/audio manquants
+    (nécessitent des fichiers DDS/WAV que seul le développeur peut fournir)
+
+  - HRB_TODO: naval capacity was removed : feature retirée du moteur
+    (référencée dans ai_budget, buildings, jobs, traits — sans impact joueur)
+
+  - HRB_TODO dans interface/*.gui/*.gfx : code UI compilé,
+    inaccessible par modding standard
+
+  - HRB_TODO dans hornblower_tutorial_events.txt (titres/descs) :
+    le tutoriel n'est pas utilisé en partie normale
+
+
+════════════════════════════════════════════════════════════════════════
+ PRIORITÉ SUGGÉRÉE POUR CP26
+════════════════════════════════════════════════════════════════════════
+
+  FACILE / IMPACT IMMÉDIAT :
+    [1]  strategic_market_desc         — 1 ligne de localisation
+    [2-4] situations placeholders      — 3-4 lignes de localisation
+    [5-7] diplomatic action descs      — 3 lignes de localisation
+
+  MOYEN / IMPACT GAMEPLAY :
+    [10-11] buildings crystal/mote     — override 2 bâtiments, ajouter job outputs
+    [12]    Cardassian building prereq — lire + overrider 1 bâtiment
+
+  AMBITIEUX / FORT IMPACT :
+    [9]  Latinum mercs                 — décommenter + tester code existant
+    [8]  Critical Field Training       — vérifier edicts + décommenter event
+    [13] Ship designs                  — vérifier designs + patcher events
+    [14] Minor powers closest logic    — réécrire logique de tri
+
+########################################################################

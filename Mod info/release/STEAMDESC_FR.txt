@@ -1,0 +1,47 @@
+[h1]COMMUNITY PATCH 2026 - Star Trek: Infinite[/h1]
+
+Community Patch 2026 est une refonte communautaire active pour [i]Star Trek: Infinite[/i].
+
+Le mod rassemble dans une seule version unifiée de nombreuses corrections, améliorations de stabilité, ajustements d'équilibrage et intégrations de contenu, avec l'objectif de proposer une campagne plus cohérente, plus complète et plus agréable à jouer sur la durée.
+
+[h2]CONTENU PRINCIPAL[/h2]
+
+[list]
+[*] Intégration ou restauration de plusieurs factions, empires secondaires et colonies supplémentaires
+[*] Ajout de nouvelles classes de vaisseaux, variantes visuelles et contenus liés aux flottes
+[*] Options diplomatiques restaurées, étendues ou retravaillées
+[*] Événements de départ, paramètres de campagne et arcs narratifs supplémentaires
+[*] Corrections sur la génération de galaxie, certains scripts, la stabilité générale et de nombreuses incohérences du jeu de base
+[*] Divers rééquilibrages pour améliorer le rythme de campagne, la lisibilité et la cohérence globale
+[/list]
+
+[h2]CE QUE CP26 AJOUTE AU VANILLA[/h2]
+
+[list]
+[*] Nouvelles factions intégrées à la galaxie, dont Ferengi, Gorn, Orion, Tholian, Breen et plusieurs contenus secondaires
+[*] Colonies et systèmes supplémentaires ou restaurés pour les grandes puissances et les factions mineures
+[*] Nouvelles classes de vaisseaux, shipsets, designs globaux et variantes visuelles pour plusieurs empires
+[*] Diplomatie enrichie avec vassalisation, guerres de subjugation, options restaurées et interactions supplémentaires
+[*] IA, personnalités, démarrages de campagne et équilibrages retravaillés
+[*] Événements, arcs narratifs, quêtes et options de début de partie étendus
+[*] Musiques, interface et présentation enrichies pour une campagne plus complète
+[/list]
+
+[h2]OBJECTIF DU MOD[/h2]
+
+L'objectif de CP26 est simple : offrir une expérience plus stable, plus complète et plus fidèle à l'univers Star Trek, tout en restant proche de la structure du jeu vanilla et en essayant de préserver au mieux son identité.
+
+[h2]INSTALLATION[/h2]
+
+[list]
+[*] Activez [b]uniquement ce mod[/b]
+[*] Ne pas activer séparément les mods inclus ou intégrés
+[/list]
+
+[h2]CREDITS[/h2]
+
+Ce projet s'appuie aussi sur le travail de plusieurs créateurs et mods de la communauté Workshop ayant servi de base, d'inspiration ou d'aide ponctuelle pour certains correctifs, intégrations ou contenus. Merci à tous les auteurs concernés pour leur travail.
+
+[i]Si un développeur du jeu passe par là, peut-être un petit coup de main ? Un minuscule morceau du code source ? On peut rêver. Peut-être laisser la communauté terminer ce que le capitalisme n'a pas laissé finir. Après tout, au 24e siècle, la société est différente.[/i]
+
+[h1]Engage ![/h1]
