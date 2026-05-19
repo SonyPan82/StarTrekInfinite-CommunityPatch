@@ -34,4 +34,57 @@ spriteTypes = {
 		texturefile = "flags/emblem/small/flag_Ferengi_35.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
+
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_ferengi_military_small"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_typea_bg_ferengi.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_ferengi_military_medium"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_typeb_bg_ferengi.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+	spriteType = {
+		name = "GFX_fleet_view_main_bg_military_ferengi_military_large"
+		texturefile = "gfx/interface/fleet_view/fleet_view_main_typec_bg_ferengi.dds"
+		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
+		alwaysTransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_ship_image_cp26_ferengi_corvette_entity"
+		texturefile = "gfx/interface/ship_designer/designs/shipdesigner_ferengi_a.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_image_cp26_ferengi_destroyer_entity"
+		texturefile = "gfx/interface/ship_designer/designs/shipdesigner_ferengi_b.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_image_cp26_ferengi_battleship_entity"
+		texturefile = "gfx/interface/ship_designer/designs/shipdesigner_ferengi_c.dds"
+	}
+
+	spriteType = {
+		name = "GFX_ship_image_transport_ferengi"
+		texturefile = "gfx/interface/ship_designer/designs/transport_minor.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_image_starbase_starport_ferengi"
+		texturefile = "gfx/interface/ship_designer/designs/starbase_minor.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_image_starbase_outpost_ferengi"
+		texturefile = "gfx/interface/ship_designer/designs/starbase_minor.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_image_starbase_starhold_ferengi"
+		texturefile = "gfx/interface/ship_designer/designs/starbase_minor.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_image_starbase_starfortress_ferengi"
+		texturefile = "gfx/interface/ship_designer/designs/starbase_minor.dds"
+	}
 }

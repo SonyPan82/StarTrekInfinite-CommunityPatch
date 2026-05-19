@@ -134,7 +134,7 @@ bespoke_procedural_scenario = {
 
 	system = {
 		id = "968"
-		name = "Tholias" position = { x = 85.1 y = 229.1 }
+		name = "Tholias" position = { x = 123.0 y = 210.0 }
 		initializer = tholian_system_initializer spawn_weight = { base = 1 }
 	}
 
@@ -351,8 +351,8 @@ bespoke_procedural_scenario = {
 
 	system = {
 		id = "970"
-		name = "NAME_Ferenginar" position = { x = 47.5 y = 248.6 }
-		initializer = ferengi_system_initializer spawn_weight = { base = 1 }
+		name = "NAME_Ferenginar" position = { x = 7.0 y = 208.0 }
+		initializer = ferengi_player_initializer spawn_weight = { base = 1 }
 	}
 
 	system = {
@@ -366,7 +366,7 @@ bespoke_procedural_scenario = {
 	#}
 
 	system = {
-		name = "Breenus" position = { x = 54.5 y = 236.1 }
+		name = "Breenus" position = { x = 85.1 y = 229.1 }
 	#	initializer = breen_system_initializer spawn_weight = { base = 1 } # CP26: Breen removed from guaranteed setup
 	}
 

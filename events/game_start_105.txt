@@ -6,12 +6,16 @@ event = {
  
 	immediate = {
 		every_country = {
-			limit = { is_major = yes }
+			limit = {
+				is_major = yes
+				NOT = { has_country_flag = ferengi }
+			}
 			save_event_target_as = from_country
 			
 			every_country = {
 				limit = {
 					is_major = yes
+					NOT = { has_country_flag = ferengi }
 					NOT = { is_same_value = event_target:from_country }
 				}
 

@@ -295,6 +295,7 @@ event = {
 			every_country = {
 				limit = {
 					is_major = yes
+					NOT = { has_country_flag = ferengi }
 				}
 				establish_contact = { who = event_target:gorn_country hidden = yes }
 				establish_communications_no_message = event_target:gorn_country

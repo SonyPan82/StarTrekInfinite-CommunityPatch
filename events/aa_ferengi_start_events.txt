@@ -32,7 +32,10 @@ event = {
 
 			random_system = {
 				limit = {
-					has_star_flag = ferengi_home_system
+					OR = {
+						has_star_flag = ferengi_home_system
+						any_system_planet = { has_planet_flag = ferengi_capital }
+					}
 				}
 
 					set_surveyed = { surveyed = yes surveyor = event_target:ferengi_country }

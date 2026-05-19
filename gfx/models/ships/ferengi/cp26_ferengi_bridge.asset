@@ -1,6 +1,6 @@
-@cp26_ferengi_scale_corvette = 0.85
-@cp26_ferengi_scale_destroyer = 0.80
-@cp26_ferengi_scale_battleship = 0.85
+@cp26_ferengi_scale_corvette = 0.72
+@cp26_ferengi_scale_destroyer = 0.68
+@cp26_ferengi_scale_battleship = 0.74
 
 entity = {
 	name = "cp26_ferengi_corvette_entity"

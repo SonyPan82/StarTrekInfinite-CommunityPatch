@@ -11,7 +11,10 @@ event = {
 
 	immediate = {
 		every_country = {
-			limit = { is_major = yes }
+			limit = {
+				is_major = yes
+				NOT = { has_country_flag = ferengi }
+			}
 
 			establish_contact = { who = event_target:bajoran_country hidden = yes }
 			establish_communications_no_message = event_target:bajoran_country
@@ -19,7 +22,10 @@ event = {
 
 		event_target:bajoran_country = {
 			every_country = {
-				limit = { is_major = yes }
+				limit = {
+					is_major = yes
+					NOT = { has_country_flag = ferengi }
+				}
 	
 				establish_contact = { who = prev hidden = yes }
 				establish_communications_no_message = prev

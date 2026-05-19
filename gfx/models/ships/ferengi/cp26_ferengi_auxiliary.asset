@@ -1,0 +1,23 @@
+entity = {
+	name = "ferengi_spy_ship_entity"
+	pdxmesh = "ferengi_01_a_mesh"
+	scale = 0.90
+	default_state = "idle"
+	state = {
+		name = "idle"
+		state_time = 5
+		start_event = { trigger_once = yes sound = { soundeffect = "ferengi_01_a_entity" } }
+	}
+}
+
+entity = {
+	name = "ferengi_governor_ship_entity"
+	pdxmesh = "ferengi_01_b_mesh"
+	scale = 0.90
+	default_state = "idle"
+	state = {
+		name = "idle"
+		state_time = 5
+		start_event = { trigger_once = yes sound = { soundeffect = "ferengi_01_b_entity" } }
+	}
+}

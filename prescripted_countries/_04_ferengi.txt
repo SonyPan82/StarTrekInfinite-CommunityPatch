@@ -39,11 +39,11 @@ ferengi = {
 
 	flags = { human_2 custom_start_screen ferengi ferengi_alliance }
 
-	system_name = "NAME_Ferenginar_System"
+	system_name = "NAME_Ferenginar"
 	planet_name = "NAME_Ferenginar"
 	planet_class = "pc_continental"
 	planet_subclass = psc_class_m
-	initializer = "ferengi_system_initializer"
+	initializer = "ferengi_player_initializer"
 
 	graphical_culture = "ferengi"
 	city_graphical_culture = "minor_01"

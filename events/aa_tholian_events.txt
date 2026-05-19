@@ -11,12 +11,10 @@ event = {
 			limit = {
 				has_star_flag = tholian_home_system
 			}
-			set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
 			set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
 			setup_tholian_capital = yes
 			spawn_berellium_system = yes
 			last_created_system = {
-				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
 				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
 				setup_tholian_territory = yes
 			}
@@ -33,13 +31,11 @@ event = {
 				}
 			spawn_tholian_system = yes
 			last_created_system = {
-				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
 				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
 				setup_tholian_capital = yes
 				spawn_berellium_system = yes
 			}
 			last_created_system = {
-				set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
 				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
 				setup_tholian_territory = yes
 				every_neighbor_system = {
@@ -178,13 +174,11 @@ event = {
 				}
 				spawn_tholian_system = yes
 				last_created_system = {
-					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
 					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
 					setup_tholian_capital = yes
 					spawn_berellium_system = yes
 				}
 				last_created_system = {
-					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
 					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
 					setup_tholian_territory = yes
 				}
@@ -255,14 +249,12 @@ event = {
 				}
 				spawn_tholian_system = yes
 				last_created_system = {
-					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
 					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
 					setup_tholian_capital = yes
 					spawn_berellium_system = yes
 				}
 				last_created_system = {
 					setup_tholian_territory = yes
-					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
 					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
 				}
 				spawn_mid_system = yes	
@@ -305,24 +297,22 @@ event = {
 			}
 		}
 		
-		every_country = {
-			limit = { is_major = yes }
-			establish_contact = { who = event_target:tholian_country hidden = yes }
-			establish_communications_no_message = event_target:tholian_country
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				establish_contact = { who = event_target:tholian_country hidden = yes }
+				establish_communications_no_message = event_target:tholian_country
+				add_intel = { amount = 35 who = event_target:tholian_country }
+			}
 		}
-
-			if = {
-				limit = { exists = event_target:cardassian_country }
-				event_target:cardassian_country = {
-					add_intel = { amount = 35 who = event_target:tholian_country }
-				}
+		if = {
+			limit = { exists = event_target:ferengi_country }
+			event_target:ferengi_country = {
+				establish_contact = { who = event_target:tholian_country hidden = yes }
+				establish_communications_no_message = event_target:tholian_country
+				add_intel = { amount = 35 who = event_target:tholian_country }
 			}
-			if = {
-				limit = { exists = event_target:ufop_country }
-				event_target:ufop_country = {
-					add_intel = { amount = 35 who = event_target:tholian_country }
-				}
-			}
+		}
 
 		event_target:tholian_country = {
 			set_adjective = "Tholian"
@@ -336,36 +326,14 @@ event = {
 				give_technology = { tech = tech_destroyer_unlock message = no }
 				give_technology = { tech = tech_cruiser_unlock message = no }
 				if = {
-					limit = { exists = event_target:ufop_country }
-					establish_contact = { who = event_target:ufop_country hidden = yes }
-					establish_communications_no_message = event_target:ufop_country
-					set_truce = {
-						target = event_target:ufop_country
-						type = none
-						start_date = 2345.06.03
-					}
-				}
-				if = {
 					limit = { exists = event_target:cardassian_country }
 					establish_contact = { who = event_target:cardassian_country hidden = yes }
 					establish_communications_no_message = event_target:cardassian_country
 				}
 				if = {
-					limit = { exists = event_target:romulan_country }
-					establish_contact = { who = event_target:romulan_country hidden = yes }
-					establish_communications_no_message = event_target:romulan_country
-				}
-				if = {
-					limit = { exists = event_target:klingon_country }
-					establish_contact = { who = event_target:klingon_country hidden = yes }
-					establish_communications_no_message = event_target:klingon_country
-				}
-				if = {
-					limit = { exists = event_target:ufop_country }
-					add_opinion_modifier = {
-						who = event_target:ufop_country
-						modifier = opinion_insult
-					}
+					limit = { exists = event_target:ferengi_country }
+					establish_contact = { who = event_target:ferengi_country hidden = yes }
+					establish_communications_no_message = event_target:ferengi_country
 				}
 			every_planet_within_border = {
 				limit = {
