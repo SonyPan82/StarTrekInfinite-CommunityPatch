@@ -6,6 +6,27 @@ Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
 
 --------------------------------------------------------------------------------
+Session du 2026-05-19 (Rura Penthe / Beta Penthe)
+--------------------------------------------------------------------------------
+
+[MAP][MED] Intégration finale de `Rura Penthe` dans `Beta Penthe`
+  `Beta Penthe` reste le système Klingon existant sur la carte CP26
+  (`Alpha-Beta_medium` + `tutorial`), mais il utilise désormais un
+  `beta_penthe_system_initializer` restauré dans le mod afin de recréer
+  correctement la planète `Rura Penthe`.
+
+[GAMEPLAY][MED] `Rura Penthe` rendue visible et colonisée
+  La planète n'est plus une simple barren discrète : elle devient une vraie
+  colonie Klingonne visible, avec ownership, avant-poste et setup minimal
+  de colonie pénitentiaire.
+
+[FIX][LOW] Finalisation au lancement pour fiabiliser `Rura Penthe`
+  Ajout de `cp26_setlik.3` sur `on_game_start_country` côté Klingon afin
+  de garantir la colonie et l'outpost si le moteur ne finalise pas
+  entièrement `Beta Penthe` via l'initializer seul.
+  Doc : `Mod info/CP26_RURA_PENTHE_SYSTEM_2026-05-19.txt`.
+
+--------------------------------------------------------------------------------
 Session du 2026-05-17 (carte - Sol Nova / Terra Nova)
 --------------------------------------------------------------------------------
 

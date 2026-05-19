@@ -1,0 +1,44 @@
+CP26 - Rura Penthe / Beta Penthe integration
+
+Final state retained:
+- Beta Penthe remains the existing Klingon system on the bespoke CP26 map.
+- Rura Penthe is now a visible colonized Klingon planet inside Beta Penthe.
+
+Technical implementation:
+- Restored a working `beta_penthe_system_initializer` inside CP26 because
+  `common/solar_system_initializers/hornblower_initializers.txt` is overridden
+  by an empty file in the mod, which removes the vanilla initializer.
+- `Alpha-Beta_medium` and `tutorial` now point Beta Penthe to
+  `beta_penthe_system_initializer`.
+- The initializer creates:
+  - system/star name: Beta Penthe
+  - planet name: Rura Penthe
+  - flag: `planet_rura_penthe`
+- Added `create_rura_penthe_colony` scripted effect for a simple Klingon prison
+  colony setup.
+- Added `cp26_setlik.3` on `on_game_start_country` for Klingons to guarantee:
+  - ownership
+  - colony creation
+  - outpost creation / reassignment
+  if the engine does not fully finalize the system from the initializer alone.
+
+Files involved:
+- common/solar_system_initializers/klingon/cp26_beta_penthe_initializer.txt
+- common/scripted_effects/cp26_rura_penthe_effects.txt
+- common/on_actions/zz_cp26_on_game_start.txt
+- events/zz_cp26_setlik_fix.txt
+- map/setup_scenarios/Alpha-Beta_medium.txt
+- map/setup_scenarios/tutorial.txt
+
+Why this version was kept:
+- Pure initializer-only attempts did spawn the planet correctly, confirmed by
+  debug logs and `game_start` detection of `planet_rura_penthe`.
+- However, the system could still appear undiscovered / unowned / visually empty
+  in practice.
+- The retained version matches the approach already used successfully in CP26
+  for other bespoke added systems: static map placement plus a lightweight
+  startup finalization pass.
+
+Gameplay result:
+- Klingon territory now visibly includes Beta Penthe with a colonized
+  Rura Penthe prison world.
