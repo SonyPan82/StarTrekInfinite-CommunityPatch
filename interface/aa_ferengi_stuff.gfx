@@ -1,21 +1,26 @@
 spriteTypes = {
 	spriteType = {
 		name = "GFX_ST_empty_room_ferengi"
-		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_minorpowers.dds"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_ferengi.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}
 	spriteType = {
 		name = "GFX_ST_capital_empty_room_ferengi"
-		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_minorpowers.dds"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_ferengi.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
 	}
 	spriteType = {
 		name = "GFX_ST_empty_room_ferengi_loadgame"
-		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_minorpowers.dds"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_ferengi.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}
 	spriteType = {
 		name = "GFX_flag_Ferengi_35_icon"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_ferengi_icon"
 		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
@@ -25,7 +30,17 @@ spriteTypes = {
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
+		name = "flag_ferengi_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
 		name = "GFX_flag_Ferengi_35_bottombar"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_flag_ferengi_bottombar"
 		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
@@ -34,21 +49,274 @@ spriteTypes = {
 		texturefile = "flags/emblem/small/flag_Ferengi_35.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
+	spriteType = {
+		name = "GFX_flag_ferengi_small"
+		texturefile = "flags/emblem/small/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "flag_Ferengi_35_topbar"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		transParencecheck = yes
+	}
+	spriteType = {
+		name = "GFX_flag_Ferengi_35"
+		texturefile = "flags/emblem/flag_Ferengi_35.dds"
+	}
+	spriteType = {
+		name = "GFX_flag_ferengi"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+	}
+	spriteType = {
+		name = "GFX_flag_ferengi_01"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+	}
+	spriteType = {
+		name = "GFX_flag_Ferengi"
+		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+	}
+	spriteType = {
+		name = "GFX_topbar_running_ferengi"
+		texturefile = "gfx/interface/topbar/playpause/running_bg_ferengi.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/topbar/playpause/paused_ST_mask.dds"
+			animationtexturefile = "gfx/interface/topbar/playpause/running_texture_ferengi.dds"
+			animationrotation = -90
+			animationlooping = yes
+			animationtime = 20
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0 y = 0 }
+			animationtexturescale = { x = 1 y = 1 }
+		}
+	}
+	spriteType = {
+		name = "GFX_topbar_running_ferengi_01"
+		texturefile = "gfx/interface/topbar/playpause/running_bg_ferengi.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/topbar/playpause/paused_ST_mask.dds"
+			animationtexturefile = "gfx/interface/topbar/playpause/running_texture_ferengi.dds"
+			animationrotation = -90
+			animationlooping = yes
+			animationtime = 20
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0 y = 0 }
+			animationtexturescale = { x = 1 y = 1 }
+		}
+	}
+	spriteType = {
+		name = "GFX_ST_topbar_paused_ferengi"
+		texturefile = "gfx/interface/topbar/playpause/paused_ST_bg.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/topbar/playpause/paused_ST_mask.dds"
+			animationtexturefile = "gfx/interface/topbar/playpause/paused_ST_texture_ferengi.dds"
+			animationrotation = -90
+			animationlooping = yes
+			animationtime = 20000
+			animationdelay = 0
+			animationblendmode = "multiply"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0 y = 0 }
+			animationtexturescale = { x = 1 y = 1 }
+		}
+	}
+	spriteType = {
+		name = "GFX_ST_topbar_paused_ferengi_01"
+		texturefile = "gfx/interface/topbar/playpause/paused_ST_bg.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/topbar/playpause/paused_ST_mask.dds"
+			animationtexturefile = "gfx/interface/topbar/playpause/paused_ST_texture_ferengi.dds"
+			animationrotation = -90
+			animationlooping = yes
+			animationtime = 20000
+			animationdelay = 0
+			animationblendmode = "multiply"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0 y = 0 }
+			animationtexturescale = { x = 1 y = 1 }
+		}
+	}
+	spriteType = {
+		name = "GFX_main_quest_tree_button_ferengi"
+		texturefile = "gfx/interface/main/topbar_quest_tree_button_ferengi.dds"
+		noOfFrames = 3
+		transparencecheck = yes
+	}
+	spriteType = {
+		name = "GFX_main_quest_tree_button_ferengi_01"
+		texturefile = "gfx/interface/main/topbar_quest_tree_button_ferengi.dds"
+		noOfFrames = 3
+		transparencecheck = yes
+	}
+	spriteType = {
+		name = "GFX_main_quest_tree_button_rewards_ferengi"
+		texturefile = "gfx/interface/main/topbar_quest_tree_button_ferengi.dds"
+		noOfFrames = 3
+		transparencecheck = yes
+		animation = {
+			animationmaskfile = "gfx/interface/main/topbar_quest_tree_button_mask.dds"
+			animationtexturefile = "gfx/interface/main/topbar_quest_tree_button_vfx.dds"
+			animationrotation = 180
+			animationlooping = yes
+			animationtime = 15
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "rotating"
+			animationframes = { 1 2 3 }
+		}
+		animation = {
+			animationmaskfile = "gfx/interface/main/topbar_quest_tree_button_mask2.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180
+			animationlooping = yes
+			animationtime = 50
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationframes = { 1 2 3 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_main_quest_tree_button_rewards_ferengi_01"
+		texturefile = "gfx/interface/main/topbar_quest_tree_button_ferengi.dds"
+		noOfFrames = 3
+		transparencecheck = yes
+		animation = {
+			animationmaskfile = "gfx/interface/main/topbar_quest_tree_button_mask.dds"
+			animationtexturefile = "gfx/interface/main/topbar_quest_tree_button_vfx.dds"
+			animationrotation = 180
+			animationlooping = yes
+			animationtime = 15
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "rotating"
+			animationframes = { 1 2 3 }
+		}
+		animation = {
+			animationmaskfile = "gfx/interface/main/topbar_quest_tree_button_mask2.dds"
+			animationtexturefile = "gfx/interface/fleet_view/action_button_texture.dds"
+			animationrotation = 180
+			animationlooping = yes
+			animationtime = 50
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationframes = { 1 2 3 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_navbar_decorator_ferengi"
+		texturefile = "gfx/interface/main/navbar_empire_containter_ferengi.dds"
+	}
+	spriteType = {
+		name = "GFX_navbar_decorator_ferengi_01"
+		texturefile = "gfx/interface/main/navbar_empire_containter_ferengi.dds"
+	}
+	spriteType = {
+		name = "GFX_navbar_member_bg_ferengi"
+		textureFile = "gfx/interface/main/navbar_entry_ferengi.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_navbar_member_bg_ferengi_01"
+		textureFile = "gfx/interface/main/navbar_entry_ferengi.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_navbar_member_expanded_bg_ferengi"
+		textureFile = "gfx/interface/main/navbar_entry_expanded_ferengi.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_navbar_member_expanded_bg_ferengi_01"
+		textureFile = "gfx/interface/main/navbar_entry_expanded_ferengi.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_dark_area_cut_8_actiontool_ferengi"
+		textureFile = "gfx/interface/tiles/dark_area_cut_8_actiontool_ferengi.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 3
+	}
+	spriteType = {
+		name = "GFX_dark_area_cut_8_actiontool_ferengi_01"
+		textureFile = "gfx/interface/tiles/dark_area_cut_8_actiontool_ferengi.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 3
+	}
+	corneredTileSpriteType = {
+		name = "GFX_tiles_dark_area_cut_8_HRB_ferengi"
+		textureFile = "gfx/interface/tiles/dark_area_cut_8_HRB_ferengi.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 3
+		borderSize = { x = 8 y = 8 }
+	}
+	corneredTileSpriteType = {
+		name = "GFX_tiles_dark_area_cut_8_HRB_ferengi_01"
+		textureFile = "gfx/interface/tiles/dark_area_cut_8_HRB_ferengi.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 3
+		borderSize = { x = 8 y = 8 }
+	}
+	spriteType = {
+		name = "GFX_UI_Background_fleet_empire_ferengi"
+		textureFile = "gfx/interface/tiles/GFX_UI_Background_fleet_ferengi_empire.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_UI_Background_fleet_empire_ferengi_01"
+		textureFile = "gfx/interface/tiles/GFX_UI_Background_fleet_ferengi_empire.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	corneredTileSpriteType = {
+		name = "GFX_order_bg_ferengi"
+		texturefile = "gfx/interface/buttons/button_listbox_ferengi.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 3
+		borderSize = {
+			x = 4
+			y = 4
+		}
+	}
+	corneredTileSpriteType = {
+		name = "GFX_order_bg_ferengi_01"
+		texturefile = "gfx/interface/buttons/button_listbox_ferengi.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 3
+		borderSize = {
+			x = 4
+			y = 4
+		}
+	}
 
 	spriteType = {
-		name = "GFX_fleet_view_main_bg_military_ferengi_military_small"
+		name = "GFX_fleet_view_main_bg_ferengi_military_small"
 		texturefile = "gfx/interface/fleet_view/fleet_view_main_typea_bg_ferengi.dds"
 		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
 		alwaysTransparent = yes
 	}
 	spriteType = {
-		name = "GFX_fleet_view_main_bg_military_ferengi_military_medium"
+		name = "GFX_fleet_view_main_bg_ferengi_military_medium"
 		texturefile = "gfx/interface/fleet_view/fleet_view_main_typeb_bg_ferengi.dds"
 		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
 		alwaysTransparent = yes
 	}
 	spriteType = {
-		name = "GFX_fleet_view_main_bg_military_ferengi_military_large"
+		name = "GFX_fleet_view_main_bg_ferengi_military_large"
 		texturefile = "gfx/interface/fleet_view/fleet_view_main_typec_bg_ferengi.dds"
 		masking_texture = "gfx/interface/fleet_view/fleets_bg_mask.dds"
 		alwaysTransparent = yes
@@ -70,6 +338,14 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_ship_image_transport_ferengi"
 		texturefile = "gfx/interface/ship_designer/designs/transport_minor.dds"
+	}
+	spriteType = {
+		name = "GFX_fleet_manager_bg_ferengi"
+		textureFile = "gfx/interface/fleet_view/starbase_background_ferengi.dds"
+	}
+	spriteType = {
+		name = "GFX_fleet_manager_bg_ferengi_01"
+		textureFile = "gfx/interface/fleet_view/starbase_background_ferengi.dds"
 	}
 	spriteType = {
 		name = "GFX_ship_image_starbase_starport_ferengi"

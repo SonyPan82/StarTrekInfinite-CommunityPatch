@@ -276,7 +276,7 @@ gorn_system_initializer = {
 				ignore_initial_colony_error = yes				
 			}
 			last_created_country = {
-				set_name = "Gorn Hegemony"
+				set_name = "Hegemonie Gorn"
 				set_graphical_culture = gorn_01
 				save_global_event_target_as = gorn_country
 				set_country_flag = gorn

@@ -108,7 +108,7 @@ tholian_system_initializer = {
 				ignore_initial_colony_error = yes				
 			}
 			last_created_country = {
-				set_name = "Tholian Assembly"
+				set_name = "Assemblee Tholienne"
 				set_graphical_culture = tholian_01
 				save_global_event_target_as = tholian_country
 				set_country_flag = tholian

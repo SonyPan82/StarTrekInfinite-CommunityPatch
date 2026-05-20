@@ -63,6 +63,17 @@ spawn_cestus_system = {
 setup_gorn_capital = {
 	if = {
 		limit = {
+			NOT = { exists = event_target:gorn_country }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = gorn
+			}
+			save_global_event_target_as = gorn_country
+		}
+	}
+	if = {
+		limit = {
 			exists = event_target:gorn_country
 		}
 		# CP26 - Gorn combat doctrine : tough but slow reptilian fleets.
@@ -129,6 +140,17 @@ setup_gorn_capital = {
 }
 
 setup_gorn_territory = {
+	if = {
+		limit = {
+			NOT = { exists = event_target:gorn_country }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = gorn
+			}
+			save_global_event_target_as = gorn_country
+		}
+	}
 	if = {
 		limit = {
 			exists = event_target:gorn_country

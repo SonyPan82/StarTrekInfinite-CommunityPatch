@@ -4,6 +4,11 @@ part = {
 
 	trigger = {
 		has_country_flag = custom_start_screen
-		has_country_flag = ferengi
+		OR = {
+			has_country_flag = ferengi
+			has_country_flag = ferengi_alliance
+			has_country_id = "ferengi"
+			is_country_type = ferengi_alliance
+		}
 	}
 }

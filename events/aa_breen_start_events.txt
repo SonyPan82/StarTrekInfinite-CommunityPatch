@@ -13,6 +13,24 @@ event = {
 			}
 			save_global_event_target_as = breen_country
 		}
+		every_country = {
+			if = {
+				limit = { has_country_flag = ufop }
+				save_global_event_target_as = ufop_country
+			}
+			if = {
+				limit = { has_country_flag = klingon }
+				save_global_event_target_as = klingon_country
+			}
+			if = {
+				limit = { has_country_flag = romulan }
+				save_global_event_target_as = romulan_country
+			}
+			if = {
+				limit = { has_country_flag = cardassia }
+				save_global_event_target_as = cardassian_country
+			}
+		}
 
 		if = {
 			limit = {

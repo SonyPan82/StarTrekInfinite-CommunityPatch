@@ -200,8 +200,8 @@ ferengi_system_initializer = {
 							file = "00_solid.dds"
 						}
 						colors = {
-							"yellow"
-							"dark_green"
+							"Cardassian"
+							"black"
 							"null"
 							"null"
 						}
@@ -213,7 +213,7 @@ ferengi_system_initializer = {
 					ignore_initial_colony_error = yes
 				}
 				last_created_country = {
-					set_name = "Ferengi Alliance"
+					set_name = "Alliance Ferengi"
 					set_graphical_culture = ferengi
 					save_global_event_target_as = ferengi_country
 					set_country_flag = ferengi

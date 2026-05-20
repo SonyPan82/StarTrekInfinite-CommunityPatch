@@ -13,25 +13,52 @@ event = {
 			}
 			save_global_event_target_as = orion_country
 		}
+		every_country = {
+			if = {
+				limit = { has_country_flag = ufop }
+				save_global_event_target_as = ufop_country
+			}
+			if = {
+				limit = { has_country_flag = klingon }
+				save_global_event_target_as = klingon_country
+			}
+			if = {
+				limit = { has_country_flag = romulan }
+				save_global_event_target_as = romulan_country
+			}
+			if = {
+				limit = { has_country_flag = cardassia }
+				save_global_event_target_as = cardassian_country
+			}
+		}
 
-		random_system = {
+		if = {
 			limit = {
-				has_star_flag = orion_home_system
+				exists = event_target:orion_country
+				any_system = { has_star_flag = orion_home_system }
 			}
-			set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
-			set_surveyed = { surveyed = yes surveyor = event_target:orion_country }
-			setup_orion_capital = yes
-			every_neighbor_system = {
+			random_system = {
 				limit = {
-					is_not_used_space = yes
+					has_star_flag = orion_home_system
 				}
-				setup_orion_territory = yes
-			}
-			random_neighbor_system = {
-				spawn_verex_system = yes
-			}
-			last_created_system = {
-				setup_verex_colony = yes
+				if = {
+					limit = { exists = event_target:ufop_country }
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+				set_surveyed = { surveyed = yes surveyor = event_target:orion_country }
+				setup_orion_capital = yes
+				every_neighbor_system = {
+					limit = {
+						is_not_used_space = yes
+					}
+					setup_orion_territory = yes
+				}
+				random_neighbor_system = {
+					spawn_verex_system = yes
+				}
+				last_created_system = {
+					setup_verex_colony = yes
+				}
 			}
 		}
 

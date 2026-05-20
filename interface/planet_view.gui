@@ -316,7 +316,8 @@ guiTypes = {
 
 			iconType = {
 				name = "flag_emblem"
-				quadTextureSprite = "flag_UFOP_10_bottombar"
+				spriteType = "GFX_flag_unknown_icon"
+				themeable = owner
 				position = { x= 418 y = 24 }
 				scale = 0.96
 				alwaysTransparent = yes

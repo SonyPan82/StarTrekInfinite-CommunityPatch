@@ -103,7 +103,7 @@ breen_system_initializer = {
 				ignore_initial_colony_error = yes
 			}
 			last_created_country = {
-				set_name = "Breen Confederacy"
+				set_name = "Confederation Breen"
 				set_graphical_culture = breen_01
 				save_global_event_target_as = breen_country
 				set_country_flag = breen

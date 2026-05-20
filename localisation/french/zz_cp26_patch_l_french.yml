@@ -1,4 +1,9 @@
 ﻿l_french:
+ EMPIRE_DESIGN_BREEN:0 "Confédération Breen"
+ EMPIRE_DESIGN_GORN:0 "Hégémonie Gorn"
+ EMPIRE_DESIGN_ORION:0 "Empire Orion"
+ EMPIRE_DESIGN_THOLIAN:0 "Assemblée Tholienne"
+
  lunar_one_colony:0 "Colonie de Lunar One"
  lunar_one_colony_desc:0 "Lunar One est le premier avant-poste scientifique en gravité réduite que l'humanité a construit sur sa propre Lune - un berceau de recherche qui attire encore les esprits les plus curieux de la Fédération."
  cp26_fleet_museum:0 "Musée de la Flotte"

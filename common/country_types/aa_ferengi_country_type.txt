@@ -215,11 +215,4 @@ ferengi_alliance = {
 		}
 	}
 
-	branch_office_resources = {
-		category = planet_branch_offices
-		cost = {
-			energy = 1000
-			influence = 50
-		}
-	}
 }

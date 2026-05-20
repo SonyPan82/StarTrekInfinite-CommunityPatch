@@ -6,12 +6,27 @@ spriteTypes = {
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}
 	spriteType = {
+		name = "GFX_ST_empty_room_tholian_01"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_tholian.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
 		name = "GFX_ST_capital_empty_room_tholian"
 		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_tholian.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
 	}
 	spriteType = {
+		name = "GFX_ST_capital_empty_room_tholian_01"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_tholian.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+	spriteType = {
 		name = "GFX_ST_empty_room_Tholian_loadgame"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_tholian.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_empty_room_tholian_01_loadgame"
 		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_tholian.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}

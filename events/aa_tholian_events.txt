@@ -7,20 +7,53 @@ event = {
 	fire_only_once = yes
 
 	immediate = {
-		random_system = {
+		every_country = {
+			if = {
+				limit = { has_country_flag = tholian }
+				save_global_event_target_as = tholian_country
+			}
+			if = {
+				limit = { has_country_flag = cardassia }
+				save_global_event_target_as = cardassian_country
+			}
+			if = {
+				limit = { has_country_flag = bajoran }
+				save_global_event_target_as = bajoran_country
+			}
+			if = {
+				limit = { has_country_flag = betazoid }
+				save_global_event_target_as = betazoid_country
+			}
+			if = {
+				limit = { has_country_flag = ferengi }
+				save_global_event_target_as = ferengi_country
+			}
+			if = {
+				limit = { has_country_flag = ufop }
+				save_global_event_target_as = ufop_country
+			}
+		}
+
+		if = {
 			limit = {
-				has_star_flag = tholian_home_system
+				exists = event_target:tholian_country
+				any_system = { has_star_flag = tholian_home_system }
 			}
-			set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
-			setup_tholian_capital = yes
-			spawn_berellium_system = yes
-			last_created_system = {
+			random_system = {
+				limit = {
+					has_star_flag = tholian_home_system
+				}
 				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
-				setup_tholian_territory = yes
-			}
-			every_neighbor_system = {
-				limit = { is_not_used_space = yes }
-				setup_tholian_territory = yes
+				setup_tholian_capital = yes
+				spawn_berellium_system = yes
+				last_created_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+					setup_tholian_territory = yes
+				}
+				every_neighbor_system = {
+					limit = { is_not_used_space = yes }
+					setup_tholian_territory = yes
+				}
 			}
 		}
 
@@ -31,12 +64,18 @@ event = {
 				}
 			spawn_tholian_system = yes
 			last_created_system = {
-				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+				if = {
+					limit = { exists = event_target:tholian_country }
+					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+				}
 				setup_tholian_capital = yes
 				spawn_berellium_system = yes
 			}
 			last_created_system = {
-				set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+				if = {
+					limit = { exists = event_target:tholian_country }
+					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+				}
 				setup_tholian_territory = yes
 				every_neighbor_system = {
 					limit = { is_not_used_space = yes }	
@@ -174,12 +213,18 @@ event = {
 				}
 				spawn_tholian_system = yes
 				last_created_system = {
-					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+					if = {
+						limit = { exists = event_target:tholian_country }
+						set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+					}
 					setup_tholian_capital = yes
 					spawn_berellium_system = yes
 				}
 				last_created_system = {
-					set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+					if = {
+						limit = { exists = event_target:tholian_country }
+						set_surveyed = { surveyed = yes surveyor = event_target:tholian_country }
+					}
 					setup_tholian_territory = yes
 				}
 				spawn_mid_system = yes	
@@ -314,68 +359,71 @@ event = {
 			}
 		}
 
-		event_target:tholian_country = {
-			set_adjective = "Tholian"
-			set_policy = { 
-				policy = diplomatic_stance
-				option = diplo_stance_feisty
-				cooldown = yes
-			}
-				give_technology = { tech = tech_reactor_1 message = no }
-				give_technology = { tech = tech_reactor_2 message = no }
-				give_technology = { tech = tech_destroyer_unlock message = no }
-				give_technology = { tech = tech_cruiser_unlock message = no }
-				if = {
-					limit = { exists = event_target:cardassian_country }
-					establish_contact = { who = event_target:cardassian_country hidden = yes }
-					establish_communications_no_message = event_target:cardassian_country
+		if = {
+			limit = { exists = event_target:tholian_country }
+			event_target:tholian_country = {
+				set_adjective = "Tholian"
+				set_policy = { 
+					policy = diplomatic_stance
+					option = diplo_stance_feisty
+					cooldown = yes
 				}
-				if = {
-					limit = { exists = event_target:ferengi_country }
-					establish_contact = { who = event_target:ferengi_country hidden = yes }
-					establish_communications_no_message = event_target:ferengi_country
+					give_technology = { tech = tech_reactor_1 message = no }
+					give_technology = { tech = tech_reactor_2 message = no }
+					give_technology = { tech = tech_destroyer_unlock message = no }
+					give_technology = { tech = tech_cruiser_unlock message = no }
+					if = {
+						limit = { exists = event_target:cardassian_country }
+						establish_contact = { who = event_target:cardassian_country hidden = yes }
+						establish_communications_no_message = event_target:cardassian_country
+					}
+					if = {
+						limit = { exists = event_target:ferengi_country }
+						establish_contact = { who = event_target:ferengi_country hidden = yes }
+						establish_communications_no_message = event_target:ferengi_country
+					}
+				every_planet_within_border = {
+					limit = {
+						has_deposit_for = shipclass_mining_station
+						has_mining_station = no
+					}
+					create_mining_station = {
+						owner = event_target:tholian_country
+					}
 				}
-			every_planet_within_border = {
-				limit = {
-					has_deposit_for = shipclass_mining_station
-					has_mining_station = no
-				}
-				create_mining_station = {
-					owner = event_target:tholian_country
-				}
-			}
-			
-			create_civilian_fleet = yes
+				
+				create_civilian_fleet = yes
 
-			# Military
-			create_fleet = {
-				set_take_point = yes
-				effect = {
-					set_owner = prev
+				# Military
+				create_fleet = {
+					set_take_point = yes
+					effect = {
+						set_owner = prev
 
-					while = {
-						count = 2
+						while = {
+							count = 2
+							create_ship = {
+								name = random
+								random_existing_design = tholiancorvette
+								initial_officers_perc = 0.4
+							}
+						}
+						while = {
+							count = 2
+							create_ship = {
+								name = random
+								random_existing_design = tholiandestroyer
+								initial_officers_perc = 0.15
+							}
+						}
 						create_ship = {
 							name = random
-							random_existing_design = tholiancorvette
-							initial_officers_perc = 0.4
+							random_existing_design = tholianbattleship
+							initial_officers_perc = 0.1
 						}
+						
+						set_location = prev.capital_star
 					}
-					while = {
-						count = 2
-						create_ship = {
-							name = random
-							random_existing_design = tholiandestroyer
-							initial_officers_perc = 0.15
-						}
-					}
-					create_ship = {
-						name = random
-						random_existing_design = tholianbattleship
-						initial_officers_perc = 0.1
-					}
-					
-					set_location = prev.capital_star
 				}
 			}
 		}

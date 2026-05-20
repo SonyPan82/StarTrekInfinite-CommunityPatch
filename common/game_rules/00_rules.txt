@@ -1076,6 +1076,10 @@ can_build_branch_offices = {
 			has_civic = civic_galactic_sovereign_megacorp
 		}
 	}
+	custom_tooltip = {
+		fail_text = requires_actor_not_ferengi_native_branch_office
+		NOT = { is_country_type = ferengi_alliance }
+	}
 }
 
 # This = country

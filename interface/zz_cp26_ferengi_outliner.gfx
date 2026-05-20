@@ -1,0 +1,33 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_outliner_header_bg_ferengi"
+		textureFile = "gfx/interface/buttons/header_listbox_cardassian.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_outliner_member_bg_ferengi"
+		textureFile = "gfx/interface/buttons/outliner_entry_cardassian.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_outliner_member_bg_ferengi_selected"
+		textureFile = "gfx/interface/buttons/outliner_selected_entry_cardassian.dds"
+		noOfFrames = 3
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = {
+		name = "GFX_fleet_status_icon_ferengi"
+		texturefile = "gfx/interface/outliner/outliner_ship_status_icons_cardassian.dds"
+		noOfFrames = 25
+	}
+	corneredTileSpriteType = {
+		name = "GFX_listbox_background_header_ferengi"
+		textureFile = "gfx/interface/buttons/header_listbox_cardassian.dds"
+	}
+	spriteType = {
+		name = "GFX_listbox_background_header_emblem_ferengi"
+		textureFile = "gfx/interface/buttons/header_listbox_cardassian_emblem.dds"
+	}
+}

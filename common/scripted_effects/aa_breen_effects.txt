@@ -24,6 +24,17 @@ spawn_breen_system_fallback = {
 
 setup_breen_capital = {
 	if = {
+		limit = {
+			NOT = { exists = event_target:breen_country }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = breen
+			}
+			save_global_event_target_as = breen_country
+		}
+	}
+	if = {
 		limit = { exists = event_target:breen_country }
 		# CP26 - Breen combat doctrine : heavy cryo armor, slow cadence.
 		event_target:breen_country = {
@@ -94,6 +105,17 @@ setup_breen_capital = {
 }
 
 setup_breen_territory = {
+	if = {
+		limit = {
+			NOT = { exists = event_target:breen_country }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = breen
+			}
+			save_global_event_target_as = breen_country
+		}
+	}
 	if = {
 		limit = { exists = event_target:breen_country }
 		set_surveyed = { surveyed = yes surveyor = event_target:breen_country }

@@ -1,4 +1,9 @@
 ﻿l_english:
+ EMPIRE_DESIGN_BREEN:0 "Breen Confederacy"
+ EMPIRE_DESIGN_GORN:0 "Gorn Hegemony"
+ EMPIRE_DESIGN_ORION:0 "Orion Empire"
+ EMPIRE_DESIGN_THOLIAN:0 "Tholian Assembly"
+
  lunar_one_colony:0 "Lunar One Colony"
  lunar_one_colony_desc:0 "Lunar One is the first deep-space research outpost humanity built on its own moon - a cradle of zero-g science that still draws the Federation's most curious minds."
  tech_ambassador:0 "Ambassador Schematics"

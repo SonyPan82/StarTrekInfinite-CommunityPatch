@@ -1,7 +1,7 @@
 ﻿l_english:
  EMPIRE_DESIGN_FERENGI:0 "Ferengi Alliance"
  EMPIRE_SHORT_NAME_ferengi:0 "FERENGI"
- START_SCREEN_FERENGI:0 "The Ferengi Alliance is bound together by commerce, profit, and the authority of the Grand Nagus. From Ferenginar, every contract, concession, and opportunity is measured against a single question: what is its value?\n\nOther powers speak of honor, unity, or destiny. The Ferengi speak of margins, leverage, and advantage. In a galaxy full of idealists, warriors, and schemers, profit itself may prove the strongest principle of all."
+ START_SCREEN_FERENGI:0 "The Ferengi Alliance is held together by commerce, profit, and the authority of the Grand Nagus. From Ferenginar, the great trading houses, lenders, and negotiators measure everything in terms of gain, contract, and latinum.\n\nThe Rules of Acquisition are more than custom: they shape politics, diplomacy, and even war itself. Where other powers invoke honor, destiny, or duty, the Ferengi understand that the right deal, struck at the right moment, can be worth more than an entire fleet."
  gov_social_autocracy_ferengi:0 "Commercial Conclave"
  gov_social_autocracy_ferengi_desc:0 "A state guided by the Grand Nagus and the great commercial interests of Ferengi society, where political power and economic power are one and the same."
  ferengi_unique_mechanic:0 "Commerce and Profit"

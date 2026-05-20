@@ -115,7 +115,7 @@ event = {
 					create_fleet = {
 						set_take_point = yes
 						effect = {
-							set_owner = prev
+							set_owner = event_target:ferengi_country
 
 							create_ship = {
 								name = random
@@ -128,7 +128,7 @@ event = {
 								initial_officers_perc = 0.2
 							}
 
-							set_location = prev.capital_star
+							set_location = event_target:ferengi_country.capital_star
 						}
 					}
 				}

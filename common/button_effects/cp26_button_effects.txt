@@ -89,3 +89,85 @@ cp26_open_ferengi_branch_manager = {
 		}
 	}
 }
+
+cp26_build_ferengi_branch_nagus = {
+	potential = { from = { is_ferengi_empire = yes } exists = event_target:cp26_branch_selected_planet exists = event_target:cp26_branch_host_country }
+	allow = {
+		from = {
+			resource_stockpile_compare = { resource = influence value >= 50 }
+			resource_stockpile_compare = { resource = minerals value >= 400 }
+		}
+	}
+	effect = {
+		from = {
+			add_resource = { influence = -50 }
+			add_resource = { minerals = -400 }
+			set_relation_flag = { who = event_target:cp26_branch_host_country flag = cp26_ferengi_branch_trade_relation }
+			save_global_event_target_as = cp26_branch_report_ferengi
+		}
+		event_target:cp26_branch_selected_planet = {
+			add_modifier = { modifier = cp26_ferengi_trade_forum days = -1 }
+			save_global_event_target_as = cp26_branch_report_planet
+		}
+		event_target:cp26_branch_host_country = {
+			set_relation_flag = { who = from flag = cp26_ferengi_branch_trade_relation }
+			save_global_event_target_as = cp26_branch_report_host
+			country_event = { id = cp26_ferengi_branch.6 }
+		}
+		from = { country_event = { id = cp26_ferengi_branch.4 } }
+	}
+}
+cp26_build_ferengi_branch_acquisition = {
+	potential = { from = { is_ferengi_empire = yes } exists = event_target:cp26_branch_selected_planet exists = event_target:cp26_branch_host_country }
+	allow = {
+		from = {
+			resource_stockpile_compare = { resource = influence value >= 50 }
+			resource_stockpile_compare = { resource = minerals value >= 500 }
+		}
+	}
+	effect = {
+		from = {
+			add_resource = { influence = -50 }
+			add_resource = { minerals = -500 }
+			set_relation_flag = { who = event_target:cp26_branch_host_country flag = cp26_ferengi_branch_mining_relation }
+			save_global_event_target_as = cp26_branch_report_ferengi
+		}
+		event_target:cp26_branch_selected_planet = {
+			add_modifier = { modifier = cp26_ferengi_mining_consortium days = -1 }
+			save_global_event_target_as = cp26_branch_report_planet
+		}
+		event_target:cp26_branch_host_country = {
+			set_relation_flag = { who = from flag = cp26_ferengi_branch_mining_relation }
+			save_global_event_target_as = cp26_branch_report_host
+			country_event = { id = cp26_ferengi_branch.7 }
+		}
+		from = { country_event = { id = cp26_ferengi_branch.4 } }
+	}
+}
+cp26_build_ferengi_branch_quark = {
+	potential = { from = { is_ferengi_empire = yes } exists = event_target:cp26_branch_selected_planet exists = event_target:cp26_branch_host_country }
+	allow = {
+		from = {
+			resource_stockpile_compare = { resource = influence value >= 50 }
+			resource_stockpile_compare = { resource = minerals value >= 500 }
+		}
+	}
+	effect = {
+		from = {
+			add_resource = { influence = -50 }
+			add_resource = { minerals = -500 }
+			set_relation_flag = { who = event_target:cp26_branch_host_country flag = cp26_ferengi_branch_energy_relation }
+			save_global_event_target_as = cp26_branch_report_ferengi
+		}
+		event_target:cp26_branch_selected_planet = {
+			add_modifier = { modifier = cp26_ferengi_energy_exchange days = -1 }
+			save_global_event_target_as = cp26_branch_report_planet
+		}
+		event_target:cp26_branch_host_country = {
+			set_relation_flag = { who = from flag = cp26_ferengi_branch_energy_relation }
+			save_global_event_target_as = cp26_branch_report_host
+			country_event = { id = cp26_ferengi_branch.8 }
+		}
+		from = { country_event = { id = cp26_ferengi_branch.4 } }
+	}
+}

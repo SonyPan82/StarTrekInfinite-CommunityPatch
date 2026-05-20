@@ -1,0 +1,93 @@
+# Icônes custom — Guide CP26
+
+## Où sont les icônes de planet modifier
+
+Les icônes utilisées par les `static_modifiers` sont des fichiers `.dds` stockés dans :
+
+```
+gfx/interface/icons/planet_modifiers/
+```
+
+Le jeu (STI) charge en priorité les fichiers du mod si le chemin relatif est identique à celui du jeu de base.
+
+---
+
+## Icônes des succursales Ferengi
+
+### Pointeurs actuels (à remplacer par les customs)
+
+| Succursale | Modifier | Icône actuelle |
+|---|---|---|
+| Bureau du Grand Nagus | `cp26_ferengi_trade_forum` | `pm_resources.dds` (vanilla) |
+| Équipe d'Acquisition | `cp26_ferengi_mining_consortium` | `pm_factory.dds` (vanilla) |
+| Bar de Quark | `cp26_ferengi_energy_exchange` | `pm_resources.dds` (vanilla) |
+
+### Cibles — fichiers à créer
+
+```
+CP26/gfx/interface/icons/planet_modifiers/pm_cp26_nagus_bureau.dds
+CP26/gfx/interface/icons/planet_modifiers/pm_cp26_acquisition_team.dds
+CP26/gfx/interface/icons/planet_modifiers/pm_cp26_quarks_bar.dds
+```
+
+Une fois les fichiers créés, mettre à jour `common/static_modifiers/cp26_ferengi_branch_modifiers.txt` :
+
+```
+cp26_ferengi_trade_forum = {
+    icon = "gfx/interface/icons/planet_modifiers/pm_cp26_nagus_bureau.dds"
+    ...
+}
+
+cp26_ferengi_mining_consortium = {
+    icon = "gfx/interface/icons/planet_modifiers/pm_cp26_acquisition_team.dds"
+    ...
+}
+
+cp26_ferengi_energy_exchange = {
+    icon = "gfx/interface/icons/planet_modifiers/pm_cp26_quarks_bar.dds"
+    ...
+}
+```
+
+---
+
+## Spécifications techniques
+
+| Paramètre | Valeur |
+|---|---|
+| Taille | **60 × 60 px** |
+| Format | **DDS ARGB8888** (non compressé, avec canal alpha) |
+| Fond | Transparent |
+| Style | Icône blanche/dorée, cohérente avec les planet modifiers vanilla STI |
+
+> Source : mesuré sur `pm_factory.dds` du jeu de base STI
+> (`common/Infinite/gfx/interface/icons/planet_modifiers/pm_factory.dds`)
+
+---
+
+## Workflow de création
+
+1. Dessine l'icône en **60×60 PNG** fond transparent
+2. Convertis en DDS ARGB8888 via l'une des options :
+   - **GIMP** + plugin DDS (gratuit, multi-plateforme)
+   - **paint.net** + plugin DDS (Windows)
+   - **texconv** (outil CLI Microsoft, ligne de commande)
+   - **Photoshop** + plugin NVIDIA DDS
+3. Dépose dans `CP26/gfx/interface/icons/planet_modifiers/`
+4. Mets à jour les `icon =` dans le modifier (voir ci-dessus)
+5. Recharge le mod en jeu — aucun redémarrage complet nécessaire si tu es dans le menu principal
+
+---
+
+## Références visuelles
+
+Pour l'inspiration, les icônes vanilla sont ici :
+```
+/Users/yohanmbp/Library/Application Support/Steam/steamapps/common/Infinite/gfx/interface/icons/planet_modifiers/
+```
+
+Fichiers proches thématiquement :
+- `pm_resources.dds` — commerce/énergie
+- `pm_factory.dds` — industrie/extraction
+- `pm_alien_zoo.dds` — divertissement
+- `pm_artist_monument_erected.dds` — culture/amenities

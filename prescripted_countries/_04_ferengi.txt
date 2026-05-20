@@ -1,5 +1,5 @@
 ferengi = {
-	name = "Ferengi Alliance"
+	name = "Alliance Ferengi"
 	short_name = "EMPIRE_SHORT_NAME_ferengi"
 	country_id = "ferengi"
 	adjective = "PRESCRIPTED_adjective_ferengi"
@@ -37,7 +37,7 @@ ferengi = {
 	ethic = "ethic_fanatic_materialist"
 	ethic = "ethic_xenophile"
 
-	flags = { human_2 custom_start_screen ferengi ferengi_alliance }
+	flags = { custom_start_screen ferengi ferengi_alliance }
 
 	system_name = "NAME_Ferenginar"
 	planet_name = "NAME_Ferenginar"
@@ -60,8 +60,8 @@ ferengi = {
 			file = "00_solid.dds"
 		}
 		colors = {
-			"yellow"
-			"dark_green"
+			"Cardassian"
+			"black"
 			"null"
 			"null"
 		}

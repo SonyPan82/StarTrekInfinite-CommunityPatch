@@ -25,6 +25,17 @@ spawn_verex_system = {
 setup_orion_capital = {
 	if = {
 		limit = {
+			NOT = { exists = event_target:orion_country }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = orion
+			}
+			save_global_event_target_as = orion_country
+		}
+	}
+	if = {
+		limit = {
 			exists = event_target:orion_country
 		}
 		# CP26 - Orion combat doctrine : fast pirates, punchy weapons, fragile armor.
@@ -80,6 +91,17 @@ setup_orion_capital = {
 	setup_verex_colony = {
 		if = {
 			limit = {
+				NOT = { exists = event_target:orion_country }
+			}
+			every_country = {
+				limit = {
+					has_country_flag = orion
+				}
+				save_global_event_target_as = orion_country
+			}
+		}
+		if = {
+			limit = {
 				exists = event_target:orion_country
 			}
 			random_system_planet = {
@@ -116,6 +138,17 @@ setup_orion_capital = {
 	}
 
 setup_orion_territory = {
+	if = {
+		limit = {
+			NOT = { exists = event_target:orion_country }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = orion
+			}
+			save_global_event_target_as = orion_country
+		}
+	}
 	if = {
 		limit = {
 			exists = event_target:orion_country

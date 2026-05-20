@@ -196,6 +196,7 @@ country_event = {
 			create_fleet = {
 				set_take_point = yes
 				effect = {
+					set_owner = root
 					create_ship = {
 						name = random
 						random_existing_design = ferengicorvette

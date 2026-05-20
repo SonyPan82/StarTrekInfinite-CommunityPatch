@@ -25,6 +25,17 @@ spawn_berellium_system = {
 setup_tholian_capital = {
 	if = {
 		limit = {
+			NOT = { exists = event_target:tholian_country }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = tholian
+			}
+			save_global_event_target_as = tholian_country
+		}
+	}
+	if = {
+		limit = {
 			exists = event_target:tholian_country
 		}
 		# CP26 - Tholian combat doctrine : superior energy shields, fragile hulls.
@@ -74,6 +85,17 @@ setup_tholian_capital = {
 }
 
 setup_tholian_territory = {
+	if = {
+		limit = {
+			NOT = { exists = event_target:tholian_country }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = tholian
+			}
+			save_global_event_target_as = tholian_country
+		}
+	}
 	if = {
 		limit = {
 			exists = event_target:tholian_country
