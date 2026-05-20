@@ -15,8 +15,6 @@ cp26_open_ferengi_branch_manager = {
 				has_modifier = cp26_ferengi_trade_forum
 				has_modifier = cp26_ferengi_mining_consortium
 				has_modifier = cp26_ferengi_energy_exchange
-				has_modifier = cp26_ferengi_research_exchange
-				has_modifier = cp26_ferengi_security_contractors
 			}
 			AND = {
 				custom_tooltip = {
@@ -41,8 +39,6 @@ cp26_open_ferengi_branch_manager = {
 						has_modifier = cp26_ferengi_trade_forum
 						has_modifier = cp26_ferengi_mining_consortium
 						has_modifier = cp26_ferengi_energy_exchange
-						has_modifier = cp26_ferengi_research_exchange
-						has_modifier = cp26_ferengi_security_contractors
 					}
 				}
 				custom_tooltip = {
@@ -51,8 +47,6 @@ cp26_open_ferengi_branch_manager = {
 						NOT = { has_relation_flag = { who = from flag = cp26_ferengi_branch_trade_relation } }
 						NOT = { has_relation_flag = { who = from flag = cp26_ferengi_branch_mining_relation } }
 						NOT = { has_relation_flag = { who = from flag = cp26_ferengi_branch_energy_relation } }
-						NOT = { has_relation_flag = { who = from flag = cp26_ferengi_branch_research_relation } }
-						NOT = { has_relation_flag = { who = from flag = cp26_ferengi_branch_security_relation } }
 					}
 				}
 			}
@@ -74,8 +68,6 @@ cp26_open_ferengi_branch_manager = {
 					has_modifier = cp26_ferengi_trade_forum
 					has_modifier = cp26_ferengi_mining_consortium
 					has_modifier = cp26_ferengi_energy_exchange
-					has_modifier = cp26_ferengi_research_exchange
-					has_modifier = cp26_ferengi_security_contractors
 				}
 			}
 			save_global_event_target_as = cp26_branch_report_planet

@@ -47,8 +47,8 @@ Recommended setup:
 
 ---
 ## Install From Steam
-**Community Patch 2026 / Workshop**
-https://steamcommunity.com/sharedfiles/filedetails/?id=3717921693
+
+**Community Patch 2026 / [Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3717921693)**
 
 ## Install From GitHub
 

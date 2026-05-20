@@ -12,16 +12,6 @@ cp26_ferengi_mining_consortium = {
 
 cp26_ferengi_energy_exchange = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_resources.dds"
-	job_technician_add = 1
-}
-
-cp26_ferengi_research_exchange = {
-	icon = "gfx/interface/icons/planet_modifiers/pm_research_grants.dds"
-	job_researcher_add = 1
-}
-
-cp26_ferengi_security_contractors = {
-	icon = "gfx/interface/icons/planet_modifiers/pm_crime.dds"
-	job_soldier_add = 1
-	planet_crime_mult = -0.10
+	planet_amenities_add = 5
+	trade_value_add = 2
 }

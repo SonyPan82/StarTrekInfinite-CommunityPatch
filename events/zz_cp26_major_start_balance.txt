@@ -50,5 +50,18 @@ country_event = {
 				food = 450
 			}
 		}
+
+		# Ferengi Alliance - seed capital pour premières succursales.
+		# Minéraux : coût d'ouverture d'une succursale (400-500) × 2 premiers deals.
+		# Énergie : trésorerie d'exploitation (revenus faibles en early game).
+		# Influence : diplomatie commerciale, premier pacte commercial dès l'an 1.
+		if = {
+			limit = { has_country_id = ferengi }
+			add_resource = {
+				energy = 400
+				minerals = 900
+				influence = 75
+			}
+		}
 	}
 }

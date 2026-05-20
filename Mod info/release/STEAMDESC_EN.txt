@@ -44,7 +44,11 @@ This project also builds on the work of several community Workshop creators and 
 
 [h2]SUPPORT / CONTRIBUTION[/h2]
 
-[url=https://ko-fi.com/vhsmodding][b]Support My Work on Ko-fi[/b][/url]
+If you enjoy my work, you can support me here:
+[list]
+[*] [url=https://ko-fi.com/vhsmodding][b]Ko-fi[/b][/url]
+[*] [url=https://fr.tipeee.com/vhsmodding/][b]Tipeee[/b][/url]
+[/list]
 
 [url=https://github.com/SonyPan82/StarTrekInfinite-CommunityPatch][b]Contribute to the Mod on GitHub[/b][/url]
 
