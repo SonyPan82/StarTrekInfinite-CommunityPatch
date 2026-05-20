@@ -5,7 +5,7 @@ civic_ferengi_rules_of_acquisition = {
 
 	modifier = {
 		trade_value_mult = 0.3
-		country_energy_produces_mult = 0.05
+		country_energy_produces_mult = 0.1
 	}
 }
 

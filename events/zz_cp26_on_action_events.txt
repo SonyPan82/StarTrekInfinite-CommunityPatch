@@ -72,6 +72,6 @@ planet_event = {
 			}
 		}
 		name = action.4100.i
-		add_district_and_planet_size_if_needed_effect = { district = district_training_camp }
+		add_district_and_planet_size_if_needed_effect = { district = district_labor_camp }
 	}
 }

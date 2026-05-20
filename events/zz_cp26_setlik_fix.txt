@@ -116,6 +116,10 @@ country_event = {
 				limit = { has_country_flag = tholian }
 				save_event_target_as = tholian_country
 			}
+			if = {
+				limit = { has_country_flag = bajoran }
+				save_event_target_as = bajoran_country
+			}
 		}
 
 			random_galaxy_planet = {
@@ -160,6 +164,22 @@ country_event = {
 				exists = event_target:tholian_country
 			}
 			establish_communications_no_message = event_target:tholian_country
+		}
+		if = {
+			limit = {
+				exists = event_target:bajoran_country
+			}
+			establish_contact = { who = event_target:bajoran_country hidden = yes }
+			establish_communications_no_message = event_target:bajoran_country
+		}
+		if = {
+			limit = {
+				exists = event_target:bajoran_country
+			}
+			event_target:bajoran_country = {
+				establish_contact = { who = root hidden = yes }
+				establish_communications_no_message = root
+			}
 		}
 
 		if = {

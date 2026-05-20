@@ -1,0 +1,118 @@
+action_cp26_create_branch_office = {
+	icon = "GFX_diplomacy_status_commercial_pact"
+	is_listed = yes
+	diplo_view_acceptance_icon = yes
+	auto_accepted = yes
+	should_notify_all_communications = yes
+	should_show_auto_accept_message_recipient = yes
+	requires_actor_independence = no
+	requires_recipient_independence = no
+	action_type = positive
+
+	potential = {
+		hidden_trigger = {
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+				is_ferengi_empire = yes
+			}
+			from = {
+				OR = {
+					is_country_type = default
+					is_country_type = contender
+					is_ferengi_empire = yes
+				}
+				NOT = { is_same_value = root }
+			}
+		}
+	}
+
+	proposable = {
+		hidden_trigger = {
+			is_ai = no
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = ACTION_RECIPIENT_MUST_BE_INDEPENDENT
+			from = {
+				is_subject = no
+			}
+		}
+
+		custom_tooltip = {
+			fail_text = requires_recipient_not_megacorp
+			from = {
+				NOT = { has_authority = auth_corporate }
+			}
+		}
+
+		custom_tooltip = {
+			fail_text = requires_actor_is_ferengi
+			is_ferengi_empire = yes
+		}
+
+		has_commercial_pact = from
+
+		custom_tooltip = {
+			fail_text = cp26_ferengi_branch_requires_free_partner
+			NOT = {
+				has_relation_flag = {
+					who = from
+					flag = cp26_ferengi_branch_trade_relation
+				}
+			}
+			NOT = {
+				has_relation_flag = {
+					who = from
+					flag = cp26_ferengi_branch_mining_relation
+				}
+			}
+			NOT = {
+				has_relation_flag = {
+					who = from
+					flag = cp26_ferengi_branch_energy_relation
+				}
+			}
+			NOT = {
+				has_relation_flag = {
+					who = from
+					flag = cp26_ferengi_branch_research_relation
+				}
+			}
+			NOT = {
+				has_relation_flag = {
+					who = from
+					flag = cp26_ferengi_branch_security_relation
+				}
+			}
+		}
+
+		custom_tooltip = {
+			fail_text = cp26_ferengi_branch_requires_eligible_planet
+			from = {
+				any_owned_planet = {
+					is_colony = yes
+					has_upgraded_capital = yes
+					NOR = {
+						has_modifier = cp26_ferengi_trade_forum
+						has_modifier = cp26_ferengi_mining_consortium
+						has_modifier = cp26_ferengi_energy_exchange
+						has_modifier = cp26_ferengi_research_exchange
+						has_modifier = cp26_ferengi_security_contractors
+					}
+				}
+			}
+		}
+	}
+
+	on_accept = {
+		hidden_effect = {
+			from = {
+				save_global_event_target_as = cp26_branch_host_country
+			}
+			country_event = { id = cp26_ferengi_branch.1 }
+		}
+	}
+}

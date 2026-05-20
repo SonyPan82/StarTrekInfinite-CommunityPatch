@@ -1,0 +1,27 @@
+cp26_ferengi_trade_forum = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_resources.dds"
+	trade_value_mult = 0.10
+	planet_amenities_add = 3
+}
+
+cp26_ferengi_mining_consortium = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_factory.dds"
+	job_miner_add = 1
+	planet_jobs_worker_produces_mult = 0.05
+}
+
+cp26_ferengi_energy_exchange = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_resources.dds"
+	job_technician_add = 1
+}
+
+cp26_ferengi_research_exchange = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_research_grants.dds"
+	job_researcher_add = 1
+}
+
+cp26_ferengi_security_contractors = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_crime.dds"
+	job_soldier_add = 1
+	planet_crime_mult = -0.10
+}

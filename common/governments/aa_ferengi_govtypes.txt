@@ -2,6 +2,6 @@ gov_social_autocracy_ferengi = {
 	ruler_title = RT_RULER
 	ruler_title_female = RT_RULER_FEMALE
 
-	possible = { has_authority = auth_dictatorial_ferengi }
+	possible = { has_authority = auth_corporate }
 	weight = { base = 10000 }
 }

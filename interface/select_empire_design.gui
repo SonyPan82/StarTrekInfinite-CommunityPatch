@@ -479,10 +479,10 @@ guiTypes = {
 
 ##############################################[ NOT USED ABOVE }##########################################################
 
-	### PRE-SCRIPTED (horizontal 302x440)
+	### PRE-SCRIPTED (horizontal 302x490)
 	containerWindowType = {
 		name = "prescripted_empire_design_entry"
-		size = { width = 302 height = 440 }
+		size = { width = 302 height = 490 }
 		clipping = yes
 
 		background = {
@@ -493,7 +493,7 @@ guiTypes = {
 
 		containerWindowType = {
 			name = "entry_container"
-			size = { width = 262 height = 420 }
+			size = { width = 262 height = 470 }
 			position = { x = 20 y = 10 }
 			clipping = yes
 
@@ -549,98 +549,109 @@ guiTypes = {
 				}
 			}
 
-			# Government and ethics
+			# Autorité — rangée icône + nom, juste sous le nom de l'empire
 			containerWindowType = {
 				name = "government_and_ethics"
 				position = { x = 0 y = 267 }
-				size = { width = 262 height = 123 }
+				size = { width = 262 height = 170 }
 
-				iconType = {
-					name = "government_authority_name_background"
-					position = { x = 9999 y = 9999 }
-					spriteType = "GFX_label_gradiant"
-					themeable_color = item
-				}
-
-				instantTextBoxType = {
-					name = "government_authority_name"
-					position = { x = 9999 y = 9999 }
-					font = "cg_20b"
-					maxWidth = 0
-					maxHeight = 20
-					fixedSize = yes
-					format = center
-					text = ""
-					alwaysTransparent = yes
-				}
-
+				# Fond + icône d'autorité (C++ remplace le sprite par celui de l'autorité de l'empire)
 				iconType = {
 					name = "government_authority_background"
 					spriteType = "GFX_government_authority_background"
 					themeable = item
-					position = { x = 9999 y = 9999 }
-					scale = 1
+					position = { x = 4 y = 4 }
+					scale = 0.9
 				}
 
 				iconType = {
 					name = "government_authority_icon"
 					spriteType = "GFX_government_authority"
-					position = { x = 9999 y = 9999 }
-					scale = 1
+					position = { x = 9 y = 9 }
+					scale = 0.9
 				}
-			
+
+				# Fond dégradé derrière le nom d'autorité
+				iconType = {
+					name = "government_authority_name_background"
+					position = { x = 48 y = 2 }
+					spriteType = "GFX_label_gradiant"
+					themeable_color = item
+				}
+
+				# Nom de l'autorité (ex. "Corporate Dominion")
+				instantTextBoxType = {
+					name = "government_authority_name"
+					position = { x = 50 y = 6 }
+					font = "cg_16b"
+					maxWidth = 210
+					maxHeight = 18
+					fixedSize = yes
+					format = left
+					text = ""
+					alwaysTransparent = yes
+					text_color_code = "H"
+				}
+
+				# Éthiques — rangée d'icônes (y=34, sous l'autorité)
 				overlappingElementsBoxType = {
 					name = "traits"
-					position = { x = 0 y = 26 }
+					position = { x = 0 y = 34 }
 					size = { x = 262 y = 40 }
-					spacing = 0
+					spacing = 2
 					format = center
 				}
 
+				# Civiques — rangée verticale (y=78, sous les éthiques)
 				smoothListboxType = {
 					name = "civics"
-					position = { x = 104 y = 60 }
-					size = { x = 54 y = 92 }
+					position = { x = 79 y = 78 }
+					size = { x = 104 y = 92 }
 					scrollbarType = "standardlistbox_slider"
 					autohide_scrollbar = yes
-					spacing = 0
+					spacing = 2
 				}
 
+				# Mécanique unique (C++ positionne si applicable)
 				iconType = {
 					name = "unique_mechanic_icon"
 					spriteType = "GFX_unique_mechanic"
 					themeable = item
 					position = { x = 9999 y = 9999 }
-					scale = 0
+					scale = 0.8
 				}
 
 				instantTextBoxType = {
 					name = "unique_mechanic_name"
-					position = { x = 0 y = 0 }
-					font = "cg_18b"
+					position = { x = 0 y = 152 }
+					font = "cg_16b"
 					maxWidth = 262
 					maxHeight = 18
 					fixedSize = yes
 					format = center
-					text = "UNIQUE MECHANIC"
-					alwaysTransparent = no
+					text = ""
+					alwaysTransparent = yes
+					text_color_code = "E"
 				}
 			}
 
-			# Origin / lore (compact)
+			# Description d'origine — lore compact en bas de carte
 			containerWindowType = {
 				name = "origin_window"
-				size = { width = 0 height = 0 }
-				position = { x = 9999 y = 9999 }
+				size = { width = 252 height = 28 }
+				position = { x = 5 y = 442 }
+				clipping = yes
 
 				instantTextBoxType = {
 					name = "origin_desc"
-					position = { x = 9999 y = 9999 }
+					position = { x = 0 y = 0 }
 					font = "cg_16bi"
-					maxWidth = 0
-					maxHeight = 0
+					maxWidth = 252
+					maxHeight = 28
 					text_color_code = "D"
-					scrollbarType = "standardtext_slider_small"
+					format = center
+					fixedSize = yes
+					alwaysTransparent = yes
 				}
 			}
 
@@ -657,7 +668,7 @@ guiTypes = {
 		containerWindowType = {
 			name = "selected_overlay"
 			position = { x = 8 y = 25 }
-			size = { width = 284 height = 408 }
+			size = { width = 284 height = 458 }
 			clipping = no
 			orientation = upper_left
 

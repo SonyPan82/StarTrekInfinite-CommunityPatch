@@ -46,6 +46,9 @@ Recommended setup:
 - **CP26 only**
 
 ---
+## Install From Steam
+**Community Patch 2026 / Workshop**
+https://steamcommunity.com/sharedfiles/filedetails/?id=3717921693
 
 ## Install From GitHub
 
@@ -88,8 +91,11 @@ Full credits: [CREDITS.txt](CREDITS.txt)
 
 ## Support / Contribution
 
-**Support my work**
+**Support my work on Ko-Fi**
 https://ko-fi.com/vhsmodding
+
+**Support my work on Tipeee**
+https://fr.tipeee.com/vhsmodding/
 
 Bug reports, balance feedback, and localisation contributions are welcome.
 
