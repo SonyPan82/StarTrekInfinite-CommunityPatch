@@ -91,11 +91,11 @@ Full credits: [CREDITS.txt](CREDITS.txt)
 
 ## Support / Contribution
 
-**Support my work on Ko-Fi**
-https://ko-fi.com/vhsmodding
+If you enjoy my work, you can support me here:
 
-**Support my work on Tipeee**
-https://fr.tipeee.com/vhsmodding/
+**[Ko-Fi](https://ko-fi.com/vhsmodding)**
+
+**[Tipeee](https://fr.tipeee.com/vhsmodding/)**
 
 Bug reports, balance feedback, and localisation contributions are welcome.
 

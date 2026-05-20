@@ -202,11 +202,11 @@ Le `smoothListboxType` nommé `list` est peuplé automatiquement par le C++ via 
 
 ---
 
-## Valeurs actuelles (2026-05-19)
+## Valeurs actuelles (2026-05-20)
 
 ```
 Largeur carte              : 302px
-Hauteur carte              : 440px
+Hauteur carte              : 490px
 empire_list_width_min_max  : { x=440  y=302 }
 spacing liste              : 0px
 Cards visibles             : 5 (toutes visibles simultanément)
@@ -214,13 +214,24 @@ Résolution testée          : 1512×982 (MacBook Pro 14" Retina 2×)
 Contrainte écran           : 5 × y ≤ 1512px → y_max = 302px
 
 --- Layout interne (zones séparées) ---
-entry_container     : x=20  y=10   width=262  height=420
-empire_flag         : x=110 y=0    scale=0.38  (~82×82px)
-portrait_window     : y=70  (entry) height=148  scale=0.52
-empire_name         : y=220 (entry) height=45
-government_and_ethics: y=267 (entry) height=123
-  └─ civics         : y=60 (dans gov), height=92 → end=entry y=419 ≤ 420 ✓
-selected_overlay    : x=8   y=25   width=284  height=408
+entry_container        : x=20  y=10   width=262  height=470
+empire_flag            : x=110 y=0    scale=0.38  (~82×82px)
+portrait_window        : y=65  (entry) height=148  scale=0.52  end=213
+portrait_name_divider  : y=214 (entry) ligne or GFX_ST_Line_Gold_Empire
+empire_name            : y=216 (entry) height=46              end=262
+government_and_ethics  : y=264 (entry) height=178             end=442
+  ├─ authority row     : y=2   scale=1.0 (icônes plein format)
+  ├─ ethics (traits)   : y=34  height=40  spacing=6
+  ├─ ethics_civics_div : y=76  ligne or GFX_ST_Line_Gold_Empire
+  └─ civics            : x=56  y=80  size=150×95  end=gov y=175 ≤ 178 ✓
+origin_window          : y=442 (entry) height=28               end=470 ✓
+selected_overlay       : x=8   y=25   width=284  height=458
+
+--- Fond de carte ---
+GFX_cp26_card_bg (défini dans CP26/interface/cp26_empire_selection.gfx)
+  → texturefile = gfx/interface/frontend/pre_scripted.dds
+  → corneredTileSpriteType, borderSize={8,8}
+  Remplace l'usage de GFX_selectionscreen (bake dans le binaire STI, non accessible)
 ```
 
 ---

@@ -500,15 +500,15 @@ guiTypes = {
 			buttonType = {
 				name = "background"
 				position = { x = 0 y = 0 }
-				spriteType = "GFX_selectionscreen"
+				spriteType = "GFX_cp26_card_bg"
 				themeable = item
 				alwaysTransparent = yes
 			}
 
-			# Portrait — zone portrait, en dessous du logo (logo = ~82px, portrait debute a y=70)
+			# Portrait — zone portrait, logo en overlay = ~82px, portrait debute a y=65
 			containerWindowType = {
 				name = "portrait_window"
-				position = { x = 0 y = 70 }
+				position = { x = 0 y = 65 }
 				size = { width = 262 height = 148 }
 				clipping = yes
 				orientation = UPPER_LEFT
@@ -522,11 +522,19 @@ guiTypes = {
 				}
 			}
 
+			# Séparateur portrait / nom
+			iconType = {
+				name = "portrait_name_divider"
+				position = { x = 5 y = 214 }
+				spriteType = "GFX_ST_Line_Gold_Empire"
+				alwaysTransparent = yes
+			}
+
 			# Empire name
 			containerWindowType = {
 				name = "empire_name"
-				size = { width = 262 height = 45 }
-				position = { x = 0 y = 220 }
+				size = { width = 262 height = 46 }
+				position = { x = 0 y = 216 }
 				clipping = no
 
 				instantTextBoxType = {
@@ -543,49 +551,47 @@ guiTypes = {
 
 				iconType = {
 					name = "divisor"
-					position = { x = 5 y = 43 }
+					position = { x = 5 y = 44 }
 					spriteType = "GFX_ST_Line_Gold_Empire"
 					alwaysTransparent = yes
 				}
 			}
 
-			# Autorité — rangée icône + nom, juste sous le nom de l'empire
+			# Gouvernement, éthiques, civiques
 			containerWindowType = {
 				name = "government_and_ethics"
-				position = { x = 0 y = 267 }
-				size = { width = 262 height = 170 }
+				position = { x = 0 y = 264 }
+				size = { width = 262 height = 178 }
 
-				# Fond + icône d'autorité (C++ remplace le sprite par celui de l'autorité de l'empire)
+				# Icône d'autorité plein format (C++ remplace le sprite)
 				iconType = {
 					name = "government_authority_background"
 					spriteType = "GFX_government_authority_background"
 					themeable = item
-					position = { x = 4 y = 4 }
-					scale = 0.9
+					position = { x = 2 y = 2 }
+					scale = 1.0
 				}
 
 				iconType = {
 					name = "government_authority_icon"
 					spriteType = "GFX_government_authority"
-					position = { x = 9 y = 9 }
-					scale = 0.9
+					position = { x = 7 y = 7 }
+					scale = 1.0
 				}
 
-				# Fond dégradé derrière le nom d'autorité
 				iconType = {
 					name = "government_authority_name_background"
-					position = { x = 48 y = 2 }
+					position = { x = 46 y = 1 }
 					spriteType = "GFX_label_gradiant"
 					themeable_color = item
 				}
 
-				# Nom de l'autorité (ex. "Corporate Dominion")
 				instantTextBoxType = {
 					name = "government_authority_name"
-					position = { x = 50 y = 6 }
+					position = { x = 48 y = 5 }
 					font = "cg_16b"
-					maxWidth = 210
-					maxHeight = 18
+					maxWidth = 212
+					maxHeight = 20
 					fixedSize = yes
 					format = left
 					text = ""
@@ -593,20 +599,28 @@ guiTypes = {
 					text_color_code = "H"
 				}
 
-				# Éthiques — rangée d'icônes (y=34, sous l'autorité)
+				# Éthiques — icônes centrées, espacement aéré
 				overlappingElementsBoxType = {
 					name = "traits"
 					position = { x = 0 y = 34 }
 					size = { x = 262 y = 40 }
-					spacing = 2
+					spacing = 6
 					format = center
 				}
 
-				# Civiques — rangée verticale (y=78, sous les éthiques)
+				# Séparateur éthiques / civiques
+				iconType = {
+					name = "ethics_civics_divider"
+					position = { x = 5 y = 76 }
+					spriteType = "GFX_ST_Line_Gold_Empire"
+					alwaysTransparent = yes
+				}
+
+				# Civiques — liste élargie pour afficher les noms complets
 				smoothListboxType = {
 					name = "civics"
-					position = { x = 79 y = 78 }
-					size = { x = 104 y = 92 }
+					position = { x = 56 y = 80 }
+					size = { x = 150 y = 95 }
 					scrollbarType = "standardlistbox_slider"
 					autohide_scrollbar = yes
 					spacing = 2
@@ -623,7 +637,7 @@ guiTypes = {
 
 				instantTextBoxType = {
 					name = "unique_mechanic_name"
-					position = { x = 0 y = 152 }
+					position = { x = 0 y = 162 }
 					font = "cg_16b"
 					maxWidth = 262
 					maxHeight = 18
@@ -635,7 +649,7 @@ guiTypes = {
 				}
 			}
 
-			# Description d'origine — lore compact en bas de carte
+			# Description d'origine — lore en bas de carte
 			containerWindowType = {
 				name = "origin_window"
 				size = { width = 252 height = 28 }
