@@ -938,7 +938,7 @@ action_request_subject_liberation = {
 	}
 }
 
-# CP26: reuse this diplomatic action slot for optional vassalization.
+# CP26: reuse this diplomatic action slot for optional occupied-state diplomacy.
 action_start_puppet_state_process = {
 	icon = "GFX_diplomacy_status_has_vassal"
 	is_listed = yes

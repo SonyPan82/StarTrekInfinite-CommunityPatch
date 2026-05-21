@@ -1,0 +1,83 @@
+cp26_occupied_state_tribute_1 = {
+	country_energy_produces_add = 5
+	country_minerals_produces_add = 5
+	country_food_produces_add = 5
+	country_alloys_produces_add = 1
+}
+
+cp26_occupied_state_tribute_2 = {
+	country_energy_produces_add = 10
+	country_minerals_produces_add = 10
+	country_food_produces_add = 10
+	country_alloys_produces_add = 2
+}
+
+cp26_occupied_state_tribute_3 = {
+	country_energy_produces_add = 15
+	country_minerals_produces_add = 15
+	country_food_produces_add = 15
+	country_alloys_produces_add = 3
+}
+
+cp26_occupied_state_tribute_4 = {
+	country_energy_produces_add = 20
+	country_minerals_produces_add = 20
+	country_food_produces_add = 20
+	country_alloys_produces_add = 4
+}
+
+cp26_occupied_state_tribute_5 = {
+	country_energy_produces_add = 25
+	country_minerals_produces_add = 25
+	country_food_produces_add = 25
+	country_alloys_produces_add = 5
+}
+
+cp26_occupied_state_tribute_6 = {
+	country_energy_produces_add = 30
+	country_minerals_produces_add = 30
+	country_food_produces_add = 30
+	country_alloys_produces_add = 6
+}
+
+cp26_occupied_state_tribute_7 = {
+	country_energy_produces_add = 35
+	country_minerals_produces_add = 35
+	country_food_produces_add = 35
+	country_alloys_produces_add = 7
+}
+
+cp26_occupied_state_tribute_8 = {
+	country_energy_produces_add = 40
+	country_minerals_produces_add = 40
+	country_food_produces_add = 40
+	country_alloys_produces_add = 8
+}
+
+cp26_occupied_state_tribute_9 = {
+	country_energy_produces_add = 45
+	country_minerals_produces_add = 45
+	country_food_produces_add = 45
+	country_alloys_produces_add = 9
+}
+
+cp26_occupied_state_tribute_10 = {
+	country_energy_produces_add = 50
+	country_minerals_produces_add = 50
+	country_food_produces_add = 50
+	country_alloys_produces_add = 10
+}
+
+cp26_occupied_state_tribute_11 = {
+	country_energy_produces_add = 55
+	country_minerals_produces_add = 55
+	country_food_produces_add = 55
+	country_alloys_produces_add = 11
+}
+
+cp26_occupied_state_tribute_12 = {
+	country_energy_produces_add = 60
+	country_minerals_produces_add = 60
+	country_food_produces_add = 60
+	country_alloys_produces_add = 12
+}

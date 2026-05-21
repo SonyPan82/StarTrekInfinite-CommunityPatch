@@ -1,0 +1,52 @@
+CP26 FERENGI BRANCH DORMANCY AND VISIBILITY
+Date: 2026-05-20
+
+Goal
+- Add delayed purge for branch offices after a commercial pact ends.
+- Make the delay visible on the host planet through a timed modifier.
+- Improve Ferengi visibility on partner planets while a commercial pact exists.
+
+Dormancy Model
+- When a branch office loses its supporting commercial pact:
+  - the branch becomes dormant
+  - it gains the timed planet modifier cp26_ferengi_branch_dormant
+  - duration = 360 days
+- During dormancy:
+  - Ferengi no longer receive branch income
+  - the host planet still keeps the branch modifier
+  - the timed dormancy modifier shows the remaining duration in the planet UI
+
+Purge Rule
+- If the commercial pact is not restored before the dormancy modifier expires:
+  - the branch planet modifier is removed
+  - the branch relation flag is removed on both empires
+  - the dormant relation flag is removed on both empires
+
+Reactivation Rule
+- If the commercial pact returns before dormancy ends:
+  - the dormant relation flag is cleared
+  - the dormancy planet modifier is removed
+  - the branch resumes normal function
+
+Why This Approach
+- It is lightweight.
+- It avoids daily polling.
+- The countdown is visible in a native way through the timed planet modifier.
+- It works with the current one-branch-per-empire-pair backend.
+
+Visibility Change
+- On the monthly Ferengi branch pulse:
+  - every empire with an active commercial pact and communications now has its colonized planets set as surveyed for the Ferengi empire
+- Intended result:
+  - the Ferengi player can actually inspect host planets and see what exists there while trade relations are active
+
+Files Modified
+- events/cp26_ferengi_branch_events.txt
+- common/static_modifiers/cp26_ferengi_branch_modifiers.txt
+- localisation/french/cp26_ferengi_branch_l_french.yml
+- localisation/english/cp26_ferengi_branch_l_english.yml
+
+Player-Facing Result
+- Host planet gets a visible dormancy icon with a real timer.
+- Branch report now also mentions that a dormant branch will be auto-purged.
+- Ferengi players should gain stable vision on partner planets during commercial pacts.

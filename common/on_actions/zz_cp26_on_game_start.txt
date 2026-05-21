@@ -7,6 +7,8 @@ on_game_start_country = {
 		cp26_setlik.2
 		cp26_setlik.3
 		cp26_setlik.4
+		cp26_spawn_repair.1
+		cp26_spawn_repair.2
 		cp26_ai_shipyard.1
 		cp26_ai_pulse.1
 	}

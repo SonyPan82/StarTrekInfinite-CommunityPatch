@@ -1,0 +1,50 @@
+CP26 Audit - Occupied State diplomacy and Ferengi AI branches
+Date: 2026-05-21
+
+1. Occupied-state diplomacy status
+- The CP26 proposal flow no longer resolves to `subject_type = vassal`.
+- It now resolves to `subject_type = occupied_state`.
+- This applies to:
+  - diplomatic acceptance
+  - subjugation war surrender
+  - subjugation war status quo release flow
+
+2. What still keeps old names
+- Some internal file names / event namespaces / flags still use legacy `vassalization` naming.
+- This was intentionally kept for compatibility and to reduce script break risk.
+- These retained names are now wrappers around occupied-state behavior, not a separate mechanical layer.
+
+3. Start popup toggle behavior
+- If the campaign option is disabled in the start popup:
+  - the player cannot propose the occupied-state diplomatic action
+  - the AI cannot propose it either
+- Reason:
+  - `action_start_puppet_state_process` is gated by `cp26_vassalization_mode_allows_actor`
+  - `cb_subjugation` is also gated by the same trigger
+- Therefore the CP26 proposal path is globally disabled when the option is off.
+
+4. Vanilla / engine occupied-state functions
+- Existing occupied-state systems are still available.
+- In particular, the Cardassian assimilation diplomatic action remains active:
+  - `action_start_assimilation_occupied_state`
+- Subject-change on_actions still work because they react to subject state changes in general,
+  not specifically to the old vassal result.
+
+5. Ferengi AI branch-office status
+- Current custom Ferengi branch flow is NOT autonomous for AI empires.
+- Entry points are player-only:
+  - branch edict has `potential = { is_ai = no }`
+  - branch manager button effect requires `from = { is_ai = no }`
+  - edict AI weight is `0`
+- Result:
+  - human Ferengi can use the custom system
+  - AI Ferengi currently cannot place custom CP26 branches by itself
+
+6. Recommendation
+- Keep the occupied-state refactor.
+- If Ferengi AI branch placement is required for release quality, add a dedicated AI monthly logic
+  that:
+  - picks a valid commercial-pact partner
+  - picks an eligible colony
+  - spends the cost
+  - applies one of the three custom branch modifiers

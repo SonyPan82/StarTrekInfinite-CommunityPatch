@@ -1,0 +1,43 @@
+namespace = cp26_occupied_state
+
+country_event = {
+	id = cp26_occupied_state.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			is_overlord = yes
+			has_modifier = cp26_occupied_state_tribute_1
+			has_modifier = cp26_occupied_state_tribute_2
+			has_modifier = cp26_occupied_state_tribute_3
+			has_modifier = cp26_occupied_state_tribute_4
+			has_modifier = cp26_occupied_state_tribute_5
+			has_modifier = cp26_occupied_state_tribute_6
+			has_modifier = cp26_occupied_state_tribute_7
+			has_modifier = cp26_occupied_state_tribute_8
+			has_modifier = cp26_occupied_state_tribute_9
+			has_modifier = cp26_occupied_state_tribute_10
+			has_modifier = cp26_occupied_state_tribute_11
+			has_modifier = cp26_occupied_state_tribute_12
+		}
+	}
+
+	immediate = {
+		cp26_clear_occupied_state_tribute_modifiers = yes
+		set_variable = { which = cp26_occupied_state_count value = 0 }
+
+		every_country = {
+			limit = {
+				is_subject_type = occupied_state
+				exists = overlord
+				overlord = { is_same_value = root }
+			}
+			root = {
+				change_variable = { which = cp26_occupied_state_count value = 1 }
+			}
+		}
+
+		cp26_apply_occupied_state_tribute_modifiers = yes
+	}
+}

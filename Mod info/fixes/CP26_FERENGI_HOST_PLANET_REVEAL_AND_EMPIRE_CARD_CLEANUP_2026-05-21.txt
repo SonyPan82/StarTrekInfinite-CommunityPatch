@@ -1,0 +1,41 @@
+CP26 Ferengi Host Planet Reveal and Empire Card Cleanup
+Date: 2026-05-21
+
+1. Ferengi host planet visibility
+- Removed the temporary Intel-heavy approach.
+- Branch interactions now reveal:
+  - each host colony
+  - the host colony's solar system
+  - every planet in that solar system
+- Applied when:
+  - opening branch setup on a valid host colony
+  - opening a branch report on an existing host colony
+  - creating a branch office
+
+File:
+- common/button_effects/cp26_button_effects.txt
+
+Intent:
+- Let Ferengi players actually see host worlds tied to commercial branch play,
+  without broadening the relationship into a generic intel unlock.
+
+2. Empire card cleanup
+- Shortened the visible “unique mechanic” block by blanking the long tooltip text
+  on the empire selection cards.
+- Kept only the short slogans:
+  - Justice et excellence
+  - Gloire et honneur
+  - Ruse et innovation
+  - Puissance et contrôle
+  - Commerce et profit
+
+Files:
+- localisation/french/zz_cp26_empire_card_short_l_french.yml
+- localisation/english/zz_cp26_empire_card_short_l_english.yml
+
+3. Light layout adjustment
+- Minor spacing/position tuning in the custom empire selection GUI to reduce crowding
+  without changing the overall structure.
+
+File:
+- interface/select_empire_design.gui

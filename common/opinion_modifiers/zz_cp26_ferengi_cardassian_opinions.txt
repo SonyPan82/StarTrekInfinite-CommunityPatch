@@ -1,0 +1,7 @@
+cp26_ferengi_cardassian_trade_affinity = {
+	opinion = {
+		base = 60
+	}
+
+	unique = yes
+}

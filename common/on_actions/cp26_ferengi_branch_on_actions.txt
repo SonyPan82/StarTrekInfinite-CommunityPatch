@@ -1,5 +1,6 @@
 on_monthly_pulse_country = {
 	events = {
 		cp26_ferengi_branch.100
+		cp26_ferengi_branch.101
 	}
 }

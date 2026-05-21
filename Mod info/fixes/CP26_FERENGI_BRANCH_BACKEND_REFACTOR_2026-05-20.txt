@@ -1,0 +1,86 @@
+CP26 FERENGI BRANCH BACKEND REFACTOR
+Date: 2026-05-20
+
+Goal
+- Replace monthly script payouts with a cleaner backend that the game economy can read as true country production.
+- Keep the existing Ferengi gameplay, UI flow, host planet modifiers, and branch selection intact.
+
+Problem Before
+- Branch offices paid their income with monthly add_resource effects.
+- This worked for raw rewards, but the top bar economy hover had no proper economic source to read.
+- Result: branch revenue was invisible or poorly represented in resource breakdowns.
+
+New Backend
+1. Planet branch modifiers remain the source of truth on the host world:
+   - cp26_ferengi_trade_forum
+   - cp26_ferengi_mining_consortium
+   - cp26_ferengi_energy_exchange
+
+2. Monthly pulse for Ferengi empires no longer pays resources directly.
+   Instead it:
+   - clears previous branch income country modifiers
+   - counts active branches by type
+   - reapplies matching country income modifiers for the current totals
+
+3. Income now comes from country modifiers using real production stats:
+   - trade forum branch income -> country_base_energy_produces_add
+   - mining consortium branch income -> country_base_minerals_produces_add
+   - energy exchange branch income -> country_base_energy_produces_add
+
+Income Values
+- Bureau du Grand Nagus / Trade Forum:
+  +12 energy per active branch
+- Equipe d'Acquisition / Mining Consortium:
+  +12 minerals per active branch
+- Bar de Quark / Energy Exchange:
+  +16 energy per active branch
+
+Files Modified
+- common/static_modifiers/cp26_ferengi_branch_modifiers.txt
+  Added country income modifier ladders:
+  - cp26_ferengi_branch_trade_income_1 .. 23
+  - cp26_ferengi_branch_mining_income_1 .. 23
+  - cp26_ferengi_branch_energy_income_1 .. 23
+
+- common/scripted_effects/cp26_ferengi_branch_income_effects.txt
+  New helper effects:
+  - cp26_clear_branch_income_modifiers
+  - cp26_apply_branch_income_modifiers
+
+- events/cp26_ferengi_branch_events.txt
+  Event cp26_ferengi_branch.100 now:
+  - removes old temporary branch income modifiers
+  - counts valid active branches with variables
+  - applies new income modifiers
+  - no longer uses add_resource for branch income
+
+Counting Rules
+- A branch counts only if all of these are true:
+  - the Ferengi empire has the proper relation flag with the host
+  - a commercial pact still exists
+  - the host still has the expected planet modifier for that branch type
+
+Why This Is Better
+- The backend is cleaner and easier to reason about.
+- Branch income now behaves more like real economic production.
+- It is much easier to debug than monthly hidden add_resource bursts.
+- This is the correct foundation if we want top bar hover breakdowns to reflect branch revenue more naturally.
+
+Important Limitation
+- This does not guarantee the top bar will label the line literally as "Succursales".
+- Infinite may still fold this income under a broader production category such as base energy/minerals.
+- However, the income is now injected through real country production stats instead of opaque scripted payouts.
+
+Testing Checklist
+1. Start a new Ferengi game.
+2. Open one branch of each type.
+3. Let one monthly tick pass.
+4. Verify:
+   - energy changes after Grand Nagus and Quark branches
+   - minerals change after Acquisition branches
+   - income persists while the pact exists
+   - income stops when the pact is broken
+5. Hover energy and minerals in the top bar and compare the displayed totals before/after branch creation.
+
+Follow-up
+- If the hover still does not expose the branch source clearly enough, next step is a dedicated scripted_loc or report layer that reads the same branch-count variables and displays the totals explicitly to the player.

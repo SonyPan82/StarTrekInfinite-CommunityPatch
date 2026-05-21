@@ -1,0 +1,27 @@
+CP26 Ferengi Branches - Visibility and Dormancy Policy
+Date: 2026-05-20
+
+Summary
+- Commercial pact visibility was changed from a monthly global reveal to a targeted reveal.
+- Dormancy remains delayed purge, with a timed dormant modifier on the host planet.
+
+What changed
+1. Targeted host-planet reveal
+- Removed the monthly reveal sweep from:
+  events/cp26_ferengi_branch_events.txt
+- Added one-shot reveal of all host colonies when:
+  - a Ferengi player opens the branch manager on an eligible foreign planet
+  - a Ferengi player successfully creates a branch office
+- Implemented in:
+  common/button_effects/cp26_button_effects.txt
+
+2. Dormancy display
+- Dormant branches use the timed planet modifier:
+  cp26_ferengi_branch_dormant
+- The countdown is therefore handled natively by the game on the planet modifier tooltip.
+- This avoids using a fake decision entry that looks player-clickable from the host side.
+
+Design rationale
+- The monthly reveal was functional but heavier than needed.
+- The targeted reveal gives Ferengi players practical visibility exactly when branch interaction starts.
+- Host-side dormancy remains readable without exposing a misleading planet decision.

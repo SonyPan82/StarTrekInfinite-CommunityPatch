@@ -1,0 +1,5 @@
+on_monthly_pulse_country = {
+	events = {
+		cp26_occupied_state.100
+	}
+}

@@ -70,6 +70,18 @@ cp26_open_ferengi_branch_manager = {
 					has_modifier = cp26_ferengi_energy_exchange
 				}
 			}
+			owner = {
+				every_owned_planet = {
+					limit = { is_colony = yes }
+					set_surveyed = { surveyed = yes surveyor = from }
+					solar_system = {
+						set_surveyed = { surveyed = yes surveyor = from }
+						every_system_planet = {
+							set_surveyed = { surveyed = yes surveyor = from }
+						}
+					}
+				}
+			}
 			save_global_event_target_as = cp26_branch_report_planet
 			owner = {
 				save_global_event_target_as = cp26_branch_report_host
@@ -79,6 +91,18 @@ cp26_open_ferengi_branch_manager = {
 			}
 		}
 		else = {
+			owner = {
+				every_owned_planet = {
+					limit = { is_colony = yes }
+					set_surveyed = { surveyed = yes surveyor = from }
+					solar_system = {
+						set_surveyed = { surveyed = yes surveyor = from }
+						every_system_planet = {
+							set_surveyed = { surveyed = yes surveyor = from }
+						}
+					}
+				}
+			}
 			save_global_event_target_as = cp26_branch_selected_planet
 			owner = {
 				save_global_event_target_as = cp26_branch_host_country
@@ -112,6 +136,16 @@ cp26_build_ferengi_branch_nagus = {
 		event_target:cp26_branch_host_country = {
 			set_relation_flag = { who = from flag = cp26_ferengi_branch_trade_relation }
 			save_global_event_target_as = cp26_branch_report_host
+			every_owned_planet = {
+				limit = { is_colony = yes }
+				set_surveyed = { surveyed = yes surveyor = from }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = from }
+					every_system_planet = {
+						set_surveyed = { surveyed = yes surveyor = from }
+					}
+				}
+			}
 			country_event = { id = cp26_ferengi_branch.6 }
 		}
 		from = { country_event = { id = cp26_ferengi_branch.4 } }
@@ -139,6 +173,16 @@ cp26_build_ferengi_branch_acquisition = {
 		event_target:cp26_branch_host_country = {
 			set_relation_flag = { who = from flag = cp26_ferengi_branch_mining_relation }
 			save_global_event_target_as = cp26_branch_report_host
+			every_owned_planet = {
+				limit = { is_colony = yes }
+				set_surveyed = { surveyed = yes surveyor = from }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = from }
+					every_system_planet = {
+						set_surveyed = { surveyed = yes surveyor = from }
+					}
+				}
+			}
 			country_event = { id = cp26_ferengi_branch.7 }
 		}
 		from = { country_event = { id = cp26_ferengi_branch.4 } }
@@ -166,6 +210,16 @@ cp26_build_ferengi_branch_quark = {
 		event_target:cp26_branch_host_country = {
 			set_relation_flag = { who = from flag = cp26_ferengi_branch_energy_relation }
 			save_global_event_target_as = cp26_branch_report_host
+			every_owned_planet = {
+				limit = { is_colony = yes }
+				set_surveyed = { surveyed = yes surveyor = from }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = from }
+					every_system_planet = {
+						set_surveyed = { surveyed = yes surveyor = from }
+					}
+				}
+			}
 			country_event = { id = cp26_ferengi_branch.8 }
 		}
 		from = { country_event = { id = cp26_ferengi_branch.4 } }

@@ -1,0 +1,29 @@
+CP26 - Rura Penthe Federation Spawn Fix
+Date: 2026-05-21
+
+Problem
+- Rura Penthe could fail to spawn when the player started as the Federation.
+- Beta Penthe was using two competing bootstrap paths:
+  1. direct colony/starbase creation inside the static initializer
+  2. guaranteed Klingon startup repair via cp26_setlik.3 / cp26_spawn_repair.1
+- Depending on startup order and available event targets, the static initializer path could fail or interfere.
+
+Fix
+- Removed direct colony creation from:
+  common/solar_system_initializers/klingon/cp26_beta_penthe_initializer.txt
+- Removed direct starbase creation from the same initializer.
+- Beta Penthe initializer now only places the system and the Rura Penthe planet flags.
+- The actual colony/outpost creation is now left to the Klingon startup pipeline:
+  - events/zz_cp26_setlik_fix.txt -> cp26_setlik.3
+  - events/zz_cp26_spawn_repair_events.txt -> cp26_spawn_repair.1
+- Added an is_colony guard to cp26_setlik.3 so it only creates the colony if Rura Penthe is still uncolonized.
+
+Result
+- One source of truth for Rura Penthe colony creation.
+- More stable behavior regardless of which empire the player selects at game start.
+
+Test
+1. Full game restart.
+2. Start a new game as the Federation.
+3. Check that Beta Penthe exists.
+4. Check that Rura Penthe is present as a Klingon colony with a Klingon-owned outpost.

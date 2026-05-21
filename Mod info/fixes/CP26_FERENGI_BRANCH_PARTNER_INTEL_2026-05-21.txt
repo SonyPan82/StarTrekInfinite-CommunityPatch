@@ -1,0 +1,25 @@
+CP26 Ferengi Branches - Partner Intel Access
+Date: 2026-05-21
+
+Problem
+- Ferengi commercial pacts plus branch offices still did not reliably expose host colonies
+  and their planet-level information in gameplay.
+- Simple `set_surveyed` was not sufficient on its own.
+
+Fix
+- Ferengi branch interactions now grant strong country intel on the host empire.
+- Applied when:
+  1. opening the branch manager on an eligible foreign colony
+  2. opening the report on an existing branch colony
+  3. successfully creating any branch type
+
+Implementation
+- File:
+  common/button_effects/cp26_button_effects.txt
+- Added:
+  - colony reveal via `set_surveyed`
+  - partner intel via `add_intel = { who = <host> amount = 90 }`
+
+Intent
+- Commercial pact + branch gameplay should let Ferengi actually inspect the partner's
+  colonized worlds instead of working from partial map visibility only.

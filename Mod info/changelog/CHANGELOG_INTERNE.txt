@@ -9,6 +9,14 @@ Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = e
 Session du 2026-05-19 (Rura Penthe / Beta Penthe)
 --------------------------------------------------------------------------------
 
+[FIX][LOW] Spawn dynamique Breen désactivé
+  Le vieux hook `common/on_actions/z_aa_breen_onactions.txt` relançait encore
+  `aa_breen_game_start.120` au démarrage et pouvait recréer la faction Breen
+  malgré sa suppression du setup garanti sur la carte. L'on_action est
+  désormais neutralisé pour empêcher tout respawn involontaire.
+  Les fichiers Breen restent présents comme contenu dormant, mais la faction
+  ne doit plus apparaître en jeu tant qu'aucun autre hook ne la réactive.
+
 [TEST][MED] Ferengi rendus sélectionnables au menu Nouvelle partie
   Ajout d'un preset `prescripted_countries/00_ferengi.txt`, d'un start screen
   dédié, d'un gouvernement Ferengi léger et passage du type `ferengi_alliance`

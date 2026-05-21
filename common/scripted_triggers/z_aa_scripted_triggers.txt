@@ -18,12 +18,12 @@ is_regular_empire = {
 }
 
 # Backward-compatible gate for restored CP26 diplomatic actions.
-# Keep non-vassal diplomatic options available regardless of the vassalization mode.
+# Keep non-occupied-state diplomatic options available regardless of the occupied-state mode.
 cp26_diplomacy_mode_allows_actor = {
 	always = yes
 }
 
-# Global gate for CP26 vassalization diplomacy.
+# Global gate for CP26 occupied-state diplomacy.
 cp26_vassalization_mode_allows_actor = {
 	OR = {
 		AND = {

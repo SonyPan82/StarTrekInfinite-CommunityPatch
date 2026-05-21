@@ -102,6 +102,20 @@ event = {
 				}
 
 				if = {
+					limit = { exists = event_target:cardassian_country }
+					add_opinion_modifier = {
+						who = event_target:cardassian_country
+						modifier = cp26_ferengi_cardassian_trade_affinity
+					}
+					event_target:cardassian_country = {
+						add_opinion_modifier = {
+							who = event_target:ferengi_country
+							modifier = cp26_ferengi_cardassian_trade_affinity
+						}
+					}
+				}
+
+				if = {
 					limit = {
 						NOT = { any_owned_fleet = { is_ship_class = shipclass_constructor } }
 					}

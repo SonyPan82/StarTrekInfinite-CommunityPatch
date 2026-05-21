@@ -1,0 +1,21 @@
+CP26 FERENGI START HOTFIX - 2026-05-21
+
+Issue
+- Starting a new game as the Ferengi could lead to immediate defeat before the player could act.
+
+Cause
+- ferengi_player_initializer in aa_ferengi_initializer.txt was still creating the colony directly on the starting world.
+- The real playable Ferengi setup is already finalized by cp26_setlik.4 on on_game_start_country.
+- Running both paths could execute the colony setup in the wrong scope and leave the Ferengi start invalid.
+
+Fix
+- Removed direct colony creation from ferengi_player_initializer.
+- The playable Ferengi start now relies on cp26_setlik.4 as the single source of truth for colony + capital setup.
+
+Files
+- common/solar_system_initializers/aa_ferengi_initializer.txt
+- events/zz_cp26_setlik_fix.txt
+
+Expected result
+- A new Ferengi game should no longer end immediately on start.
+- Ferenginar ownership/capital setup should now be handled only once, through the proper start event pipeline.

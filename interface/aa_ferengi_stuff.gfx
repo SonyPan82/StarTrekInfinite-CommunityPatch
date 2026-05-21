@@ -16,65 +16,65 @@ spriteTypes = {
 	}
 	spriteType = {
 		name = "GFX_flag_Ferengi_35_icon"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/bottombar/flag_ferengi_bottombar.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
 		name = "GFX_flag_ferengi_icon"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/bottombar/flag_ferengi_bottombar.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
 		name = "flag_Ferengi_35_bottombar"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/bottombar/flag_ferengi_bottombar.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
 		name = "flag_ferengi_bottombar"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/bottombar/flag_ferengi_bottombar.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
 		name = "GFX_flag_Ferengi_35_bottombar"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/bottombar/flag_ferengi_bottombar.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
 		name = "GFX_flag_ferengi_bottombar"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/bottombar/flag_ferengi_bottombar.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
 		name = "GFX_flag_Ferengi_35_small"
-		texturefile = "flags/emblem/small/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/small/flag_ferengi.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
 		name = "GFX_flag_ferengi_small"
-		texturefile = "flags/emblem/small/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/small/flag_ferengi.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}
 	spriteType = {
 		name = "flag_Ferengi_35_topbar"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/bottombar/flag_ferengi_bottombar.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 		transParencecheck = yes
 	}
 	spriteType = {
 		name = "GFX_flag_Ferengi_35"
-		texturefile = "flags/emblem/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/flag_ferengi.dds"
 	}
 	spriteType = {
 		name = "GFX_flag_ferengi"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/flag_ferengi.dds"
 	}
 	spriteType = {
 		name = "GFX_flag_ferengi_01"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/flag_ferengi.dds"
 	}
 	spriteType = {
 		name = "GFX_flag_Ferengi"
-		texturefile = "flags/emblem/bottombar/flag_Ferengi_35.dds"
+		texturefile = "flags/emblem/flag_ferengi.dds"
 	}
 	spriteType = {
 		name = "GFX_topbar_running_ferengi"

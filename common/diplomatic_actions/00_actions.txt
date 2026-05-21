@@ -685,6 +685,49 @@ action_form_commercial_pact = {
 			}
 		}
 	}
+	on_accept = {
+		hidden_effect = {
+			if = {
+				limit = { is_ferengi_empire = yes }
+				establish_contact = { who = from hidden = yes }
+				establish_communications_no_message = from
+				from = {
+					establish_contact = { who = root hidden = yes }
+					establish_communications_no_message = root
+					set_surveyed = { surveyed = yes surveyor = root }
+					every_owned_planet = {
+						limit = { is_colony = yes }
+						set_surveyed = { surveyed = yes surveyor = root }
+						solar_system = {
+							set_surveyed = { surveyed = yes surveyor = root }
+							every_system_planet = {
+								set_surveyed = { surveyed = yes surveyor = root }
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = { from = { is_ferengi_empire = yes } }
+				from = {
+					establish_contact = { who = root hidden = yes }
+					establish_communications_no_message = root
+				}
+				establish_contact = { who = from hidden = yes }
+				establish_communications_no_message = from
+				every_owned_planet = {
+					limit = { is_colony = yes }
+					set_surveyed = { surveyed = yes surveyor = from }
+					solar_system = {
+						set_surveyed = { surveyed = yes surveyor = from }
+						every_system_planet = {
+							set_surveyed = { surveyed = yes surveyor = from }
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 # Break an existing commercial pact, harms relations and sets a 20 year truce.

@@ -75,7 +75,10 @@ country_event = {
 	immediate = {
 		random_galaxy_planet = {
 			limit = { has_planet_flag = planet_rura_penthe }
-			create_rura_penthe_colony = yes
+			if = {
+				limit = { is_colony = no }
+				create_rura_penthe_colony = yes
+			}
 			solar_system = {
 				set_star_flag = outpost
 				set_star_flag = klingon_system
@@ -123,8 +126,15 @@ country_event = {
 		}
 
 			random_galaxy_planet = {
-				limit = { has_planet_flag = ferengi_capital }
-				create_ferenginar_colony = yes
+				limit = {
+					has_planet_flag = ferengi_capital
+					exists = owner
+					owner = { is_same_value = root }
+				}
+				if = {
+					limit = { is_colony = no }
+					create_ferenginar_colony = yes
+				}
 				root = {
 					set_adjective = "Ferengi"
 					set_custom_capital_location = prev
@@ -156,7 +166,22 @@ country_event = {
 				is_ai = no
 				exists = event_target:cardassian_country
 			}
+			add_opinion_modifier = {
+				who = event_target:cardassian_country
+				modifier = cp26_ferengi_cardassian_trade_affinity
+			}
 			establish_communications_no_message = event_target:cardassian_country
+		}
+		if = {
+			limit = {
+				exists = event_target:cardassian_country
+			}
+			event_target:cardassian_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = cp26_ferengi_cardassian_trade_affinity
+				}
+			}
 		}
 		if = {
 			limit = {

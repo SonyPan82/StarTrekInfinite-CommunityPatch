@@ -1,5 +1,7 @@
 on_game_start = {
 	events = {
-		aa_breen_game_start.120
+		# CP26: Breen disabled.
+		# Their old dynamic on_game_start spawn can reintroduce the faction
+		# even when it has been removed from guaranteed map setup.
 	}
 }

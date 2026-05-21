@@ -1,0 +1,21 @@
+CP26 - Ferengi Beta name hardcode fix
+Date: 2026-05-21
+
+Issue:
+- The Ferengi empire name still appeared as `Alliance Ferengi` in the empire-selection card,
+  even after the localisation key `EMPIRE_DESIGN_FERENGI` had been changed to
+  `Alliance Ferengi (Bêta)` / `Ferengi Alliance (Bêta)`.
+
+Cause:
+- The visible name was still hardcoded in two gameplay sources:
+  - `prescripted_countries/_04_ferengi.txt`
+  - `common/solar_system_initializers/aa_ferengi_initializer.txt`
+- Those hardcoded values overrode or bypassed the updated localisation key in practice.
+
+Fix:
+- Replaced the hardcoded Ferengi empire name with:
+  - `EMPIRE_DESIGN_FERENGI`
+
+Files changed:
+- `prescripted_countries/_04_ferengi.txt`
+- `common/solar_system_initializers/aa_ferengi_initializer.txt`

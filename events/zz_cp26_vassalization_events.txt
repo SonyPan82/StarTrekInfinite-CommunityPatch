@@ -55,7 +55,7 @@ country_event = {
 
 		set_subject_of = {
 			who = event_target:cp26_vassalization_actor
-			subject_type = vassal
+			subject_type = occupied_state
 		}
 		remove_country_flag = cp26_vassalization_pending_target
 		event_target:cp26_vassalization_actor = {

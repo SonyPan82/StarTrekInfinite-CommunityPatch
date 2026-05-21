@@ -1,0 +1,31 @@
+CP26 - Federation / Klingon Mutual Colony Visibility
+Date: 2026-05-21
+
+Problem
+- Bespoke colonies and outpost systems were spawning, but visibility was asymmetric.
+- Example:
+  - when playing the Federation, Rura Penthe / Beta Penthe appeared hidden
+  - when playing Klingons, Vega and similar Federation-added colonies appeared hidden
+- The issue was not spawn reliability, but startup survey visibility.
+
+Fix
+- Added targeted mutual survey visibility in:
+  - events/game_start.txt -> game_start.1
+
+Federation-added systems now revealed to Klingons
+- Vega IX (`vega_ix_planet`)
+- Denobula (`planet_denobula`)
+- Risa (`planet_risa`)
+- Sol Nova / Terra Nova (`planet_terra_nova`)
+
+Klingon-added systems now revealed to the Federation
+- O'gat (`planet_ogat`)
+- Narendra (`planet_narendra`)
+- Boreth (`planet_boreth`)
+- Khitomer (`planet_khitomer`)
+- Rura Penthe (`planet_rura_penthe`)
+
+Implementation notes
+- The patch reveals only the relevant bespoke systems.
+- It does not broadly reveal all Klingon or Federation space.
+- It keeps the fog-of-war behavior mostly intact while making CP26-added colony content readable from both starts.

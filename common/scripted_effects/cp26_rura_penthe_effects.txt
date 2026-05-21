@@ -1,6 +1,12 @@
 create_rura_penthe_colony = {
 	prevent_anomaly = yes
-	set_owner = ROOT
+	if = {
+		limit = { exists = event_target:klingon_country }
+		set_owner = event_target:klingon_country
+	}
+	else = {
+		set_owner = ROOT
+	}
 	set_colony_type = col_default
 
 	add_building = building_capital

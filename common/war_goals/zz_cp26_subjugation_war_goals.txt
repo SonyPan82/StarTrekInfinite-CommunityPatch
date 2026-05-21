@@ -38,7 +38,7 @@ wg_subjugation = {
 		from = {
 			set_subject_of = {
 				who = root
-				subject_type = vassal
+				subject_type = occupied_state
 			}
 		}
 	}
@@ -54,7 +54,7 @@ wg_subjugation = {
 			last_created_country = {
 				set_subject_of = {
 					who = root
-					subject_type = vassal
+					subject_type = occupied_state
 				}
 			}
 		}

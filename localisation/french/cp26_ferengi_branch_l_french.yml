@@ -104,6 +104,9 @@
  cp26_ferengi_branch_report_energy:0 "Bar de Quark : +16 Energie/mois — hôte : +5 Services, +2 Valeur commerciale"
  cp26_ferengi_branch_report_state_active:0 "Etat : pacte commercial actif"
  cp26_ferengi_branch_report_state_dormant:0 "Etat : operation dormante"
+ cp26_ferengi_branch_report_state_purge:0 "Etat : purge automatique a l'expiration de la dormance"
+ cp26_ferengi_branch_dormant:0 "Succursale ferengi dormante"
+ cp26_ferengi_branch_dormant_desc:0 "Cette succursale n'est plus alimentee par un pacte commercial actif. Sans reprise des relations, elle sera fermee a l'expiration de cette dormance."
 
  cp26_ferengi_branch_nagus_bureau:0 "Bureau du Grand Nagus"
  cp26_ferengi_branch_acquisition_team:0 "Equipe d'Acquisition"

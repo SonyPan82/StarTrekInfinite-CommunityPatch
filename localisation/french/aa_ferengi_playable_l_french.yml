@@ -1,5 +1,5 @@
 ﻿l_french:
- EMPIRE_DESIGN_FERENGI:0 "Alliance Ferengi"
+EMPIRE_DESIGN_FERENGI:0 "Alliance Ferengi (Bêta)"
  EMPIRE_SHORT_NAME_ferengi:0 "FERENGI"
  START_SCREEN_FERENGI:0 "L'Alliance Ferengi est tenue ensemble par le commerce, le profit et l'autorité du Grand Nagus. Depuis Ferenginar, les grandes maisons marchandes, les prêteurs et les négociants mesurent toute chose à l'aune du gain, du contrat et du latinum.\n\nLes Règles d'Acquisition ne sont pas qu'un code moral: elles structurent la politique, la diplomatie et la guerre elles-mêmes. Dans une galaxie où d'autres empires invoquent l'honneur, la destinée ou le devoir, les Ferengis savent qu'une bonne affaire, bien négociée au bon moment, peut valoir davantage qu'une flotte entière."
  gov_social_autocracy_ferengi:0 "Conclave commercial"

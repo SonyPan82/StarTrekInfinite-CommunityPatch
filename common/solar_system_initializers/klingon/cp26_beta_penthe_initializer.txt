@@ -43,10 +43,6 @@ beta_penthe_system_initializer = {
 		home_planet = no
 		modifiers = none
 		flags = { planet_rura_penthe bespoke_colony mapo_colony }
-
-		late_init_effect = {
-			create_rura_penthe_colony = yes
-		}
 	}
 
 	init_effect = {
@@ -59,10 +55,4 @@ beta_penthe_system_initializer = {
 		every_neighbor_system = { set_star_flag = empire_cluster }
 	}
 
-	late_init_effect = {
-		create_starbase = {
-			size = starbase_outpost
-			owner = event_target:klingon_country
-		}
-	}
 }

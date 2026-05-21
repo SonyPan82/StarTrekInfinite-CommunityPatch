@@ -1134,6 +1134,92 @@ event = {
 			}
 		}
 
+		# CP26 global country targets for bespoke colony setup.
+		every_country = {
+			if = {
+				limit = { has_country_flag = ufop }
+				save_global_event_target_as = ufop_country
+			}
+			if = {
+				limit = { has_country_flag = klingon }
+				save_global_event_target_as = klingon_country
+			}
+			if = {
+				limit = { has_country_flag = romulan }
+				save_global_event_target_as = romulan_country
+			}
+			if = {
+				limit = { has_country_flag = cardassia }
+				save_global_event_target_as = cardassian_country
+			}
+		}
+
+		# CP26 - mutual visibility for bespoke Federation and Klingon colony systems.
+		if = {
+			limit = {
+				exists = event_target:ufop_country
+				exists = event_target:klingon_country
+			}
+
+			# Federation-added systems shown to Klingons
+			random_galaxy_planet = {
+				limit = { has_planet_flag = vega_ix_planet }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:klingon_country }
+				}
+			}
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_denobula }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:klingon_country }
+				}
+			}
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_risa }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:klingon_country }
+				}
+			}
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_terra_nova }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:klingon_country }
+				}
+			}
+
+			# Klingon-added systems shown to the Federation
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_ogat }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+			}
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_narendra }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+			}
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_boreth }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+			}
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_khitomer }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+			}
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_rura_penthe }
+				solar_system = {
+					set_surveyed = { surveyed = yes surveyor = event_target:ufop_country }
+				}
+			}
+		}
+
 			### START - HRB POP INITIALIZERS ###
 			# UFOP pop initializers
 			if = {
@@ -1416,20 +1502,49 @@ event = {
 			}
 
 		#RURA PENTHE MINING-PRISON COLONY
-		random_galaxy_planet = {
-			limit = {
-				has_planet_flag = planet_rura_penthe
+			if = {
+				limit = { exists = event_target:klingon_country }
+				random_galaxy_planet = {
+					limit = {
+						has_planet_flag = planet_rura_penthe
+					}
+
+					if = {
+						limit = { is_colony = no }
+						create_rura_penthe_colony = yes
+					}
+					else = {
+						set_owner = event_target:klingon_country
+						set_colony_type = col_default
+						prevent_anomaly = yes
+					}
+
+					clear_deposits = yes
+					add_deposit = d_dilithium_2_rura
+
+					add_modifier = {
+						modifier = rura_penthe_prison_colony
+						days = -1
+					}
+
+					solar_system = {
+						if = {
+							limit = { exists = starbase }
+							starbase = { set_owner = event_target:klingon_country }
+						}
+						else = {
+							create_starbase = {
+								size = starbase_outpost
+								owner = event_target:klingon_country
+							}
+						}
+						set_star_flag = outpost
+						set_star_flag = klingon_system
+						set_star_flag = klingon
+						set_star_flag = rura_penthe_system
+					}
+				}
 			}
-
-			clear_deposits = yes
-
-			add_deposit = d_dilithium_2_rura
-
-			add_modifier = {
-				modifier = rura_penthe_prison_colony
-				days = -1
-			}
-		}
 
 		#REMUS PRISON CAMP
 			if = {

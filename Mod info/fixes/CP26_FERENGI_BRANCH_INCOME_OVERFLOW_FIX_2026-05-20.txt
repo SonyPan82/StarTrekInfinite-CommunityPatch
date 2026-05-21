@@ -1,0 +1,35 @@
+CP26 Ferengi Branches - Income Overflow Fix
+Date: 2026-05-20
+
+Issue
+- A single branch office could generate absurd energy income spikes (example: +7K).
+
+Root cause
+- The branch income tier script used invalid `check_variable` comparisons with two `value` clauses.
+- In practice, the engine could evaluate many tier blocks as valid at once.
+- This caused one branch to receive multiple stacked payout tiers instead of exactly one.
+
+Fix
+1. Exact tier matching
+- Replaced broad/invalid tier checks with exact equality checks:
+  - trade count = 1..23
+  - mining count = 1..23
+  - energy count = 1..23
+- Implemented in:
+  common/scripted_effects/cp26_ferengi_branch_income_effects.txt
+
+2. Safer energy stat
+- Replaced `country_base_energy_produces_add` with `country_energy_produces_add`
+  for branch-energy payout modifiers.
+- Implemented in:
+  common/static_modifiers/cp26_ferengi_branch_modifiers.txt
+
+Expected behavior
+- 1 Bureau du Grand Nagus = +12 energy
+- 1 Equipe d'Acquisition = +12 minerals
+- 1 Bar de Quark = +16 energy
+- No multi-tier overflow from a single branch.
+
+Testing note
+- On an existing save, allow at least one monthly pulse so the branch backend can
+  clear and rebuild the active income modifiers.

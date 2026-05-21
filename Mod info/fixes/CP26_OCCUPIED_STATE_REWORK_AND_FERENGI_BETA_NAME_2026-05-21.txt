@@ -1,0 +1,59 @@
+CP26 - Occupied State Rework + Ferengi Beta Menu Name
+Date: 2026-05-21
+
+1. Strategic direction
+- The old CP26 diplomatic vassalization flow has been repointed to the existing `occupied_state`
+  subject model instead of creating/maintaining a separate parallel dependency system.
+- The gameplay option in the start popup is kept, but its visible meaning is now
+  "Diplomatic occupied states" rather than "vassalization".
+
+2. Diplomatic flow
+- `cp26_vassalization.1` acceptance now sets:
+  `subject_type = occupied_state`
+- `wg_subjugation` was rewired so:
+  - surrender creates an `occupied_state`
+  - status quo released subjects also become `occupied_state`
+- Refusal still grants the same diplomatic escalation path / CB, but the resulting dependency
+  is now the occupied-state form.
+
+3. Occupied-state tribute backend
+- Added a new monthly backend for overlords with `occupied_state` subjects.
+- Each occupied state now grants a fixed tribute package to the overlord:
+  - +5 Energy
+  - +5 Minerals
+  - +5 Food
+  - +1 Alloys
+- Tribute is not paid through hidden `add_resource` ticks.
+- Tribute is converted into real country economic modifiers so it has a chance to appear in the
+  top resource bar / hover breakdown more naturally, using the same general approach as the
+  Ferengi branch-office backend refactor.
+
+4. Files added
+- `common/static_modifiers/cp26_occupied_state_modifiers.txt`
+- `common/scripted_effects/cp26_occupied_state_income_effects.txt`
+- `events/cp26_occupied_state_events.txt`
+- `common/on_actions/cp26_occupied_state_on_actions.txt`
+
+5. Tribute implementation notes
+- Monthly pulse clears old occupied-state tribute modifiers.
+- It counts active `occupied_state` subjects owned by the overlord.
+- It reapplies the matching tribute tier modifier.
+- Current supported tiers: 1 to 12 occupied states.
+
+6. Start options / localisation
+- Start popup wording now refers to occupied states instead of vassalization.
+- Internal script flags were left unchanged for compatibility/safety:
+  - `cp26_diplo_vassalization_enabled`
+  - `cp26_diplo_vassalization_disabled`
+- This avoids breaking existing gates while changing the visible gameplay meaning.
+
+7. Ferengi main menu name
+- FR:
+  `Alliance Ferengi (Bêta)`
+- EN:
+  `Ferengi Alliance (Bêta)`
+
+8. Practical expectation
+- Occupied-state tribute should now be handled through real country production modifiers,
+  which is the best available path to make the income visible in the top bar breakdown.
+- Exact tooltip grouping still depends on what Infinite's UI chooses to expose per resource.

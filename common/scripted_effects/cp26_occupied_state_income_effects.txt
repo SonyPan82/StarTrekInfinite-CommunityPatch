@@ -1,0 +1,29 @@
+cp26_clear_occupied_state_tribute_modifiers = {
+	remove_modifier = cp26_occupied_state_tribute_1
+	remove_modifier = cp26_occupied_state_tribute_2
+	remove_modifier = cp26_occupied_state_tribute_3
+	remove_modifier = cp26_occupied_state_tribute_4
+	remove_modifier = cp26_occupied_state_tribute_5
+	remove_modifier = cp26_occupied_state_tribute_6
+	remove_modifier = cp26_occupied_state_tribute_7
+	remove_modifier = cp26_occupied_state_tribute_8
+	remove_modifier = cp26_occupied_state_tribute_9
+	remove_modifier = cp26_occupied_state_tribute_10
+	remove_modifier = cp26_occupied_state_tribute_11
+	remove_modifier = cp26_occupied_state_tribute_12
+}
+
+cp26_apply_occupied_state_tribute_modifiers = {
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 1 } } add_modifier = { modifier = cp26_occupied_state_tribute_1 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 2 } } add_modifier = { modifier = cp26_occupied_state_tribute_2 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 3 } } add_modifier = { modifier = cp26_occupied_state_tribute_3 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 4 } } add_modifier = { modifier = cp26_occupied_state_tribute_4 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 5 } } add_modifier = { modifier = cp26_occupied_state_tribute_5 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 6 } } add_modifier = { modifier = cp26_occupied_state_tribute_6 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 7 } } add_modifier = { modifier = cp26_occupied_state_tribute_7 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 8 } } add_modifier = { modifier = cp26_occupied_state_tribute_8 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 9 } } add_modifier = { modifier = cp26_occupied_state_tribute_9 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 10 } } add_modifier = { modifier = cp26_occupied_state_tribute_10 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 11 } } add_modifier = { modifier = cp26_occupied_state_tribute_11 days = 40 } }
+	if = { limit = { check_variable = { which = cp26_occupied_state_count value = 12 } } add_modifier = { modifier = cp26_occupied_state_tribute_12 days = 40 } }
+}
