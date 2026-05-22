@@ -21,20 +21,6 @@ tech_mm_mega_aspirations = {
 		country_resource_max_add = 20000
 		description = MM_ENGINE_UNLOCK
 	}
-	prereqfor_desc = {
-		custom = {
-			title = "ALLOW_STAR_LIFTER"
-			desc = "star_lifter_0_MEGASTRUCTURE_DETAILS"
-		}
-		custom = {
-			title = "ALLOW_DYSON_SWARM"
-			desc = "dyson_swarm_0_MEGASTRUCTURE_DETAILS"
-		}
-		custom = {
-			title = "ALLOW_FUSION_HUB"
-			desc = "fusion_hub_0_MEGASTRUCTURE_DETAILS"
-		}
-	}
 	weight_modifier = {
 		factor = 0.5
 		modifier = {

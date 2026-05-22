@@ -18,12 +18,6 @@ tech_cp26_ufop_fleet_museum = {
 		title = tech_cp26_ufop_fleet_museum
 		desc = tech_cp26_ufop_fleet_museum_desc
 		icon = tech_big_bomb_1
-		prereqfor_desc = {
-			custom = {
-				title = ALLOW_CP26_FLEET_MUSEUM
-				desc = cp26_fleet_museum_MEGASTRUCTURE_DETAILS
-			}
-		}
 	}
 
 	weight_modifier = {

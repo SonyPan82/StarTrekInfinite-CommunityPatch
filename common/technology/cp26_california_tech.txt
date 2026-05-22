@@ -18,12 +18,6 @@ tech_cp26_california_unlock = {
 		title = tech_cp26_california_unlock
 		desc = tech_cp26_california_unlock_desc
 		icon = tech_california_unlock
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_CALIFORNIA_CONSTRUCTION_TITLE
-				desc = tech_cp26_california_unlock_desc
-			}
-		}
 	}
 
 	# Poids deck recherche : la California ne doit pas sortir trop tôt (support science).

@@ -18,12 +18,6 @@ tech_lantree_unlock = {
 		title = tech_lantree		
 		desc = tech_lantree_desc		
 		icon = tech_miranda # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_LANTREE_CONSTRUCTION_TITLE
-				desc = tech_lantree_desc
-			}	
-		}		
 	}
 
 	weight_modifier = {

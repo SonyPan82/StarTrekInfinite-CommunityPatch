@@ -18,12 +18,6 @@ tech_ambassador_unlock = {
 		title = tech_ambassador		
 		desc = tech_ambassador_desc		
 		icon = tech_miranda # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_AMBASSADOR_CONSTRUCTION_TITLE
-				desc = tech_ambassador_desc
-			}	
-		}		
 	}
 
 	weight_modifier = {

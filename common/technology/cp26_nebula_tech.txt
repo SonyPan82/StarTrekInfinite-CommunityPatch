@@ -18,12 +18,6 @@ tech_nebula_unlock = {
 		title = tech_nebula
 		desc = tech_nebula_desc
 		icon = tech_galaxy
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_NEBULA_CONSTRUCTION_TITLE
-				desc = tech_nebula_desc
-			}
-		}
 	}
 
 	weight_modifier = {

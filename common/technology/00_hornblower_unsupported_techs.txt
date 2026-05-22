@@ -230,61 +230,37 @@ tech_corvette_unlock = {
 	category = { voidcraft }
 	tier = 0
 	start_tech = yes
-	triggered_config = {			
-		trigger = {		
-			is_ufop = yes	
-		}		
-		title = tech_miranda		
-		desc = tech_miranda_desc		
-		icon = tech_miranda # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_MIRANDA_CONSTRUCTION_TITLE
-				desc = tech_miranda_desc
-			}	
-		}		
-	}			
-	triggered_config = {			
-		trigger = {		
-			is_klingon = yes	
-		}		
-		title = tech_bird_of_prey		
-		desc = tech_bird_of_prey_desc		
-		icon = tech_bird_of_prey # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_BIRD_OF_PREY_CONSTRUCTION_TITLE
-				desc = tech_bird_of_prey_desc
-			}	
-		}		
-	}			
-	triggered_config = {			
-		trigger = {		
-			is_romulan = yes	
-		}		
-		title = tech_ferrax		
-		desc = tech_ferrax_desc		
-		icon = tech_romulan_bird_of_prey # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_FERRAX_CONSTRUCTION_TITLE
-				desc = tech_ferrax_desc
-			}	
-		}		
-	}			
-	triggered_config = {			
-		trigger = {		
-			is_cardassian = yes	
-		}		
-		title = tech_hideki		
-		desc = tech_hideki_desc		
-		icon = tech_hideki # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_HIDEKI_CONSTRUCTION_TITLE
-				desc = tech_hideki_desc
-			}	
-		}		
+	triggered_config = {
+		trigger = {
+			is_ufop = yes
+		}
+		title = tech_miranda
+		desc = tech_miranda_desc
+		icon = tech_miranda # HRB_TODO: placeholder
+	}
+	triggered_config = {
+		trigger = {
+			is_klingon = yes
+		}
+		title = tech_bird_of_prey
+		desc = tech_bird_of_prey_desc
+		icon = tech_bird_of_prey # HRB_TODO: placeholder
+	}
+	triggered_config = {
+		trigger = {
+			is_romulan = yes
+		}
+		title = tech_ferrax
+		desc = tech_ferrax_desc
+		icon = tech_romulan_bird_of_prey # HRB_TODO: placeholder
+	}
+	triggered_config = {
+		trigger = {
+			is_cardassian = yes
+		}
+		title = tech_hideki
+		desc = tech_hideki_desc
+		icon = tech_hideki # HRB_TODO: placeholder
 	}			
 }
 
@@ -317,12 +293,6 @@ tech_destroyer_unlock = {
 		title = tech_intrepid		
 		desc = tech_intrepid_desc		
 		icon = tech_intrepid # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_INTREPID_CONSTRUCTION_TITLE
-				desc = tech_intrepid_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -331,12 +301,6 @@ tech_destroyer_unlock = {
 		title = tech_warbird		
 		desc = tech_warbird_desc		
 		icon = tech_warbird # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_WARBIRD_CONSTRUCTION_TITLE
-				desc = tech_warbird_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -345,12 +309,6 @@ tech_destroyer_unlock = {
 		title = tech_vindius		
 		desc = tech_vindius_desc		
 		icon = tech_vindius # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_VINDIUS_CONSTRUCTION_TITLE
-				desc = tech_vindius_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -359,12 +317,6 @@ tech_destroyer_unlock = {
 		title = tech_galor		
 		desc = tech_galor_desc		
 		icon = tech_galor # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_GALOR_CONSTRUCTION_TITLE
-				desc = tech_galor_desc
-			}	
-		}		
 	}			
 	weight_modifier = {
 		modifier = {
@@ -422,12 +374,6 @@ tech_cruiser_unlock = {
 		title = tech_excelsior		
 		desc = tech_excelsior_desc		
 		icon = tech_excelsior # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_EXCELSIOR_CONSTRUCTION_TITLE
-				desc = tech_excelsior_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -436,12 +382,6 @@ tech_cruiser_unlock = {
 		title = tech_ktinga		
 		desc = tech_ktinga_desc		
 		icon = tech_ktinga # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_KTINGA_CONSTRUCTION_TITLE
-				desc = tech_ktinga_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -450,12 +390,6 @@ tech_cruiser_unlock = {
 		title = tech_valdore		
 		desc = tech_valdore_desc		
 		icon = tech_valdore # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_VALDORE_CONSTRUCTION_TITLE
-				desc = tech_valdore_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -464,12 +398,6 @@ tech_cruiser_unlock = {
 		title = tech_keldon		
 		desc = tech_keldon_desc		
 		icon = tech_keldon # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_KELDON_CONSTRUCTION_TITLE
-				desc = tech_keldon_desc
-			}	
-		}		
 	}			
 	weight_modifier = {
 		modifier = {
@@ -527,12 +455,6 @@ tech_battleship_unlock = {
 		title = tech_galaxy		
 		desc = tech_galaxy_desc		
 		icon = tech_galaxy # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_GALAXY_CONSTRUCTION_TITLE
-				desc = tech_galaxy_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -541,12 +463,6 @@ tech_battleship_unlock = {
 		title = tech_vorcha		
 		desc = tech_vorcha_desc		
 		icon = tech_vorcha # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_VORCHA_CONSTRUCTION_TITLE
-				desc = tech_vorcha_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -555,12 +471,6 @@ tech_battleship_unlock = {
 		title = tech_dderidex		
 		desc = tech_dderidex_desc		
 		icon = tech_dderidex # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_DDERIDEX_CONSTRUCTION_TITLE
-				desc = tech_dderidex_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -569,12 +479,6 @@ tech_battleship_unlock = {
 		title = tech_kazikai		
 		desc = tech_kazikai_desc		
 		icon = tech_kazikai # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_KAZIKAI_CONSTRUCTION_TITLE
-				desc = tech_kazikai_desc
-			}	
-		}		
 	}			
 	weight_modifier = {
 		modifier = {
@@ -632,12 +536,6 @@ tech_titan_unlock = {
 		title = tech_sovereign		
 		desc = tech_sovereign_desc		
 		icon = tech_sovereign # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_SOVEREIGN_CONSTRUCTION_TITLE
-				desc = tech_sovereign_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -646,12 +544,6 @@ tech_titan_unlock = {
 		title = tech_neghvar		
 		desc = tech_neghvar_desc		
 		icon = tech_neghvar # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_NEGHVAR_CONSTRUCTION_TITLE
-				desc = tech_neghvar_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -660,12 +552,6 @@ tech_titan_unlock = {
 		title = tech_majestus		
 		desc = tech_majestus_desc		
 		icon = tech_majestus # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_MAJESTUS_CONSTRUCTION_TITLE
-				desc = tech_majestus_desc
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -674,12 +560,6 @@ tech_titan_unlock = {
 		title = tech_nokoram		
 		desc = tech_nokoram_desc		
 		icon = tech_nokoram # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_NOKORAM_CONSTRUCTION_TITLE
-				desc = tech_nokoram_desc
-			}	
-		}		
 	}			
 	weight_modifier = {
 		modifier = {
@@ -2117,12 +1997,6 @@ tech_sports_ufop_klingon = {
 		title = tech_sports_ufop_klingon
 		desc = tech_sports_ufop_klingon_desc
 		icon = tech_sports_ufop_klingon	
-		prereqfor_desc = {		
-			hide_prereq_for_desc = component	
-			building = {	
-				title = tech_sports_ufop_klingon_ufop_effect
-			}	
-		}		
 	}			
 	triggered_config = {			
 		trigger = {		
@@ -2131,12 +2005,6 @@ tech_sports_ufop_klingon = {
 		title = tech_sports_ufop_klingon
 		desc = tech_sports_ufop_klingon_desc
 		icon = tech_sports_ufop_klingon			
-		prereqfor_desc = {		
-			hide_prereq_for_desc = component	
-			building = {	
-				title = tech_sports_ufop_klingon_klingon_effect
-			}	
-		}		
 	}
 
 	modifier = {
@@ -2279,12 +2147,6 @@ tech_officers_1 = {
 		 title = tech_officers_1
 		 desc = tech_officers_1_desc		
 		 icon = tech_officers_1
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_1_ufop_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2294,12 +2156,6 @@ tech_officers_1 = {
 		 title = tech_officers_1
 		 desc = tech_officers_1_desc		
 		 icon = tech_officers_1		
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_1_klingon_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2309,12 +2165,6 @@ tech_officers_1 = {
 		 title = tech_officers_1
 		 desc = tech_officers_1_desc		
 		 icon = tech_officers_1	
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_1_romulan_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2324,12 +2174,6 @@ tech_officers_1 = {
 		 title = tech_officers_1
 		 desc = tech_officers_1_desc		
 		 icon = tech_officers_1	
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_1_cardassian_effect
-			 }	
-		 }		
 	}	
 	
 	modifier = {
@@ -2358,12 +2202,6 @@ tech_officers_2 = {
 		 title = tech_officers_2
 		 desc = tech_officers_2_desc		
 		 icon = tech_officers_2		
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_2_ufop_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2373,12 +2211,6 @@ tech_officers_2 = {
 		 title = tech_officers_2
 		 desc = tech_officers_2_desc		
 		 icon = tech_officers_2		
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_2_klingon_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2388,12 +2220,6 @@ tech_officers_2 = {
 		 title = tech_officers_2
 		 desc = tech_officers_2_desc		
 		 icon = tech_officers_2	
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_2_romulan_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2403,12 +2229,6 @@ tech_officers_2 = {
 		 title = tech_officers_2
 		 desc = tech_officers_2_desc		
 		 icon = tech_officers_2	
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_2_cardassian_effect
-			 }	
-		 }		
 	}	
 	
 	modifier = {
@@ -2437,12 +2257,6 @@ tech_officers_3 = {
 		 title = tech_officers_3
 		 desc = tech_officers_3_desc		
 		 icon = tech_officers_3
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_3_ufop_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2452,12 +2266,6 @@ tech_officers_3 = {
 		 title = tech_officers_3
 		 desc = tech_officers_3_desc		
 		 icon = tech_officers_3
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_3_klingon_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2467,12 +2275,6 @@ tech_officers_3 = {
 		 title = tech_officers_3
 		 desc = tech_officers_3_desc		
 		 icon = tech_officers_3
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_3_romulan_effect
-			 }	
-		 }		
 	}	
 
 	triggered_config = {			
@@ -2482,12 +2284,6 @@ tech_officers_3 = {
 		 title = tech_officers_3
 		 desc = tech_officers_3_desc		
 		 icon = tech_officers_3	
-		 prereqfor_desc = {		
-			 hide_prereq_for_desc = component	
-			 building = {	
-				 title = tech_officers_3_cardassian_effect
-			 }	
-		 }		
 	}	
 	
 	modifier = {
@@ -2609,13 +2405,6 @@ tech_megastructure_1 = {
     category = { industry }
     tier = 2
     start_tech = no
-
-	prereqfor_desc = {
-		ship = {
-			title = "allow_habitats"
-			desc = "habitat_0_MEGASTRUCTURE_DETAILS"
-		}
-	}
 }
 
 tech_megastructure_2 = {
@@ -2626,13 +2415,6 @@ tech_megastructure_2 = {
     tier = 3
     start_tech = no
     prerequisites = { tech_megastructure_1 }
-
-	prereqfor_desc = {
-		ship = {
-			title = "allow_habitat_upgrade"
-			desc = "tech_habitat_2_effect"
-		}
-	}
 }
 
 tech_megastructure_3 = {
@@ -2643,13 +2425,6 @@ tech_megastructure_3 = {
     tier = 4
     start_tech = no
     prerequisites = { tech_megastructure_2 }
-
-	prereqfor_desc = {
-		ship = {
-			title = "allow_habitat_2_upgrade"
-			desc = "tech_habitat_3_effect"
-		}
-	}
 }
 
 # DLC TECHS

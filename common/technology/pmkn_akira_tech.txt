@@ -18,13 +18,7 @@ tech_pmkn_akira_unlock = {
 		}		
 		title = tech_akira		
 		desc = tech_akira_desc		
-		icon = tech_galaxy 		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_AKIRA_CONSTRUCTION_TITLE
-				desc = tech_akira_desc
-			}	
-		}		
+		icon = tech_galaxy		
 	}
 		
 	weight_modifier = {

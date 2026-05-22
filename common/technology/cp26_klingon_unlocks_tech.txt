@@ -18,12 +18,6 @@ tech_cp26_kamarag_unlock = {
 		title = tech_cp26_kamarag
 		desc = tech_cp26_kamarag_desc
 		icon = tech_big_bomb_1
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_CP26_KAMARAG_CONSTRUCTION_TITLE
-				desc = tech_cp26_kamarag_desc
-			}
-		}
 	}
 
 	weight_modifier = {
@@ -58,12 +52,6 @@ tech_cp26_kvort_unlock = {
 		title = tech_cp26_kvort
 		desc = tech_cp26_kvort_desc
 		icon = tech_big_bomb_1
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_CP26_KVORT_CONSTRUCTION_TITLE
-				desc = tech_cp26_kvort_desc
-			}
-		}
 	}
 
 	weight_modifier = {
@@ -98,12 +86,6 @@ tech_cp26_klingon_raptor_unlock = {
 		title = tech_cp26_klingon_raptor
 		desc = tech_cp26_klingon_raptor_desc
 		icon = tech_big_bomb_1
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_CP26_KLINGON_RAPTOR_CONSTRUCTION_TITLE
-				desc = tech_cp26_klingon_raptor_desc
-			}
-		}
 	}
 
 	weight_modifier = {

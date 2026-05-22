@@ -18,12 +18,6 @@ tech_odyssey_unlock = {
 		title = tech_odyssey
 		desc = tech_odyssey_desc
 		icon = tech_sovereign
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_ODYSSEY_CONSTRUCTION_TITLE
-				desc = tech_odyssey_desc
-			}
-		}
 	}
 
 	weight_modifier = {

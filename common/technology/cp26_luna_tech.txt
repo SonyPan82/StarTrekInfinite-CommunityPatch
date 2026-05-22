@@ -18,12 +18,6 @@ tech_luna_unlock = {
 		title = tech_luna
 		desc = tech_luna_desc
 		icon = tech_galaxy
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_LUNA_CONSTRUCTION_TITLE
-				desc = tech_luna_desc
-			}
-		}
 	}
 
 	weight_modifier = {

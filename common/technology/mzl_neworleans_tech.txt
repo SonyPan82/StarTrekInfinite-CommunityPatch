@@ -19,12 +19,6 @@ tech_mzl_neworleans_unlock = {
 		title = tech_neworleans		
 		desc = tech_neworleans_desc		
 		icon = tech_galaxy # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_NEWORLEANS_CONSTRUCTION_TITLE
-				desc = tech_neworleans_desc
-			}	
-		}		
 	}
 		
 	weight_modifier = {

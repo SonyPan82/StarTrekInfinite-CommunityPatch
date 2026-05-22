@@ -18,12 +18,6 @@ tech_neo_constitution_unlock = {
 		title = tech_neo_constitution
 		desc = tech_neo_constitution_desc
 		icon = tech_sovereign
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_NEO_CONSTITUTION_CONSTRUCTION_TITLE
-				desc = tech_neo_constitution_desc
-			}
-		}
 	}
 
 	weight_modifier = {
@@ -70,12 +64,6 @@ tech_sagan_unlock = {
 		title = tech_sagan
 		desc = tech_sagan_desc
 		icon = tech_sovereign
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_SAGAN_CONSTRUCTION_TITLE
-				desc = tech_sagan_desc
-			}
-		}
 	}
 
 	weight_modifier = {
@@ -122,12 +110,6 @@ tech_duderstadt_unlock = {
 		title = tech_duderstadt
 		desc = tech_duderstadt_desc
 		icon = tech_sovereign
-		prereqfor_desc = {
-			ship = {
-				title = TECH_UNLOCK_DUDERSTADT_CONSTRUCTION_TITLE
-				desc = tech_duderstadt_desc
-			}
-		}
 	}
 
 	weight_modifier = {

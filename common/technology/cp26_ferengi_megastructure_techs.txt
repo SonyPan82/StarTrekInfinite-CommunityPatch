@@ -18,12 +18,6 @@ tech_cp26_ferengi_trade_platforms = {
 		title = tech_cp26_ferengi_trade_platforms
 		desc = tech_cp26_ferengi_trade_platforms_desc
 		icon = tech_big_bomb_1
-		prereqfor_desc = {
-			custom = {
-				title = ALLOW_CP26_FERENGI_TRADE_PLATFORM
-				desc = cp26_ferengi_trade_hub_MEGASTRUCTURE_DETAILS
-			}
-		}
 	}
 
 	weight_modifier = {
@@ -55,12 +49,6 @@ tech_cp26_ferengi_mining_platforms = {
 		title = tech_cp26_ferengi_mining_platforms
 		desc = tech_cp26_ferengi_mining_platforms_desc
 		icon = tech_big_bomb_1
-		prereqfor_desc = {
-			custom = {
-				title = ALLOW_CP26_FERENGI_MINING_PLATFORM
-				desc = cp26_ferengi_mining_hub_MEGASTRUCTURE_DETAILS
-			}
-		}
 	}
 
 	weight_modifier = {
@@ -105,12 +93,6 @@ tech_cp26_ferengi_quark_platforms = {
 		title = tech_cp26_ferengi_quark_platforms
 		desc = tech_cp26_ferengi_quark_platforms_desc
 		icon = tech_big_bomb_1
-		prereqfor_desc = {
-			custom = {
-				title = ALLOW_CP26_FERENGI_QUARK_PLATFORM
-				desc = cp26_ferengi_leisure_hub_MEGASTRUCTURE_DETAILS
-			}
-		}
 	}
 
 	weight_modifier = {

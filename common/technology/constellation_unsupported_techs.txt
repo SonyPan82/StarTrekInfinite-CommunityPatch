@@ -18,12 +18,6 @@ tech_constellation_unlock = {
 		title = tech_constellation		
 		desc = tech_constellation_desc		
 		icon = tech_miranda # HRB_TODO: placeholder		
-		prereqfor_desc = {		
-			ship = {	
-				title = TECH_UNLOCK_CONSTELLATION_CONSTRUCTION_TITLE
-				desc = tech_constellation_desc
-			}	
-		}		
 	}
 
 	weight_modifier = {
