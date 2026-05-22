@@ -1,0 +1,18 @@
+Release note - CP26 workshop megastructure fusion
+Date: 2026-05-22
+
+Cette passe integre le mod workshop 3069363325 dans CP26.
+
+Pour les empires standards
+- Le fonctionnement du mod d'origine est conserve.
+- Les megastructures workshop restent accessibles via leur technologie dediee.
+
+Pour les Ferengi
+- Les Ferengi disposent maintenant de leur propre ligne de megastructures.
+- Ils commencent avec une seule structure disponible: l'Enclave du Grand Nagus.
+- Les autres structures se debloquent progressivement via la recherche.
+- Le Bar de Quark est volontairement place plus tard dans la chronologie, autour de 2370.
+
+Localisation
+- Ajout des localisations FR pour le contenu workshop fusionne.
+- Mise a jour des localisations EN/FR du systeme ferengi.

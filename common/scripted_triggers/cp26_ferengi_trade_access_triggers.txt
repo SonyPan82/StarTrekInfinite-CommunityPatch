@@ -1,0 +1,12 @@
+cp26_has_ferengi_market_access = {
+	OR = {
+		has_commercial_pact = from
+		AND = {
+			is_subject_type = occupied_state
+			exists = overlord
+			overlord = {
+				has_commercial_pact = from
+			}
+		}
+	}
+}

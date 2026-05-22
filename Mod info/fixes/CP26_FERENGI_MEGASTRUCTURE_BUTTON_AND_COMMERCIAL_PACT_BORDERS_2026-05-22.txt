@@ -1,0 +1,21 @@
+CP26 Ferengi fix pass - 2026-05-22
+
+Scope
+- Addressed two runtime issues in the Ferengi V2 orbital platform flow:
+  1. Ferengi construction ships did not expose the expected megastructure construction flow.
+  2. Ferengi commercial pacts did not automatically open borders both ways.
+
+Changes
+- Ferengi start now grants `tech_megastructure_1` in `zz_cp26_setlik_fix.txt`.
+- Ferengi orbital trade platform megastructures now explicitly require `tech_megastructure_1` in `cp26_ferengi_branch_hubs.txt`.
+- `action_form_commercial_pact.on_accept` now applies bilateral forced open borders when either side is a Ferengi empire.
+- Existing Ferengi pact behavior (intel + surveyed host colony systems) was preserved.
+- No automatic communications were reintroduced.
+
+Intent
+- Let Ferengi construction ships participate in the normal vanilla megastructure flow once a valid target context exists.
+- Make Ferengi commercial pacts behave like a true trade-access treaty, with mutual border access.
+
+Notes
+- Border opening is implemented with `set_closed_borders = { status = no forced = 3600 }` on both sides.
+- If the megastructure picker still does not appear after this patch, the remaining blocker is likely a constructor-flow or foreign-space hardcode path rather than missing Ferengi content definitions.

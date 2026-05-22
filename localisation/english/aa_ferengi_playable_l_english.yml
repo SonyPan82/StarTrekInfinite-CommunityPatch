@@ -1,4 +1,6 @@
 ﻿l_english:
+ personality_cp26_grand_nagus_merchants:0 "Ferengi"
+ personality_cp26_grand_nagus_merchants_desc:0 "Sharp commercial opportunists who seek favorable agreements, open markets, and profitable footholds before they seek glory in battle."
 EMPIRE_DESIGN_FERENGI:0 "Ferengi Alliance (Bêta)"
  EMPIRE_SHORT_NAME_ferengi:0 "FERENGI"
  START_SCREEN_FERENGI:0 "The Ferengi Alliance is held together by commerce, profit, and the authority of the Grand Nagus. From Ferenginar, the great trading houses, lenders, and negotiators measure everything in terms of gain, contract, and latinum.\n\nThe Rules of Acquisition are more than custom: they shape politics, diplomacy, and even war itself. Where other powers invoke honor, destiny, or duty, the Ferengi understand that the right deal, struck at the right moment, can be worth more than an entire fleet."

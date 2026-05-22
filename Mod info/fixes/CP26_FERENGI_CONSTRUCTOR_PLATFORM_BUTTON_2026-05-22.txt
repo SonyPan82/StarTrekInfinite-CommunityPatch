@@ -1,0 +1,33 @@
+CP26 Ferengi constructor platform button - 2026-05-22
+
+Goal
+- Stop relying on the vanilla megastructure picker for Ferengi foreign-space construction.
+- Add an explicit Ferengi constructor UI entry point that opens the platform placement flow.
+
+What changed
+- Added `cp26_open_ferengi_constructor_platform_builder` in `common/button_effects/cp26_button_effects.txt`.
+- Added a new `effectbuttonType` to `interface/fleet_view.gui` for Ferengi construction fleets:
+  - FR: `Plateforme commerciale`
+  - EN: `Trade Platform`
+- Rewired the older Ferengi host/planet/type event flow to match V2 orbital platform rules.
+
+Flow
+- Select Ferengi constructor.
+- Click `Plateforme commerciale`.
+- Choose commercial pact host empire.
+- Choose valid host colony.
+- Choose platform type.
+- Script spawns the matching orbital platform megastructure and applies the matching planet modifier.
+
+V2 rules now enforced in the constructor flow
+- Commercial pact required.
+- Non-corporate host required.
+- Max 3 Ferengi platforms per host empire.
+- Max 1 Ferengi platform per system.
+- One relation/type per host empire:
+  - Grand Nagus office
+  - Acquisition team
+  - Quark's bar
+
+Notes
+- This bypasses the unreliable vanilla foreign-space megastructure order exposure while keeping the visible orbital platform result.

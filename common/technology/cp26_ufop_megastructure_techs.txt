@@ -1,0 +1,36 @@
+tech_cp26_ufop_fleet_museum = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_megastructure_1 }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_ufop = yes
+		}
+		title = tech_cp26_ufop_fleet_museum
+		desc = tech_cp26_ufop_fleet_museum_desc
+		icon = tech_big_bomb_1
+		prereqfor_desc = {
+			custom = {
+				title = ALLOW_CP26_FLEET_MUSEUM
+				desc = cp26_fleet_museum_MEGASTRUCTURE_DETAILS
+			}
+		}
+	}
+
+	weight_modifier = {
+		factor = 1
+	}
+
+	ai_weight = {
+		factor = 4
+	}
+}

@@ -1,0 +1,3 @@
+cp26_ferengi_beta_start_bonus = {
+	envoys_add = 1
+}

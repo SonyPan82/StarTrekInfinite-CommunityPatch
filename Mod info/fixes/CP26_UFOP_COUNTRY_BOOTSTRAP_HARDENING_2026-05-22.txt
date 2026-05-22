@@ -1,0 +1,44 @@
+CP26 UFOP Country Bootstrap Hardening
+Date: 2026-05-22
+
+Summary
+- Hardened CP26 Federation bootstrap events that assumed `event_target:ufop_country`
+  already existed at execution time.
+- Replaced fragile trigger checks with `any_country = { has_country_flag = ufop }`
+  where appropriate.
+- Added local recapture of `ufop_country` in each affected event immediate block via:
+  `every_country = { limit = { has_country_flag = ufop } save_global_event_target_as = ufop_country }`
+
+Files Updated
+- events/game_start_101.txt
+- events/game_start_102.txt
+- events/game_start_103.txt
+- events/game_start_150.txt
+- events/game_start_220.txt
+- events/game_start_240.txt
+- events/game_start_260.txt
+- events/game_start_280.txt
+- events/game_start_bolian_ufop.txt
+- events/vgcol_events.txt
+- events/aacoldenob_events.txt
+- events/aacolrisa_events.txt
+- events/aalm_events.txt
+
+Intent
+- Prevent undefined `ufop_country` at game start when Federation-owned colony/bootstrap
+  events fire before another path has populated the global event target.
+
+Expected Result
+- Removes the start-time `Undefined event target: ufop_country` errors previously
+  tied to:
+  - game_start_150.txt
+  - vgcol_events.txt
+  - aacoldenob_events.txt
+  - aacolrisa_events.txt
+  - aalm_events.txt
+  - Federation relationship bootstrap events
+
+Remaining Note
+- There is still at least one vanilla-side `ufop_country` warning path in
+  `events/hornblower_on_actions_events.txt` (`hrb_action.30000`), which is not part of
+  the CP26 event bootstrap chain that was targeted here.

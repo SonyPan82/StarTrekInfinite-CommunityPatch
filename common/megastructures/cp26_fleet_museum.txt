@@ -1,18 +1,31 @@
 cp26_fleet_museum = {
 	entity = "sti_fleet_museum_entity"
+	construction_entity = "humanoid_01_construction_platform_entity"
 	portrait = GFX_megastructure_construction_background
 	place_entity_on_planet_plane = yes
 	entity_offset = { x = -4 y = 12 }
+	build_time = 720
+	prerequisites = { "tech_cp26_ufop_fleet_museum" }
+
+	potential = {
+		is_ufop = yes
+	}
 
 	possible = {
-		exists = owner
-		owner = {
-			has_country_flag = ufop
-			NOT = { has_country_flag = cp26_fleet_museum_spawned }
+		solar_system = {
+			exists = owner
+			owner = {
+				has_country_flag = ufop
+				NOT = { has_country_flag = cp26_fleet_museum_spawned }
+			}
 		}
 	}
 
 	resources = {
+		category = megastructures
+		cost = {
+			alloys = 2500
+		}
 		upkeep = {
 			energy = 5
 		}
@@ -21,4 +34,15 @@ cp26_fleet_museum = {
 	country_modifier = {
 		country_admin_cap_add = 20
 	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = cp26_fleet_museum_spawned
+		}
+		fromfrom = {
+			set_star_flag = cp26_fleet_museum_spawned_system
+		}
+	}
+
+	ai_weight = { weight = 0 }
 }

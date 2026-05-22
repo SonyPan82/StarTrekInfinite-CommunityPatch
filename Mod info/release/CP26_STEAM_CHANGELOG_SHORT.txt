@@ -1,58 +1,55 @@
-[h1]CP26 - Update 2026-05-11[/h1]
+[h1]Community Patch 2026 - Version 1.6.2[/h1]
 
-[h2]Crash Fixes[/h2]
+Hello, hello!
+
+I’m happy to release version 1.6.2 of Community Patch 2026!
+
+This update was not made without a few Cardassian tortures… but it is finally here!
+
+[h2]Ferengi Alliance[/h2]
+
 [list]
-[*] Fixed dangerous remove_building/add_building pattern after create_colony across all custom colonies.
-[*] Fixed invalid species = random on Romulus & Qo'noS pop generation.
-[*] Fixed duplicate create_colony on Bajor.
-[*] Fixed district show_on_uncolonized null pointer crashes (exists = from guard).
-[*] New delayed event system : Colony Shelter → Planetary Capital on Day 3.
-[*] Affects : Tholian, Orion, Breen, Gorn capitals + Verex III, Breenus Secundus, Glintara, Denobula.
+[*] The Ferengi Alliance is now a fully playable empire.
+[*] Added exclusive commercial bonuses.
+[*] New unique planetary bonuses.
+[*] New Ferengi AI focused on opportunism and profit rather than direct warfare.
+[*] Ferengi can now construct commercial megastructures inside the systems of empires with active commercial pacts.
+[*] Megastructures are unlocked through the technology tree.
+[*] These structures provide bonuses to both the host empire and the Ferengi Alliance.
+[*] Added new Ferengi-exclusive districts.
 [/list]
 
-[h2]AI Improvements[/h2]
+[h2]Rework - Occupied States[/h2]
+
 [list]
-[*] AI Fix 1 - Defines NAI (zz_cp26_ai_defines.txt) : improved construction thresholds, war priorities, research weighting, rare tech multipliers and max fleet distance.
-[*] AI Shipyard Fix : all AI majors/minors/contenders now start with Starport + Shipyard on their capital.
-[*] Fixed vanilla event country.27500 (UFOP First Contact Bonus) : no more "add_opinion_modifier on oneself" error ; opinion bonus now applies correctly.
+[*] The vassalization system has been reworked to better integrate with existing game mechanics.
+[*] Empires can now demand the occupation of another empire.
+[*] Refusing will generate a casus belli and may lead to war.
+[*] Occupied States now transfer part of their resources to their overlord.
+[*] This mechanic can still be disabled at game start for a more “vanilla” experience.
 [/list]
 
-[h2]Hero Ship Balance[/h2]
+[h2]Content[/h2]
+
 [list]
-[*] Voyager : 7000 → 2500 HP (still heroic, no longer immortal).
-[*] D'deridex Hero : 10000 → 4500 HP.
+[*] Reworked Federation and Klingon diplomatic vessels.
+[*] Added the Nebula Class for the Federation.
 [/list]
 
-[h2]Minor Battleship Fix[/h2]
+[h2]Fixes & Improvements[/h2]
+
 [list]
-[*] Tholien / Orion / Breen / Gorn battleships : fleet_slot_size 3 → 4.
+[*] Various fixes applied to improve overall game stability.
+[*] Improved in-game font readability on certain displays.
+[*] Feedback regarding the new font is always welcome.
 [/list]
 
-[h2]Economy Fix[/h2]
-[list]
-[*] Romulan Soldier Camp (Remus) : upkeep food=0 → energy=3.
-[/list]
+[h2]Developer Note[/h2]
 
-[h2]Minor Faction Lore Balance[/h2]
 [list]
-[*] Tholien : reduced stability & aligned pop bonuses, kept territorial edge.
-[*] Gorn : reduced war exhaustion & army bonuses, removed hidden amenities cheat.
-[*] Breen : reduced station exploitation bonus.
-[*] Orion : reduced matriarch stability bonus.
-[*] All values still above major empire standards ; factions remain feared.
-[/list]
-
-[h2]Galaxy Setup[/h2]
-[list]
-[*] Stars : 1000.
-[*] Radius : 570.
-[*] Entire bespoke map shifted +100y to center the galaxy vertically.
-[*] Removed experimental bespoke_procedural.txt that caused worse core density.
-[*] [b]Note :[/b] 570 is highly experimental. Vanilla safe zone is ~460. Monitor for stability and report any crash on save.
-[/list]
-
-[h2]Shipyard caps (2026-05-14)[/h2]
-[list]
-[*] [b]Science & construction ships[/b]: [b]empire_limit[/b] (3 each) with vanilla [b]SHIP_SIZE_LIMIT[/b] when blocked.
-[*] [b]Line military hulls[/b]: shared [b]36-ship[/b] cap (non-hero; ~3×12 design) at the shipyard via [b]possible_construction[/b]; scrap a hull to queue another. Same for AI - no monthly purge.
+[*] The Ferengi Alliance is now playable, but some content is still under development.
+[*] Mission tree remains incomplete.
+[*] Additional megastructures are still planned.
+[*] Some bugs may still be hiding here and there.
+[*] As always, your feedback is extremely valuable for improving the project.
 [/list]

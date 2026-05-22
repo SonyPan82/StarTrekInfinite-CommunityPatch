@@ -20,6 +20,18 @@ cp26_ferengi_branch_dormant = {
 	icon = "gfx/interface/icons/planet_modifiers/bureau_grand_nagus_icon.dds"
 }
 
+cp26_ferengi_trade_hub_construction = {
+	icon = "gfx/interface/icons/planet_modifiers/bureau_grand_nagus_icon.dds"
+}
+
+cp26_ferengi_mining_hub_construction = {
+	icon = "gfx/interface/icons/planet_modifiers/bureau_acquisition_icon.dds"
+}
+
+cp26_ferengi_leisure_hub_construction = {
+	icon = "gfx/interface/icons/planet_modifiers/quarks_bar_icon.dds"
+}
+
 cp26_ferengi_branch_trade_income_1 = {
 	country_energy_produces_add = 12
 }
@@ -113,95 +125,95 @@ cp26_ferengi_branch_trade_income_23 = {
 }
 
 cp26_ferengi_branch_mining_income_1 = {
-	country_base_minerals_produces_add = 12
+	country_minerals_produces_add = 12
 }
 
 cp26_ferengi_branch_mining_income_2 = {
-	country_base_minerals_produces_add = 24
+	country_minerals_produces_add = 24
 }
 
 cp26_ferengi_branch_mining_income_3 = {
-	country_base_minerals_produces_add = 36
+	country_minerals_produces_add = 36
 }
 
 cp26_ferengi_branch_mining_income_4 = {
-	country_base_minerals_produces_add = 48
+	country_minerals_produces_add = 48
 }
 
 cp26_ferengi_branch_mining_income_5 = {
-	country_base_minerals_produces_add = 60
+	country_minerals_produces_add = 60
 }
 
 cp26_ferengi_branch_mining_income_6 = {
-	country_base_minerals_produces_add = 72
+	country_minerals_produces_add = 72
 }
 
 cp26_ferengi_branch_mining_income_7 = {
-	country_base_minerals_produces_add = 84
+	country_minerals_produces_add = 84
 }
 
 cp26_ferengi_branch_mining_income_8 = {
-	country_base_minerals_produces_add = 96
+	country_minerals_produces_add = 96
 }
 
 cp26_ferengi_branch_mining_income_9 = {
-	country_base_minerals_produces_add = 108
+	country_minerals_produces_add = 108
 }
 
 cp26_ferengi_branch_mining_income_10 = {
-	country_base_minerals_produces_add = 120
+	country_minerals_produces_add = 120
 }
 
 cp26_ferengi_branch_mining_income_11 = {
-	country_base_minerals_produces_add = 132
+	country_minerals_produces_add = 132
 }
 
 cp26_ferengi_branch_mining_income_12 = {
-	country_base_minerals_produces_add = 144
+	country_minerals_produces_add = 144
 }
 
 cp26_ferengi_branch_mining_income_13 = {
-	country_base_minerals_produces_add = 156
+	country_minerals_produces_add = 156
 }
 
 cp26_ferengi_branch_mining_income_14 = {
-	country_base_minerals_produces_add = 168
+	country_minerals_produces_add = 168
 }
 
 cp26_ferengi_branch_mining_income_15 = {
-	country_base_minerals_produces_add = 180
+	country_minerals_produces_add = 180
 }
 
 cp26_ferengi_branch_mining_income_16 = {
-	country_base_minerals_produces_add = 192
+	country_minerals_produces_add = 192
 }
 
 cp26_ferengi_branch_mining_income_17 = {
-	country_base_minerals_produces_add = 204
+	country_minerals_produces_add = 204
 }
 
 cp26_ferengi_branch_mining_income_18 = {
-	country_base_minerals_produces_add = 216
+	country_minerals_produces_add = 216
 }
 
 cp26_ferengi_branch_mining_income_19 = {
-	country_base_minerals_produces_add = 228
+	country_minerals_produces_add = 228
 }
 
 cp26_ferengi_branch_mining_income_20 = {
-	country_base_minerals_produces_add = 240
+	country_minerals_produces_add = 240
 }
 
 cp26_ferengi_branch_mining_income_21 = {
-	country_base_minerals_produces_add = 252
+	country_minerals_produces_add = 252
 }
 
 cp26_ferengi_branch_mining_income_22 = {
-	country_base_minerals_produces_add = 264
+	country_minerals_produces_add = 264
 }
 
 cp26_ferengi_branch_mining_income_23 = {
-	country_base_minerals_produces_add = 276
+	country_minerals_produces_add = 276
 }
 
 cp26_ferengi_branch_energy_income_1 = {

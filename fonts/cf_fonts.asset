@@ -1,0 +1,41 @@
+font = {
+	name = "Rebelton_medium"
+	fontstyle = {
+		style = regular
+		file = "gfx/fonts/Font/rebelton/REBELTON-Medium.otf"
+	}
+}
+
+font = {
+	name = "Arimo_regular"
+	fontstyle = {
+		style = regular
+		file = "gfx/fonts/arimo/Arimo-Regular.ttf"
+	}
+}
+
+font = {
+	name = "Arimo_bold"
+	fontstyle = {
+		style = regular
+		file = "gfx/fonts/arimo/Arimo-Bold.ttf"
+	}
+}
+
+font = {
+	name = "Arimo_italic"
+	fontstyle = {
+		style = regular
+		file = "gfx/fonts/arimo/Arimo-Italic.ttf"
+	}
+}
+
+
+font = {
+	name = "Arimo_bold_italic"
+	fontstyle = {
+		style = regular
+		file = "gfx/fonts/arimo/Arimo-BoldItalic.ttf"
+	}
+}
+

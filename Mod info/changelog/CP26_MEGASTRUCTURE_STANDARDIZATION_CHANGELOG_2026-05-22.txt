@@ -1,0 +1,10 @@
+CP26 MEGASTRUCTURE STANDARDIZATION CHANGELOG
+Date: 2026-05-22
+
+- Granted base megastructure technology to all active civilizations at game start.
+- Kept workshop megastructure behavior for non-Ferengi empires.
+- Preserved Ferengi-exclusive trade megastructures and their dedicated tech progression.
+- Relaxed Ferengi host targeting from colonized planets to any valid planet in a host-owned system.
+- Removed the old governor ship custom construction button from the active flow.
+- Converted Fleet Museum into a proper Federation-only unique megastructure with its own technology.
+- Added Federation localisation for the Fleet Museum technology unlock.

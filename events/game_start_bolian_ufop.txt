@@ -9,10 +9,14 @@ event = {
 
 	trigger = {
 		exists = event_target:bolian_country
-		exists = event_target:ufop_country
+		any_country = { has_country_flag = ufop }
 	}
 
 	immediate = {
+		every_country = {
+			limit = { has_country_flag = ufop }
+			save_global_event_target_as = ufop_country
+		}
 		event_target:ufop_country = {
 			establish_contact = { who = event_target:bolian_country hidden = yes }
 			establish_communications_no_message = event_target:bolian_country

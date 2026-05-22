@@ -1,0 +1,293 @@
+cp26_ferengi_trade_platform_arrival = {
+	owner = {
+		save_global_event_target_as = cp26_branch_report_ferengi
+	}
+	if = {
+		limit = {
+			solar_system = {
+				any_system_planet = {
+					has_planet_flag = cp26_ferengi_trade_hub_pending
+					is_colony = yes
+					exists = owner
+					owner = {
+						OR = {
+							has_commercial_pact = event_target:cp26_branch_report_ferengi
+							AND = {
+								is_subject_type = occupied_state
+								exists = overlord
+								overlord = {
+									has_commercial_pact = event_target:cp26_branch_report_ferengi
+								}
+							}
+						}
+						NOT = { has_authority = auth_corporate }
+					}
+				}
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_planet_flag = cp26_ferengi_trade_hub_pending
+					is_colony = yes
+					exists = owner
+					owner = {
+						OR = {
+							has_commercial_pact = event_target:cp26_branch_report_ferengi
+							AND = {
+								is_subject_type = occupied_state
+								exists = overlord
+								overlord = {
+									has_commercial_pact = event_target:cp26_branch_report_ferengi
+								}
+							}
+						}
+						NOT = { has_authority = auth_corporate }
+					}
+				}
+				remove_planet_flag = cp26_ferengi_trade_hub_pending
+				remove_modifier = cp26_ferengi_trade_hub_construction
+				add_modifier = { modifier = cp26_ferengi_trade_forum days = -1 }
+				set_planet_flag = cp26_ferengi_trade_hub_present
+				save_global_event_target_as = cp26_branch_report_planet
+				owner = {
+					save_global_event_target_as = cp26_branch_report_host
+					set_relation_flag = { who = event_target:cp26_branch_report_ferengi flag = cp26_ferengi_branch_trade_relation }
+					every_owned_planet = {
+						limit = { is_colony = yes }
+						set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+						solar_system = {
+							set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+							every_system_planet = {
+								set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+							}
+						}
+					}
+					country_event = { id = cp26_ferengi_branch.6 }
+				}
+			}
+			spawn_megastructure = {
+				type = "cp26_ferengi_trade_hub"
+				planet = event_target:cp26_branch_report_planet
+				owner = event_target:cp26_branch_report_ferengi
+				orbit_distance = 2
+				orbit_angle = 20
+			}
+		}
+		event_target:cp26_branch_report_ferengi = {
+			set_relation_flag = { who = event_target:cp26_branch_report_host flag = cp26_ferengi_branch_trade_relation }
+			remove_country_flag = cp26_ferengi_platform_construction_active
+			end_event_chain = cp26_ferengi_platform_construction_chain
+			country_event = { id = cp26_ferengi_branch.4 }
+		}
+	}
+	else = {
+		solar_system = {
+			every_system_planet = {
+				limit = { has_planet_flag = cp26_ferengi_trade_hub_pending }
+				remove_planet_flag = cp26_ferengi_trade_hub_pending
+				remove_modifier = cp26_ferengi_trade_hub_construction
+			}
+		}
+		owner = {
+			remove_country_flag = cp26_ferengi_platform_construction_active
+			end_event_chain = cp26_ferengi_platform_construction_chain
+		}
+	}
+}
+
+cp26_ferengi_mining_platform_arrival = {
+	owner = {
+		save_global_event_target_as = cp26_branch_report_ferengi
+	}
+	if = {
+		limit = {
+			solar_system = {
+				any_system_planet = {
+					has_planet_flag = cp26_ferengi_mining_hub_pending
+					is_colony = yes
+					exists = owner
+					owner = {
+						OR = {
+							has_commercial_pact = event_target:cp26_branch_report_ferengi
+							AND = {
+								is_subject_type = occupied_state
+								exists = overlord
+								overlord = {
+									has_commercial_pact = event_target:cp26_branch_report_ferengi
+								}
+							}
+						}
+						NOT = { has_authority = auth_corporate }
+					}
+				}
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_planet_flag = cp26_ferengi_mining_hub_pending
+					is_colony = yes
+					exists = owner
+					owner = {
+						OR = {
+							has_commercial_pact = event_target:cp26_branch_report_ferengi
+							AND = {
+								is_subject_type = occupied_state
+								exists = overlord
+								overlord = {
+									has_commercial_pact = event_target:cp26_branch_report_ferengi
+								}
+							}
+						}
+						NOT = { has_authority = auth_corporate }
+					}
+				}
+				remove_planet_flag = cp26_ferengi_mining_hub_pending
+				remove_modifier = cp26_ferengi_mining_hub_construction
+				add_modifier = { modifier = cp26_ferengi_mining_consortium days = -1 }
+				set_planet_flag = cp26_ferengi_mining_hub_present
+				save_global_event_target_as = cp26_branch_report_planet
+				owner = {
+					save_global_event_target_as = cp26_branch_report_host
+					set_relation_flag = { who = event_target:cp26_branch_report_ferengi flag = cp26_ferengi_branch_mining_relation }
+					every_owned_planet = {
+						limit = { is_colony = yes }
+						set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+						solar_system = {
+							set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+							every_system_planet = {
+								set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+							}
+						}
+					}
+					country_event = { id = cp26_ferengi_branch.7 }
+				}
+			}
+			spawn_megastructure = {
+				type = "cp26_ferengi_mining_hub"
+				planet = event_target:cp26_branch_report_planet
+				owner = event_target:cp26_branch_report_ferengi
+				orbit_distance = 3
+				orbit_angle = 140
+			}
+		}
+		event_target:cp26_branch_report_ferengi = {
+			set_relation_flag = { who = event_target:cp26_branch_report_host flag = cp26_ferengi_branch_mining_relation }
+			remove_country_flag = cp26_ferengi_platform_construction_active
+			end_event_chain = cp26_ferengi_platform_construction_chain
+			country_event = { id = cp26_ferengi_branch.4 }
+		}
+	}
+	else = {
+		solar_system = {
+			every_system_planet = {
+				limit = { has_planet_flag = cp26_ferengi_mining_hub_pending }
+				remove_planet_flag = cp26_ferengi_mining_hub_pending
+				remove_modifier = cp26_ferengi_mining_hub_construction
+			}
+		}
+		owner = {
+			remove_country_flag = cp26_ferengi_platform_construction_active
+			end_event_chain = cp26_ferengi_platform_construction_chain
+		}
+	}
+}
+
+cp26_ferengi_leisure_platform_arrival = {
+	owner = {
+		save_global_event_target_as = cp26_branch_report_ferengi
+	}
+	if = {
+		limit = {
+			solar_system = {
+				any_system_planet = {
+					has_planet_flag = cp26_ferengi_leisure_hub_pending
+					is_colony = yes
+					exists = owner
+					owner = {
+						OR = {
+							has_commercial_pact = event_target:cp26_branch_report_ferengi
+							AND = {
+								is_subject_type = occupied_state
+								exists = overlord
+								overlord = {
+									has_commercial_pact = event_target:cp26_branch_report_ferengi
+								}
+							}
+						}
+						NOT = { has_authority = auth_corporate }
+					}
+				}
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_planet_flag = cp26_ferengi_leisure_hub_pending
+					is_colony = yes
+					exists = owner
+					owner = {
+						OR = {
+							has_commercial_pact = event_target:cp26_branch_report_ferengi
+							AND = {
+								is_subject_type = occupied_state
+								exists = overlord
+								overlord = {
+									has_commercial_pact = event_target:cp26_branch_report_ferengi
+								}
+							}
+						}
+						NOT = { has_authority = auth_corporate }
+					}
+				}
+				remove_planet_flag = cp26_ferengi_leisure_hub_pending
+				remove_modifier = cp26_ferengi_leisure_hub_construction
+				add_modifier = { modifier = cp26_ferengi_energy_exchange days = -1 }
+				set_planet_flag = cp26_ferengi_leisure_hub_present
+				save_global_event_target_as = cp26_branch_report_planet
+				owner = {
+					save_global_event_target_as = cp26_branch_report_host
+					set_relation_flag = { who = event_target:cp26_branch_report_ferengi flag = cp26_ferengi_branch_energy_relation }
+					every_owned_planet = {
+						limit = { is_colony = yes }
+						set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+						solar_system = {
+							set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+							every_system_planet = {
+								set_surveyed = { surveyed = yes surveyor = event_target:cp26_branch_report_ferengi }
+							}
+						}
+					}
+					country_event = { id = cp26_ferengi_branch.8 }
+				}
+			}
+			spawn_megastructure = {
+				type = "cp26_ferengi_leisure_hub"
+				planet = event_target:cp26_branch_report_planet
+				owner = event_target:cp26_branch_report_ferengi
+				orbit_distance = 4
+				orbit_angle = 260
+			}
+		}
+		event_target:cp26_branch_report_ferengi = {
+			set_relation_flag = { who = event_target:cp26_branch_report_host flag = cp26_ferengi_branch_energy_relation }
+			remove_country_flag = cp26_ferengi_platform_construction_active
+			end_event_chain = cp26_ferengi_platform_construction_chain
+			country_event = { id = cp26_ferengi_branch.4 }
+		}
+	}
+	else = {
+		solar_system = {
+			every_system_planet = {
+				limit = { has_planet_flag = cp26_ferengi_leisure_hub_pending }
+				remove_planet_flag = cp26_ferengi_leisure_hub_pending
+				remove_modifier = cp26_ferengi_leisure_hub_construction
+			}
+		}
+		owner = {
+			remove_country_flag = cp26_ferengi_platform_construction_active
+			end_event_chain = cp26_ferengi_platform_construction_chain
+		}
+	}
+}

@@ -355,8 +355,8 @@ entity = {
 }
 
 entity = { 
-	name = "ufop_01_governor_ship_entity" 
-	pdxmesh = "ufop_01_governor_ship_mesh" 
+	name = "ufop_01_governor_ship_entity"
+	pdxmesh = "ambassador_ship_mesh"
 
 	locator = { name = "part1" position = { 0 0 0 } }
 	locator = { name = "light_locator_01" position = { 0 0 0 } }

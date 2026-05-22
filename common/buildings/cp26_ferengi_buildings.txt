@@ -1,0 +1,229 @@
+##############################
+## CP26 - Ferengi Buildings ##
+##############################
+
+# Energy Consortium (pre-placed on Ferenginar + buildable)
+cp26_ferengi_energy_consortium = {
+	base_buildtime = 360
+	category = resource
+
+	potential = {
+		exists = owner
+		owner = { is_ferengi_empire = yes }
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		building_relaxed_basic_income_check = yes
+	}
+
+	allow = {
+		has_district = district_generator
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = { is_ferengi_empire = no }
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+
+	planet_modifier = {
+		job_clerk_add = 1
+		job_technician_add = 1
+		planet_technician_produces_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			has_district = district_generator
+		}
+		modifier = {
+			district_generator_max = 1
+			district_mining_max = -1
+			district_farming_max = -1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		upkeep = {
+			minerals = 2
+		}
+	}
+
+	prerequisites = {
+		"tech_power_hub_1"
+	}
+
+	show_tech_unlock_if = {
+		owner = { is_ferengi_empire = yes }
+	}
+
+	ai_resource_production = {
+		energy = 3
+		trigger = { always = yes }
+	}
+}
+
+# Food Consortium (pre-placed on Ferenginar + buildable)
+cp26_ferengi_food_consortium = {
+	base_buildtime = 360
+	category = resource
+
+	potential = {
+		exists = owner
+		owner = { is_ferengi_empire = yes }
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		building_relaxed_basic_income_check = yes
+	}
+
+	allow = {
+		has_district = district_farming
+		hidden_trigger = {
+			exists = owner
+			OR = {
+				owner = { is_ai = no }
+				AND = {
+					free_jobs < 4
+					owner = { is_ai = yes }
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = { is_ferengi_empire = no }
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+
+	planet_modifier = {
+		job_clerk_add = 1
+		job_farmer_add = 1
+		planet_farmers_produces_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			has_district = district_farming
+		}
+		modifier = {
+			district_farming_max = 1
+			district_generator_max = -1
+			district_mining_max = -1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+			energy = 200
+		}
+		upkeep = {
+			minerals = 1
+			energy = 1
+		}
+	}
+
+	show_tech_unlock_if = {
+		owner = { is_ferengi_empire = yes }
+	}
+
+	ai_resource_production = {
+		food = 3
+		trigger = { always = yes }
+	}
+}
+
+# Mining Consortium (buildable only, NOT pre-placed)
+cp26_ferengi_mining_consortium = {
+	base_buildtime = 360
+	category = resource
+
+	potential = {
+		exists = owner
+		owner = { is_ferengi_empire = yes }
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		building_relaxed_basic_income_check = yes
+	}
+
+	allow = {
+		has_district = district_mining
+		hidden_trigger = {
+			exists = owner
+			OR = {
+				owner = { is_ai = no }
+				AND = {
+					free_jobs < 4
+					owner = {
+						is_ai = yes
+						has_monthly_income = { resource = minerals value > 20 }
+					}
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = { exists = owner }
+			owner = { is_ferengi_empire = no }
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+
+	planet_modifier = {
+		job_miner_add = 1
+		job_clerk_add = 1
+		planet_miners_produces_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			has_district = district_mining
+		}
+		modifier = {
+			district_mining_max = 1
+			district_generator_max = -1
+			district_farming_max = -1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 300
+			minerals = 100
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	prerequisites = {
+		"tech_mineral_purification_1"
+	}
+
+	show_tech_unlock_if = {
+		owner = { is_ferengi_empire = yes }
+	}
+
+	ai_resource_production = {
+		minerals = 3
+		trigger = { always = yes }
+	}
+}

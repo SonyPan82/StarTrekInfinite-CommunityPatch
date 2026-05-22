@@ -1,0 +1,73 @@
+# Nebula Class
+
+ship_design = {
+	name = "NAME_Nebula"
+	ship_size = nebula
+	is_event_design = yes
+
+	section = {
+		template = "NEBULA_MID"
+		slot = "mid"
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "SMALL_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "SMALL_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_1"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_2"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_3"
+			template = "MEDIUM_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "SHIELD_BOOSTER"
+		}
+	}
+
+	required_component = "CRUISER_FUSION_REACTOR_NEBULA"
+	required_component = "WARP_DRIVE_1"
+	required_component = "CRUISER_IMPULSE_ENGINE_NEBULA"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_NEBULA"
+}

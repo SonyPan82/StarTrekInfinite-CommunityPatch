@@ -1,0 +1,36 @@
+objectTypes = {
+
+    pdxmesh = {
+        name = "fusion_hub_collider_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_collision.mesh"
+        scale = 1
+    }
+
+    pdxmesh = { # Beam origin
+        name = "fusion_hub_01_mesh"
+        file = "gfx/models/megastructures/fusion_hub/fusion_hub_1.mesh"
+        scale = 1.0
+    }
+    pdxmesh = { # station
+        name = "fusion_hub_02_mesh"
+        file = "gfx/models/megastructures/fusion_hub/fusion_hub_2.mesh"
+        scale = 1.0
+    } 
+
+    pdxmesh = { # grippers
+        name = "fusion_hub_03_mesh"
+        file = "gfx/models/megastructures/fusion_hub/fusion_hub_3.mesh"
+        scale = 1.0
+    }
+    pdxmesh = { # beam supports
+        name = "fusion_hub_04_mesh"
+        file = "gfx/models/megastructures/fusion_hub/fusion_hub_4.mesh"
+        scale = 1.0
+    }
+
+    pdxmesh = { # effect
+        name = "fusion_hub_05_mesh"
+        file = "gfx/models/megastructures/fusion_hub/fusion_hub_effect.mesh"
+        scale = 1.0
+    }
+}

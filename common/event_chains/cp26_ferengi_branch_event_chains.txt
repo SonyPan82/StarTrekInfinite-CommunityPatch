@@ -1,0 +1,4 @@
+cp26_ferengi_platform_construction_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_shipyard_repair_service_ufop
+}

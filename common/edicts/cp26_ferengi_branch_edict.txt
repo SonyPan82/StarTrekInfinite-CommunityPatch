@@ -10,20 +10,11 @@ cp26_manage_ferengi_branches = {
 	}
 
 	allow = {
-		any_country = {
-			OR = {
-				is_country_type = default
-				is_country_type = contender
-				is_ferengi_empire = yes
-			}
-			has_communications = root
-			is_subject = no
-			NOT = { is_same_value = root }
-		}
+		always = yes
 	}
 
 	effect = {
-		country_event = { id = cp26_ferengi_branch.0 }
+		country_event = { id = cp26_ferengi_branch.3 }
 	}
 
 	ai_weight = {

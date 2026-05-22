@@ -1,0 +1,200 @@
+@scale_correct = 17.5
+# Parts
+entity = {
+	name = "fusion_hub_1_entity"
+	pdxmesh = "fusion_hub_01_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "fusion_hub_2_entity"
+	pdxmesh = "fusion_hub_02_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "fusion_hub_3_entity"
+	pdxmesh = "fusion_hub_03_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "fusion_hub_4_entity"
+	pdxmesh = "fusion_hub_04_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "fusion_hub_beam_entity"
+	pdxmesh = "fusion_hub_05_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+    game_data = {
+        uv_animation_direction = { 1 1 }
+        uv_animation_speed = 0.3
+        emissive_recolor_crunch = 2.5
+        bloom_factor = 0.4
+    }
+}
+
+# Assembly
+entity = {
+	name = "fusion_hub_01_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+}
+
+entity = {
+	name = "fusion_hub_01_con_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+
+	default_state = "idle"
+	state = { name = "idle" 
+		# start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+}
+
+entity = {
+	name = "fusion_hub_02_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+    attach = { root = fusion_hub_2_entity }
+}
+
+entity = {
+	name = "fusion_hub_02_con_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+    attach = { root = fusion_hub_2_entity }
+}
+
+entity = {
+	name = "fusion_hub_03_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+    attach = { root = fusion_hub_2_entity }
+    attach = { root = fusion_hub_3_entity }
+}
+
+entity = {
+	name = "fusion_hub_03_con_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		# start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+    attach = { root = fusion_hub_2_entity }
+    attach = { root = fusion_hub_3_entity }
+}
+
+entity = {
+	name = "fusion_hub_04_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+    attach = { root = fusion_hub_2_entity }
+    attach = { root = fusion_hub_3_entity }
+    attach = { root = fusion_hub_4_entity }
+    # attach = { root = fusion_hub_beam_entity }
+}
+
+entity = {
+	name = "fusion_hub_04_con_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		# start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+    attach = { root = fusion_hub_2_entity }
+    attach = { root = fusion_hub_3_entity }
+    attach = { root = fusion_hub_4_entity }
+}
+
+entity = {
+	name = "fusion_hub_05_entity"
+	pdxmesh = "fusion_hub_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = fusion_hub_1_entity }
+    attach = { root = fusion_hub_2_entity }
+    attach = { root = fusion_hub_3_entity }
+    attach = { root = fusion_hub_4_entity }
+    attach = { root = fusion_hub_beam_entity }
+}

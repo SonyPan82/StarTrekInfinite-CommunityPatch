@@ -401,7 +401,7 @@ bespoke_procedural_scenario = {
 	}
 
 	system = {
-		name = "Tau Lacertae" position = { x = 85.1 y = 366.8 }
+		name = "Tau Lacertae" position = { x = -22.0 y = 382.0 }
 		initializer = gorn_system_initializer spawn_weight = { base = 1 }
 	}
 

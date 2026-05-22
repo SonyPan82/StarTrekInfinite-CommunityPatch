@@ -1100,6 +1100,7 @@ event = {
 		#UFOP Leaders
 		every_country = {
 			limit = { is_ufop = yes }
+			give_technology = { tech = tech_cp26_ufop_fleet_museum message = no }
 			country_event = { id = country.2900 days = 1 }
 		}
 		#KLINGON Leaders
@@ -1132,6 +1133,16 @@ event = {
 				option = leader_education_standard_protocols
 				cooldown = no
 			}
+		}
+
+		every_country = {
+			limit = {
+				OR = {
+					is_minor = yes
+					is_major = yes
+				}
+			}
+			give_technology = { tech = tech_megastructure_1 message = no }
 		}
 
 		# CP26 global country targets for bespoke colony setup.

@@ -1,0 +1,12 @@
+CP26 - Changelog interne
+Date: 2026-05-22
+
+- Fusion du mod workshop 3069363325 dans CP26
+- Ajout des technologies et megastructures workshop pour les empires standards
+- Exclusion complete des Ferengi du tech workshop et des megastructures workshop
+- Ajout de trois technologies Ferengi dediees aux plateformes orbitales
+- Les Ferengi commencent avec l'Enclave du Grand Nagus debloquee
+- La Plateforme d'Acquisition devient recherchable plus tard
+- Le Bar de Quark devient recherchable autour de 2370
+- Ajout des localisations FR pour le contenu workshop fusionne
+- Mise a jour des localisations EN/FR des megastructures Ferengi

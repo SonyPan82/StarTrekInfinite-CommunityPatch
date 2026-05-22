@@ -1,0 +1,43 @@
+CP26 FERENGI V2 PLATFORM FLOW AUDIT
+Date: 2026-05-22
+
+Audit target
+- Verify that the Ferengi V2 branch system is no longer centered on foreign-planet UI buttons.
+- Verify that Ferengi orbital branches are constrained and visually coherent.
+
+Findings
+1. Dashboard/UI access
+- Foreign planets: no longer the intended access point for platform creation.
+- Ferengi colonies: still expose the Ferengi dashboard button.
+- Ferengi edict: now opens the dashboard only.
+
+2. Construction model
+- Megastructure definitions are now formatted as proper buildable structures:
+  - build time
+  - build cost
+  - construction entity
+  - placement rules
+- Visual model now matches Ferengi citadel assets.
+
+3. Placement rules
+- Host colony must have an upgraded capital.
+- Target colony cannot already carry another Ferengi branch modifier.
+- Host empire must have an active commercial pact with the Ferengi builder.
+- System cap is enforced at 1 Ferengi platform.
+- Host empire cap is enforced at 3 Ferengi platforms total.
+
+4. AI
+- AI still does not rely on the ship-order UI.
+- AI uses the monthly Ferengi backend to place platforms while obeying:
+  - host cap
+  - system cap
+  - per-type relation flag gating
+
+5. Remaining validation needed in live game
+- Confirm that the vanilla construction-ship megastructure picker exposes the three Ferengi platform entries on valid foreign host systems.
+- Confirm that on_build_complete effect scopes resolve correctly during actual construction completion.
+
+Conclusion
+- V2 now has a coherent data model:
+  player dashboard on Ferengi colonies + orbital platform structures + AI backend.
+- The remaining real-world validation point is the constructor-side runtime behavior in-game.

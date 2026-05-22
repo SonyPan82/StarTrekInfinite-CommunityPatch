@@ -1,0 +1,55 @@
+cp26_grand_nagus_merchants = {
+	aggressiveness = 0.45
+	trade_willingness = 2.4
+	bravery = 0.65
+	combat_bravery = 0.55
+
+	military_spending = 0.75
+	colony_spending = 1.05
+
+	federation_acceptance = -50
+	nap_acceptance = 85
+	commercial_pact_acceptance = 150
+	research_agreement_acceptance = 35
+	share_warp_agreement_acceptance = 40
+	defensive_pact_acceptance = -10
+	migration_pact_acceptance = 15
+
+	advanced_start_chance = 100
+
+	weapon_preferences = weapon_type_energy
+	armor_ratio = 0.25
+	shields_ratio = 0.55
+	hull_ratio = 0.20
+
+	threat_modifier = 0.85
+	threat_others_modifier = 0.75
+	friction_modifier = 0.6
+	claims_modifier = 0.4
+
+	behaviour = {
+		conqueror = no
+		subjugator = no
+		liberator = no
+		opportunist = yes
+		slaver = no
+		uplifter = no
+		purger = no
+		displacer = no
+		infiltrator = no
+		dominator = no
+		robot_exploiter = no
+		robot_liberator = no
+		propagator = no
+		multispecies = yes
+		crisis_fighter = yes
+	}
+
+	allow = {
+		has_country_id = "ferengi"
+	}
+
+	weight_modifier = {
+		weight = 10000
+	}
+}

@@ -9,6 +9,10 @@ event = {
 	}
  
 	immediate = {
+		every_country = {
+			limit = { has_country_flag = ufop }
+			save_global_event_target_as = ufop_country
+		}
 		enable_custom_ai_ministers = yes
 		show_complete_ui_non_tutorial = yes
 	}

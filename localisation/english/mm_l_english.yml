@@ -1,0 +1,67 @@
+﻿l_english:
+#UI
+    MEGASTRUCTURE_TAB_BUTTON:0 "§HMegastructure§!"
+    SHIPYARD_TAB_BUTTON:0 "§HShipyards§!"
+    ZOOM_TO_MEGA:0 "§HGo To§!\n§GClick to quickly navigate the camera to where megastructure is located§!"
+
+
+#Technologies
+    tech_mm_energy_harvesting:0 "Mega-Scale Tetryon Shielding"
+    tech_mm_energy_harvesting_desc:0 "Hypothetically a self-sustaining shield powered by both the star itself and §H$tetryons$§! could lock more starlight within the closed system of a $DYSON_SWARM$ increasing efficiency greatly. Upkeep could also be reasonably reduced as such a shield would also absorb solar flares and parts of the solar wind, protecting the panels from some of the negative effects of such close proximity to the raging beast of stellar fusion."
+    ALLOW_SWARM_MAX:0 "§HUnlocks Improved Stellar Engine:§! $DYSON_SWARM$ "
+
+    tech_mm_mega_aspirations:0 "Stellar Engines"
+    tech_mm_mega_aspirations_desc:0 "System scale construction such as the legendary Dyson Sphere is within our grasp, Such 'Stellar Engines' or engines utilizing the full power of a star, could bring us previously impossible material wealth"
+    MM_ENGINE_UNLOCK:0 "§HUnlocks Limited Megastructures:§! Stellar Engines"
+    ALLOW_STAR_LIFTER:0 "§HUnlocks Stellar Engine:§! $LIFTER$"
+    ALLOW_DYSON_SWARM:0 "§HUnlocks Stellar Engine:§! $DYSON_SWARM$"
+    ALLOW_FUSION_HUB:0 "§HUnlocks Stellar Engine:§! $FUSION_HUB$"
+#triggers
+    too_many_engines:0 "$TRIGGER_FAIL$ We are already supporting our maximum amount of stellar engines."
+
+#Megastructures
+
+###########################################
+############# STELLAR ENGINES #############
+###########################################
+    DYSON_SWARM:0 "Dyson Swarm"
+    dyson_swarm_0:0 "Construction Platform: Dyson Swarm"
+    dyson_swarm_0_MEGASTRUCTURE_DETAILS:0 "Utilizing a series of large solar panels, a §H$DYSON_SWARM$§! collects most of the energy output of a star"
+    dyson_swarm_0_DESC:0 "The construction platform shall serve as the base for one our stellar engines, a Dyson Swarm, capable of harvesting all of the star's energy."
+    dyson_swarm_1:0 "Dyson Swarm: Primary Array"
+    dyson_swarm_1_DESC:0 "With the first array of collection satellites in place, the Dyson Swarm shall finally begin outputting energy"
+    dyson_swarm_2:0 "Dyson Swarm: Secondary Array"
+    dyson_swarm_2_DESC:0 "With the seconadry array in place, energy collection will be doubled over just the primary array."
+    dyson_swarm_3:0 "Dyson Swarm: Polar Array"
+    dyson_swarm_3_DESC:0 "Further collection arrays will invariably increase the efficeincy of the swarm."
+    dyson_swarm_4:0 "Dyson Swarm: Sub Polar Array"
+    dyson_swarm_4_DESC:0 "With the final collection array in place, any other attempts to increase output will have to deal with either increasing the efficiency of the panels making up the swarm or otherwise trapping more light within the system."
+    dyson_swarm_5:0 "$DYSON_SWARM$"
+    dyson_swarm_5_DESC:0 "Utilizing a shielding system powered by £tetryons£ §H$tetryons$§!, we can reflect any photons missed by the collection arrays back inwards towards the collectors. The addition of such a powerful shield will also help decrease any damage the delicate arrays might suffer otherwise, lowering upkeep."
+    # NAME_DYSON_SWARM:0 "[FROM.from.planet.GetName] Dyson Swarm"
+
+    FUSION_HUB:0 "Fusion Harvester"
+    fusion_hub_0:0 "Construction Platform: Fusion Harvester"
+    fusion_hub_0_MEGASTRUCTURE_DETAILS:0 "Utilizing a combination of a large neutron beam, and a graviton based collector, a §H$FUSION_HUB$§! creates deuterium directly along the surface of a star"
+    fusion_hub_0_DESC:0 "The construction platform shall serve as the base for one our stellar engines, a Fusion Harvester, capable of creating incredibly amounts of deuterium."
+    fusion_hub_1:0 "Fusion Harvester: Anchor Station"
+    fusion_hub_1_DESC:0 "The Anchor station is the most important part of the structure, allowing us to begin harvesting operations"
+    fusion_hub_2:0 "Fusion Harvester: Refinery"
+    fusion_hub_2_DESC:0 "The Refinery will allow for more of the excess hydrogen that is scooped up with the deuterium, to itself be converted into deuterium."
+    fusion_hub_3:0 "Fusion Harvester: Beam Amplifier"
+    fusion_hub_3_DESC:0 "The Amplifier will allow for a higher collection speed, as well as faster deuterium seeding."
+    fusion_hub_4:0 "Fusion Harvester"
+    fusion_hub_4_DESC:0 "A secondary amplifier allows for further increased processing and collection speed, as well as higher structural stability, opening up the further possibility of supercharging the beam."
+
+    LIFTER:0 "Stellar-Lifter"
+    lifter_0:0 "Construction Platform: Stellar-Lifter"
+    lifter_0_MEGASTRUCTURE_DETAILS:0 "Utilizing a combination of a graviton based collector, costly secondary fusion, a §H$LIFTER$§! creates usuable minerals directly from a star"
+    lifter_0_DESC:0 "The construction platform shall serve as the base for one our stellar engines, a Fusion Harvester, capable of creating incredibly amounts of deuterium."
+    lifter_1:0 "Stellar-Lifter: Anchor Station"
+    lifter_1_DESC:0 "The Anchor station is the most important part of the structure, allowing us to begin harvesting operations"
+    lifter_2:0 "Stellar-Lifter: Refinery Ring"
+    lifter_2_DESC:0 "The Refinery Ring will allow for fusion reactions of elements with higher atomic mass, thus increasing output"
+    lifter_3:0 "Stellar-Lifter: Secondary Refinery"
+    lifter_3_DESC:0 " The Anchor Station is capable of pulling far more material than we can process within the confines of the original refinery ring. A secondary installation will also serve as the platform for a more controlled process later on."
+    lifter_4:0 "Stellar-Lifter"
+    lifter_4_DESC:0 "The introduction of massive 'Artifical Star' chambers allows for a more controlled fusion process."

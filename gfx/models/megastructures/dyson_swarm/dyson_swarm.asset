@@ -1,0 +1,305 @@
+@scale_correct = 120
+# Parts
+entity = {
+	name = "dyson_swarm_array_1_entity"
+	pdxmesh = "dyson_swarm_01_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "dyson_swarm_polar_plate_entity"
+	pdxmesh = "dyson_swarm_03_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "dyson_swarm_polar_plate_array_entity"
+	pdxmesh = "dyson_swarm_03_array_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "dyson_swarm_sub_polar_plate_a1_entity"
+	pdxmesh = "dyson_swarm_04_array1_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "dyson_swarm_sub_polar_plate_a2_entity"
+	pdxmesh = "dyson_swarm_04_array2_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+entity = {
+	name = "dyson_swarm_emitter_entity"
+	pdxmesh = "dyson_swarm_05_emitter_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "dyson_swarm_array_shielding_entity"
+	pdxmesh = "dyson_swarm_05_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+    game_data = {
+        uv_animation_direction = { 0 0.5 }
+        uv_animation_speed = 0.25
+        emissive_recolor_crunch = 2.5
+        bloom_factor = 0.5
+    }
+}
+# Assembly
+entity = {
+	name = "dyson_swarm_01_entity"
+	pdxmesh = "dyson_swarm_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" }
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "array1" 	rotation = { 60 0 0 } }
+	locator = { name = "array2" 	rotation = { 120 0 0 } }
+	locator = { name = "array3" 	rotation = { 180 0 0 } }
+	locator = { name = "array4" 	rotation = { 240 0 0 } }
+	locator = { name = "array5" 	rotation = { 300 0 0 } }
+
+    locator = { name = "array6" 	rotation = { 30 0 0 } }
+	locator = { name = "array7" 	rotation = { 90 0 0 } }
+	locator = { name = "array8" 	rotation = { 150 0 0 } }
+	locator = { name = "array9" 	rotation = { 210 0 0 } }
+	locator = { name = "array10" 	rotation = { 270 0 0 } }
+	locator = { name = "array11" 	rotation = { 310 0 0 } }
+
+    attach = { root = dyson_swarm_array_1_entity }
+    attach = { array1 = dyson_swarm_array_1_entity }
+    attach = { array2 = dyson_swarm_array_1_entity }
+    attach = { array3 = dyson_swarm_array_1_entity }
+    attach = { array4 = dyson_swarm_array_1_entity }
+    attach = { array5 = dyson_swarm_array_1_entity }
+}
+
+entity = {
+	name = "dyson_swarm_02_entity"
+	pdxmesh = "dyson_swarm_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" }
+    locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "array1" 	rotation = { 60 0 0 } }
+	locator = { name = "array2" 	rotation = { 120 0 0 } }
+	locator = { name = "array3" 	rotation = { 180 0 0 } }
+	locator = { name = "array4" 	rotation = { 240 0 0 } }
+	locator = { name = "array5" 	rotation = { 300 0 0 } }
+
+    locator = { name = "array6" 	rotation = { 30 0 0 } }
+	locator = { name = "array7" 	rotation = { 90 0 0 } }
+	locator = { name = "array8" 	rotation = { 150 0 0 } }
+	locator = { name = "array9" 	rotation = { 210 0 0 } }
+	locator = { name = "array10" 	rotation = { 270 0 0 } }
+	locator = { name = "array11" 	rotation = { 310 0 0 } }
+
+    attach = { root = dyson_swarm_array_1_entity }
+    attach = { array1 = dyson_swarm_array_1_entity }
+    attach = { array2 = dyson_swarm_array_1_entity }
+    attach = { array3 = dyson_swarm_array_1_entity }
+    attach = { array4 = dyson_swarm_array_1_entity }
+    attach = { array5 = dyson_swarm_array_1_entity }
+
+    attach = { array6 = dyson_swarm_array_1_entity }
+    attach = { array7 = dyson_swarm_array_1_entity }
+    attach = { array8 = dyson_swarm_array_1_entity }
+    attach = { array9 = dyson_swarm_array_1_entity }
+    attach = { array10 = dyson_swarm_array_1_entity }
+    attach = { array11 = dyson_swarm_array_1_entity }
+
+}
+entity = {
+	name = "dyson_swarm_03_entity"
+	pdxmesh = "dyson_swarm_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" }
+    locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "array1" 	rotation = { 60 0 0 } }
+	locator = { name = "array2" 	rotation = { 120 0 0 } }
+	locator = { name = "array3" 	rotation = { 180 0 0 } }
+	locator = { name = "array4" 	rotation = { 240 0 0 } }
+	locator = { name = "array5" 	rotation = { 300 0 0 } }
+
+    locator = { name = "array6" 	rotation = { 30 0 0 } }
+	locator = { name = "array7" 	rotation = { 90 0 0 } }
+	locator = { name = "array8" 	rotation = { 150 0 0 } }
+	locator = { name = "array9" 	rotation = { 210 0 0 } }
+	locator = { name = "array10" 	rotation = { 270 0 0 } }
+	locator = { name = "array11" 	rotation = { 310 0 0 } }
+    #Stage 1
+    attach = { root = dyson_swarm_array_1_entity }
+    attach = { array1 = dyson_swarm_array_1_entity }
+    attach = { array2 = dyson_swarm_array_1_entity }
+    attach = { array3 = dyson_swarm_array_1_entity }
+    attach = { array4 = dyson_swarm_array_1_entity }
+    attach = { array5 = dyson_swarm_array_1_entity }
+    #Stage 2
+    attach = { array6 = dyson_swarm_array_1_entity }
+    attach = { array7 = dyson_swarm_array_1_entity }
+    attach = { array8 = dyson_swarm_array_1_entity }
+    attach = { array9 = dyson_swarm_array_1_entity }
+    attach = { array10 = dyson_swarm_array_1_entity }
+    attach = { array11 = dyson_swarm_array_1_entity }
+    #Stage 3
+    attach = { root = dyson_swarm_polar_plate_entity }
+    attach = { root = dyson_swarm_polar_plate_array_entity }
+    attach = { array1 = dyson_swarm_polar_plate_array_entity }
+    attach = { array2 = dyson_swarm_polar_plate_array_entity }
+    attach = { array3 = dyson_swarm_polar_plate_array_entity }
+    attach = { array4 = dyson_swarm_polar_plate_array_entity }
+    attach = { array5 = dyson_swarm_polar_plate_array_entity }
+}
+entity = {
+	name = "dyson_swarm_04_entity"
+	pdxmesh = "dyson_swarm_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" }
+    locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "array1" 	rotation = { 60 0 0 } }
+	locator = { name = "array2" 	rotation = { 120 0 0 } }
+	locator = { name = "array3" 	rotation = { 180 0 0 } }
+	locator = { name = "array4" 	rotation = { 240 0 0 } }
+	locator = { name = "array5" 	rotation = { 300 0 0 } }
+
+    locator = { name = "array6" 	rotation = { 30 0 0 } }
+	locator = { name = "array7" 	rotation = { 90 0 0 } }
+	locator = { name = "array8" 	rotation = { 150 0 0 } }
+	locator = { name = "array9" 	rotation = { 210 0 0 } }
+	locator = { name = "array10" 	rotation = { 270 0 0 } }
+	locator = { name = "array11" 	rotation = { 310 0 0 } }
+    #Stage 1
+    attach = { root = dyson_swarm_array_1_entity }
+    attach = { array1 = dyson_swarm_array_1_entity }
+    attach = { array2 = dyson_swarm_array_1_entity }
+    attach = { array3 = dyson_swarm_array_1_entity }
+    attach = { array4 = dyson_swarm_array_1_entity }
+    attach = { array5 = dyson_swarm_array_1_entity }
+    #Stage 2
+    attach = { array6 = dyson_swarm_array_1_entity }
+    attach = { array7 = dyson_swarm_array_1_entity }
+    attach = { array8 = dyson_swarm_array_1_entity }
+    attach = { array9 = dyson_swarm_array_1_entity }
+    attach = { array10 = dyson_swarm_array_1_entity }
+    attach = { array11 = dyson_swarm_array_1_entity }
+    #Stage 3
+    attach = { root = dyson_swarm_polar_plate_entity }
+    attach = { root = dyson_swarm_polar_plate_array_entity }
+    attach = { array1 = dyson_swarm_polar_plate_array_entity }
+    attach = { array2 = dyson_swarm_polar_plate_array_entity }
+    attach = { array3 = dyson_swarm_polar_plate_array_entity }
+    attach = { array4 = dyson_swarm_polar_plate_array_entity }
+    attach = { array5 = dyson_swarm_polar_plate_array_entity }
+    #Stage 4
+    attach = { root = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array1 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array2 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array3 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array4 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array5 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array6 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array7 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array8 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array9 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array10 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array11 = dyson_swarm_sub_polar_plate_a1_entity }
+
+    attach = { root = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array1 = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array2 = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array3 = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array4 = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array5 = dyson_swarm_sub_polar_plate_a2_entity }
+}
+entity = {
+	name = "dyson_swarm_05_entity"
+	pdxmesh = "dyson_swarm_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" }
+    locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "array1" 	rotation = { 60 0 0 } }
+	locator = { name = "array2" 	rotation = { 120 0 0 } }
+	locator = { name = "array3" 	rotation = { 180 0 0 } }
+	locator = { name = "array4" 	rotation = { 240 0 0 } }
+	locator = { name = "array5" 	rotation = { 300 0 0 } }
+
+    locator = { name = "array6" 	rotation = { 30 0 0 } }
+	locator = { name = "array7" 	rotation = { 90 0 0 } }
+	locator = { name = "array8" 	rotation = { 150 0 0 } }
+	locator = { name = "array9" 	rotation = { 210 0 0 } }
+	locator = { name = "array10" 	rotation = { 270 0 0 } }
+	locator = { name = "array11" 	rotation = { 330 0 0 } }
+    #Stage 1
+    attach = { root = dyson_swarm_array_1_entity }
+    attach = { array1 = dyson_swarm_array_1_entity }
+    attach = { array2 = dyson_swarm_array_1_entity }
+    attach = { array3 = dyson_swarm_array_1_entity }
+    attach = { array4 = dyson_swarm_array_1_entity }
+    attach = { array5 = dyson_swarm_array_1_entity }
+    #Stage 2
+    attach = { array6 = dyson_swarm_array_1_entity }
+    attach = { array7 = dyson_swarm_array_1_entity }
+    attach = { array8 = dyson_swarm_array_1_entity }
+    attach = { array9 = dyson_swarm_array_1_entity }
+    attach = { array10 = dyson_swarm_array_1_entity }
+    attach = { array11 = dyson_swarm_array_1_entity }
+    #Stage 3
+    attach = { root = dyson_swarm_polar_plate_entity }
+    attach = { root = dyson_swarm_polar_plate_array_entity }
+    attach = { array1 = dyson_swarm_polar_plate_array_entity }
+    attach = { array2 = dyson_swarm_polar_plate_array_entity }
+    attach = { array3 = dyson_swarm_polar_plate_array_entity }
+    attach = { array4 = dyson_swarm_polar_plate_array_entity }
+    attach = { array5 = dyson_swarm_polar_plate_array_entity }
+    #Stage 4
+    attach = { root = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array1 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array2 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array3 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array4 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array5 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array6 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array7 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array8 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array9 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array10 = dyson_swarm_sub_polar_plate_a1_entity }
+    attach = { array11 = dyson_swarm_sub_polar_plate_a1_entity }
+
+    attach = { root = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array1 = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array2 = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array3 = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array4 = dyson_swarm_sub_polar_plate_a2_entity }
+    attach = { array5 = dyson_swarm_sub_polar_plate_a2_entity }
+    #Stage 5
+    attach = { root = dyson_swarm_array_shielding_entity }
+    attach = { root = dyson_swarm_emitter_entity }
+    attach = { array1 = dyson_swarm_emitter_entity }
+    attach = { array2 = dyson_swarm_emitter_entity }
+    attach = { array3 = dyson_swarm_emitter_entity }
+    attach = { array4 = dyson_swarm_emitter_entity }
+    attach = { array5 = dyson_swarm_emitter_entity }
+}

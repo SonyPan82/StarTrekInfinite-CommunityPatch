@@ -1,0 +1,1103 @@
+#H = { 253 169 38 }	Tooltip orange
+#color = 0xffffffff	#format is 0xaarrggbb
+#G = { 41 225 38 255 } #format is red green blue alpha
+#textcolors = {} is global for all fonts. changing this in one font will also change it for all others
+# L = Lore text, not relevant game info, just fun to know backstory info
+# G = Green, used for numbers that are positiv modifiers		
+# R = Red, used for negative modifier 
+# Y = Yellow, to be used for stuff that is sub optimal or for certain highlights
+# H = Highlight, Orange in Game
+# T = Text, standard for all text, to be used if ALL text needs tweaking
+# E = Standard green, used with large chunks of texts, such as events and advisor
+# S = Subtitle highlight (light green in this case)
+# M = Magenta. Indicator for "Rare Techs".
+bitmapfonts = {
+	# Global colors
+	textcolors = {
+		A = {
+			239
+			216
+			161
+		}
+		D = {
+			128
+			128
+			128
+		}
+		d = {
+			68
+			68
+			68
+		}
+		M = {
+			149
+			129
+			211
+		}
+		L = {
+			195
+			176
+			145
+		}
+		G = {
+			122
+			211
+			110
+		}
+		R = {
+			237
+			64
+			64
+		}
+		B = {
+			159
+			173
+			183
+		}
+		F = {
+			159
+			173
+			183
+		}
+		Y = {
+			247
+			234
+			119
+		}
+		H = {
+			239
+			216
+			161
+		}
+		K = {
+			23
+			39
+			91
+		}
+		T = {
+			255
+			255
+			255
+		}
+		E = {
+			188
+			186
+			184
+		}
+		S = {
+			209
+			148
+			61
+		}
+		W = {
+			255
+			255
+			255
+		}
+		P = {
+			219
+			94
+			94
+		}
+		Z = {
+			239
+			216
+			161
+		}
+		g = {
+			140
+			139
+			139
+		}
+		l = {
+			159
+			173
+			183
+		}
+		a = {
+			140
+			133
+			117
+		}
+		c = {
+			155
+			153
+			151
+		}
+		# s = { 125 209 155 }
+		y = {
+			239
+			216
+			161
+		}
+		_ = {
+			255
+			0
+			255
+		}
+	}
+	bitmapfont = {
+        name = "Font_CTitleBig"
+        path = "gfx/fonts/Font/Font_couture_20_0"
+        color = -1
+    }
+	bitmapfont = {
+        name = "Font_CTitleBig_26"
+        path = "gfx/fonts/Font/Font_couture_26_0"
+        color = -1
+    }
+	bitmapfont = {
+        name = "Font_CTitleBig_16"
+        path = "gfx/fonts/Font/Font_couture_16_0"
+        color = -1
+    }
+	bitmapfont = {
+        name = "Font_CTitleBig_16_2"
+        path = "gfx/fonts/Font/Font_couture_16_0"
+        color = -1
+    }
+	bitmapfont = {
+        name = "Font_CTitleBig_14"
+        path = "gfx/fonts/Font/Font_couture_14_0"
+        color = -1
+    }
+	bitmapfont = {
+		name = "Font_rebelton_18"
+		path = "gfx/fonts/Font/rebelton/rebelton_18"
+		color = -1
+	}	
+	bitmapfont = {
+		name = "Font_rebelton_21"
+		path = "gfx/fonts/Font/rebelton/rebelton_21"
+		color = -1
+	}	
+	bitmapfont = {
+		name = "Font_rebelton_23"
+		path = "gfx/fonts/Font/rebelton/rebelton_23"
+		color = -1
+	}	
+	bitmapfont = {
+		name = "Font_rebelton_27"
+		path = "gfx/fonts/Font/rebelton/rebelton_27"
+		color = -1
+	}	
+	bitmapfont = {
+		name = "Font_rebelton_35"
+		path = "gfx/fonts/Font/rebelton/rebelton_35"
+		color = -1
+	}	
+
+# Font for titles (only capital letters) from biggest to smallest
+
+bitmapfont = {
+	name = "Font_rebelton_35"
+	path = "gfx/fonts/Font/rebelton/rebelton_35"
+	color = -1
+}
+bitmapfont_override = {
+	name = "Font_rebelton_35"
+	ttf_font = "Rebelton_medium"
+	ttf_size = "27"
+	languages = {
+		"l_english"			# ADDED
+		"l_braz_por"		# ADDED
+		"l_german"			# ADDED
+		"l_french"			# ADDED
+		"l_spanish"			# ADDED
+	}
+	vertical_offset = "5"
+}
+bitmapfont_override = {
+	name = "Font_rebelton_35"
+	ttf_font = "Easter_big"
+	ttf_size = "24"
+	languages = {
+		"l_russian"
+		"l_polish"
+	}
+}
+bitmapfont_override = {
+	name = "Font_rebelton_35"
+	ttf_font = "Chinese_big"
+	ttf_size = "26"
+	languages = {
+		"l_simp_chinese"
+	}
+	vertical_offset = "5"
+}
+bitmapfont_override = {
+	name = "Font_rebelton_35"
+	ttf_font = "Japanese_big"
+	ttf_size = "26"
+	languages = {
+		"l_japanese"
+	}
+	vertical_offset = "5"
+}
+bitmapfont_override = {
+	name = "Font_rebelton_35"
+	ttf_font = "Korean_big"
+	ttf_size = "26"
+	languages = {
+		"l_korean"
+	}
+	vertical_offset = "5"
+}
+
+############################
+
+	bitmapfont = {
+		name = "Font_rebelton_27"
+		path = "gfx/fonts/Font/rebelton/rebelton_27"
+		color = -1
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_27"
+		ttf_font = "Rebelton_medium"
+		ttf_size = "20"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+		vertical_offset = "5"
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_27"
+		ttf_font = "Easter_big"
+		ttf_size = "18"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_27"
+		ttf_font = "Chinese_big"
+		ttf_size = "20"
+		languages = {
+			"l_simp_chinese"
+		}
+		vertical_offset = "5"
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_27"
+		ttf_font = "Japanese_big"
+		ttf_size = "20"
+		languages = {
+			"l_japanese"
+		}
+		vertical_offset = "5"
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_27"
+		ttf_font = "Korean_big"
+		ttf_size = "20"
+		languages = {
+			"l_korean"
+		}
+		vertical_offset = "5"
+	}
+
+	############################
+	# Outliner headers
+
+	bitmapfont = {
+		name = "Font_rebelton_21"
+		path = "gfx/fonts/Font/rebelton/rebelton_21"
+		color = -1
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_21"
+		ttf_font = "Rebelton_medium"
+		ttf_size = "15"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+		vertical_offset = "5"
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_21"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_21"
+		ttf_font = "Chinese_normal"
+		ttf_size = "15"
+		languages = {
+			"l_simp_chinese"
+		}
+		vertical_offset = "5"
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_21"
+		ttf_font = "Japanese_normal"
+		ttf_size = "15"
+		languages = {
+			"l_japanese"
+		}
+		vertical_offset = "5"
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_21"
+		ttf_font = "Korean_normal"
+		ttf_size = "15"
+		languages = {
+			"l_korean"
+		}
+		vertical_offset = "5"
+	}
+
+	############################
+	# Menu buttons
+	# Don't vertically align well when using true type, so removed from override
+	
+	bitmapfont = {
+		name = "Font_rebelton_18"
+		path = "gfx/fonts/Font/rebelton/rebelton_18"
+		color = -1
+	}
+	#bitmapfont_override = {
+	#	name = "Font_rebelton_18"
+	#	ttf_font = "Rebelton_medium"
+	#	ttf_size = "13"
+	#	languages = {
+	#		"l_english"			# ADDED
+	#		"l_braz_por"		# ADDED
+	#		"l_german"			# ADDED
+	#		"l_french"			# ADDED
+	#		"l_spanish"			# ADDED
+	#	}
+	#	vertical_offset = "5"
+	#}
+	bitmapfont_override = {
+		name = "Font_rebelton_18"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_18"
+		ttf_font = "Chinese_normal"
+		ttf_size = "15"
+		languages = {
+			"l_simp_chinese"
+		}
+		vertical_offset = "5"
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_18"
+		ttf_font = "Japanese_normal"
+		ttf_size = "15"
+		languages = {
+			"l_japanese"
+		}
+		vertical_offset = "5"
+	}
+	bitmapfont_override = {
+		name = "Font_rebelton_18"
+		ttf_font = "Korean_normal"
+		ttf_size = "15"
+		languages = {
+			"l_korean"
+		}
+		vertical_offset = "5"
+	}
+	############################
+
+	# Font for body texts from biggest to smallest
+
+	bitmapfont = {
+		name = "malgun_goth_24"
+		path = "gfx/fonts/malgun_goth_24"
+		color = -1
+		cursor_offset = {
+			-4
+			-3
+		}
+		selection_offset = {
+			0
+			1
+		}
+	}
+	bitmapfont_override = {
+		name = "malgun_goth_24"
+		ttf_font = "Arimo_bold"
+		ttf_size = "17"
+		vertical_offset = "-4"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "malgun_goth_24"
+		ttf_font = "Easter_header"
+		ttf_size = "15"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "malgun_goth_24"
+		ttf_font = "Chinese_header"
+		ttf_size = "15"
+		vertical_offset = "1"
+		languages = {
+			"l_simp_chinese"
+		}
+	}
+	bitmapfont_override = {
+		name = "malgun_goth_24"
+		ttf_font = "Japanese_header"
+		ttf_size = "15"
+		vertical_offset = "1"
+		languages = {
+			"l_japanese"
+		}
+	}
+	bitmapfont_override = {
+		name = "malgun_goth_24"
+		ttf_font = "Korean_header"
+		ttf_size = "15"
+		vertical_offset = "1"
+		languages = {
+			"l_korean"
+		}
+	}	
+	
+	############################
+
+	bitmapfont = { 
+		name = "cg_20b" 
+		color = -1 
+		fontfiles = { 
+			"gfx/fonts/cg_20b" 
+		} 
+		color = -1 
+	}
+	bitmapfont_override = {
+		name = "cg_20b"
+		ttf_font = "Arimo_bold"
+		ttf_size = "15"
+		vertical_offset = "-4"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_20b"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_20b"
+		ttf_font = "Chinese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_simp_chinese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_20b"
+		ttf_font = "Japanese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_japanese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_20b"
+		ttf_font = "Korean_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_korean"
+		}
+	}
+
+	############################
+
+	bitmapfont = { 
+		name = "cg_18b" 
+		color = -1 
+		fontfiles = { 
+			"gfx/fonts/cg_18b" 
+		} 
+		color = -1 
+	}
+	bitmapfont_override = {
+		name = "cg_18b"
+		ttf_font = "Arimo_bold"
+		ttf_size = "14"
+		vertical_offset = "-3"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_18b"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_18b"
+		ttf_font = "Chinese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_simp_chinese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_18b"
+		ttf_font = "Japanese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_japanese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_18b"
+		ttf_font = "Korean_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_korean"
+		}
+	}
+
+	############################
+
+	bitmapfont = {
+		name = "cg_16b"
+		color = -1
+		fontfiles = {
+			"gfx/fonts/cg_16b"
+		}
+		color = -1
+		cursor_offset = {
+			-3
+			-5
+		}
+		selection_offset = {
+			0
+			3
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b"
+		ttf_font = "Arimo_bold"
+		ttf_size = "14"
+		vertical_offset = "-2"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b"
+		ttf_font = "Chinese_normal"
+		ttf_size = "15"
+		vertical_offset = "2"
+		languages = {
+			"l_simp_chinese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b"
+		ttf_font = "Japanese_normal"
+		ttf_size = "15"
+		vertical_offset = "2"
+		languages = {
+			"l_japanese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b"
+		ttf_font = "Korean_normal"
+		ttf_size = "15"
+		vertical_offset = "2"
+		languages = {
+			"l_korean"
+		}
+	}
+
+	############################
+
+	bitmapfont = {
+		name = "hoi_16mbs"
+		path = "gfx/fonts/hoi_16mbs"
+		color = -1
+	}
+	bitmapfont_override = {
+		name = "cg_16mbs"
+		ttf_font = "Arimo_regular"
+		ttf_size = "13"
+		vertical_offset = "-1"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "hoi_16mbs"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "hoi_16mbs"
+		ttf_font = "Chinese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_simp_chinese"
+		}
+	}
+	bitmapfont_override = {
+		name = "hoi_16mbs"
+		ttf_font = "Japanese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_japanese"
+		}
+	}
+	bitmapfont_override = {
+		name = "hoi_16mbs"
+		ttf_font = "Korean_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_korean"
+		}
+	}
+
+	############################
+
+
+	bitmapfont = {
+		name = "cg_16bi"
+		color = -1
+		fontfiles = {
+			"gfx/fonts/cg_16bi"
+		}
+		color = -1
+	}
+	bitmapfont_override = {
+		name = "cg_16bi"
+		ttf_font = "Arimo_bold_italic"
+		ttf_size = "13"
+		vertical_offset = "-1"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16bi"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16bi"
+		ttf_font = "Chinese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_simp_chinese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16bi"
+		ttf_font = "Japanese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_japanese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16bi"
+		ttf_font = "Korean_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_korean"
+		}
+	}
+
+	############################
+
+	bitmapfont = {
+		name = "cg_17bi"
+		color = -1
+		fontfiles = {
+			"gfx/fonts/cg_17bi"
+		}
+		color = -1
+	}
+	bitmapfont_override = {
+		name = "cg_17bi"
+		ttf_font = "Arimo_bold_italic"
+		ttf_size = "13"
+		vertical_offset = "-1"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_17bi"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_17bi"
+		ttf_font = "Chinese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_simp_chinese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_17bi"
+		ttf_font = "Japanese_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_japanese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_17bi"
+		ttf_font = "Korean_header"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_korean"
+		}
+	}
+
+	############################
+	# Outliner subheaders and info (e.g., planet name and designation)
+
+	bitmapfont = {
+		name = "cg_16b_2"
+		color = -1
+		fontfiles = {
+			"gfx/fonts/cg_16b_2"
+		}
+		color = -1
+		cursor_offset = {
+			-3
+			-5
+		}
+		selection_offset = {
+			0
+			3
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b_2"
+		ttf_font = "Arimo_bold"
+		ttf_size = "13"
+		vertical_offset = "-2"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b_2"
+		ttf_font = "Easter_normal"
+		ttf_size = "13"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b_2"
+		ttf_font = "Chinese_normal"
+		ttf_size = "15"
+		vertical_offset = "2"
+		languages = {
+			"l_simp_chinese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b_2"
+		ttf_font = "Japanese_normal"
+		ttf_size = "15"
+		vertical_offset = "2"
+		languages = {
+			"l_japanese"
+		}
+	}
+	bitmapfont_override = {
+		name = "cg_16b_2"
+		ttf_font = "Korean_normal"
+		ttf_size = "15"
+		vertical_offset = "2"
+		languages = {
+			"l_korean"
+		}
+	}
+
+	############################
+
+	bitmapfont = {
+		name = "standard_font"
+		path = "gfx/fonts/common"
+		color = -1
+	}
+	bitmapfont = {
+		name = "null_font"
+		path = "gfx/fonts/common"
+		color = -1
+	}
+
+	############################
+
+	bitmapfont = {
+		name = "map_name_border"
+		path = "gfx/fonts/Font/rebelton/rebelton_35"
+		color = -1
+	}
+	bitmapfont_override = {
+		name = "map_name_border"
+		ttf_font = "Rebelton_medium"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "map_name_border"
+		ttf_font = "Easter_big"
+		ttf_size = "20"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "map_name_border"
+		ttf_font = "Chinese_big"
+		ttf_size = "20"
+		languages = {
+			"l_simp_chinese"
+		}
+		vertical_offset = "1"
+	}
+	bitmapfont_override = {
+		name = "map_name_border"
+		ttf_font = "Japanese_big"
+		ttf_size = "20"
+		languages = {
+			"l_japanese"
+		}
+		vertical_offset = "1"
+	}
+	bitmapfont_override = {
+		name = "map_name_border"
+		ttf_font = "Korean_big"
+		ttf_size = "20"
+		languages = {
+			"l_korean"
+		}
+		vertical_offset = "1"
+	}
+	############################
+
+	bitmapfont = {
+		name = "map_name_nebula"
+		path = "gfx/fonts/Font/rebelton/rebelton_35"
+		color = -1
+	}
+	bitmapfont_override = {
+		name = "map_name_nebula"
+		ttf_font = "Rebelton_medium"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "map_name_nebula"
+		ttf_font = "Easter_big"
+		ttf_size = "20"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "map_name_nebula"
+		ttf_font = "Chinese_big"
+		ttf_size = "20"
+		languages = {
+			"l_simp_chinese"
+		}
+		vertical_offset = "1"
+	}
+	bitmapfont_override = {
+		name = "map_name_nebula"
+		ttf_font = "Japanese_big"
+		ttf_size = "20"
+		languages = {
+			"l_japanese"
+		}
+		vertical_offset = "1"
+	}
+	bitmapfont_override = {
+		name = "map_name_nebula"
+		ttf_font = "Korean_big"
+		ttf_size = "20"
+		languages = {
+			"l_korean"
+		}
+		vertical_offset = "1"
+	}
+	############################
+
+	bitmapfont = {
+		name = "map_name_sector"
+		path = "gfx/fonts/Font/rebelton/rebelton_35"
+		color = -1
+	}
+	bitmapfont_override = {
+		name = "map_name_sector"
+		ttf_font = "Rebelton_medium"
+		ttf_size = "20"
+		vertical_offset = "1"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+	}
+	bitmapfont_override = {
+		name = "map_name_sector"
+		ttf_font = "Easter_big"
+		ttf_size = "20"
+		languages = {
+			"l_russian"
+			"l_polish"
+		}
+	}
+	bitmapfont_override = {
+		name = "map_name_sector"
+		ttf_font = "Chinese_big"
+		ttf_size = "20"
+		languages = {
+			"l_simp_chinese"
+		}
+		vertical_offset = "1"
+	}
+	bitmapfont_override = {
+		name = "map_name_sector"
+		ttf_font = "Japanese_big"
+		ttf_size = "20"
+		languages = {
+			"l_japanese"
+		}
+		vertical_offset = "1"
+	}
+	bitmapfont_override = {
+		name = "map_name_sector"
+		ttf_font = "Korean_big"
+		ttf_size = "20"
+		languages = {
+			"l_korean"
+		}
+		vertical_offset = "1"
+	}
+}

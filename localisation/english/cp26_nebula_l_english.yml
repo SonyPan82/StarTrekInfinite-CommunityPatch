@@ -1,0 +1,16 @@
+﻿l_english:
+
+ # Ship Size
+ nebula: "Nebula"
+ nebula_plural: "Nebula"
+ NEBULA_MID: "Nebula"
+
+ # Technology
+ tech_nebula: "Nebula Schematics"
+ tech_nebula_desc: "§HNebula-class heavy cruisers§! are multi-role starships capable of scientific exploration and frontline combat, distinguished by their modular sensor pod."
+ TECH_UNLOCK_NEBULA_CONSTRUCTION_TITLE: "§HUnlocks Ship:§! Nebula"
+ tech_nebula_unlock:0 "Nebula Schematics"
+ tech_nebula_unlock_desc:0 "Nebula-class heavy cruisers are multi-role starships capable of scientific exploration and frontline combat, distinguished by their modular sensor pod."
+
+ # Ship Name
+ NAME_Nebula: "Nebula"

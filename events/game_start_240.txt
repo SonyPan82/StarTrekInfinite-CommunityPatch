@@ -7,10 +7,14 @@ event = {
 
 	trigger = {
 		exists = event_target:romulan_country
-		exists = event_target:ufop_country
+		any_country = { has_country_flag = ufop }
 	}
 
 	immediate = {
+		every_country = {
+			limit = { has_country_flag = ufop }
+			save_global_event_target_as = ufop_country
+		}
 		event_target:romulan_country = {
 			
 			add_opinion_modifier = {

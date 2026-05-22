@@ -31,20 +31,26 @@ Date: 2026-05-21
   not specifically to the old vassal result.
 
 5. Ferengi AI branch-office status
-- Current custom Ferengi branch flow is NOT autonomous for AI empires.
-- Entry points are player-only:
+- Updated on 2026-05-22:
+- The custom Ferengi branch flow now has an autonomous AI backend.
+- Player-only entry points remain player-only:
   - branch edict has `potential = { is_ai = no }`
   - branch manager button effect requires `from = { is_ai = no }`
   - edict AI weight is `0`
+- AI expansion is now handled separately by monthly backend event:
+  - `cp26_ferengi_branch.101`
+  - one valid partner selection
+  - one eligible colony selection
+  - normal resource cost payment
+  - one-year cooldown
 - Result:
-  - human Ferengi can use the custom system
-  - AI Ferengi currently cannot place custom CP26 branches by itself
+  - human Ferengi can use the UI flow
+  - AI Ferengi can now place custom CP26 branches autonomously
 
 6. Recommendation
 - Keep the occupied-state refactor.
-- If Ferengi AI branch placement is required for release quality, add a dedicated AI monthly logic
-  that:
-  - picks a valid commercial-pact partner
-  - picks an eligible colony
-  - spends the cost
-  - applies one of the three custom branch modifiers
+- Ferengi AI branch placement now exists in stable form.
+- Next optional improvement:
+  - rank richer host planets
+  - prefer safer partners
+  - scale aggression with AI economy

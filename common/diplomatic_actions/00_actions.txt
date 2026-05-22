@@ -681,6 +681,16 @@ action_form_commercial_pact = {
 					who = from
 					level >= good
 				}
+				AND = {
+					OR = {
+						is_ferengi_empire = yes
+						from = { is_ferengi_empire = yes }
+					}
+					opinion_level = {
+						who = from
+						level >= neutral
+					}
+				}
 				is_improving_relations_with = from
 			}
 		}
@@ -689,11 +699,19 @@ action_form_commercial_pact = {
 		hidden_effect = {
 			if = {
 				limit = { is_ferengi_empire = yes }
-				establish_contact = { who = from hidden = yes }
-				establish_communications_no_message = from
+				add_intel = { who = from amount = 100 }
+				set_closed_borders = {
+					who = from
+					status = no
+					forced = 3600
+				}
 				from = {
-					establish_contact = { who = root hidden = yes }
-					establish_communications_no_message = root
+					add_intel = { who = root amount = 100 }
+					set_closed_borders = {
+						who = root
+						status = no
+						forced = 3600
+					}
 					set_surveyed = { surveyed = yes surveyor = root }
 					every_owned_planet = {
 						limit = { is_colony = yes }
@@ -705,16 +723,51 @@ action_form_commercial_pact = {
 							}
 						}
 					}
+					every_subject = {
+						limit = {
+							is_subject_type = occupied_state
+						}
+						set_closed_borders = {
+							who = root
+							status = no
+							forced = 3600
+						}
+						root = {
+							set_closed_borders = {
+								who = prev
+								status = no
+								forced = 3600
+							}
+						}
+						every_owned_planet = {
+							limit = { is_colony = yes }
+							set_surveyed = { surveyed = yes surveyor = root }
+							solar_system = {
+								set_surveyed = { surveyed = yes surveyor = root }
+								every_system_planet = {
+									set_surveyed = { surveyed = yes surveyor = root }
+								}
+							}
+						}
+					}
 				}
 			}
 			if = {
 				limit = { from = { is_ferengi_empire = yes } }
 				from = {
-					establish_contact = { who = root hidden = yes }
-					establish_communications_no_message = root
+					add_intel = { who = root amount = 100 }
+					set_closed_borders = {
+						who = root
+						status = no
+						forced = 3600
+					}
 				}
-				establish_contact = { who = from hidden = yes }
-				establish_communications_no_message = from
+				add_intel = { who = from amount = 100 }
+				set_closed_borders = {
+					who = from
+					status = no
+					forced = 3600
+				}
 				every_owned_planet = {
 					limit = { is_colony = yes }
 					set_surveyed = { surveyed = yes surveyor = from }
@@ -722,6 +775,33 @@ action_form_commercial_pact = {
 						set_surveyed = { surveyed = yes surveyor = from }
 						every_system_planet = {
 							set_surveyed = { surveyed = yes surveyor = from }
+						}
+					}
+				}
+				every_subject = {
+					limit = {
+						is_subject_type = occupied_state
+					}
+					set_closed_borders = {
+						who = from
+						status = no
+						forced = 3600
+					}
+					from = {
+						set_closed_borders = {
+							who = prev
+							status = no
+							forced = 3600
+						}
+					}
+					every_owned_planet = {
+						limit = { is_colony = yes }
+						set_surveyed = { surveyed = yes surveyor = from }
+						solar_system = {
+							set_surveyed = { surveyed = yes surveyor = from }
+							every_system_planet = {
+								set_surveyed = { surveyed = yes surveyor = from }
+							}
 						}
 					}
 				}

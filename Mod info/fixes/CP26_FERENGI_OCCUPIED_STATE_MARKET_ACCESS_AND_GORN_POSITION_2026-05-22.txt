@@ -1,0 +1,33 @@
+CP26 Fix Note - 2026-05-22
+
+Title
+Ferengi occupied-state market access and Gorn map position adjustment
+
+Summary
+- Ferengi commercial access now extends to occupied states when their overlord has the commercial pact.
+- Ferengi trade/mining/leisure orbital structures can be built in occupied-state host space through the overlord's pact.
+- Commercial pact acceptance now also opens borders and reveals occupied-state colonies for the Ferengi side, matching the host-market logic.
+- Gorn starting map position was nudged in the scenario file only, without changing the Gorn spawn event pipeline.
+
+Files
+- common/scripted_triggers/cp26_ferengi_trade_access_triggers.txt
+- common/megastructures/cp26_ferengi_branch_hubs.txt
+- common/scripted_effects/cp26_ferengi_branch_construction_effects.txt
+- common/diplomatic_actions/00_actions.txt
+- events/cp26_ferengi_branch_events.txt
+- map/setup_scenarios/Alpha-Beta_medium.txt
+
+Details
+1. Ferengi market access:
+   - Direct commercial pact with the host still works as before.
+   - New valid case: host is an occupied_state and its overlord has the commercial pact with the Ferengi empire.
+
+2. Construction/runtime:
+   - Megastructure placement validity updated.
+   - Monthly Ferengi branch income/dormancy maintenance updated.
+   - AI Ferengi target selection updated.
+   - Player-side platform arrival validation updated.
+
+3. Gorn:
+   - Tau Lacertae scenario position adjusted to sit lower between Federation and Klingon space more naturally.
+   - No change made to the fragile Gorn anchor/spawn event chain itself.

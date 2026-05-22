@@ -1,0 +1,50 @@
+objectTypes = {
+
+    pdxmesh = { # Array 1
+        name = "dyson_swarm_collider_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_collision.mesh"
+        scale = 100
+    }
+    pdxmesh = { # Array 1
+        name = "dyson_swarm_01_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_1.mesh"
+        scale = 1.0
+    }
+    # pdxmesh = { # Copy of Array 1 rotated
+    #     name = "dyson_swarm_02_mesh"
+    #     file = "gfx/models/megastructures/dyson_swarm_2.mesh"
+    #     scale = 1.0
+    # } 
+    pdxmesh = { # Polar Plates
+        name = "dyson_swarm_03_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_3_root.mesh"
+        scale = 1.0
+    }
+    pdxmesh = { # Polar Plates array
+        name = "dyson_swarm_03_array_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_3_array.mesh"
+        scale = 1.0
+    }
+
+    pdxmesh = { # Polar region sub plates 1
+        name = "dyson_swarm_04_array1_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_4_array.mesh"
+        scale = 1.0
+    }
+    pdxmesh = { # Polar region sub plates 2
+        name = "dyson_swarm_04_array2_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_4_array2.mesh"
+        scale = 1.0
+    }
+
+    pdxmesh = { # Shield 
+        name = "dyson_swarm_05_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_5.mesh"
+        scale = 1.0
+    }
+    pdxmesh = { # Emitter
+        name = "dyson_swarm_05_emitter_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_5_emitter.mesh"
+        scale = 1.0
+    }
+}

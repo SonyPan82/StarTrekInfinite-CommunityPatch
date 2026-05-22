@@ -1,0 +1,307 @@
+# Nebula Class Components
+
+@nebula_officers = 10
+
+@nebula_power_1 = 350
+@nebula_power_2 = 450
+@nebula_power_3 = 600
+@nebula_power_4 = 775
+
+@nebula_reactor_cost_1 = 50
+@nebula_reactor_cost_2 = 65
+@nebula_reactor_cost_3 = 85
+@nebula_reactor_cost_4 = 110
+
+@nebula_engine_power_1 = -40
+@nebula_engine_power_2 = -60
+@nebula_engine_power_3 = -80
+@nebula_engine_power_4 = -100
+
+@nebula_engine_cost_1 = 12
+@nebula_engine_cost_2 = 24
+@nebula_engine_cost_3 = 36
+@nebula_engine_cost_4 = 48
+
+@nebula_computer_power_0 = -5
+@nebula_computer_power_1 = -10
+
+# ── REACTORS ──────────────────────────────────────
+
+utility_component_template = {
+	key = "CRUISER_FUSION_REACTOR_NEBULA"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @nebula_power_1
+	operative_officers = @nebula_officers
+	resources = {
+		category = ship_components
+		cost = { alloys = @nebula_reactor_cost_1 }
+		upkeep = {
+			trigger = { NOT = { ROOT = { exists = FROM original_owner_uses_artificial_singularities = FROM } } }
+			deuterium = 0.40
+		}
+		upkeep = {
+			trigger = { ROOT = { exists = FROM original_owner_uses_artificial_singularities = FROM } }
+			artificial_singularities = 0
+		}
+		upkeep = { alloys = 0.04 }
+	}
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { nebula }
+	upgrades_to = "CRUISER_MATTER_ANTIMATTER_REACTOR_NEBULA"
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "CRUISER_MATTER_ANTIMATTER_REACTOR_NEBULA"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = @nebula_power_2
+	operative_officers = @nebula_officers
+	resources = {
+		category = ship_components
+		cost = { alloys = @nebula_reactor_cost_2 }
+		upkeep = {
+			trigger = { NOT = { ROOT = { exists = FROM original_owner_uses_artificial_singularities = FROM } } }
+			deuterium = 0.52
+		}
+		upkeep = {
+			trigger = { ROOT = { exists = FROM original_owner_uses_artificial_singularities = FROM } }
+			artificial_singularities = 0
+		}
+		upkeep = { alloys = 0.052 }
+	}
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { nebula }
+	upgrades_to = "CRUISER_TETRYON_REACTOR_NEBULA"
+	ai_weight = { weight = 2 }
+}
+
+utility_component_template = {
+	key = "CRUISER_TETRYON_REACTOR_NEBULA"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = @nebula_power_3
+	operative_officers = @nebula_officers
+	resources = {
+		category = ship_components
+		cost = { alloys = @nebula_reactor_cost_3 }
+		upkeep = {
+			trigger = { NOT = { ROOT = { exists = FROM original_owner_uses_artificial_singularities = FROM } } }
+			deuterium = 0.68
+		}
+		upkeep = {
+			trigger = { ROOT = { exists = FROM original_owner_uses_artificial_singularities = FROM } }
+			artificial_singularities = 0
+		}
+		upkeep = { alloys = 0.068 }
+	}
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { nebula }
+	upgrades_to = "CRUISER_ANTI_TETRYON_REACTOR_NEBULA"
+	ai_weight = { weight = 3 }
+}
+
+utility_component_template = {
+	key = "CRUISER_ANTI_TETRYON_REACTOR_NEBULA"
+	size = small
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = @nebula_power_4
+	operative_officers = @nebula_officers
+	resources = {
+		category = ship_components
+		cost = { alloys = @nebula_reactor_cost_4 }
+		upkeep = {
+			trigger = { NOT = { ROOT = { exists = FROM original_owner_uses_artificial_singularities = FROM } } }
+			deuterium = 0.88
+		}
+		upkeep = {
+			trigger = { ROOT = { exists = FROM original_owner_uses_artificial_singularities = FROM } }
+			artificial_singularities = 0
+		}
+		upkeep = { alloys = 0.088 }
+	}
+	prerequisites = { "tech_reactor_4" }
+	component_set = "power_core"
+	size_restriction = { nebula }
+	ai_weight = { weight = 4 }
+}
+
+# ── ENGINES ───────────────────────────────────────
+
+utility_component_template = {
+	key = "CRUISER_IMPULSE_ENGINE_NEBULA"
+	size = small
+	icon = "GFX_ship_part_impulse_engine"
+	icon_frame = 1
+	power = @nebula_engine_power_1
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = @nebula_engine_cost_1 } }
+	modifier = {}
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { nebula }
+	upgrades_to = "CRUISER_ADVANCED_IMPULSE_ENGINE_NEBULA"
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "CRUISER_ADVANCED_IMPULSE_ENGINE_NEBULA"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @nebula_engine_power_2
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = @nebula_engine_cost_2 } }
+	modifier = { ship_base_speed_mult = 0.33 ship_evasion_add = 3 }
+	prerequisites = { "tech_engine_2" }
+	component_set = "thruster_components"
+	size_restriction = { nebula }
+	upgrades_to = "CRUISER_HIGH_ENERGY_IMPULSE_ENGINE_NEBULA"
+	ai_weight = { weight = 2 }
+}
+
+utility_component_template = {
+	key = "CRUISER_HIGH_ENERGY_IMPULSE_ENGINE_NEBULA"
+	size = small
+	icon = "GFX_ship_part_high_energy_impulse_engine"
+	icon_frame = 1
+	power = @nebula_engine_power_3
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = @nebula_engine_cost_3 } }
+	modifier = { ship_base_speed_mult = 0.66 ship_evasion_add = 6 }
+	prerequisites = { "tech_engine_3" }
+	component_set = "thruster_components"
+	size_restriction = { nebula }
+	upgrades_to = "CRUISER_OMEGA_ENGINE_NEBULA"
+	ai_weight = { weight = 3 }
+}
+
+utility_component_template = {
+	key = "CRUISER_OMEGA_ENGINE_NEBULA"
+	size = small
+	icon = "GFX_ship_part_omega_engine"
+	icon_frame = 1
+	power = @nebula_engine_power_4
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = @nebula_engine_cost_4 } }
+	modifier = { ship_base_speed_mult = 1.0 ship_evasion_add = 9 }
+	prerequisites = { "tech_engine_4" }
+	component_set = "thruster_components"
+	size_restriction = { nebula }
+	ai_weight = { weight = 4 }
+}
+
+# ── COMBAT COMPUTERS ──────────────────────────────
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_NEBULA"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_line"
+	icon_frame = 1
+	power = @nebula_computer_power_0
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ship_behavior = "hrb_line"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	size_restriction = { nebula }
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_LINE_BASIC_NEBULA"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_accuracy_add = 10 }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_LINE_BASIC_NEBULA"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_line"
+	icon_frame = 1
+	power = @nebula_computer_power_1
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = 5 } }
+	ship_behavior = "hrb_line"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_2" }
+	size_restriction = { nebula }
+	component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.25 ship_accuracy_add = 25 }
+	ai_weight = { weight = 2 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_BOMBER_DEFAULT_NEBULA"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_bomber"
+	icon_frame = 1
+	power = @nebula_computer_power_0
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ship_behavior = "hrb_bomber"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	size_restriction = { nebula }
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_BOMBER_BASIC_NEBULA"
+	ship_modifier = { ship_fire_rate_mult = 0.05 ship_tracking_add = 10 }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_BOMBER_BASIC_NEBULA"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_bomber"
+	icon_frame = 1
+	power = @nebula_computer_power_1
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = 5 } }
+	ship_behavior = "hrb_bomber"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_2" }
+	size_restriction = { nebula }
+	component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.20 ship_tracking_add = 20 }
+	ai_weight = { weight = 2 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ARTILLERY_DEFAULT_NEBULA"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_artillery"
+	icon_frame = 1
+	power = @nebula_computer_power_0
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	size_restriction = { nebula }
+	component_set = "combat_computers"
+	upgrades_to = "COMBAT_COMPUTER_HRB_ARTILLERY_BASIC_NEBULA"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_weapon_range_mult = 0.10 }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ARTILLERY_BASIC_NEBULA"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_artillery"
+	icon_frame = 1
+	power = @nebula_computer_power_1
+	operative_officers = @nebula_officers
+	resources = { category = ship_components cost = { alloys = 5 } }
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_2" }
+	size_restriction = { nebula }
+	component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.20 ship_weapon_range_mult = 0.20 }
+	ai_weight = { weight = 2 }
+}

@@ -1,0 +1,40 @@
+CP26 Ferengi AI Diplomatic Trade Brain
+Date: 2026-05-22
+
+Summary
+- Strengthened Ferengi AI diplomacy so their strategic goal aligns better with
+  commercial pacts and profitable platform expansion.
+
+Changes
+1. New dedicated Ferengi AI personality:
+   - File: common/personalities/aa_ferengi_personalities.txt
+   - Key: cp26_grand_nagus_merchants
+   - Effects:
+     - very high trade willingness
+     - very high commercial pact acceptance
+     - stronger preference for non-aggression and stable markets
+     - lower war appetite than baseline major empires
+
+2. Commercial pact threshold relaxed when a Ferengi is involved:
+   - File: common/diplomatic_actions/00_actions.txt
+   - Rule:
+     - normal empires still require good-or-better opinion
+     - Ferengi-involved deals can pass at neutral opinion
+     - improving relations still works as before
+
+3. Ferengi AI host selection improved:
+   - File: events/cp26_ferengi_branch_events.txt
+   - AI now prefers larger host markets first:
+     - first try: 8+ owned planets
+     - fallback: 5+ owned planets
+     - fallback: any otherwise valid commercial partner
+
+Intent
+- Make Ferengi AI more likely to:
+  - seek and keep commercial pacts
+  - prioritize worthwhile markets
+  - better leverage its unique megastructure/platform economy
+
+Notes
+- Construction logic remains the existing monthly backend.
+- No player-facing Ferengi UI or workflow was changed in this pass.

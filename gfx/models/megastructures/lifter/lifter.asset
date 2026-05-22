@@ -1,0 +1,133 @@
+@scale_correct = 10
+# Parts
+entity = {
+	name = "lifter_1_entity"
+	pdxmesh = "lifter_01_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "lifter_2_entity"
+	pdxmesh = "lifter_02_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "lifter_3_entity"
+	pdxmesh = "lifter_03_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "lifter_4_entity"
+	pdxmesh = "lifter_04_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+}
+
+entity = {
+	name = "lifter_beam_entity"
+	pdxmesh = "lifter_01_effect_mesh"
+	scale = @scale_correct
+	default_state = "idle"
+	state = { name = "idle" }
+	game_data = {
+		bloom_factor			= 1
+		uv_animation_speed 		= -0.3
+		uv_animation_direction 	= { 0.20 0.4 }
+	}
+}
+
+# Assembly
+entity = {
+	name = "lifter_01_entity"
+	pdxmesh = "lifter_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = lifter_1_entity }
+}
+
+entity = {
+	name = "lifter_02_entity"
+	pdxmesh = "lifter_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = lifter_1_entity }
+    attach = { root = lifter_2_entity }
+}
+
+entity = {
+	name = "lifter_03_entity"
+	pdxmesh = "lifter_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = lifter_1_entity }
+    attach = { root = lifter_2_entity }
+    attach = { root = lifter_3_entity }
+}
+
+entity = {
+	name = "lifter_04_entity"
+	pdxmesh = "lifter_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = lifter_1_entity }
+    attach = { root = lifter_2_entity }
+    attach = { root = lifter_3_entity }
+    attach = { root = lifter_4_entity }
+    # attach = { root = lifter_beam_entity }
+}
+
+entity = {
+	name = "lifter_05_entity"
+	pdxmesh = "lifter_collider_mesh"
+	cull_radius = 100000
+					
+	default_state = "idle"
+	state = { name = "idle" 
+		start_event = { node = "effect_1" particle = "matde_core_beam_effect" keep_particle = yes trigger_once = yes }
+	}
+	locator = { name = "root" 	position = { 0 0 0 } }
+	locator = { name = "effect_1" position = { 0 330 0 } scale = 3.5 }
+
+    attach = { root = lifter_1_entity }
+    attach = { root = lifter_2_entity }
+    attach = { root = lifter_3_entity }
+    attach = { root = lifter_4_entity }
+    # attach = { root = lifter_beam_entity }
+}

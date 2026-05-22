@@ -1,0 +1,363 @@
+#Dyson Sphere Site
+lifter_0 = {
+	entity = "humanoid_01_construction_platform_entity"
+	construction_entity = "humanoid_01_construction_platform_entity"
+	portrait = "GFX_mm_megastructure_construction_background"
+	place_entity_on_planet_plane = no
+	construction_blocks_others = yes
+	construction_blocked_by_others = yes
+	entity_offset = { x = -7 y = -7 }
+	build_time = 1800
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 10000
+		}
+		upkeep = {
+			alloys = 10
+		}
+
+	}
+	prerequisites = { "tech_mm_mega_aspirations" }
+	potential = {
+		is_major = yes
+		NOT = { is_ferengi_empire = yes }
+	}
+	possible = { 
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+		custom_tooltip = {
+			fail_text = "requires_surveyed_system"
+			NOT = {
+				any_system_planet = {
+					is_surveyed = {
+						who = prev.from
+						status = no
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_black_hole_neutron_star_pulsar"
+			NOR = {
+				is_star_class = sc_black_hole
+				is_star_class = sc_neutron_star
+				is_star_class = sc_pulsar
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_binary_trinary"
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_existing_megastructure"
+			has_no_non_gate_megastructure = yes
+		}
+		custom_tooltip = {
+			fail_text = "too_many_engines"
+			from = {
+				OR = {
+					AND = {
+						#Has the AP
+						always = no
+						check_variable = {
+							which = stellar_engine_count
+							value < 5
+						}
+					}
+					AND = {
+						# NOT = {} #
+						always = yes 
+						check_variable = {
+							which = stellar_engine_count
+							value < 3
+						}
+					}
+				}
+			}
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "must_build_around_star"
+				is_star = yes
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+		}
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 15
+
+		modifier = {
+			factor = 0.1
+			starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+		}
+
+		modifier = {
+			factor = 0.1
+			any_neighbor_system = {
+				exists = owner
+				NOT = {
+					owner = { is_same_value = from }
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			star = {
+				OR = {
+					has_deposit_for = shipclass_research_station
+					has_deposit_for = shipclass_mining_station
+				}
+			}
+		}
+		modifier = { 
+			factor = 10
+			from = {
+				resource_income_compare = {
+					resource = minerals
+					value < 0
+				}
+			}
+		}
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {
+		fromfrom.planet = { set_planet_flag = has_megastructure }
+		set_star_flag = has_stellar_engine
+		from = {
+			change_variable = {
+				which = stellar_engine_count
+				value = 1
+			}
+		}
+	}
+}
+lifter_1 = {
+	entity = "lifter_01_entity"
+	construction_entity = "lifter_01_con_entity"
+	portrait = "GFX_mm_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	construction_blocks_others = yes
+	construction_blocked_by_others = yes
+	build_time = 3600
+	resources = {
+		category = megastructures
+		produces = {
+			minerals = 250
+		}
+		upkeep = {
+			alloys = 15
+			energy = 25
+		}
+		cost = {
+			alloys = 10000
+		}
+	}
+
+	prerequisites = { "tech_mm_mega_aspirations" }
+
+	possible = {}
+
+	upgrade_from = {
+		lifter_0
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		base = 100000 #if you can build it do it
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {}
+}
+lifter_2 = {
+	entity = "lifter_02_entity"
+	construction_entity = "lifter_02_con_entity"
+	portrait = "GFX_mm_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	construction_blocks_others = yes
+	construction_blocked_by_others = yes
+	build_time = 3600
+	resources = {
+		category = megastructures
+		produces = {
+			minerals = 500
+		}
+		upkeep = {
+			alloys = 20
+			energy = 50
+		}
+		cost = {
+			alloys = 10000
+		}
+	}
+
+	prerequisites = { "tech_mm_mega_aspirations" }
+
+	possible = {}
+
+	upgrade_from = {
+		lifter_1
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		base = 100000 #if you can build it do it
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {}
+}
+lifter_3 = {
+	entity = "lifter_03_entity"
+	construction_entity = "lifter_03_con_entity"
+	portrait = "GFX_mm_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	construction_blocks_others = yes
+	construction_blocked_by_others = yes
+	build_time = 3600
+	resources = {
+		category = megastructures
+		produces = {
+			minerals = 750
+		}
+		upkeep = {
+			alloys = 25
+			energy = 75
+		}
+		cost = {
+			alloys = 10000
+		}
+	}
+
+	prerequisites = { "tech_mm_mega_aspirations" }
+
+	possible = {}
+
+	upgrade_from = {
+		lifter_2
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		base = 100000 #if you can build it do it
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {}
+}
+
+lifter_4 = {
+	entity = "lifter_04_entity"
+	construction_entity = "lifter_04_con_entity"
+	portrait = "GFX_mm_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	construction_blocks_others = yes
+	construction_blocked_by_others = yes
+	build_time = 3600
+	resources = {
+		category = megastructures
+		produces = {
+			minerals = 1000
+		}
+		upkeep = {
+			alloys = 30
+			energy = 100
+		}
+		cost = {
+			alloys = 10000
+		}
+	}
+
+	prerequisites = { "tech_mm_mega_aspirations" }
+
+	possible = {}
+
+	upgrade_from = {
+		lifter_3
+	}
+	# root = system
+	# from = country
+	ai_weight = {
+		base = 100000 #if you can build it do it
+	}
+
+	on_build_start = {}
+	on_build_cancel = {}
+	on_build_complete = {}
+}
+
+# lifter_5 = { # Secondary tech needed
+# 	entity = "lifter_05_entity"
+# 	construction_entity = "lifter_04_con_entity"
+# 	portrait = "GFX_mm_megastructure_construction_background"
+# 	place_entity_on_planet_plane = yes
+# 	construction_blocks_others = yes
+# 	construction_blocked_by_others = yes
+# 	build_time = 5400
+# 	resources = {
+# 		category = megastructures
+# 		produces = {
+# 			energy = 2000
+# 		}
+# 		upkeep = {
+# 			deuterium = 20
+# 			alloys = 10
+# 			tetryons = 10
+# 		}
+# 		cost = {
+# 			alloys = 25000
+# 			tetryons = 250
+# 		}
+# 	}
+
+# 	prerequisites = { "tech_mm_energy_harvesting" }
+
+# 	possible = {}
+
+
+# 	upgrade_from = {
+# 		lifter_4
+# 	}
+# 	# root = system
+# 	# from = country
+# 	ai_weight = {
+# 		base = 0
+# 	}
+
+# 	on_build_start = {}
+# 	on_build_cancel = {}
+# 	on_build_complete = {
+# 	}
+# }

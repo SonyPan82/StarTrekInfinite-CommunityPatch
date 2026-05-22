@@ -1,0 +1,18 @@
+CP26 RELEASE NOTE - FERENGI V2 PLATFORM PASS
+Date: 2026-05-22
+
+Highlights
+- Ferengi off-world commerce is being transitioned from invisible branch-office logic toward visible orbital trade platforms.
+- Ferengi orbital platforms now use Ferengi citadel visuals.
+- Ferengi platform management on player worlds now behaves as a dashboard rather than a direct foreign-planet branch button.
+
+Rules
+- Only one Ferengi trade platform may exist per host system.
+- A host empire may support up to three Ferengi platforms in total.
+
+AI
+- Ferengi AI can still expand commercially through the scripted backend.
+- AI obeys the same host/system caps as the player-side V2 rules.
+
+Validation still recommended
+- Open a new game and confirm that construction ships can select the Ferengi platform megastructures on valid foreign host colonies with commercial pacts.

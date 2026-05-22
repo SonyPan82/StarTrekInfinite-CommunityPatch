@@ -1,0 +1,128 @@
+# The people cry out for something bigger
+tech_mm_mega_aspirations = {
+	area = engineering
+	cost = @tier5cost3
+	tier = 5
+	category = { voidcraft }
+	ai_update_type = all
+	prerequisites = { "tech_starbase_fortress" "tech_megastructure_1" } #TODO add normal megaconstruction as a pre-req
+	weight = @tier5weight3
+	is_rare = yes
+
+	potential = {
+		NOT = { is_ferengi_empire = yes }
+	}
+
+	# feature_flags = {
+	# 	megaengineering
+	# }
+
+	modifier = {
+		country_resource_max_add = 20000
+		description = MM_ENGINE_UNLOCK
+	}
+	prereqfor_desc = {
+		custom = {
+			title = "ALLOW_STAR_LIFTER"
+			desc = "star_lifter_0_MEGASTRUCTURE_DETAILS"
+		}
+		custom = {
+			title = "ALLOW_DYSON_SWARM"
+			desc = "dyson_swarm_0_MEGASTRUCTURE_DETAILS"
+		}
+		custom = {
+			title = "ALLOW_FUSION_HUB"
+			desc = "fusion_hub_0_MEGASTRUCTURE_DETAILS"
+		}
+	}
+	weight_modifier = {
+		factor = 0.5
+		modifier = {
+			factor = 1.5
+			OR = {
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_researcher" #Voidcraft expert
+				}
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			count_starbase_sizes = {
+				starbase_size = starbase_starhold
+				count >= 1
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			count_starbase_sizes = {
+				starbase_size = starbase_starhold
+				count >= 2
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			count_starbase_sizes = {
+				starbase_size = starbase_starhold
+				count >= 3
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			count_starbase_sizes = {
+				starbase_size = starbase_starhold
+				count >= 4
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			count_starbase_sizes = {
+				starbase_size = starbase_starhold
+				count >= 5
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			count_starbase_sizes = {
+				starbase_size = starbase_starhold
+				count >= 6
+			}
+		}
+
+		modifier = {
+			factor = 2
+			any_owned_planet = {
+				is_planet_class = pc_habitat
+			}
+		}
+
+		modifier = {
+			factor = 1.5
+			any_neighbor_country = {
+				has_technology = tech_mm_mega_aspirations
+			}
+		}
+
+		modifier = {
+			factor = 20
+			has_any_megastructure_in_empire = yes
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_researcher"
+			}
+		}
+	}
+}

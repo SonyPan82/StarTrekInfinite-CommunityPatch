@@ -1,0 +1,42 @@
+CP26 - fusion du mod de megastructures workshop et split Ferengi
+Date: 2026-05-22
+
+Resume
+- Le mod workshop 3069363325 a ete fusionne dans CP26 pour les empires non ferengi.
+- Les Ferengi utilisent maintenant leur propre ligne de megastructures.
+- Les Ferengi commencent avec une seule megastructure debloquee: l'Enclave du Grand Nagus.
+- Les autres plateformes ferengi se debloquent via leur arbre technologique.
+
+Changements techniques
+- Copie des defs workshop:
+  - common/megastructures/zz_mm_lifter.txt
+  - common/megastructures/zz_mm_fusion_hub.txt
+  - common/megastructures/zz_mm_dyson_swarm.txt
+  - common/technology/zz_mm_00_engineering.txt
+  - interface/megastructure_selection.gui
+  - interface/megastructure_view.gui
+  - interface/mm_interface.gfx
+  - gfx/interface/megaview/megastructure.dds
+  - gfx/models/megastructures/*
+- Exclusion Ferengi du tech workshop tech_mm_mega_aspirations.
+- Exclusion Ferengi des megastructures workshop (Lifter, Fusion Hub, Dyson Swarm).
+- Creation des techs Ferengi:
+  - tech_cp26_ferengi_trade_platforms
+  - tech_cp26_ferengi_mining_platforms
+  - tech_cp26_ferengi_quark_platforms
+- Attribution du tech de depart Ferengi:
+  - tech_cp26_ferengi_trade_platforms
+- Rebranchage des prerequisites Ferengi:
+  - cp26_ferengi_trade_hub -> tech_cp26_ferengi_trade_platforms
+  - cp26_ferengi_mining_hub -> tech_cp26_ferengi_mining_platforms
+  - cp26_ferengi_leisure_hub -> tech_cp26_ferengi_quark_platforms
+
+Progression Ferengi retenue
+- Depart: Enclave du Grand Nagus
+- Milieu de partie: Plateforme d'Acquisition
+- Vers 2370: Bar de Quark
+
+Notes
+- Le split est script, pas seulement cosmétique.
+- Les Ferengi ne peuvent plus tirer le tech workshop standard.
+- Les autres empires conservent le comportement du mod d'origine.

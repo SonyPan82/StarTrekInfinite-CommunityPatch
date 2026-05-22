@@ -1,0 +1,63 @@
+tech_nebula_unlock = {
+	cost = @tier2cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_ambassador_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_ufop = yes
+		}
+		title = tech_nebula
+		desc = tech_nebula_desc
+		icon = tech_galaxy
+		prereqfor_desc = {
+			ship = {
+				title = TECH_UNLOCK_NEBULA_CONSTRUCTION_TITLE
+				desc = tech_nebula_desc
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.25
+			years_passed < 10
+		}
+		modifier = {
+			factor = 8
+			years_passed > 14
+		}
+		modifier = {
+			factor = 5
+			any_neighbor_country = {
+				has_technology = tech_ambassador_unlock
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}

@@ -352,8 +352,8 @@ entity = {
 }
 
 entity = { 
-	name = "klingon_01_governor_ship_entity" 
-	pdxmesh = "klingon_01_governor_ship_mesh" 
+	name = "klingon_01_governor_ship_entity"
+	pdxmesh = "klingon_01_ktinga_mesh"
  
 	default_state = "idle" 
  

@@ -1,0 +1,35 @@
+CP26 - standardisation des megastructures et regles hote Ferengi
+Date: 2026-05-22
+
+Resume
+- Toutes les civilisations actives recoivent maintenant tech_megastructure_1 au demarrage.
+- Les Ferengi conservent une ligne de megastructures reservee.
+- Les plateformes Ferengi peuvent maintenant etre placees sur toute planete d'un empire hote valide, et plus seulement sur les mondes colonises.
+- L'ancien bouton/interface de construction sur governor ship a ete retire du flux actif.
+- Le Fleet Museum est maintenant une vraie megastructure reservee a la Federation et unique.
+
+Changements techniques
+- game_start.txt
+  - attribution globale de tech_megastructure_1 a tous les empires majeurs et mineurs.
+  - attribution de tech_cp26_ufop_fleet_museum a la Federation.
+- cp26_ferengi_branch_hubs.txt
+  - suppression de la contrainte "planete colonisee".
+  - validation par proprietaire de systeme hote au lieu du proprietaire direct de la planete.
+  - maintien des regles:
+    - pacte commercial requis
+    - 1 plateforme maximum par systeme
+    - 3 plateformes maximum par empire hote
+- fleet_view.gui
+  - suppression du bouton custom historique de construction Ferengi.
+- cp26_button_effects.txt
+  - retrait du flux dead button associe.
+- cp26_fleet_museum.txt
+  - conversion en vraie megastructure buildable.
+  - prerequis technologique Federation.
+  - limitation a un seul Fleet Museum via country flag.
+- cp26_ufop_megastructure_techs.txt
+  - nouvelle technologie Federation pour le Fleet Museum.
+
+Notes
+- Le Fleet Museum deja pose par initialisation de scenario reste compatible avec la version buildable.
+- Cette passe ne remplace pas le pipeline workshop standard pour les autres empires: elle le complete.

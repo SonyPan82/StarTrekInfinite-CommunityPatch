@@ -1,0 +1,16 @@
+﻿l_french:
+
+ # Ship Size
+ nebula: "Nebula"
+ nebula_plural: "Nebula"
+ NEBULA_MID: "Nebula"
+
+ # Technology
+ tech_nebula:0 "Schémas Nebula"
+ tech_nebula_desc:0 "Les §Hcroiseurs lourds de classe Nebula§! sont des vaisseaux polyvalents capables d'exploration scientifique et de combat de première ligne, reconnaissables à leur nacelle de capteurs modulaire."
+ TECH_UNLOCK_NEBULA_CONSTRUCTION_TITLE:0 "§HDéverrouille le type de vaisseau :§! Nebula"
+ tech_nebula_unlock:0 "Schémas Nebula"
+ tech_nebula_unlock_desc:0 "Les croiseurs lourds de classe §HNebula§! sont des vaisseaux polyvalents capables d'exploration scientifique et de combat de première ligne, reconnaissables à leur nacelle de capteurs modulaire."
+
+ # Ship Name
+ NAME_Nebula: "Nebula"

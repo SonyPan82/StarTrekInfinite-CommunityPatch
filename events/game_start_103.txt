@@ -5,9 +5,19 @@ event = {
 	is_triggered_only = yes
 
 	immediate = {
-		event_target:ufop_country = {
-			set_defensive_pact = {
-				target = event_target:klingon_country
+		every_country = {
+			limit = { has_country_flag = ufop }
+			save_global_event_target_as = ufop_country
+		}
+		if = {
+			limit = {
+				exists = event_target:ufop_country
+				exists = event_target:klingon_country
+			}
+			event_target:ufop_country = {
+				set_defensive_pact = {
+					target = event_target:klingon_country
+				}
 			}
 		}
 	}

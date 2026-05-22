@@ -1,0 +1,39 @@
+CP26 Ferengi commercial pact visibility and envoy update
+Date: 2026-05-22
+
+Summary
+- Ferengi commercial pacts no longer auto-open communications channels.
+- Commercial pacts now grant survey visibility + high intel instead, to improve
+  host-planet access without gifting contact discovery.
+- Playable Ferengi start now grants +1 envoy through a permanent country
+  modifier, raising the start total from 2 to 3.
+
+Files changed
+- common/diplomatic_actions/00_actions.txt
+- common/static_modifiers/cp26_ferengi_start_modifiers.txt
+- events/zz_cp26_setlik_fix.txt
+
+Details
+1. Commercial pact visibility
+- Removed:
+  - establish_contact
+  - establish_communications_no_message
+  from the Ferengi-specific commercial pact accept hook.
+- Added:
+  - add_intel = { amount = 100 }
+  on both sides of the pact, while keeping the existing set_surveyed reveal of
+  colonies, systems, and system planets for the Ferengi side.
+
+2. Ferengi start envoy
+- Added modifier:
+  - cp26_ferengi_beta_start_bonus
+    - envoys_add = 1
+- Applied permanently in cp26_setlik.4, the active playable Ferengi startup
+  pipeline.
+
+Expected gameplay result
+- Ferengi still need to discover empires through normal gameplay.
+- Signing a commercial pact does not create free communications channels.
+- Once a commercial pact exists, the Ferengi should get much better access to
+  the host empire's colonies and planet UI.
+- Ferengi now start with 3 envoys instead of 2.

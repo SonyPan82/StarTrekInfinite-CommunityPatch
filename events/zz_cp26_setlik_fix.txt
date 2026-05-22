@@ -135,12 +135,33 @@ country_event = {
 					limit = { is_colony = no }
 					create_ferenginar_colony = yes
 				}
+				if = {
+					limit = { NOT = { has_building = building_capital } }
+					add_building = building_capital
+				}
+				if = {
+					limit = { NOT = { has_building = cp26_ferengi_energy_consortium } }
+					add_building = cp26_ferengi_energy_consortium
+				}
+				if = {
+					limit = { NOT = { has_building = cp26_ferengi_food_consortium } }
+					add_building = cp26_ferengi_food_consortium
+				}
+				if = {
+					limit = { has_building = cp26_ferengi_mining_consortium }
+					remove_building = cp26_ferengi_mining_consortium
+				}
+				remove_modifier = minor_power_starting_buffs
 				root = {
 					set_adjective = "Ferengi"
 					set_custom_capital_location = prev
 				}
 				root = {
 					give_technology = { tech = tech_destroyer_unlock message = no }
+					give_technology = { tech = tech_megastructure_1 message = no }
+					give_technology = { tech = tech_cp26_ferengi_trade_platforms message = no }
+					remove_modifier = minor_power_starting_buffs_01
+					remove_modifier = minor_civic_debuff
 				}
 				solar_system = {
 					set_surveyed = { surveyed = yes surveyor = root }
@@ -161,15 +182,42 @@ country_event = {
 			}
 		}
 
+		add_modifier = {
+			modifier = cp26_ferengi_beta_start_bonus
+			days = -1
+		}
+
+		capital_scope = {
+			remove_modifier = minor_power_starting_buffs
+			if = {
+				limit = { NOT = { has_building = building_capital } }
+				add_building = building_capital
+			}
+			if = {
+				limit = { NOT = { has_building = cp26_ferengi_energy_consortium } }
+				add_building = cp26_ferengi_energy_consortium
+			}
+			if = {
+				limit = { NOT = { has_building = cp26_ferengi_food_consortium } }
+				add_building = cp26_ferengi_food_consortium
+			}
+			if = {
+				limit = { has_building = cp26_ferengi_mining_consortium }
+				remove_building = cp26_ferengi_mining_consortium
+			}
+		}
+		remove_modifier = minor_power_starting_buffs_01
+		remove_modifier = minor_civic_debuff
+
 		if = {
 			limit = {
-				is_ai = no
 				exists = event_target:cardassian_country
 			}
 			add_opinion_modifier = {
 				who = event_target:cardassian_country
 				modifier = cp26_ferengi_cardassian_trade_affinity
 			}
+			establish_contact = { who = event_target:cardassian_country hidden = yes }
 			establish_communications_no_message = event_target:cardassian_country
 		}
 		if = {
@@ -177,6 +225,8 @@ country_event = {
 				exists = event_target:cardassian_country
 			}
 			event_target:cardassian_country = {
+				establish_contact = { who = root hidden = yes }
+				establish_communications_no_message = root
 				add_opinion_modifier = {
 					who = root
 					modifier = cp26_ferengi_cardassian_trade_affinity

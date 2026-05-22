@@ -108,6 +108,34 @@ ferengi_player_initializer = {
 							species = owner_main_species
 						}
 					}
+					if = {
+						limit = { NOT = { has_building = building_energy_grid } }
+						add_building = building_energy_grid
+					}
+					if = {
+						limit = { NOT = { has_building = cp26_ferengi_energy_consortium } }
+						add_building = cp26_ferengi_energy_consortium
+					}
+					if = {
+						limit = { NOT = { has_building = cp26_ferengi_food_consortium } }
+						add_building = cp26_ferengi_food_consortium
+					}
+				}
+				if = {
+					limit = { NOT = { has_building = building_capital } }
+					add_building = building_capital
+				}
+				if = {
+					limit = { NOT = { has_building = cp26_ferengi_energy_consortium } }
+					add_building = cp26_ferengi_energy_consortium
+				}
+				if = {
+					limit = { NOT = { has_building = cp26_ferengi_food_consortium } }
+					add_building = cp26_ferengi_food_consortium
+				}
+				if = {
+					limit = { has_building = cp26_ferengi_mining_consortium }
+					remove_building = cp26_ferengi_mining_consortium
 				}
 			}
 

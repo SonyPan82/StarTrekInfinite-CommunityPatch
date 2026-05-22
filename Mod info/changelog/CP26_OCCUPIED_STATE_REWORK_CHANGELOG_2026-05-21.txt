@@ -11,4 +11,4 @@ CP26 Changelog - 2026-05-21
 - Audited current behavior:
   - popup toggle properly disables CP26 occupied-state proposals for player and AI
   - vanilla / game occupied-state functions still operate
-  - AI Ferengi does not yet use the custom branch-office system autonomously
+  - AI Ferengi now uses a dedicated autonomous monthly backend for custom branch offices

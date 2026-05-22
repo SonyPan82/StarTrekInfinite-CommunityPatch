@@ -1,0 +1,135 @@
+tech_cp26_ferengi_trade_platforms = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_megastructure_1 }
+	weight = @specialhullweight
+
+	potential = {
+		is_ferengi_empire = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_ferengi_empire = yes
+		}
+		title = tech_cp26_ferengi_trade_platforms
+		desc = tech_cp26_ferengi_trade_platforms_desc
+		icon = tech_big_bomb_1
+		prereqfor_desc = {
+			custom = {
+				title = ALLOW_CP26_FERENGI_TRADE_PLATFORM
+				desc = cp26_ferengi_trade_hub_MEGASTRUCTURE_DETAILS
+			}
+		}
+	}
+
+	weight_modifier = {
+		factor = 1
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+}
+
+tech_cp26_ferengi_mining_platforms = {
+	cost = @tier3cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_cp26_ferengi_trade_platforms }
+	weight = @specialhullweight
+
+	potential = {
+		is_ferengi_empire = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_ferengi_empire = yes
+		}
+		title = tech_cp26_ferengi_mining_platforms
+		desc = tech_cp26_ferengi_mining_platforms_desc
+		icon = tech_big_bomb_1
+		prereqfor_desc = {
+			custom = {
+				title = ALLOW_CP26_FERENGI_MINING_PLATFORM
+				desc = cp26_ferengi_mining_hub_MEGASTRUCTURE_DETAILS
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.2
+			years_passed < 10
+		}
+		modifier = {
+			factor = 1.5
+			years_passed > 9
+			years_passed < 15
+		}
+		modifier = {
+			factor = 5
+			years_passed > 14
+		}
+	}
+
+	ai_weight = {
+		factor = 8
+	}
+}
+
+tech_cp26_ferengi_quark_platforms = {
+	cost = @tier4cost2
+	area = society
+	category = { statecraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_cp26_ferengi_mining_platforms }
+	weight = @specialhullweight
+	is_rare = yes
+
+	potential = {
+		is_ferengi_empire = yes
+	}
+
+	triggered_config = {
+		trigger = {
+			is_ferengi_empire = yes
+		}
+		title = tech_cp26_ferengi_quark_platforms
+		desc = tech_cp26_ferengi_quark_platforms_desc
+		icon = tech_big_bomb_1
+		prereqfor_desc = {
+			custom = {
+				title = ALLOW_CP26_FERENGI_QUARK_PLATFORM
+				desc = cp26_ferengi_leisure_hub_MEGASTRUCTURE_DETAILS
+			}
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.05
+			years_passed < 22
+		}
+		modifier = {
+			factor = 0.8
+			years_passed > 21
+			years_passed < 25
+		}
+		modifier = {
+			factor = 5
+			years_passed > 24
+		}
+	}
+
+	ai_weight = {
+		factor = 6
+	}
+}

@@ -1,0 +1,20 @@
+CP26 Ferengi governor-ship platform button, science-station visuals, and district name cleanup
+Date: 2026-05-22
+
+Summary
+- The Ferengi platform action button is now intended to appear only on Ferengi
+  governor ships, both visually in fleet view and logically in its button
+  effect validation.
+- Ferengi orbital commercial platforms no longer use the Ferengi citadel visual.
+  They now use the Ferengi research-station style entity and construction
+  entity for a lighter commercial orbital silhouette.
+- Missing district localisation for Ferengi generator/mining/farming districts
+  has been added in French and English so district panels no longer show raw
+  script keys.
+
+Files changed
+- interface/fleet_view.gui
+- common/button_effects/cp26_button_effects.txt
+- common/megastructures/cp26_ferengi_branch_hubs.txt
+- localisation/french/zz_cp26_patch_l_french.yml
+- localisation/english/zz_cp26_patch_l_english.yml

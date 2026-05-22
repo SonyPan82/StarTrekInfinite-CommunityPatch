@@ -1,0 +1,43 @@
+objectTypes = {
+
+    pdxmesh = {
+        name = "lifter_collider_mesh"
+        file = "gfx/models/megastructures/dyson_swarm/dyson_swarm_collision.mesh"
+        scale = 1
+    }
+
+    pdxmesh = { # Beam origin
+        name = "lifter_01_mesh"
+        file = "gfx/models/megastructures/lifter/lifter_1.mesh"
+        scale = 1.0
+    }
+    pdxmesh = { # station
+        name = "lifter_02_mesh"
+        file = "gfx/models/megastructures/lifter/lifter_2.mesh"
+        scale = 1.0
+    } 
+
+    pdxmesh = { # grippers
+        name = "lifter_03_mesh"
+        file = "gfx/models/megastructures/lifter/lifter_3.mesh"
+        scale = 1.0
+    }
+    pdxmesh = { # beam supports
+        name = "lifter_04_mesh"
+        file = "gfx/models/megastructures/lifter/lifter_4.mesh"
+        scale = 1.0
+    }
+
+    pdxmesh = {
+		name = "lifter_01_effect_mesh"
+		file = "gfx/models/megastructures/lifter/lifter_effect.mesh"
+		scale = 1.0 
+		meshsettings = {
+			index = 0
+			texture_diffuse = "lifter_01_beam.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshAlphaAdditiveAnimateUVNoDissolve"
+		}
+	}
+}
