@@ -194,10 +194,10 @@ bitmapfont = {
 	path = "gfx/fonts/Font/rebelton/rebelton_35"
 	color = -1
 }
-bitmapfont_override = {
-	name = "Font_rebelton_35"
-	ttf_font = "Rebelton_medium"
-	ttf_size = "27"
+	bitmapfont_override = {
+		name = "Font_rebelton_35"
+		ttf_font = "Rebelton_medium"
+		ttf_size = "28"
 	languages = {
 		"l_english"			# ADDED
 		"l_braz_por"		# ADDED
@@ -254,7 +254,7 @@ bitmapfont_override = {
 	bitmapfont_override = {
 		name = "Font_rebelton_27"
 		ttf_font = "Rebelton_medium"
-		ttf_size = "20"
+		ttf_size = "21"
 		languages = {
 			"l_english"			# ADDED
 			"l_braz_por"		# ADDED
@@ -312,7 +312,7 @@ bitmapfont_override = {
 	bitmapfont_override = {
 		name = "Font_rebelton_21"
 		ttf_font = "Rebelton_medium"
-		ttf_size = "15"
+		ttf_size = "16"
 		languages = {
 			"l_english"			# ADDED
 			"l_braz_por"		# ADDED
@@ -368,19 +368,19 @@ bitmapfont_override = {
 		path = "gfx/fonts/Font/rebelton/rebelton_18"
 		color = -1
 	}
-	#bitmapfont_override = {
-	#	name = "Font_rebelton_18"
-	#	ttf_font = "Rebelton_medium"
-	#	ttf_size = "13"
-	#	languages = {
-	#		"l_english"			# ADDED
-	#		"l_braz_por"		# ADDED
-	#		"l_german"			# ADDED
-	#		"l_french"			# ADDED
-	#		"l_spanish"			# ADDED
-	#	}
-	#	vertical_offset = "5"
-	#}
+	bitmapfont_override = {
+		name = "Font_rebelton_18"
+		ttf_font = "Rebelton_medium"
+		ttf_size = "15"
+		languages = {
+			"l_english"			# ADDED
+			"l_braz_por"		# ADDED
+			"l_german"			# ADDED
+			"l_french"			# ADDED
+			"l_spanish"			# ADDED
+		}
+		vertical_offset = "3"
+	}
 	bitmapfont_override = {
 		name = "Font_rebelton_18"
 		ttf_font = "Easter_normal"
@@ -437,7 +437,7 @@ bitmapfont_override = {
 	bitmapfont_override = {
 		name = "malgun_goth_24"
 		ttf_font = "Arimo_bold"
-		ttf_size = "17"
+		ttf_size = "18"
 		vertical_offset = "-4"
 		languages = {
 			"l_english"			# ADDED
@@ -497,7 +497,7 @@ bitmapfont_override = {
 	bitmapfont_override = {
 		name = "cg_20b"
 		ttf_font = "Arimo_bold"
-		ttf_size = "15"
+		ttf_size = "16"
 		vertical_offset = "-4"
 		languages = {
 			"l_english"			# ADDED
@@ -557,7 +557,7 @@ bitmapfont_override = {
 	bitmapfont_override = {
 		name = "cg_18b"
 		ttf_font = "Arimo_bold"
-		ttf_size = "14"
+		ttf_size = "15"
 		vertical_offset = "-3"
 		languages = {
 			"l_english"			# ADDED
@@ -626,7 +626,7 @@ bitmapfont_override = {
 		name = "cg_16b"
 		ttf_font = "Arimo_bold"
 		ttf_size = "14"
-		vertical_offset = "-2"
+		vertical_offset = "-1"
 		languages = {
 			"l_english"			# ADDED
 			"l_braz_por"		# ADDED
@@ -682,7 +682,7 @@ bitmapfont_override = {
 	bitmapfont_override = {
 		name = "cg_16mbs"
 		ttf_font = "Arimo_regular"
-		ttf_size = "13"
+		ttf_size = "14"
 		vertical_offset = "-1"
 		languages = {
 			"l_english"			# ADDED
@@ -743,7 +743,7 @@ bitmapfont_override = {
 	bitmapfont_override = {
 		name = "cg_16bi"
 		ttf_font = "Arimo_bold_italic"
-		ttf_size = "13"
+		ttf_size = "14"
 		vertical_offset = "-1"
 		languages = {
 			"l_english"			# ADDED
@@ -803,7 +803,7 @@ bitmapfont_override = {
 	bitmapfont_override = {
 		name = "cg_17bi"
 		ttf_font = "Arimo_bold_italic"
-		ttf_size = "13"
+		ttf_size = "14"
 		vertical_offset = "-1"
 		languages = {
 			"l_english"			# ADDED
@@ -873,7 +873,7 @@ bitmapfont_override = {
 		name = "cg_16b_2"
 		ttf_font = "Arimo_bold"
 		ttf_size = "13"
-		vertical_offset = "-2"
+		vertical_offset = "-1"
 		languages = {
 			"l_english"			# ADDED
 			"l_braz_por"		# ADDED

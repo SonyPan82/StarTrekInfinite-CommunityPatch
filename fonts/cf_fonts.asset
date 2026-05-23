@@ -2,7 +2,7 @@ font = {
 	name = "Rebelton_medium"
 	fontstyle = {
 		style = regular
-		file = "gfx/fonts/Font/rebelton/REBELTON-Medium.otf"
+		file = "gfx/fonts/sfpro/SF-Pro-Display-Regular.otf"
 	}
 }
 
@@ -10,7 +10,7 @@ font = {
 	name = "Arimo_regular"
 	fontstyle = {
 		style = regular
-		file = "gfx/fonts/arimo/Arimo-Regular.ttf"
+		file = "gfx/fonts/sfpro/SF-Pro-Text-Regular.otf"
 	}
 }
 
@@ -18,7 +18,7 @@ font = {
 	name = "Arimo_bold"
 	fontstyle = {
 		style = regular
-		file = "gfx/fonts/arimo/Arimo-Bold.ttf"
+		file = "gfx/fonts/sfpro/SF-Pro-Text-Medium.otf"
 	}
 }
 
@@ -26,7 +26,7 @@ font = {
 	name = "Arimo_italic"
 	fontstyle = {
 		style = regular
-		file = "gfx/fonts/arimo/Arimo-Italic.ttf"
+		file = "gfx/fonts/sfpro/SF-Pro-Text-RegularItalic.otf"
 	}
 }
 
@@ -35,7 +35,6 @@ font = {
 	name = "Arimo_bold_italic"
 	fontstyle = {
 		style = regular
-		file = "gfx/fonts/arimo/Arimo-BoldItalic.ttf"
+		file = "gfx/fonts/sfpro/SF-Pro-Text-MediumItalic.otf"
 	}
 }
-

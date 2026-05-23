@@ -73,13 +73,13 @@ tholian_system_initializer = {
 				}
 			}
 
-			create_country = {
-				name_list = random
-				species = "Tholian"
-				country_id = "tholian"
-				type = contender
-				contact_rule = always
-				ship_prefix = "TAS"
+				create_country = {
+					name_list = random
+					species = "Tholian"
+					country_id = "tholian"
+					type = contender
+					contact_rule = does_first_contact_sites
+					ship_prefix = "TAS"
 				name_list = "LITHOID3"
 				authority = auth_dictatorial_tholian
 				civics = { civic = civic_tholian_webspinners }

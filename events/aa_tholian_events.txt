@@ -29,6 +29,10 @@ event = {
 				save_global_event_target_as = ferengi_country
 			}
 			if = {
+				limit = { has_country_flag = romulan }
+				save_global_event_target_as = romulan_country
+			}
+			if = {
 				limit = { has_country_flag = ufop }
 				save_global_event_target_as = ufop_country
 			}
@@ -343,16 +347,16 @@ event = {
 		}
 		
 		if = {
-			limit = { exists = event_target:cardassian_country }
-			event_target:cardassian_country = {
+			limit = { exists = event_target:ferengi_country }
+			event_target:ferengi_country = {
 				establish_contact = { who = event_target:tholian_country hidden = yes }
 				establish_communications_no_message = event_target:tholian_country
 				add_intel = { amount = 35 who = event_target:tholian_country }
 			}
 		}
 		if = {
-			limit = { exists = event_target:ferengi_country }
-			event_target:ferengi_country = {
+			limit = { exists = event_target:romulan_country }
+			event_target:romulan_country = {
 				establish_contact = { who = event_target:tholian_country hidden = yes }
 				establish_communications_no_message = event_target:tholian_country
 				add_intel = { amount = 35 who = event_target:tholian_country }
@@ -373,14 +377,14 @@ event = {
 					give_technology = { tech = tech_destroyer_unlock message = no }
 					give_technology = { tech = tech_cruiser_unlock message = no }
 					if = {
-						limit = { exists = event_target:cardassian_country }
-						establish_contact = { who = event_target:cardassian_country hidden = yes }
-						establish_communications_no_message = event_target:cardassian_country
-					}
-					if = {
 						limit = { exists = event_target:ferengi_country }
 						establish_contact = { who = event_target:ferengi_country hidden = yes }
 						establish_communications_no_message = event_target:ferengi_country
+					}
+					if = {
+						limit = { exists = event_target:romulan_country }
+						establish_contact = { who = event_target:romulan_country hidden = yes }
+						establish_communications_no_message = event_target:romulan_country
 					}
 				every_planet_within_border = {
 					limit = {

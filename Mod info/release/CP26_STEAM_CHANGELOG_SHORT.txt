@@ -1,55 +1,17 @@
-[h1]Community Patch 2026 - Version 1.6.2[/h1]
+[h1]Community Patch 2026 - Version 1.6.6[/h1]
 
-Hello, hello!
-
-I’m happy to release version 1.6.2 of Community Patch 2026!
-
-This update was not made without a few Cardassian tortures… but it is finally here!
-
-[h2]Ferengi Alliance[/h2]
+[h2]Galaxy Map Setup[/h2]
 
 [list]
-[*] The Ferengi Alliance is now a fully playable empire.
-[*] Added exclusive commercial bonuses.
-[*] New unique planetary bonuses.
-[*] New Ferengi AI focused on opportunism and profit rather than direct warfare.
-[*] Ferengi can now construct commercial megastructures inside the systems of empires with active commercial pacts.
-[*] Megastructures are unlocked through the technology tree.
-[*] These structures provide bonuses to both the host empire and the Ferengi Alliance.
-[*] Added new Ferengi-exclusive districts.
+[*] Increased the galaxy map radius.
+[*] Tholians now only have initial contact with the Ferengi and Romulans.
 [/list]
 
-[h2]Rework - Occupied States[/h2]
+[h2]UI[/h2]
 
 [list]
-[*] The vassalization system has been reworked to better integrate with existing game mechanics.
-[*] Empires can now demand the occupation of another empire.
-[*] Refusing will generate a casus belli and may lead to war.
-[*] Occupied States now transfer part of their resources to their overlord.
-[*] This mechanic can still be disabled at game start for a more “vanilla” experience.
-[/list]
-
-[h2]Content[/h2]
-
-[list]
-[*] Reworked Federation and Klingon diplomatic vessels.
-[*] Added the Nebula Class for the Federation.
-[/list]
-
-[h2]Fixes & Improvements[/h2]
-
-[list]
-[*] Various fixes applied to improve overall game stability.
-[*] Improved in-game font readability on certain displays.
+[*] The UI font has been reworked for improved visual clarity and readability.
 [*] Feedback regarding the new font is always welcome.
 [/list]
 
-[h2]Developer Note[/h2]
-
-[list]
-[*] The Ferengi Alliance is now playable, but some content is still under development.
-[*] Mission tree remains incomplete.
-[*] Additional megastructures are still planned.
-[*] Some bugs may still be hiding here and there.
-[*] As always, your feedback is extremely valuable for improving the project.
-[/list]
+1.6.6
