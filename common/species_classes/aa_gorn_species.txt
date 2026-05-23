@@ -2,14 +2,12 @@ AAGORN = {
 	archetype = BIOLOGICAL
 
 	portraits = {
-		"rep12"
-		"rep14"
+		"gorn"
 	}
 
 	non_randomized_portraits = {
-		"rep12"
-		"rep14"
-    }
+		"gorn"
+	}
 	
 	graphical_culture = gorn_01
 	move_pop_sound_effect = "reptilian_pops_move"

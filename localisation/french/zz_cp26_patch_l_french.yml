@@ -1030,3 +1030,13 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
  lifter_3_DESC:0 "Une seconde installation de raffinage nous permet de traiter un volume de matiere bien plus important."
  lifter_4:0 "Stellar-Lifter"
  lifter_4_DESC:0 "L'ajout de chambres d'etoiles artificielles massives permet un processus de fusion bien plus controle."
+
+ # CP26 major empire personalities
+ personality_cp26_starfleet_command:0 "Commandement Starfleet"
+ personality_cp26_starfleet_command_desc:0 "La Fédération Unie des Planètes poursuit la paix par l'exploration et la diplomatie, mais défend fermement ses membres face à toute menace. Starfleet ne fuit pas."
+ personality_cp26_klingon_honor_guard:0 "Garde d'Honneur Klingon"
+ personality_cp26_klingon_honor_guard_desc:0 "La guerre est la plus haute vocation. L'Empire cherche la gloire au combat, forge des liens par l'honneur et n'a que faire de ceux qui plaideraient pour la paix par faiblesse."
+ personality_cp26_tal_shiar_doctrine:0 "Doctrine du Tal Shiar"
+ personality_cp26_tal_shiar_doctrine_desc:0 "Romulus ne partage pas le pouvoir. Chaque alliance est un levier, chaque traité un délai. Le renseignement est la force, et la force est la survie."
+ personality_cp26_central_command:0 "Commandement Central"
+ personality_cp26_central_command_desc:0 "L'Union Cardassienne s'étend par la discipline militaire et le pragmatisme sans pitié. Les voisins plus faibles sont des ressources à administrer, non des alliés à courtiser."

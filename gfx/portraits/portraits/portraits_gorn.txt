@@ -1,0 +1,92 @@
+portraits = {
+
+	gorn_01 = {	entity = "portrait_reptilian_13_entity"	clothes_selector = "reptilian_massive_clothes_13"	hair_selector = "no_texture"	greeting_sound = "reptilian_01_greetings"
+		character_textures = {
+			"gfx/models/portraits/reptilian/reptilian_massive_13_green.dds"
+			"gfx/models/portraits/reptilian/reptilian_massive_13_black.dds"
+			"gfx/models/portraits/reptilian/reptilian_massive_13_turqouise.dds"
+			"gfx/models/portraits/reptilian/reptilian_massive_13_blue.dds"
+			"gfx/models/portraits/reptilian/reptilian_massive_13_purple.dds"
+			"gfx/models/portraits/reptilian/reptilian_massive_13_brown.dds"
+		}
+	}
+
+}
+
+portrait_groups = {
+	gorn = {
+		default = gorn_01
+		game_setup = {
+			add = {
+				trigger = {
+					ruler = { gender = male }
+				}
+				portraits = {
+					gorn_01
+				}
+			}
+			add = {
+				trigger = {
+					ruler = { gender = female }
+				}
+				portraits = {
+					gorn_01
+				}
+			}
+		}
+
+		species = {
+			add = {
+				portraits = {
+					gorn_01
+				}
+			}
+		}
+
+		pop = {
+			add = {
+				portraits = {
+					gorn_01
+				}
+			}
+		}
+
+		leader = {
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					gorn_01
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					gorn_01
+				}
+			}
+		}
+
+		ruler = {
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					gorn_01
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					gorn_01
+				}
+			}
+		}
+	}
+}

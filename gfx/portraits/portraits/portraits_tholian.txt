@@ -1,0 +1,107 @@
+portraits = {
+
+	tholian_01 = {	entity = "portrait_lithoid_11_entity"	clothes_selector = "no_texture"	hair_selector = "no_texture"	greeting_sound = "lithoid_portrait_11_levitating"
+		character_textures = {
+			"gfx/models/portraits/lithoid/lithoid_11_portrait_yellow.dds"
+			"gfx/models/portraits/lithoid/lithoid_11_portrait_green.dds"
+			"gfx/models/portraits/lithoid/lithoid_11_portrait_red.dds"
+			"gfx/models/portraits/lithoid/lithoid_11_portrait_purple.dds"
+		}
+	}
+
+	tholian_02 = {	entity = "portrait_lithoid_13_entity"	clothes_selector = "no_texture"	hair_selector = "no_texture"	greeting_sound = "lithoid_portrait_13_exo"
+		character_textures = {
+			"gfx/models/portraits/lithoid/lithoid_13_portrait_grey.dds"
+			"gfx/models/portraits/lithoid/lithoid_13_portrait_green.dds"
+			"gfx/models/portraits/lithoid/lithoid_13_portrait_blue.dds"
+			"gfx/models/portraits/lithoid/lithoid_13_portrait_red.dds"
+		}
+	}
+
+}
+
+portrait_groups = {
+	tholian = {
+		default = tholian_01
+		game_setup = {
+			add = {
+				trigger = {
+					ruler = { gender = male }
+				}
+				portraits = {
+					tholian_01
+					tholian_02
+				}
+			}
+			add = {
+				trigger = {
+					ruler = { gender = female }
+				}
+				portraits = {
+					tholian_01
+					tholian_02
+				}
+			}
+		}
+
+		species = {
+			add = {
+				portraits = {
+					tholian_01
+					tholian_02
+				}
+			}
+		}
+
+		pop = {
+			add = {
+				portraits = {
+					tholian_01
+					tholian_02
+				}
+			}
+		}
+
+		leader = {
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					tholian_01
+					tholian_02
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					tholian_01
+					tholian_02
+				}
+			}
+		}
+
+		ruler = {
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					tholian_01
+					tholian_02
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					tholian_01
+					tholian_02
+				}
+			}
+		}
+	}
+}

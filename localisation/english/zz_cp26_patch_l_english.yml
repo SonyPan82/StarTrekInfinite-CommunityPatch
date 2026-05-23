@@ -492,3 +492,13 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  ACTION_INSTIGATE_RIVALRY_DESC:3 "Encourage tensions between foreign powers and push them toward open rivalry."
  ACTION_SUPPORT_RIVALRY_DESC:3 "Support one side in an emerging rivalry to worsen relations and deepen the divide."
  ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
+
+ # CP26 major empire personalities
+ personality_cp26_starfleet_command:0 "Starfleet Command"
+ personality_cp26_starfleet_command_desc:0 "The United Federation of Planets pursues peace through exploration and diplomacy, but stands firm against any threat to its members. Starfleet does not run."
+ personality_cp26_klingon_honor_guard:0 "Klingon Honor Guard"
+ personality_cp26_klingon_honor_guard_desc:0 "War is the highest calling. The Empire seeks glory in battle, forges bonds through honor, and has no use for those who would sue for peace from weakness."
+ personality_cp26_tal_shiar_doctrine:0 "Tal Shiar Doctrine"
+ personality_cp26_tal_shiar_doctrine_desc:0 "Romulus does not share power. Every alliance is leverage, every treaty a delay. Intelligence is strength, and strength is survival."
+ personality_cp26_central_command:0 "Central Command"
+ personality_cp26_central_command_desc:0 "The Cardassian Union expands through military discipline and ruthless pragmatism. Weaker neighbors are resources to be administered, not allies to be courted."
