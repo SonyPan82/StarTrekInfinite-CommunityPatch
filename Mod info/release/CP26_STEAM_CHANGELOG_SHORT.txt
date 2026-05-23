@@ -4,6 +4,7 @@
 
 [list]
 [*] Increased the galaxy map radius.
+[*] Star systems are now more spread out and no longer overcrowded.
 [*] Tholians now only have initial contact with the Ferengi and Romulans.
 [/list]
 
@@ -13,5 +14,7 @@
 [*] The UI font has been reworked for improved visual clarity and readability.
 [*] Feedback regarding the new font is always welcome.
 [/list]
+
+As always, your feedback is extremely valuable for improving the project.
 
 1.6.6
