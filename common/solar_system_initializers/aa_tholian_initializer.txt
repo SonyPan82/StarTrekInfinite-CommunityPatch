@@ -60,7 +60,7 @@ tholian_system_initializer = {
 		
 				create_species = {
 					class = "AATHOLIAN"
-					portrait = "tholian_01"
+					portrait = "tholian"
 					name = "Tholian"
 					plural = "Tholians"
 					adjective = "Tholian"

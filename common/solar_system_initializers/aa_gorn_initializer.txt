@@ -229,7 +229,7 @@ gorn_system_initializer = {
 		
 				create_species = {
 					class = "AAGORN"
-					portrait = "gorn_01"
+					portrait = "gorn"
 					name = "Gorn"
 					plural = "Gorn"
 					adjective = "Gorn"
