@@ -1,5 +1,5 @@
 ##########################################################################
-# Caravaneer Decisions — CP26: re-enabled for Lissepian Trade Consortium
+# Caravaneer Decisions  -  CP26: re-enabled for Lissepian Trade Consortium
 ##########################################################################
 
 decision_caravaneer_bunkbeds = {

@@ -46,3 +46,75 @@ cp26_fleet_museum = {
 
 	ai_weight = { weight = 0 }
 }
+
+# Stage 2  -  Enterprise-D (Galaxy) added after Sovereign upgrade
+cp26_fleet_museum_stage2 = {
+	entity = "sti_fleet_museum_stage2_entity"
+	construction_entity = "humanoid_01_construction_platform_entity"
+	portrait = GFX_megastructure_construction_background
+	place_entity_on_planet_plane = yes
+	entity_offset = { x = -4 y = 12 }
+	build_time = 180
+	upgrade_from = { cp26_fleet_museum }
+
+	potential = { is_ufop = yes }
+
+	possible = {
+		solar_system = {
+			exists = owner
+			owner = { has_country_flag = cp26_museum_galaxy_unlock }
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			influence = 50
+			minerals = 500
+			dilithium = 100
+		}
+		upkeep = { energy = 5 }
+	}
+
+	country_modifier = {
+		country_admin_cap_add = 20
+	}
+
+	ai_weight = { weight = 0 }
+}
+
+# Stage 3  -  Enterprise-E (Sovereign) added after Odyssey upgrade
+cp26_fleet_museum_stage3 = {
+	entity = "sti_fleet_museum_stage3_entity"
+	construction_entity = "humanoid_01_construction_platform_entity"
+	portrait = GFX_megastructure_construction_background
+	place_entity_on_planet_plane = yes
+	entity_offset = { x = -4 y = 12 }
+	build_time = 180
+	upgrade_from = { cp26_fleet_museum_stage2 }
+
+	potential = { is_ufop = yes }
+
+	possible = {
+		solar_system = {
+			exists = owner
+			owner = { has_country_flag = cp26_museum_sovereign_unlock }
+		}
+	}
+
+	resources = {
+		category = megastructures
+		cost = {
+			influence = 50
+			minerals = 500
+			dilithium = 100
+		}
+		upkeep = { energy = 5 }
+	}
+
+	country_modifier = {
+		country_admin_cap_add = 20
+	}
+
+	ai_weight = { weight = 0 }
+}

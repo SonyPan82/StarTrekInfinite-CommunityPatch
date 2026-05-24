@@ -1,0 +1,51 @@
+# Bajor Liberation Arc  -  planet modifiers
+
+cp26_bajor_suppressed_garrison = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_synth_sabotage.dds"
+	planet_stability_add = -20
+	planet_jobs_produces_mult = -0.15
+}
+
+cp26_bajor_romulan_sabotage = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_synth_sabotage.dds"
+	planet_stability_add = -10
+	planet_jobs_produces_mult = -0.10
+}
+
+# Post-liberation bonuses
+
+cp26_bajor_fed_liberation = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_monument.dds"
+	planet_stability_add = 10
+	planet_amenities_add = 5
+}
+
+cp26_bajor_humanitarian_relief = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_natural_beauty.dds"
+	planet_stability_add = 5
+	planet_jobs_food_produces_mult = 0.15
+}
+
+cp26_bajor_klingon_honor = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_slave_warriors.dds"
+	army_damage_mult = 0.20
+	planet_stability_add = 5
+}
+
+cp26_bajor_romulan_influence = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_sensor_range.dds"
+	planet_stability_add = 5
+	planet_jobs_physics_research_produces_mult = 0.10
+}
+
+cp26_bajor_ferengi_trade = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_trade.dds"
+	planet_stability_add = 5
+	trade_value_mult = 0.15
+}
+
+cp26_bajor_ferengi_card_supply = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_trade.dds"
+	army_damage_mult = 0.15
+	planet_stability_add = -5
+}

@@ -1,0 +1,100 @@
+================================================================================
+NOTES DE DESIGN — CP26
+================================================================================
+
+--------------------------------------------------------------------------------
+LIMITE DE COMMANDEMENT — Comportement IA (à tester)
+--------------------------------------------------------------------------------
+
+Contexte : on a ajouté country_command_limit_add dans un bloc country_modifier
+sur building_stronghold (+4) et building_fortress (+8). Ce bloc s'applique
+normalement au joueur, mais l'IA ne sait pas l'évaluer dans son calcul de
+valeur de bâtiment — elle ignore ce bonus quand elle décide de construire.
+
+L'IA construit building_stronghold pour ses jobs militaires (officers, warriors,
+etc.), donc elle bénéficie du +4 passivement. Pas besoin de lui dire
+explicitement.
+
+Risque identifié : avec les techs T3/T4 supprimées, le plafond tech tombe à 45
+points (base 20 + T1 10 + T2 15). Une IA qui construirait peu de bases
+militaires stagnerait à 45 — environ 11 croiseurs maximum. Les grandes factions
+avec 15-25 colonies atteignent 100-145 points (techs + bâtiments), ce qui est
+acceptable. Les petits empires sont potentiellement sous-puissants.
+
+A TESTER EN JEU : regarder la taille des flottes IA après 50-100 ans de partie.
+
+Si les flottes IA semblent trop petites, correctif à appliquer sur
+building_stronghold dans CP26/common/buildings/20_hornblower_military_buildings.txt :
+
+    ai_resource_production = {
+        trigger = {
+            owner = {
+                used_command_capacity_percent > 0.6
+            }
+        }
+        officers = 2
+    }
+
+Ce bloc ne change rien au gameplay — il donne juste à l'IA une raison
+supplémentaire de prioriser la construction du bâtiment quand elle approche
+de sa limite de commandement.
+
+--------------------------------------------------------------------------------
+FERENGI — Arbre de mission (proposition, non implémenté)
+--------------------------------------------------------------------------------
+
+Le bouton quest tree Ferengi existe déjà graphiquement
+(gfx/interface/main/topbar_quest_tree_button_ferengi.dds).
+
+Quark : déjà scripté comme bâtiment de branche "Quark's Bar" avec event chain,
+localisations EN/FR, et tech cp26_ferengi_quark_platforms. Ce n'est PAS un
+leader recruté — c'est un bâtiment placé sur une planète hôte.
+
+Rom et Nog : absents du mod, disponibles pour l'arbre.
+
+Civics Ferengi existants (tous deux avec potential = { always = no }) :
+  - civic_ferengi_rules_of_acquisition : trade_value_mult +30%, energy +10%
+  - civic_ferengi_grand_nagus : unity +10%, pop_political_power -25%
+
+Structure proposée (17 noeuds) :
+
+  A (4 noeuds) — Fondations commerciales
+    A1 : Establish the Exchange — 3 pactes commerciaux + 5 routes
+    A2 : First Rule of Acquisition — 10 pactes OU 1 megastructure en chantier
+    A3 : Expand the Marauder Fleet — 12 Marauder-class ships
+    A4 : The Grand Exchange Hub — starbase 3 trading modules + trade value >= 200
+         -> fork visible C / D
+
+  B (4 sous-noeuds paralleles + 1 convergence, depuis A2) — Arc Nagus
+    B1 : Quark's Bar — starbase trading post sur le systeme du wormhole
+         -> recrute Quark comme gouverneur (event)
+    B2 : Rom's Ingenuity — 20 techs recherchees depuis A1
+         -> recrute Rom comme scientifique
+    B3 : Nog Joins Starfleet — opinion UFoP >= 50 + 1 acces militaire
+         -> recrute Nog comme amiral
+    B4 : The Nagus Travels — flagship surveyed 5 systemes
+    B5 (convergence, tous B1-B4 requis) : Grand Nagus Zek Retires
+         -> event + unlock tech exclusive tech_ferengi_trade_algorithm
+
+  C (4 noeuds, depuis A4, bloque par D) — Voie marchande honnete
+    C1 : Reform the Code — 0 pops esclaves + >= 15 pactes commerciaux
+         -> swap civic + opinion UFoP +30
+    C2 : The Wormhole Accord — controler systeme wormhole + opinion UFoP >= 60
+    C3 : Galactic Stock Exchange — megastructure trade hub construite
+    C4 : New Rules of Acquisition — 50 pactes commerciaux actifs dans la galaxie
+
+  D (4 noeuds, depuis A4, bloque par C) — Voie cartel/exploitation
+    D1 : The Monopoly Begins — >= 5 missions espionnage + 0 pacte migration
+         -> swap civic + modifier espionnage
+    D2 : Information is Profit — 3 information control centers + 15 spy missions
+    D3 : Economic Leverage — >= 3 vassaux OU 5 pays opinion negative avec pacte
+    D4 : The Grand Cartel — >= 30 systemes + >= 5 guerres commerciales gagnees
+
+  E (1 noeud terminal, depuis C4 ou D4) — Legacy of the Nagus
+    E1 : The Grand Nagus Eternal — C4 ou D4 + Rom vivant + Quark vivant
+         -> 100 000 energy + modifier permanent toutes planetes Ferengi
+
+Ancre narrative : systeme du Wormhole (analogue de Bajor pour UFoP/Cardassian).
+Ressource signature : energy/latinum comme les artificial_singularities romulans.
+
+================================================================================

@@ -1,0 +1,31 @@
+# Bajor Liberation Arc  -  dynamic journal description
+# Changes the event chain desc based on the player's current status
+
+defined_text = {
+	name = cp26_bajor_arc_objective_loc
+
+	# Ships/troops arrived  -  resolution incoming
+	text = {
+		trigger = { has_country_flag = cp26_bajor_fleet_arrived }
+		localization_key = cp26_bajor_obj_arrived
+	}
+	# Cardassian troop transport needed
+	text = {
+		trigger = { has_country_flag = cp26_bajor_troops_needed }
+		localization_key = cp26_bajor_obj_send_troops
+	}
+	# Military fleet needed (Fed 1.b, Klingon 3.a, Romulan 4.c)
+	text = {
+		trigger = { has_country_flag = cp26_bajor_fleet_military }
+		localization_key = cp26_bajor_obj_send_military
+	}
+	# Any ship needed (Fed humanitarian, Ferengi trade)
+	text = {
+		trigger = { has_country_flag = cp26_bajor_fleet_needed }
+		localization_key = cp26_bajor_obj_send_ship
+	}
+	# Default  -  no ship required (non-intervention, observe, casus belli etc.)
+	text = {
+		localization_key = cp26_bajor_obj_monitoring
+	}
+}

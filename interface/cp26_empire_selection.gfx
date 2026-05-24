@@ -1,6 +1,6 @@
 spriteTypes = {
 
-	# Override du fond de carte empire — GFX_selectionscreen est bake dans le binaire STI.
+	# Override du fond de carte empire  -  GFX_selectionscreen est bake dans le binaire STI.
 	# On redefinit ici avec le sprite vanilla pre_scripted.dds pour garantir l'aspect panel.
 	# Pour customiser: pointer texturefile vers un DDS 262x470 de ton choix dans gfx/interface/empire_selection/
 	corneredTileSpriteType = {

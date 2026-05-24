@@ -1,5 +1,5 @@
 ##############################################################################
-# STI Fleet Museum — Megastructure Entities
+# STI Fleet Museum  -  Megastructure Entities
 ##############################################################################
 
 # --- Historic ship section entities (NX + Constitution refit + Brel only; Sarajevo / Discovery / Emette / Intrepid removed) ---
@@ -40,7 +40,7 @@ entity = {
 entity = {
 	name = "sti_museum_constitution_refit_raw_entity"
 	pdxmesh = "cp26_museum_constitution_tos_mesh"
-	scale = 0.70
+	scale = 1.00
 	default_state = "idle"
 	state = { name = "idle" state_time = 5 }
 	state = { name = "death" state_time = 2 looping = no
@@ -52,11 +52,62 @@ entity = {
 	name = "sti_museum_constitution_refit_entity"
 	locator = {
 		name = "root"
+		position = { 2 0 0 }
 		rotation = { 0 0 0 }
 	}
 	attach = { "root" = "sti_museum_constitution_refit_raw_entity" }
 	default_state = "idle"
 	state = { name = "idle" state_time = 5 }
+}
+
+# --- Enterprise-D (Galaxy class) for museum stage 2 ---
+
+entity = {
+	name = "sti_museum_enterprise_galaxy_raw_entity"
+	pdxmesh = "cp26_museum_galaxy_mesh"
+	scale = 0.50
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "sti_museum_enterprise_galaxy_entity"
+	locator = {
+		name = "root"
+		position = { -2 0 0 }
+		rotation = { 0 0 0 }
+	}
+	attach = { "root" = "sti_museum_enterprise_galaxy_raw_entity" }
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
+}
+
+# --- Enterprise-E (Sovereign class) for museum stage 3 ---
+
+entity = {
+	name = "sti_museum_enterprise_sovereign_raw_entity"
+	pdxmesh = "cp26_museum_sovereign_mesh"
+	scale = 0.85
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "sti_museum_enterprise_sovereign_entity"
+	locator = {
+		name = "root"
+		position = { 0 2 0 }
+		rotation = { 0 0 0 }
+	}
+	attach = { "root" = "sti_museum_enterprise_sovereign_raw_entity" }
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
 }
 
 # --- Fleet Museum station (with ships attached) ---
@@ -74,5 +125,51 @@ entity = {
 		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
 	}
 	scale = 0.75
+	always_visible = yes
+	game_data = {}
+}
+
+# --- Stage 2: Museum + Enterprise-D (Galaxy) ---
+# Galaxy remplace la Constitution au pod haut-gauche (part2)
+# Constitution deplacee au pod bas-gauche (part1)
+
+entity = {
+	name = "sti_fleet_museum_stage2_entity"
+	pdxmesh = "sti_fleet_museum_mesh"
+	attach = { "part2" = "sti_museum_enterprise_galaxy_entity" }
+	attach = { "part1" = "sti_museum_constitution_refit_entity" }
+	attach = { "part3" = "sti_museum_brel_entity" }
+	attach = { "part4" = "sti_museum_nx_section_1_entity" }
+	attach = { "part5" = "sti_museum_nx_section_2_entity" }
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+	scale = 0.75
+	always_visible = yes
+	game_data = {}
+}
+
+# --- Stage 3: Museum + Enterprise-D (Galaxy) + Enterprise-E (Sovereign) ---
+# Galaxy au pod haut-gauche (part2), Sovereign au pod droit (part5)
+# Constitution au pod bas-gauche (part1), NX section 2 au pod bas-droit (part6)
+
+entity = {
+	name = "sti_fleet_museum_stage3_entity"
+	pdxmesh = "sti_fleet_museum_mesh"
+	attach = { "part2" = "sti_museum_enterprise_galaxy_entity" }
+	attach = { "part5" = "sti_museum_enterprise_sovereign_entity" }
+	attach = { "part1" = "sti_museum_constitution_refit_entity" }
+	attach = { "part3" = "sti_museum_brel_entity" }
+	attach = { "part4" = "sti_museum_nx_section_1_entity" }
+	attach = { "part6" = "sti_museum_nx_section_2_entity" }
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+	scale = 0.75
+	always_visible = yes
 	game_data = {}
 }

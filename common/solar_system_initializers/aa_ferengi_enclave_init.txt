@@ -1,4 +1,4 @@
-# CP26: Ferengi XuraCorp trader enclave — explicitly placed at Ferenginar (47.5, 248.6)
+# CP26: Ferengi XuraCorp trader enclave  -  explicitly placed at Ferenginar (47.5, 248.6)
 # Vanilla guardians_trader_init_01 uses misc_system_init which doesn't run in bespoke
 # procedural scenarios. This version has no usage field so it works as a bespoke system.
 

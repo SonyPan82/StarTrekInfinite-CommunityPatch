@@ -1,20 +1,5 @@
 spriteTypes = {
 	spriteType = {
-		name = "GFX_ST_empty_room_breen"
-		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_breen.dds"
-		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
-	}
-	spriteType = {
-		name = "GFX_ST_capital_empty_room_breen"
-		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_breen.dds"
-		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
-	}
-	spriteType = {
-		name = "GFX_ST_empty_room_Breen_loadgame"
-		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_breen.dds"
-		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
-	}
-	spriteType = {
 		name = "GFX_flag_breen_icon"
 		texturefile = "flags/emblem/bottombar/flag_breen.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"

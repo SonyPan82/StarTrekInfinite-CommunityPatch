@@ -1,0 +1,36 @@
+qt_ufop_upgrade_enterprise_odyssey = {
+	position = { x = 10 y = 4 }
+
+	potential = {
+		has_country_id = ufop
+	}
+
+	parents = {
+		qt_ufop_upgrade_the_enterprise
+	}
+
+	blocked_by = {
+	}
+
+	possible = {
+		has_quest_tree_node = qt_ufop_upgrade_the_enterprise
+		has_technology = tech_odyssey_unlock
+	}
+
+	on_started = {
+	}
+
+	on_blocked = {
+	}
+
+	on_finished = {
+		country_event = { id = cp26_enterprise_odyssey.1 }
+	}
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

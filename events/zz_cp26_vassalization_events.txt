@@ -51,6 +51,11 @@ country_event = {
 				factor = 0
 				is_in_federation_with = event_target:cp26_vassalization_actor
 			}
+			modifier = {
+				# Ferengi Alliance is a sovereign power  -  never submits voluntarily
+				factor = 0
+				is_country_type = ferengi_alliance
+			}
 		}
 
 		set_subject_of = {

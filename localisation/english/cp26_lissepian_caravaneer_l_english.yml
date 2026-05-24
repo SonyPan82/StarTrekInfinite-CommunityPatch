@@ -1,6 +1,6 @@
 l_english:
 
- # CP26: Lissepian Trade Consortium — overrides vanilla caravaneer name keys
+ # CP26: Lissepian Trade Consortium  -  overrides vanilla caravaneer name keys
  # All caravaneer event texts reference these keys, so this renames them to Lissepian everywhere.
 
  NAME_Caravaneer_Home:0 "Lissepian Trade Consortium"

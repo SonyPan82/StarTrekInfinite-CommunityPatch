@@ -3,6 +3,45 @@
 #    SPECIAL PROJECTS   #
 #########################
 
+special_project = {
+	key = "UPGRADE_ENTERPRISE_ODYSSEY"
+	cost = 0
+	days_to_research = 10
+	tech_department = engineering_technology
+	picture = GFX_evt_highway_ftl_travel_ufop
+
+	event_scope = ship_event
+	requirements = {
+		has_fleet_flag = enterprise
+		resources = {
+			alloys = 5000
+			dilithium = 20
+		}
+	}
+
+	on_start = {
+	}
+
+	on_success = {
+		OWNER = {
+			country_event = { id = cp26_enterprise_odyssey.2 }
+		}
+		if = {
+			limit = { exists = event_target:ufop_country }
+			event_target:ufop_country = {
+				add_resource = { alloys = -5000 }
+				add_resource = { dilithium = -20 }
+			}
+		}
+	}
+
+	on_cancel = {
+	}
+
+	on_fail = {
+	}
+}
+
 #########################
 # Borg Crisis Projects  #
 #########################

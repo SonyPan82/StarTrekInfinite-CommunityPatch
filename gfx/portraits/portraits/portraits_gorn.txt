@@ -1,6 +1,6 @@
 portraits = {
 
-	gorn_01 = {	entity = "portrait_reptilian_13_entity"	clothes_selector = "reptilian_massive_clothes_13"	hair_selector = "no_texture"	greeting_sound = "reptilian_01_greetings"
+	gorn_01 = {	entity = "portrait_reptilian_13_entity"	clothes_selector = "no_texture"	hair_selector = "no_texture"	greeting_sound = "reptilian_01_greetings"
 		character_textures = {
 			"gfx/models/portraits/reptilian/reptilian_massive_13_green.dds"
 			"gfx/models/portraits/reptilian/reptilian_massive_13_black.dds"

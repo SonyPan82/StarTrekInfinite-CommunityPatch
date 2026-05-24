@@ -1,0 +1,770 @@
+namespace = cp26_bajor
+
+##############################################################
+# Liberation de Bajor - 2369
+#
+# Mecanique :
+#   - 1 seul popup par empire avec les vrais choix
+#   - Immediate : ouvre frontieres Bajor + Cardassia (forced=180)
+#     pour permettre aux flottes de traverser l'espace cardassien
+#   - Options militaires : set cp26_bajor_fleet_needed
+#     → Journal de bord affiche l'objectif "envoyer une flotte"
+#     → cp26_bajor.50 surveille l'orbite de Bajor en continu
+#     → Quand flotte detectee → cp26_bajor.10 (liberation)
+#   - Options non-militaires : timer immediat → cp26_bajor.20
+#   - cp26_bajor.20 referme les frontieres forcees
+##############################################################
+
+# ============================================================
+# FEDERATION
+# ============================================================
+country_event = {
+	id = cp26_bajor.1
+	title = "cp26_bajor.title"
+	desc = "cp26_bajor.1.desc"
+	picture = GFX_evt_war_ufop
+	show_sound = event_war_news
+
+	mean_time_to_happen = { days = 1 }
+
+	trigger = {
+		NOT = { has_global_flag = cp26_block_bajor_arc }
+		NOT = { has_country_flag = cp26_bajor_event_fired }
+		is_ufop = yes
+		date > 2369.1.1
+		NOT = { date > 2370.1.1 }
+	}
+
+	immediate = {
+		set_country_flag = cp26_bajor_event_fired
+		set_global_flag = cp26_bajor_2369_active
+		# Ouvrir frontieres Bajor - forced=180 jours pour que ca tienne
+		if = {
+			limit = { exists = event_target:bajoran_country }
+			establish_communications_no_message = event_target:bajoran_country
+			set_closed_borders = { who = event_target:bajoran_country status = no forced = 180 }
+			event_target:bajoran_country = {
+				establish_communications_no_message = root
+				set_closed_borders = { who = root status = no forced = 180 }
+			}
+		}
+		# Ouvrir frontieres Cardassia pour traverser leur espace jusqu'a Bajor
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			establish_communications_no_message = event_target:cardassian_country
+			set_closed_borders = { who = event_target:cardassian_country status = no forced = 180 }
+			event_target:cardassian_country = {
+				establish_communications_no_message = root
+				set_closed_borders = { who = root status = no forced = 180 }
+			}
+		}
+		begin_event_chain = {
+			event_chain = "cp26_bajor_arc_chain"
+			target = THIS
+		}
+	}
+
+	# Non-intervention
+	option = {
+		name = "cp26_bajor.1.a"
+		add_resource = { influence = 100 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_humanitarian_aid }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = cp26_bajor.20 days = 1 }
+		}
+	}
+
+	# Intervention militaire
+	option = {
+		name = "cp26_bajor.1.b"
+		add_resource = { influence = 200 alloys = -1500 }
+		add_resource = { unity = 500 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_opposed_liberation }
+			}
+		}
+		hidden_effect = {
+			set_country_flag = cp26_bajor_fleet_military
+			set_country_flag = cp26_bajor_opt_fed_mil
+		}
+		custom_tooltip = cp26_bajor.1.b.tt
+	}
+
+	# Aide humanitaire
+	option = {
+		name = "cp26_bajor.1.c"
+		add_resource = { influence = 50 food = -1000 }
+		add_resource = { unity = 150 }
+		if = {
+			limit = { exists = event_target:bajoran_country }
+			event_target:bajoran_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_humanitarian_aid }
+			}
+		}
+		hidden_effect = {
+			set_country_flag = cp26_bajor_fleet_needed
+			set_country_flag = cp26_bajor_opt_fed_hum
+		}
+		custom_tooltip = cp26_bajor.1.c.tt
+	}
+}
+
+# ============================================================
+# UNION CARDASSIENNE
+# ============================================================
+country_event = {
+	id = cp26_bajor.2
+	title = "cp26_bajor.title"
+	desc = "cp26_bajor.2.desc"
+	picture = GFX_evt_war_cardassian
+	show_sound = event_war_news
+
+	mean_time_to_happen = { days = 1 }
+
+	trigger = {
+		NOT = { has_global_flag = cp26_block_bajor_arc }
+		NOT = { has_country_flag = cp26_bajor_event_fired }
+		is_cardassian = yes
+		date > 2369.1.1
+		NOT = { date > 2370.1.1 }
+	}
+
+	immediate = {
+		set_country_flag = cp26_bajor_event_fired
+		# Cardassiens = proprietaires de Bajor, pas de gestion de frontieres
+		begin_event_chain = {
+			event_chain = "cp26_bajor_arc_chain"
+			target = THIS
+		}
+	}
+
+	# Ecraser la rebellion
+	option = {
+		name = "cp26_bajor.2.a"
+		add_resource = { influence = 100 alloys = -2000 energy = -1000 }
+		add_resource = { unity = -300 }
+		hidden_effect = {
+			set_country_flag = cp26_bajor_troops_needed
+			set_country_flag = cp26_bajor_opt_crush
+			country_event = { id = cp26_bajor.52 days = 30 }
+		}
+		custom_tooltip = cp26_bajor.2.a.tt
+	}
+
+	# Se retirer de Bajor
+	option = {
+		name = "cp26_bajor.2.c"
+		add_resource = { influence = -200 }
+		if = {
+			limit = { exists = event_target:ufop_country }
+			event_target:ufop_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_supported_liberation }
+			}
+		}
+		if = {
+			limit = { exists = event_target:klingon_country }
+			event_target:klingon_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_supported_liberation }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = cp26_bajor.10 days = 5 }
+		}
+		custom_tooltip = cp26_bajor.2.c.tt
+	}
+}
+
+# ============================================================
+# EMPIRE KLINGON
+# ============================================================
+country_event = {
+	id = cp26_bajor.3
+	title = "cp26_bajor.title"
+	desc = "cp26_bajor.3.desc"
+	picture = GFX_evt_war_klingon
+	show_sound = event_war_news
+
+	mean_time_to_happen = { days = 1 }
+
+	trigger = {
+		NOT = { has_global_flag = cp26_block_bajor_arc }
+		NOT = { has_country_flag = cp26_bajor_event_fired }
+		is_klingon = yes
+		date > 2369.1.1
+		NOT = { date > 2370.1.1 }
+	}
+
+	immediate = {
+		set_country_flag = cp26_bajor_event_fired
+		if = {
+			limit = { exists = event_target:bajoran_country }
+			establish_communications_no_message = event_target:bajoran_country
+			set_closed_borders = { who = event_target:bajoran_country status = no forced = 180 }
+			event_target:bajoran_country = {
+				establish_communications_no_message = root
+				set_closed_borders = { who = root status = no forced = 180 }
+			}
+		}
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			establish_communications_no_message = event_target:cardassian_country
+			set_closed_borders = { who = event_target:cardassian_country status = no forced = 180 }
+			event_target:cardassian_country = {
+				establish_communications_no_message = root
+				set_closed_borders = { who = root status = no forced = 180 }
+			}
+		}
+		begin_event_chain = {
+			event_chain = "cp26_bajor_arc_chain"
+			target = THIS
+		}
+	}
+
+	# Soutenir Bajor militairement
+	option = {
+		name = "cp26_bajor.3.a"
+		add_resource = { influence = 150 alloys = -1000 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_opposed_liberation }
+			}
+		}
+		hidden_effect = {
+			set_country_flag = cp26_bajor_fleet_military
+			set_country_flag = cp26_bajor_opt_kling
+		}
+		custom_tooltip = cp26_bajor.3.a.tt
+	}
+
+	# Casus belli contre Cardassia
+	option = {
+		name = "cp26_bajor.3.b"
+		add_resource = { influence = 250 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			add_casus_belli = {
+				type = cb_liberation_war
+				who = event_target:cardassian_country
+				days = 1800
+			}
+		}
+		hidden_effect = {
+			country_event = { id = cp26_bajor.20 days = 15 }
+		}
+		custom_tooltip = cp26_bajor.3.b.tt
+	}
+
+	# Ignorer
+	option = {
+		name = "cp26_bajor.3.c"
+		add_resource = { unity = 100 }
+		hidden_effect = {
+			country_event = { id = cp26_bajor.20 days = 1 }
+		}
+	}
+}
+
+# ============================================================
+# EMPIRE ROMULIEN
+# ============================================================
+country_event = {
+	id = cp26_bajor.4
+	title = "cp26_bajor.title"
+	desc = "cp26_bajor.4.desc"
+	picture = GFX_evt_war_romulan
+	show_sound = event_war_news
+
+	mean_time_to_happen = { days = 1 }
+
+	trigger = {
+		NOT = { has_global_flag = cp26_block_bajor_arc }
+		NOT = { has_country_flag = cp26_bajor_event_fired }
+		is_romulan = yes
+		date > 2369.1.1
+		NOT = { date > 2370.1.1 }
+	}
+
+	immediate = {
+		set_country_flag = cp26_bajor_event_fired
+		if = {
+			limit = { exists = event_target:bajoran_country }
+			establish_communications_no_message = event_target:bajoran_country
+			set_closed_borders = { who = event_target:bajoran_country status = no forced = 180 }
+			event_target:bajoran_country = {
+				establish_communications_no_message = root
+				set_closed_borders = { who = root status = no forced = 180 }
+			}
+		}
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			establish_communications_no_message = event_target:cardassian_country
+			set_closed_borders = { who = event_target:cardassian_country status = no forced = 180 }
+			event_target:cardassian_country = {
+				establish_communications_no_message = root
+				set_closed_borders = { who = root status = no forced = 180 }
+			}
+		}
+		begin_event_chain = {
+			event_chain = "cp26_bajor_arc_chain"
+			target = THIS
+		}
+	}
+
+	# Soutien clandestin - vaisseau espion a Bajor → accelere la revolte
+	option = {
+		name = "cp26_bajor.4.a"
+		add_resource = { energy = -500 }
+		hidden_effect = {
+			set_country_flag = cp26_bajor_fleet_needed
+			set_country_flag = cp26_bajor_opt_rom_spy
+		}
+		custom_tooltip = cp26_bajor.4.a.tt
+	}
+
+	# Observer - aucun avantage, juste fermeture de l'arc
+	option = {
+		name = "cp26_bajor.4.b"
+		hidden_effect = {
+			country_event = { id = cp26_bajor.20 days = 1 }
+		}
+		custom_tooltip = cp26_bajor.4.b.tt
+	}
+
+	# Intervention officielle
+	option = {
+		name = "cp26_bajor.4.c"
+		add_resource = { alloys = -1200 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_opposed_liberation }
+			}
+		}
+		hidden_effect = {
+			set_country_flag = cp26_bajor_fleet_military
+			set_country_flag = cp26_bajor_opt_rom
+		}
+		custom_tooltip = cp26_bajor.4.c.tt
+	}
+}
+
+# ============================================================
+# ALLIANCE FERENGI
+# ============================================================
+country_event = {
+	id = cp26_bajor.5
+	title = "cp26_bajor.title"
+	desc = "cp26_bajor.5.desc"
+	picture = GFX_evt_ferengi_trade_ufop
+	show_sound = event_administrative_work
+
+	mean_time_to_happen = { days = 1 }
+
+	trigger = {
+		NOT = { has_global_flag = cp26_block_bajor_arc }
+		NOT = { has_country_flag = cp26_bajor_event_fired }
+		is_ferengi = yes
+		date > 2369.1.1
+		NOT = { date > 2370.1.1 }
+	}
+
+	immediate = {
+		set_country_flag = cp26_bajor_event_fired
+		if = {
+			limit = { exists = event_target:bajoran_country }
+			establish_communications_no_message = event_target:bajoran_country
+			set_closed_borders = { who = event_target:bajoran_country status = no forced = 180 }
+			event_target:bajoran_country = {
+				establish_communications_no_message = root
+				set_closed_borders = { who = root status = no forced = 180 }
+			}
+		}
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			establish_communications_no_message = event_target:cardassian_country
+			set_closed_borders = { who = event_target:cardassian_country status = no forced = 180 }
+			event_target:cardassian_country = {
+				establish_communications_no_message = root
+				set_closed_borders = { who = root status = no forced = 180 }
+			}
+		}
+		begin_event_chain = {
+			event_chain = "cp26_bajor_arc_chain"
+			target = THIS
+		}
+	}
+
+	# Vendre aux Bajorans
+	option = {
+		name = "cp26_bajor.5.a"
+		add_resource = { energy = 3000 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_armed_rebels }
+			}
+		}
+		hidden_effect = {
+			set_country_flag = cp26_bajor_fleet_needed
+			set_country_flag = cp26_bajor_opt_feren
+		}
+		custom_tooltip = cp26_bajor.5.a.tt
+	}
+
+	# Vendre aux Cardassiens - vaisseau a Bajor (garnison cardassienne)
+	option = {
+		name = "cp26_bajor.5.b"
+		add_resource = { energy = 3000 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_armed_cardassians }
+			}
+		}
+		hidden_effect = {
+			set_country_flag = cp26_bajor_cardassia_delivery
+		}
+		custom_tooltip = cp26_bajor.5.b.tt
+	}
+
+	# Vendre aux deux camps - vaisseau a Bajor ET vaisseau en espace cardassien
+	option = {
+		name = "cp26_bajor.5.c"
+		add_resource = { energy = 5000 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_armed_rebels }
+			}
+		}
+		if = {
+			limit = { exists = event_target:ufop_country }
+			event_target:ufop_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_armed_rebels }
+			}
+		}
+		if = {
+			limit = { exists = event_target:klingon_country }
+			event_target:klingon_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_armed_rebels }
+			}
+		}
+		hidden_effect = {
+			set_country_flag = cp26_bajor_feren_both
+		}
+		custom_tooltip = cp26_bajor.5.c.tt
+	}
+}
+
+# ============================================================
+# DETECTION VAISSEAU DANS LE SYSTEME DE BAJOR
+# cp26_bajor_fleet_needed  → n'importe quel vaisseau (convoi, trade)
+# cp26_bajor_fleet_military → idem detection mais texte journal different
+# ============================================================
+country_event = {
+	id = cp26_bajor.50
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = cp26_bajor_fleet_needed
+			has_country_flag = cp26_bajor_fleet_military
+		}
+		NOT = { has_country_flag = cp26_bajor_fleet_arrived }
+		exists = event_target:bajoran_system
+		event_target:bajoran_system = {
+			any_fleet_in_system = {
+				owner = { is_same_value = root }
+			}
+		}
+	}
+
+	mean_time_to_happen = { days = 30 }
+
+	immediate = {
+		set_country_flag = cp26_bajor_fleet_arrived
+		country_event = { id = cp26_bajor.10 days = 1 }
+	}
+}
+
+# ============================================================
+# DETECTION TRANSPORT DE TROUPES A BAJOR (Cardassiens)
+# cp26_bajor_troops_needed → fleet avec armees embarquees
+# Resultat : fermeture arc + modificateur garrison
+# ============================================================
+country_event = {
+	id = cp26_bajor.51
+	hide_window = yes
+
+	trigger = {
+		has_country_flag = cp26_bajor_troops_needed
+		NOT = { has_country_flag = cp26_bajor_fleet_arrived }
+		exists = event_target:bajoran_system
+		event_target:bajoran_system = {
+			any_fleet_in_system = {
+				owner = { is_same_value = root }
+				num_armies >= 3
+			}
+		}
+	}
+
+	mean_time_to_happen = { days = 30 }
+
+	immediate = {
+		set_country_flag = cp26_bajor_fleet_arrived
+		set_country_flag = cp26_bajor_troops_suppressed
+		# Appliquer le modificateur selon le choix fait
+		if = {
+			limit = {
+				has_country_flag = cp26_bajor_opt_crush
+				exists = event_target:bajoran_planet
+			}
+			event_target:bajoran_planet = {
+				add_modifier = { modifier = "cp26_bajor_suppressed_garrison" days = 1800 }
+			}
+		}
+		country_event = { id = cp26_bajor.20 days = 1 }
+	}
+}
+
+# ============================================================
+# REVOLTE BAJORANNE - si Cardassia n'envoie pas de troupes a temps
+# Fires 30 jours apres la decision 2.a/2.b si aucun transport
+# n'est arrive avec des armees embarquees
+# ============================================================
+country_event = {
+	id = cp26_bajor.52
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_bajor_troops_suppressed }
+		NOT = { has_global_flag = cp26_bajor_liberated }
+		exists = event_target:bajoran_planet
+	}
+
+	immediate = {
+		end_event_chain = cp26_bajor_arc_chain
+		set_global_flag = cp26_bajor_liberated
+
+		# Tuer tous les pops cardassiens sur Bajor
+		every_owned_pop = {
+			limit = { planet = { is_same_value = event_target:bajoran_planet } }
+			kill_pop = yes
+		}
+
+		event_target:bajoran_planet = {
+			set_planet_devastation = 100
+			if = {
+				limit = { exists = event_target:bajoran_country }
+				set_owner = event_target:bajoran_country
+				event_target:bajoran_country = {
+					add_opinion_modifier = { who = root modifier = cp26_bajor_opposed_liberation }
+				}
+			}
+		}
+	}
+}
+
+# ============================================================
+# DETECTION FERENGI → CARDASSIENS (5.b)
+# Ship a Bajor livrant a la garnison cardassienne
+# Bajor reste cardassienne, arc ferme
+# ============================================================
+country_event = {
+	id = cp26_bajor.53
+	hide_window = yes
+
+	trigger = {
+		has_country_flag = cp26_bajor_cardassia_delivery
+		NOT = { has_country_flag = cp26_bajor_fleet_arrived }
+		exists = event_target:bajoran_system
+		event_target:bajoran_system = {
+			any_fleet_in_system = {
+				owner = { is_same_value = root }
+			}
+		}
+	}
+
+	mean_time_to_happen = { days = 30 }
+
+	immediate = {
+		set_country_flag = cp26_bajor_fleet_arrived
+		if = {
+			limit = { exists = event_target:bajoran_planet }
+			event_target:bajoran_planet = {
+				add_modifier = { modifier = "cp26_bajor_ferengi_card_supply" days = 720 }
+			}
+		}
+		country_event = { id = cp26_bajor.20 days = 1 }
+	}
+}
+
+# ============================================================
+# DETECTION FERENGI → LES DEUX (5.c)
+# Ship a Bajor ET ship en espace cardassien (planete non-Bajor)
+# Liberation avec 30% devastation  -  les deux camps s'affrontent
+# ============================================================
+country_event = {
+	id = cp26_bajor.54
+	hide_window = yes
+
+	trigger = {
+		has_country_flag = cp26_bajor_feren_both
+		NOT = { has_country_flag = cp26_bajor_fleet_arrived }
+		exists = event_target:bajoran_system
+		exists = event_target:cardassian_country
+		# Vaisseau a Bajor
+		event_target:bajoran_system = {
+			any_fleet_in_system = {
+				owner = { is_same_value = root }
+			}
+		}
+		# Vaisseau dans espace cardassien (pas Bajor)
+		event_target:cardassian_country = {
+			any_owned_planet = {
+				NOT = { is_same_value = event_target:bajoran_planet }
+				solar_system = {
+					any_fleet_in_system = {
+						owner = { is_same_value = root }
+					}
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = { days = 30 }
+
+	immediate = {
+		set_country_flag = cp26_bajor_fleet_arrived
+		set_country_flag = cp26_bajor_opt_feren_both
+		country_event = { id = cp26_bajor.10 days = 1 }
+	}
+}
+
+# ============================================================
+# BAJOR LIBERE - resolution propre (autres empires)
+# ============================================================
+country_event = {
+	id = cp26_bajor.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		end_event_chain = cp26_bajor_arc_chain
+		if = {
+			limit = {
+				NOT = { has_global_flag = cp26_bajor_liberated }
+				exists = event_target:bajoran_planet
+				exists = event_target:bajoran_country
+			}
+			set_global_flag = cp26_bajor_liberated
+
+			event_target:bajoran_planet = {
+				if = {
+					limit = {
+						exists = owner
+						owner = { is_cardassian = yes }
+					}
+					set_owner = event_target:bajoran_country
+				}
+			}
+
+			# Frontieres permanentes avec l'empire liberateur
+			if = {
+				limit = { NOT = { is_cardassian = yes } }
+				set_closed_borders = { who = event_target:bajoran_country status = no forced = 5 }
+				event_target:bajoran_country = {
+					set_closed_borders = { who = root status = no forced = 5 }
+					add_opinion_modifier = { who = root modifier = cp26_bajor_supported_liberation }
+				}
+			}
+
+			# ---- Bonuses par choix ----
+
+			# Federation militaire
+			if = {
+				limit = { has_country_flag = cp26_bajor_opt_fed_mil }
+				event_target:bajoran_planet = {
+					add_modifier = { modifier = "cp26_bajor_fed_liberation" days = 1800 }
+				}
+			}
+
+			# Federation humanitaire
+			if = {
+				limit = { has_country_flag = cp26_bajor_opt_fed_hum }
+				event_target:bajoran_planet = {
+					add_modifier = { modifier = "cp26_bajor_humanitarian_relief" days = 1800 }
+				}
+			}
+
+			# Klingon
+			if = {
+				limit = { has_country_flag = cp26_bajor_opt_kling }
+				event_target:bajoran_planet = {
+					add_modifier = { modifier = "cp26_bajor_klingon_honor" days = 720 }
+				}
+				event_target:bajoran_country = {
+					add_opinion_modifier = { who = root modifier = cp26_bajor_supported_liberation }
+				}
+			}
+
+			# Romulien
+			if = {
+				limit = { has_country_flag = cp26_bajor_opt_rom }
+				event_target:bajoran_planet = {
+					add_modifier = { modifier = "cp26_bajor_romulan_influence" days = 1800 }
+				}
+			}
+
+			# Ferengi (vente aux Bajorans)
+			if = {
+				limit = { has_country_flag = cp26_bajor_opt_feren }
+				event_target:bajoran_planet = {
+					add_modifier = { modifier = "cp26_bajor_ferengi_trade" days = 1095 }
+				}
+			}
+
+			# Ferengi (vente aux deux camps) - devastation partielle, profit quand meme
+			if = {
+				limit = { has_country_flag = cp26_bajor_opt_feren_both }
+				event_target:bajoran_planet = {
+					set_planet_devastation = 30
+					add_modifier = { modifier = "cp26_bajor_ferengi_trade" days = 1095 }
+				}
+			}
+
+			# Romulien espion - devastation partielle (sabotage accelere la revolte)
+			if = {
+				limit = { has_country_flag = cp26_bajor_opt_rom_spy }
+				event_target:bajoran_planet = {
+					set_planet_devastation = 25
+				}
+				add_resource = { influence = 100 }
+			}
+		}
+	}
+}
+
+# ============================================================
+# FERMETURE ARC - sans liberation
+# Les frontieres forcees (forced=180) se referment naturellement
+# quand le timer expire - pas besoin de les fermer manuellement
+# ============================================================
+country_event = {
+	id = cp26_bajor.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		end_event_chain = cp26_bajor_arc_chain
+	}
+}

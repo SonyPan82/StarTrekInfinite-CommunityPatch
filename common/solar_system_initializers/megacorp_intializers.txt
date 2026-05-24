@@ -3,7 +3,7 @@
 
 # CP26: Lissepian Trade Caravaneers
 # Replaces the vanilla caravaneer spawn with Lissepian traders.
-# "caravaneers_enabled" is not defined in STI — condition removed; spawns whenever has_megacorp = yes (always in STI).
+# "caravaneers_enabled" is not defined in STI  -  condition removed; spawns whenever has_megacorp = yes (always in STI).
 
 megacorp_caravaneer_init = {
 	class = "rl_standard_stars"
@@ -245,7 +245,7 @@ set_graphical_culture = caravaneer_01
 			owner = event_target:caravaneer_home_country
 		}
 
-		# FLEET 1 — Lissepian Alpha Convoy
+		# FLEET 1  -  Lissepian Alpha Convoy
 		if = {
 			limit = { has_global_flag = spawn_caravaneer_1 }
 			create_species = {
@@ -339,7 +339,7 @@ set_graphical_culture = caravaneer_01
 			}
 		}
 
-		# FLEET 2 — Lissepian Beta Convoy
+		# FLEET 2  -  Lissepian Beta Convoy
 		if = {
 			limit = { has_global_flag = spawn_caravaneer_2 }
 			create_species = {
@@ -432,7 +432,7 @@ set_graphical_culture = caravaneer_01
 			}
 		}
 
-		# FLEET 3 — Lissepian Gamma Convoy
+		# FLEET 3  -  Lissepian Gamma Convoy
 		if = {
 			limit = { has_global_flag = spawn_caravaneer_3 }
 			create_species = {

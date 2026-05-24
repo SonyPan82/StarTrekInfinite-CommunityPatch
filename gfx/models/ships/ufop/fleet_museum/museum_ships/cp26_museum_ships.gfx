@@ -1,0 +1,202 @@
+objectTypes = {
+
+    # Enterprise-D (Galaxy class)  -  museum display
+    pdxmesh = {
+        name = "cp26_museum_galaxy_mesh"
+        file = "gfx/models/ships/ufop/fleet_museum/museum_ships/galaxy/cp26_museum_galaxy.mesh"
+        scale = 1.0
+
+        meshsettings = {
+            name = "Galaxy_Decal_1"
+            index = 0
+            texture_diffuse = "Decale_SFLogo1.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+        meshsettings = {
+            name = "Galaxy_Decal_2"
+            index = 0
+            texture_diffuse = "transparent_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+        meshsettings = {
+            name = "Galaxy_Decal_3"
+            index = 0
+            texture_diffuse = "transparent_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+        meshsettings = {
+            name = "Galaxy_Deflector_Inner"
+            index = 0
+            texture_diffuse = "galaxy_deflector_inner_diffuse.dds"
+            texture_normal = "galaxy_deflector_inner_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Deflector_Outer"
+            index = 0
+            texture_diffuse = "galaxy_deflector_outer_diffuse.dds"
+            texture_normal = "galaxy_deflector_outer_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Detail_1"
+            index = 0
+            texture_diffuse = "galaxy_detail_1_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Detail_2"
+            index = 0
+            texture_diffuse = "galaxy_detail_2_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Engineering_Bottom_1"
+            index = 0
+            texture_diffuse = "galaxy_engineering_bottom_1_diffuse.dds"
+            texture_normal = "galaxy_engineering_bottom_1_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Engineering_Top"
+            index = 0
+            texture_diffuse = "galaxy_engineering_top_diffuse.dds"
+            texture_normal = "galaxy_engineering_top_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Glow_Engine_1"
+            index = 0
+            texture_diffuse = "galaxy_glow_engine_diffuse.dds"
+            texture_normal = "galaxy_glow_engine_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Grid"
+            index = 0
+            texture_diffuse = "galaxy_grid.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Nacelle"
+            index = 0
+            texture_diffuse = "galaxy_nacelle_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Neck"
+            index = 0
+            texture_diffuse = "galaxy_neck_diffuse.dds"
+            texture_normal = "galaxy_neck_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Rear"
+            index = 0
+            texture_diffuse = "galaxy_rear_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Saucer_Bottom"
+            index = 0
+            texture_diffuse = "galaxy_saucer_bottom_diffuse.dds"
+            texture_normal = "galaxy_saucer_bottom_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Saucer_Top"
+            index = 0
+            texture_diffuse = "galaxy_saucer_top_diffuse.dds"
+            texture_normal = "galaxy_saucer_top_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Saucer_Top_2"
+            index = 0
+            texture_diffuse = "galaxy_saucer_top_2_diffuse.dds"
+            texture_normal = "galaxy_saucer_top_2_normal.dds"
+            texture_specular = "light_metal_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Galaxy_Windows"
+            index = 0
+            texture_diffuse = "galaxy_windows_diffuse.dds"
+            texture_normal = "galaxy_windows_normal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+    }
+
+    # Enterprise-E (Sovereign class)  -  museum display
+    pdxmesh = {
+        name = "cp26_museum_sovereign_mesh"
+        file = "gfx/models/ships/ufop/fleet_museum/museum_ships/sovereign/cp26_museum_sovereign.mesh"
+        scale = 1.0
+
+        meshsettings = {
+            name = "Sovereign_mainShape"
+            index = 0
+            texture_diffuse = "federation_04_assault_cruiser_coreA_diffuse.dds"
+            texture_normal = "federation_04_assault_cruiser_coreA_normal.dds"
+            texture_specular = "federation_04_assault_cruiser_coreA_specular.dds"
+            shader = "PdxMeshShip"
+        }
+        meshsettings = {
+            name = "Sovereign_Faction_Emblem:MeshShape"
+            index = 0
+            texture_diffuse = "transparent_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+        meshsettings = {
+            name = "Sovereign_Hull_Stripes:MeshShape"
+            index = 0
+            texture_diffuse = "FederationStripeDecal.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+        meshsettings = {
+            name = "Sovereign_Nacelle_Stripes:MeshShape"
+            index = 0
+            texture_diffuse = "FederationStripeDecal.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+        meshsettings = {
+            name = "Sovereign_Saucer_Decal:MeshShape"
+            index = 0
+            texture_diffuse = "transparent_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShipTransp"
+        }
+    }
+}

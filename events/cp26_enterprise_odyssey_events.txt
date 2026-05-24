@@ -1,0 +1,125 @@
+namespace = cp26_enterprise_odyssey
+namespace = cp26_museum
+
+# Museum  -  Enterprise-D (Galaxy) Integration Popup
+country_event = {
+	id = cp26_museum.1
+	title = "cp26_museum.1.name"
+	desc = "cp26_museum.1.desc"
+	picture = GFX_evt_highway_ftl_travel_ufop
+	show_sound = event_administrative_work
+
+	is_triggered_only = yes
+
+	option = {
+		name = "cp26_museum.1.a"
+		set_country_flag = cp26_museum_galaxy_unlock
+	}
+
+	option = {
+		name = "cp26_museum.1.b"
+	}
+}
+
+# Museum  -  Enterprise-E (Sovereign) Integration Popup
+country_event = {
+	id = cp26_museum.3
+	title = "cp26_museum.3.name"
+	desc = "cp26_museum.3.desc"
+	picture = GFX_evt_highway_ftl_travel_ufop
+	show_sound = event_administrative_work
+
+	is_triggered_only = yes
+
+	option = {
+		name = "cp26_museum.3.a"
+		set_country_flag = cp26_museum_sovereign_unlock
+	}
+
+	option = {
+		name = "cp26_museum.3.b"
+	}
+}
+
+# Enterprise Odyssey Refit  -  Special Project Enabled
+country_event = {
+	id = cp26_enterprise_odyssey.1
+	title = "cp26_enterprise_odyssey.1.name"
+	desc = "cp26_enterprise_odyssey.1.desc"
+	picture = GFX_evt_highway_ftl_travel_ufop
+	show_sound = event_space_travel
+	location = FROM
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		event_target:ufop_sol_starbase_ship = {
+			enable_special_project = {
+				name = "UPGRADE_ENTERPRISE_ODYSSEY"
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+
+# Enterprise Odyssey Refit  -  Complete
+country_event = {
+	id = cp26_enterprise_odyssey.2
+	title = "cp26_enterprise_odyssey.2.name"
+	desc = "cp26_enterprise_odyssey.2.desc"
+	picture = GFX_evt_highway_ftl_travel_ufop
+	show_sound = event_generic_success
+
+	is_triggered_only = yes
+
+	option = {
+		name = "cp26_enterprise_odyssey.2.a"
+		custom_tooltip = "cp26_enterprise_odyssey.2.a.tt"
+
+		if = {
+			limit = { has_country_flag = cp26_fleet_museum_spawned }
+			country_event = { id = cp26_museum.3 days = 30 }
+		}
+
+		create_fleet = {
+			name = "NAME_Enterprise_Fleet"
+			effect = {
+				set_owner = ROOT
+
+				create_ship = {
+					name = "NAME_Enterprise_Odyssey"
+					design = NAME_Odyssey_Class
+				}
+
+				set_location = event_target:ufop_sol_starbase_ship
+
+				assign_leader = event_target:enterprise_leader
+				set_fleet_flag = enterprise
+			}
+			settings = {
+				can_upgrade = yes
+				can_change_leader = no
+				can_change_composition = no
+				can_disband = no
+			}
+		}
+
+		event_target:enterprise_fleet = {
+			delete_fleet = {
+				target = this
+				destroy_template = yes
+				ignore_is_destroyable = yes
+			}
+		}
+
+		last_created_ship = {
+			save_global_event_target_as = enterprise_ship
+		}
+
+		last_created_fleet = {
+			save_global_event_target_as = enterprise_fleet
+		}
+	}
+}

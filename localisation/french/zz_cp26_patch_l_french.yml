@@ -9,6 +9,32 @@
  cp26_fleet_museum:0 "Musée de la Flotte"
  cp26_fleet_museum_DESC:0 "Une station-musée préservée exposant des vaisseaux historiques de Starfleet, dont le NX-01 et le NX-02."
  cp26_fleet_museum_MEGASTRUCTURE_DETAILS:0 "Une station-musée préservée exposant des vaisseaux historiques de Starfleet, dont le NX-01 et le NX-02."
+ cp26_fleet_museum_stage2:0 "Musée de la Flotte"
+ cp26_fleet_museum_stage2_DESC:0 "L'Enterprise-D, classe Galaxy, a rejoint la collection du musée. Sa silhouette emblématique domine désormais l'anneau principal de la station."
+ cp26_fleet_museum_stage2_MEGASTRUCTURE_DETAILS:0 "L'Enterprise-D, classe Galaxy, a rejoint la collection du musée. Sa silhouette emblématique domine désormais l'anneau principal de la station."
+ cp26_fleet_museum_stage3:0 "Musée de la Flotte"
+ cp26_fleet_museum_stage3_DESC:0 "L'Enterprise-E, classe Sovereign, complète la collection. Le musée abrite désormais un siècle et demi d'histoire de Starfleet, du NX-01 au vaisseau amiral de la Fédération."
+ cp26_fleet_museum_stage3_MEGASTRUCTURE_DETAILS:0 "L'Enterprise-E, classe Sovereign, complète la collection. Le musée abrite désormais un siècle et demi d'histoire de Starfleet, du NX-01 au vaisseau amiral de la Fédération."
+ qt_ufop_upgrade_enterprise_odyssey:0 "Refonte de l'Enterprise  -  Classe Odyssey"
+ qt_ufop_upgrade_enterprise_odyssey_desc:0 "Des décennies d'exploration et de conflits ont mené les ingénieurs de Starfleet à leur refonte la plus ambitieuse. L'Enterprise sera modernisée en classe Odyssey  -  le vaisseau le plus grand et le plus capable de la flotte."
+ UPGRADE_ENTERPRISE_ODYSSEY:0 "Refonte Odyssey de l'Enterprise"
+ UPGRADE_ENTERPRISE_ODYSSEY_DESC:0 "Les ingénieurs de Starfleet sont prêts à procéder à la refonte la plus ambitieuse de l'histoire de l'Enterprise. Cela nécessitera 5 000 alliages et 20 cristaux de dilithium."
+ cp26_enterprise_odyssey.1.name:0 "Refonte autorisée"
+ cp26_enterprise_odyssey.1.desc:0 "Le commandement de l'ingénierie de Starfleet a validé les plans et autorisé la refonte de l'Enterprise en classe Odyssey. Les travaux débuteront immédiatement à Utopia Planitia."
+ cp26_enterprise_odyssey.2.name:0 "L'Enterprise-F est commissionnée"
+ cp26_enterprise_odyssey.2.desc:0 "La refonte est achevée. L'Enterprise sort de cale sèche en tant que vaisseau de classe Odyssey  -  la fierté de la flotte et le vaisseau le plus puissant que Starfleet ait jamais lancé."
+ cp26_enterprise_odyssey.2.a:0 "Elle est magnifique."
+ cp26_enterprise_odyssey.2.a.tt:0 "L'Enterprise est désormais un vaisseau de classe Odyssey."
+ NAME_Enterprise_Odyssey:0 "U.S.S. Enterprise"
+ tech_cp26_daystrom_institute:0 "Institut Daystrom"
+ tech_cp26_daystrom_institute_desc:0 "La Fédération peut fonder l'Institut Daystrom, principal centre de recherche et de développement scientifique. Déverrouille la construction de la mégastructure Station Daystrom."
+ ALLOW_CP26_DAYSTROM_INSTITUTE:0 "§HDéverrouille la mégastructure fédérale :§! $cp26_daystrom_station$"
+ cp26_daystrom_station:0 "Station Daystrom"
+ cp26_daystrom_station_DESC:0 "Une station orbitale de recherche exploitée par l'Institut Daystrom, repoussant les frontières de la science fédérale dans toutes les disciplines."
+ cp26_daystrom_station_MEGASTRUCTURE_DETAILS:0 "Les divisions de recherche de la station travaillent de concert en physique, ingénierie et sciences sociales, augmentant la production de recherche de toute la Fédération."
+ cp26_daystrom_requires_planet_or_moon:0 "Doit être placée en orbite d'une planète ou d'une lune"
+ cp26_daystrom_requires_ufop_system:0 "Doit être placée dans un système appartenant à la Fédération"
+ cp26_daystrom_requires_no_megastructure:0 "Ce corps céleste accueille déjà une mégastructure"
  tech_cp26_ufop_fleet_museum:0 "Charte du Musée de la Flotte"
  tech_cp26_ufop_fleet_museum_desc:0 "Starfleet peut formaliser la conservation de ses vaisseaux historiques et ériger un musée orbital unique consacré à l'héritage de la Fédération."
  ALLOW_CP26_FLEET_MUSEUM:0 "§HDéverrouille la mégastructure fédérale :§! $cp26_fleet_museum$"
@@ -1040,3 +1066,99 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
  personality_cp26_tal_shiar_doctrine_desc:0 "Romulus ne partage pas le pouvoir. Chaque alliance est un levier, chaque traité un délai. Le renseignement est la force, et la force est la survie."
  personality_cp26_central_command:0 "Commandement Central"
  personality_cp26_central_command_desc:0 "L'Union Cardassienne s'étend par la discipline militaire et le pragmatisme sans pitié. Les voisins plus faibles sont des ressources à administrer, non des alliés à courtiser."
+
+ # Fleet Museum  -  Intégration Galaxy
+ cp26_museum.1.name:0 "Un vaisseau qui mérite d'être préservé"
+ cp26_museum.1.desc:0 "L'Enterprise-D vient d'être décommissionné. Il a servi la Fédération pendant huit ans et nous a portés à travers les heures les plus sombres. Le Musée de la Flotte dispose d'un emplacement. Autorisez le transfert et envoyez une équipe de construction  -  cela coûtera 500 minéraux, 100 dilithium et 50 influence."
+ cp26_museum.1.a:0 "Autorisez le transfert. Sa place est dans l'histoire."
+ cp26_museum.1.b:0 "Nous avons des priorités plus urgentes."
+
+ # Fleet Museum  -  Intégration Sovereign
+ cp26_museum.3.name:0 "Un second héritage"
+ cp26_museum.3.desc:0 "L'Enterprise-E vient d'être relevé de ses fonctions actives. Il a combattu à la bataille du Secteur 001, arrêté les Borg et mené la Fédération tout au long de la Guerre du Dominion. Autorisez son installation  -  500 minéraux, 100 dilithium et 50 influence pour lui assurer une place aux côtés de l'Enterprise-D."
+ cp26_museum.3.a:0 "Autorisez l'installation. Il a gagné sa place."
+ cp26_museum.3.b:0 "Pas maintenant."
+
+ # Démarrage de partie  -  Toggle Libération de Bajor
+ cp26_options.1.bajor_arc_on:0 "Libération de Bajor (TESTING) : §Gactivée§!"
+ cp26_options.1.bajor_arc_on.tt:0 "Cliquez pour désactiver l'arc Libération de Bajor pour cette campagne. Les événements de 2369 ne se déclencheront pour aucun empire."
+ cp26_options.1.bajor_arc_off:0 "Libération de Bajor (TESTING) : §Rdésactivée§!"
+ cp26_options.1.bajor_arc_off.tt:0 "Cliquez pour activer l'arc Libération de Bajor pour cette campagne. Chaque grand empire recevra un événement unique en 2369."
+
+ # Libération de Bajor  -  chaîne de journal
+ cp26_bajor_arc_chain_title:0 "Libération de Bajor"
+ cp26_bajor_arc_chain_desc:0 "[cp26_bajor_arc_objective_loc]"
+
+ # Libération de Bajor  -  titre commun
+ cp26_bajor.title:0 "La Libération de Bajor"
+
+ # Libération de Bajor  -  Objectif journal de bord (scripted_loc states)
+ cp26_bajor_obj_fleet:0 "Déployer un vaisseau dans le système de Bajor"
+ cp26_bajor_obj_send_ship:0 "§YObjectif :§! Envoyez un vaisseau dans le système de Bajor. N'importe quel type de vaisseau suffit  -  dès qu'il sera en position, votre décision prendra effet."
+ cp26_bajor_obj_send_military:0 "§YObjectif :§! Envoyez une flotte militaire dans le système de Bajor. Une fois vos vaisseaux en position, la libération se déclenchera automatiquement."
+ cp26_bajor_obj_send_troops:0 "§YObjectif :§! Construisez des armées et envoyez un transport dans le système de Bajor. Débarquez ensuite les troupes sur Bajor pour renforcer l'occupation."
+ cp26_bajor_obj_arrived:0 "§GVos forces sont en position.§! La résolution de la situation de Bajor est en cours..."
+ cp26_bajor_obj_monitoring:0 "Vos forces et ressources ont été engagées sur Bajor. Le résultat se précisera dans les prochaines semaines."
+
+ # Libération de Bajor  -  Fédération (cp26_bajor.1)
+ cp26_bajor.1.desc:0 "Les rapports de renseignement confirment ce que nous redoutions. Les cellules de résistance bajoranes ont lancé un soulèvement coordonné contre l'Occupation cardassienne. La situation sur Bajor se détériore rapidement  -  les victimes civiles s'accumulent d'heure en heure. Le Conseil de la Fédération attend notre réponse. Comment Starfleet réagit-il ?"
+ cp26_bajor.1.a:0 "Non-intervention. C'est une affaire interne cardassienne."
+ cp26_bajor.1.b:0 "Envoyer une force opérationnelle Starfleet. Libérer Bajor."
+ cp26_bajor.1.c:0 "Envoyer un convoi humanitaire  -  1 000 tonnes de vivres d'urgence."
+ cp26_bajor.1.b.tt:0 "Ordonnez à une flotte Starfleet de rejoindre le système de Bajor. L'objectif apparaîtra dans le journal de bord  -  une fois vos vaisseaux en position, la libération se déclenchera automatiquement."
+ cp26_bajor.1.c.tt:0 "Envoyez un vaisseau fédéral dans le système de Bajor pour livrer l'aide. L'objectif apparaîtra dans le journal de bord  -  une fois en position, le convoi fait pencher la balance et déclenche la résolution automatiquement."
+
+ # Libération de Bajor  -  Union Cardassienne (cp26_bajor.2)
+ cp26_bajor.2.desc:0 "La résistance bajoranes est devenue une rébellion ouverte. La garnison du Préfet Dukat tient  -  à peine. Le Commandement Central exige une réponse avant que la situation échappe à tout contrôle. L'honneur de l'Union et le contrôle de l'une de nos acquisitions stratégiques les plus importantes sont en jeu."
+ cp26_bajor.2.a:0 "Écraser la rébellion. Renforcer les garnisons et rétablir l'ordre par tous les moyens."
+ cp26_bajor.2.b:0 "Renforcer l'occupation. Plus de troupes, plus de patrouilles, verrouillage total."
+ cp26_bajor.2.c:0 "Retrait stratégique. Bajor coûte plus qu'il ne rapporte."
+ cp26_bajor.2.a.tt:0 "Construisez des armées et envoyez un transport de troupes dans le système de Bajor. L'objectif apparaîtra dans le journal de bord  -  une fois les troupes débarquées sur Bajor, la répression de la rébellion se déclenchera."
+ cp26_bajor.2.b.tt:0 "Construisez des armées et envoyez un transport de troupes dans le système de Bajor. L'objectif apparaîtra dans le journal de bord  -  une fois les troupes débarquées, le verrouillage militaire prendra effet."
+ cp26_bajor.2.c.tt:0 "Le retrait sera perçu comme une faiblesse, mais mettra fin à la pression sur nos forces. Bajor sera libéré."
+
+ # Libération de Bajor  -  Empire Klingon (cp26_bajor.3)
+ cp26_bajor.3.desc:0 "Les Bajorans se sont soulevés contre leurs occupants cardassiens. Des guerriers qui résistent à l'esclavage méritent d'être appelés guerriers. L'Empire observe  -  et une opportunité se présente. Agissons-nous, ou affilons-nous nos lames pour le bon moment ?"
+ cp26_bajor.3.a:0 "Envoyer des armes et des guerriers à Bajor. L'honneur l'exige."
+ cp26_bajor.3.b:0 "Les Cardassiens sont affaiblis. Frapper maintenant et saisir l'avantage."
+ cp26_bajor.3.c:0 "Ce conflit ne concerne pas l'Empire."
+ cp26_bajor.3.a.tt:0 "Envoyez une flotte klingone dans le système de Bajor. L'objectif apparaîtra dans le journal de bord  -  une fois vos vaisseaux en position, la libération se déclenchera automatiquement."
+ cp26_bajor.3.b.tt:0 "Un casus belli contre l'Union Cardassienne pendant que ses forces sont à l'étirement."
+
+ # Libération de Bajor  -  Empire Romulien (cp26_bajor.4)
+ cp26_bajor.4.desc:0 "Bajor brûle. Les forces cardassiens sont mobilisées, leur attention ailleurs. Le Tal Shiar identifie trois axes d'exploitation. L'émotion n'est pas un luxe romulien  -  seulement l'opportunité."
+ cp26_bajor.4.a:0 "Fournir un soutien clandestin aux rebelles. Déstabiliser le contrôle cardassien."
+ cp26_bajor.4.b:0 "Observer. Laisser les deux camps s'épuiser."
+ cp26_bajor.4.c:0 "Intervenir officiellement. Romulus prend le parti de Bajor."
+ cp26_bajor.4.a.tt:0 "Envoyez un vaisseau espion dans le système de Bajor. Une fois en position, les agents déstabilisent la garnison  -  la résistance bajoranne éclate et Bajor est libérée, avec quelques dommages de sabotage."
+ cp26_bajor.4.b.tt:0 "Observer le conflit sans intervenir. Aucun avantage immédiat."
+ cp26_bajor.4.c.tt:0 "Envoyez une flotte romulienne dans le système de Bajor. L'objectif apparaîtra dans le journal de bord  -  une fois vos vaisseaux en position, la libération se déclenchera automatiquement."
+
+ # Libération de Bajor  -  Alliance Ferengi (cp26_bajor.5)
+ cp26_bajor.5.desc:0 "Une guerre est un marché. Les Bajorans se battent avec ce qu'ils peuvent récupérer ; les Cardassiens saignent du latinum pour tenir une planète de plus en plus difficile à conserver. Les deux camps ont besoin de ravitaillement. Règle d'Acquisition 34 : La guerre est bonne pour les affaires. La seule question est : quel camp  -  ou les deux ?"
+ cp26_bajor.5.a:0 "Vendre des armes et des fournitures aux Bajorans."
+ cp26_bajor.5.b:0 "Ravitailler la garnison cardassienne. Un client stable est un client fiable."
+ cp26_bajor.5.c:0 "Vendre aux deux camps. Le profit n'a pas de drapeau."
+ cp26_bajor.5.a.tt:0 "Envoyez un vaisseau férengi dans le système de Bajor pour livrer les armes. L'objectif apparaîtra dans le journal de bord  -  une fois en position, la libération se déclenchera automatiquement."
+ cp26_bajor.5.b.tt:0 "Envoyez un vaisseau à Bajor pour livrer les armes à la garnison cardassienne. L'objectif apparaîtra dans le journal  -  une fois en position, la livraison renforce l'occupation. Bajor reste cardassienne."
+ cp26_bajor.5.c.tt:0 "Envoyez un vaisseau dans le système de Bajor ET un autre dans l'espace cardassien. Les deux camps armés s'affrontent  -  Bajor sera libérée mais avec des dommages collatéraux (30% dévastation)."
+
+ # Libération de Bajor  -  noms des modificateurs de planète
+ cp26_bajor_suppressed_garrison:0 "Garnison de répression cardassienne"
+ cp26_bajor_suppressed_garrison_desc:0 "Les forces militaires cardassines ont imposé une répression brutale à la population. La résistance est punie sévèrement, les mouvements civils sont restreints et la main-d'œuvre de la planète opère sous une pression constante."
+ cp26_bajor_romulan_sabotage:0 "Opérations clandestines romulières"
+ cp26_bajor_romulan_sabotage_desc:0 "Des agents romuliens opèrent dans l'ombre, perturbant les lignes d'approvisionnement cardassines, désactivant les relais de communication et attisant le mécontentement parmi les forces d'occupation."
+
+ # Libération de Bajor  -  modificateurs post-libération
+ cp26_bajor_fed_liberation:0 "Libération par Starfleet"
+ cp26_bajor_fed_liberation_desc:0 "L'intervention militaire de Starfleet a permis la libération de Bajor. La présence fédérale a rétabli l'ordre et la stabilité sur la planète."
+ cp26_bajor_humanitarian_relief:0 "Aide humanitaire fédérale"
+ cp26_bajor_humanitarian_relief_desc:0 "Le convoi humanitaire de la Fédération a permis de nourrir la population et de stabiliser la situation sur Bajor. Les réserves alimentaires permettront de reconstruire rapidement."
+ cp26_bajor_klingon_honor:0 "Pacte d'honneur klingon"
+ cp26_bajor_klingon_honor_desc:0 "Les guerriers klingons ont combattu aux côtés des Bajorans pour chasser les Cardassiens. Cet acte d'honneur a inspiré les défenseurs de Bajor et renforcé leurs capacités militaires."
+ cp26_bajor_romulan_influence:0 "Réseau d'influence romulien"
+ cp26_bajor_romulan_influence_desc:0 "L'intervention officielle de l'Empire Romulien a conduit à un partage tacite de technologies et de renseignements avec Bajor, accélérant les programmes de recherche locaux."
+ cp26_bajor_ferengi_trade:0 "Accord commercial férengi"
+ cp26_bajor_ferengi_trade_desc:0 "Les armes et fournitures férengies ont changé la balance du conflit. En échange, Bajor est désormais lié à un accord commercial avec l'Alliance Férengi, stimulant l'économie locale."
+ cp26_bajor_ferengi_card_supply:0 "Ravitaillement férengi  -  garnison cardassienne"
+ cp26_bajor_ferengi_card_supply_desc:0 "Des fournitures et armements fermis par les Férengi ont renforcé la garnison cardassienne sur Bajor. La résistance bajoranne est contenue mais la tension sociale s'intensifie."

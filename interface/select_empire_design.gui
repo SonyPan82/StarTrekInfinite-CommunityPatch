@@ -505,7 +505,7 @@ guiTypes = {
 				alwaysTransparent = yes
 			}
 
-			# Portrait — zone portrait, logo en overlay = ~82px, portrait debute a y=65
+			# Portrait  -  zone portrait, logo en overlay = ~82px, portrait debute a y=65
 			containerWindowType = {
 				name = "portrait_window"
 				position = { x = 0 y = 65 }
@@ -599,7 +599,7 @@ guiTypes = {
 					text_color_code = "H"
 				}
 
-				# Éthiques — icônes centrées, espacement aéré
+				# Éthiques  -  icônes centrées, espacement aéré
 				overlappingElementsBoxType = {
 					name = "traits"
 					position = { x = 0 y = 34 }
@@ -616,7 +616,7 @@ guiTypes = {
 					alwaysTransparent = yes
 				}
 
-				# Civiques — liste élargie pour afficher les noms complets
+				# Civiques  -  liste élargie pour afficher les noms complets
 				smoothListboxType = {
 					name = "civics"
 					position = { x = 56 y = 80 }
@@ -649,7 +649,7 @@ guiTypes = {
 				}
 			}
 
-			# Description d'origine — lore en bas de carte
+			# Description d'origine  -  lore en bas de carte
 			containerWindowType = {
 				name = "origin_window"
 				size = { width = 252 height = 28 }
@@ -694,7 +694,7 @@ guiTypes = {
 			}
 		}
 
-		# Empire flag — zone logo en haut de carte, scale 0.38 = ~82px, centré sur 302px = x=110
+		# Empire flag  -  zone logo en haut de carte, scale 0.38 = ~82px, centré sur 302px = x=110
 		buttonType = {
 			name = "empire_flag"
 			spriteType = "GFX_dummy_flag_216"

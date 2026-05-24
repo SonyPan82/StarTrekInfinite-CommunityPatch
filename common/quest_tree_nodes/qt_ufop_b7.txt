@@ -34,9 +34,13 @@ qt_ufop_upgrade_the_enterprise = {
 		
 	}
 
-	on_finished = {	
+	on_finished = {
 		give_technology = { tech = tech_defiant }
 		country_event = { id = quest.70 } # Upgrade the Enterprise - Special Project Enabled
+		if = {
+			limit = { has_country_flag = cp26_fleet_museum_spawned }
+			country_event = { id = cp26_museum.1 days = 30 }
+		}
 	}
 
 	modifier = {

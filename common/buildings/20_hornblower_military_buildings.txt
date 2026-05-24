@@ -1,0 +1,586 @@
+##############################################
+##	  		  Military Buildings			##
+##############################################
+
+# Military Base
+building_stronghold = {
+	base_buildtime = @b1_time
+	position_priority = 100
+
+	category = army
+	
+	potential = {
+		buildings_simple_allow = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { is_ai = yes }
+		AND = {
+			OR = {
+				num_buildings = { type = building_stronghold value > 1 }
+				has_building = building_fortress
+			}
+			free_building_slots = 0
+			owner = { 
+				#HRB_TODO: naval capacity was removed. 
+				#used_naval_capacity_percent < 0.6
+				is_at_war = no # don't destroy while at war
+			}
+		}
+	}
+	
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @b1_minerals
+		}			
+		upkeep = {
+			energy = @b1_upkeep
+		}
+
+		produces = {
+			trigger = {
+				AND = {
+					owner = {
+						has_modifier = qt_romulan_a2_effect
+					}
+					is_capital = yes
+				}
+			}
+			unity = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		modifier = {
+			job_starfleet_officer_ufop_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		modifier = {
+			job_warrior_klingon_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_romulan = yes }
+		}
+		modifier = {
+			job_centurion_romulan_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		modifier = {
+			job_legate_cardassian_add = @b1_jobs
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		modifier = {
+			job_soldier_add = @b1_jobs
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_defense_cultural_attraction }
+		}
+		modifier = {
+			job_culture_worker_add = 1
+		}
+	}
+
+	country_modifier = {
+		country_command_limit_add = 4
+	}
+
+	prerequisites = {
+		"tech_planetary_defenses"
+	}
+
+	upgrades = {
+		"building_fortress"
+		"building_planetary_defense_system_ufop"
+		"building_hall_of_warriors_klingon"
+		"building_base_of_operations_romulan"
+		"building_enforced_peacekeeping_annex_cardassian"
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_starfleet_officer_ufop_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_warrior_klingon_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_romulan = yes }
+		}
+		text = job_centurion_romulan_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_legate_cardassian_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_soldier_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { has_tradition = tr_defense_cultural_attraction }
+		}
+		text = job_culture_worker_effect_desc
+	}
+
+	# AI UFOP Starfleet Officer x2 
+	ai_resource_production = {
+		trigger = { 
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		officers = 6
+	}
+
+	ai_resource_production = {
+		trigger = { 
+			exists = owner
+			owner = {
+				is_ufop = yes
+				has_quest_tree_node = qt_ufop_control_demilitarized_zone_21
+			}
+		}
+		unity = 2
+	}
+
+	ai_resource_production = {
+		trigger = { 
+			exists = owner
+			owner = {
+				is_ufop = yes
+				has_quest_tree_node = qt_ufop_inevitable
+			}
+			
+		}
+		officers = 2
+	}
+
+	ai_resource_production = {
+		trigger = { 
+			exists = owner
+			owner = {
+				is_ufop = yes
+				has_quest_tree_node = qt_ufop_control_neutral_zone
+			} 
+		} 
+		officers = 2
+	} 
+
+	ai_resource_production = {
+		trigger = { 
+			owner = {
+				is_ufop = yes
+			}
+			exists = planet
+				planet = {
+					exists = owner
+					planet = { has_designation = col_fortress }
+				}
+		}
+		influence = 1 # Only takes Integer
+	}
+
+	ai_resource_production = {
+		trigger = { 
+			owner = {
+				is_ufop = yes
+			}
+			exists = owner
+			owner = { has_tradition = tr_defense_oath_citizenship }
+		}
+		unity = 2
+	}
+
+	# AI Warrior Klingon x2
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_klingon = yes
+			}
+		}
+		officers = 3
+	}
+
+
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_klingon = yes
+			}
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		influence = 1 # Only takes integers
+	}
+
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_klingon = yes
+			}
+			exists = owner
+			owner = { has_tradition = tr_defense_oath_citizenship }
+		}
+		unity = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_klingon = yes
+			}
+			exists = owner
+			owner = { has_quest_tree_node = qt_klingon_e2 }
+		}
+		unity = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_klingon = yes
+			}
+			exists = owner
+			planet = {
+				has_modifier = kahless_festival
+			}
+		}
+		unity = 3
+	}
+
+	# AI Centurion x2
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_romulan =  yes
+			}
+		}
+		officers = 6
+	}
+
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_romulan =  yes
+			}
+		}
+		research = 2
+	}
+	
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_romulan =  yes
+			}
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		influence = 1 # Takes an Integer
+	}
+
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_romulan =  yes
+			}
+			exists = owner
+			owner = { has_tradition = tr_defense_oath_citizenship }
+		}
+		unity = 2
+	}
+
+	# AI Legate x2
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_cardassian = yes
+			}
+		}
+		officers = 3
+	}
+
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_cardassian = yes
+			}
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		influence = 1 #Influence only takes integers
+	}
+	
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_cardassian = yes
+			}
+				exists = owner
+				owner = { has_tradition = tr_defense_oath_citizenship }
+			}
+		unity = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			owner = {
+				is_cardassian = yes
+			}
+				exists = planet
+				planet = { has_modifier = cardassian_expedited_military_training }
+			}
+		officers = 2
+	}
+
+	# AI Soldier x2 TODO
+	ai_resource_production = {
+			trigger = {
+				owner = {
+					is_minor = yes
+				}
+			}
+			officers = 6
+		}
+	
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		influence = 1 # Only takes Integers
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_tradition = tr_defense_oath_citizenship }
+		}
+		unity = 2
+	}
+}
+
+
+
+
+# Military Headquarters
+building_fortress = {
+	base_buildtime = @b2_time
+	can_build = no
+	planetary_ftl_inhibitor = yes
+	position_priority = 100
+
+	category = army
+	
+	potential = {
+		owner = { is_minor = yes }
+	}
+
+	allow = {
+		has_fully_upgraded_capital = yes
+	}
+	
+	destroy_trigger = {
+		exists = owner
+		owner = { is_ai = yes }
+		OR = {
+			AND = {
+				num_buildings = { type = building_fortress value > 1 }
+				free_building_slots = 0
+				#HRB_TODO: naval capacity was removed. 
+				#owner = { used_naval_capacity_percent < 0.4	}
+			}
+			buildings_no_motes = yes
+		}
+	}
+	
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @b2_minerals
+			#tetryons = 100
+		}			
+		upkeep = {
+			energy = @b2_upkeep
+			#tetryons = 1
+		}
+		produces = {
+			unity = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		modifier = {
+			job_soldier_add = @b3_jobs
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_defense_cultural_attraction }
+		}
+		modifier = {
+			job_culture_worker_add = 1
+		}
+	}
+
+	country_modifier = {
+		country_command_limit_add = 8
+	}
+
+	prerequisites = {
+		"tech_global_defense_grid"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_starfleet_officer_ufop_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_warrior_klingon_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_romulan = yes }
+		}
+		text = job_centurion_romulan_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_legate_cardassian_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_soldier_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { has_tradition = tr_defense_cultural_attraction }
+		}
+		text = job_culture_worker_effect_desc
+	}
+
+	# AI Soldier x2 TODO
+	ai_resource_production = {
+			trigger = {
+				owner = {
+					is_minor = yes
+				}
+			}
+			officers = 6
+		}
+	
+
+	ai_resource_production = {
+		trigger = {
+			exists = planet
+			planet = {
+				exists = owner
+				planet = { has_designation = col_fortress }
+			}
+		}
+		influence = 1 # Only takes Integers
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { has_tradition = tr_defense_oath_citizenship }
+		}
+		unity = 2
+	}
+
+	show_tech_unlock_if = {
+		is_minor = yes
+  	}
+}

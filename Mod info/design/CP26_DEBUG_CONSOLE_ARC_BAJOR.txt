@@ -1,0 +1,174 @@
+CP26 - Console de test (Arc Libération de Bajor — 2369)
+========================================================
+Ouvre la console (~), sans ironman. Tous les événements Bajor sont des
+country_event appelables directement avec `event <id>`.
+
+Namespace : cp26_bajor
+Fichier source : events/cp26_bajor_liberation_events.txt
+
+
+RÉSUMÉ RAPIDE — ACTIVER L'ARC
+-------------------------------
+L'arc est DÉSACTIVÉ par défaut (flag cp26_block_bajor_arc présent).
+Pour l'activer depuis la console en cours de partie :
+
+    effect remove_global_flag = cp26_block_bajor_arc
+
+Pour bloquer l'arc (si tu veux le désactiver en cours de partie) :
+
+    effect add_global_flag = cp26_block_bajor_arc
+
+
+RÉSUMÉ RAPIDE — FORCER LES ÉVÉNEMENTS PAR EMPIRE
+--------------------------------------------------
+Tous ces événements sont bloqués si le flag cp26_block_bajor_arc est présent.
+Si la partie est déjà en cours après 2370, le flag de garde `cp26_bajor_event_fired`
+est absent sur chaque pays — il suffit de déclencher l'event directement.
+
+FÉDÉRATION (jouer en UFOP ou play <id_ufop>) :
+    event cp26_bajor.1
+
+UNION CARDASSIENNE (jouer en Cardassien) :
+    event cp26_bajor.2
+
+EMPIRE KLINGON (jouer en Klingon) :
+    event cp26_bajor.3
+
+EMPIRE ROMULIEN (jouer en Romulien) :
+    event cp26_bajor.4
+
+ALLIANCE FERENGI (jouer en Ferengi) :
+    event cp26_bajor.5
+
+
+SIMULER LA LIBÉRATION DIRECTEMENT (sans passer par un événement)
+-----------------------------------------------------------------
+L'événement cp26_bajor.10 est l'effet commun de libération (masqué).
+Il transfère Bajor au pays bajoran si les Cardassiens le contrôlent encore.
+Déclencher depuis n'importe quel empire en scope :
+
+    event cp26_bajor.10
+
+Vérifier si Bajor a été libéré (flag global posé par cp26_bajor.10) :
+
+    effect = { if = { limit = { has_global_flag = cp26_bajor_liberated } add_resource = { influence = 1 } } }
+    (Si tu gagnes 1 influence, le flag est bien posé.)
+
+
+FLAGS UTILES
+------------
+Vérifier / réinitialiser le flag de garde par pays (permet de refaire l'event) :
+
+    effect remove_country_flag = cp26_bajor_event_fired
+
+Réinitialiser la libération pour rejouer l'arc :
+
+    effect remove_global_flag = cp26_bajor_liberated
+    effect remove_country_flag = cp26_bajor_event_fired
+
+Vérifier que le flag de blocage est bien absent (arc actif) :
+
+    effect remove_global_flag = cp26_block_bajor_arc
+
+Forcer le flag d'initialisation (pour éviter le re-set au prochain chargement) :
+
+    effect add_global_flag = cp26_bajor_arc_initialized
+
+
+MODIFICATEURS DE PLANÈTE
+-------------------------
+Appliquer manuellement la garnison cardassienne sur Bajor :
+    effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_bajor } add_modifier = { modifier = cp26_bajor_suppressed_garrison days = 1800 } } }
+
+Appliquer le sabotage romulien sur Bajor :
+    effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_bajor } add_modifier = { modifier = cp26_bajor_romulan_sabotage days = 720 } } }
+
+Retirer les deux modificateurs :
+    effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_bajor } remove_modifier = cp26_bajor_suppressed_garrison remove_modifier = cp26_bajor_romulan_sabotage } }
+
+
+CHANGER DE PAYS EN CONSOLE
+---------------------------
+Pour tester les événements de chaque empire sans relancer une partie :
+
+    debugtooltip        (survole un pays sur la carte pour voir son ID)
+    play <country_id>   (change ton empire actif)
+
+Exemple de workflow complet :
+    1. play <id_cardassien>   → event cp26_bajor.2  (choisir écraser ou retrait)
+    2. play <id_ufop>         → event cp26_bajor.1  (choisir intervention)
+    3. play <id_klingon>      → event cp26_bajor.3
+    4. play <id_romulien>     → event cp26_bajor.4
+    5. play <id_ferengi>      → event cp26_bajor.5
+
+
+DESCRIPTION DES ÉVÉNEMENTS
+---------------------------
+
+cp26_bajor.1 — Fédération (country_event, pulse annuel 2369)
+    Trigger : is_ufop = yes, date > 2369.1.1, NOT date > 2370.1.1
+    Options :
+      A) Non-intervention          → +100 influence, +25 opinion Cardassiens (humanitaire)
+      B) Intervention militaire    → +200 influence −1500 alliages +500 unité → libération (cp26_bajor.10 ×5j), −80 opinion Cardassiens
+      C) Aide humanitaire          → +50 influence −1000 nourriture +150 unité, 30% chance → libération (×15j)
+
+cp26_bajor.2 — Union Cardassienne (country_event, pulse annuel 2369)
+    Trigger : is_cardassian = yes
+    Options :
+      A) Écraser la rébellion      → −2000 alliages −1000 énergie −300 unité, modificateur garnison sur Bajor (1800j)
+      B) Renforcer l'occupation    → −2000 énergie −500 alliages
+      C) Se retirer de Bajor       → −200 influence → libération (×5j), +40 opinion Fédération et Klingons
+
+cp26_bajor.3 — Empire Klingon (country_event, pulse annuel 2369)
+    Trigger : is_klingon = yes
+    Options :
+      A) Soutenir Bajor            → +150 influence −1000 alliages → libération (×5j), −80 opinion Cardassiens
+      B) Casus belli               → +250 influence, cb_liberation_war contre Cardassiens (1800j)
+      C) Ignorer                   → +100 unité
+
+cp26_bajor.4 — Empire Romulien (country_event, pulse annuel 2369)
+    Trigger : is_romulan = yes
+    Options :
+      A) Soutien clandestin        → −500 énergie, modificateur cp26_bajor_romulan_sabotage sur Bajor (720j)
+      B) Observer                  → +200 influence +500 recherche physique
+      C) Intervenir officiellement → −1200 alliages → libération (×5j), −80 opinion Cardassiens
+
+cp26_bajor.5 — Alliance Ferengi (country_event, pulse annuel 2369)
+    Trigger : is_ferengi = yes
+    Options :
+      A) Vendre aux Bajorans       → +3000 énergie → libération (×10j), −40 opinion Cardassiens
+      B) Vendre aux Cardassiens    → +3000 énergie, +60 opinion Cardassiens
+      C) Vendre aux deux camps     → +5000 énergie, −40 opinion Cardassiens/Fédération/Klingons
+
+cp26_bajor.10 — Libération de Bajor (country_event masqué, is_triggered_only)
+    Pose le flag global cp26_bajor_liberated.
+    Si Bajor appartient encore aux Cardassiens (owner is_cardassian = yes),
+    transfère la planète au pays bajoran (event_target:bajoran_planet → set_owner = event_target:bajoran_country).
+    Déclenché uniquement si cp26_bajor_liberated absent, bajoran_planet et bajoran_country existent.
+
+
+NOTES TECHNIQUES
+----------------
+- Le flag cp26_block_bajor_arc bloque le déclenchement dans le trigger de CHAQUE event.
+  Les appels directs depuis la console ignorent le trigger → l'arc fonctionne quand même.
+
+- Le flag cp26_bajor_event_fired est un country_flag (par pays). Reset avec :
+      effect remove_country_flag = cp26_bajor_event_fired
+  depuis le pays concerné.
+
+- event_target:bajoran_country et event_target:bajoran_planet sont sauvegardés
+  dans l'initialisateur solaire Bajoran (solar_system_initializers).
+  S'ils n'existent pas (empire bajoran absent de la galaxie), les effets de libération
+  s'exécutent sans erreur mais n'ont aucun effet visible.
+
+- La libération (cp26_bajor.10) ne peut se produire qu'une seule fois par partie
+  (guard sur has_global_flag = cp26_bajor_liberated).
+
+- Pour switcher de pays en console : play <country_id>
+  Pour trouver les IDs : debugtooltip puis survole le pays sur la carte.
+
+Fichiers sources :
+    events/cp26_bajor_liberation_events.txt
+    common/opinion_modifiers/cp26_bajor_opinions.txt
+    common/static_modifiers/cp26_bajor_modifiers.txt
+    events/cp26_game_start_options.txt  (toggle activé/désactivé)

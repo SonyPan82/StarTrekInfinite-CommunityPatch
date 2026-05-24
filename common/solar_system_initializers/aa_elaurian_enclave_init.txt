@@ -1,4 +1,4 @@
-# CP26: Elaurian Curator Order enclave — explicitly placed in the galaxy
+# CP26: Elaurian Curator Order enclave  -  explicitly placed in the galaxy
 # Vanilla guardians_curator_init_01 uses misc_system_init which doesn't run in
 # bespoke procedural scenarios. This version has no usage field so it works as
 # a bespoke system placed directly in the setup scenario.
