@@ -1,6 +1,6 @@
 cp26_daystrom_station = {
 	entity = "federation_daystrom_station_entity"
-	construction_entity = "federation_daystrom_station_construction_entity"
+	construction_entity = "ufop_01_starbase_habitat_construction_entity"
 	portrait = GFX_megastructure_construction_background
 	place_entity_on_planet_plane = no
 	entity_offset = { x = -50 y = -15 }
@@ -25,13 +25,7 @@ cp26_daystrom_station = {
 		planet_possible = {
 			custom_tooltip = {
 				fail_text = cp26_daystrom_requires_planet_or_moon
-				OR = {
-					is_moon = yes
-					AND = {
-						is_planet_type = planet
-						NOT = { is_star = yes }
-					}
-				}
+				NOT = { is_star = yes }
 			}
 			custom_tooltip = {
 				fail_text = cp26_daystrom_requires_ufop_system

@@ -1,0 +1,251 @@
+##########################################################################
+# Projets spéciaux - Arc de libération de Bajor 2369
+#
+# Ces projets remplacent les events MTTH de détection (cp26_bajor.50-.54).
+# Le joueur voit un bouton "Recherche" dans le journal de bord avec
+# l'indication du type de vaisseau requis, et le marqueur sur la carte.
+#
+# Flux :
+#   option empire → set flag + enable_special_project
+#   joueur envoie vaisseau + clique Recherche
+#   timelimit 380j → on_fail → cp26_bajor.21 (arc expiré)
+#   ship arrive → on_success → OWNER = { liberation / suppression }
+#
+# SCOPE : event_scope = ship_event → on_success/on_fail s'exécutent en
+#   ship scope. Utiliser "OWNER = { }" (majuscule) pour switcher en
+#   country scope (pattern confirmé dans 00_projects_hornblower.txt).
+##########################################################################
+
+# ---- Flotte militaire à Bajor ----
+# Requis pour : Fédération 1.b, Klingon 3.a, Romulien 4.c
+
+special_project = {
+	key = "CP26_BAJOR_LIBERATION_MIL"
+	cost = 0
+	days_to_research = 1
+	timelimit = 380
+	tech_department = engineering_technology
+	picture = GFX_evt_highway_ftl_travel_ufop
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		custom_tooltip = CP26_BAJOR_OP_SUCCESS_TT
+		hidden_effect = {
+			OWNER = {
+				set_country_flag = cp26_bajor_fleet_arrived
+				country_event = { id = cp26_bajor.10 }
+			}
+		}
+	}
+
+	on_fail = {
+		custom_tooltip = CP26_BAJOR_OP_FAIL_TT
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajor.21 } }
+		}
+	}
+}
+
+# ---- Vaisseau quelconque à Bajor ----
+# Requis pour : Fédération 1.c (humanitaire), Romulien 4.a (espion), Ferengi 5.a
+
+special_project = {
+	key = "CP26_BAJOR_LIBERATION_ANY"
+	cost = 0
+	days_to_research = 1
+	timelimit = 380
+	tech_department = society_technology
+	picture = GFX_evt_highway_ftl_travel_ufop
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		custom_tooltip = CP26_BAJOR_OP_SUCCESS_TT
+		hidden_effect = {
+			OWNER = {
+				set_country_flag = cp26_bajor_fleet_arrived
+				country_event = { id = cp26_bajor.10 }
+			}
+		}
+	}
+
+	on_fail = {
+		custom_tooltip = CP26_BAJOR_OP_FAIL_TT
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajor.21 } }
+		}
+	}
+}
+
+# ---- Transport de troupes cardassien à Bajor (option 2.a) ----
+# timelimit 120 jours : si le transport n'arrive pas → révolte (cp26_bajor.52)
+
+special_project = {
+	key = "CP26_BAJOR_TROOPS"
+	cost = 0
+	days_to_research = 1
+	timelimit = 120
+	tech_department = engineering_technology
+	picture = GFX_evt_pc_k_star_sky
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_transport = 1
+	}
+
+	on_success = {
+		custom_tooltip = CP26_BAJOR_TROOPS_SUCCESS_TT
+		hidden_effect = {
+			OWNER = {
+				set_country_flag = cp26_bajor_fleet_arrived
+				set_country_flag = cp26_bajor_troops_suppressed
+				if = {
+					limit = {
+						has_country_flag = cp26_bajor_opt_crush
+						exists = event_target:bajoran_planet
+					}
+					event_target:bajoran_planet = {
+						add_modifier = { modifier = "cp26_bajor_suppressed_garrison" days = 1800 }
+					}
+				}
+				country_event = { id = cp26_bajor.20 }
+			}
+		}
+	}
+
+	on_fail = {
+		custom_tooltip = CP26_BAJOR_TROOPS_FAIL_TT
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajor.52 } }
+		}
+	}
+}
+
+# ---- Livraison Ferengi → garnison cardassienne (option 5.b) ----
+
+special_project = {
+	key = "CP26_BAJOR_FERENGI_CARD"
+	cost = 0
+	days_to_research = 1
+	timelimit = 380
+	tech_department = society_technology
+	picture = GFX_evt_space_distress_ship_minor
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		custom_tooltip = CP26_BAJOR_OP_SUCCESS_TT
+		hidden_effect = {
+			OWNER = {
+				set_country_flag = cp26_bajor_fleet_arrived
+				if = {
+					limit = { exists = event_target:bajoran_planet }
+					event_target:bajoran_planet = {
+						add_modifier = { modifier = "cp26_bajor_ferengi_card_supply" days = 720 }
+					}
+				}
+				country_event = { id = cp26_bajor.20 }
+			}
+		}
+	}
+
+	on_fail = {
+		custom_tooltip = CP26_BAJOR_OP_FAIL_TT
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajor.21 } }
+		}
+	}
+}
+
+# ---- Livraison Ferengi → les deux camps : vaisseau à Bajor (option 5.c) ----
+# Les deux projets doivent être complétés pour libérer Bajor.
+
+special_project = {
+	key = "CP26_BAJOR_FERENGI_BOTH_BAJOR"
+	cost = 0
+	days_to_research = 1
+	timelimit = 380
+	tech_department = society_technology
+	picture = GFX_evt_space_distress_ship_minor
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		custom_tooltip = CP26_BAJOR_OP_SUCCESS_TT
+		hidden_effect = {
+			OWNER = {
+				set_country_flag = cp26_bajor_feren_both_bajor_done
+				if = {
+					limit = { has_country_flag = cp26_bajor_feren_both_card_done }
+					set_country_flag = cp26_bajor_fleet_arrived
+					set_country_flag = cp26_bajor_opt_feren_both
+					country_event = { id = cp26_bajor.10 }
+				}
+			}
+		}
+	}
+
+	on_fail = {
+		custom_tooltip = CP26_BAJOR_OP_FAIL_TT
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajor.21 } }
+		}
+	}
+}
+
+# ---- Livraison Ferengi → les deux camps : vaisseau à Cardassia (option 5.c) ----
+
+special_project = {
+	key = "CP26_BAJOR_FERENGI_BOTH_CARD"
+	cost = 0
+	days_to_research = 1
+	timelimit = 380
+	tech_department = society_technology
+	picture = GFX_evt_space_distress_ship_minor
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		custom_tooltip = CP26_BAJOR_OP_SUCCESS_TT
+		hidden_effect = {
+			OWNER = {
+				set_country_flag = cp26_bajor_feren_both_card_done
+				if = {
+					limit = { has_country_flag = cp26_bajor_feren_both_bajor_done }
+					set_country_flag = cp26_bajor_fleet_arrived
+					set_country_flag = cp26_bajor_opt_feren_both
+					country_event = { id = cp26_bajor.10 }
+				}
+			}
+		}
+	}
+
+	on_fail = {
+		custom_tooltip = CP26_BAJOR_OP_FAIL_TT
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajor.21 } }
+		}
+	}
+}

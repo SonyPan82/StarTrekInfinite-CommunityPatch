@@ -40,7 +40,7 @@ bajoran = {
 
 	system_name = "NAME_Bajoran_System"
 	planet_name = "NAME_Bajor"
-	planet_class = "pc_desert"
+	planet_class = "pc_arid"
 	planet_subclass = psc_class_m
 	initializer = "bajoran_bajor_initializer"
 

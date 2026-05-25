@@ -1,0 +1,2 @@
+# Décisions Bajor - remplacées par les special_projects (cp26_bajor_liberation_projects.txt)
+# Le joueur utilise le bouton "Recherche" dans le journal de bord.

@@ -83,15 +83,15 @@ action.13.a.ferengi:0 "Open negotiations."
  district_city_tholian_desc:0 "A sub-assembly dedicated to empowering the One That Rules."
 
  cp26_fleet_museum:0 "Fleet Museum"
- cp26_fleet_museum_DESC:0 "A preserved museum station showcasing historic Starfleet vessels, including the NX-01 and NX-02."
- cp26_fleet_museum_MEGASTRUCTURE_DETAILS:0 "A preserved museum station showcasing historic Starfleet vessels, including the NX-01 and NX-02."
+ cp26_fleet_museum_DESC:0 "A preserved museum station showcasing historic Starfleet vessels, including the NX-01."
+ cp26_fleet_museum_MEGASTRUCTURE_DETAILS:0 "A preserved museum station showcasing historic Starfleet vessels, including the NX-01."
  cp26_fleet_museum_stage2:0 "Fleet Museum"
  cp26_fleet_museum_stage2_DESC:0 "The Enterprise-D, Galaxy class, has joined the museum collection. Her iconic silhouette now dominates the station's main ring."
  cp26_fleet_museum_stage2_MEGASTRUCTURE_DETAILS:0 "The Enterprise-D, Galaxy class, has joined the museum collection. Her iconic silhouette now dominates the station's main ring."
  cp26_fleet_museum_stage3:0 "Fleet Museum"
  cp26_fleet_museum_stage3_DESC:0 "The Enterprise-E, Sovereign class, completes the collection. The museum now houses a century and a half of Starfleet history, from the NX-01 to the Federation flagship."
  cp26_fleet_museum_stage3_MEGASTRUCTURE_DETAILS:0 "The Enterprise-E, Sovereign class, completes the collection. The museum now houses a century and a half of Starfleet history, from the NX-01 to the Federation flagship."
- qt_ufop_upgrade_enterprise_odyssey:0 "Enterprise Refit  -  Odyssey Class"
+ qt_ufop_upgrade_enterprise_odyssey:0 "Enterprise Refit Odyssey Class"
  qt_ufop_upgrade_enterprise_odyssey_desc:0 "The lessons of decades of exploration and conflict have led Starfleet's engineers to their most ambitious refit yet. The Enterprise will be upgraded to the Odyssey class  -  the largest and most capable vessel in the fleet."
  UPGRADE_ENTERPRISE_ODYSSEY:0 "Enterprise Odyssey Refit"
  UPGRADE_ENTERPRISE_ODYSSEY_DESC:0 "Starfleet engineers stand ready to carry out the most ambitious refit in the Enterprise's history. This will require 5,000 alloys and 20 dilithium crystals."
@@ -547,7 +547,33 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_options.1.bajor_arc_off:0 "Bajor Liberation (TESTING): §Rdisabled§!"
  cp26_options.1.bajor_arc_off.tt:0 "Click to enable the Liberation of Bajor arc for this campaign. Each major empire will receive a unique event in 2369."
 
- # Bajor Liberation  -  journal chain
+ # Bajor Liberation  -  special projects (journal entries + tooltips)
+ CP26_BAJOR_LIBERATION_MIL:0 "Bajor Operation - Military Fleet"
+ CP26_BAJOR_LIBERATION_MIL_DESC:0 "Dispatch a military vessel to the Bajor system before the window of opportunity closes."
+ CP26_BAJOR_LIBERATION_ANY:0 "Bajor Operation - Covert Mission"
+ CP26_BAJOR_LIBERATION_ANY_DESC:0 "Dispatch any vessel to the Bajor system before the window of opportunity closes."
+ CP26_BAJOR_TROOPS:0 "Bajor Garrison Reinforcement"
+ CP26_BAJOR_TROOPS_DESC:0 "A troop transport must reach Bajor quickly to maintain order on the surface."
+ CP26_BAJOR_FERENGI_CARD:0 "Delivery to the Cardassian Garrison"
+ CP26_BAJOR_FERENGI_CARD_DESC:0 "Dispatch a vessel to the Cardassian position before the contract window expires."
+ CP26_BAJOR_FERENGI_BOTH_BAJOR:0 "Delivery to the Bajoran Resistance"
+ CP26_BAJOR_FERENGI_BOTH_BAJOR_DESC:0 "First leg of the dual delivery: route cargo to the Bajor system."
+ CP26_BAJOR_FERENGI_BOTH_CARD:0 "Delivery to Cardassia"
+ CP26_BAJOR_FERENGI_BOTH_CARD_DESC:0 "Second leg of the dual delivery: route cargo to the Cardassian position."
+ CP26_BAJOR_OP_SUCCESS_TT:0 "Your vessel is in position. What follows will depend on the circumstances."
+ CP26_BAJOR_OP_FAIL_TT:0 "The intervention window has closed. The opportunity is lost."
+ CP26_BAJOR_TROOPS_SUCCESS_TT:0 "The troop transport has reached Bajor. The garrison is reinforced."
+ CP26_BAJOR_TROOPS_FAIL_TT:0 "The transport did not arrive in time. Unrest breaks out on the surface."
+
+ # Bajor Liberation  -  autonomous resolution (cp26_bajor.33/.34)
+ cp26_bajor.33.name:0 "Bajor: The Resistance Has Prevailed"
+ cp26_bajor.33.desc:0 "Without outside intervention, the Bajoran resistance cells finally overwhelmed the Cardassian garrison. Bajor is free — at great cost. The last Cardassians on the surface have been killed or expelled. The Bajoran Council claims independence."
+ cp26_bajor.33.a:0 "A people who refuse to be enslaved will always find a way to be free."
+ cp26_bajor.34.name:0 "Bajor: Cardassia Has Crushed the Rebellion"
+ cp26_bajor.34.desc:0 "The Cardassian garrison, reinforced from within, has broken the Bajoran uprising. The resistance has been decapitated. Bajor remains under occupation — but the suppression has left deep scars on the population and infrastructure."
+ cp26_bajor.34.a:0 "The resistance will survive. It always does."
+
+ # Bajor Liberation  -  journal chain (legacy keys, kept for compatibility)
  cp26_bajor_arc_chain_title:0 "Liberation of Bajor"
  cp26_bajor_arc_chain_desc:0 "[cp26_bajor_arc_objective_loc]"
 
@@ -607,6 +633,19 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_bajor.5.b.tt:0 "Send a ship to the Bajor system to deliver weapons to the Cardassian garrison. The objective will appear in the situation log  -  once delivered, the occupation is reinforced. Bajor remains Cardassian."
  cp26_bajor.5.c.tt:0 "Send one ship to the Bajor system AND one to Cardassian space. Both sides armed, both sides fighting  -  Bajor will be liberated but with collateral damage (30% devastation)."
 
+ # Bajor Liberation  -  decisions (action button)
+ cp26_bajor_confirm_action:0 "Trigger the Bajor Operation"
+ cp26_bajor_confirm_action_desc:0 "Your forces are in position in the Bajor system. Give the final order to trigger the operation."
+ cp26_bajor_confirm_cardassia_delivery:0 "Confirm Delivery to the Garrison"
+ cp26_bajor_confirm_cardassia_delivery_desc:0 "Your ship is in position. Confirm delivery of weapons and supplies to the Cardassian garrison on Bajor."
+ cp26_bajor_confirm_both_delivery:0 "Confirm Both Deliveries"
+ cp26_bajor_confirm_both_delivery_desc:0 "Both your ships are in position. Confirm simultaneous deliveries to the Bajorans and the Cardassians."
+ cp26_bajor_confirm_troops:0 "Disembark Troops on Bajor"
+ cp26_bajor_confirm_troops_desc:0 "Your transport is in position. Give the order to disembark and reinforce the garrison to crush the rebellion."
+ cp26_bajor_decision_no_fleet:0 "No ship detected in the Bajor system."
+ cp26_bajor_decision_no_fleet_bajor:0 "No ship detected in the Bajor system."
+ cp26_bajor_decision_no_fleet_card:0 "No ship detected in Cardassian space (outside Bajor)."
+
  # Bajor Liberation  -  planet modifier names
  cp26_bajor_suppressed_garrison:0 "Cardassian Suppression Garrison"
  cp26_bajor_suppressed_garrison_desc:0 "Cardassian military forces have imposed a brutal crackdown on the population. Resistance is punished severely, civilian movement is restricted, and the planet's workforce operates under constant duress."
@@ -626,3 +665,8 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_bajor_ferengi_trade_desc:0 "Ferengi weapons shipments tipped the balance of the conflict. In return, Bajor is now bound to a trade agreement with the Ferengi Alliance, stimulating the local economy."
  cp26_bajor_ferengi_card_supply:0 "Ferengi Supply  -  Cardassian Garrison"
  cp26_bajor_ferengi_card_supply_desc:0 "Ferengi supplies and weapons have bolstered the Cardassian garrison on Bajor. The Bajoran resistance is contained but social tensions continue to mount."
+
+ # Bajor Liberation  -  resolution event (cp26_bajor.10)
+ cp26_bajor.10.name:0 "Liberation of Bajor"
+ cp26_bajor.10.desc:0 "The Cardassian occupation has ended. Bajor is free. The Bajoran people now take their destiny into their own hands — the withdrawal of Cardassian forces marks the beginning of a new era for this ancient world."
+ cp26_bajor.10.a:0 "Bajor is free."

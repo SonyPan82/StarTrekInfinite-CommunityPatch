@@ -35,7 +35,7 @@ cp26_bajor_klingon_honor = {
 cp26_bajor_romulan_influence = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_sensor_range.dds"
 	planet_stability_add = 5
-	planet_jobs_physics_research_produces_mult = 0.10
+	planet_jobs_produces_mult = 0.10
 }
 
 cp26_bajor_ferengi_trade = {

@@ -7,7 +7,7 @@ country_event = {
 	title = "cp26_museum.1.name"
 	desc = "cp26_museum.1.desc"
 	picture = GFX_evt_highway_ftl_travel_ufop
-	show_sound = event_administrative_work
+	show_sound = event_bridge_decision
 
 	is_triggered_only = yes
 
@@ -27,7 +27,7 @@ country_event = {
 	title = "cp26_museum.3.name"
 	desc = "cp26_museum.3.desc"
 	picture = GFX_evt_highway_ftl_travel_ufop
-	show_sound = event_administrative_work
+	show_sound = event_bridge_decision
 
 	is_triggered_only = yes
 

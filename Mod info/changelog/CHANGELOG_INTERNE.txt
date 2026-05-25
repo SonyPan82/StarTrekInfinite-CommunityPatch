@@ -6,6 +6,230 @@ Format : version / date / catégorie [risque] / description
 Risque : LOW = fix de bug ou tuning prudent / MED = changement design / HIGH = expérimental
 
 --------------------------------------------------------------------------------
+Session du 2026-05-25b (Arc Bajor : journal, rébellion, Musée, Daystrom)
+--------------------------------------------------------------------------------
+
+[DESIGN][MED] Arc Bajor - Rébellion bajoranne active dès le déclenchement
+  Au déclenchement de l'arc (cp26_bajor.1 à .5), Bajor entre immédiatement en
+  état de rébellion :
+    - +25 dévastation ajoutée sur la planète Bajor
+    - Planet flag `cp26_bajor_in_rebellion` et global flag `cp26_bajor_rebellion_active`
+  Un event MTTH (cp26_bajor.31, 90j) tue progressivement 1 pop non-bajoranne
+  (cardassienne) tant que la rébellion est active.
+  Fichier modifié : events/cp26_bajor_liberation_events.txt
+
+[DESIGN][MED] Arc Bajor - Résolution automatique si aucune intervention (60/40)
+  Si aucun empire n'envoie de flotte (aucun flag d'intervention actif), un event
+  MTTH (cp26_bajor.32, 500j) résout la situation aléatoirement :
+    60% → résistance gagne (cp26_bajor.33) : set_subject_of = none, pops
+           cardassiens restants tués, notification à tous les empires concernés
+    40% → Cardassia écrase (cp26_bajor.34) : modifier suppressed_garrison 1800j,
+           notification
+  La résolution s'arrête automatiquement si une intervention est déjà en cours
+  (check sur les country flags d'intervention actifs).
+  La rébellion est aussi stoppée proprement par cp26_bajor.10 (libération joueur)
+  et cp26_bajor.20 (suppression/fermeture d'arc joueur).
+  Localisation ajoutée EN+FR pour cp26_bajor.33 et .34.
+  Fichier modifié : events/cp26_bajor_liberation_events.txt
+
+[FIX][LOW] Arc Bajor - Double entrée dans le journal de bord
+  L'event_chain `cp26_bajor_arc_chain` créait une entrée "Libération de Bajor"
+  dans le journal, en doublon avec l'entrée générée automatiquement par le
+  special project. Suppression de tous les appels `begin_event_chain` /
+  `end_event_chain` (5+4 occurrences). La chain definition est vidée.
+  Fichiers modifiés : events/cp26_bajor_liberation_events.txt,
+                      common/event_chains/cp26_bajor_chains.txt
+
+[FIX][LOW] Arc Bajor - Localisations manquantes pour les special projects
+  Les 6 clés `CP26_BAJOR_LIBERATION_MIL`, `_ANY`, `CP26_BAJOR_TROOPS`,
+  `CP26_BAJOR_FERENGI_CARD`, `_FERENGI_BOTH_BAJOR`, `_FERENGI_BOTH_CARD`
+  s'affichaient en clé brute dans le journal.
+  Ajout EN+FR de name + desc pour chaque projet, plus 4 clés de tooltip
+  (`CP26_BAJOR_OP_SUCCESS_TT`, `_FAIL_TT`, `CP26_BAJOR_TROOPS_SUCCESS_TT`,
+  `_TROOPS_FAIL_TT`).
+  Fichiers modifiés : localisation/english/zz_cp26_patch_l_english.yml,
+                      localisation/french/zz_cp26_patch_l_french.yml
+
+[UX][LOW] Arc Bajor - Hover "Recherche" ne révèle plus le résultat
+  Tous les blocs `on_success` et `on_fail` des 6 special projects wrappés dans
+  `hidden_effect = { }` avec `custom_tooltip` neutre. Le joueur voit un message
+  générique au lieu des effets détaillés.
+  Fichier modifié : common/special_projects/cp26_bajor_liberation_projects.txt
+
+[BAL][LOW] Arc Bajor - Timelimits ajustés
+  CP26_BAJOR_LIBERATION_MIL/ANY/FERENGI_* : 215j → 380j
+  CP26_BAJOR_TROOPS : 30j → 120j
+  Fichier modifié : common/special_projects/cp26_bajor_liberation_projects.txt
+
+[FIX][LOW] Daystrom Station - Placement invalide en orbite planétaire
+  Le trigger `is_planet_type = planet` n'existe pas dans Infinite.
+  Remplacé par `NOT = { is_star = yes }` (couvre planètes et lunes).
+  Fichier modifié : common/megastructures/cp26_daystrom_station.txt
+
+[FIX][MED] Daystrom Station - Apparence noire (textures manquantes)
+  Le dossier daystrom ne contenait aucune texture DDS. 9 textures absentes
+  substituées par des équivalents CP26/UFoP avec chemins complets depuis la racine :
+    jupstatmat.dds       → ufop/luna/hull_fed_type_1_grey_diffuse.dds
+    jupstatsauc.dds      → ufop/luna/Hull2.dds (top + bottom)
+    hull_old_copper      → ufop/luna/solid_copper.dds
+    hull_fed_type_1_red  → ufop/odyssey/bussard_red_diffuse.dds
+    hull_light_grey      → ufop/luna/hull_fed_type_1_grey_diffuse.dds
+    faint_hull_normal    → ufop/luna/glows_faint_normal.dds
+    solar.dds            → ufop/luna/hull_type_3_dark_yellow_diffuse.dds
+    hull_type_3_beige    → ufop/luna/hull_type_4_darker_dark_beige_diffuse.dds
+    hull_type_1_gold     → ufop/odyssey/Hull_Main_TMP_yellow.dds
+  Fichier modifié : gfx/models/ships/starbases/daystrom/daystrom_station.gfx
+
+[GFX][MED] Daystrom Station - Animation de construction ajoutée
+  L'entité de construction n'avait qu'un son et aucune particule. Ajout de 8
+  locators répartis autour de la station (anneau haut + anneau bas) et de 8
+  événements `construction_effect_large`. Pattern identique à celui des entités
+  de construction habitat Romulien/UFoP.
+  Fichier modifié : gfx/models/ships/starbases/daystrom/daystrom_station.asset
+
+[FIX][LOW] Musée - Galaxy class : 3 nœuds mesh non couverts (nacelles noires)
+  Les nœuds `Glow_Bussard`, `Glow_Grid_Blue`, `Glow_Red` présents dans le mesh
+  Galaxy n'avaient pas de meshsettings → rendu noir par défaut.
+  Ajout des 3 entrées avec textures luna :
+    Glow_Bussard    → bussard_glow.dds
+    Glow_Grid_Blue  → glow_warp_grid_blue.dds
+    Glow_Red        → hex_glow_red_diffuse.dds
+  Fichier modifié : gfx/models/ships/ufop/fleet_museum/museum_ships/cp26_museum_ships.gfx
+
+[FIX][LOW] Musée - Sovereign class : artefacts visuels sur les décals
+  Les décals `Sovereign_Faction_Emblem:MeshShape` et `Sovereign_Saucer_Decal:MeshShape`
+  utilisaient la hull texture principale avec des UV incompatibles → artefacts.
+  Remplacés par `FederationStripeDecal.dds` (texture neutre déjà présente dans
+  le dossier sovereign).
+  Fichier modifié : gfx/models/ships/ufop/fleet_museum/museum_ships/cp26_museum_ships.gfx
+
+[CONTENT][LOW] Musée - NX-02 supprimé
+  Le NX-02 (federation_01_nx_refit.mesh) était référencé dans le journal comme
+  pièce du musée mais posait des problèmes d'affichage. Suppression complète :
+    - Entités `sti_museum_nx_section_2_raw_entity` et `sti_museum_nx_section_2_entity`
+    - Tous les attach NX section 2 dans les 3 stages du musée
+    - Mesh pdxmesh `sti_museum_nx_section_2_mesh` dans le GFX
+    - Fichier mesh `federation_01_nx_refit.mesh` supprimé du disque
+    - "NX-02" retiré des descriptions EN et FR
+  Fichiers modifiés : gfx/models/ships/ufop/fleet_museum/sti_fleet_museum.asset,
+                      gfx/models/ships/ufop/fleet_museum/museum_ships/sti_museum_ships.gfx,
+                      localisation/english/zz_cp26_patch_l_english.yml,
+                      localisation/french/zz_cp26_patch_l_french.yml
+
+--------------------------------------------------------------------------------
+Session du 2026-05-25 (Arc Bajor : corrections erreurs + équilibre UFoP)
+--------------------------------------------------------------------------------
+
+[FIX][LOW] Arc Bajor - Images d'événements invalides remplacées
+  Les 5 événements principaux de l'arc Bajor (cp26_bajor.1 à .5) référençaient
+  des clés GFX inexistantes dans Infinite :
+    GFX_evt_war_ufop          → GFX_evt_empire_fleet_ufop
+    GFX_evt_war_cardassian    → GFX_evt_empire_fleet_cardassian
+    GFX_evt_war_klingon       → GFX_evt_empire_fleet_klingon
+    GFX_evt_war_romulan       → GFX_evt_empire_fleet_romulan
+    GFX_evt_ferengi_trade_ufop → GFX_evt_civil_unrest_cardassian
+  Toutes les clés de remplacement vérifiées dans Infinite/interface/*.gfx.
+  Fichier modifié : events/cp26_bajor_liberation_events.txt
+
+[FIX][LOW] Arc Bajor - Sons d'événements invalides remplacés
+  Les sons `event_war_news` et `event_administrative_work` n'existent pas
+  dans Infinite. Remplacement :
+    show_sound = event_war_news          → event_empire_fleet
+      (cp26_bajor.1 / .2 / .3 / .4 / .10)
+    show_sound = event_administrative_work → event_bridge_decision
+      (cp26_bajor.5, cp26_museum.1, cp26_museum.3)
+  Sons de remplacement vérifiés dans les événements CP26 existants
+  (hornblower_pirate_events.txt, hornblower_colony_events.txt).
+  Fichiers modifiés : events/cp26_bajor_liberation_events.txt,
+                      events/cp26_enterprise_odyssey_events.txt
+
+[FIX][LOW] Arc Bajor - Trigger `is_ferengi` invalide corrigé
+  `is_ferengi = yes` dans le trigger de cp26_bajor.5 n'est pas un scripted
+  trigger valide dans cette version d'Infinite (confirmé dans error.log).
+  Remplacé par `has_country_flag = ferengi`.
+  Fichier modifié : events/cp26_bajor_liberation_events.txt
+
+[BAL][MED] UFoP - Réduction de la production d'unité au départ (-40%, 10 ans)
+  L'UFoP débloquait ses atouts de tradition dès les premières années de jeu en
+  raison d'une production d'unité trop élevée (nombreuses planètes peuplées
+  + nœuds de quête complétés rapidement).
+  Nouveau modificateur `cp26_ufop_early_unity_balance` appliqué à l'UFoP au
+  démarrage pour 3 600 jours (~10 ans) :
+    country_unity_produces_mult = -0.40
+  Le modificateur s'estompe naturellement en milieu de partie, laissant la
+  progression des traditions à son rythme canonique.
+  Fichiers modifiés : common/static_modifiers/zz_cp26_starting_balance_static_modifiers.txt,
+                      events/zz_cp26_major_start_balance.txt
+
+[FIX][LOW] GFX - Shader `PdxMeshShipTransp` invalide remplacé
+  Le shader `PdxMeshShipTransp` n'existe pas dans Infinite (seuls `PdxMeshShip`
+  et `PdxMeshShipSkinned` sont définis dans gfx/FX/pdxmesh.shader).
+  Il était utilisé sur les mesh decals du Galaxy (Galaxy_Decal_1/2/3),
+  du Sovereign (emblème, rayures coque, rayures nacelles, décal soucoupe)
+  et sur le Galaxy nacelle (Nebula class).
+  Corrections appliquées :
+    - Tous les `shader = "PdxMeshShipTransp"` → `shader = "PdxMeshShip"`
+    - Toutes les `texture_diffuse = "transparent_diffuse.dds"` → `nospec.dds`
+      (les décals destinés à être invisibles s'affichent en sombre plutôt
+      que de générer une erreur de shader au chargement)
+  Fichiers modifiés :
+    gfx/models/ships/ufop/fleet_museum/museum_ships/cp26_museum_ships.gfx
+    gfx/models/ships/ufop/nebula/cp26_nebula_ships_meshes.gfx
+
+[FIX][LOW] GFX - Nom du mesh Galaxy_Windows corrigé (Galaxy_Windows_1)
+  Le fichier cp26_museum_ships.gfx référençait `name = "Galaxy_Windows"` alors
+  que le mesh .mesh exporté utilise `Galaxy_Windows_1`. Mismatch silencieux
+  provoquant une texture non appliquée sur les vitres du Galaxy museum.
+  Fichier modifié : gfx/models/ships/ufop/fleet_museum/museum_ships/cp26_museum_ships.gfx
+
+[FIX][MED] Arc Bajor - Libération ne se déclenchait pas
+  La mécanique de libération vérifiait l'ownership direct de Bajor par Cardassia,
+  alors que Bajor est possédée par `bajoran_country` (qui est un sujet de Cardassia
+  via `occupied_state`). Le check était donc toujours faux.
+  Correctif : remplacement de la vérification d'ownership par
+  `event_target:bajoran_country = { set_subject_of = { who = none } }`
+  ce qui libère le pays Bajoran de sa sujétion cardassienne. Pattern vérifié
+  dans hornblower_country_events.txt (country.3130).
+  Fichier modifié : events/cp26_bajor_liberation_events.txt
+
+[FIX][LOW] Arc Bajor - Popup de libération manquante (cp26_bajor.10)
+  L'événement cp26_bajor.10 était défini avec `hide_window = yes` et n'affichait
+  aucune interface. Transformé en `country_event` visible avec titre, description
+  et image (`GFX_evt_civil_unrest_cardassian`).
+  Localisation ajoutée en EN et FR :
+    cp26_bajor.10.name / .desc / .a  (EN + FR)
+  Fichiers modifiés : events/cp26_bajor_liberation_events.txt,
+                      localisation/english/zz_cp26_patch_l_english.yml,
+                      localisation/french/zz_cp26_patch_l_french.yml
+
+[FIX][LOW] Arc Bajor - Événements se déclenchaient dès le début de partie
+  Aucun filtre de date sur les 5 triggers de l'arc Bajor. Les événements
+  se déclenchaient au tick 1 (2345) au lieu de 2368.
+  Ajout de `years_passed >= 23` sur tous les triggers (2345 + 23 = 2368,
+  année lore de la libération de Bajor dans DS9).
+  Fichier modifié : events/cp26_bajor_liberation_events.txt
+
+[FIX][LOW] Bajor - Classe planétaire ne correspondait pas à l'initializer
+  `prescripted_countries/00_bajoran.txt` avait `planet_class = "pc_desert"`
+  qui écrasait silencieusement la classe définie dans l'initializer
+  (`pc_continental` / `psc_class_m`, identique à Vega IX). Bajor s'affichait
+  donc comme une planète désertique en jeu malgré le setup lore.
+  Correctif : `planet_class = "pc_desert"` → `planet_class = "pc_continental"`.
+  Fichier modifié : prescripted_countries/00_bajoran.txt
+
+[GFX][LOW] Musée - NX Section 2 repositionnée (trop proche de la station)
+  La section NX-01 02 s'affichait trop avancée vers le musée. Ajout d'une
+  entité wrapper `sti_museum_nx_section_2_entity` avec locator offset :
+    position = { 1.5 0 -2.5 }  (décalage droit + recul)
+  Fichier modifié : gfx/models/ships/ufop/fleet_museum/sti_fleet_museum.asset
+
+[GFX][LOW] Arbre de missions - Icône nœud "Refit Odyssey" manquante
+  Le nœud `qt_ufop_upgrade_enterprise_odyssey` n'avait pas d'icône dédiée.
+  Ajout de `qt_upgrade_enterprise_odyssey_ufop.dds` (copie de l'icône du
+  nœud Enterprise upgrade `qt_upgrade_the_enterprise_ufop.dds`).
+  Fichier créé : gfx/interface/questtree/ImageNode/qt_upgrade_enterprise_odyssey_ufop.dds
+
+--------------------------------------------------------------------------------
 Session du 2026-05-19 (Rura Penthe / Beta Penthe)
 --------------------------------------------------------------------------------
 

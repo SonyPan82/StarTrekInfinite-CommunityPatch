@@ -1,143 +1,142 @@
-#PDG_GFX_FILE
-
 objectTypes = {
     pdxmesh = {
         name = "daystrom_station_mesh"
         file = "gfx/models/ships/starbases/daystrom/daystrom_station.mesh"
         scale = 1.0
-        meshsettings = { 
-            name = "blue_panels" 
-            index = 0 
+
+        meshsettings = {
+            name = "blue_panels"
+            index = 0
             texture_diffuse = "hex_glow_blue_diffuse.dds"
             texture_normal = "nonormal.dds"
-            texture_specular = "metal_specular.dds"
-            shader = "PdxMeshShip" 
-        }
-
-        meshsettings = { 
-            name = "jupiter_station_white.011" 
-            index = 0 
-            texture_diffuse = "jupstatmat.dds"
-            texture_normal = "nonormal.dds"
-             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
-        }
-
-        meshsettings = { 
-            name = "jupiter_station_top" 
-            index = 0 
-            texture_diffuse = "jupstatsauc.dds"
-            texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "hull_copper" 
-            index = 0 
-            texture_diffuse = "hull_old_copper_diffuse.dds"
+        meshsettings = {
+            name = "jupiter_station_white.011"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
             texture_normal = "nonormal.dds"
-            texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "jupiter_station_red" 
-            index = 0 
-            texture_diffuse = "hull_fed_type_1_red_diffuse.dds"
+        meshsettings = {
+            name = "jupiter_station_top"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "glows_faint_normal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "hull_copper"
+            index = 0
+            texture_diffuse = "solid_copper.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "hull_grey" 
-            index = 0 
-            texture_diffuse = "hull_light_grey_diffuse.dds"
-            texture_normal = "faint_hull_normal.dds"
-            texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
-        }
-
-        meshsettings = { 
-            name = "jupiter_station_bottom" 
-            index = 0 
-            texture_diffuse = "jupstatsauc.dds"
+        meshsettings = {
+            name = "jupiter_station_red"
+            index = 0
+            texture_diffuse = "bussard_red_diffuse.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "jupiter_station_solar" 
-            index = 0 
-            texture_diffuse = "solar.dds"
+        meshsettings = {
+            name = "hull_grey"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "glows_faint_normal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "jupiter_station_bottom"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "glows_faint_normal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "jupiter_station_solar"
+            index = 0
+            texture_diffuse = "hull_type_3_dark_yellow_diffuse.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "container.006" 
-            index = 0 
-            texture_diffuse = "hull_type_3_beige_diffuse.dds" 
-            texture_normal = "hull_type_3_normal.dds" 
-            texture_specular = "hull_type_3_specular_matt.dds" 
-            shader = "PdxMeshShip" 
-        }
-
-        meshsettings = { 
-            name = "gold_panels" 
-            index = 0 
-            texture_diffuse = "hull_type_1_gold.dds"
+        meshsettings = {
+            name = "container.006"
+            index = 0
+            texture_diffuse = "hull_type_4_darker_dark_beige_diffuse.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "jupiter_station_black" 
-            index = 0 
+        meshsettings = {
+            name = "gold_panels"
+            index = 0
+            texture_diffuse = "Hull_Main_TMP_yellow.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "nospec.dds"
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "jupiter_station_black"
+            index = 0
             texture_diffuse = "hull_type_3_black_diffuse.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "escape_pods" 
-            index = 0 
-            texture_diffuse = "bronze_texture.dds"
+        meshsettings = {
+            name = "escape_pods"
+            index = 0
+            texture_diffuse = "hull_type_4_darker_dark_beige_diffuse.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "jupiter_gold" 
-            index = 0 
-            texture_diffuse = "hull_type_1_gold.dds"
+        meshsettings = {
+            name = "jupiter_gold"
+            index = 0
+            texture_diffuse = "Hull_Main_TMP_yellow.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
         }
 
-        meshsettings = { 
-            name = "jupiter_gold" 
-            index = 0 
-            texture_diffuse = "hull_type_1_gold.dds"
-            texture_normal = "nonormal.dds"
-            texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
-        }
-
-        meshsettings = { 
-            name = "windows" 
-            index = 0 
+        meshsettings = {
+            name = "windows"
+            index = 0
             texture_diffuse = "glow_white_diffuse.dds"
-            texture_normal = "glows_normal.dds"
+            texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShip" 
+            shader = "PdxMeshShip"
+        }
+
+        meshsettings = {
+            name = "large_gun_01"
+            index = 0
+            texture_diffuse = "hull_fed_type_1_grey_diffuse.dds"
+            texture_normal = "nonormal.dds"
+            texture_specular = "hull_fed_type_1_specular.dds"
+            shader = "PdxMeshShip"
         }
     }
 }

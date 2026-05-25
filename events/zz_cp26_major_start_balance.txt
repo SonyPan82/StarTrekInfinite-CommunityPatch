@@ -26,6 +26,9 @@ country_event = {
 				modifier = cp26_ufop_federal_power_bootstrap
 				days = 2190
 			}
+			add_modifier = {
+				modifier = cp26_ufop_early_unity_balance
+			}
 		}
 
 		# Klingon Empire - capture : 300 énergie +11, 100 minéraux ~0, 200 nourriture

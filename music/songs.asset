@@ -438,3 +438,33 @@ music = {
 	file = "Star Trek Treffen der Generationen.ogg"
 	volume = 0.40
 }
+music = {
+	name = "song_Star_Trek_first_contact_Lower_Decks_Deep_Space_Nine"
+	file = "Star Trek first contact Lower Decks Deep Space Nine.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Leg_Day"
+	file = "Leg-Day.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Mariners_Secret"
+	file = "Mariner_s-Secret.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Rikers_Plan"
+	file = "Riker_s-Plan.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_A_Compromise"
+	file = "A-Compromise_.ogg"
+	volume = 0.40
+}
+music = {
+	name = "song_Strange_Energies"
+	file = "Strange-Energies.ogg"
+	volume = 0.40
+}

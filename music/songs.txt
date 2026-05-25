@@ -292,3 +292,21 @@ song = {
 song = {
 	name = "song_Star_Trek_Treffen_der_Generationen"
 }
+song = {
+	name = "song_Star_Trek_first_contact_Lower_Decks_Deep_Space_Nine"
+}
+song = {
+	name = "song_Leg_Day"
+}
+song = {
+	name = "song_Mariners_Secret"
+}
+song = {
+	name = "song_Rikers_Plan"
+}
+song = {
+	name = "song_A_Compromise"
+}
+song = {
+	name = "song_Strange_Energies"
+}

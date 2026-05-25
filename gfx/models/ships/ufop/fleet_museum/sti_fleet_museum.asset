@@ -15,16 +15,6 @@ entity = {
 	}
 }
 
-entity = {
-	name = "sti_museum_nx_section_2_entity"
-	pdxmesh = "sti_museum_nx_section_2_mesh"
-	scale = 0.36
-	default_state = "idle"
-	state = { name = "idle" state_time = 5 }
-	state = { name = "death" state_time = 2 looping = no
-		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
-	}
-}
 
 entity = {
 	name = "sti_museum_brel_entity"
@@ -52,7 +42,7 @@ entity = {
 	name = "sti_museum_constitution_refit_entity"
 	locator = {
 		name = "root"
-		position = { 2 0 0 }
+		position = { 0.1 0 0 }
 		rotation = { 0 0 0 }
 	}
 	attach = { "root" = "sti_museum_constitution_refit_raw_entity" }
@@ -117,7 +107,6 @@ entity = {
 	pdxmesh = "sti_fleet_museum_mesh"
 	attach = { "part3" = "sti_museum_brel_entity" }
 	attach = { "part4" = "sti_museum_nx_section_1_entity" }
-	attach = { "part5" = "sti_museum_nx_section_2_entity" }
 	attach = { "part2" = "sti_museum_constitution_refit_entity" }
 	default_state = "idle"
 	state = { name = "idle" state_time = 5 }
@@ -125,8 +114,8 @@ entity = {
 		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
 	}
 	scale = 0.75
-	always_visible = yes
-	game_data = {}
+
+	game_data = { size = 20.0 }
 }
 
 # --- Stage 2: Museum + Enterprise-D (Galaxy) ---
@@ -140,15 +129,14 @@ entity = {
 	attach = { "part1" = "sti_museum_constitution_refit_entity" }
 	attach = { "part3" = "sti_museum_brel_entity" }
 	attach = { "part4" = "sti_museum_nx_section_1_entity" }
-	attach = { "part5" = "sti_museum_nx_section_2_entity" }
 	default_state = "idle"
 	state = { name = "idle" state_time = 5 }
 	state = { name = "death" state_time = 2 looping = no
 		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
 	}
 	scale = 0.75
-	always_visible = yes
-	game_data = {}
+
+	game_data = { size = 20.0 }
 }
 
 # --- Stage 3: Museum + Enterprise-D (Galaxy) + Enterprise-E (Sovereign) ---
@@ -163,13 +151,12 @@ entity = {
 	attach = { "part1" = "sti_museum_constitution_refit_entity" }
 	attach = { "part3" = "sti_museum_brel_entity" }
 	attach = { "part4" = "sti_museum_nx_section_1_entity" }
-	attach = { "part6" = "sti_museum_nx_section_2_entity" }
 	default_state = "idle"
 	state = { name = "idle" state_time = 5 }
 	state = { name = "death" state_time = 2 looping = no
 		event = { time = 1.9 particle = "large_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
 	}
 	scale = 0.75
-	always_visible = yes
-	game_data = {}
+
+	game_data = { size = 20.0 }
 }

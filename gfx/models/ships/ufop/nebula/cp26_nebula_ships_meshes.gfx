@@ -10,7 +10,7 @@ objectTypes = {
 			texture_diffuse = "Decale_SFLogo1.dds"
 			texture_normal = "nonormal.dds"
 			texture_specular = "nospec.dds"
-			shader = "PdxMeshShipTransp"
+			shader = "PdxMeshShip"
 		}
 		meshsettings = {
 			name = "Galaxy_Detail_1"
