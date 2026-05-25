@@ -1,0 +1,16 @@
+CP26 - A500 Mars occupation and casualties pass
+Date: 2026-05-25
+
+Problem
+- Mars could remain in a broken occupied-like state after the A500 arc resolved.
+- The open insurrection no longer caused meaningful civilian casualties.
+
+Changes
+- Added immediate devastation when the rebellion starts.
+- Added one initial civilian casualty on outbreak when valid organic pops exist.
+- Added a monthly casualty chance during the ongoing rebellion.
+- Added explicit cleanup of all rebel-country armies on military and peaceful resolution.
+- Added a modest devastation rollback on resolution so Mars stabilizes without erasing the damage entirely.
+
+File
+- events/cp26_a500_mars_arc.txt

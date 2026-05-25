@@ -1,32 +1,38 @@
-[h1]CP26 - Update 2026-05-25 (Arc Bajor + Corrections)[/h1]
+[h1]Community Patch 2026 - Version 1.7.0[/h1]
 
-[h2]Arc Bajor - Libération fonctionnelle[/h2]
+[h2]Narrative Arc: Bajor[/h2]
+
 [list]
-[*] La libération de Bajor se déclenche désormais correctement. Le correctif cible la vraie structure politique : [b]bajoran_country[/b] est un sujet de Cardassia via [i]occupied_state[/i] — la mécanique libère maintenant le pays de sa sujétion ([b]set_subject_of = none[/b]) plutôt que de chercher un ownership direct jamais rempli.
-[*] L'événement de libération [b]cp26_bajor.10[/b] affiche désormais un popup visible ([i]Libération de Bajor[/i]) avec titre, description et son, au lieu de ne rien afficher.
-[*] Les 5 événements de l'arc ([b]UFoP, Cardassiens, Klingons, Romuliens, Ferengi[/b]) ne se déclenchent plus dès 2345 : le filtre [b]years_passed >= 23[/b] les maintient à partir de [b]2368[/b], l'année canonique DS9.
+[*] Bajor can now finally be liberated through the narrative arc, with multiple outcomes depending on the empire you play: Federation, Klingons, Romulans, Ferengi or Cardassians.
+[*] The liberation now properly removes Bajor from Cardassian control.
+Will you liberate Bajor… or allow Cardassia to maintain its grip on the system?
 [/list]
 
-[h2]Arc Bajor - Corrections techniques[/h2]
+[h2]Narrative Arc: A500[/h2]
+
 [list]
-[*] Images d'événements corrigées : les 5 clés GFX invalides ([i]GFX_evt_war_ufop[/i], etc.) remplacées par leurs équivalents existants ([b]GFX_evt_empire_fleet_*[/b]).
-[*] Sons d'événements corrigés : [i]event_war_news[/i] et [i]event_administrative_work[/i] n'existent pas dans Infinite — remplacés par [b]event_empire_fleet[/b] et [b]event_bridge_decision[/b].
-[*] Trigger Ferengi corrigé : [i]is_ferengi[/i] n'est pas un scripted trigger valide — remplacé par [b]has_country_flag = ferengi[/b].
+[*] The A500 narrative arc continues to receive improvements.
+[*] The arc will soon leave its testing phase.
 [/list]
 
-[h2]Bajor - Planète continentale[/h2]
+[h2]UFoP - Early Game Balance[/h2]
+
 [list]
-[*] Bajor s'affiche désormais comme une planète [b]continentale[/b] (identique à Vega IX), conformément au lore. La classe [i]pc_desert[/i] dans le fichier prescripted écrasait silencieusement la définition de l'initializer.
+[*] The Federation no longer unlocks its unity bonuses too quickly during the early game.
+[*] The Constellation-class is now available from the start of the game.
 [/list]
 
-[h2]UFoP - Équilibrage de l'unité en début de partie[/h2]
+[h2]Fleet Museum - Improvements[/h2]
+
 [list]
-[*] La Fédération ne débloque plus ses atouts de tradition dès les premières années. Un nouveau modificateur temporaire ([b]cp26_ufop_early_unity_balance[/b], −40 % production d'unité) est appliqué au démarrage pour 10 ans (~3 600 jours), puis s'estompe naturellement.
+[*] It is now possible to preserve retired Enterprise ships in the Fleet Museum after their replacement.
+Preserve the history of Starfleet!
+[*] The Refit Odyssey project is now integrated into the mission tree.
 [/list]
 
-[h2]Musée de la Flotte - Corrections GFX[/h2]
+[h2]Game Improvements & Fixes[/h2]
+
 [list]
-[*] Shader [b]PdxMeshShipTransp[/b] remplacé par [b]PdxMeshShip[/b] sur tous les décals (Galaxy class, Sovereign class, Nebula nacelle). Ce shader Stellaris n'existe pas dans Infinite et provoquait des erreurs au chargement.
-[*] La section [b]NX-01 02[/b] est repositionnée pour ne plus s'afficher dans le corps de la station du musée.
-[*] Le nœud [i]Refit Odyssey[/i] de l'arbre de missions dispose désormais d'une icône dédiée.
+[*] Multiple technical fixes and general improvements.
+[*] Added Lower Decks soundtrack.
 [/list]

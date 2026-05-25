@@ -1,0 +1,22 @@
+CP26 - A500 ground assault project
+Date: 2026-05-25
+
+Summary
+- Added a dedicated special project during the open A500 insurrection on Mars.
+- The situation log now asks the player to send a troop transport to Mars.
+- Removed the project timelimit to avoid a misleading generic failure popup when the player has not yet internalized the new invasion flow.
+
+Implementation
+- New special project: CP26_A500_GROUND_ASSAULT
+- Requirement: shipclass_transport = 1
+- Enabled when cp26_a500.2 opens the rebellion at Utopia Planitia.
+- Success triggers cp26_a500.10 (military resolution / suppression of the uprising).
+
+Files
+- common/special_projects/cp26_a500_projects.txt
+- events/cp26_a500_mars_arc.txt
+- localisation/french/zz_cp26_patch_l_french.yml
+- localisation/english/zz_cp26_patch_l_english.yml
+
+Intent
+- Avoid the current soft-lock where the player has armies but no clear journal-driven objective during the Mars invasion.

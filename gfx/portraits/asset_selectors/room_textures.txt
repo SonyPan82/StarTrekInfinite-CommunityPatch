@@ -34,12 +34,6 @@ room_selector = {
 		"klingon_01_transmission_room"              = { always = yes }
 		"romulan_01_transmission_room"              = { always = yes }
 		"cardassian_01_transmission_room"           = { always = yes }
-		"gorn_transmission_room"                    = { always = yes }
-		"tholian_transmission_room"                 = { always = yes }
-		"orion_transmission_room"                   = { always = yes }
-		"gorn_room"                                 = { always = yes }
-		"tholian_room"                              = { always = yes }
-		"orion_room"                                = { always = yes }
 	}
 
 	ruler = {
@@ -47,9 +41,6 @@ room_selector = {
 		"crisis_room"                               = { exists = owner owner = { has_crisis_level = crisis_level_5 } }
 		"galactic_emperor_room"                     = { exists = owner owner = { is_galactic_emperor = yes } }
 		"galactic_custodian_room"                   = { exists = owner owner = { is_galactic_custodian = yes } }
-		"gorn_transmission_room"                    = { exists = owner owner = { has_country_flag = gorn } }
-		"tholian_transmission_room"                 = { exists = owner owner = { has_country_flag = tholian } }
-		"orion_transmission_room"                   = { exists = owner owner = { has_country_flag = orion } }
 		"ufop_01_transmission_room"                 = { exists = owner owner = { is_ufop = yes } }
 		"klingon_01_transmission_room"              = { exists = owner owner = { is_klingon = yes } }
 		"romulan_01_transmission_room"              = { exists = owner owner = { is_romulan = yes } }
@@ -73,5 +64,8 @@ room_selector = {
 		"personality_ruthless_capitalists_room"     = { exists = owner owner = { has_ai_personality = ruthless_capitalists } }
 		"personality_honorbound_warriors_room"      = { exists = owner owner = { has_ai_personality = honorbound_warriors } }
 		"personality_fanatic_befrienders_room"      = { exists = owner owner = { has_ai_personality = fanatic_befrienders } }
+		"gorn_transmission_room"                    = { exists = owner owner = { has_country_flag = gorn } }
+		"tholian_transmission_room"                 = { exists = owner owner = { has_country_flag = tholian } }
+		"orion_transmission_room"                   = { exists = owner owner = { has_country_flag = orion } }
 	}
 }

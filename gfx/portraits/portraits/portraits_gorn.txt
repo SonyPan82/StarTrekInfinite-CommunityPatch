@@ -1,13 +1,11 @@
 portraits = {
 
-	gorn_01 = {	entity = "portrait_reptilian_13_entity"	clothes_selector = "no_texture"	hair_selector = "no_texture"	greeting_sound = "reptilian_01_greetings"
+	gorn_01 = {	entity = "portrait_reptilian_17_entity"	clothes_selector = "no_texture"	hair_selector = "no_texture"	greeting_sound = "greetings_reptilian_special"
 		character_textures = {
-			"gfx/models/portraits/reptilian/reptilian_massive_13_green.dds"
-			"gfx/models/portraits/reptilian/reptilian_massive_13_black.dds"
-			"gfx/models/portraits/reptilian/reptilian_massive_13_turqouise.dds"
-			"gfx/models/portraits/reptilian/reptilian_massive_13_blue.dds"
-			"gfx/models/portraits/reptilian/reptilian_massive_13_purple.dds"
-			"gfx/models/portraits/reptilian/reptilian_massive_13_brown.dds"
+			"gfx/models/portraits/reptilian/reptilian_17_green_red.dds"
+			"gfx/models/portraits/reptilian/reptilian_17_gold.dds"
+			"gfx/models/portraits/reptilian/reptilian_17_green.dds"
+			"gfx/models/portraits/reptilian/reptilian_17_black_orange.dds"
 		}
 	}
 

@@ -12,6 +12,8 @@ special_project = {
 	timelimit = 180
 	tech_department = engineering_technology
 	picture = GFX_evt_cp26_a500_rebellion
+	event_chain = "cp26_a500_rebellion_chain"
+	location = yes
 	event_scope = ship_event
 	delete_on_finish = yes
 
@@ -43,6 +45,8 @@ special_project = {
 	timelimit = 180
 	tech_department = physics_technology
 	picture = GFX_evt_cp26_a500_rebellion
+	event_chain = "cp26_a500_rebellion_chain"
+	location = yes
 	event_scope = ship_event
 	delete_on_finish = yes
 
@@ -74,6 +78,8 @@ special_project = {
 	timelimit = 180
 	tech_department = society_technology
 	picture = GFX_evt_cp26_a500_rebellion
+	event_chain = "cp26_a500_rebellion_chain"
+	location = yes
 	event_scope = ship_event
 	delete_on_finish = yes
 
@@ -93,6 +99,31 @@ special_project = {
 		hidden_effect = {
 			OWNER = {
 				country_event = { id = cp26_a500.2 days = 1 }
+			}
+		}
+	}
+}
+
+special_project = {
+	key = "CP26_A500_GROUND_ASSAULT"
+	cost = 0
+	days_to_research = 20
+	tech_department = society_technology
+	picture = GFX_evt_cp26_a500_rebellion
+	event_chain = "cp26_a500_rebellion_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_transport = 1
+		assault_armies = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.10 days = 1 }
 			}
 		}
 	}

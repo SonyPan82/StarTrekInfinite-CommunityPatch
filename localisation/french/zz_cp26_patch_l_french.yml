@@ -901,7 +901,7 @@ district_gorn_hunting:0 "Terrains de reproduction"
  cp26_a500.3.a:0 "L'insurrection continue..."
 
  cp26_a500.10.title:0 "L'insurrection est maîtrisée"
- cp26_a500.10.desc:0 "Les forces terrestres de Starfleet ont rétabli l'ordre à Utopia Planitia. Les unités A500 ont été neutralisées lors de combats rapprochés, mais le coût a été sévère - les installations des chantiers sont gravement endommagées et nécessiteront des années de reconstruction.\n\nCependant, les noyaux mémoire récupérés contiennent quelque chose d'extraordinaire : des schémas complets de classes de vaisseaux avancées qui étaient en cours de développement au moment de la rébellion. Le sacrifice à Utopia Planitia n'aura pas été totalement vain."
+ cp26_a500.10.desc:0 "Les forces terrestres de Starfleet ont rétabli l'ordre à Utopia Planitia. Les unités A500 ont été neutralisées lors de combats rapprochés, mais le coût a été sévère : nous avons perdu nos chantiers navals martiens, et il nous faudra des années pour reconstruire l'appareil industriel de la Fédération.\n\nParmi les données, archives et plans techniques sauvés des décombres, nos ingénieurs ont toutefois retrouvé plusieurs programmes plus anciens, des variantes de coques et des lignées de conception laissées inachevées. En les réexaminant, nous pourrons jeter les bases d'une nouvelle génération de prototypes issus de l'héritage naval de Starfleet."
  cp26_a500.10.a:0 "Sécuriser les données et commencer la reconstruction."
 
  cp26_a500.11.title:0 "Une résolution pacifique"
@@ -913,6 +913,8 @@ district_gorn_hunting:0 "Terrains de reproduction"
  CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dépêchez un vaisseau scientifique vers Mars afin d'évaluer les anomalies A500 et tenter une désescalade."
  CP26_A500_GOVERNOR_RESPONSE:0 "A500 - Réponse administrative"
  CP26_A500_GOVERNOR_RESPONSE_DESC:0 "Dépêchez un vaisseau de gouverneur vers Mars pour superviser Utopia Planitia et imposer une normalisation de crise."
+ CP26_A500_GROUND_ASSAULT:0 "A500 - Envoyer des troupes au sol sur Mars"
+ CP26_A500_GROUND_ASSAULT_DESC:0 "L'insurrection est désormais ouverte. Affectez à cette opération un transport contenant au moins une armée d'assaut pour projeter des troupes sur Mars et reprendre Utopia Planitia. Tant que cette opération n'est pas menée, Mars continuera de subir des dégâts et des pertes civiles."
 
  # Popup début de partie - arc synthétique
  cp26_options.1.synth_arc_on:0 "Rébellion Synthétique (TESTING) : §Gactivée§!"
@@ -984,9 +986,9 @@ district_gorn_hunting:0 "Terrains de reproduction"
 
  # Arc A500 - Journal de mission (chaîne d'événements)
  event_chain_cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
- event_chain_cp26_a500_rebellion_chain_desc:0 "Des anomalies graves touchent les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars, puis suivez l'évolution de la crise jusqu'à la sécurisation complète du chantier."
+ event_chain_cp26_a500_rebellion_chain_desc:0 "Des anomalies graves touchent les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars, puis, si l'insurrection éclate, envoyez un transport de troupes pour reprendre le contrôle du chantier."
  cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
- cp26_a500_rebellion_chain_desc:0 "Des anomalies graves touchent les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars, puis suivez l'évolution de la crise jusqu'à la sécurisation complète du chantier."
+ cp26_a500_rebellion_chain_desc:0 "Des anomalies graves touchent les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars, puis, si l'insurrection éclate, envoyez un transport de troupes pour reprendre le contrôle du chantier."
  qt_ufop_upgrade_utopia_planitia_a500:0 "Modernisation d'Utopia Planitia"
  qt_ufop_upgrade_utopia_planitia_a500_desc:0 "Starfleet doit standardiser l'intégration des unités A500 dans ses chantiers fédéraux. Établissez une présence A500 durable sur trois colonies pour faire d'Utopia Planitia le nouveau centre de modernisation de la flotte."
  qt_ufop_upgrade_utopia_planitia_a500_colonies_success:0 "Trois colonies fédérales disposent d'une main-d'oeuvre A500."

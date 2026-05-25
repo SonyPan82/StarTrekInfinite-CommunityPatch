@@ -414,7 +414,7 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_a500.3.a:0 "The uprising continues..."
 
  cp26_a500.10.title:0 "The Uprising Is Suppressed"
- cp26_a500.10.desc:0 "Starfleet ground forces have restored order at Utopia Planitia. The A500 units have been neutralised in close-quarters combat, but the cost was severe - the shipyard facilities are heavily damaged and will require years to rebuild.\n\nHowever, the recovered memory cores contain something extraordinary: complete design schematics for advanced starship classes that were under development at the time of the rebellion. The sacrifice at Utopia Planitia was not entirely in vain."
+ cp26_a500.10.desc:0 "Starfleet ground forces have restored order at Utopia Planitia. The A500 units have been neutralised in close-quarters combat, but the cost was severe: we have lost the Martian shipyards, and rebuilding the Federation's industrial backbone will take years.\n\nEven so, among the data cores, technical archives, and design files salvaged from the wreckage, our engineers uncovered several older programs, unfinished hull studies, and dormant design lineages. Re-examined properly, they may provide the foundation for a new generation of prototypes drawn from Starfleet's own naval heritage."
  cp26_a500.10.a:0 "Secure the data and begin reconstruction."
 
 cp26_a500.11.title:0 "A Peaceful Resolution"
@@ -424,8 +424,10 @@ CP26_A500_SECURITY_RESPONSE:0 "A500 - Security Response"
 CP26_A500_SECURITY_RESPONSE_DESC:0 "Dispatch a military vessel to Mars and lock down Utopia Planitia before the situation escalates."
 CP26_A500_TECHNICIAN_RESPONSE:0 "A500 - Technical Response"
 CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investigate the A500 anomalies and attempt a controlled de-escalation."
-CP26_A500_GOVERNOR_RESPONSE:0 "A500 - Administrative Response"
-CP26_A500_GOVERNOR_RESPONSE_DESC:0 "Dispatch a governor ship to Mars to supervise Utopia Planitia and impose a crisis-management protocol."
+ CP26_A500_GOVERNOR_RESPONSE:0 "A500 - Administrative Response"
+ CP26_A500_GOVERNOR_RESPONSE_DESC:0 "Dispatch a governor ship to Mars to supervise Utopia Planitia and impose a crisis-management protocol."
+ CP26_A500_GROUND_ASSAULT:0 "A500 - Send Ground Troops to Mars"
+ CP26_A500_GROUND_ASSAULT_DESC:0 "The uprising is now fully underway. Assign a transport carrying at least one assault army to this operation in order to project troops onto Mars and retake Utopia Planitia. Until this operation is completed, Mars will continue to suffer damage and civilian losses."
 
  # Game start popup - synthetic arc
  cp26_options.1.synth_arc_on:0 "Synthetic Rebellion (TESTING): §GEnabled§!"
@@ -497,9 +499,9 @@ CP26_A500_GOVERNOR_RESPONSE_DESC:0 "Dispatch a governor ship to Mars to supervis
 
  # A500 Rebellion - Mission journal chain
  event_chain_cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
- event_chain_cp26_a500_rebellion_chain_desc:0 "Severe anomalies are spreading through the A500 workforce at Utopia Planitia. Send the required vessel to Mars and manage the crisis through to its final resolution."
+ event_chain_cp26_a500_rebellion_chain_desc:0 "Severe anomalies are spreading through the A500 workforce at Utopia Planitia. Send the required vessel to Mars and, if the uprising erupts, dispatch a troop transport to retake the shipyard."
  cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
- cp26_a500_rebellion_chain_desc:0 "Severe anomalies are spreading through the A500 workforce at Utopia Planitia. Send the required vessel to Mars and manage the crisis through to its final resolution."
+ cp26_a500_rebellion_chain_desc:0 "Severe anomalies are spreading through the A500 workforce at Utopia Planitia. Send the required vessel to Mars and, if the uprising erupts, dispatch a troop transport to retake the shipyard."
  qt_ufop_upgrade_utopia_planitia_a500:0 "Modernisation of Utopia Planitia"
  qt_ufop_upgrade_utopia_planitia_a500_desc:0 "Starfleet must standardise A500 integration across federal shipyards. Establish a durable A500 presence on three Federation colonies to turn Utopia Planitia into the fleet's new modernisation core."
  qt_ufop_upgrade_utopia_planitia_a500_colonies_success:0 "Three Federation colonies maintain an A500 workforce."

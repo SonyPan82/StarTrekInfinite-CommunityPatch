@@ -351,17 +351,14 @@ event = {
 				if = {
 					limit = { exists = event_target:cardassian_country }
 					establish_contact = { who = event_target:cardassian_country hidden = yes }
-					establish_communications_no_message = event_target:cardassian_country
 				}
 				if = {
 					limit = { exists = event_target:romulan_country }
 					establish_contact = { who = event_target:romulan_country hidden = yes }
-					establish_communications_no_message = event_target:romulan_country
 				}
 				if = {
 					limit = { exists = event_target:klingon_country }
 					establish_contact = { who = event_target:klingon_country hidden = yes }
-					establish_communications_no_message = event_target:klingon_country
 				}
 
 				create_civilian_fleet = yes

@@ -150,6 +150,21 @@ country_event = {
 			# Spawner les armées rebelles sur Mars.
 			event_target:et_a500_mars = {
 				set_planet_flag = cp26_a500_rebellion_active
+				add_planet_devastation = 10
+				if = {
+					limit = {
+						count_owned_pop = { count > 3 }
+						any_owned_pop = {
+							species = { NOT = { is_species_class = CP26_A500 } }
+						}
+					}
+					random_owned_pop = {
+						limit = {
+							species = { NOT = { is_species_class = CP26_A500 } }
+						}
+						kill_pop = yes
+					}
+				}
 				if = {
 					limit = { has_planet_flag = cp26_a500_fleet_response }
 					while = {
@@ -171,6 +186,12 @@ country_event = {
 						}
 					}
 				}
+			}
+
+			enable_special_project = {
+				name = "CP26_A500_GROUND_ASSAULT"
+				location = event_target:et_a500_mars
+				owner = this
 			}
 		}
 
@@ -198,6 +219,25 @@ country_event = {
 	immediate = {
 		event_target:et_a500_mars = {
 			add_planet_devastation = 5
+			if = {
+				limit = {
+					count_owned_pop = { count > 3 }
+					any_owned_pop = {
+						species = { NOT = { is_species_class = CP26_A500 } }
+					}
+				}
+				random_list = {
+					35 = {
+						random_owned_pop = {
+							limit = {
+								species = { NOT = { is_species_class = CP26_A500 } }
+							}
+							kill_pop = yes
+						}
+					}
+					65 = { }
+				}
+			}
 		}
 		country_event = { id = cp26_a500.3 days = 30 }
 	}
@@ -235,6 +275,15 @@ country_event = {
 		set_country_flag = cp26_a500_utopia_modernization_unlocked
 		end_event_chain = cp26_a500_rebellion_chain
 
+		if = {
+			limit = { exists = event_target:et_a500_rebel_country }
+			event_target:et_a500_rebel_country = {
+				every_owned_army = {
+					remove_army = yes
+				}
+			}
+		}
+
 		event_target:et_a500_mars = {
 			solar_system = {
 				starbase = {
@@ -250,6 +299,7 @@ country_event = {
 			remove_planet_flag = cp26_a500_fleet_response
 			remove_planet_flag = cp26_a500_science_response
 			remove_planet_flag = cp26_a500_governor_response
+			add_planet_devastation = -25
 		}
 
 		add_research_option = tech_neo_constitution_unlock
@@ -286,6 +336,15 @@ country_event = {
 		set_country_flag = cp26_a500_utopia_modernization_unlocked
 		end_event_chain = cp26_a500_rebellion_chain
 
+		if = {
+			limit = { exists = event_target:et_a500_rebel_country }
+			event_target:et_a500_rebel_country = {
+				every_owned_army = {
+					remove_army = yes
+				}
+			}
+		}
+
 		event_target:et_a500_mars = {
 			remove_modifier = cp26_a500_installed
 			remove_planet_flag = cp26_a500_installed
@@ -293,6 +352,7 @@ country_event = {
 			remove_planet_flag = cp26_a500_fleet_response
 			remove_planet_flag = cp26_a500_science_response
 			remove_planet_flag = cp26_a500_governor_response
+			add_planet_devastation = -10
 		}
 
 		add_research_option = tech_neo_constitution_unlock
