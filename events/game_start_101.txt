@@ -22,19 +22,19 @@ event = {
 
 				last_created_neutral_zone = {
 					log = "Adding Systems to Romulan Neutral Zone"
-					add_system_to_neutral_zone = event_target:eden_star.solar_system
-					add_system_to_neutral_zone = event_target:iconia_star.solar_system
-					add_system_to_neutral_zone = event_target:draken_star.solar_system
-					add_system_to_neutral_zone = event_target:galorndon_core_system
-					add_system_to_neutral_zone = event_target:nelvana_star.solar_system
-					add_system_to_neutral_zone = event_target:devron_star.solar_system
-					add_system_to_neutral_zone = event_target:iota_pavonis_star.solar_system
-					add_system_to_neutral_zone = event_target:fenris_star.solar_system
-					add_system_to_neutral_zone = event_target:belcer_star.solar_system
-					add_system_to_neutral_zone = event_target:moores_star_star.solar_system
-					add_system_to_neutral_zone = event_target:epsilon_legato_star.solar_system
-					add_system_to_neutral_zone = event_target:theta_curry_star.solar_system
-					add_system_to_neutral_zone = event_target:nimbus_star.solar_system
+					if = { limit = { exists = event_target:eden_star } add_system_to_neutral_zone = event_target:eden_star.solar_system }
+					if = { limit = { exists = event_target:iconia_star } add_system_to_neutral_zone = event_target:iconia_star.solar_system }
+					if = { limit = { exists = event_target:draken_star } add_system_to_neutral_zone = event_target:draken_star.solar_system }
+					if = { limit = { exists = event_target:galorndon_core_system } add_system_to_neutral_zone = event_target:galorndon_core_system }
+					if = { limit = { exists = event_target:nelvana_star } add_system_to_neutral_zone = event_target:nelvana_star.solar_system }
+					if = { limit = { exists = event_target:devron_star } add_system_to_neutral_zone = event_target:devron_star.solar_system }
+					if = { limit = { exists = event_target:iota_pavonis_star } add_system_to_neutral_zone = event_target:iota_pavonis_star.solar_system }
+					if = { limit = { exists = event_target:fenris_star } add_system_to_neutral_zone = event_target:fenris_star.solar_system }
+					if = { limit = { exists = event_target:belcer_star } add_system_to_neutral_zone = event_target:belcer_star.solar_system }
+					if = { limit = { exists = event_target:moores_star_star } add_system_to_neutral_zone = event_target:moores_star_star.solar_system }
+					if = { limit = { exists = event_target:epsilon_legato_star } add_system_to_neutral_zone = event_target:epsilon_legato_star.solar_system }
+					if = { limit = { exists = event_target:theta_curry_star } add_system_to_neutral_zone = event_target:theta_curry_star.solar_system }
+					if = { limit = { exists = event_target:nimbus_star } add_system_to_neutral_zone = event_target:nimbus_star.solar_system }
 					# HRB-2033: Add more Systems here
 				}
 			}

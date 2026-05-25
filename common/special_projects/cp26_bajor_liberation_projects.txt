@@ -51,7 +51,7 @@ special_project = {
 	}
 }
 
-# ---- Vaisseau quelconque à Bajor ----
+# ---- Mission spéciale à Bajor ----
 # Requis pour : Fédération 1.c (humanitaire), Romulien 4.a (espion), Ferengi 5.a
 
 special_project = {

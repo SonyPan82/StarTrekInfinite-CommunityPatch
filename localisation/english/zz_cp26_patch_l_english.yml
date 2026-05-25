@@ -550,8 +550,8 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  # Bajor Liberation  -  special projects (journal entries + tooltips)
  CP26_BAJOR_LIBERATION_MIL:0 "Bajor Operation - Military Fleet"
  CP26_BAJOR_LIBERATION_MIL_DESC:0 "Dispatch a military vessel to the Bajor system before the window of opportunity closes."
- CP26_BAJOR_LIBERATION_ANY:0 "Bajor Operation - Covert Mission"
- CP26_BAJOR_LIBERATION_ANY_DESC:0 "Dispatch any vessel to the Bajor system before the window of opportunity closes."
+ CP26_BAJOR_LIBERATION_ANY:0 "Bajor Operation - Special Mission"
+ CP26_BAJOR_LIBERATION_ANY_DESC:0 "Dispatch a military vessel to the Bajor system before the window of opportunity closes."
  CP26_BAJOR_TROOPS:0 "Bajor Garrison Reinforcement"
  CP26_BAJOR_TROOPS_DESC:0 "A troop transport must reach Bajor quickly to maintain order on the surface."
  CP26_BAJOR_FERENGI_CARD:0 "Delivery to the Cardassian Garrison"

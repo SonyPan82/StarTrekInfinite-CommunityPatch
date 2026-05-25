@@ -35,6 +35,7 @@ country_event = {
 	}
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 		set_country_flag = cp26_bajor_event_fired
 		set_global_flag = cp26_bajor_2369_active
 		# Ouvrir frontieres Bajor - forced=180 jours pour que ca tienne
@@ -57,19 +58,7 @@ country_event = {
 				set_closed_borders = { who = root status = no forced = 180 }
 			}
 		}
-		# Rébellion bajoranne — initialisation unique
-		if = {
-			limit = { NOT = { has_global_flag = cp26_bajor_rebellion_active } }
-			set_global_flag = cp26_bajor_rebellion_active
-			if = {
-				limit = { exists = event_target:bajoran_planet }
-				event_target:bajoran_planet = {
-					set_planet_flag = cp26_bajor_in_rebellion
-					add_planet_devastation = 25
-				}
-			}
-		}
-
+		cp26_bajor_start_rebellion_setup = yes
 	}
 
 	# Non-intervention
@@ -154,20 +143,10 @@ country_event = {
 	}
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 		set_country_flag = cp26_bajor_event_fired
 		# Cardassiens = proprietaires de Bajor, pas de gestion de frontieres
-		if = {
-			limit = { NOT = { has_global_flag = cp26_bajor_rebellion_active } }
-			set_global_flag = cp26_bajor_rebellion_active
-			if = {
-				limit = { exists = event_target:bajoran_planet }
-				event_target:bajoran_planet = {
-					set_planet_flag = cp26_bajor_in_rebellion
-					add_planet_devastation = 25
-				}
-			}
-		}
-
+		cp26_bajor_start_rebellion_setup = yes
 	}
 
 	# Ecraser la rebellion
@@ -230,6 +209,7 @@ country_event = {
 	}
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 		set_country_flag = cp26_bajor_event_fired
 		if = {
 			limit = { exists = event_target:bajoran_country }
@@ -249,18 +229,7 @@ country_event = {
 				set_closed_borders = { who = root status = no forced = 180 }
 			}
 		}
-		if = {
-			limit = { NOT = { has_global_flag = cp26_bajor_rebellion_active } }
-			set_global_flag = cp26_bajor_rebellion_active
-			if = {
-				limit = { exists = event_target:bajoran_planet }
-				event_target:bajoran_planet = {
-					set_planet_flag = cp26_bajor_in_rebellion
-					add_planet_devastation = 25
-				}
-			}
-		}
-
+		cp26_bajor_start_rebellion_setup = yes
 	}
 
 	# Soutenir Bajor militairement
@@ -333,6 +302,7 @@ country_event = {
 	}
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 		set_country_flag = cp26_bajor_event_fired
 		if = {
 			limit = { exists = event_target:bajoran_country }
@@ -352,18 +322,7 @@ country_event = {
 				set_closed_borders = { who = root status = no forced = 180 }
 			}
 		}
-		if = {
-			limit = { NOT = { has_global_flag = cp26_bajor_rebellion_active } }
-			set_global_flag = cp26_bajor_rebellion_active
-			if = {
-				limit = { exists = event_target:bajoran_planet }
-				event_target:bajoran_planet = {
-					set_planet_flag = cp26_bajor_in_rebellion
-					add_planet_devastation = 25
-				}
-			}
-		}
-
+		cp26_bajor_start_rebellion_setup = yes
 	}
 
 	# Soutien clandestin - vaisseau espion a Bajor → accelere la revolte
@@ -434,6 +393,7 @@ country_event = {
 	}
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 		set_country_flag = cp26_bajor_event_fired
 		if = {
 			limit = { exists = event_target:bajoran_country }
@@ -453,18 +413,7 @@ country_event = {
 				set_closed_borders = { who = root status = no forced = 180 }
 			}
 		}
-		if = {
-			limit = { NOT = { has_global_flag = cp26_bajor_rebellion_active } }
-			set_global_flag = cp26_bajor_rebellion_active
-			if = {
-				limit = { exists = event_target:bajoran_planet }
-				event_target:bajoran_planet = {
-					set_planet_flag = cp26_bajor_in_rebellion
-					add_planet_devastation = 25
-				}
-			}
-		}
-
+		cp26_bajor_start_rebellion_setup = yes
 	}
 
 	# Vendre aux Bajorans
@@ -579,6 +528,7 @@ country_event = {
 	}
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 
 		set_global_flag = cp26_bajor_liberated
 
@@ -613,6 +563,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 
 		if = {
 			limit = {
@@ -744,6 +695,7 @@ country_event = {
 	}
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 
 		remove_country_flag = cp26_bajor_fleet_military
 		remove_country_flag = cp26_bajor_fleet_needed
@@ -766,6 +718,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		cp26_bajor_bootstrap_targets_effect = yes
 		remove_global_flag = cp26_bajor_rebellion_active
 		if = {
 			limit = { exists = event_target:bajoran_planet }

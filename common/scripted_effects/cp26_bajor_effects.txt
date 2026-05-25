@@ -1,0 +1,44 @@
+cp26_bajor_bootstrap_targets_effect = {
+	every_country = {
+		limit = { has_country_flag = bajoran }
+		save_global_event_target_as = bajoran_country
+		capital_scope = {
+			save_global_event_target_as = bajoran_planet
+			solar_system = { save_global_event_target_as = bajoran_system }
+		}
+	}
+	every_country = {
+		limit = { has_country_flag = cardassian }
+		save_global_event_target_as = cardassian_country
+	}
+	every_country = {
+		limit = { has_country_flag = ufop }
+		save_global_event_target_as = ufop_country
+	}
+	every_country = {
+		limit = { has_country_flag = klingon }
+		save_global_event_target_as = klingon_country
+	}
+	every_country = {
+		limit = { has_country_flag = romulan }
+		save_global_event_target_as = romulan_country
+	}
+	every_country = {
+		limit = { has_country_flag = ferengi }
+		save_global_event_target_as = ferengi_country
+	}
+}
+
+cp26_bajor_start_rebellion_setup = {
+	if = {
+		limit = { NOT = { has_global_flag = cp26_bajor_rebellion_active } }
+		set_global_flag = cp26_bajor_rebellion_active
+		if = {
+			limit = { exists = event_target:bajoran_planet }
+			event_target:bajoran_planet = {
+				set_planet_flag = cp26_bajor_in_rebellion
+				add_planet_devastation = 25
+			}
+		}
+	}
+}
