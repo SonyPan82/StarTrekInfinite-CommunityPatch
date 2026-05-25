@@ -1,0 +1,99 @@
+##########################################################################
+# Arc A500 - Projets spéciaux Utopia Planitia
+#
+# Les trois réponses initiales utilisent désormais un vrai projet limité
+# dans le temps, afin d'éviter le spoiler du timer caché sur Mars.
+##########################################################################
+
+special_project = {
+	key = "CP26_A500_SECURITY_RESPONSE"
+	cost = 0
+	days_to_research = 30
+	timelimit = 180
+	tech_department = engineering_technology
+	picture = GFX_evt_cp26_a500_rebellion
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.2 days = 1 }
+			}
+		}
+	}
+
+	on_fail = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.2 days = 1 }
+			}
+		}
+	}
+}
+
+special_project = {
+	key = "CP26_A500_TECHNICIAN_RESPONSE"
+	cost = 0
+	days_to_research = 30
+	timelimit = 180
+	tech_department = physics_technology
+	picture = GFX_evt_cp26_a500_rebellion
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.11 days = 1 }
+			}
+		}
+	}
+
+	on_fail = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.2 days = 1 }
+			}
+		}
+	}
+}
+
+special_project = {
+	key = "CP26_A500_GOVERNOR_RESPONSE"
+	cost = 0
+	days_to_research = 30
+	timelimit = 180
+	tech_department = society_technology
+	picture = GFX_evt_cp26_a500_rebellion
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_governor_ship = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.2 days = 1 }
+			}
+		}
+	}
+
+	on_fail = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.2 days = 1 }
+			}
+		}
+	}
+}

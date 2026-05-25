@@ -105,46 +105,62 @@ Exemple de workflow complet :
 DESCRIPTION DES ÉVÉNEMENTS
 ---------------------------
 
-cp26_bajor.1 — Fédération (country_event, pulse annuel 2369)
-    Trigger : is_ufop = yes, date > 2369.1.1, NOT date > 2370.1.1
+cp26_bajor.1 — Fédération (country_event, ouverture 2369)
+    Trigger : is_ufop = yes, years_passed >= 23, arc non bloqué, pas déjà déclenché pour ce pays
     Options :
-      A) Non-intervention          → +100 influence, +25 opinion Cardassiens (humanitaire)
-      B) Intervention militaire    → +200 influence −1500 alliages +500 unité → libération (cp26_bajor.10 ×5j), −80 opinion Cardassiens
-      C) Aide humanitaire          → +50 influence −1000 nourriture +150 unité, 30% chance → libération (×15j)
+      A) Non-intervention          → +100 influence, fermeture propre de l'arc
+      B) Intervention militaire    → +200 influence −500 alliages +500 unité, projet spécial CP26_BAJOR_LIBERATION_MIL, forte hostilité cardassienne
+      C) Aide humanitaire          → +50 influence −1000 nourriture +150 unité, projet spécial CP26_BAJOR_LIBERATION_ANY, très bonne opinion bajorane et hostilité cardassienne
 
-cp26_bajor.2 — Union Cardassienne (country_event, pulse annuel 2369)
-    Trigger : is_cardassian = yes
+cp26_bajor.2 — Union Cardassienne (country_event, ouverture 2369)
+    Trigger : is_cardassian = yes, years_passed >= 23, arc non bloqué, pas déjà déclenché pour ce pays
     Options :
-      A) Écraser la rébellion      → −2000 alliages −1000 énergie −300 unité, modificateur garnison sur Bajor (1800j)
-      B) Renforcer l'occupation    → −2000 énergie −500 alliages
-      C) Se retirer de Bajor       → −200 influence → libération (×5j), +40 opinion Fédération et Klingons
+      A) Écraser la rébellion      → −500 alliages −500 énergie −300 unité, projet spécial CP26_BAJOR_TROOPS
+      C) Se retirer de Bajor       → −200 influence → déclenche cp26_bajor.10 après 5 jours, Fédération/Klingons approuvent le retrait
 
-cp26_bajor.3 — Empire Klingon (country_event, pulse annuel 2369)
-    Trigger : is_klingon = yes
+cp26_bajor.3 — Empire Klingon (country_event, ouverture 2369)
+    Trigger : is_klingon = yes, years_passed >= 23, arc non bloqué, pas déjà déclenché pour ce pays
     Options :
-      A) Soutenir Bajor            → +150 influence −1000 alliages → libération (×5j), −80 opinion Cardassiens
+      A) Soutenir Bajor            → +150 influence −500 alliages, projet spécial CP26_BAJOR_LIBERATION_MIL, forte hostilité cardassienne
       B) Casus belli               → +250 influence, cb_liberation_war contre Cardassiens (1800j)
       C) Ignorer                   → +100 unité
 
-cp26_bajor.4 — Empire Romulien (country_event, pulse annuel 2369)
-    Trigger : is_romulan = yes
+cp26_bajor.4 — Empire Romulien (country_event, ouverture 2369)
+    Trigger : is_romulan = yes, years_passed >= 23, arc non bloqué, pas déjà déclenché pour ce pays
     Options :
-      A) Soutien clandestin        → −500 énergie, modificateur cp26_bajor_romulan_sabotage sur Bajor (720j)
-      B) Observer                  → +200 influence +500 recherche physique
-      C) Intervenir officiellement → −1200 alliages → libération (×5j), −80 opinion Cardassiens
+      A) Soutien clandestin        → −500 énergie, projet spécial CP26_BAJOR_LIBERATION_ANY, forte hostilité cardassienne
+      B) Observer                  → fermeture simple de l'arc
+      C) Intervenir officiellement → −500 alliages, projet spécial CP26_BAJOR_LIBERATION_MIL, forte hostilité cardassienne
 
-cp26_bajor.5 — Alliance Ferengi (country_event, pulse annuel 2369)
-    Trigger : is_ferengi = yes
+cp26_bajor.5 — Alliance Ferengi (country_event, ouverture 2369)
+    Trigger : has_country_flag = ferengi, years_passed >= 23, arc non bloqué, pas déjà déclenché pour ce pays
     Options :
-      A) Vendre aux Bajorans       → +3000 énergie → libération (×10j), −40 opinion Cardassiens
-      B) Vendre aux Cardassiens    → +3000 énergie, +60 opinion Cardassiens
-      C) Vendre aux deux camps     → +5000 énergie, −40 opinion Cardassiens/Fédération/Klingons
+      A) Vendre aux Bajorans       → +3000 énergie, projet spécial CP26_BAJOR_LIBERATION_ANY, Cardassia mécontente
+      B) Vendre aux Cardassiens    → +3000 énergie, projet spécial CP26_BAJOR_FERENGI_CARD, Bajor très hostile et Cardassia satisfaite
+      C) Vendre aux deux camps     → +5000 énergie, double projet spécial (Bajor + espace cardassien), libération avec 30 dévastation
 
 cp26_bajor.10 — Libération de Bajor (country_event masqué, is_triggered_only)
     Pose le flag global cp26_bajor_liberated.
-    Si Bajor appartient encore aux Cardassiens (owner is_cardassian = yes),
-    transfère la planète au pays bajoran (event_target:bajoran_planet → set_owner = event_target:bajoran_country).
-    Déclenché uniquement si cp26_bajor_liberated absent, bajoran_planet et bajoran_country existent.
+    Enlève l'état de rébellion, émancipe Bajor, ouvre les frontières avec le libérateur
+    et applique une très forte opinion positive bajorane envers l'empire aidant.
+    Les modificateurs planétaires de récompense dépendent ensuite du choix initial.
+
+PROJETS SPÉCIAUX UTILISÉS
+-------------------------
+CP26_BAJOR_LIBERATION_MIL
+    Requiert : flotte militaire
+
+CP26_BAJOR_LIBERATION_ANY
+    Requiert : vaisseau armé (malgré son ancien nom "ANY")
+
+CP26_BAJOR_TROOPS
+    Requiert : transport de troupes
+
+CP26_BAJOR_FERENGI_CARD
+    Requiert : vaisseau armé vers Bajor pour soutenir la garnison cardassienne
+
+CP26_BAJOR_FERENGI_BOTH_BAJOR + CP26_BAJOR_FERENGI_BOTH_CARD
+    Requièrent : deux vaisseaux armés, l'un à Bajor et l'autre en espace cardassien
 
 
 NOTES TECHNIQUES

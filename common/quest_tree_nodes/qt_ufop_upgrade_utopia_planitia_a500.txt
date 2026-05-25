@@ -1,0 +1,66 @@
+qt_ufop_upgrade_utopia_planitia_a500 = {
+	position = { x = 10 y = 4 }
+
+	potential = {
+		has_country_id = ufop
+	}
+
+	parents = {
+		qt_ufop_upgrade_the_enterprise
+	}
+
+	blocked_by = {
+	}
+
+	on_before_possible = {
+		set_variable = {
+			which = qt_ufop_upgrade_utopia_planitia_a500_colonies
+			value = 0
+		}
+
+		every_owned_planet = {
+			limit = {
+				has_planet_flag = cp26_a500_installed
+			}
+
+			owner = {
+				change_variable = {
+					which = qt_ufop_upgrade_utopia_planitia_a500_colonies
+					value = 1
+				}
+			}
+		}
+	}
+
+	possible = {
+		has_quest_tree_node = qt_ufop_upgrade_the_enterprise
+		has_country_flag = cp26_a500_utopia_modernization_unlocked
+
+		custom_tooltip = {
+			success_text = qt_ufop_upgrade_utopia_planitia_a500_colonies_success
+			fail_text = qt_ufop_upgrade_utopia_planitia_a500_colonies_fail
+
+			check_variable = {
+				which = qt_ufop_upgrade_utopia_planitia_a500_colonies
+				value >= 3
+			}
+		}
+	}
+
+	on_started = {
+	}
+
+	on_blocked = {
+	}
+
+	on_finished = {
+		add_research_option = tech_odyssey_unlock
+	}
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

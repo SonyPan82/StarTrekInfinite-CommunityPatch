@@ -110,6 +110,8 @@ country_event = {
 	}
 
 	immediate = {
+		save_event_target_as = ferengi_country
+
 		every_country = {
 			if = {
 				limit = { has_country_flag = cardassia }
@@ -187,7 +189,8 @@ country_event = {
 			days = -1
 		}
 
-		capital_scope = {
+		random_owned_planet = {
+			limit = { is_capital = yes }
 			remove_modifier = minor_power_starting_buffs
 			if = {
 				limit = { NOT = { has_building = building_capital } }
@@ -261,7 +264,72 @@ country_event = {
 			limit = {
 				NOT = { any_owned_fleet = { is_ship_class = shipclass_constructor } }
 			}
-			create_civilian_fleet = yes
+			create_fleet = {
+				effect = {
+					set_owner = event_target:ferengi_country
+
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+
+					set_fleet_stance = evasive
+					set_location = event_target:ferengi_country.capital_star
+
+					owner = {
+						create_leader = {
+							class = scientist
+							sub_type = survey
+							name = random
+							species = owner_main_species
+						}
+					}
+					set_leader = last_created_leader
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = event_target:ferengi_country
+
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+
+					set_fleet_stance = evasive
+					set_location = event_target:ferengi_country.capital_star
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = event_target:ferengi_country
+
+					create_ship = {
+						name = random
+						random_existing_design = spy_ship
+					}
+
+					set_fleet_stance = passive
+					set_location = event_target:ferengi_country.capital_star
+
+					owner = {
+						create_leader = {
+							class = spy
+							name = random
+							species = owner_main_species
+						}
+					}
+					set_leader = last_created_leader
+				}
+				settings = {
+					can_upgrade = yes
+					can_change_composition = no
+					can_change_leader = no
+					spawn_debris = no
+				}
+			}
 		}
 
 		if = {
@@ -277,14 +345,14 @@ country_event = {
 						random_existing_design = ferengicorvette
 						initial_officers_perc = 0.6
 					}
-					create_ship = {
-						name = random
-						random_existing_design = ferengi_destroyer
-						initial_officers_perc = 0.2
+							create_ship = {
+								name = random
+								random_existing_design = ferengi_destroyer
+								initial_officers_perc = 0.2
+							}
+							set_location = event_target:ferengi_country.capital_star
+						}
 					}
-					set_location = root.capital_star
 				}
-			}
-		}
 	}
 }

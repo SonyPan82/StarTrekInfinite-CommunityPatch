@@ -1098,11 +1098,13 @@ event = {
 		}
 
 		#UFOP Leaders
-		every_country = {
-			limit = { is_ufop = yes }
-			give_technology = { tech = tech_cp26_ufop_fleet_museum message = no }
-			country_event = { id = country.2900 days = 1 }
-		}
+			every_country = {
+				limit = { is_ufop = yes }
+				give_technology = { tech = tech_cp26_ufop_fleet_museum message = no }
+				give_technology = { tech = tech_constellation_unlock message = no }
+				give_technology = { tech = tech_ambassador_unlock message = no }
+				country_event = { id = country.2900 days = 1 }
+			}
 		#KLINGON Leaders
 		every_country = {
 			limit = { is_klingon = yes }

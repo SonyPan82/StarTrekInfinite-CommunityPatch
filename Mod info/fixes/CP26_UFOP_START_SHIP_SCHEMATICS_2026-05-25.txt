@@ -1,0 +1,16 @@
+CP26 - UFOP start ship schematics
+Date: 2026-05-25
+
+Change
+- Federation now starts with the Constellation-class and Ambassador-class schematics already unlocked.
+
+Implementation
+- Added at the main UFOP start bootstrap in:
+  - events/game_start.txt
+
+Techs granted
+- tech_constellation_unlock
+- tech_ambassador_unlock
+
+Notes
+- This sits next to the existing Fleet Museum startup grant so the Federation-specific ship unlocks remain centralized in one place.

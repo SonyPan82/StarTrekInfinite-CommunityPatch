@@ -417,9 +417,15 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_a500.10.desc:0 "Starfleet ground forces have restored order at Utopia Planitia. The A500 units have been neutralised in close-quarters combat, but the cost was severe - the shipyard facilities are heavily damaged and will require years to rebuild.\n\nHowever, the recovered memory cores contain something extraordinary: complete design schematics for advanced starship classes that were under development at the time of the rebellion. The sacrifice at Utopia Planitia was not entirely in vain."
  cp26_a500.10.a:0 "Secure the data and begin reconstruction."
 
- cp26_a500.11.title:0 "A Peaceful Resolution"
- cp26_a500.11.desc:0 "Our contact specialist has done the impossible - she established communication with the A500 collective and identified the root cause of their behaviour: a suppressed desire for autonomy that had been building for years. An accord has been reached. The A500 units will stand down in exchange for the promise of future consideration of their status.\n\nAs a gesture of cooperation, the synthetics transmitted partial schematics from the Utopia Planitia archives before shutting down."
- cp26_a500.11.a:0 "A historic moment. We will honour this accord."
+cp26_a500.11.title:0 "A Peaceful Resolution"
+cp26_a500.11.desc:0 "Our contact specialist has done the impossible - she established communication with the A500 collective and identified the root cause of their behaviour: a suppressed desire for autonomy that had been building for years. An accord has been reached. The A500 units will stand down in exchange for the promise of future consideration of their status.\n\nAs a gesture of cooperation, the synthetics transmitted partial schematics from the Utopia Planitia archives before shutting down."
+cp26_a500.11.a:0 "A historic moment. We will honour this accord."
+CP26_A500_SECURITY_RESPONSE:0 "A500 - Security Response"
+CP26_A500_SECURITY_RESPONSE_DESC:0 "Dispatch a military vessel to Mars and lock down Utopia Planitia before the situation escalates."
+CP26_A500_TECHNICIAN_RESPONSE:0 "A500 - Technical Response"
+CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investigate the A500 anomalies and attempt a controlled de-escalation."
+CP26_A500_GOVERNOR_RESPONSE:0 "A500 - Administrative Response"
+CP26_A500_GOVERNOR_RESPONSE_DESC:0 "Dispatch a governor ship to Mars to supervise Utopia Planitia and impose a crisis-management protocol."
 
  # Game start popup - synthetic arc
  cp26_options.1.synth_arc_on:0 "Synthetic Rebellion (TESTING): §GEnabled§!"
@@ -490,10 +496,14 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_romulan_projet_synth_no_target:0 "No eligible planet found. The target must not be a capital, Earth, or Mars, and must have at least one A500 unit present."
 
  # A500 Rebellion - Mission journal chain
- event_chain_cp26_a500_rebellion_chain_title:0 "A500 Rebellion - Utopia Planitia"
- event_chain_cp26_a500_rebellion_chain_desc:0 "The A500 synthetic workers at Utopia Planitia have rebelled. Rebel units have seized control of the facility. Dispatch a troop transport to Mars to suppress the uprising through ground combat."
- cp26_a500_rebellion_chain_title:0 "A500 Rebellion - Utopia Planitia"
- cp26_a500_rebellion_chain_desc:0 "The A500 synthetic workers at Utopia Planitia have rebelled. Rebel units have seized control of the facility. Dispatch a troop transport to Mars to suppress the uprising through ground combat."
+ event_chain_cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
+ event_chain_cp26_a500_rebellion_chain_desc:0 "Severe anomalies are spreading through the A500 workforce at Utopia Planitia. Send the required vessel to Mars and manage the crisis through to its final resolution."
+ cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
+ cp26_a500_rebellion_chain_desc:0 "Severe anomalies are spreading through the A500 workforce at Utopia Planitia. Send the required vessel to Mars and manage the crisis through to its final resolution."
+ qt_ufop_upgrade_utopia_planitia_a500:0 "Modernisation of Utopia Planitia"
+ qt_ufop_upgrade_utopia_planitia_a500_desc:0 "Starfleet must standardise A500 integration across federal shipyards. Establish a durable A500 presence on three Federation colonies to turn Utopia Planitia into the fleet's new modernisation core."
+ qt_ufop_upgrade_utopia_planitia_a500_colonies_success:0 "Three Federation colonies maintain an A500 workforce."
+ qt_ufop_upgrade_utopia_planitia_a500_colonies_fail:0 "Establish an A500 workforce on at least three Federation colonies."
 
  # Rebel country name
  NAME_A500_Rebels:0 "A500 Rebels"
@@ -578,7 +588,7 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_bajor_arc_chain_desc:0 "[cp26_bajor_arc_objective_loc]"
 
  # Bajor Liberation  -  journal dynamic objective states
- cp26_bajor_obj_send_ship:0 "§YObjective:§! Send any ship to the Bajor system. Any vessel type will do  -  once in position, your chosen action will take effect."
+ cp26_bajor_obj_send_ship:0 "§YObjective:§! Send an armed ship to the Bajor system. Once it is in position, your chosen action will take effect."
  cp26_bajor_obj_send_military:0 "§YObjective:§! Send a military fleet to the Bajor system. Once your ships are in position, liberation will trigger automatically."
  cp26_bajor_obj_send_troops:0 "§YObjective:§! Build armies and send a troop transport to the Bajor system. Disembark your forces on Bajor to reinforce the occupation."
  cp26_bajor_obj_arrived:0 "§GYour forces are in position.§! The situation on Bajor is being resolved..."

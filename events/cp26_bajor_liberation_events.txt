@@ -110,6 +110,12 @@ country_event = {
 				add_opinion_modifier = { who = root modifier = cp26_bajor_humanitarian_aid }
 			}
 		}
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_opposed_liberation }
+			}
+		}
 		hidden_effect = {
 			set_country_flag = cp26_bajor_fleet_needed
 			set_country_flag = cp26_bajor_opt_fed_hum
@@ -329,6 +335,12 @@ country_event = {
 	option = {
 		name = "cp26_bajor.4.a"
 		add_resource = { energy = -500 }
+		if = {
+			limit = { exists = event_target:cardassian_country }
+			event_target:cardassian_country = {
+				add_opinion_modifier = { who = root modifier = cp26_bajor_opposed_liberation }
+			}
+		}
 		hidden_effect = {
 			set_country_flag = cp26_bajor_fleet_needed
 			set_country_flag = cp26_bajor_opt_rom_spy

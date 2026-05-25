@@ -907,6 +907,12 @@ district_gorn_hunting:0 "Terrains de reproduction"
  cp26_a500.11.title:0 "Une résolution pacifique"
  cp26_a500.11.desc:0 "Notre spécialiste du contact a accompli l'impossible - elle a établi la communication avec le collectif A500 et identifié la cause profonde de leur comportement : un désir d'autonomie réprimé qui s'était accumulé pendant des années. Un accord a été conclu. Les unités A500 se rendront en échange de la promesse d'une future consideration de leur statut.\n\nEn signe de coopération, les synthétiques ont transmis des schémas partiels des archives d'Utopia Planitia avant de s'arrêter."
  cp26_a500.11.a:0 "Un moment historique. Nous honorerons cet accord."
+ CP26_A500_SECURITY_RESPONSE:0 "A500 - Réponse sécuritaire"
+ CP26_A500_SECURITY_RESPONSE_DESC:0 "Dépêchez un vaisseau militaire vers Mars pour sécuriser Utopia Planitia avant que la situation ne dégénère."
+ CP26_A500_TECHNICIAN_RESPONSE:0 "A500 - Réponse technique"
+ CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dépêchez un vaisseau scientifique vers Mars afin d'évaluer les anomalies A500 et tenter une désescalade."
+ CP26_A500_GOVERNOR_RESPONSE:0 "A500 - Réponse administrative"
+ CP26_A500_GOVERNOR_RESPONSE_DESC:0 "Dépêchez un vaisseau de gouverneur vers Mars pour superviser Utopia Planitia et imposer une normalisation de crise."
 
  # Popup début de partie - arc synthétique
  cp26_options.1.synth_arc_on:0 "Rébellion Synthétique (TESTING) : §Gactivée§!"
@@ -977,10 +983,14 @@ district_gorn_hunting:0 "Terrains de reproduction"
  cp26_romulan_projet_synth_no_target:0 "Aucune planète éligible trouvée. La cible ne doit pas être une capitale, la Terre ou Mars, et doit compter au moins une unité A500."
 
  # Arc A500 - Journal de mission (chaîne d'événements)
- event_chain_cp26_a500_rebellion_chain_title:0 "Rébellion A500 - Utopia Planitia"
- event_chain_cp26_a500_rebellion_chain_desc:0 "Les synthétiques A500 d'Utopia Planitia se sont rebellés. Des unités rebelles ont pris le contrôle des installations. Envoyez un transport de troupes vers Mars pour écraser l'insurrection par le combat au sol."
- cp26_a500_rebellion_chain_title:0 "Rébellion A500 - Utopia Planitia"
- cp26_a500_rebellion_chain_desc:0 "Les synthétiques A500 d'Utopia Planitia se sont rebellés. Des unités rebelles ont pris le contrôle des installations. Envoyez un transport de troupes vers Mars pour écraser l'insurrection par le combat au sol."
+ event_chain_cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
+ event_chain_cp26_a500_rebellion_chain_desc:0 "Des anomalies graves touchent les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars, puis suivez l'évolution de la crise jusqu'à la sécurisation complète du chantier."
+ cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
+ cp26_a500_rebellion_chain_desc:0 "Des anomalies graves touchent les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars, puis suivez l'évolution de la crise jusqu'à la sécurisation complète du chantier."
+ qt_ufop_upgrade_utopia_planitia_a500:0 "Modernisation d'Utopia Planitia"
+ qt_ufop_upgrade_utopia_planitia_a500_desc:0 "Starfleet doit standardiser l'intégration des unités A500 dans ses chantiers fédéraux. Établissez une présence A500 durable sur trois colonies pour faire d'Utopia Planitia le nouveau centre de modernisation de la flotte."
+ qt_ufop_upgrade_utopia_planitia_a500_colonies_success:0 "Trois colonies fédérales disposent d'une main-d'oeuvre A500."
+ qt_ufop_upgrade_utopia_planitia_a500_colonies_fail:0 "Établissez une main-d'oeuvre A500 sur au moins trois colonies fédérales."
 
  # Nom du pays rebelle
  NAME_A500_Rebels:0 "Rebelles A500"
@@ -1112,7 +1122,7 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
 
  # Libération de Bajor  -  Objectif journal de bord (scripted_loc states)
  cp26_bajor_obj_fleet:0 "Déployer un vaisseau dans le système de Bajor"
- cp26_bajor_obj_send_ship:0 "§YObjectif :§! Envoyez un vaisseau dans le système de Bajor. N'importe quel type de vaisseau suffit  -  dès qu'il sera en position, votre décision prendra effet."
+ cp26_bajor_obj_send_ship:0 "§YObjectif :§! Envoyez un vaisseau armé dans le système de Bajor. Dès qu'il sera en position, votre décision prendra effet."
  cp26_bajor_obj_send_military:0 "§YObjectif :§! Envoyez une flotte militaire dans le système de Bajor. Une fois vos vaisseaux en position, la libération se déclenchera automatiquement."
  cp26_bajor_obj_send_troops:0 "§YObjectif :§! Construisez des armées et envoyez un transport dans le système de Bajor. Débarquez ensuite les troupes sur Bajor pour renforcer l'occupation."
  cp26_bajor_obj_arrived:0 "§GVos forces sont en position.§! La résolution de la situation de Bajor est en cours..."

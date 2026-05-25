@@ -1,0 +1,28 @@
+CP26 - Bajor hardening and texture namespace cleanup
+Date: 2026-05-25
+
+Summary
+- Added a shared Bajor scripted effect bootstrap for faction targets.
+- Added a shared Bajor rebellion setup effect to remove duplicated setup code.
+- Kept the current Bajor "ANY" gameplay path, but renamed it visibly to "Special Mission" because it still requires a military ship.
+- Removed dead references to obsolete fleet command limit tech tiers 3 and 4.
+- Hardened the bespoke UFoP-Romulan neutral zone setup with per-target existence checks.
+- Moved the Gorn scenario point slightly to sit more naturally between Federation and Klingon space.
+- Renamed conflicting DDS basenames for Daystrom, Odyssey, Luna, and Fleet Museum assets to reduce asset-loader collisions.
+
+Files
+- common/scripted_effects/cp26_bajor_effects.txt
+- common/special_projects/cp26_bajor_liberation_projects.txt
+- events/cp26_bajor_liberation_events.txt
+- localisation/french/zz_cp26_patch_l_french.yml
+- localisation/english/zz_cp26_patch_l_english.yml
+- events/game_start_101.txt
+- map/setup_scenarios/Alpha-Beta_medium.txt
+- gfx/models/ships/starbases/daystrom/daystrom_station.gfx
+- gfx/models/ships/ufop/odyssey/ufop_odyssey_ships_meshes.gfx
+- gfx/models/ships/ufop/luna/ufop_luna_ships_meshes.gfx
+- gfx/models/ships/ufop/fleet_museum/museum_ships/cp26_museum_ships.gfx
+
+Notes
+- The Bajor "ANY" branch is now honest in the UI, but still behaves exactly as before.
+- Texture cleanup was limited to the assets that were actively colliding in the log.

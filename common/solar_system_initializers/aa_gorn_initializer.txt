@@ -242,11 +242,12 @@ gorn_system_initializer = {
 				}
 			}
 
-			create_country = {
-				species = "Gorn"
-				country_id = "gorn"
-				type = contender
-				contact_rule = does_first_contact_sites
+				create_country = {
+					species = "Gorn"
+					country_id = "gorn"
+					type = contender
+					contact_rule = does_first_contact_sites
+				room = "gorn_transmission_room"
 				ship_prefix = "GHS"
 				name_list = "REP2"
 				authority = auth_dictatorial_gorn

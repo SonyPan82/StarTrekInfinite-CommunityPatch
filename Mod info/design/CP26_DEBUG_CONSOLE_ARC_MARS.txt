@@ -9,11 +9,15 @@ RÉSUMÉ RAPIDE - ARC A500 (jouer en UFOP)
     effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } set_planet_flag = cp26_a500_installed add_modifier = { modifier = cp26_a500_installed } } }
 2) Déclencher l'alerte (événement 1 - choix initial) :
     effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } planet_event = { id = cp26_a500.1 } } }
-3) Déclencher directement la rébellion (passe le choix, armées A500 créées) :
+3) Choisir une branche de projet :
+    - sécurité -> projet spécial vaisseau militaire
+    - technicien -> projet spécial science ship
+    - surveillance -> projet spécial governor ship
+4) Déclencher directement l'insurrection (si tu veux sauter le projet) :
     event cp26_a500.2
-4) Résolution militaire (après avoir gagné le combat au sol) :
+5) Résolution militaire (après avoir gagné le combat au sol) :
     event cp26_a500.10
-5) Résolution diplomatique directe :
+6) Résolution pacifique directe :
     event cp26_a500.11
 
 RÉSUMÉ RAPIDE - PROJET SYNTH (jouer en Romulien)
@@ -48,11 +52,12 @@ Reset complet flags A500 (pour rejouer l'arc) :
     effect remove_country_flag = cp26_a500_resolved
     effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } remove_planet_flag = cp26_a500_rebellion_active remove_planet_flag = cp26_a500_installed } }
 
-Débloquer les 4 technologies manuellement (sans passer par l'arc) :
+Débloquer manuellement les technologies A500 de sortie (sans passer par l'arc) :
     add_research_option tech_neo_constitution_unlock
     add_research_option tech_sagan_unlock
     add_research_option tech_duderstadt_unlock
-    add_research_option tech_odyssey_unlock
+Marquer la modernisation d'Utopia Planitia comme prête :
+    effect set_country_flag = cp26_a500_utopia_modernization_unlocked
 
 Débloquer directement les techs (donne immédiatement) :
     research_technology tech_neo_constitution_unlock
@@ -63,21 +68,23 @@ Débloquer directement les techs (donne immédiatement) :
 ARC A500 - namespace cp26_a500
 -------------------------------
 • effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } planet_event = { id = cp26_a500.1 } } }
-    Alerte initiale (choix : sécurité / scientifique / observer)
+    Alerte initiale (choix : sécurité / technicien / governor ship)
 
 • event cp26_a500.2
-    Rébellion : crée le pays rebelle A500 + 5 armées rebelles sur Mars + journal
+    Insurrection : crée le pays rebelle A500 + armées rebelles sur Mars
+    (3 si réponse sécurité, 5 sinon)
 
 • event cp26_a500.3
-    Pulse mensuel de dévstation (+5 devastation sur Mars) - caché, boucle seule
+    Pulse mensuel de dévastation (+5 devastation sur Mars) - caché, boucle seule
 
 • event cp26_a500.10
     Résolution militaire (victoire combat au sol) - destruction chantier Sol,
-    ajoute les 4 techs au pool de recherche, ferme le journal
+    ajoute Neo-Constitution / Sagan / Duderstadt au pool de recherche,
+    déverrouille la mission "Modernisation d'Utopia Planitia", ferme le journal
 
 • event cp26_a500.11
-    Résolution diplomatique (vaisseau science) - seulement Neo-Constitution,
-    chantier préservé (pas de journal car lancé via option B de l'event 1)
+    Résolution pacifique (science ship) - Neo-Constitution seulement,
+    déverrouille aussi "Modernisation d'Utopia Planitia", chantier préservé
 
 • event cp26_a500.12
     Détection victoire au sol (caché, normalement déclenché par on_planet_defenders_win)
@@ -118,6 +125,10 @@ NOTES TECHNIQUES
 - cp26_a500.1 est un planet_event : il ne peut pas être appelé directement depuis
   la console avec `event`. Utiliser la commande effect avec random_galaxy_planet.
 
+- L'arc A500 n'utilise plus un simple timer caché de 30 jours après le premier
+  choix. La progression passe désormais par des projets spéciaux visibles dans
+  le journal de bord, ce qui évite le spoiler sur Mars.
+
 - cp26_synth_rom.0 ne se déclenche qu'une fois (via on_tech_increased, scope UFOP).
   Pour tester le Romulien, appeler directement cp26_synth_rom.1 en jouant le pays
   romulien (commande `play <id_romulien>` ou via écran de sélection).
@@ -130,6 +141,7 @@ NOTES TECHNIQUES
 
 Fichiers sources :
     events/cp26_a500_mars_arc.txt
+    common/special_projects/cp26_a500_projects.txt
     events/cp26_romulan_synth_arc.txt
     common/decisions/cp26_a500_decisions.txt
     common/decisions/cp26_romulan_synth_decisions.txt

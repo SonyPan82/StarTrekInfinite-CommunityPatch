@@ -73,11 +73,12 @@ orion_system_initializer = {
 				}
 			}
 
-			create_country = {
-				species = "Orion"
-				country_id = "orion"
-				type = contender
-				contact_rule = does_first_contact_sites
+				create_country = {
+					species = "Orion"
+					country_id = "orion"
+					type = contender
+					contact_rule = does_first_contact_sites
+				room = "orion_transmission_room"
 				ship_prefix = "ORS"
 				name_list = "MAM1"
 				authority = auth_dictatorial_orion

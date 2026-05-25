@@ -1,29 +1,29 @@
 cp26_bajor_supported_liberation = {
-	opinion = { base = 40 }
-	months = 120
+	opinion = { base = 140 }
+	months = 240
 	unique = yes
 }
 
 cp26_bajor_opposed_liberation = {
-	opinion = { base = -80 }
-	months = 120
+	opinion = { base = -140 }
+	months = 240
 	unique = yes
 }
 
 cp26_bajor_armed_cardassians = {
-	opinion = { base = 60 }
-	months = 60
+	opinion = { base = 100 }
+	months = 120
 	unique = yes
 }
 
 cp26_bajor_armed_rebels = {
-	opinion = { base = -40 }
-	months = 60
+	opinion = { base = -110 }
+	months = 120
 	unique = yes
 }
 
 cp26_bajor_humanitarian_aid = {
-	opinion = { base = 25 }
-	months = 72
+	opinion = { base = 90 }
+	months = 180
 	unique = yes
 }

@@ -193,10 +193,10 @@ objectTypes = {
         meshsettings = {
             name = "Sovereign_Faction_Emblem:MeshShape"
             index = 0
-            texture_diffuse = "museum_sovereign_transparent_diffuse.dds"
+            texture_diffuse = "transparent_diffuse.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShipTransp"
+            shader = "AlphaBlendNoDepth"
         }
         meshsettings = {
             name = "Sovereign_Hull_Stripes:MeshShape"
@@ -204,7 +204,7 @@ objectTypes = {
             texture_diffuse = "FederationStripeDecal.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShipTransp"
+            shader = "AlphaBlendNoDepth"
         }
         meshsettings = {
             name = "Sovereign_Nacelle_Stripes:MeshShape"
@@ -212,15 +212,15 @@ objectTypes = {
             texture_diffuse = "FederationStripeDecal.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShipTransp"
+            shader = "AlphaBlendNoDepth"
         }
         meshsettings = {
             name = "Sovereign_Saucer_Decal:MeshShape"
             index = 0
-            texture_diffuse = "museum_sovereign_transparent_diffuse.dds"
+            texture_diffuse = "transparent_diffuse.dds"
             texture_normal = "nonormal.dds"
             texture_specular = "nospec.dds"
-            shader = "PdxMeshShipTransp"
+            shader = "AlphaBlendNoDepth"
         }
     }
 }

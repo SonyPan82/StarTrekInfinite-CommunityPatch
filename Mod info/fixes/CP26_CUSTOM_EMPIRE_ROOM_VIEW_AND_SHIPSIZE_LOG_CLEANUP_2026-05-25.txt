@@ -1,0 +1,28 @@
+CP26 - Custom empire room/view cleanup and setup.log ship-size localization pass
+Date: 2026-05-25
+
+Summary
+- Removed custom GUI room overlays for Gorn / Tholian / Orion from diplomacy, planet and government views.
+- Restored Infinite's native room selection path instead of forcing extra background sprites in the GUI.
+- Reverted Gorn portrait clothing override to no_texture to stop the forced outfit / black silhouette issue.
+- Added missing ship-size modifier localization keys for:
+  - Ferengi Corvette
+  - Ferengi Destroyer
+  - Ferengi Battleship
+  - Duderstadt
+  - Nebula
+  - Neo Constitution
+  - Sagan
+
+Files
+- interface/diplomacy_view.gui
+- interface/planet_view.gui
+- interface/government_view.gui
+- gfx/portraits/portraits/portraits_gorn.txt
+- localisation/french/zz_cp26_ship_size_modifiers_l_french.yml
+- localisation/english/zz_cp26_ship_size_modifiers_l_english.yml
+
+Intent
+- Stop Orion/Gorn/Tholian backgrounds from bleeding or stretching across unrelated empires.
+- Let Infinite resolve empire rooms normally again.
+- Clean the remaining setup.log noise tied to custom ship size modifier keys.

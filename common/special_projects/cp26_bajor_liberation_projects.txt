@@ -158,6 +158,12 @@ special_project = {
 						add_modifier = { modifier = "cp26_bajor_ferengi_card_supply" days = 720 }
 					}
 				}
+				if = {
+					limit = { exists = event_target:bajoran_country }
+					event_target:bajoran_country = {
+						add_opinion_modifier = { who = root modifier = cp26_bajor_opposed_liberation }
+					}
+				}
 				country_event = { id = cp26_bajor.20 }
 			}
 		}

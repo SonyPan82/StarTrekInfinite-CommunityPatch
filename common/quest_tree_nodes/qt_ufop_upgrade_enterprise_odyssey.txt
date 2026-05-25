@@ -1,19 +1,19 @@
 qt_ufop_upgrade_enterprise_odyssey = {
-	position = { x = 10 y = 4 }
+	position = { x = 10 y = 5 }
 
 	potential = {
 		has_country_id = ufop
 	}
 
 	parents = {
-		qt_ufop_upgrade_the_enterprise
+		qt_ufop_upgrade_utopia_planitia_a500
 	}
 
 	blocked_by = {
 	}
 
 	possible = {
-		has_quest_tree_node = qt_ufop_upgrade_the_enterprise
+		has_quest_tree_node = qt_ufop_upgrade_utopia_planitia_a500
 		has_technology = tech_odyssey_unlock
 	}
 
