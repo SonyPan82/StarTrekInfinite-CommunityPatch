@@ -285,3 +285,41 @@ utility_component_template = {
 		weight = 1
 	}
 }
+
+utility_component_template = {
+	key = "CRUISER_FUSION_REACTOR_FERENGICRUISER"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = 900
+	operative_officers = 15
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { ferengicruiser }
+	resources = {
+		category = ship_components
+		cost = { alloys = 35 }
+		upkeep = { deuterium = 0.35 }
+		upkeep = { alloys = 0.06 }
+	}
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "TITAN_FUSION_REACTOR_FERENGITITAN"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = 2200
+	operative_officers = 35
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { ferengititan }
+	resources = {
+		category = ship_components
+		cost = { alloys = 75 }
+		upkeep = { deuterium = 1.1 }
+		upkeep = { alloys = 0.14 }
+	}
+	ai_weight = { weight = 1 }
+}

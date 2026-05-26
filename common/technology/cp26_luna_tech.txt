@@ -4,7 +4,7 @@ tech_luna_unlock = {
 	category = { voidcraft }
 	tier = 2
 	start_tech = no
-	prerequisites = { tech_cruiser_unlock }
+	prerequisites = { tech_battleship_unlock tech_nebula_unlock }
 	weight = @specialhullweight
 
 	potential = {
@@ -22,12 +22,12 @@ tech_luna_unlock = {
 
 	weight_modifier = {
 		modifier = {
-			factor = 1
-			years_passed < 12
+			factor = 0
+			years_passed < 26
 		}
 		modifier = {
 			factor = 8
-			years_passed > 13
+			years_passed > 27
 		}
 		modifier = {
 			factor = 5

@@ -123,7 +123,10 @@ cardassian_cardassia_initializer = {
 		every_country = {
 			if = {
 				limit = {
-					has_country_flag = cardassia
+					OR = {
+						has_country_flag = cardassian
+						has_country_flag = cardassia
+					}
 				}
 
 				save_global_event_target_as = cardassian_country

@@ -1,0 +1,101 @@
+@cp26_praetor_formation_priority = 54
+@cp26_praetor_speed = 26
+@cp26_praetor_collision_radius = 6.2
+@cp26_praetor_hp = 6000
+@cp26_praetor_evasion = 9
+@cp26_praetor_build_time = 620
+@cp26_praetor_upkeep_deuterium = 1.0
+@cp26_praetor_upkeep_alloys = 1.0
+@base_operative_officers = 20
+@base_officers_escape_perc = 15
+@battleship_size_icon_frame = 5
+
+cp26_romulan_praetor = {
+	formation_priority = @cp26_praetor_formation_priority
+	entity = cp26_romulan_praetor_entity
+	max_speed = @cp26_praetor_speed
+	acceleration = 0.14
+	rotation_speed = 0.22
+	collision_radius = @cp26_praetor_collision_radius
+	max_hitpoints = @cp26_praetor_hp
+	operative_officers = @base_operative_officers
+	officers_escape_perc = @base_officers_escape_perc
+	fleet_view_background = "military_dderidex"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @no_admiral_fire_rate_mult
+		ship_shield_mult = @no_admiral_shield_mult
+		ship_shield_damage_mult = @no_admiral_shield_damage_mult
+		ship_shield_penetration_mult = @no_admiral_shield_penetration_mult
+		ship_tracking_mult = @no_admiral_tracking_mult
+		ship_evasion_add = @cp26_praetor_evasion
+	}
+
+	size_multiplier = 10
+	fleet_slot_size = 4
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = @battleship_size_icon_frame
+	base_buildtime = @cp26_praetor_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_line"
+	prerequisites = { "tech_cp26_romulan_praetor_unlock" }
+
+	potential_country = {
+		has_country_id = romulan
+	}
+
+	combat_disengage_chance = 1.1
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @cp26_praetor_upkeep_deuterium
+		}
+
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+
+		upkeep = {
+			alloys = @cp26_praetor_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}

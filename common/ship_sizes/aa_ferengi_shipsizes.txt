@@ -14,6 +14,14 @@
 @intrepid_build_time = 120
 @intrepid_upkeep_deuterium = 0.2
 @intrepid_upkeep_alloys = 0.2
+@nandi_speed = 76
+@nandi_collision_radius = 3.4
+@nandi_formation_priority = 18
+@nandi_hp = 2150
+@nandi_evasion = 22
+@nandi_build_time = 240
+@nandi_upkeep_deuterium = 0.45
+@nandi_upkeep_alloys = 0.45
 @galaxy_formation_priority = 50
 @Galaxy_speed = 28.8
 @galaxy_collision_radius = 6
@@ -22,6 +30,14 @@
 @galaxy_build_time = 480
 @galaxy_upkeep_deuterium = 0.8
 @galaxy_upkeep_alloys = 0.8
+@ooron_formation_priority = 14
+@ooron_speed = 52
+@ooron_collision_radius = 5.5
+@ooron_hp = 7600
+@ooron_evasion = 6
+@ooron_build_time = 720
+@ooron_upkeep_deuterium = 1.6
+@ooron_upkeep_alloys = 1.4
 @no_admiral_fire_rate_mult = -0.1
 @no_admiral_shield_mult = -0.1
 @no_admiral_shield_damage_mult = -0.1
@@ -35,9 +51,11 @@
 @destroyer_size_icon_frame = 3
 @cruiser_size_icon_frame = 4
 @battleship_size_icon_frame = 5
+@titan_size_icon_frame = 6
 
 ferengicorvette = {
 	formation_priority = @miranda_formation_priority
+	entity = cp26_ferengi_corvette_entity
 	max_speed = @miranda_speed
 	acceleration = 0.4
 	rotation_speed = 0.35
@@ -68,6 +86,7 @@ ferengicorvette = {
 	base_buildtime = @miranda_build_time
 	can_have_federation_design = yes
 	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
 
 	default_behavior = "hrb_escort"
 
@@ -130,6 +149,7 @@ ferengicorvette = {
 
 ferengi_destroyer = {
 	formation_priority = @intrepid_formation_priority
+	entity = cp26_ferengi_destroyer_entity
 	max_speed = @intrepid_speed
 	acceleration = 0.25
 	rotation_speed = 0.25
@@ -160,6 +180,7 @@ ferengi_destroyer = {
 	base_buildtime = @intrepid_build_time
 	can_have_federation_design = yes
 	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
 
 	default_behavior = "hrb_interceptor"
 
@@ -220,8 +241,103 @@ ferengi_destroyer = {
 	}
 }
 
+ferengicruiser = {
+	formation_priority = @nandi_formation_priority
+	entity = cp26_ferengi_cruiser_entity
+	max_speed = @nandi_speed
+	acceleration = 0.22
+	rotation_speed = 0.2
+	collision_radius = @nandi_collision_radius
+	max_hitpoints = @nandi_hp
+	operative_officers = @base_operative_officers
+	officers_escape_perc = @base_officers_escape_perc
+	fleet_view_background = "ferengi_military_large"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @no_admiral_fire_rate_mult
+		ship_shield_mult = @no_admiral_shield_mult
+		ship_shield_damage_mult = @no_admiral_shield_damage_mult
+		ship_shield_penetration_mult = @no_admiral_shield_penetration_mult
+		ship_tracking_mult = @no_admiral_tracking_mult
+		ship_evasion_add = @nandi_evasion
+	}
+
+	size_multiplier = 5
+	fleet_slot_size = 3
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = @cruiser_size_icon_frame
+	base_buildtime = @nandi_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+
+	default_behavior = "hrb_line"
+
+	prerequisites = { "tech_cruiser_unlock" }
+
+	potential_country = {
+		has_country_id = ferengi
+	}
+
+	combat_disengage_chance = 1.15
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @nandi_upkeep_deuterium
+		}
+
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+
+		upkeep = {
+			alloys = @nandi_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}
+
 ferengibattleship = {
 	formation_priority = @galaxy_formation_priority
+	entity = cp26_ferengi_battleship_entity
 	max_speed = @Galaxy_speed
 	acceleration = 0.126
 	rotation_speed = 0.2
@@ -252,10 +368,11 @@ ferengibattleship = {
 	base_buildtime = @galaxy_build_time
 	can_have_federation_design = yes
 	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
 
 	default_behavior = "hrb_line"
 
-	prerequisites = { "tech_cruiser_unlock" }
+	prerequisites = { "tech_battleship_unlock" }
 
 	potential_country = {
 		has_country_id = ferengi
@@ -304,6 +421,110 @@ ferengibattleship = {
 
 		upkeep = {
 			alloys = @galaxy_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}
+
+ferengititan = {
+	formation_priority = @ooron_formation_priority
+	entity = cp26_ferengi_titan_entity
+	max_speed = @ooron_speed
+	acceleration = 0.18
+	rotation_speed = 0.14
+	collision_radius = @ooron_collision_radius
+	max_hitpoints = @ooron_hp
+	operative_officers = 45
+	officers_escape_perc = 12
+	fleet_view_background = "ferengi_military_large"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @no_admiral_fire_rate_mult
+		ship_shield_mult = @no_admiral_shield_mult
+		ship_tracking_mult = @no_admiral_tracking_mult
+		ship_evasion_add = @ooron_evasion
+	}
+
+	size_multiplier = 14
+	fleet_slot_size = 8
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 4
+	is_space_station = no
+	icon_frame = @titan_size_icon_frame
+	text_icon = military_size_16
+	base_buildtime = @ooron_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+
+	default_behavior = "hrb_artillery"
+
+	prerequisites = { "tech_titan_unlock" }
+
+	potential_country = {
+		has_country_id = ferengi
+	}
+
+	possible_construction = {
+		custom_tooltip = {
+			is_scope_type = starbase
+			has_starbase_building = titan_yards
+			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
+	empire_limit = {
+		base = 1
+		max = 4
+		naval_cap_div = 250
+	}
+
+	combat_disengage_chance = 1.20
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @ooron_upkeep_deuterium
+		}
+
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+
+		upkeep = {
+			alloys = @ooron_upkeep_alloys
 		}
 	}
 

@@ -5,7 +5,7 @@ tech_mzl_neworleans_unlock = {
 	category = { voidcraft }
 	tier = 2
 	start_tech = no
-	prerequisites = { tech_corvette_unlock }
+	prerequisites = { tech_destroyer_unlock }
 	weight = @specialhullweight #@tier2weight2
 
 	potential = {
@@ -23,12 +23,12 @@ tech_mzl_neworleans_unlock = {
 		
 	weight_modifier = {
 		modifier = {
-			factor = 1
-			years_passed < 5
+			factor = 0
+			years_passed < 4
 		}
 		modifier = {
 			factor = 8
-			years_passed > 6
+			years_passed > 5
 		}
 		modifier = {
 			factor = 8

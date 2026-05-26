@@ -1,0 +1,101 @@
+@cp26_jach_formation_priority = 46
+@cp26_jach_speed = 34
+@cp26_jach_collision_radius = 5.4
+@cp26_jach_hp = 4700
+@cp26_jach_evasion = 11
+@cp26_jach_build_time = 560
+@cp26_jach_upkeep_deuterium = 0.9
+@cp26_jach_upkeep_alloys = 0.9
+@base_operative_officers = 20
+@base_officers_escape_perc = 15
+@battleship_size_icon_frame = 5
+
+cp26_klingon_jach = {
+	formation_priority = @cp26_jach_formation_priority
+	entity = cp26_klingon_jach_entity
+	max_speed = @cp26_jach_speed
+	acceleration = 0.18
+	rotation_speed = 0.24
+	collision_radius = @cp26_jach_collision_radius
+	max_hitpoints = @cp26_jach_hp
+	operative_officers = @base_operative_officers
+	officers_escape_perc = @base_officers_escape_perc
+	fleet_view_background = "military_vorcha"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @no_admiral_fire_rate_mult
+		ship_shield_mult = @no_admiral_shield_mult
+		ship_shield_damage_mult = @no_admiral_shield_damage_mult
+		ship_shield_penetration_mult = @no_admiral_shield_penetration_mult
+		ship_tracking_mult = @no_admiral_tracking_mult
+		ship_evasion_add = @cp26_jach_evasion
+	}
+
+	size_multiplier = 7
+	fleet_slot_size = 4
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = @battleship_size_icon_frame
+	base_buildtime = @cp26_jach_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_line"
+	prerequisites = { "tech_cp26_klingon_jach_unlock" }
+
+	potential_country = {
+		has_country_id = klingon
+	}
+
+	combat_disengage_chance = 0.9
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @cp26_jach_upkeep_deuterium
+		}
+
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+
+		upkeep = {
+			alloys = @cp26_jach_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}

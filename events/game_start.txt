@@ -79,6 +79,32 @@ event = {
 
 		spawn_borg_country = yes
 
+		# CP26 - bootstrap major country targets early so later start logic does
+		# not depend on a single flag spelling or a later recapture block.
+		every_country = {
+			if = {
+				limit = { has_country_flag = ufop }
+				save_global_event_target_as = ufop_country
+			}
+			if = {
+				limit = { has_country_flag = klingon }
+				save_global_event_target_as = klingon_country
+			}
+			if = {
+				limit = { has_country_flag = romulan }
+				save_global_event_target_as = romulan_country
+			}
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = cardassian
+						has_country_flag = cardassia
+					}
+				}
+				save_global_event_target_as = cardassian_country
+			}
+		}
+
 		every_country = {
 			limit = {
 				is_tiyanki_country_type = yes
@@ -1101,23 +1127,32 @@ event = {
 			every_country = {
 				limit = { is_ufop = yes }
 				give_technology = { tech = tech_cp26_ufop_fleet_museum message = no }
+				give_technology = { tech = tech_destroyer_unlock message = no }
+				give_technology = { tech = tech_cruiser_unlock message = no }
 				give_technology = { tech = tech_constellation_unlock message = no }
+				give_technology = { tech = tech_lantree_unlock message = no }
 				give_technology = { tech = tech_ambassador_unlock message = no }
 				country_event = { id = country.2900 days = 1 }
 			}
 		#KLINGON Leaders
 		every_country = {
 			limit = { is_klingon = yes }
+			give_technology = { tech = tech_destroyer_unlock message = no }
+			give_technology = { tech = tech_cruiser_unlock message = no }
+			give_technology = { tech = tech_cloaking_device_1 message = no }
 			country_event = { id = country.2901 days = 1 }
 		}
 		#ROMULAN Leaders
 		every_country = {
 			limit = { is_romulan = yes }
+			give_technology = { tech = tech_destroyer_unlock message = no }
+			give_technology = { tech = tech_cloaking_device_1 message = no }
 			country_event = { id = country.2902 days = 1 }
 		}
 		#CARDASSIAN Leaders
 		every_country = {
 			limit = { is_cardassian = yes }
+			give_technology = { tech = tech_destroyer_unlock message = no }
 			country_event = { id = country.2903 days = 1 }
 		}
 
@@ -1162,7 +1197,12 @@ event = {
 				save_global_event_target_as = romulan_country
 			}
 			if = {
-				limit = { has_country_flag = cardassia }
+				limit = {
+					OR = {
+						has_country_flag = cardassian
+						has_country_flag = cardassia
+					}
+				}
 				save_global_event_target_as = cardassian_country
 			}
 		}

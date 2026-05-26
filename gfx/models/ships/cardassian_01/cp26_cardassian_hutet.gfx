@@ -1,0 +1,24 @@
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_cardassian_hutet_mesh"
+		file = "gfx/models/ships/cardassian_01/hutet/cardassian_hutet_new.mesh"
+		scale = 1.0
+
+		meshsettings = {
+			name = "hutet"
+			index = 0
+			texture_diffuse = "cardassian_01_hutet_diffuse.dds"
+			texture_normal = "cardassian_01_hutet_normal.dds"
+			texture_specular = "cardassian_01_hutet_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "keldon_hull"
+			index = 0
+			texture_diffuse = "keldon_hull_01_diffuse.dds"
+			texture_normal = "cardassian_01_hutet_normal.dds"
+			texture_specular = "cardassian_01_hutet_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

@@ -4,7 +4,7 @@ tech_nebula_unlock = {
 	category = { voidcraft }
 	tier = 2
 	start_tech = no
-	prerequisites = { tech_ambassador_unlock }
+	prerequisites = { tech_ambassador_unlock tech_mzl_neworleans_unlock }
 	weight = @specialhullweight
 
 	potential = {
@@ -22,8 +22,8 @@ tech_nebula_unlock = {
 
 	weight_modifier = {
 		modifier = {
-			factor = 0.25
-			years_passed < 10
+			factor = 0
+			years_passed < 12
 		}
 		modifier = {
 			factor = 8

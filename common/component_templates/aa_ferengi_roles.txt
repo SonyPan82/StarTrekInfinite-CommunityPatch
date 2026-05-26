@@ -157,3 +157,37 @@ utility_component_template = {
 		weight = 2
 	}
 }
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_FERENGICRUISER"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_line"
+	icon_frame = 1
+	power = @ferengi_computer_power_0
+	operative_officers = 15
+	resources = { category = ship_components cost = { alloys = @ferengi_computer_cost_0 } }
+	ship_behavior = "hrb_line"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	size_restriction = { ferengicruiser ferengibattleship }
+	component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_accuracy_add = 10 }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_ARTILLERY_DEFAULT_FERENGITITAN"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_artillery"
+	icon_frame = 1
+	power = @ferengi_computer_power_0
+	operative_officers = 35
+	resources = { category = ship_components cost = { alloys = @ferengi_computer_cost_0 } }
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	size_restriction = { ferengititan }
+	component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_weapon_range_mult = 0.10 }
+	ai_weight = { weight = 1 }
+}

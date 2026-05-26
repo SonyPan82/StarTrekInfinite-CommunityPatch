@@ -5,7 +5,7 @@ tech_pmkn_akira_unlock = {
 	category = { voidcraft }
 	tier = 2
 	start_tech = no
-	prerequisites = { tech_destroyer_unlock }
+	prerequisites = { tech_destroyer_unlock tech_mzl_neworleans_unlock }
 	weight = @specialhullweight #@tier2weight2
 
 	potential = {
@@ -23,12 +23,12 @@ tech_pmkn_akira_unlock = {
 		
 	weight_modifier = {
 		modifier = {
-			factor = 1
-			years_passed < 9
+			factor = 0
+			years_passed < 10
 		}
 		modifier = {
 			factor = 8
-			years_passed > 10
+			years_passed > 11
 		}
 		modifier = {
 			factor = 5

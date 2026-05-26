@@ -1,0 +1,48 @@
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_klingon_jach_mesh"
+		file = "gfx/models/ships/klingon_01/jach/jach_class.mesh"
+		scale = 1
+
+		meshsettings = {
+			name = "jach_hull"
+			index = 0
+			texture_diffuse = "klingon_03_green_hull_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "light_metal_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "bussards"
+			index = 0
+			texture_diffuse = "bussard_glow_green.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "dark_grey"
+			index = 0
+			texture_diffuse = "klingon_03_dark_grey_hull_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "light_metal_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "warp"
+			index = 0
+			texture_diffuse = "glow_dark_green_diffuse.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "dark_green"
+			index = 0
+			texture_diffuse = "klingon_03_darker_red_hull_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "light_metal_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

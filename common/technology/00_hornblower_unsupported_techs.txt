@@ -317,15 +317,23 @@ tech_destroyer_unlock = {
 		title = tech_galor		
 		desc = tech_galor_desc		
 		icon = tech_galor # HRB_TODO: placeholder		
+	}
+	triggered_config = {
+		trigger = {
+			is_ferengi_empire = yes
+		}
+		title = tech_ferengi_dkora
+		desc = tech_ferengi_dkora_desc
+		icon = tech_warbird
 	}			
 	weight_modifier = {
 		modifier = {
 			factor = 0
-			years_passed < 10
+			years_passed < 4
 		}
 		modifier = {
 			factor = 8
-			years_passed > 18
+			years_passed > 5
 		}
 		modifier = {
 			factor = 8
@@ -346,6 +354,11 @@ tech_destroyer_unlock = {
 		modifier = {
 			factor = 1.25
 			is_cardassian = yes
+		}
+		modifier = {
+			factor = 0
+			is_romulan = yes
+			NOT = { has_technology = tech_artificial_singularities_1 }
 		}
 	}
 	ai_weight = {
@@ -398,15 +411,23 @@ tech_cruiser_unlock = {
 		title = tech_keldon		
 		desc = tech_keldon_desc		
 		icon = tech_keldon # HRB_TODO: placeholder		
+	}
+	triggered_config = {
+		trigger = {
+			is_ferengi_empire = yes
+		}
+		title = tech_ferengi_nandi
+		desc = tech_ferengi_nandi_desc
+		icon = tech_keldon
 	}			
 	weight_modifier = {
 		modifier = {
 			factor = 0
-			years_passed < 50
+			years_passed < 10
 		}
 		modifier = {
 			factor = 7
-			years_passed > 58
+			years_passed > 12
 		}
 		modifier = {
 			factor = 7
@@ -427,6 +448,11 @@ tech_cruiser_unlock = {
 		modifier = {
 			factor = 1.25
 			is_klingon = yes
+		}
+		modifier = {
+			factor = 0
+			is_romulan = yes
+			NOT = { has_technology = tech_artificial_singularities_2 }
 		}
 	}
 	ai_weight = {
@@ -479,15 +505,23 @@ tech_battleship_unlock = {
 		title = tech_kazikai		
 		desc = tech_kazikai_desc		
 		icon = tech_kazikai # HRB_TODO: placeholder		
+	}
+	triggered_config = {
+		trigger = {
+			is_ferengi_empire = yes
+		}
+		title = tech_ferengi_galleon
+		desc = tech_ferengi_galleon_desc
+		icon = tech_kazikai
 	}			
 	weight_modifier = {
 		modifier = {
 			factor = 0
-			years_passed < 80
+			years_passed < 18
 		}
 		modifier = {
 			factor = 6
-			years_passed > 88
+			years_passed > 20
 		}
 		modifier = {
 			factor = 6
@@ -508,6 +542,26 @@ tech_battleship_unlock = {
 		modifier = {
 			factor = 1.25
 			is_ufop = yes
+		}
+		modifier = {
+			factor = 0
+			is_ufop = yes
+			NOT = { has_technology = tech_nebula_unlock }
+		}
+		modifier = {
+			factor = 0
+			is_klingon = yes
+			NOT = { has_technology = tech_cp26_kvort_unlock }
+		}
+		modifier = {
+			factor = 0
+			is_romulan = yes
+			NOT = { has_technology = tech_artificial_singularities_3 }
+		}
+		modifier = {
+			factor = 0
+			is_ferengi_empire = yes
+			NOT = { has_technology = tech_cp26_ferengi_mining_platforms }
 		}
 	}
 	ai_weight = {
@@ -560,15 +614,23 @@ tech_titan_unlock = {
 		title = tech_nokoram		
 		desc = tech_nokoram_desc		
 		icon = tech_nokoram # HRB_TODO: placeholder		
+	}
+	triggered_config = {
+		trigger = {
+			is_ferengi_empire = yes
+		}
+		title = tech_ferengi_ooron
+		desc = tech_ferengi_ooron_desc
+		icon = tech_nokoram
 	}			
 	weight_modifier = {
 		modifier = {
 			factor = 0
-			years_passed < 110
+			years_passed < 28
 		}
 		modifier = {
 			factor = 5
-			years_passed > 118
+			years_passed > 30
 		}
 		modifier = {
 			factor = 5
@@ -589,6 +651,21 @@ tech_titan_unlock = {
 		modifier = {
 			factor = 1.25
 			is_romulan = yes
+		}
+		modifier = {
+			factor = 0
+			is_ufop = yes
+			NOT = { has_technology = tech_luna_unlock }
+		}
+		modifier = {
+			factor = 0
+			is_klingon = yes
+			NOT = { has_technology = tech_cp26_kamarag_unlock }
+		}
+		modifier = {
+			factor = 0
+			is_ferengi_empire = yes
+			NOT = { has_technology = tech_cp26_ferengi_quark_platforms }
 		}
 	}
 	ai_weight = {

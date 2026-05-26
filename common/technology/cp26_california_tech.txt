@@ -4,7 +4,7 @@ tech_cp26_california_unlock = {
 	category = { voidcraft }
 	tier = 1
 	start_tech = no
-	prerequisites = { tech_corvette_unlock }
+	prerequisites = { tech_luna_unlock }
 	weight = @specialhullweight
 
 	potential = {
@@ -23,17 +23,17 @@ tech_cp26_california_unlock = {
 	# Poids deck recherche : la California ne doit pas sortir trop tôt (support science).
 	weight_modifier = {
 		modifier = {
-			factor = 0.15
-			years_passed < 20
+			factor = 0
+			years_passed < 30
 		}
 		modifier = {
 			factor = 1.5
-			years_passed > 19
-			years_passed < 29
+			years_passed > 29
+			years_passed < 35
 		}
 		modifier = {
 			factor = 6
-			years_passed > 28
+			years_passed > 34
 		}
 		modifier = {
 			factor = 2

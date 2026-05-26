@@ -1,0 +1,97 @@
+ship_design = {
+	name = "NAME_Jach"
+	ship_size = cp26_klingon_jach
+	is_event_design = yes
+
+	section = {
+		template = "CP26_KLINGON_JACH_MID"
+		slot = "mid"
+
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_03" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_01" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "MEDIUM_GUN_02" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "SMALL_GUN_01" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "SMALL_GUN_02" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "MEDIUM_UTILITY_1" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_2" template = "MEDIUM_TRITANIUM_HULLS" }
+		component = { slot = "MEDIUM_UTILITY_3" template = "MEDIUM_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "CLOAKING_DEVICE_1" }
+		component = { slot = "AUX_UTILITY_2" template = "SHIELD_BOOSTER" }
+	}
+
+	required_component = "JACH_FUSION_REACTOR"
+	required_component = "WARP_DRIVE_1"
+	required_component = "JACH_IMPULSE_ENGINE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_JACH"
+}
+
+ship_design = {
+	name = "NAME_Praetor"
+	ship_size = cp26_romulan_praetor
+	is_event_design = yes
+
+	section = {
+		template = "CP26_ROMULAN_PRAETOR_MID"
+		slot = "mid"
+
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_03" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_04" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_01" template = "MEDIUM_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_02" template = "MEDIUM_PHASER_CANNON" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_4" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "MEDIUM_UTILITY_1" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_2" template = "MEDIUM_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "CLOAKING_DEVICE_1" }
+		component = { slot = "AUX_UTILITY_2" template = "SHIELD_BOOSTER" }
+	}
+
+	required_component = "PRAETOR_ARTIFICIAL_SINGULARITY_REACTOR"
+	required_component = "WARP_DRIVE_1"
+	required_component = "PRAETOR_IMPULSE_ENGINE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_PRAETOR"
+}
+
+ship_design = {
+	name = "NAME_Hutet"
+	ship_size = cp26_cardassian_hutet
+	is_event_design = yes
+
+	section = {
+		template = "CP26_CARDASSIAN_HUTET_MID"
+		slot = "mid"
+
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_03" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_01" template = "MEDIUM_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_02" template = "MEDIUM_PHASER_CANNON" }
+		component = { slot = "SMALL_GUN_01" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "SMALL_GUN_02" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_4" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "MEDIUM_UTILITY_1" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_2" template = "MEDIUM_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_2" template = "SHIELD_BOOSTER" }
+	}
+
+	required_component = "HUTET_FUSION_REACTOR"
+	required_component = "WARP_DRIVE_1"
+	required_component = "HUTET_IMPULSE_ENGINE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_HUTET"
+}

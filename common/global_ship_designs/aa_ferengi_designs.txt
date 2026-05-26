@@ -124,7 +124,84 @@ ship_design = {
 	required_component = "WARP_DRIVE_1"
 	required_component = "DESTROYER_IMPULSE_ENGINE_FERENGICORVETTE"
 	required_component = "SENSOR_PROBES"
-	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT_FERENGICORVETTE"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_FERENGICORVETTE"
+}
+
+ship_design = {
+	name = "NAME_FerengiCruiser"
+	ship_size = ferengicruiser
+	is_event_design = yes
+
+	section = {
+		template = "FERENGI_CRUISER_MID"
+		slot = "mid"
+
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "SMALL_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "SMALL_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_1"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_2"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_3"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "SHIELD_BOOSTER"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "SHIELD_BOOSTER"
+		}
+	}
+
+	required_component = "CRUISER_FUSION_REACTOR_FERENGICRUISER"
+	required_component = "WARP_DRIVE_1"
+	required_component = "CRUISER_IMPULSE_ENGINE_FERENGICRUISER"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_FERENGICRUISER"
 }
 
 ship_design = {
@@ -194,7 +271,119 @@ ship_design = {
 
 	required_component = "BATTLESHIP_FUSION_REACTOR_FERENGIBATTLESHIP"
 	required_component = "WARP_DRIVE_1"
-	required_component = "DESTROYER_IMPULSE_ENGINE_FERENGICORVETTE"
+	required_component = "BATTLESHIP_IMPULSE_ENGINE_FERENGIBATTLESHIP"
 	required_component = "SENSOR_PROBES"
-	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT_FERENGICORVETTE"
+	required_component = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_FERENGICRUISER"
+}
+
+ship_design = {
+	name = "NAME_FerengiTitan"
+	ship_size = ferengititan
+	is_event_design = yes
+
+	section = {
+		template = "FERENGI_TITAN_MID"
+		slot = "mid"
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "LARGE_GUN_03"
+			template = "LARGE_PHOTON_TORPEDOES_1"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_02"
+			template = "MEDIUM_PHOTON_TORPEDOES_1"
+		}
+
+		component = {
+			slot = "MEDIUM_GUN_03"
+			template = "MEDIUM_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "SMALL_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "SMALL_PHASER_CANNON"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_1"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_2"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_3"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "MEDIUM_UTILITY_4"
+			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_1"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "LARGE_UTILITY_4"
+			template = "LARGE_TRITANIUM_HULLS"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_1"
+			template = "SHIELD_BOOSTER"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_2"
+			template = "SHIELD_BOOSTER"
+		}
+
+		component = {
+			slot = "AUX_UTILITY_3"
+			template = "SHIELD_BOOSTER"
+		}
+	}
+
+	required_component = "TITAN_FUSION_REACTOR_FERENGITITAN"
+	required_component = "WARP_DRIVE_1"
+	required_component = "TITAN_IMPULSE_ENGINE_FERENGITITAN"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_ARTILLERY_DEFAULT_FERENGITITAN"
 }

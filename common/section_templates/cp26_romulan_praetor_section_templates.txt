@@ -1,0 +1,65 @@
+@cp26_romulan_praetor_section_cost = 0
+
+ship_section_template = {
+	key = "CP26_ROMULAN_PRAETOR_MID"
+	ship_size = cp26_romulan_praetor
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "cp26_romulan_praetor_entity"
+	icon = "GFX_ship_part_core_mid"
+
+	prerequisites = { tech_cp26_romulan_praetor_unlock }
+
+	ai_weight = {
+		modifier = {
+			factor = 10.0
+			is_preferred_weapons = weapon_type_energy
+		}
+		modifier = {
+			factor = 0.2
+			NOT = { is_preferred_weapons = weapon_type_energy }
+		}
+	}
+
+	component_slot = {
+		name = "LARGE_GUN_01"
+		template = "invisible_large_turret"
+		locatorname = "large_gun_01"
+	}
+	component_slot = {
+		name = "LARGE_GUN_02"
+		template = "invisible_large_turret"
+		locatorname = "large_gun_02"
+	}
+	component_slot = {
+		name = "LARGE_GUN_03"
+		template = "invisible_large_turret"
+		locatorname = "large_gun_03"
+	}
+	component_slot = {
+		name = "LARGE_GUN_04"
+		template = "invisible_large_turret"
+		locatorname = "large_gun_04"
+	}
+	component_slot = {
+		name = "MEDIUM_GUN_01"
+		template = "invisible_medium_turret"
+		locatorname = "medium_gun_01"
+	}
+	component_slot = {
+		name = "MEDIUM_GUN_02"
+		template = "invisible_medium_turret"
+		locatorname = "medium_gun_02"
+	}
+
+	large_utility_slots = 4
+	medium_utility_slots = 2
+	aux_utility_slots = 2
+
+	resources = {
+		category = ship_sections
+		cost = {
+			alloys = @cp26_romulan_praetor_section_cost
+		}
+	}
+}

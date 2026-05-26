@@ -1,0 +1,162 @@
+@cp26_extra_reactor_cost = 50
+@cp26_extra_engine_cost = 24
+@cp26_extra_computer_cost = 0
+
+@cp26_extra_reactor_power = 1500
+@cp26_extra_engine_power = -60
+@cp26_extra_computer_power = -5
+
+@cp26_extra_officers = 20
+
+utility_component_template = {
+	key = "JACH_FUSION_REACTOR"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @cp26_extra_reactor_power
+	operative_officers = @cp26_extra_officers
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { cp26_klingon_jach }
+	resources = {
+		category = ship_components
+		cost = { alloys = @cp26_extra_reactor_cost }
+		upkeep = { deuterium = 0.8 }
+		upkeep = { alloys = 0.08 }
+	}
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "JACH_IMPULSE_ENGINE"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @cp26_extra_engine_power
+	operative_officers = @cp26_extra_officers
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { cp26_klingon_jach }
+	modifier = { ship_base_speed_mult = 0.33 ship_evasion_add = 3 }
+	resources = { category = ship_components cost = { alloys = @cp26_extra_engine_cost } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_JACH"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_line"
+	icon_frame = 1
+	power = @cp26_extra_computer_power
+	operative_officers = @cp26_extra_officers
+	ship_behavior = "hrb_line"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	component_set = "combat_computers"
+	size_restriction = { cp26_klingon_jach }
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_accuracy_add = 10 }
+	resources = { category = ship_components cost = { alloys = @cp26_extra_computer_cost } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "PRAETOR_ARTIFICIAL_SINGULARITY_REACTOR"
+	size = small
+	icon = "GFX_ship_part_singularity_reactor"
+	icon_frame = 1
+	power = @cp26_extra_reactor_power
+	operative_officers = @cp26_extra_officers
+	prerequisites = { "tech_artificial_singularities_1" }
+	component_set = "power_core"
+	size_restriction = { cp26_romulan_praetor }
+	resources = {
+		category = ship_components
+		cost = { alloys = @cp26_extra_reactor_cost }
+		upkeep = { artificial_singularities = 0 }
+		upkeep = { alloys = 0.08 }
+	}
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "PRAETOR_IMPULSE_ENGINE"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @cp26_extra_engine_power
+	operative_officers = @cp26_extra_officers
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { cp26_romulan_praetor }
+	modifier = { ship_base_speed_mult = 0.25 ship_evasion_add = 2 }
+	resources = { category = ship_components cost = { alloys = @cp26_extra_engine_cost } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_PRAETOR"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_line"
+	icon_frame = 1
+	power = @cp26_extra_computer_power
+	operative_officers = @cp26_extra_officers
+	ship_behavior = "hrb_line"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	component_set = "combat_computers"
+	size_restriction = { cp26_romulan_praetor }
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_accuracy_add = 10 }
+	resources = { category = ship_components cost = { alloys = @cp26_extra_computer_cost } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "HUTET_FUSION_REACTOR"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = @cp26_extra_reactor_power
+	operative_officers = @cp26_extra_officers
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { cp26_cardassian_hutet }
+	resources = {
+		category = ship_components
+		cost = { alloys = @cp26_extra_reactor_cost }
+		upkeep = { deuterium = 0.8 }
+		upkeep = { alloys = 0.08 }
+	}
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "HUTET_IMPULSE_ENGINE"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = @cp26_extra_engine_power
+	operative_officers = @cp26_extra_officers
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { cp26_cardassian_hutet }
+	modifier = { ship_base_speed_mult = 0.25 ship_evasion_add = 2 }
+	resources = { category = ship_components cost = { alloys = @cp26_extra_engine_cost } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "COMBAT_COMPUTER_HRB_LINE_DEFAULT_HUTET"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_line"
+	icon_frame = 1
+	power = @cp26_extra_computer_power
+	operative_officers = @cp26_extra_officers
+	ship_behavior = "hrb_line"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	component_set = "combat_computers"
+	size_restriction = { cp26_cardassian_hutet }
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_accuracy_add = 10 }
+	resources = { category = ship_components cost = { alloys = @cp26_extra_computer_cost } }
+	ai_weight = { weight = 1 }
+}

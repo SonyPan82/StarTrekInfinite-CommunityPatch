@@ -120,3 +120,48 @@ utility_component_template = {
 		weight = 4
 	}
 }
+
+utility_component_template = {
+	key = "CRUISER_IMPULSE_ENGINE_FERENGICRUISER"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = -35
+	operative_officers = 15
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { ferengicruiser }
+	modifier = { ship_base_speed_mult = 0.25 ship_evasion_add = 4 }
+	resources = { category = ship_components cost = { alloys = 18 } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "BATTLESHIP_IMPULSE_ENGINE_FERENGIBATTLESHIP"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = -45
+	operative_officers = 25
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { ferengibattleship }
+	modifier = { ship_base_speed_mult = 0.20 ship_evasion_add = 3 }
+	resources = { category = ship_components cost = { alloys = 24 } }
+	ai_weight = { weight = 1 }
+}
+
+utility_component_template = {
+	key = "TITAN_IMPULSE_ENGINE_FERENGITITAN"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = -60
+	operative_officers = 35
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { ferengititan }
+	modifier = { ship_base_speed_mult = 0.15 ship_evasion_add = 2 }
+	resources = { category = ship_components cost = { alloys = 30 } }
+	ai_weight = { weight = 1 }
+}

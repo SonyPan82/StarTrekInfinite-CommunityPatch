@@ -1,0 +1,72 @@
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_romulan_praetor_mesh"
+		file = "gfx/models/ships/romulan_01/praetor/rom_praetor_battleship.mesh"
+		scale = 1.0
+
+		meshsettings = {
+			name = "Shoulder_P"
+			index = 0
+			texture_diffuse = "praetor_diffuse.dds"
+			texture_normal = "praetor_normal.dds"
+			texture_specular = "praetor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Guns_P"
+			index = 0
+			texture_diffuse = "praetor_diffuse.dds"
+			texture_normal = "praetor_normal.dds"
+			texture_specular = "praetor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Shoulder_S"
+			index = 0
+			texture_diffuse = "praetor_diffuse.dds"
+			texture_normal = "praetor_normal.dds"
+			texture_specular = "praetor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Guns_S"
+			index = 0
+			texture_diffuse = "praetor_diffuse.dds"
+			texture_normal = "praetor_normal.dds"
+			texture_specular = "praetor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Spine"
+			index = 0
+			texture_diffuse = "praetor_diffuse.dds"
+			texture_normal = "praetor_normal.dds"
+			texture_specular = "praetor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Maw"
+			index = 0
+			texture_diffuse = "praetor_diffuse.dds"
+			texture_normal = "praetor_normal.dds"
+			texture_specular = "praetor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "Body"
+			index = 0
+			texture_diffuse = "praetor_diffuse.dds"
+			texture_normal = "praetor_normal.dds"
+			texture_specular = "praetor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "MainWings"
+			index = 0
+			texture_diffuse = "praetor_diffuse.dds"
+			texture_normal = "praetor_normal.dds"
+			texture_specular = "praetor_specular.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

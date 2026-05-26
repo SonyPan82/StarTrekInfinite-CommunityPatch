@@ -1,0 +1,95 @@
+tech_cp26_klingon_jach_unlock = {
+	cost = @tier4cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_battleship_unlock tech_cp26_kamarag_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_klingon = yes
+	}
+
+	triggered_config = {
+		trigger = { is_klingon = yes }
+		title = tech_cp26_klingon_jach
+		desc = tech_cp26_klingon_jach_desc
+		icon = tech_neghvar
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			years_passed < 21
+		}
+		modifier = {
+			factor = 6
+			years_passed > 22
+		}
+	}
+}
+
+tech_cp26_romulan_praetor_unlock = {
+	cost = @tier4cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_battleship_unlock tech_artificial_singularities_3 }
+	weight = @specialhullweight
+
+	potential = {
+		is_romulan = yes
+	}
+
+	triggered_config = {
+		trigger = { is_romulan = yes }
+		title = tech_cp26_romulan_praetor
+		desc = tech_cp26_romulan_praetor_desc
+		icon = tech_majestus
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			years_passed < 22
+		}
+		modifier = {
+			factor = 6
+			years_passed > 24
+		}
+	}
+}
+
+tech_cp26_cardassian_hutet_unlock = {
+	cost = @tier4cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_battleship_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_cardassian = yes
+	}
+
+	triggered_config = {
+		trigger = { is_cardassian = yes }
+		title = tech_cp26_cardassian_hutet
+		desc = tech_cp26_cardassian_hutet_desc
+		icon = tech_nokoram
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			years_passed < 22
+		}
+		modifier = {
+			factor = 6
+			years_passed > 24
+		}
+	}
+}

@@ -4,7 +4,7 @@ tech_cp26_kamarag_unlock = {
 	category = { voidcraft }
 	tier = 2
 	start_tech = no
-	prerequisites = { tech_cruiser_unlock }
+	prerequisites = { tech_cp26_kvort_unlock }
 	weight = @specialhullweight
 
 	potential = {
@@ -22,12 +22,12 @@ tech_cp26_kamarag_unlock = {
 
 	weight_modifier = {
 		modifier = {
-			factor = 1
-			years_passed < 8
+			factor = 0
+			years_passed < 10
 		}
 		modifier = {
 			factor = 6
-			years_passed > 10
+			years_passed > 11
 		}
 	}
 }
@@ -56,7 +56,7 @@ tech_cp26_kvort_unlock = {
 
 	weight_modifier = {
 		modifier = {
-			factor = 1
+			factor = 0
 			years_passed < 8
 		}
 		modifier = {
@@ -90,12 +90,12 @@ tech_cp26_klingon_raptor_unlock = {
 
 	weight_modifier = {
 		modifier = {
-			factor = 1
-			years_passed < 6
+			factor = 0
+			years_passed < 4
 		}
 		modifier = {
 			factor = 5
-			years_passed > 8
+			years_passed > 5
 		}
 	}
 }
