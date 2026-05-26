@@ -1,26 +1,26 @@
-@cp26_hutet_formation_priority = 50
-@cp26_hutet_speed = 24
-@cp26_hutet_collision_radius = 6.0
-@cp26_hutet_hp = 5900
-@cp26_hutet_evasion = 8
-@cp26_hutet_build_time = 620
-@cp26_hutet_upkeep_deuterium = 1.0
-@cp26_hutet_upkeep_alloys = 1.0
+@cp26_scimitar_formation_priority = 12
+@cp26_scimitar_speed = 22
+@cp26_scimitar_collision_radius = 7.0
+@cp26_scimitar_hp = 8200
+@cp26_scimitar_evasion = 7
+@cp26_scimitar_build_time = 900
+@cp26_scimitar_upkeep_deuterium = 1.2
+@cp26_scimitar_upkeep_alloys = 1.35
 @base_operative_officers = 20
 @base_officers_escape_perc = 15
-@battleship_size_icon_frame = 5
+@titan_size_icon_frame = 6
 
-cp26_cardassian_hutet = {
-	formation_priority = @cp26_hutet_formation_priority
-	entity = cp26_cardassian_hutet_entity
-	max_speed = @cp26_hutet_speed
-	acceleration = 0.17
-	rotation_speed = 0.22
-	collision_radius = @cp26_hutet_collision_radius
-	max_hitpoints = @cp26_hutet_hp
-	operative_officers = @base_operative_officers
-	officers_escape_perc = @base_officers_escape_perc
-	fleet_view_background = "military_kazikai"
+cp26_romulan_scimitar = {
+	formation_priority = @cp26_scimitar_formation_priority
+	entity = cp26_romulan_scimitar_entity
+	max_speed = @cp26_scimitar_speed
+	acceleration = 0.12
+	rotation_speed = 0.14
+	collision_radius = @cp26_scimitar_collision_radius
+	max_hitpoints = @cp26_scimitar_hp
+	operative_officers = 45
+	officers_escape_perc = 12
+	fleet_view_background = "military_dderidex"
 
 	ship_modifier = {
 		ship_fire_rate_mult = @no_admiral_fire_rate_mult
@@ -28,35 +28,47 @@ cp26_cardassian_hutet = {
 		ship_shield_damage_mult = @no_admiral_shield_damage_mult
 		ship_shield_penetration_mult = @no_admiral_shield_penetration_mult
 		ship_tracking_mult = @no_admiral_tracking_mult
-		ship_evasion_add = @cp26_hutet_evasion
+		ship_evasion_add = @cp26_scimitar_evasion
 	}
 
-	size_multiplier = 9
-	fleet_slot_size = 4
+	size_multiplier = 14
+	fleet_slot_size = 8
 	graphical_culture = no
 	section_slots = { "mid" = { locator = "part1" } }
-	num_target_locators = 2
+	num_target_locators = 4
 	is_space_station = no
-	icon_frame = @battleship_size_icon_frame
-	base_buildtime = @cp26_hutet_build_time
+	icon_frame = @titan_size_icon_frame
+	text_icon = military_size_16
+	base_buildtime = @cp26_scimitar_build_time
 	can_have_federation_design = yes
 	enable_default_design = yes
 	enable_3dview_in_ship_browser = yes
-	default_behavior = "hrb_line"
-	prerequisites = { "tech_cp26_cardassian_hutet_unlock" }
+	default_behavior = "hrb_artillery"
+	prerequisites = { "tech_cp26_romulan_scimitar_unlock" }
 
 	potential_country = {
-		has_country_id = cardassian
+		has_country_id = romulan
 	}
 
-	combat_disengage_chance = 1.0
-
 	possible_construction = {
+		custom_tooltip = {
+			is_scope_type = starbase
+			has_starbase_building = titan_yards
+			fail_text = starbase_titan_yards_trigger
+		}
 		custom_tooltip = {
 			fail_text = cp26_military_fleet_cap_fail
 			owner = { cp26_under_reduced_fleet_military_cap = yes }
 		}
 	}
+
+	empire_limit = {
+		base = 1
+		max = 2
+		naval_cap_div = 300
+	}
+
+	combat_disengage_chance = 1.20
 
 	class = shipclass_military
 	construction_type = starbase_shipyard
@@ -77,7 +89,7 @@ cp26_cardassian_hutet = {
 					}
 				}
 			}
-			deuterium = @cp26_hutet_upkeep_deuterium
+			deuterium = @cp26_scimitar_upkeep_deuterium
 		}
 
 		upkeep = {
@@ -91,7 +103,7 @@ cp26_cardassian_hutet = {
 		}
 
 		upkeep = {
-			alloys = @cp26_hutet_upkeep_alloys
+			alloys = @cp26_scimitar_upkeep_alloys
 		}
 	}
 

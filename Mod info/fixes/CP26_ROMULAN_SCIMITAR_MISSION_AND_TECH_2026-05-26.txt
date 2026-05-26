@@ -1,0 +1,24 @@
+Scimitar has been added as a Romulan mission-tree gated late hull.
+
+Implementation:
+- New quest tree node after qt_romulan_a6:
+  - qt_romulan_a7
+  - cost gate: 5500 alloys
+  - on finish:
+    - subtract 5500 alloys
+    - set country flag cp26_romulan_scimitar_project_unlocked
+    - add research option tech_cp26_romulan_scimitar_unlock
+
+- New research:
+  - tech_cp26_romulan_scimitar_unlock
+  - potential locked behind Romulan faction + project flag
+
+- New hull:
+  - cp26_romulan_scimitar
+  - titan-grade military hull
+  - requires titan yards
+
+- New assets:
+  - gfx/models/ships/romulan_01/cp26_romulan_scimitar.gfx
+  - gfx/models/ships/romulan_01/cp26_romulan_scimitar.asset
+  - copied mesh and textures from STNHFR source into CP26 Romulan folder with cp26-prefixed texture names

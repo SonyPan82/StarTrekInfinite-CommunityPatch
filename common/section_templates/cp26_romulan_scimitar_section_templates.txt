@@ -1,14 +1,14 @@
-@cp26_cardassian_hutet_section_cost = 0
+@cp26_romulan_scimitar_section_cost = 0
 
 ship_section_template = {
-	key = "CP26_CARDASSIAN_HUTET_MID"
-	ship_size = cp26_cardassian_hutet
+	key = "CP26_ROMULAN_SCIMITAR_MID"
+	ship_size = cp26_romulan_scimitar
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "cp26_cardassian_hutet_entity"
+	entity = "cp26_romulan_scimitar_entity"
 	icon = "GFX_ship_part_core_mid"
 
-	prerequisites = { tech_cp26_cardassian_hutet_unlock }
+	prerequisites = { tech_cp26_romulan_scimitar_unlock }
 
 	ai_weight = {
 		modifier = {
@@ -37,6 +37,11 @@ ship_section_template = {
 		locatorname = "large_gun_03"
 	}
 	component_slot = {
+		name = "LARGE_GUN_04"
+		template = "invisible_large_turret"
+		locatorname = "large_gun_04"
+	}
+	component_slot = {
 		name = "MEDIUM_GUN_01"
 		template = "invisible_medium_turret"
 		locatorname = "medium_gun_01"
@@ -47,24 +52,24 @@ ship_section_template = {
 		locatorname = "medium_gun_02"
 	}
 	component_slot = {
-		name = "SMALL_GUN_01"
-		template = "invisible_small_turret"
-		locatorname = "small_gun_01"
+		name = "MEDIUM_GUN_03"
+		template = "invisible_medium_turret"
+		locatorname = "medium_gun_03"
 	}
 	component_slot = {
-		name = "SMALL_GUN_02"
-		template = "invisible_small_turret"
-		locatorname = "small_gun_02"
+		name = "MEDIUM_GUN_04"
+		template = "invisible_medium_turret"
+		locatorname = "medium_gun_04"
 	}
 
 	large_utility_slots = 4
-	medium_utility_slots = 2
-	aux_utility_slots = 2
+	medium_utility_slots = 4
+	aux_utility_slots = 3
 
 	resources = {
 		category = ship_sections
 		cost = {
-			alloys = @cp26_cardassian_hutet_section_cost
+			alloys = @cp26_romulan_scimitar_section_cost
 		}
 	}
 }

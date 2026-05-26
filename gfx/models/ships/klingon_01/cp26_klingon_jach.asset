@@ -1,4 +1,4 @@
-@cp26_klingon_jach_scale = 0.9
+@cp26_klingon_jach_scale = 1.2
 
 entity = {
 	name = "cp26_klingon_jach_entity"

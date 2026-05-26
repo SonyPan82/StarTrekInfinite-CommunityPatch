@@ -1,0 +1,44 @@
+# A7
+qt_romulan_a7 = {
+	position = { x = 11 y = 4 }
+
+	potential = {
+		has_country_id = romulan
+	}
+
+	parents = {
+		qt_romulan_a5
+	}
+
+	blocked_by = {
+	}
+
+	possible = {
+		has_quest_tree_node = qt_romulan_a5
+		resource_stockpile_compare = { resource = alloys value >= 5500 }
+	}
+
+	on_started = {
+	}
+
+	on_blocked = {
+	}
+
+	on_finished = {
+		set_country_flag = cp26_romulan_scimitar_project_unlocked
+		add_research_option = tech_cp26_romulan_scimitar_unlock
+
+		hidden_effect = {
+			add_resource = {
+				alloys = -5500
+			}
+		}
+	}
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

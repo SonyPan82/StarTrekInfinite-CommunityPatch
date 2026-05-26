@@ -1,0 +1,61 @@
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_romulan_scimitar_mesh"
+		file = "gfx/models/ships/romulan_01/cp26_romulan_scimitar.mesh"
+		scale = 0.50
+
+		meshsettings = {
+			name = "Glow_engine"
+			index = 0
+			texture_diffuse = "cp26_romulan_scimitar_glow_blue_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshAlphaAdditiveAnimateUV"
+		}
+
+		meshsettings = {
+			name = "Glow_nose"
+			index = 0
+			texture_diffuse = "cp26_romulan_scimitar_hex_glow_blue_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshAlphaAdditiveAnimateUV"
+		}
+
+		meshsettings = {
+			name = "Glow_small"
+			index = 0
+			texture_diffuse = "cp26_romulan_scimitar_glow_light_green_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshAlphaAdditiveAnimateUV"
+		}
+
+		meshsettings = {
+			name = "glow_windows"
+			index = 0
+			texture_diffuse = "cp26_romulan_scimitar_windows_03_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshAlphaAdditiveAnimateUV"
+		}
+
+		meshsettings = {
+			name = "hull_main"
+			index = 0
+			texture_diffuse = "cp26_romulan_scimitar_hull.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+
+		meshsettings = {
+			name = "hull_wings"
+			index = 0
+			texture_diffuse = "cp26_romulan_scimitar_hull.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}

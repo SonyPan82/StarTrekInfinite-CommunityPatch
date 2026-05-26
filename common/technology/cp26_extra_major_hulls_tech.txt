@@ -62,34 +62,35 @@ tech_cp26_romulan_praetor_unlock = {
 	}
 }
 
-tech_cp26_cardassian_hutet_unlock = {
-	cost = @tier4cost1
+tech_cp26_romulan_scimitar_unlock = {
+	cost = @tier5cost1
 	area = engineering
 	category = { voidcraft }
-	tier = 4
+	tier = 5
 	start_tech = no
-	prerequisites = { tech_battleship_unlock }
+	prerequisites = { tech_battleship_unlock tech_artificial_singularities_3 }
 	weight = @specialhullweight
 
 	potential = {
-		is_cardassian = yes
+		is_romulan = yes
+		has_country_flag = cp26_romulan_scimitar_project_unlocked
 	}
 
 	triggered_config = {
-		trigger = { is_cardassian = yes }
-		title = tech_cp26_cardassian_hutet
-		desc = tech_cp26_cardassian_hutet_desc
-		icon = tech_nokoram
+		trigger = { is_romulan = yes }
+		title = tech_cp26_romulan_scimitar
+		desc = tech_cp26_romulan_scimitar_desc
+		icon = tech_majestus
 	}
 
 	weight_modifier = {
 		modifier = {
 			factor = 0
-			years_passed < 22
+			NOT = { has_country_flag = cp26_romulan_scimitar_project_unlocked }
 		}
 		modifier = {
-			factor = 6
-			years_passed > 24
+			factor = 8
+			years_passed > 30
 		}
 	}
 }

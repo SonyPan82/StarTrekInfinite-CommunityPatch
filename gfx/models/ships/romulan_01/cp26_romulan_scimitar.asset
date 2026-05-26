@@ -1,25 +1,26 @@
-@cp26_cardassian_hutet_scale = 0.9
+@cp26_romulan_scimitar_scale = 1.02
 
 entity = {
-	name = "cp26_cardassian_hutet_entity"
-	pdxmesh = "cp26_cardassian_hutet_mesh"
-	scale = @cp26_cardassian_hutet_scale
+	name = "cp26_romulan_scimitar_entity"
+	pdxmesh = "cp26_romulan_scimitar_mesh"
+	scale = @cp26_romulan_scimitar_scale
 	default_state = "idle"
 
 	locator = { name = "part1" position = { 0 0 0 } }
 	locator = { name = "root" position = { 0 0 0 } }
-	locator = { name = "engine_small_01" position = { 3.1 0.25 4.9 } }
-	locator = { name = "engine_small_02" position = { -3.1 0.25 4.9 } }
+	locator = { name = "engine_small_01" position = { 4.8 0.3 8.2 } }
+	locator = { name = "engine_small_02" position = { -4.8 0.3 8.2 } }
 	locator = { name = "large_gun_01" position = { 0 0 0 } }
 	locator = { name = "large_gun_02" position = { 0 0 0 } }
 	locator = { name = "large_gun_03" position = { 0 0 0 } }
+	locator = { name = "large_gun_04" position = { 0 0 0 } }
 	locator = { name = "medium_gun_01" position = { 0 0 0 } }
 	locator = { name = "medium_gun_02" position = { 0 0 0 } }
-	locator = { name = "small_gun_01" position = { 0 0 0 } }
-	locator = { name = "small_gun_02" position = { 0 0 0 } }
+	locator = { name = "medium_gun_03" position = { 0 0 0 } }
+	locator = { name = "medium_gun_04" position = { 0 0 0 } }
 
 	state = { name = "idle"
-		start_event = { trigger_once = yes sound = { soundeffect = "cardassian_01_galor_entity" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "romulan_01_dderidex_entity" } }
 	}
 
 	state = { name = "death" chance = 1 looping = no
@@ -29,11 +30,11 @@ entity = {
 	}
 
 	state = { name = "warping" chance = 1 looping = no
-		event = { time = 0 node = "part1" particle = "large_warpout_effect" trigger_once = yes keep_particle = no sound = { soundeffect = "warpout_effect" } }
+		event = { time = 0 node = "part1" particle = "large_warpout_green_effect" trigger_once = yes keep_particle = no sound = { soundeffect = "warpout_effect" } }
 	}
 
 	game_data = {
-		trail_width = 1.15
-		size = 29
+		trail_width = 1.4
+		size = 33
 	}
 }

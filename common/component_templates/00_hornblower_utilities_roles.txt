@@ -41,7 +41,7 @@ utility_component_template = {
 		galaxy sovereign california_hero california enterprise_sovereign # UFOP
 		vorcha neghvar kvort kamarag cp26_klingon_jach # KLINGON
 		dderidex dderidex_hero majestus cp26_romulan_praetor # ROMULAN
-		kazikai nokoram cp26_cardassian_hutet ferengicruiser ferengibattleship # CARDASSIAN / FERENGI
+		kazikai nokoram ferengicruiser ferengibattleship # CARDASSIAN / FERENGI
 		small_minor medium_minor large_minor # MINORS
 		small_nausicaan medium_nausicaan large_nausicaan # Nausicaan
 		corvette destroyer crisis_destroyer # VANILLA 
@@ -84,7 +84,7 @@ utility_component_template = {
 		galaxy sovereign # UFOP
 		vorcha neghvar cp26_klingon_jach # KLINGON
 		dderidex majestus cp26_romulan_praetor ferengititan # ROMULAN / FERENGI
-		kazikai nokoram cp26_cardassian_hutet # CARDASSIAN
+		kazikai nokoram # CARDASSIAN
 		small_minor medium_minor large_minor # MINORS
 		small_nausicaan medium_nausicaan large_nausicaan # Nausicaan
 		corvette destroyer crisis_destroyer # VANILLA 
@@ -308,7 +308,7 @@ utility_component_template = {
 		galaxy sovereign enterprise_sovereign enterprise california_hero california # UFOP
 		vorcha neghvar kvort kamarag cp26_klingon_jach # KLINGON
 		dderidex dderidex_hero majestus cp26_romulan_praetor # ROMULAN
-		kazikai nokoram cp26_cardassian_hutet ferengicruiser ferengibattleship # CARDASSIAN / FERENGI
+		kazikai nokoram ferengicruiser ferengibattleship # CARDASSIAN / FERENGI
 		small_minor medium_minor large_minor # MINORS
 		small_nausicaan medium_nausicaan large_nausicaan # Nausicaan
 		corvette destroyer crisis_destroyer # VANILLA 
@@ -491,7 +491,7 @@ utility_component_template = {
 		galaxy sovereign # UFOP
 		vorcha neghvar cp26_klingon_jach # KLINGON
 		dderidex majestus cp26_romulan_praetor ferengititan # ROMULAN / FERENGI
-		kazikai nokoram cp26_cardassian_hutet # CARDASSIAN
+		kazikai nokoram # CARDASSIAN
 		small_minor medium_minor large_minor # MINORS
 		small_nausicaan medium_nausicaan large_nausicaan # Nausicaan
 		corvette destroyer crisis_destroyer # VANILLA 
