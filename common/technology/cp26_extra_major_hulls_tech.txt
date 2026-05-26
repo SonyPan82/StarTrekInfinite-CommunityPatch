@@ -73,7 +73,6 @@ tech_cp26_romulan_scimitar_unlock = {
 
 	potential = {
 		is_romulan = yes
-		has_country_flag = cp26_romulan_scimitar_project_unlocked
 	}
 
 	triggered_config = {

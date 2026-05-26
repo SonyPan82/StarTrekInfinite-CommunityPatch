@@ -1,20 +1,22 @@
-[h1]Community Patch 2026 - Version 1.6.6[/h1]
+[h1]Community Patch 2026 - Version 1.7.3[/h1]
 
-[h2]Galaxy Map Setup[/h2]
+[h2]Technology and Ship Progression[/h2]
 
 [list]
-[*] Increased the galaxy map radius.
-[*] Star systems are now more spread out and no longer overcrowded.
-[*] Tholians now only have initial contact with the Ferengi and Romulans.
+[*] Reworked the major faction technology flow into a more coherent, lore-friendly progression.
+[*] Federation, Klingon, Romulan, Cardassian, and Ferengi ship unlock paths now follow clearer chronological logic.
+[*] Added new Ferengi military ships Nandi, Galin, and Ooron.
+[*] Added new ships to Klingon and Romulan : Jach and Praetor.
+[*] Added the Romulan Scimitar as a late-game mission-tree unlock with alloy investment.
+[*] Updated several start technologies and unlock conditions to better match faction identity and era.
 [/list]
 
-[h2]UI[/h2]
+[h2]General Fixes[/h2]
 
 [list]
-[*] The UI font has been reworked for improved visual clarity and readability.
-[*] Feedback regarding the new font is always welcome.
+[*] Continued cleanup of mission tree presentation, branching, and localization.
 [/list]
 
 As always, your feedback is extremely valuable for improving the project.
 
-1.6.6
+1.7.3

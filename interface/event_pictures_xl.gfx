@@ -8,7 +8,7 @@ spriteTypes = {
 
 	spriteType = {
 		name = "GFX_qt_romulan_a7"
-		texturefile = "gfx/interface/questtree/ImageNode/qt_romulan_a6.dds"
+		texturefile = "gfx/interface/questtree/ImageNode/qt_menacing_romulan.dds"
 		masking_texture = "gfx/interface/questtree/Componets/ImageNode_musk.dds"
 		alwaystransparent = yes
 	}
