@@ -15,8 +15,6 @@ country_event = {
 	fire_only_once = yes
 
 	immediate = {
-		# Arc synthétique désactivé par défaut
-		set_global_flag = cp26_block_synth_arc
 	}
 }
 

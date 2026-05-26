@@ -1,0 +1,2738 @@
+@spy_detected_starbase_range_boost_days = 30
+
+# Scopes:
+# Root/This: Spy Fleet
+# From: scope specified on the mission itself
+
+######################
+# Offensive Missions #
+######################
+
+
+#Gather Intel Mission
+spy_situation_gather_intel = {
+	mission_type = espionage_mission
+	situation = spy_mission_situation_01
+	scope = starbase
+	success_dc = 4
+	partial_success_dc = 1
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	tooltip_desc = spy_situation_gather_intel_effect_desc
+
+	possible = {
+		exists = from.owner
+		from.owner = { NOT = { is_same_value = root.owner } }
+
+		AND = { NOT = { from.owner = {is_neutral_zone = yes } } }
+	}
+
+	on_start = { 
+		# Saving the event targets for the localization
+		from = { save_event_target_as = spy_mission_scope }
+		from.solar_system = { save_event_target_as = spy_mission_system }
+		from.owner = { save_event_target_as = spy_mission_target_country }
+		this.leader = { save_event_target_as = spy_mission_spy }
+		from.fleet = { set_fleet_flag = spy_situation_gather_intel_flag }
+		owner = { save_event_target_as = spy_owner }
+	}
+
+	on_cancel = { from.fleet = { remove_fleet_flag = spy_situation_gather_intel_flag } }
+
+	on_success = { 
+		owner = { 
+			country_event = { id = spy_popup.20 }
+			add_intel_espionage = yes
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_partial_success = { 
+		owner = { 
+			country_event = { id = spy_popup.20 } 
+			add_intel_espionage = yes
+		}
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+		spy_mission_misc_effects = yes
+	}
+        
+	on_fail = {
+		if = { 
+			limit = { owner = { has_civic = civic_cunning_subterfuge } }
+			from = {
+				solar_system = {
+					every_fleet_in_system = {
+						limit = { 
+							is_ship_class = shipclass_spy_ship
+							owner = { is_same_value = root.owner }
+						}
+						add_modifier = { modifier = spy_mission_civic_cunning_subterfuge }					
+					}
+				}
+			}
+		}
+        
+		if = {
+			limit = { owner = { has_civic = civic_twofold_chances } }
+			random_list = {
+				8 = {}
+				2 = {			
+					owner = {
+					country_event = { id = spy_popup.50 }
+					add_intel_espionage = yes
+					}
+				}
+			}
+
+		}
+		else = {
+			owner = { country_event = { id = spy_popup.30 } }
+		}
+
+		from.fleet = { remove_fleet_flag = spy_situation_gather_intel_flag }
+
+		fleet_event = { id = mission.1000 }
+	}
+}
+
+# CP26 - Romulan Projet Synth
+spy_situation_cp26_projet_synth = {
+	mission_type = espionage_mission
+	situation = spy_mission_situation_02
+	scope = planet
+	success_dc = 9
+	partial_success_dc = 6
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	tooltip_desc = spy_situation_cp26_projet_synth_effect_desc
+
+	possible = {
+		owner = {
+			is_romulan = yes
+			is_major = yes
+			has_country_flag = cp26_romulan_projet_synth_unlocked
+			NOT = { has_country_flag = cp26_romulan_synth_cooldown }
+		}
+		exists = from.owner
+		from.owner = { NOT = { is_same_value = root.owner } }
+		from = {
+			NOT = { has_planet_flag = cp26_synth_rebellion_active }
+			any_owned_pop = {
+				species = { is_species_class = CP26_A500 }
+			}
+		}
+	}
+
+	on_start = {
+		from = { save_event_target_as = spy_mission_scope }
+		from.solar_system = { save_event_target_as = spy_mission_system }
+		from.owner = { save_event_target_as = spy_mission_target_country }
+		this.leader = { save_event_target_as = spy_mission_spy }
+		owner = {
+			save_event_target_as = spy_owner
+			set_country_flag = cp26_romulan_synth_in_progress
+		}
+		from = { set_planet_flag = cp26_synth_targeted_flag }
+	}
+
+	on_cancel = {
+		owner = { remove_country_flag = cp26_romulan_synth_in_progress }
+		from = { remove_planet_flag = cp26_synth_targeted_flag }
+	}
+
+	on_success = {
+		owner = {
+			set_country_flag = cp26_romulan_synth_cooldown
+			remove_country_flag = cp26_romulan_synth_in_progress
+			country_event = { id = cp26_synth_rom.20 }
+			country_event = { id = cp26_synth_rom.30 days = 720 }
+		}
+		create_country = {
+			name = "NAME_A500_Rebels"
+			type = global_event
+			auto_delete = yes
+			effect = {
+				set_faction_hostility = {
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+			}
+		}
+		last_created_country = { save_global_event_target_as = cp26_synth_rebel_country }
+		from = {
+			save_global_event_target_as = cp26_synth_target_planet
+			add_planet_devastation = 15
+			add_modifier = { modifier = cp26_synth_unrest days = 720 }
+			set_planet_flag = cp26_synth_rebellion_active
+			remove_planet_flag = cp26_synth_targeted_flag
+			while = {
+				count = 3
+				if = {
+					limit = { exists = event_target:et_a500_species_global }
+					create_army = {
+						owner = event_target:cp26_synth_rebel_country
+						type = rebel_army
+						species = event_target:et_a500_species_global
+					}
+				}
+				else = {
+					create_army = {
+						owner = event_target:cp26_synth_rebel_country
+						type = rebel_army
+					}
+				}
+			}
+			if = {
+				limit = { owner = { is_ufop = yes } }
+				owner = {
+					if = {
+						limit = { NOT = { has_event_chain = cp26_synth_rebellion_chain } }
+						begin_event_chain = {
+							event_chain = "cp26_synth_rebellion_chain"
+							target = THIS
+						}
+					}
+					enable_special_project = {
+						name = "CP26_SYNTH_GROUND_ASSAULT"
+						location = event_target:cp26_synth_target_planet
+						owner = this
+					}
+					country_event = { id = cp26_synth_rom.25 }
+				}
+			}
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_partial_success = {
+		owner = {
+			set_country_flag = cp26_romulan_synth_cooldown
+			remove_country_flag = cp26_romulan_synth_in_progress
+			country_event = { id = cp26_synth_rom.20 }
+			country_event = { id = cp26_synth_rom.30 days = 720 }
+		}
+		create_country = {
+			name = "NAME_A500_Rebels"
+			type = global_event
+			auto_delete = yes
+			effect = {
+				set_faction_hostility = {
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+			}
+		}
+		last_created_country = { save_global_event_target_as = cp26_synth_rebel_country }
+		from = {
+			save_global_event_target_as = cp26_synth_target_planet
+			add_planet_devastation = 15
+			add_modifier = { modifier = cp26_synth_unrest days = 720 }
+			set_planet_flag = cp26_synth_rebellion_active
+			remove_planet_flag = cp26_synth_targeted_flag
+			while = {
+				count = 3
+				if = {
+					limit = { exists = event_target:et_a500_species_global }
+					create_army = {
+						owner = event_target:cp26_synth_rebel_country
+						type = rebel_army
+						species = event_target:et_a500_species_global
+					}
+				}
+				else = {
+					create_army = {
+						owner = event_target:cp26_synth_rebel_country
+						type = rebel_army
+					}
+				}
+			}
+			if = {
+				limit = { owner = { is_ufop = yes } }
+				owner = {
+					if = {
+						limit = { NOT = { has_event_chain = cp26_synth_rebellion_chain } }
+						begin_event_chain = {
+							event_chain = "cp26_synth_rebellion_chain"
+							target = THIS
+						}
+					}
+					enable_special_project = {
+						name = "CP26_SYNTH_GROUND_ASSAULT"
+						location = event_target:cp26_synth_target_planet
+						owner = this
+					}
+					country_event = { id = cp26_synth_rom.25 }
+				}
+			}
+		}
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_fail = {
+		owner = {
+			remove_country_flag = cp26_romulan_synth_in_progress
+			country_event = { id = cp26_synth_rom.21 }
+		}
+		from = { remove_planet_flag = cp26_synth_targeted_flag }
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+	}
+}
+
+#Hack Mission
+spy_situation_hack = {
+	mission_type = espionage_mission
+	situation = spy_mission_situation_01
+	scope = starbase
+	success_dc = 9
+	partial_success_dc = 6
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	tooltip_desc = spy_situation_hack_effect_desc
+
+	possible = {
+		exists = from.owner
+		from.owner = { NOT = { is_same_value = root.owner } }
+		from = { NOT = { has_starbase_size = starbase_outpost } }
+		
+		NOR = {
+			from.owner = { is_neutral_zone = yes }
+		}
+	}
+
+	on_start = { 
+		# Saving the event targets for the localization
+		from = { save_event_target_as = spy_mission_scope }
+		from.solar_system = { save_event_target_as = spy_mission_system }
+		from.owner = { save_event_target_as = spy_mission_target_country }
+		this.leader = { save_event_target_as = spy_mission_spy }
+		from.fleet = { set_fleet_flag = spy_situation_hack_flag }
+		owner = { save_event_target_as = spy_owner }
+	}
+
+	on_cancel = { from = { remove_fleet_flag = spy_situation_hack_flag } }
+
+	on_success = { 
+		owner = { 
+			country_event = { id = spy_popup.20 } 
+		}
+		from = {
+			solar_system = {
+				every_fleet_in_system = {
+					limit = {
+						is_ship_class = shipclass_starbase
+						owner = {
+							is_same_value = event_target:spy_mission_target_country
+						}
+					}
+					fire_rate_reduction = yes
+				}
+				every_fleet_in_system = {
+					limit = {
+						not = {
+							is_ship_class = shipclass_starbase
+						}
+						owner = {
+							is_same_value = event_target:spy_mission_target_country
+						}
+					}
+					fire_rate_reduction_ship = yes
+				}
+			}
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_partial_success = { 
+		owner = { 
+			country_event = { id = spy_popup.20 } 
+		}
+		from = {
+			solar_system = {
+				every_fleet_in_system = {
+					limit = {
+						is_ship_class = shipclass_starbase
+						owner = {
+							is_same_value = event_target:spy_mission_target_country
+						}
+					}
+					fire_rate_reduction = yes
+				}
+				every_fleet_in_system = {
+					limit = {
+						not = {
+							is_ship_class = shipclass_starbase
+						}
+						owner = {
+							is_same_value = event_target:spy_mission_target_country
+						}
+					}
+					fire_rate_reduction_ship = yes
+				}
+			}
+		}
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_fail = {
+		if = { 
+			limit = { owner = { has_civic = civic_cunning_subterfuge } }
+			from = {
+				solar_system = {
+					every_fleet_in_system = {
+						limit = { 
+							is_ship_class = shipclass_spy_ship
+							owner = { is_same_value = root.owner }
+						}
+						add_modifier = { modifier = spy_mission_civic_cunning_subterfuge }					
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = { owner = { has_civic = civic_twofold_chances } }
+			random_list = {
+				8 = {}
+				2 = {
+					owner = { country_event = { id = spy_popup.50 } }
+					from = {
+						solar_system = {
+							every_fleet_in_system = {
+								limit = {
+									is_ship_class = shipclass_starbase
+									owner = {
+										is_same_value = event_target:spy_mission_target_country
+									}
+								}
+								fire_rate_reduction = yes
+							}
+							every_fleet_in_system = {
+								limit = {
+									not = {
+										is_ship_class = shipclass_starbase
+									}
+									owner = {
+										is_same_value = event_target:spy_mission_target_country
+									}
+								}
+								fire_rate_reduction_ship = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		else = {
+			owner = { country_event = { id = spy_popup.30 } }
+		}
+		
+		from.fleet = { remove_fleet_flag = spy_situation_hack_flag }
+
+		fleet_event = { id = mission.1000 }
+	}
+}
+
+#Propaganda Mission
+spy_situation_propaganda = {
+	mission_type = espionage_mission
+	situation = spy_mission_situation_02
+	scope = planet
+	success_dc = 8
+	partial_success_dc = 5
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	tooltip_desc = spy_situation_propaganda_effect_desc
+
+	possible = {
+		exists = from.owner
+		from.owner = { NOT = { is_same_value = root.owner } }
+		owner = { is_major = yes }
+	}
+
+	on_start = { 
+		# Saving the event targets for the localization
+		from = { save_event_target_as = spy_mission_scope }
+		from.solar_system = { save_event_target_as = spy_mission_system }
+		from.owner = { save_event_target_as = spy_mission_target_country }
+		this.leader = { save_event_target_as = spy_mission_spy }
+		owner = { 
+			save_event_target_as = spy_owner
+			country_event = { id = hrb_tutorial_mission.42 } #Tutorial: Spies
+		 }
+		from = { set_planet_flag = spy_situation_propaganda_flag }
+	}
+
+	on_cancel = { from = { remove_planet_flag = spy_situation_propaganda_flag } }
+
+	on_success = { 
+		owner = { 
+			country_event = { id = spy_popup.40 } 
+		}
+
+		from = {
+			spy_propaganda = {
+				spy = event_target:spy_mission_spy
+			}
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_partial_success = { 
+		owner = { 
+			country_event = { id = spy_popup.40 } 
+		}
+
+		from = {
+			spy_propaganda = {
+				spy = event_target:spy_mission_spy
+			}
+		}
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_fail = {
+		if = { 
+			limit = { owner = { has_civic = civic_cunning_subterfuge } }
+			from = {
+				solar_system = {
+					every_fleet_in_system = {
+						limit = { 
+							is_ship_class = shipclass_spy_ship
+							owner = { is_same_value = root.owner }
+						}
+						add_modifier = { modifier = spy_mission_civic_cunning_subterfuge }					
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = { owner = { has_civic = civic_twofold_chances } }
+			random_list = {
+				8 = {}
+				2 = {
+					owner = { country_event = { id = spy_popup.50 } }
+					from = {
+						spy_propaganda = {
+							spy = event_target:spy_mission_spy
+						}
+					}
+				}
+			}
+		}
+		else = {
+			owner = { country_event = { id = spy_popup.30 } }
+		}
+
+		from = { remove_planet_flag = spy_situation_propaganda_flag }
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+	}
+}
+
+#Steal Blueprints Mission
+spy_situation_steal_blueprints = {
+	mission_type = espionage_mission
+	situation = spy_mission_situation_02
+	scope = planet
+	success_dc = 10
+	partial_success_dc = 7
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	tooltip_desc = spy_situation_steal_blueprints_effect_desc
+
+	possible = {
+		exists = from.owner
+		from.owner = { NOT = { is_same_value = root.owner } }
+		owner = { is_major = yes }
+		from = { is_capital = yes }
+	}
+
+	on_start = { 
+		# Saving the event targets for the localization
+		from = { save_event_target_as = spy_mission_scope }
+		from.solar_system = { save_event_target_as = spy_mission_system }
+		from.owner = { save_event_target_as = spy_mission_target_country }
+		this.leader = { save_event_target_as = spy_mission_spy }
+		owner = { save_event_target_as = spy_owner }
+		from = { set_planet_flag = spy_situation_steal_blueprints_flag }
+	}
+
+	on_cancel = { from = { remove_planet_flag = spy_situation_steal_blueprints_flag } }
+
+	on_success = { 
+		owner = { 
+			country_event = { id = spy_popup.40 } 
+		}
+
+		if = {
+			limit = {
+				owner = {
+					can_copy_random_tech_from = {
+						who = event_target:spy_mission_target_country
+					}
+				}
+			}
+			IF = {
+				limit = {
+					event_target:spy_mission_spy = {
+						has_trait = leader_trait_stealth_pilot
+					}
+				}
+				owner = {
+					copy_random_tech_from = {
+						who = event_target:spy_mission_target_country
+						progress = 0.2
+					}
+				}
+			}
+			else = {
+				owner = {
+					copy_random_tech_from = {
+						who = event_target:spy_mission_target_country
+						progress = 0.1
+					}
+				}
+			}
+		}
+		else = {
+			IF = {
+				limit = {
+					event_target:spy_mission_spy = {
+						has_trait = leader_trait_stealth_pilot
+					}
+				}
+				owner = {
+					random_list = {
+						1 = { add_research_area_tech_progress = { area = physics progress = 0.2 } }
+						1 = { add_research_area_tech_progress = { area = society progress = 0.2 } }
+						1 = { add_research_area_tech_progress = { area = engineering progress = 0.2 } }
+					}
+				}
+			}
+			else = {
+				owner = {
+					random_list = {
+						1 = { add_research_area_tech_progress = { area = physics progress = 0.1 } }
+						1 = { add_research_area_tech_progress = { area = society progress = 0.1 } }
+						1 = { add_research_area_tech_progress = { area = engineering progress = 0.1 } }
+					}
+				}
+			}
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_partial_success = { 
+		owner = { 
+			country_event = { id = spy_popup.40 } 
+		}
+
+		if = {
+			limit = {
+				owner = {
+					can_copy_random_tech_from = {
+						who = event_target:spy_mission_target_country
+					}
+				}
+			}
+			owner = {
+				copy_random_tech_from = {
+					who = event_target:spy_mission_target_country
+					progress = 0.1
+				}
+			}
+		}
+		else = {
+			owner = {
+				random_list = {
+					1 = { add_research_area_tech_progress = { area = physics progress = 0.1 } }
+					1 = { add_research_area_tech_progress = { area = society progress = 0.1 } }
+					1 = { add_research_area_tech_progress = { area = engineering progress = 0.1 } }
+				}
+			}
+		}
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_fail = {
+		if = { 
+			limit = { owner = { has_civic = civic_cunning_subterfuge } }
+			from = {
+				solar_system = {
+					every_fleet_in_system = {
+						limit = { 
+							is_ship_class = shipclass_spy_ship
+							owner = { is_same_value = root.owner }
+						}
+						add_modifier = { modifier = spy_mission_civic_cunning_subterfuge }					
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = { owner = { has_civic = civic_twofold_chances } }
+			random_list = {
+				8 = {}
+				2 = {
+					owner = { country_event = { id = spy_popup.50 } }
+	
+					IF = {
+						limit = {
+							owner = {
+								can_copy_random_tech_from = {
+									who = event_target:spy_mission_target_country
+								}
+							}
+						}
+						owner = {
+							copy_random_tech_from = {
+								who = event_target:spy_mission_target_country
+								progress = 0.1
+							}
+						}
+					}
+					else_if = {
+						owner = {
+							random_list = {
+								1 = { add_research_area_tech_progress = { area = physics progress = 0.1 } }
+								1 = { add_research_area_tech_progress = { area = society progress = 0.1 } }
+								1 = { add_research_area_tech_progress = { area = engineering progress = 0.1 } }
+							}
+						}
+					}
+				}
+			}
+		}
+		else = {
+			owner = { country_event = { id = spy_popup.30 } }
+		}
+
+		from = { remove_planet_flag = spy_situation_steal_blueprints_flag }
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+	}
+}
+
+# Resource Syphon Mission
+spy_situation_syphon_resources = {
+	mission_type = espionage_mission
+	situation = spy_mission_situation_02
+	scope = planet
+	success_dc = 7
+	partial_success_dc = 4
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	tooltip_desc = spy_situation_syphon_resources_effect_desc
+
+	possible = {
+		exists = from.owner
+		from.owner = { NOT = { is_same_value = root.owner } }
+	}
+
+	on_start = { 
+		# Saving the event targets for the localization
+		from = { save_event_target_as = spy_mission_scope }
+		from.solar_system = { save_event_target_as = spy_mission_system }
+		from.owner = { save_event_target_as = spy_mission_target_country }
+		this.leader = { save_event_target_as = spy_mission_spy }
+		owner = { save_event_target_as = spy_owner }
+		from = { set_planet_flag = spy_situation_syphon_resources_flag }
+	}
+
+	on_cancel = { from = { remove_planet_flag = spy_situation_syphon_resources_flag } }
+
+	on_success = {
+		owner = { 
+			country_event = { id = spy_popup.40 } 
+		}
+
+		# Syphon Resources effect
+		add_spy_syphon_resources_target = yes #{ KEY = energy_syphon_target }
+		add_spy_syphon_resources_source = yes #{ KEY = energy_syphon_source }
+
+		spy_mission_misc_effects = yes
+	}
+
+	on_partial_success = {
+		owner = { 
+			country_event = { id = spy_popup.40 } 
+		}
+
+		# Syphon Resources effect
+		add_spy_syphon_resources_target = yes #{ KEY = energy_syphon_target }
+		add_spy_syphon_resources_source = yes #{ KEY = energy_syphon_source }
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+		spy_mission_misc_effects = yes
+	}
+
+	on_fail = {
+		if = { 
+			limit = { owner = { has_civic = civic_cunning_subterfuge } }
+			from = {
+				solar_system = {
+					every_fleet_in_system = {
+						limit = { 
+							is_ship_class = shipclass_spy_ship
+							owner = { is_same_value = root.owner }
+						}
+						add_modifier = { modifier = spy_mission_civic_cunning_subterfuge }					
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = { owner = { has_civic = civic_twofold_chances } }
+			random_list = {
+				8 = {}
+				2 = {
+					owner = { country_event = { id = spy_popup.50 } }
+	
+					# Syphon Resources effect
+					add_spy_syphon_resources_target = yes #{ KEY = energy_syphon_target }
+					add_spy_syphon_resources_source = yes #{ KEY = energy_syphon_source }
+				
+					event_target:spy_mission_target_country = {
+						trigger_silent_alarm = { location = event_target:spy_mission_system }
+					}
+				}
+			}
+		}
+		else = {
+			owner = { country_event = { id = spy_popup.30 } }
+		}
+
+		from = { remove_planet_flag = spy_situation_syphon_resources_flag }
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+	}
+}
+
+# Smear Campaign Mission
+spy_situation_smear_campaign = {
+	mission_type = espionage_mission
+	situation = spy_mission_situation_02
+	scope = planet
+	success_dc = 6
+	partial_success_dc = 3
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	tooltip_desc = spy_situation_smear_campaign_effect_desc
+
+	possible = {
+		exists = from.owner
+		from.owner = { 
+			NOT = { is_same_value = root.owner } 
+			is_major = yes
+		}
+		from = { is_capital = yes }
+	}
+
+	on_start = { 
+		# Saving the event targets for the localization
+		from = { save_event_target_as = spy_mission_scope }
+		from.solar_system = { save_event_target_as = spy_mission_system }
+		from.owner = { save_event_target_as = spy_mission_target_country }
+		this.leader = { save_event_target_as = spy_mission_spy }
+		owner = { save_event_target_as = spy_owner }
+		from = { set_planet_flag = spy_situation_smear_campaign_flag }
+	}
+
+	on_cancel = { from = { remove_planet_flag = spy_situation_smear_campaign_flag } }
+
+	on_success = {
+		# Smear Campaign Pop-up
+		owner = { 
+			country_event = { id = spy_popup.60 } 
+		}
+
+		spy_mission_misc_effects = yes
+	}
+
+	on_partial_success = {
+		# Smear Campaign Pop-up
+		owner = { 
+			country_event = { id = spy_popup.60 } 
+		}
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+		
+		spy_mission_misc_effects = yes
+	}
+
+	on_fail = {
+		if = { 
+			limit = { owner = { has_civic = civic_cunning_subterfuge } }
+			from = {
+				solar_system = {
+					every_fleet_in_system = {
+						limit = { 
+							is_ship_class = shipclass_spy_ship
+							owner = { is_same_value = root.owner }
+						}
+						add_modifier = { modifier = spy_mission_civic_cunning_subterfuge }					
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = { owner = { has_civic = civic_twofold_chances } }
+			random_list = {
+				8 = {}
+				2 = {
+					# Smear Campaign Pop-up
+					owner = { 
+						set_country_flag = spy_situation_smear_campaign_twofold_chances_flag
+						country_event = { id = spy_popup.60 } 
+					}
+				
+					event_target:spy_mission_target_country = {
+						trigger_silent_alarm = { location = event_target:spy_mission_system }
+					}
+				}
+			}
+		}
+		else = {
+			owner = { country_event = { id = spy_popup.30 } }
+		}
+
+		from = { remove_planet_flag = spy_situation_smear_campaign_flag }
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+	}
+}
+
+#Sabotage Starbase Mission
+spy_situation_sabotage_starbase = {
+	mission_type = espionage_mission
+	situation = spy_mission_situation_01
+	scope = starbase
+	success_dc = 12
+	partial_success_dc = 9
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	tooltip_desc = spy_situation_sabotage_starbase_effect_desc
+
+	possible = {
+		exists = from.owner
+		from.owner = { NOT = { is_same_value = root.owner } }
+		NOT = {
+			from = {
+				solar_system = {
+					any_system_planet = {
+						is_capital = yes
+					}
+				}
+			}
+		}
+
+
+		NOR = {
+			from.owner = { is_neutral_zone = yes }
+		}
+
+		NOR = {
+			AND = {
+				from = {
+					solar_system = {
+						any_system_planet = {
+							is_colony = yes
+						}
+					}
+				}
+				from = {
+					has_starbase_size = starbase_outpost
+				}
+			}
+		}
+	}
+
+	on_start = { 
+		# Saving the event targets for the localization
+		from = { save_event_target_as = spy_mission_scope }
+		from.solar_system = { save_event_target_as = spy_mission_system }
+		from.owner = { save_event_target_as = spy_mission_target_country }
+		this.leader = { save_event_target_as = spy_mission_spy }
+		from.fleet = { set_fleet_flag = spy_situation_sabotage_starbase_flag }
+		owner = { save_event_target_as = spy_owner }
+	}
+
+	on_cancel = { 
+		from.fleet = { remove_fleet_flag = spy_situation_sabotage_starbase_flag } 
+		IF = {
+			limit = {
+				from = {
+					solar_system = {
+						any_system_planet = {
+							is_colony = yes
+						}
+					}
+				}
+				from = {
+					has_starbase_size = starbase_outpost
+				}
+			}
+			owner = { 
+				set_country_flag = cant_destroy_starbase
+				country_event = { id = spy_popup.70 } 
+			}
+		}
+	
+	}
+
+	on_success = {
+		destroy_starbase_effect = yes
+
+		owner = { 
+			country_event = { id = spy_popup.70 } 
+		}
+		spy_mission_misc_effects = yes
+
+		owner = { set_country_flag = spy_situation_sabotage_done }
+	}
+
+	on_partial_success = { 
+		from = {
+			destroy_starbase_effect = yes
+		}
+		owner = { 
+			country_event = { id = spy_popup.70 } 
+		}
+
+		event_target:spy_mission_target_country = {
+			trigger_silent_alarm = { location = event_target:spy_mission_system }
+		}
+		spy_mission_misc_effects = yes
+
+		owner = { set_country_flag = spy_situation_sabotage_done }
+	}
+        
+	on_fail = {
+		if = { 
+			limit = { owner = { has_civic = civic_cunning_subterfuge } }
+			from = {
+				solar_system = {
+					every_fleet_in_system = {
+						limit = { 
+							is_ship_class = shipclass_spy_ship
+							owner = { is_same_value = root.owner }
+						}
+						add_modifier = { modifier = spy_mission_civic_cunning_subterfuge }					
+					}
+				}
+			}
+		}
+        
+		if = {
+			limit = { owner = { has_civic = civic_twofold_chances } }
+			random_list = {
+				8 = {}
+				2 = {			
+					from = {
+						destroy_starbase_effect = yes
+					}
+					owner = {
+						country_event = { id = spy_popup.50 }
+					}
+				}
+			}
+
+		}
+		else = {
+			owner = { country_event = { id = spy_popup.30 } }
+		}
+
+		from.fleet = { remove_fleet_flag = spy_situation_sabotage_starbase_flag }
+
+		fleet_event = { id = mission.1000 }
+	}
+}
+
+######################
+# Defensive Missions #
+######################
+
+# Counter Espionage
+# Detects every Spy Ship that is not ours
+mission_counter_espionage = {
+	mission_type = counter_espionage_mission
+	scope = galactic_object
+	length = @counter_espionage_mission_lenght
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+	# Always success
+	success_dc = 2
+	partial_success_dc = 1
+
+	tooltip_desc = mission_counter_espionage_effect_desc
+
+	possible = {
+		exists = from
+		exists = from.owner
+
+		owner = {
+			is_same_value = prev.from.owner
+		}
+	}
+
+	on_start = {
+		from = {
+			solar_system = {
+				every_system_planet = {
+					limit = {
+						is_colony = yes
+					}
+					add_modifier = { modifier = spy_added_stability days = 31 }
+				}
+			}
+	    }
+	}
+
+	on_cancel = {
+	}
+
+	on_success = {
+		from = {
+			every_fleet_in_system = {
+				limit = {
+					is_ship_class = shipclass_spy_ship
+
+					owner = {
+						NOT = { is_same_value = prevprevprev.owner }
+					}
+
+					leader = {
+						NOT = { leader_opposed_skill_check = prevprevprev.leader }
+					}
+				}
+
+				solar_system = {
+					every_fleet_in_system = {
+						limit = {
+							owner = { 
+								has_civic = civic_diplomatic_expertise
+								is_same_value = prevprevprev.owner
+							}
+							is_ship_class = shipclass_spy_ship
+						}
+						add_modifier = { modifier = spy_mission_civic_cunning_subterfuge }
+					}
+				}
+
+				if = {
+					limit = {
+						NOT = { was_detected = { detected_by = prevprev.owner } }
+					}
+
+					prevprev.owner = {
+						change_variable = {
+							which = "spies_detected_count"
+							value = 1
+						}
+						
+						change_variable = {
+							which = "counter_espionage_win_count"
+							value = 1
+						}
+					}
+				}
+
+				if = {
+					limit = {
+						prevprev.owner = {
+						 	has_civic = civic_paranoia
+						}
+					}
+					
+					prevprev.owner = {
+						remove_modifier = paranoia_counter_espionage
+						add_modifier = { 
+							modifier = paranoia_counter_espionage 
+							days = 720
+						}
+					}
+				}
+
+				if = {
+					limit = { exists = solar_system.starbase }
+					solar_system.starbase.fleet = {
+						add_modifier = { modifier = spy_detected_starbase_range_boost days = @spy_detected_starbase_range_boost_days }
+					}
+				}
+
+				set_detected = { detected_by = prevprev.owner }
+
+				add_global_tension = {
+					amount = @spy_mission_fail_global_tension
+					type = spy_mission_detected
+					country = prevprev.owner
+				} 
+
+				prevprev.owner = {
+					add_opinion_modifier = {
+						who = prev.owner
+						modifier = opinion_spy_mission_fail
+					}
+				}
+
+				prev.from = { save_event_target_as = spy_detected_system }
+				root.owner = { save_event_target_as = spy_detected_system_owner }
+				owner = {
+					country_event = { id = country.27000 }
+				}
+				
+				fail_mission = yes
+			}
+			
+			counter_espionage_finished = yes
+		}
+
+		owner = {
+			if = {
+				limit = {
+					check_variable = {
+						which = "spies_detected_count"
+						value > 0
+					}
+				}
+
+				set_variable = {
+					which = "spies_detected_count"
+					value = 0
+				}
+			}
+		}
+	}
+
+	on_partial_success = {
+	}
+
+	on_fail = {
+	}
+}
+
+# Counter Propaganda
+mission_counter_propaganda = {
+	mission_type = espionage_mission
+	scope = planet
+	length = @mission_lenght
+
+	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+	
+	success_dc = 8
+	partial_success_dc = 5
+
+	tooltip_desc = mission_counter_propaganda_effect_desc
+
+	possible = {
+		exists = from.owner
+		from.owner = { is_same_value = root.owner }
+	}
+
+	on_start = {
+		this.leader = { save_event_target_as = spy_mission_spy }
+	}
+
+	on_cancel = {
+	}
+
+	on_success = {
+		from = {
+			convert_unloyal_pops = { 
+				percentage = 1.0
+				spy = event_target:spy_mission_spy
+			}
+		}
+	}
+
+	on_partial_success = {
+		from = {
+			resettle_unloyal_pops = { 
+				percentage = 0.5
+				spy = event_target:spy_mission_spy
+			}
+			convert_unloyal_pops = { 
+				percentage = 1.0
+				spy = event_target:spy_mission_spy
+			}
+		}
+	}
+
+	on_fail = {
+		from = {
+			resettle_unloyal_pops = { 
+				percentage = 1.0
+				spy = event_target:spy_mission_spy
+			}
+		}
+		fleet_event = { id = mission.1000 }
+	}
+}
+
+###################
+# Unused missions #
+###################
+
+# #Seismic Bomb
+# seismic_bomb = {
+# 	mission_type = espionage_mission
+# 	scope = planet
+# 	length = @mission_lenght
+# 	success_dc = 7
+# 	partial_success_dc = 5
+
+# 	possible = {
+# 		#Can't spy on your own people
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		#Saving the event targets for the localization
+# 		from = { save_event_target_as = spy_mission_planet }
+# 		from = { solar_system = { save_event_target_as = spy_mission_system } }
+# 		from.owner = { save_event_target_as = spy_mission_target_country }
+# 		this = { leader = { save_event_target_as = spy_mission_spy } }
+# 		#Triggering the pop-up and placing flag
+# 		owner = { country_event = { id = spy_popup.10 } }
+# 		owner = { set_country_flag = seismic_bomb_flag }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { remove_country_flag = seismic_bomb_flag }
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = spy_popup.20 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = military
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 		from = {
+# 			remove_last_built_district = yes
+# 			add_deposit = d_b_abandoned_trapped_complex
+# 		}
+# 		under_nose_spy_bonus_resources = yes
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = spy_popup.20 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = military
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 		from = {
+# 			remove_last_built_district = yes
+# 			add_deposit = d_b_abandoned_trapped_complex
+# 		}
+		
+# 		if = {
+# 			limit = {
+# 				from.owner = {
+# 					has_valid_civic	 = civic_cunning_subterfuge
+# 				}
+# 			}
+# 			random_list = {
+# 				65 = { 
+# 					from.owner = {
+# 						trigger_silent_alarm = { location = prev.from }
+# 					}
+# 				}
+# 				35 = {}
+# 			}
+# 		}
+# 		else = {
+# 			from.owner = {
+# 				trigger_silent_alarm = { location = prev.from }
+# 			}
+# 		}
+# 		under_nose_spy_bonus_resources = yes
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = spy_popup.30 } }
+# 		owner = { remove_country_flag = seismic_bomb_flag }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# #Block Buster
+# block_buster = {
+# 	mission_type = espionage_mission
+# 	scope = planet
+# 	length = @mission_lenght
+# 	success_dc = 10
+# 	partial_success_dc = 7
+
+# 	possible = {
+# 		#Can't spy on your own people
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		#Saving the event targets for the localization
+# 		from = { save_event_target_as = spy_mission_planet }
+# 		from = { solar_system = { save_event_target_as = spy_mission_system } }
+# 		from.owner = { save_event_target_as = spy_mission_target_country }
+# 		this = { leader = { save_event_target_as = spy_mission_spy } }
+# 		#Triggering the pop-up and placing flag
+# 		owner = { country_event = { id = spy_popup.10 } }
+# 		owner = { set_country_flag = block_buster_flag }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { remove_country_flag = block_buster_flag }
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = spy_popup.20 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = military
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 		from = {
+# 			remove_last_built_building = yes
+# 			random_owned_pop = { kill_pop = yes }
+# 		}
+# 		under_nose_spy_bonus_resources = yes
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = spy_popup.20 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = military
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 		from = {
+# 			remove_last_built_building = yes
+# 			random_owned_pop = { kill_pop = yes }
+# 		}
+
+# 		if = {
+# 			limit = {
+# 				from = {
+# 					has_valid_civic	 = civic_cunning_subterfuge
+# 				}
+# 			}
+# 			random_list = {
+# 				65 = { 
+# 					from.owner = {
+# 						trigger_silent_alarm = { location = prev.from }
+# 					}
+# 				}
+# 				35 = {}
+# 			}
+# 		}
+# 		else = {
+# 			from.owner = {
+# 				trigger_silent_alarm = { location = prev.from }
+# 			}
+# 		}
+# 		under_nose_spy_bonus_resources = yes
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = spy_popup.30 } }
+# 		owner = { remove_country_flag = block_buster_flag }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# #Cultural Assesment
+# cultural_assesment = {
+# 	mission_type = espionage_mission
+# 	scope = planet
+# 	length = @mission_lenght
+# 	success_dc = 10
+# 	partial_success_dc = 7
+
+# 	possible = {
+# 		#Can't spy on your own people
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		#Saving the event targets for the localization
+# 		from = { save_event_target_as = spy_mission_planet }
+# 		from = { solar_system = { save_event_target_as = spy_mission_system } }
+# 		from.owner = { save_event_target_as = spy_mission_target_country }
+# 		this = { leader = { save_event_target_as = spy_mission_spy } }
+# 		#Triggering the pop-up and placing flag
+# 		owner = { country_event = { id = spy_popup.10 } }
+# 		owner = { set_country_flag = cultural_assesment_flag }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { remove_country_flag = cultural_assesment_flag }
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = spy_popup.20 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = military
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			owner = {
+# 				copy_random_tech_from = {
+# 					who = event_target:spy_mission_target_country
+# 					progress = 0.525
+# 				}
+# 				add_resource = {
+# 					unity = 1050
+# 				}
+# 			}
+# 			under_nose_spy_bonus_resources = yes
+# 		}
+# 		else = {
+# 			owner = {
+# 				copy_random_tech_from = {
+# 					who = event_target:spy_mission_target_country
+# 					progress = 0.50
+# 				}
+# 				add_resource = {
+# 					unity = 1000
+# 				}
+# 			}
+# 			under_nose_spy_bonus_resources = yes
+# 		}
+
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = spy_popup.20 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = military
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			owner = {
+# 				copy_random_tech_from = {
+# 					who = event_target:spy_mission_target_country
+# 					progress = 0.525
+# 				}
+# 				add_resource = {
+# 					unity = 1050
+# 				}
+
+# 				if = {
+# 					limit = {
+# 						from = {
+# 							has_valid_civic	 = civic_cunning_subterfuge
+# 						}
+# 					}
+# 					random_list = {
+# 						65 = { 
+# 							from.owner = {
+# 								trigger_silent_alarm = { location = prev.from }
+# 							}
+# 						}
+# 						35 = {}
+# 					}
+# 				}
+# 				else = {
+# 					from.owner = {
+# 						trigger_silent_alarm = { location = prev.from }
+# 					}
+# 				}
+# 			}
+# 			under_nose_spy_bonus_resources = yes
+# 		}
+# 		else = {
+# 			owner = {
+# 				copy_random_tech_from = {
+# 					who = event_target:spy_mission_target_country
+# 					progress = 0.50
+# 				}
+# 				add_resource = {
+# 					unity = 1000
+# 				}
+
+# 				if = {
+# 					limit = {
+# 						from = {
+# 							has_valid_civic	 = civic_cunning_subterfuge
+# 						}
+# 					}
+# 					random_list = {
+# 						65 = { 
+# 							from.owner = {
+# 								trigger_silent_alarm = { location = prev.from }
+# 							}
+# 						}
+# 						35 = {}
+# 					}
+# 				}
+# 				else = {
+# 					from.owner = {
+# 						trigger_silent_alarm = { location = prev.from }
+# 					}
+# 				}
+# 			}
+# 			under_nose_spy_bonus_resources = yes
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = spy_popup.30 } }
+# 		owner = { remove_country_flag = cultural_assesment_flag }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# #Incite Riots
+# incite_riots = {
+# 	mission_type = espionage_mission
+# 	scope = planet
+# 	length = @mission_lenght
+# 	success_dc = 10
+# 	partial_success_dc = 7
+
+# 	possible = {
+# 		#Can't spy on your own people
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		#Saving the event targets for the localization
+# 		from = { save_event_target_as = spy_mission_planet }
+# 		from = { solar_system = { save_event_target_as = spy_mission_system } }
+# 		from.owner = { save_event_target_as = spy_mission_target_country }
+# 		this = { leader = { save_event_target_as = spy_mission_spy } }
+# 		#Triggering the pop-up and placing flag
+# 		owner = { country_event = { id = spy_popup.10 } }
+# 		owner = { set_country_flag = incite_riots_flag }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { remove_country_flag = incite_riots_flag }
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = spy_popup.20 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = military
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			from = {
+# 				add_modifier = { modifier = spy_incite_riots days = 756 } 
+# 				add_resource = {
+# 					energy = 1050
+# 				}
+# 			}
+# 			under_nose_spy_bonus_resources = yes
+# 		}
+# 		else = {
+# 			from = {
+# 				add_modifier = { modifier = spy_incite_riots days = 720 } 
+# 				add_resource = {
+# 					energy = 1000
+# 				}
+# 			}
+# 			under_nose_spy_bonus_resources = yes
+# 		}
+		
+# 	}
+
+# 	# HRB_TODO: there's a wrong scope here somewhere
+# 	on_partial_success = {
+# 		owner = { country_event = { id = spy_popup.20 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = military
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			from = {
+# 				add_modifier = { modifier = spy_incite_riots days = 756 } 
+# 				add_resource = {
+# 					energy = 1050
+# 				}
+# 			}
+# 			under_nose_spy_bonus_resources = yes
+# 		}
+# 		else = {
+# 			from = {
+# 				add_modifier = { modifier = spy_incite_riots days = 720 } 
+# 				add_resource = {
+# 					energy = 1000
+# 				}
+# 			}
+# 			under_nose_spy_bonus_resources = yes
+# 		}
+
+# 		if = {
+# 			limit = {
+# 				owner = {
+# 					has_valid_civic	= civic_cunning_subterfuge
+# 				}
+# 			}
+# 			random_list = {
+# 				35 = {}
+# 				65 = { 
+# 					from.owner = {
+# 						trigger_silent_alarm = { location = prev.from }
+# 					}
+# 				}
+# 			}
+# 		}
+# 		else = {
+# 			from.owner = {
+# 				trigger_silent_alarm = { location = prev.from }
+# 			}
+# 		}
+
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = spy_popup.30 } }
+# 		owner = { remove_country_flag = incite_riots_flag }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# mission_sample_6 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 7
+# 	partial_success_dc = 5
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = technology
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = technology
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Economy Intel
+# mission_sample_7 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 7
+# 	partial_success_dc = 5
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = economy
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 	}
+	
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = economy
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Government Intel
+# mission_sample_8 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 6
+# 	partial_success_dc = 4
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = government
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = government
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Diplomacy Intel
+# mission_sample_9 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+	
+# 	success_dc = 7
+# 	partial_success_dc = 5
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = diplomacy
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		owner = {
+# 			add_intel_report = {
+# 				category = diplomacy
+# 				level = 4
+# 				days = 100
+# 				who = from.owner
+# 			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Tracking Sabotage
+# mission_sample_10 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 7
+# 	partial_success_dc = 5
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			from = {
+# 				add_modifier = { modifier = starbase_tracking_sabotage days = 105 }
+# 			}
+# 		}
+# 		else = {
+# 			from = {
+# 				add_modifier = { modifier = starbase_tracking_sabotage days = 100 }
+# 			}
+# 		}
+
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			from = {
+# 				add_modifier = { modifier = starbase_tracking_sabotage days = 105 }
+# 			}
+# 		}
+# 		else = {
+# 			from = {
+# 				add_modifier = { modifier = starbase_tracking_sabotage days = 100 }
+# 			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Firerate Sabotage
+# mission_sample_11 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 7
+# 	partial_success_dc = 5
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			from = {
+# 				add_modifier = { modifier = starbase_fire_rate_sabotage days = 105 }
+# 			}	
+# 		}
+# 		else = {
+# 			from = {
+# 				add_modifier = { modifier = starbase_fire_rate_sabotage days = 100 }
+# 			}	
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			from = {
+# 				add_modifier = { modifier = starbase_fire_rate_sabotage days = 105 }
+# 			}	
+# 		}
+# 		else = {
+# 			from = {
+# 				add_modifier = { modifier = starbase_fire_rate_sabotage days = 100 }
+# 			}	
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Shield Sabotage
+# mission_sample_12 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 7
+# 	partial_success_dc = 5
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			from = {
+# 				add_modifier = { modifier = starbase_shield_sabotage days = 100 }
+# 			}
+# 		}
+# 		else = {
+# 			from = {
+# 				add_modifier = { modifier = starbase_shield_sabotage days = 100 }
+# 			}
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			from = {
+# 				add_modifier = { modifier = starbase_shield_sabotage days = 100 }
+# 			}
+# 		}
+# 		else = {
+# 			from = {
+# 				add_modifier = { modifier = starbase_shield_sabotage days = 100 }
+# 			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Module Sabotage
+# mission_sample_13 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 8
+# 	partial_success_dc = 6
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		from = {
+# 			espionage_sabotage_starbase_module = yes
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		from = {
+# 			espionage_sabotage_starbase_module = yes
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Building Sabotage
+# mission_sample_14 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 8
+# 	partial_success_dc = 6
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		from = {
+# 			espionage_sabotage_starbase_building = yes
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		from = {
+# 			espionage_sabotage_starbase_building = yes
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Tech Stealing
+# mission_sample_15 = {
+# 	mission_type = espionage_mission
+# 	scope = starbase
+# 	length = @mission_lenght
+
+# 	success_dc = 8
+# 	partial_success_dc = 6
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 		owner = { can_copy_random_tech_from = { who = from.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			owner = {
+# 				copy_random_tech_from = {
+# 					who = from.owner
+# 					progress = 0.525
+# 				}
+# 			}
+# 		}
+# 		else = {
+# 			owner = {
+# 				copy_random_tech_from = {
+# 					who = from.owner
+# 					progress = 0.50
+# 				}
+# 			}
+# 		}
+
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			owner = {
+# 				copy_random_tech_from = {
+# 					who = from.owner
+# 					progress = 0.525
+# 				}
+# 			}
+# 		}
+# 		else = {
+# 			owner = {
+# 				copy_random_tech_from = {
+# 					who = from.owner
+# 					progress = 0.50
+# 				}
+# 			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Pop Stealing
+# mission_sample_16 = {
+# 	mission_type = espionage_mission
+# 	scope = planet
+# 	length = @mission_lenght
+
+# 	success_dc = 8
+# 	partial_success_dc = 6
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		from.owner = {
+# 			random_owned_pop = {
+# 				limit = {
+# 					owner = {
+# 						any_owned_planet = {
+# 							habitability = { who = prevprev value >= 0.5 }
+# 						}
+# 					}
+# 				}
+# 				this = { save_event_target_as = resettle_pop }
+# 			}
+# 		}
+# 		owner = {
+# 			random_owned_planet = {
+# 				limit = { habitability = { who = prevprev value >= 0.5 } }
+# 				resettle_pop = {
+# 					pop = event_target:resettle_pop
+# 					planet = this
+# 				}
+# 			}
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		from.owner = {
+# 			random_owned_pop = {
+# 				limit = {
+# 					owner = {
+# 						any_owned_planet = {
+# 							habitability = { who = prevprev value >= 0.5 }
+# 						}
+# 					}
+# 				}
+# 				this = { save_event_target_as = resettle_pop }
+# 			}
+# 		}
+# 		owner = {
+# 			random_owned_planet = {
+# 				limit = { habitability = { who = prevprev value >= 0.5 } }
+# 				resettle_pop = {
+# 					pop = event_target:resettle_pop
+# 					planet = this
+# 				}
+# 			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# # Resource Syphon
+# mission_sample_17 = {
+# 	mission_type = espionage_mission
+# 	scope = planet
+# 	length = @mission_lenght
+
+# 	success_dc = 8
+# 	partial_success_dc = 6
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 		owner = { country_event = { id = test.1 } }
+# 	}
+
+# 	on_cancel = {
+# 		owner = { country_event = { id = test.2 } }
+# 	}
+
+# 	on_success = {
+# 		owner = { country_event = { id = test.3 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			owner = {
+# 				add_modifier = { modifier = energy_syphon_target days = 3780 }
+# 			}
+# 			from.owner = {
+# 				add_modifier = { modifier = energy_syphon_source days = 3780 }
+# 			}
+# 		}
+# 		else = {
+# 			owner = {
+# 				add_modifier = { modifier = energy_syphon_target days = 3600 }
+# 			}
+# 			from.owner = {
+# 				add_modifier = { modifier = energy_syphon_source days = 3600 }
+# 			}
+# 		}
+
+# 	}
+
+# 	on_partial_success = {
+# 		owner = { country_event = { id = test.4 } }
+# 		# Leader patient trait
+# 		if = {
+# 			limit = {
+# 				this = { 
+# 					leader = { has_trait = leader_trait_patient } 
+# 				} 
+# 			}
+# 			owner = {
+# 				add_modifier = { modifier = energy_syphon_target days = 3780 }
+# 			}
+# 			from.owner = {
+# 				add_modifier = { modifier = energy_syphon_source days = 3780 }
+# 			}
+# 		}
+# 		else = {
+# 			owner = {
+# 				add_modifier = { modifier = energy_syphon_target days = 3600 }
+# 			}
+# 			from.owner = {
+# 				add_modifier = { modifier = energy_syphon_source days = 3600 }
+# 			}
+# 		}
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		owner = { country_event = { id = test.5 } }
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+#
+#		set_detected = { detected_by = from.owner }
+# 	}
+# }
+
+# spy_mission_planet_situation = {
+# 	mission_type = espionage_mission
+# 	situation = spy_mission_situation_01
+# 	scope = planet
+# 	success_dc = 10
+# 	partial_success_dc = 7
+
+# 	experience = value:spy_mission_experience|MONTHLY_PROGRESS|@mission_monthly_progress_base|
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = { }
+
+# 	on_cancel = { }
+
+# 	on_success = { }
+
+# 	on_partial_success = { }
+
+# 	on_fail = { }
+# }
+
+
+# # Propaganda
+# mission_propaganda = {
+# 	mission_type = espionage_mission
+# 	scope = planet
+# 	length = @mission_lenght
+
+# 	success_dc = 8
+# 	partial_success_dc = 6
+
+# 	possible = {
+# 		exists = from.owner
+# 		from.owner = { NOT = { is_same_value = root.owner } }
+# 	}
+
+# 	on_start = {
+# 	}
+
+# 	on_cancel = {
+# 	}
+
+# 	on_success = {
+# 		from = {
+# 			spy_propaganda = {
+#				spy = event_target:spy_mission_spy
+#			}
+# 		}
+# 	}
+
+# 	on_partial_success = {
+# 		from = {
+# 			spy_propaganda = {
+#				spy = event_target:spy_mission_spy
+#			}
+# 		}
+
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+
+# 	on_fail = {
+# 		from.owner = {
+# 			trigger_silent_alarm = { location = prev.from }
+# 		}
+# 	}
+# }

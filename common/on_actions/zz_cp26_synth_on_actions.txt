@@ -12,5 +12,6 @@ on_tech_increased = {
 on_planet_defenders_win = {
 	events = {
 		cp26_a500.12
+		cp26_synth_rom.26
 	}
 }

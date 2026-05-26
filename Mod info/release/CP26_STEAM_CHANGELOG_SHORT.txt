@@ -4,11 +4,14 @@
 
 [list]
 [*] Reworked the major faction technology flow into a more coherent, lore-friendly progression.
-[*] Federation, Klingon, Romulan, Cardassian, and Ferengi ship unlock paths now follow clearer chronological logic.
-[*] Added new Ferengi military ships Nandi, Galin, and Ooron.
-[*] Added new ships to Klingon and Romulan : Jach and Praetor.
-[*] Added the Romulan Scimitar as a late-game mission-tree unlock with alloy investment.
-[*] Updated several start technologies and unlock conditions to better match faction identity and era.
+[*] Federation, Klingon, Romulan, Cardassian, and Ferengi ship unlock paths now follow a clearer chronological order instead of random or immersion-breaking jumps.
+[*] Major factions now start with technologies that better match their 2346 situation, doctrine, and lore identity.
+[*] Several ship technologies were restructured into a more controlled progression, so earlier hulls unlock before later prestige classes.
+[*] Romulans and Klingons now follow a more lore-friendly cloaking progression, with both factions properly tied to cloaking technology and distinct military identity.
+[*] Ferengi progression has been expanded with new military ships: Nandi, Galin, and Ooron.
+[*] Klingons and Romulans received new late-game visible ship branches: Jach and Praetor.
+[*] The Romulan Scimitar has been integrated as a special late-game unlock tied to the mission tree and alloy investment.
+[*] Multiple unlock conditions, prerequisites, and ship-related technologies were updated to better fit faction flavor and era progression.
 [/list]
 
 [h2]General Fixes[/h2]

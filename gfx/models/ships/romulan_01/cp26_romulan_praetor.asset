@@ -8,8 +8,8 @@ entity = {
 
 	locator = { name = "part1" position = { 0 0 0 } }
 	locator = { name = "root" position = { 0 0 0 } }
-	locator = { name = "engine_small_01" position = { 0.0 0.15 6.45 } }
-	locator = { name = "engine_small_02" position = { 0.0 0.15 6.45 } }
+	locator = { name = "engine_small_01" position = { 0.0 0.35 7.1 } }
+	locator = { name = "engine_small_02" position = { 0.0 0.35 7.1 } }
 	locator = { name = "large_gun_01" position = { 0 0 0 } }
 	locator = { name = "large_gun_02" position = { 0 0 0 } }
 	locator = { name = "large_gun_03" position = { 0 0 0 } }
@@ -32,7 +32,11 @@ entity = {
 	}
 
 	game_data = {
-		trail_width = 1.8
+		trail_width = 2.4
+		trail_locators = {
+			"engine_small_01" = { width = 2.4 lenght = 18 height = 9 }
+			"engine_small_02" = { width = 2.4 lenght = 18 height = 9 }
+		}
 		size = 30
 	}
 }

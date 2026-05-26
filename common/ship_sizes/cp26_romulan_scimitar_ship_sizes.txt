@@ -1,6 +1,6 @@
 @cp26_scimitar_formation_priority = 12
 @cp26_scimitar_speed = 22
-@cp26_scimitar_collision_radius = 7.0
+@cp26_scimitar_collision_radius = 13.0
 @cp26_scimitar_hp = 8200
 @cp26_scimitar_evasion = 7
 @cp26_scimitar_build_time = 900
@@ -31,8 +31,8 @@ cp26_romulan_scimitar = {
 		ship_evasion_add = @cp26_scimitar_evasion
 	}
 
-	size_multiplier = 14
-	fleet_slot_size = 8
+	size_multiplier = 21
+	fleet_slot_size = 10
 	graphical_culture = no
 	section_slots = { "mid" = { locator = "part1" } }
 	num_target_locators = 4

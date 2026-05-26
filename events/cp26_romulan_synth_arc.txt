@@ -3,12 +3,14 @@
 # Déclenché quand les UFOP recherchent tech_a500_synthetics.
 #
 # cp26_synth_rom.0  - Déclencheur caché (on_tech_increased, scope = UFOP country)
-# cp26_synth_rom.1  - Opportunité : envoyer un spy ship sur Earth (90 jours)
+# cp26_synth_rom.1  - Opportunité : envoyer un spy ship sur Earth (215 jours)
 # cp26_synth_rom.2  - Fenêtre fermée (expiry / déclin)
 # cp26_synth_rom.10 - Mission réussie → débloque Projet Synth
 # cp26_synth_rom.20 - Projet Synth : rébellion déclenchée avec succès
 # cp26_synth_rom.21 - Projet Synth : mission échouée (spy ship détecté)
 # cp26_synth_rom.25 - Incident diplomatique côté UFOP (cible appartient à la Fédération)
+# cp26_synth_rom.26 - Victoire au sol détectée sur une planète en révolte synthétique
+# cp26_synth_rom.27 - Rébellion synthétique maîtrisée
 # cp26_synth_rom.30 - Retrait du cooldown (caché)
 
 namespace = cp26_synth_rom
@@ -108,7 +110,7 @@ country_event = {
 			location = event_target:et_synth_earth
 			owner = this
 		}
-		country_event = { id = cp26_synth_rom.2 days = 90 }
+		country_event = { id = cp26_synth_rom.2 days = 215 }
 	}
 
 	# Option B - Décliner
@@ -225,6 +227,75 @@ country_event = {
 					who = prev
 					modifier = opinion_spy_detected
 				}
+			}
+		}
+	}
+}
+
+##########################################################################
+# 26 - Victoire au sol détectée (caché, via on_planet_defenders_win)
+# ROOT = défenseur, FROM = attaquant, FROMFROM = planète
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.26
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ufop = yes
+		exists = fromfrom
+		fromfrom = {
+			has_planet_flag = cp26_synth_rebellion_active
+		}
+	}
+
+	immediate = {
+		fromfrom = { save_global_event_target_as = cp26_synth_target_planet }
+		country_event = { id = cp26_synth_rom.27 days = 1 }
+	}
+}
+
+##########################################################################
+# 27 - Rébellion synthétique maîtrisée
+##########################################################################
+country_event = {
+	id = cp26_synth_rom.27
+	title = cp26_synth_rom.27.title
+	desc = cp26_synth_rom.27.desc
+	picture = GFX_evt_empire_fleet_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { NOT = { exists = event_target:cp26_synth_target_planet } }
+			random_owned_planet = {
+				limit = { has_planet_flag = cp26_synth_rebellion_active }
+				save_global_event_target_as = cp26_synth_target_planet
+			}
+		}
+	}
+
+	option = {
+		name = cp26_synth_rom.27.a
+
+		end_event_chain = cp26_synth_rebellion_chain
+
+		if = {
+			limit = { exists = event_target:cp26_synth_rebel_country }
+			event_target:cp26_synth_rebel_country = {
+				every_owned_army = {
+					remove_army = yes
+				}
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:cp26_synth_target_planet }
+			event_target:cp26_synth_target_planet = {
+				remove_planet_flag = cp26_synth_rebellion_active
+				remove_planet_flag = cp26_synth_targeted_flag
+				add_planet_devastation = -10
 			}
 		}
 	}

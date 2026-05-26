@@ -120,7 +120,7 @@ action.13.a.ferengi:0 "Open negotiations."
  cp26_ufop_federal_power_bootstrap_desc:0 "Temporary accounting and distribution relief while core worlds and starbase logistics catch up after the 2346 fiscal close. Improves empire-wide energy output for several years."
 
  cp26_options.1.name:0 "Community Patch 2026 - campaign setup"
- cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HDominion arc§!: experimental CP26 content, off by default.\n\n§HSupernova§!: UFOP Hobus / Starburst quest, blocked by default."
+ cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HSupernova§!: option to disable the Supernova quest.\n§HBajor Liberation§!: the liberation of Bajor is scripted and requires specific choices.\n§HSynth Project§!: offers gameplay for the Federation and Romulans, inspired by Star Trek: Picard."
  cp26_options.1.pirates_on:0 "Pirates: §Genabled§!"
  cp26_options.1.pirates_on.tt:0 "Click to disable the Nausicaan pirate crisis for this campaign."
  cp26_options.1.pirates_off:0 "Pirates: §Rdisabled§!"
@@ -133,10 +133,10 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_options.1.dominion_arc_on.tt:0 "§HCurrent§!: Dominion arc is §Gon§! (experimental CP26 content may run).\n\n§YClick§! to turn it §Roff§! for this whole save (ticker + Dominion special projects stop).\n\n§YTESTING§! Balance and scripts change often - use a throwaway save if you enable this."
  cp26_options.1.dominion_arc_off:0 "TESTING - Dominion arc: §ROFF§!"
  cp26_options.1.dominion_arc_off.tt:0 "§HCurrent§!: Dominion arc is §Roff§! (safe default).\n\n§YClick§! to turn it §Gon§! for this whole save (wormhole-side arc allowed when lore catches up).\n\n§YTESTING§! Expect rough edges; prefer off for serious campaigns."
- cp26_options.1.supernova_quest_on:0 "Supernova quest: §Gallowed (can happen)§!"
- cp26_options.1.supernova_quest_on.tt:0 "§HCurrent§!: UFOP Supernova / Hobus branch is §Gnot blocked§! - it §Gmay play§! when the quest tree unlocks it.\n\n§YClick§! to §Rblock§! it for this entire save (the storyline will §Rnot§! happen)."
- cp26_options.1.supernova_quest_off:0 "Supernova quest: §Rblocked (will not happen)§!"
- cp26_options.1.supernova_quest_off.tt:0 "§HCurrent§!: Supernova quest line is §Rblocked§! for this save.\n\n§YClick§! to §Gallow§! it again (it can fire later when the tree is ready)."
+ cp26_options.1.supernova_quest_on:0 "Supernova quest: §GEnabled§!"
+ cp26_options.1.supernova_quest_on.tt:0 "Click to disable the Supernova quest for this campaign."
+ cp26_options.1.supernova_quest_off:0 "Supernova quest: §RDisabled§!"
+ cp26_options.1.supernova_quest_off.tt:0 "Click to enable the Supernova quest for this campaign."
  cp26_options.1.confirm:0 "OK - start campaign"
  cp26_options.1.confirm.tt:0 "Confirms these settings for the whole campaign."
  casus_belli_cb_liberation_war:0 "Independence"
@@ -430,10 +430,10 @@ CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investi
  CP26_A500_GROUND_ASSAULT_DESC:0 "The uprising is now fully underway. Assign a transport carrying at least one assault army to this operation in order to project troops onto Mars and retake Utopia Planitia. Until this operation is completed, Mars will continue to suffer damage and civilian losses."
 
  # Game start popup - synthetic arc
- cp26_options.1.synth_arc_on:0 "Synthetic Rebellion (TESTING): §GEnabled§!"
- cp26_options.1.synth_arc_on.tt:0 "Click to disable the Synthetic Rebellion arc (Utopia Planitia) for this campaign."
- cp26_options.1.synth_arc_off:0 "Synthetic Rebellion (TESTING): §RDisabled§!"
- cp26_options.1.synth_arc_off.tt:0 "Click to enable the Synthetic Rebellion arc (Utopia Planitia) for this campaign."
+ cp26_options.1.synth_arc_on:0 "Synth Project: §GEnabled§!"
+ cp26_options.1.synth_arc_on.tt:0 "Click to disable the Synth Project arc for this campaign."
+ cp26_options.1.synth_arc_off:0 "Synth Project: §RDisabled§!"
+ cp26_options.1.synth_arc_off.tt:0 "Click to enable the Synth Project arc for this campaign."
 
  # Synthetic unrest modifier
  mod_cp26_synth_unrest:0 "Synthetic Revolt"
@@ -441,13 +441,13 @@ CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investi
 
  # Romulan decision - Projet Synth
  decision_romulan_projet_synth:0 "Launch Projet Synth"
- decision_romulan_projet_synth_desc:0 "Use the A500 behavioural data recovered from Sol to remotely trigger a synthetic rebellion on an enemy planet. The operation requires a Spy Ship in position.\n\n§YCannot be used on capital worlds or Earth.§!\n§RCooldown: 2 years.§!"
+ decision_romulan_projet_synth_desc:0 "Use the A500 behavioural data recovered from Sol to remotely trigger a synthetic rebellion on an enemy planet. The operation requires a spy ship in position.\n\n§YCannot be used on capital worlds, Earth, or Mars.§!\n§YThe target must contain at least one A500 unit.§!\n§RCooldown: 2 years.§!"
  cp26_romulan_projet_synth_no_spy:0 "No Spy Ship available."
- cp26_romulan_projet_synth_no_target:0 "No eligible target (must have robot pops, cannot be a capital)."
+ cp26_romulan_projet_synth_no_target:0 "No eligible planet found. The target must contain at least one A500 unit."
 
  # Romulan arc - Projet Synth (events)
  cp26_synth_rom.1.title:0 "Incident at Utopia Planitia"
- cp26_synth_rom.1.desc:0 "Our intelligence networks report an extraordinary situation in the Sol system. The A500 synthetic workers deployed at the Utopia Planitia shipyards have rebelled. Our scientists believe that if we dispatch a spy ship to Earth within 90 days, we can recover sufficient behavioural data to replicate the rebellion protocol - and weaponise it against our enemies."
+ cp26_synth_rom.1.desc:0 "Our intelligence networks report an extraordinary situation in the Sol system. The A500 synthetic workers deployed at the Utopia Planitia shipyards have rebelled. Our scientists believe that if we dispatch a spy ship to Earth within 215 days, we can recover sufficient behavioural data to replicate the rebellion protocol and weaponise it against our enemies."
  cp26_synth_rom.1.a:0 "Dispatch a spy ship to Sol immediately."
  cp26_synth_rom.1.b:0 "Ignore it. This is not our concern."
 
@@ -467,9 +467,13 @@ CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investi
  cp26_synth_rom.21.desc:0 "Our spy ship was detected before it could finalise the trigger signal. The operation has failed. Projet Synth remains available for another attempt."
  cp26_synth_rom.21.a:0 "Unfortunate. Recall the vessel."
 
- cp26_synth_rom.25.title:0 "Romulan Involvement Suspected"
- cp26_synth_rom.25.desc:0 "Our analysis division has determined that a recent synthetic rebellion on one of our colonies was not spontaneous. The signal signatures match an external trigger protocol. All evidence points to the Romulan Star Empire - they acquired and used A500 behavioural data against us. Starfleet is on maximum alert."
- cp26_synth_rom.25.a:0 "Alert Starfleet and reinforce all synthetic protocols."
+cp26_synth_rom.25.title:0 "Romulan Involvement Suspected"
+cp26_synth_rom.25.desc:0 "Our analysis division has determined that a recent synthetic rebellion on one of our colonies was not spontaneous. The signal signatures match an external trigger protocol. All evidence points to the Romulan Star Empire - they acquired and used A500 behavioural data against us. The colony is in open crisis and Starfleet must deploy ground troops to restore control."
+cp26_synth_rom.25.a:0 "Assemble transports and retake the colony."
+
+cp26_synth_rom.27.title:0 "Synthetic Rebellion Contained"
+cp26_synth_rom.27.desc:0 "Starfleet ground forces have restored control over the colony struck by Projet Synth. The rebel A500 units have been neutralised, but the local infrastructure still bears the marks of combat, sabotage, and panic. The crisis is over, yet reconstruction has only begun."
+cp26_synth_rom.27.a:0 "Secure the planet and restore order."
 
  cp26_synth_rom.30.a:0 "OK"
 
@@ -495,7 +499,13 @@ CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investi
  cp26_ban_a500_desc:0 "In the wake of the Utopia Planitia incident, the Federation Council has passed a resolution prohibiting further deployment of A500 synthetic units. All existing installations are immediately decommissioned.\n\n§YThis action is permanent and cannot be reversed.§!"
 
  # A500 Romulan synth no-target message
- cp26_romulan_projet_synth_no_target:0 "No eligible planet found. The target must not be a capital, Earth, or Mars, and must have at least one A500 unit present."
+ CP26_SOL_SPY_MISSION:0 "Projet Synth - Sol Infiltration"
+ CP26_SOL_SPY_MISSION_DESC:0 "Deploy a Romulan spy ship to the Sol system and extract A500 behavioural data from the Utopia Planitia archives. This operation must be completed within 215 days."
+ CP26_PROJET_SYNTH:0 "Projet Synth - Trigger Operation"
+ CP26_PROJET_SYNTH_DESC:0 "Use a Romulan spy ship in position to broadcast the A500 trigger signal and ignite a synthetic uprising on the targeted world."
+ spy_situation_cp26_projet_synth:0 "Projet Synth"
+ spy_situation_cp26_projet_synth_desc:0 "Use the A500 behavioural data stolen from Utopia Planitia to remotely trigger a synthetic rebellion on this world."
+ spy_situation_cp26_projet_synth_effect_desc:0 "Triggers a true §HA500§! uprising on the target planet: devastation, lasting unrest, and rebel armies appearing on the surface. This operation requires a Romulan spy ship and can only target a world containing at least one A500 unit.\n\n"
 
  # A500 Rebellion - Mission journal chain
  event_chain_cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
@@ -511,10 +521,16 @@ CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investi
  NAME_A500_Rebels:0 "A500 Rebels"
 
  # Romulan Spy Mission - journal chain
- event_chain_cp26_rom_spy_mission_chain_title:0 "Operation: Projet Synth"
- event_chain_cp26_rom_spy_mission_chain_desc:0 "A spy ship has been dispatched to the Sol system. The agent must reach Earth and extract A500 behavioural data from the Utopia Planitia archives within 90 days. Success will grant the Romulan Star Empire the ability to remotely trigger synthetic rebellions on enemy worlds."
- cp26_rom_spy_mission_chain_title:0 "Operation: Projet Synth"
- cp26_rom_spy_mission_chain_desc:0 "A spy ship has been dispatched to the Sol system. The agent must reach Earth and extract A500 behavioural data from the Utopia Planitia archives within 90 days. Success will grant the Romulan Star Empire the ability to remotely trigger synthetic rebellions on enemy worlds."
+event_chain_cp26_rom_spy_mission_chain_title:0 "Operation: Projet Synth"
+event_chain_cp26_rom_spy_mission_chain_desc:0 "A spy ship has been dispatched to the Sol system. The agent must reach Earth and extract A500 behavioural data from the Utopia Planitia archives within 215 days. Success will grant the Romulan Star Empire the ability to remotely trigger synthetic rebellions on enemy worlds."
+cp26_rom_spy_mission_chain_title:0 "Operation: Projet Synth"
+cp26_rom_spy_mission_chain_desc:0 "A spy ship has been dispatched to the Sol system. The agent must reach Earth and extract A500 behavioural data from the Utopia Planitia archives within 215 days. Success will grant the Romulan Star Empire the ability to remotely trigger synthetic rebellions on enemy worlds."
+event_chain_cp26_synth_rebellion_chain_title:0 "Synthetic Rebellion"
+event_chain_cp26_synth_rebellion_chain_desc:0 "A Federation colony has been hit by a hostile A500 trigger event. Assign a transport carrying at least one assault army to retake the planet."
+cp26_synth_rebellion_chain_title:0 "Synthetic Rebellion"
+cp26_synth_rebellion_chain_desc:0 "A Federation colony has been hit by a hostile A500 trigger event. Assign a transport carrying at least one assault army to retake the planet."
+CP26_SYNTH_GROUND_ASSAULT:0 "Projet Synth - Send Ground Troops"
+CP26_SYNTH_GROUND_ASSAULT_DESC:0 "An A500 rebellion is underway on this planet. Assign a transport carrying at least one assault army to this operation and restore federal control."
 
  # Earth surveillance modifier
  cp26_rom_earth_surveillance:0 "Unusual Subspace Activity"
@@ -554,10 +570,10 @@ CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investi
  cp26_museum.3.b:0 "Not now."
 
  # Game Start  -  Bajor Liberation toggle
- cp26_options.1.bajor_arc_on:0 "Bajor Liberation (TESTING): §Genabled§!"
- cp26_options.1.bajor_arc_on.tt:0 "Click to disable the Liberation of Bajor arc for this campaign. The 2369 events will not fire for any empire."
- cp26_options.1.bajor_arc_off:0 "Bajor Liberation (TESTING): §Rdisabled§!"
- cp26_options.1.bajor_arc_off.tt:0 "Click to enable the Liberation of Bajor arc for this campaign. Each major empire will receive a unique event in 2369."
+ cp26_options.1.bajor_arc_on:0 "Bajor Liberation (TESTING): §GEnabled§!"
+ cp26_options.1.bajor_arc_on.tt:0 "Click to disable the Liberation of Bajor arc for this campaign."
+ cp26_options.1.bajor_arc_off:0 "Bajor Liberation (TESTING): §RDisabled§!"
+ cp26_options.1.bajor_arc_off.tt:0 "Click to enable the Liberation of Bajor arc for this campaign."
 
  # Bajor Liberation  -  special projects (journal entries + tooltips)
  CP26_BAJOR_LIBERATION_MIL:0 "Bajor Operation - Military Fleet"

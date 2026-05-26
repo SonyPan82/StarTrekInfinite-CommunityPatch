@@ -456,7 +456,7 @@
  col_pleasure_desc:0 "La quasi-totalité de la colonie est une destination de vacances consacrée au plaisir des touristes."
  constellation:0 "Constellation"
  constellation_plural:0 "Constellation"
- cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option."
+ cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : la libération de Bajor est scriptée et demande certains choix.\n§HProjet Synth§! : offre du gameplay à la Fédération et aux Romuliens, inspiré de Star Trek : Picard."
  cp26_options.1.pirates_on:0 "Pirates : §Gactivés§!"
  cp26_options.1.pirates_on.tt:0 "Cliquez pour désactiver les pirates pour cette campagne."
  cp26_options.1.pirates_off:0 "Pirates : §Rdésactivés§!"
@@ -473,6 +473,7 @@ cp26_options.1.vassalization_off.tt:0 "Cliquez pour réactiver les propositions 
  cp26_options.1.supernova_quest_on.tt:0 "Cliquez pour désactiver la quête Supernova pour cette campagne."
  cp26_options.1.supernova_quest_off:0 "Quête Supernova : §Rdésactivée§!"
  cp26_options.1.supernova_quest_off.tt:0 "Cliquez pour activer la quête Supernova pour cette campagne."
+
  cp26_options.1.confirm:0 "OK - commencer la campagne"
  cp26_options.1.confirm.tt:0 "Valide ces paramètres pour toute la partie."
  cp26_options.1.name:0 "Community Patch 2026 - réglages de campagne"
@@ -917,10 +918,10 @@ district_gorn_hunting:0 "Terrains de reproduction"
  CP26_A500_GROUND_ASSAULT_DESC:0 "L'insurrection est désormais ouverte. Affectez à cette opération un transport contenant au moins une armée d'assaut pour projeter des troupes sur Mars et reprendre Utopia Planitia. Tant que cette opération n'est pas menée, Mars continuera de subir des dégâts et des pertes civiles."
 
  # Popup début de partie - arc synthétique
- cp26_options.1.synth_arc_on:0 "Rébellion Synthétique (TESTING) : §Gactivée§!"
- cp26_options.1.synth_arc_on.tt:0 "Cliquez pour désactiver l'arc narratif de la Rébellion Synthétique (Utopia Planitia) pour cette campagne."
- cp26_options.1.synth_arc_off:0 "Rébellion Synthétique (TESTING) : §Rdésactivée§!"
- cp26_options.1.synth_arc_off.tt:0 "Cliquez pour activer l'arc narratif de la Rébellion Synthétique (Utopia Planitia) pour cette campagne."
+ cp26_options.1.synth_arc_on:0 "Projet Synth : §Gactivé§!"
+ cp26_options.1.synth_arc_on.tt:0 "Cliquez pour désactiver l'arc Projet Synth pour cette campagne."
+ cp26_options.1.synth_arc_off:0 "Projet Synth : §Rdésactivé§!"
+ cp26_options.1.synth_arc_off.tt:0 "Cliquez pour activer l'arc Projet Synth pour cette campagne."
 
  # Modificateur instabilité synthétique
  mod_cp26_synth_unrest:0 "Révolte synthétique"
@@ -928,13 +929,13 @@ district_gorn_hunting:0 "Terrains de reproduction"
 
  # Décision romulienne - Projet Synth
  decision_romulan_projet_synth:0 "Lancer le Projet Synth"
- decision_romulan_projet_synth_desc:0 "Utiliser les données comportementales A500 récupérées à Sol pour déclencher à distance une rébellion synthétique sur une planète ennemie. L'opération est exécutée par un Spy Ship en position.\n\n§YImpossible sur les capitales et sur Terre.§!\n§RTemps de recharge : 2 ans.§!"
+ decision_romulan_projet_synth_desc:0 "Utiliser les données comportementales A500 récupérées à Sol pour déclencher à distance une insurrection synthétique sur une planète ennemie. L'opération est exécutée par un vaisseau espion en position.\n\n§YLa cible doit abriter au moins une unité A500.§!\n§RTemps de recharge : 2 ans.§!"
  cp26_romulan_projet_synth_no_spy:0 "Aucun Spy Ship disponible."
- cp26_romulan_projet_synth_no_target:0 "Aucune planète cible éligible (doit contenir des pops robotiques, hors capitale)."
+ cp26_romulan_projet_synth_no_target:0 "Aucune planète éligible trouvée. La cible doit compter au moins une unité A500."
 
  # Arc Romulien - Projet Synth (événements)
  cp26_synth_rom.1.title:0 "Incident à Utopia Planitia"
- cp26_synth_rom.1.desc:0 "Nos réseaux de renseignement signalent une situation extraordinaire dans le système Sol. Les synthétiques A500 déployés aux chantiers d'Utopia Planitia se sont rebellés. Nos scientifiques estiment que si nous envoyons un vaisseau espion sur Terre dans les 90 jours, nous pourrons récupérer suffisamment de données comportementales pour reproduire le protocole de rébellion - et l'utiliser à notre avantage contre nos ennemis."
+ cp26_synth_rom.1.desc:0 "Nos réseaux de renseignement signalent une situation extraordinaire dans le système Sol. Les synthétiques A500 déployés aux chantiers d'Utopia Planitia se sont rebellés. Nos scientifiques estiment que si nous envoyons un vaisseau espion sur Terre dans les 215 jours, nous pourrons récupérer suffisamment de données comportementales pour reproduire le protocole de rébellion et l'utiliser à notre avantage contre nos ennemis."
  cp26_synth_rom.1.a:0 "Envoyer immédiatement un vaisseau espion à Sol."
  cp26_synth_rom.1.b:0 "Ignorer. La situation ne nous concerne pas."
 
@@ -954,9 +955,13 @@ district_gorn_hunting:0 "Terrains de reproduction"
  cp26_synth_rom.21.desc:0 "Notre vaisseau espion a été détecté avant de pouvoir finaliser le signal de déclenchement. L'opération a échoué. Le Projet Synth reste disponible pour une prochaine tentative."
  cp26_synth_rom.21.a:0 "Regrettable. Rappeler le vaisseau."
 
- cp26_synth_rom.25.title:0 "Implication romulienne suspectée"
- cp26_synth_rom.25.desc:0 "Nos services d'analyse ont établi qu'une rébellion synthétique récente sur l'une de nos colonies n'était pas spontanée. Les signatures de signal correspondent à un protocole de déclenchement externe. Les indices pointent vers l'Empire Romulien - ils ont acquis et utilisé les données comportementales A500 contre nous. Starfleet est en état d'alerte maximale."
- cp26_synth_rom.25.a:0 "Notifier Starfleet et renforcer tous les protocoles synthétiques."
+cp26_synth_rom.25.title:0 "Implication romulienne suspectée"
+cp26_synth_rom.25.desc:0 "Nos services d'analyse ont établi qu'une rébellion synthétique récente sur l'une de nos colonies n'était pas spontanée. Les signatures de signal correspondent à un protocole de déclenchement externe. Les indices pointent vers l'Empire Romulien - ils ont acquis et utilisé les données comportementales A500 contre nous. La planète est en crise ouverte et Starfleet doit y projeter des troupes pour en reprendre le contrôle."
+cp26_synth_rom.25.a:0 "Rassembler des transports et reprendre la colonie."
+
+cp26_synth_rom.27.title:0 "Rébellion synthétique contenue"
+cp26_synth_rom.27.desc:0 "Les forces terrestres de Starfleet ont repris le contrôle de la colonie frappée par le Projet Synth. Les unités A500 rebelles ont été neutralisées, mais les infrastructures locales restent marquées par les combats, les sabotages et la panique. La crise est terminée, mais la reconstruction ne fait que commencer."
+cp26_synth_rom.27.a:0 "Sécuriser la planète et rétablir l'ordre."
 
  cp26_synth_rom.30.a:0 "OK"
 
@@ -982,7 +987,13 @@ district_gorn_hunting:0 "Terrains de reproduction"
  cp26_ban_a500_desc:0 "Dans la foulee de l'incident d'Utopia Planitia, le Conseil de la Federation a adopte une resolution interdisant tout nouveau deploiement d'unites synthetiques A500. Toutes les installations existantes sont immediatement decomissionnees.\n\n§YCette action est permanente et irreversible.§!"
 
  # Message d'absence de cible Projet Synth
- cp26_romulan_projet_synth_no_target:0 "Aucune planète éligible trouvée. La cible ne doit pas être une capitale, la Terre ou Mars, et doit compter au moins une unité A500."
+ CP26_SOL_SPY_MISSION:0 "Projet Synth - Infiltration de Sol"
+ CP26_SOL_SPY_MISSION_DESC:0 "Déployer un vaisseau espion romulien dans le système Sol afin d'exfiltrer les données comportementales A500 des archives d'Utopia Planitia. Cette opération doit être menée dans les 215 jours."
+ CP26_PROJET_SYNTH:0 "Projet Synth - Déclenchement"
+ CP26_PROJET_SYNTH_DESC:0 "Émettre le signal de déclenchement A500 depuis un vaisseau espion romulien en position afin de provoquer une insurrection synthétique sur le monde ciblé."
+ spy_situation_cp26_projet_synth:0 "Projet Synth"
+ spy_situation_cp26_projet_synth_desc:0 "Utiliser les données comportementales A500 volées à Utopia Planitia pour déclencher à distance une rébellion synthétique sur ce monde."
+ spy_situation_cp26_projet_synth_effect_desc:0 "Déclenche une véritable insurrection §HA500§! sur la planète ciblée: dévastation, instabilité durable et apparition d'armées rebelles. L'opération exige un vaisseau espion romulien et ne peut viser qu'un monde contenant au moins une unité A500.\n\n"
 
  # Arc A500 - Journal de mission (chaîne d'événements)
  event_chain_cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
@@ -998,10 +1009,16 @@ district_gorn_hunting:0 "Terrains de reproduction"
  NAME_A500_Rebels:0 "Rebelles A500"
 
  # Arc Romulien - Journal de mission (chaîne d'événements)
- event_chain_cp26_rom_spy_mission_chain_title:0 "Operation : Projet Synth"
- event_chain_cp26_rom_spy_mission_chain_desc:0 "Un vaisseau espion a été envoyé dans le système Sol. L'agent doit atteindre la Terre et extraire les données comportementales A500 des archives d'Utopia Planitia dans les 90 jours. En cas de succès, l'Empire stellaire romulien pourra déclencher à distance des rébellions synthétiques sur les mondes ennemis."
- cp26_rom_spy_mission_chain_title:0 "Operation : Projet Synth"
- cp26_rom_spy_mission_chain_desc:0 "Un vaisseau espion a été envoyé dans le système Sol. L'agent doit atteindre la Terre et extraire les données comportementales A500 des archives d'Utopia Planitia dans les 90 jours. En cas de succès, l'Empire stellaire romulien pourra déclencher à distance des rébellions synthétiques sur les mondes ennemis."
+event_chain_cp26_rom_spy_mission_chain_title:0 "Operation : Projet Synth"
+event_chain_cp26_rom_spy_mission_chain_desc:0 "Un vaisseau espion a été envoyé dans le système Sol. L'agent doit atteindre la Terre et extraire les données comportementales A500 des archives d'Utopia Planitia dans les 215 jours. En cas de succès, l'Empire stellaire romulien pourra déclencher à distance des insurrections synthétiques sur les mondes ennemis."
+cp26_rom_spy_mission_chain_title:0 "Operation : Projet Synth"
+cp26_rom_spy_mission_chain_desc:0 "Un vaisseau espion a été envoyé dans le système Sol. L'agent doit atteindre la Terre et extraire les données comportementales A500 des archives d'Utopia Planitia dans les 215 jours. En cas de succès, l'Empire stellaire romulien pourra déclencher à distance des insurrections synthétiques sur les mondes ennemis."
+event_chain_cp26_synth_rebellion_chain_title:0 "Rébellion synthétique"
+event_chain_cp26_synth_rebellion_chain_desc:0 "Une colonie fédérale a été frappée par un déclenchement hostile des unités A500. Déployez un transport contenant au moins une armée d'assaut pour reprendre le contrôle de la planète."
+cp26_synth_rebellion_chain_title:0 "Rébellion synthétique"
+cp26_synth_rebellion_chain_desc:0 "Une colonie fédérale a été frappée par un déclenchement hostile des unités A500. Déployez un transport contenant au moins une armée d'assaut pour reprendre le contrôle de la planète."
+CP26_SYNTH_GROUND_ASSAULT:0 "Projet Synth - Envoyer des troupes au sol"
+CP26_SYNTH_GROUND_ASSAULT_DESC:0 "Une rébellion A500 est en cours sur cette planète. Affectez à cette opération un transport contenant au moins une armée d'assaut afin d'y projeter des troupes et de rétablir le contrôle fédéral."
 
  # Modificateur de surveillance sur Earth
  cp26_rom_earth_surveillance:0 "Activité subspaciale anormale"
@@ -1093,9 +1110,9 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
 
  # Démarrage de partie  -  Toggle Libération de Bajor
  cp26_options.1.bajor_arc_on:0 "Libération de Bajor (TESTING) : §Gactivée§!"
- cp26_options.1.bajor_arc_on.tt:0 "Cliquez pour désactiver l'arc Libération de Bajor pour cette campagne. Les événements de 2369 ne se déclencheront pour aucun empire."
+ cp26_options.1.bajor_arc_on.tt:0 "Cliquez pour désactiver l'arc Libération de Bajor pour cette campagne."
  cp26_options.1.bajor_arc_off:0 "Libération de Bajor (TESTING) : §Rdésactivée§!"
- cp26_options.1.bajor_arc_off.tt:0 "Cliquez pour activer l'arc Libération de Bajor pour cette campagne. Chaque grand empire recevra un événement unique en 2369."
+ cp26_options.1.bajor_arc_off.tt:0 "Cliquez pour activer l'arc Libération de Bajor pour cette campagne."
 
  # Libération de Bajor  -  projets spéciaux (entrées journal + tooltips)
  CP26_BAJOR_LIBERATION_MIL:0 "Opération Bajor — Flotte militaire"

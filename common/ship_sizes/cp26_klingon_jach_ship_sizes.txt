@@ -1,6 +1,6 @@
 @cp26_jach_formation_priority = 46
 @cp26_jach_speed = 34
-@cp26_jach_collision_radius = 5.4
+@cp26_jach_collision_radius = 6.2
 @cp26_jach_hp = 4700
 @cp26_jach_evasion = 11
 @cp26_jach_build_time = 560
@@ -31,7 +31,7 @@ cp26_klingon_jach = {
 		ship_evasion_add = @cp26_jach_evasion
 	}
 
-	size_multiplier = 7
+	size_multiplier = 8
 	fleet_slot_size = 4
 	graphical_culture = no
 	section_slots = { "mid" = { locator = "part1" } }

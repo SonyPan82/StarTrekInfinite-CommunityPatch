@@ -15,7 +15,7 @@
 @intrepid_upkeep_deuterium = 0.2
 @intrepid_upkeep_alloys = 0.2
 @nandi_speed = 76
-@nandi_collision_radius = 3.4
+@nandi_collision_radius = 4.0
 @nandi_formation_priority = 18
 @nandi_hp = 2150
 @nandi_evasion = 22
@@ -24,7 +24,7 @@
 @nandi_upkeep_alloys = 0.45
 @galaxy_formation_priority = 50
 @Galaxy_speed = 28.8
-@galaxy_collision_radius = 6
+@galaxy_collision_radius = 6.8
 @galaxy_hp = 5400
 @galaxy_evasion = 9.6
 @galaxy_build_time = 480
@@ -32,7 +32,7 @@
 @galaxy_upkeep_alloys = 0.8
 @ooron_formation_priority = 14
 @ooron_speed = 52
-@ooron_collision_radius = 5.5
+@ooron_collision_radius = 7.2
 @ooron_hp = 7600
 @ooron_evasion = 6
 @ooron_build_time = 720
@@ -262,7 +262,7 @@ ferengicruiser = {
 		ship_evasion_add = @nandi_evasion
 	}
 
-	size_multiplier = 5
+	size_multiplier = 6
 	fleet_slot_size = 3
 	graphical_culture = no
 
@@ -356,7 +356,7 @@ ferengibattleship = {
 		ship_evasion_add = @galaxy_evasion
 	}
 
-	size_multiplier = 8
+	size_multiplier = 9
 	fleet_slot_size = 4
 	graphical_culture = no
 
@@ -448,7 +448,7 @@ ferengititan = {
 		ship_evasion_add = @ooron_evasion
 	}
 
-	size_multiplier = 14
+	size_multiplier = 16
 	fleet_slot_size = 8
 	graphical_culture = no
 

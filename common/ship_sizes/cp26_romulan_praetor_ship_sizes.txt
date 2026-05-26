@@ -1,6 +1,6 @@
 @cp26_praetor_formation_priority = 54
 @cp26_praetor_speed = 26
-@cp26_praetor_collision_radius = 6.2
+@cp26_praetor_collision_radius = 7.4
 @cp26_praetor_hp = 6000
 @cp26_praetor_evasion = 9
 @cp26_praetor_build_time = 620
@@ -31,7 +31,7 @@ cp26_romulan_praetor = {
 		ship_evasion_add = @cp26_praetor_evasion
 	}
 
-	size_multiplier = 10
+	size_multiplier = 12
 	fleet_slot_size = 4
 	graphical_culture = no
 	section_slots = { "mid" = { locator = "part1" } }

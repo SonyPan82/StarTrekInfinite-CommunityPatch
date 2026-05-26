@@ -1,4 +1,4 @@
-version="1.7.2"
+version="1.7.4"
 tags={
 	"Ships"
 	"Scripting"

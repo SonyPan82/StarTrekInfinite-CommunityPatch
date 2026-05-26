@@ -87,26 +87,6 @@ country_event = {
 	}
 
 	option = {
-		name = cp26_options.1.synth_arc_on
-		trigger = { NOT = { has_global_flag = cp26_block_synth_arc } }
-		custom_tooltip = cp26_options.1.synth_arc_on.tt
-		set_global_flag = cp26_block_synth_arc
-		hidden_effect = {
-			country_event = { id = cp26_options.1 }
-		}
-	}
-
-	option = {
-		name = cp26_options.1.synth_arc_off
-		trigger = { has_global_flag = cp26_block_synth_arc }
-		custom_tooltip = cp26_options.1.synth_arc_off.tt
-		remove_global_flag = cp26_block_synth_arc
-		hidden_effect = {
-			country_event = { id = cp26_options.1 }
-		}
-	}
-
-	option = {
 		name = cp26_options.1.bajor_arc_on
 		trigger = { NOT = { has_global_flag = cp26_block_bajor_arc } }
 		custom_tooltip = cp26_options.1.bajor_arc_on.tt
@@ -121,6 +101,26 @@ country_event = {
 		trigger = { has_global_flag = cp26_block_bajor_arc }
 		custom_tooltip = cp26_options.1.bajor_arc_off.tt
 		remove_global_flag = cp26_block_bajor_arc
+		hidden_effect = {
+			country_event = { id = cp26_options.1 }
+		}
+	}
+
+	option = {
+		name = cp26_options.1.synth_arc_on
+		trigger = { NOT = { has_global_flag = cp26_block_synth_arc } }
+		custom_tooltip = cp26_options.1.synth_arc_on.tt
+		set_global_flag = cp26_block_synth_arc
+		hidden_effect = {
+			country_event = { id = cp26_options.1 }
+		}
+	}
+
+	option = {
+		name = cp26_options.1.synth_arc_off
+		trigger = { has_global_flag = cp26_block_synth_arc }
+		custom_tooltip = cp26_options.1.synth_arc_off.tt
+		remove_global_flag = cp26_block_synth_arc
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
 		}
