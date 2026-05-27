@@ -30,7 +30,7 @@ high_councilor_klingon = {
 		
 		produces = {
 			officers = 2
-			unity = 10
+			unity = 8
 		}
 		
 	}
@@ -117,7 +117,7 @@ noble_klingon = {
 		}
 		
 		produces = {
-			unity = 5
+			unity = 4
 		}
 				
 	}
@@ -354,7 +354,7 @@ martial_artist_klingon = {
 		category = planet_entertainers
 		
 		produces = {
-			unity = 6
+			unity = 4
 		}
 		
 		#From Sporting Arenas tech
@@ -664,7 +664,7 @@ follower_of_kahless_klingon = {
 		category = planet_priests
 		
 		produces = {
-			unity = 8
+			unity = 6
 		}
 				
 		produces = {
@@ -752,4 +752,3 @@ follower_of_kahless_klingon = {
 		weight = @specialist_job_weight
 	}
 }
-

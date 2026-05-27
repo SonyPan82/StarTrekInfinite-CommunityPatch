@@ -4,11 +4,12 @@ tech_odyssey_unlock = {
 	category = { voidcraft }
 	tier = 3
 	start_tech = no
-	prerequisites = { tech_titan_unlock }
+	prerequisites = { }
 	weight = @specialhullweight
 
 	potential = {
 		is_ufop = yes
+		has_country_flag = cp26_odyssey_unlocked
 	}
 
 	triggered_config = {
@@ -21,20 +22,7 @@ tech_odyssey_unlock = {
 	}
 
 	weight_modifier = {
-		modifier = {
-			factor = 0.25
-			years_passed < 20
-		}
-		modifier = {
-			factor = 8
-			years_passed > 25
-		}
-		modifier = {
-			factor = 5
-			any_neighbor_country = {
-				has_technology = tech_titan_unlock
-			}
-		}
+		factor = 0
 	}
 
 	ai_weight = {

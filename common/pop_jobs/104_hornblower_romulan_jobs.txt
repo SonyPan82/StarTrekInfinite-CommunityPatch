@@ -33,7 +33,7 @@ senator_romulan = {
 		}
 		
         produces = {
-			unity = 10
+			unity = 8
 		}
         
 		# Bug Senatorial Residences, Romulan Decision
@@ -138,7 +138,7 @@ aristocrat_romulan = {
 		
 		produces = {
 			food = 3
-			unity = 5
+			unity = 4
 		}
 				
 	}
@@ -375,4 +375,3 @@ praetorian_guard_romulan = {
 		weight = @specialist_job_weight
 	}
 }
-

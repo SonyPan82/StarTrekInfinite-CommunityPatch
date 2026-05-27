@@ -6,11 +6,12 @@ tech_neo_constitution_unlock = {
 	category = { voidcraft }
 	tier = 2
 	start_tech = no
-	prerequisites = { tech_cruiser_unlock }
+	prerequisites = { tech_odyssey_unlock }
 	weight = @specialhullweight
 
 	potential = {
 		is_ufop = yes
+		has_country_flag = cp26_a500_resolved
 	}
 
 	triggered_config = {
@@ -52,11 +53,12 @@ tech_sagan_unlock = {
 	category = { voidcraft }
 	tier = 2
 	start_tech = no
-	prerequisites = { tech_neo_constitution_unlock }
+	prerequisites = { tech_odyssey_unlock tech_neo_constitution_unlock }
 	weight = @specialhullweight
 
 	potential = {
 		is_ufop = yes
+		has_country_flag = cp26_a500_resolved
 	}
 
 	triggered_config = {
@@ -98,11 +100,12 @@ tech_duderstadt_unlock = {
 	category = { voidcraft }
 	tier = 3
 	start_tech = no
-	prerequisites = { tech_sagan_unlock }
+	prerequisites = { tech_odyssey_unlock tech_sagan_unlock }
 	weight = @specialhullweight
 
 	potential = {
 		is_ufop = yes
+		has_country_flag = cp26_a500_resolved
 	}
 
 	triggered_config = {

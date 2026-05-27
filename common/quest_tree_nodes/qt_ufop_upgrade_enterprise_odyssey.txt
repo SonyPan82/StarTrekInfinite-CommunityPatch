@@ -14,7 +14,6 @@ qt_ufop_upgrade_enterprise_odyssey = {
 
 	possible = {
 		has_quest_tree_node = qt_ufop_upgrade_utopia_planitia_a500
-		has_technology = tech_odyssey_unlock
 	}
 
 	on_started = {
@@ -24,6 +23,8 @@ qt_ufop_upgrade_enterprise_odyssey = {
 	}
 
 	on_finished = {
+		set_country_flag = cp26_odyssey_unlocked
+		give_technology = { tech = tech_odyssey_unlock message = no }
 		country_event = { id = cp26_enterprise_odyssey.1 }
 	}
 

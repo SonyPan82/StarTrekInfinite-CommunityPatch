@@ -101,11 +101,12 @@ tholian_system_initializer = {
 						"null"
 					}
 				}
+				room = "tholian_transmission_room"
 				ethos = {
 					ethic = ethic_fanatic_militarist
 					ethic = ethic_xenophobe
 				}
-				ignore_initial_colony_error = yes				
+				ignore_initial_colony_error = yes
 			}
 			last_created_country = {
 				set_name = "Assemblee Tholienne"

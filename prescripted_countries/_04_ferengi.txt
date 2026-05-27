@@ -26,7 +26,7 @@ ferengi = {
 		home_planet_key = "NAME_Ferenginar"
 	}
 
-	room = "minor_05_transmission_room"
+	room = "ferengi_transmission_room"
 
 	authority = "auth_corporate"
 	civics = { "civic_ferengi_rules_of_acquisition" "civic_ferengi_grand_nagus" }

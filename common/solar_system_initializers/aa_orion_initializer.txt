@@ -100,12 +100,13 @@ orion_system_initializer = {
 						"null"
 					}
 				}
+				room = "orion_transmission_room"
 				ethos = {
 					ethic = ethic_militarist
 					ethic = ethic_egalitarian
 					ethic = ethic_materialist
 				}
-				ignore_initial_colony_error = yes				
+				ignore_initial_colony_error = yes
 			}
 			last_created_country = {
 				set_name = "Orion Empire"

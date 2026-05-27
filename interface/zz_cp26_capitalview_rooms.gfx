@@ -1,0 +1,57 @@
+spriteTypes = {
+
+	# -------------------------------------------------------
+	# CP26 - Capital view backgrounds (diplomacy screen)
+	# Large format  : GFX_ST_empty_room_<Faction>
+	# Smaller format: GFX_ST_capital_empty_room_<faction>
+	# -------------------------------------------------------
+
+	# FERENGI
+	spriteType = {
+		name = "GFX_ST_empty_room_Ferengi"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_ferengi.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_capital_empty_room_ferengi"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_ferengi.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+
+	# ORION
+	spriteType = {
+		name = "GFX_ST_empty_room_Orion"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_orion.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_capital_empty_room_orion"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_orion.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+
+	# GORN
+	spriteType = {
+		name = "GFX_ST_empty_room_Gorn"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_capital_empty_room_gorn"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+
+	# THOLIAN
+	spriteType = {
+		name = "GFX_ST_empty_room_Tholian"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_tholian.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_capital_empty_room_tholian"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_tholian.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+
+}

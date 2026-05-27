@@ -282,6 +282,7 @@ ferengi_system_initializer = {
 							"null"
 						}
 					}
+					room = "ferengi_transmission_room"
 					ethos = {
 						ethic = ethic_fanatic_materialist
 						ethic = ethic_xenophile

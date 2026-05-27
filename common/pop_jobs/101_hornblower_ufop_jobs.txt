@@ -34,7 +34,7 @@ civil_servant_ufop = {
 		}
 		produces = {
 			food = 3
-			unity = 10
+			unity = 8
 		}
 	}
 
@@ -319,4 +319,3 @@ security_officer_ufop = {
 		weight = @specialist_job_weight
 	}
 }
-
