@@ -1,0 +1,134 @@
+####################################
+##    BORG CRISIS CHAIN EVENTS    ##
+####################################
+
+
+#########################################
+#
+#	Country Events - Points of Interest
+#
+#########################################
+
+
+#########################################################################
+# Aftermath (BC-AFTER2)
+# borg_crisis.30, borg_crisis.40, borg_crisis.50, borg_crisis.60
+# GD_TAG: 3 STEP Lore
+#########################################################################
+
+### Borg Cube Point of Interest
+borg_crisis_early = { 
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_highway_ftl_travel_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_highway_ftl_travel_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_borg_cube
+
+	counter = { 
+		battle_scene_scanned = { 
+			max = 1 
+		} 
+	} 
+}
+
+#########################################################################
+# Mysterious Structure (BC-MYST4)
+# borg_crisis.80, borg_crisis.90, borg_crisis.100
+# GD_TAG: 3 STEP Lore
+#########################################################################
+
+### Mysterious Structure Point of Interest
+borg_crisis_mid_1 = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds" 
+	picture = GFX_evt_borg_cube_shadow
+	counter = { 
+		alloy_structure_scanned = { 
+			max = 1 
+		} 
+	}
+}
+
+#########################################################################
+# Return of the USS Voyager (BC-VOYAGER9)
+# borg_crisis.351, borg_crisis.360, borg_crisis.370, borg_crisis.380, 
+# borg_crisis.382, borg_crisis.386, borg_crisis.390, borg_crisis.391,
+# borg_crisis.392
+# GD_TAG: 9 STEP Lore
+#########################################################################
+
+### It's Janeway or the Highway
+borg_crisis_end = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds" 
+	picture = GFX_evt_borg_crisis_voyager_return_janeway
+	counter = {
+		janeway_gambit_steps = {
+			max = 3
+		}
+	}
+}
+
+#########################################################################
+# Warp Highways Compromised (BC-WARP10)
+# borg_crisis.400
+# GD_TAG: 1 STEP Lore
+#########################################################################
+
+### Warp Highways Compromised Chain
+borg_crisis_end_highways = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds" 
+
+	# Dynamic Images (Major Power variants)
+	# COUNTRY SCOPE ALWAYS (event_scope = ship_event does not matter)
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_highway_ftl_travel_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_highway_ftl_travel_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}
+	# Default Image
+	picture = GFX_evt_borg_cube
+}
+
+#########################################################################
+# The Freed / Saving The Assimilated (BC-FREED12)
+# borg_crisis.430, borg_crisis.440
+# GD_TAG: 2 STEP Lore
+#########################################################################
+
+### The Freed
+borg_crisis_end_the_freed = {
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_borg_cube_shadow
+	counter = {
+		freed_support_received = {
+			max = 1
+		}
+	}
+}

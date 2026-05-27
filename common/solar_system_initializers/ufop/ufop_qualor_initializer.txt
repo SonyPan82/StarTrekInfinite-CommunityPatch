@@ -10,8 +10,8 @@ ufop_qualor_initializer = {
 		size = { min = 20 max = 30 }
 		has_ring = no
 
-		init_effect = { 	
-			change_pc = pc_b_star 
+		init_effect = {
+			change_pc = pc_b_star
 		}
 	}
 

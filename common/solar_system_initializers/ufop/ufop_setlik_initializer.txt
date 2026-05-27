@@ -11,7 +11,7 @@ ufop_setlik_initializer = {
 		has_ring = no
 
 		init_effect = {
-			change_pc = pc_b_star 
+			change_pc = pc_b_star
 			save_global_event_target_as = setlik_star
 		}
 	}

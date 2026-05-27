@@ -6,12 +6,6 @@ bespoke_procedural_scenario = {
 
 	# Everything below this line should be copied to tutorial.txt
 	num_stars = 999
-	# CP26 - radius MUST stay <= 500 (engine hard limit, see Stellaris wiki:
-	# "the map is a box 1000x1000x10, from -500 to 500"). Going above 500
-	# (was 570) caused random access-violation / SIGSEGV crashes in
-	# CConstructionQueueManager::DailyUpdate and CSaveGameTaskManager::
-	# CreateMemoryFiles. All 258 system positions stay within hypot 405
-	# from origin, so 500 (engine hard cap) leaves a 95-unit safety margin.
 	radius = 800
 	num_empires = { min = 24 max = 24 }	# CP26: vanilla-style 24 slots; Breen removed, Gorn/Orion/Tholian replace low-impact minors.
 	num_empire_default = 24		 		# HRB_NOTE: min = 1, max = 24, out of this values the game crash. Use the max value to ensure appear the 4 Mapos.

@@ -5,10 +5,10 @@ cp26_ufop_sector_governance_charter = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_faith_in_science.dds"
 }
 
-# Départ UFP : le bilan énergie mensuel reste très négatif en vanilla (gros réseau) ;
-# petit bonus production sur ~6 ans pour ne pas rester coincé à −100+/mois dès le 1er mois.
+# Départ UFP : filet temporaire léger, complété par des stations énergie
+# pré-exploitées dans les systèmes fondateurs.
 cp26_ufop_federal_power_bootstrap = {
-	country_energy_produces_mult = 0.12
+	country_energy_produces_mult = 0.05
 	icon = "gfx/interface/icons/planet_modifiers/pm_faith_in_science.dds"
 }
 

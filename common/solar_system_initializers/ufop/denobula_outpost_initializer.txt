@@ -12,9 +12,9 @@ denobula_outpost_initializer = {
 		size = { min = 20 max = 30 }
 		has_ring = no
 
-		init_effect = { 
-			set_planet_flag = ignore_startup_effect		
-			change_pc = pc_g_star 
+		init_effect = {
+			set_planet_flag = ignore_startup_effect
+			change_pc = pc_g_star
 		}
 
 		late_init_effect = {
@@ -33,9 +33,9 @@ denobula_outpost_initializer = {
 		size = { min = 20 max = 30 }
 		has_ring = no
 
-		init_effect = { 
-			set_planet_flag = ignore_startup_effect		
-			change_pc = pc_f_star 
+		init_effect = {
+			set_planet_flag = ignore_startup_effect
+			change_pc = pc_f_star
 		}
 
 		late_init_effect = {
@@ -54,9 +54,9 @@ denobula_outpost_initializer = {
 		size = { min = 20 max = 30 }
 		has_ring = no
 
-		init_effect = { 
-			set_planet_flag = ignore_startup_effect		
-			change_pc = pc_g_star 
+		init_effect = {
+			set_planet_flag = ignore_startup_effect
+			change_pc = pc_g_star
 		}
 
 		late_init_effect = {

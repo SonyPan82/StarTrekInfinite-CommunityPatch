@@ -1,0 +1,22 @@
+namespace = cp26_ferengi_quest
+
+# Règle 7 — set flag quand un statu quo est déclaré impliquant les Ferengi
+# Déclenché par on_status_quo (Root = Recipient / From = Actor)
+country_event = {
+	id = cp26_ferengi_quest.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# Root = Recipient
+		if = {
+			limit = { has_country_id = ferengi }
+			set_country_flag = cp26_ferengi_a7_status_quo
+		}
+		# From = Actor
+		if = {
+			limit = { from = { has_country_id = ferengi } }
+			from = { set_country_flag = cp26_ferengi_a7_status_quo }
+		}
+	}
+}

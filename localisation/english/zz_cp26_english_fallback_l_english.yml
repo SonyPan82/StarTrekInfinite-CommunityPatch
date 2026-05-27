@@ -121,3 +121,8 @@
  MEDIUM_PLASMA_CHARGE_DESC:0 "$PLASMA_CHARGE_DESC$"
  MEDIUM_VARUVIAN_BOMBS_DESC:0 "$VARUVIAN_BOMBS_DESC$"
  MEDIUM_TRICOBALT_MINES_DESC:0 "$TRICOBALT_MINES_DESC$"
+
+ janeway_gambit_steps:0 "Janeway's gambit"
+ freed_support_received:0 "Freed Borg support secured"
+ borg_crisis_end_the_freed_title:0 "The Freed"
+ borg_crisis_end_the_freed_desc:0 "A faction of liberated Borg drones is willing to aid us against the Collective. Their help may buy us the time and firepower needed to survive the final Borg assault."

@@ -96,3 +96,8 @@
  MEDIUM_PLASMA_CHARGE_DESC:0 "$PLASMA_CHARGE_DESC$"
  MEDIUM_VARUVIAN_BOMBS_DESC:0 "$VARUVIAN_BOMBS_DESC$"
  MEDIUM_TRICOBALT_MINES_DESC:0 "$TRICOBALT_MINES_DESC$"
+
+ janeway_gambit_steps:0 "Plan de Janeway"
+ freed_support_received:0 "Soutien des Borgs libérés obtenu"
+ borg_crisis_end_the_freed_title:0 "Les Libérés"
+ borg_crisis_end_the_freed_desc:0 "Un groupe de drones borgs libérés accepte de nous aider contre le Collectif. Leur soutien pourrait nous donner le temps et la puissance de feu nécessaires pour survivre à l'assaut final des Borgs."

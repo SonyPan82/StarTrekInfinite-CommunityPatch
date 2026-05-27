@@ -12,7 +12,9 @@ ufop_wolf_initializer = {
 		size = { min = 20 max = 30 }
 		has_ring = no
 
-		init_effect = { change_pc = pc_f_star }
+		init_effect = {
+			change_pc = pc_f_star
+		}
 	}
 
 	change_orbit = 20

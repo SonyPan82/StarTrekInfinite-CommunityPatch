@@ -1,0 +1,4918 @@
+##############################
+##    BORG CRISIS EVENTS    ##
+##############################
+
+namespace = borg_crisis
+
+#HRB_TODO This comment box below is just a reference.
+#########################################################################
+# Borg Cube (BORGCUBE12)
+# country.TBD, country.TBD, country.TBD, 
+# country.TBD, country.TBD, country.TBD, 
+# country.TBD, country.TBD, country.TBD
+# GD_TAG: 9-STEP Fed Lore
+# This event is triggered in 00_hornblower_event_chains
+#########################################################################
+
+# Time Variables / Other Triggers
+@ship_goes_MIA_threshold = 90 			# HRB_TODO: 3 months = 90
+@homecoming_wait_time = 10				# HRB_TODO: N/A
+@days_to_retarget = 5					# HRB_TODO: should be less than days_to_borg_cube_reinforcements
+@days_to_assimilation = 30				# HRB_TODO: N/A
+@brog_waves_per_tick = 5				# HRB_TODO: Balance
+
+# Time Variables / Events
+@crisis_init_wait_time = 720			# HRB_TODO: 2 years
+@early_to_mid_crisis_time = 3960		# HRB_TODO: 11 years = 3960 / Year Aprox 2360
+@mid_to_late_crisis_time = 3600			# HRB_TODO: 10 years = 3600
+@mid_to_abduction_time = 2160			# HRB_TODO: 6 years = 2160 / Year Aprox 2366
+@adbuction_to_queen_time = 1800			# HRB_TODO: 5 years = 1800 / Year Aprox 2372
+@queen_to_janeway_time = 2520			# HRB_TODO: 7 years = 2520 / Year Aprox 2378
+@janeway_success_to_victory_time = 10 	# HRB_TODO: Determine
+@late_to_end_crisis_time = 29160		# HRB_TODO: 81 Years = 29160 / Year Aprox
+@days_to_invasion = 720					# HRB_TODO: 2 Year = 720 / Year Aprox 2463
+@days_to_total_war = 1440				# HRB_TODO: 4 Years = 1440 / Year Aprox 2467
+@total_war_to_the_freed_first = 720		# HRB_TODO: 2 Years = 720 / Year Aprox 2469
+@the_freed_loop_time = 1800				# HRB_TODO: 5 Years = 1800 Days
+@the_freed_loop_time_short = 720		# HRB_TODO: 2 Years = 720 Days
+@days_to_borg_cube_reinforcements = 180	# HRB_TODO: 6 Months = 180
+
+# Reward Variables
+@crisis_resource_reward_low = 500
+@crisis_resource_reward_mid = 2000
+@crisis_resource_reward_high = 10000
+
+@crisis_unity_reward_low = 3000
+@crisis_unity_reward_mid = 10000
+@crisis_unity_reward_high = 25000
+
+@crisis_influence_reward_low = 20
+@crisis_influence_reward_mid = 80
+@crisis_influence_reward_high = 240
+
+@crisis_faction_support_reward_low = 0.05
+@crisis_faction_support_reward_mid = 0.15
+@crisis_faction_support_reward_high = 0.30
+
+# Costs Variables
+@crisis_resource_cost_low = -150
+@crisis_resource_cost_mid = -500
+@crisis_resource_cost_high = -1500
+
+
+
+##############################
+## BORG CRISIS TEST EVENTS
+##############################
+
+#########################################################################
+# Assimilation (BC-ASSIM7)
+#########################################################################
+
+### TEST EVENT to destroy the Observation Vessel (Picard's Ship)
+country_event = {
+	id = borg_crisis.999
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		delete_fleet = {
+			target = event_target:borg_crisis_observation_vessel.fleet
+			kill_leader = no
+		}
+	}
+}
+
+#########################################################################
+# Return of the USS Voyager (BC-VOYAGER9)
+#########################################################################
+
+### TEST EVENT to Kill Janeway and trigger Project Failed outcome
+country_event = {
+	id = borg_crisis.9999
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	immediate = {
+		event_target:crisis_leader_janeway = {
+			kill_leader = {
+				show_notification = no
+			}
+		}
+	}
+}
+
+# HRB_TODO: test events to check if the Borg country is destroyed
+country_event = {
+	id = borg_crisis.995
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:borg_crisis_country
+		is_same_value = event_target:borg_crisis_country
+	}
+	
+	immediate = {
+		play_country_event_for_all_major_powers = { ID = borg_crisis.996 }
+	}
+}
+
+# HRB_TODO: test events to check if the Borg country is destroyed
+country_event = {
+	id = borg_crisis.996
+	title = "Borg Crisis Country has been destroyed!"
+	desc = "Lorem_Ipsum"
+	picture = GFX_evt_borg_cube_shadow 	# HRB_TODO_IMAGE PLACEHOLDER
+	show_sound = event_sensor_ping 		# HRB_TODO_SOUND PLACEHOLDER
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+#########################################################################
+# Borg Cubes AI
+#########################################################################
+
+# Borg Cube Orbits Colony Check (borg_crisis.580, after "Abduct Pops")
+
+# HRB_TODO: TEST - REMOVE
+# Launch pop-up
+# fleet_event = { id = borg_crisis.900 }
+
+# Triggered from: on_fleet_destroyed_victim
+# Invasion Wave Fleet Destroyed
+# Scopes:
+# This = owner of fleet 1 	(destroyed)
+# From = owner of fleet 2 	(combatant)
+# FromFrom = fleet 1 		(destroyed)
+# FromFromFrom = fleet 2 	(combatant)
+#(after "target_for_invasion")
+
+# HRB_TODO: TEST - REMOVE
+# Launch pop-up
+# country_event = { id = borg_crisis.901 }
+
+# HRB_TODO: TEST - REMOVE
+# Launch pop-up -> A Colony has been Assimilated
+fleet_event = {
+	id = borg_crisis.900
+	title = borg_crisis.900.name
+	desc = "Lorem Ipsum"
+	picture = GFX_evt_borg_cube_shadow 	# HRB_TODO_IMAGE PLACEHOLDER
+	show_sound = event_sensor_ping 		# HRB_TODO_SOUND PLACEHOLDER
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# HRB_TODO: TEST - REMOVE
+country_event = {
+	id = borg_crisis.901
+	title = "wave_invasion_fleet Destroyed!"
+	desc = "Lorem Ipsum"
+	picture = GFX_evt_borg_cube_shadow 	# HRB_TODO_IMAGE PLACEHOLDER
+	show_sound = event_sensor_ping 		# HRB_TODO_SOUND PLACEHOLDER
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+##############################
+##    BORG CRISIS EARLY     ##
+##############################
+
+#########################################################################
+# Subspace Disturbance (BC-SUB1)
+# borg_crisis.10, borg_crisis.20, borg_crisis.21
+# GD_TAG: 2 STEP Lore
+#########################################################################
+
+### Triggering Event 
+country_event = {
+	id = borg_crisis.10
+	hide_window = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		is_tutorial_active = no
+	}
+
+	immediate = {
+		# This adds the current_player_homeworld event target to the namespace
+		define_crisis_current_event_targets = yes
+		
+		# HRB_NOTE: this should be done at a certain point of the storyline
+		establish_communications_with_the_borg = yes
+
+		# Triggers Subspace Disturbance
+		country_event = { id = borg_crisis.20 days = 1080 random = @crisis_init_wait_time}
+	}
+}
+
+### Subspace Disturbance
+country_event = {
+	id = borg_crisis.20
+	title = "borg_crisis.20.name"
+	show_sound = event_borg_cube_shadow 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_travel_vortex_enterprise_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_travel_vortex_vorcha_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_travel_vortex_valdore_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_travel_vortex_keldon_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.20.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.20.klingon.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.20.romulan.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.20.cardassian.desc"
+	}
+
+	### Monitor Unusual Activity
+	option = {
+		name = borg_crisis.20.a
+		custom_tooltip = borg_crisis.20.a.tt
+
+		add_resource = {
+			research = @crisis_resource_reward_mid
+		}
+		
+		hidden_effect = {
+			# Triggers Subspace Disturbance - Timed Flag
+			country_event = { id = borg_crisis.21 days = @ship_goes_MIA_threshold } 
+		}
+	}
+
+	### Life Discovered
+	option = {
+		name = borg_crisis.20.b
+		custom_tooltip = borg_crisis.20.b.tt
+
+		add_resource = {
+			unity = @crisis_unity_reward_low
+		}
+		
+		hidden_effect = {
+			# Triggers Subspace Disturbance - Timed Flag
+			country_event = { id = borg_crisis.21 days = @ship_goes_MIA_threshold }
+		}
+	}
+
+	# Danger Beyond the Horizon
+	option = {
+		trigger = {	
+			OR = {
+				is_romulan = yes	
+				is_cardassian = yes
+			}
+		}
+
+		name = borg_crisis.20.c
+		custom_tooltip = borg_crisis.20.c.tt
+
+		add_resource = {
+			influence = @crisis_influence_reward_low
+		}
+		
+		hidden_effect = {
+			# Triggers Subspace Disturbance - Timed Flag
+			country_event = { id = borg_crisis.21 days = @ship_goes_MIA_threshold }
+		}
+	}
+}
+
+### Subspace Disturbance - Timed Flag
+country_event = {
+	id = borg_crisis.21
+	is_triggered_only = yes
+	hide_window = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_country_flag = ship_can_go_MIA 
+	}
+}
+
+#########################################################################
+# Aftermath (BC-AFTER2)
+# borg_crisis.30, borg_crisis.40, borg_crisis.50, borg_crisis.60
+# GD_TAG: 3 STEP Lore
+#########################################################################
+
+### Aftermath Initializer (Called when Ship Enters a System)
+# Called from on_entering_system_fleet
+# Scope = Fleet
+# From = System
+fleet_event = {
+	id = borg_crisis.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_country_flag = ship_can_go_MIA }
+	}
+	immediate = {
+		if = {
+			# The ship must be a Science ship
+			limit = {
+				is_ship_class = shipclass_science_ship
+
+				# Needs to be outside the Country's borders and also be a Highway
+				from = {
+					NOT = { is_inside_border = prev.owner }
+				    is_star_class = sc_highway_node 
+				}
+			}
+
+			owner = { remove_country_flag = ship_can_go_MIA }
+
+			save_global_event_target_as = borg_crisis_science_fleet
+			from = { save_global_event_target_as = borg_crisis_initial_system }
+			
+			# Borg Debris System
+			event_target:borg_crisis_initial_system = {
+				random_system_planet = {
+					save_global_event_target_as = borg_crisis_debris_spawn_point
+				}
+			}
+
+			event_target:borg_crisis_science_fleet = {
+				set_fleet_flag = borg_crisis_science_fleet
+				set_mia = yes
+
+				fleet_event = { id = borg_crisis.35 days = 1 }
+			}
+			
+			# Also adds the borg_crisis_ambient_debris event target
+			spawn_borg_debris = yes
+		}
+	}
+}
+
+# Check if missing Science Ship has returned
+fleet_event = {
+	id = borg_crisis.35
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				is_mia = no
+			}
+			# Triggers Aftermath (Fleet returns to Capital system)
+			fleet_event = { id = borg_crisis.40 }
+		}
+		else = {
+			# Loop itself
+			fleet_event = { id = borg_crisis.35 days = 1 }
+		}
+	}
+}
+
+### Aftermath (Fleet returns to Capital System)
+fleet_event = {
+	id = borg_crisis.40
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			# Triggers Aftermath
+			country_event = { id = borg_crisis.50 }
+		}
+
+		hidden_effect = {
+			begin_event_chain = {
+				event_chain = "borg_crisis_early"
+				target = THIS
+			}
+		}
+
+		enable_special_project = {
+			name = "BATTLE_SITE"
+			location = event_target:borg_crisis_ambient_debris
+			owner = ROOT
+		}
+	}
+}
+
+### Aftermath  
+country_event = {
+	id = borg_crisis.50
+	title = "borg_crisis.50.name"
+	desc = "borg_crisis.50.desc"
+	show_sound = event_war_games 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_combat_onboard_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_combat_onboard_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_combat_onboard_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_combat_onboard_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	### Designate Task Force
+	option = {
+		name = borg_crisis.50.a
+		custom_tooltip = borg_crisis.50.a.tt
+	}
+}
+
+### Scene of the Battle
+# Called from Special Project "BATTLE_SITE" on_success
+country_event = {
+	id = borg_crisis.60
+	title = "borg_crisis.60.name"
+	show_sound = event_space_debris_crystals 
+	is_triggered_only = yes
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_debris_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_debris_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.60.ufop.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.60.klingon.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.60.romulan.desc"
+	}
+
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.60.cardassian.desc"
+	}
+
+	immediate = {
+		hidden_effect = {
+			add_event_chain_counter = { 
+				event_chain = "borg_crisis_early" 
+				counter = "battle_scene_scanned" 
+				amount = 1 
+			}
+		}
+	}
+
+	### HRB_TOD: Replace by a research deposit (?)
+	### Study Wreckage
+	option = {
+		name = borg_crisis.60.a
+		custom_tooltip = borg_crisis.60.a.tt
+
+		event_target:borg_crisis_science_fleet = {
+			leader = { add_experience = 200 }
+
+			# HRB_TODO: Check the new leader trait keys and add propper trait
+			# leader = {
+			# 	if = {
+			# 		limit = { has_trait = leader_trait_carefree	}
+			# 		add_trait = leader_trait_meticulous
+			# 	}
+			# 	else = {
+			# 		add_trait = leader_trait_carefree
+			# 	}
+			# }
+		}
+
+		add_monthly_resource_mult = { 
+			resource = research 
+			value = @tier1researchreward 
+			min = @tier1researchmin 
+			max = @tier1researchmax 
+		}
+	}
+
+	### HRB_TODO: Add explosion VFX
+	### Replace by an alloy deposit (?)
+	### Neutralize
+	option = {
+		name = borg_crisis.60.b
+		custom_tooltip = borg_crisis.60.b.tt
+
+		add_resource = {
+			alloys = 250
+		}
+		add_monthly_resource_mult = { 
+			resource = unity 
+			value = @tier1unityreward 
+			min = @tier1unitymin 
+			max = @tier1unitymax 
+		}
+	}
+	
+	after = {
+		destroy_ambient_object = event_target:borg_crisis_ambient_debris
+		end_event_chain = borg_crisis_early
+
+		hidden_effect = {
+			# Triggers Homecoming
+			country_event = {
+				id = borg_crisis.70
+				days = @homecoming_wait_time
+			}
+		}
+	}
+}
+
+#########################################################################
+# Homecoming (BC-HOME3)
+# borg_crisis.30, borg_crisis.70
+# GD_TAG: 1 STEP Lore
+#########################################################################
+
+### Homecoming 
+country_event = {
+	id = borg_crisis.70
+	title = "borg_crisis.70.name"
+	desc = "borg_crisis.70.desc"
+	show_sound = event_generic_tension 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_spy_mission_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_spy_mission_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_spy_mission_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_spy_mission_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	### Tread Cautiously
+	option = {
+		trigger = {	is_ufop = yes }
+
+		name = borg_crisis.70.a
+		custom_tooltip = borg_crisis.70.a.tt
+
+		add_monthly_resource_mult = { 
+			resource = research 
+			value = @tier1researchreward 
+			min = @tier1researchmin 
+			max = @tier1researchmax 
+		}
+	}
+
+	### Warriors Prepare
+	option = {
+		trigger = {	is_klingon = yes }
+
+		name = borg_crisis.70.b
+		custom_tooltip = borg_crisis.70.b.tt
+		
+		add_monthly_resource_mult = { 
+			resource = research 
+			value = @tier1researchreward 
+			min = @tier1researchmin 
+			max = @tier1researchmax 
+		}
+	}
+
+	### Notify Tal-Shiar
+	option = {
+		trigger = {	is_romulan = yes }
+
+		name = borg_crisis.70.c
+		custom_tooltip = borg_crisis.70.c.tt
+	
+		add_monthly_resource_mult = { 
+			resource = research 
+			value = @tier1researchreward 
+			min = @tier1researchmin 
+			max = @tier1researchmax 
+		}
+	}
+
+	### Crush Insignificant Species
+	option = {
+		trigger = {	is_cardassian = yes }
+
+		name = borg_crisis.70.d
+		custom_tooltip = borg_crisis.70.d.tt
+
+		add_monthly_resource_mult = { 
+			resource = research 
+			value = @tier1researchreward 
+			min = @tier1researchmin 
+			max = @tier1researchmax 
+		}
+	}
+
+	after = {
+		add_modifier = {
+			modifier = crisis_homecoming_build_speed
+		}
+
+		# Triggers Mysterious Structure / Borg Crisis Mid
+		hidden_effect = {
+			country_event = { id = borg_crisis.80 days = @early_to_mid_crisis_time }
+		}
+	}
+}
+
+##############################
+##     BORG CRISIS MID 1    ##
+##############################
+
+### MINI CRISES ###
+
+#########################################################################
+# Mysterious Structure (BC-MYST4)
+# borg_crisis.80, borg_crisis.90, borg_crisis.100
+# GD_TAG: 3 STEP Lore
+#########################################################################
+
+### Mysterious Structure
+country_event = {
+	id = borg_crisis.80
+	title = "borg_crisis.80.name"
+	desc = "borg_crisis.80.desc"
+	picture = GFX_evt_borg_cube_shadow
+	show_sound = event_borg_cube 
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			random_system_within_warp_area = {
+				limit = {
+					NOT = { 
+						is_inside_border = ROOT 
+					}
+					NOT = { 
+						is_star_class = sc_highway_node 
+					}
+					
+					has_presence = no
+					has_access_fleet = ROOT
+					
+					ROOT = {
+						intel_level = {
+							level = none
+							system = PREV
+						}
+					}
+				}
+				save_global_event_target_as = borg_cube_system
+			}
+
+			# If the player has intel on all systems within logistic warp range
+			if = {
+				limit = { 
+					NOT = { exists = event_target:borg_cube_system }				
+				}
+
+				random_system_within_warp_area = {
+					limit = {
+						NOT = { is_inside_border = ROOT }
+						NOT = { is_star_class = sc_highway_node }
+						has_presence = no
+					}
+					save_global_event_target_as = borg_cube_system
+				}
+			}
+
+			if = {
+				limit = { 
+					NOT = { exists = event_target:borg_cube_system }				
+				}
+
+				random_system_within_warp_area = {
+					limit = {
+						NOT = { is_inside_border = ROOT }
+						NOT = { is_star_class = sc_highway_node }
+					}
+					save_global_event_target_as = borg_cube_system
+				}
+			}
+
+			# Fallback
+			if = {
+				limit = { 
+					NOT = { exists = event_target:borg_cube_system }				
+				}
+
+				random_system_within_warp_area = {
+					limit = {
+						NOT = { is_star_class = sc_highway_node }
+					}
+					save_global_event_target_as = borg_cube_system
+				}
+			}
+
+			event_target:borg_cube_system = {
+				set_star_flag = borg_origin_system
+	
+				random_system_planet = { 
+					limit = { is_colony = no }
+									
+					save_global_event_target_as = borg_cube_planet
+				}
+			}
+			
+			spawn_borg_cube_small_at_location = {
+				LOCATION = event_target:borg_cube_planet
+			}
+
+			last_created_ship = {
+				save_global_event_target_as = borg_crisis_first_borg_cube_ship
+			}
+
+			last_created_fleet = {
+				save_global_event_target_as = borg_crisis_first_borg_cube_fleet
+			}
+		}
+	}
+
+	### Track In Log
+	option = {
+		name = borg_crisis.80.a
+
+		add_resource = {
+			influence = 40
+		}
+	}
+
+	### Top Priority Investigation (+5% Sublight speed for 1 year, -1000 Energy)
+	option = {
+		name = borg_crisis.80.b
+
+		allow = {
+			resource_stockpile_compare = { resource = energy value >= @crisis_resource_reward_low }
+		}
+
+		# HRB_TODO: Finish the effect
+		add_modifier = {
+			modifier = borg_crisis_ship_speed
+		}
+		add_resource = {
+			energy = @[crisis_resource_reward_low * -1]
+		}
+	}
+
+	# HRB_TODO: check visibility of Special Projects in polish. If hidden, or if automatic in tooltip.
+	after = {
+		begin_event_chain = {
+			event_chain = "borg_crisis_mid_1"
+			target = THIS
+		}
+
+		enable_special_project = {
+			name = "ALLOY_STRUCTURE"
+			location = event_target:borg_crisis_first_borg_cube_fleet
+			owner = ROOT
+		}
+	}
+}
+
+### Alloy Cube
+# Called from Special Project "ALLOY_STRUCTURE" on_success
+country_event = {
+	id = borg_crisis.90
+	title = "borg_crisis.90.name"
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.90.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.90.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.90.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.90.cardassian.desc"
+	}
+
+	immediate = {
+		add_event_chain_counter = { 
+			event_chain = "borg_crisis_mid_1" 
+			counter = "alloy_structure_scanned" 
+			amount = 1 
+		}
+	}
+
+	### Beam Aboard
+	option = {
+		name = borg_crisis.90.a
+
+		owner = {
+			add_resource = {
+				research = @crisis_resource_reward_high
+			}
+		}
+	}
+
+	### Beam Aboard Full Force
+	option = {
+		name = borg_crisis.90.b
+
+		owner = {
+			add_resource = {
+				influence = @crisis_influence_reward_low
+			}
+		}
+	}
+
+	### Beam Aboard, Contact Peacefully
+	option = {
+		name = borg_crisis.90.c
+
+		owner = {
+			add_resource = {
+				unity = @crisis_unity_reward_mid
+			}
+		}
+	}
+
+	### Beam Aboard & Gather Samples
+	option = {
+		name = borg_crisis.90.d
+
+		owner = {
+			add_resource = {
+				alloys = @crisis_resource_reward_low
+			}
+		}
+	}
+
+	after = {
+		
+		###Ends/Removes Mysterious Structure Counter From Mission Log
+		end_event_chain = borg_crisis_mid_1
+
+		hidden_effect = {
+			# Triggers Hivemind Vessel
+			country_event = { id = borg_crisis.100 }
+		}
+	}
+}
+
+### Hivemind Vessel
+country_event = {
+	id = borg_crisis.100
+	title = borg_crisis.100.name
+	desc = borg_crisis.100.desc
+	picture = GFX_evt_borg_crisis_cube_dormant_drones
+	show_sound = event_borg_crisis_cube_combat_drones 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes
+	
+	immediate = {
+		# Triggers Scout Ship Initializer
+		country_event = {
+			id = borg_crisis.110
+		}
+	}
+
+	### Follow Scout Ship
+	option = {
+		name = borg_crisis.100.a
+		custom_tooltip = borg_crisis.100.a.tt
+
+		add_resource = {
+			research = @crisis_resource_reward_low
+		}
+
+		hidden_effect = {
+			country_event = { id = borg_crisis.120 }
+		}
+	}
+
+	### Stay & Investigate
+	option = {
+		name = borg_crisis.100.b
+		custom_tooltip = borg_crisis.100.b.tt
+
+		add_resource = {
+			research = @crisis_resource_reward_high
+		}
+
+		hidden_effect = {
+			 country_event = { id = borg_crisis.160 days = @mid_to_abduction_time }
+		}
+	}
+}
+
+#########################################################################
+# Scout Ship Recon (BC-SCOUT5)
+# borg_crisis.110, borg_crisis.120, borg_crisis.130, borg_crsis.140, 
+# borg_crisis.150
+# GD_TAG: 5 STEP Lore
+#########################################################################
+
+### Scout Ship Initializer
+country_event = {
+	id = borg_crisis.110
+	hide_window = yes
+	fire_only_once = yes
+	
+	immediate = {
+		# From ideal to fallback below
+		random_system_within_border = {
+			limit = {
+				NOT = { is_star_class = sc_highway_node }
+				
+				has_access_fleet = ROOT
+			}
+
+			save_global_event_target_as = scout_ship_system
+		}
+
+		if = {
+			limit = { 
+				NOT = { exists = event_target:scout_ship_system }				
+			}
+
+			random_system_within_border = {
+				limit = {
+					NOT = { is_star_class = sc_highway_node }
+				}
+				save_global_event_target_as = scout_ship_system
+			}
+		}
+
+		event_target:scout_ship_system = {
+			random_system_planet = {
+				limit = {
+					is_colony = no
+					is_star = no
+					is_moon = no
+					is_asteroid = no
+				}
+				save_global_event_target_as = borg_crisis_scout_ship_planet
+			}
+		}
+	
+		clear_global_event_target = scout_ship_system
+	}
+}
+
+### Scout Ship Recon
+country_event = {
+	id = borg_crisis.120
+	title = borg_crisis.120.name
+	desc = borg_crisis.120.desc
+	picture = GFX_evt_borg_cubes_tactical
+	hide_window = no
+	show_sound = event_borg_cube 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+	
+	### Track In Log
+	option = {
+		name = borg_crisis.120.a
+	}
+
+	after = {
+		enable_special_project = {
+			name = "CRASHING_HIVEMIND_SHIP"
+			location = event_target:borg_crisis_scout_ship_planet
+			owner = ROOT
+		}
+	} 
+}
+
+### Third of Five
+# Called from Special Project "CRASHING_HIVEMIND_SHIP" on_success
+country_event = {
+	id = borg_crisis.130
+	title = borg_crisis.130.name
+	desc = borg_crisis.130.desc
+	hide_window = no
+	picture = GFX_evt_borg_crisis_sickbay_hugh_dormant
+	show_sound = event_borg_crisis_cube_dormant_drones 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+	
+	immediate = {
+		from = {
+			save_global_event_target_as = science_ship_scout_recon
+		}
+	}
+
+	#### Repair Drone
+	option = {
+		name = borg_crisis.130.a
+		custom_tooltip = borg_crisis.130.a.tt 
+
+		add_resource = {
+			research = @crisis_resource_reward_low
+		}
+		
+		hidden_effect = {
+			random_list = {
+				80 = { country_event = { id = borg_crisis.140 } } #Triggers Third of Five Reactivated
+				20 = { country_event = { id = borg_crisis.150 } } #Triggers Third of Five Destroyed
+			}
+		}
+	}
+
+	#### Use nanites to repair the drone.
+	option = {
+		name = borg_crisis.130.b
+		custom_tooltip = borg_crisis.130.b.tt 
+
+		allow = {
+			resource_stockpile_compare = { resource = nanites value >= 100 }
+		}
+
+		add_resource = {
+			research = @crisis_resource_reward_low
+			nanites = -100
+		}
+
+		hidden_effect = {
+			country_event = { id = borg_crisis.140 }	
+		}
+	}
+}
+
+### Third of Five Reactivated
+country_event = {
+	id = borg_crisis.140 
+	title = borg_crisis.140.name
+	desc = borg_crisis.140.desc
+	hide_window = no
+	picture = GFX_evt_borg_crisis_sickbay_hugh
+	show_sound = event_borg_crisis_voyager_return_janeway 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+	
+	immediate = {
+		create_species = {
+			name = random
+			class = AI
+			portrait = hum_robot_red
+			effect = {
+				save_event_target_as = hugh_species
+			}
+		}
+	}
+
+	### Hugh
+	option = {
+		name = borg_crisis.140.a
+		trigger = {
+			is_ufop = yes
+		}
+
+		hidden_effect = {
+			create_leader_hugh = yes
+		}
+	}
+
+	### Hurthok (Klingon)
+	option = {
+		trigger = {
+			is_klingon = yes
+		}
+
+		name = borg_crisis.140.b
+
+		hidden_effect = {
+			create_leader_hugh = yes
+		}
+	}
+
+	### Huro (Romulan)
+	option = {
+		trigger = {
+			is_romulan = yes
+		}
+		name = borg_crisis.140.c
+
+		hidden_effect = {
+			create_leader_hugh = yes
+		}
+	}
+
+	### Hurak (Cardassian)
+	option = {
+		trigger = {
+			is_cardassian = yes
+		}
+		name = borg_crisis.140.d
+
+		hidden_effect = {
+			create_leader_hugh = yes
+		}
+	}
+
+	after = {
+		add_modifier = {
+			modifier = borg_crisis_unity_production_bonus
+			days = 1800
+		}
+
+		hidden_effect = {
+			set_country_flag = hugh_is_recruited
+			
+			last_created_leader = {
+				save_global_event_target_as = borg_crisis_leader_hugh
+	
+				change_species = event_target:hugh_species
+				change_leader_portrait = borg_male_01
+	
+				add_experience = 1000
+			}
+
+			country_event = { id = borg_crisis.160 days = @mid_to_abduction_time } 
+		}
+	}
+}
+
+### Third of Five Destroyed
+country_event = {
+	id = borg_crisis.150
+	title = borg_crisis.150.name
+	desc = borg_crisis.150.desc
+	hide_window = no
+	picture = GFX_evt_borg_crisis_sickbay_hugh_dormant
+	show_sound = event_generic_fail 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+	
+	### Eerie
+	option = {
+		name = borg_crisis.150.a
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = borg_crisis.160 days = @mid_to_abduction_time } 
+		}
+	}
+}
+
+
+##############################
+##     BORG CRISIS MID 2    ##
+##############################
+
+
+#########################################################################
+# The Borg (BC-BORG6)
+# borg_crisis.160, borg_crisis.170, borg_crisis.180, borg_crsis.181
+# GD_TAG: 4 STEP Lore
+#########################################################################
+
+### Triggering Event 
+country_event = {
+	id = borg_crisis.160
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = borg_crisis.170 } #Triggers Event Chain Trigger Conditions
+	}
+}
+
+### The Borg
+country_event = {
+	id = borg_crisis.170
+	title = "borg_crisis.170.name"
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	is_triggered_only = yes
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.170.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.170.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.170.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.170.cardassian.desc"
+	}
+
+	### Peace & Science
+	option = {
+		name = borg_crisis.170.a
+		custom_tooltip = borg_crisis.170.a.tt
+	
+		trigger = {
+			owner = {
+				has_authority = auth_federated_democracy #Federation
+			}
+		}
+	}
+	
+	### Know Our Enemy
+	option = {
+		name = borg_crisis.170.b
+		custom_tooltip = borg_crisis.170.b.tt
+	
+		trigger = {
+			owner = {
+				has_authority = auth_clan_empire #Klingon
+			}
+		}
+	}
+	
+	### Knowledge Is Power
+	option = {
+		name = borg_crisis.170.c
+		custom_tooltip = borg_crisis.170.c.tt
+	
+		trigger = {
+			owner = {
+				has_authority = auth_state_senate #ROMULAN
+			}
+		}
+	}
+	
+	### Serve The State
+	option = {
+		name = borg_crisis.170.d
+		custom_tooltip = borg_crisis.170.d.tt
+	
+		trigger = {
+			owner = {
+				has_authority = auth_central_command #Cardassian
+			}
+		}
+	}
+
+	after = {
+		enable_special_project = {
+			name = "ASSIMILATED_OFFICIAL"
+			location = event_target:borg_crisis_first_borg_cube_ship
+			owner = ROOT
+		}
+	}
+}
+
+### Dormant Hivemind
+# Called from Special Project "ASSIMILATED_OFFICIAL" on_success
+country_event = {
+	id = borg_crisis.180
+	title = "borg_crisis.180.name"
+	picture = GFX_evt_borg_crisis_cube_dormant_drones
+	show_sound = event_borg_crisis_cube_combat_drones 
+	is_triggered_only = yes
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+			NOT = {
+				has_country_flag = picard_not_selected
+			}
+		}
+		text =  "borg_crisis.180.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_ufop = yes
+			has_country_flag = picard_not_selected
+		}
+		text =  "borg_crisis.180.ufop.failsafe.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.180.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.180.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.180.cardassian.desc"
+	}
+
+	### Keep an Eye on Cube
+	option = {
+		name = borg_crisis.180.a
+		custom_tooltip = borg_crisis.180.a.tt
+
+		owner = {
+			add_monthly_resource_mult = { 
+				resource = research 
+				value = @tier5researchreward 
+				min = @tier5researchmin 
+				max = @tier5researchmax 
+			}
+		}
+	}
+
+	### Deep Study of Weapons System
+	option = {
+		name = borg_crisis.180.b
+		custom_tooltip = borg_crisis.180.b.tt
+
+		#HRB_TODO_FACTIONS_REMOVAL: Removed militarist faction support
+		owner = {
+			add_modifier = { modifier = borg_crisis_ship_fire_rate }  #HRB_TODO PLACEHOLDER:empire modifier: +10% ship fire rate
+		}
+	}
+
+	### Study their anatomy
+	option = {
+		name = borg_crisis.180.c
+		custom_tooltip = borg_crisis.180.c.tt
+
+		#HRB_TODO_FACTIONS_REMOVAL: Removed pacifist faction support
+		owner = {
+			add_modifier = { modifier = borg_crisis_pop_growth_bonus }  #HRB_TODO PLACEHOLDER:empire modifier: +10% ship fire rate
+		}
+	}
+
+	### Strip the structure of its alloys
+	option = {
+		name = borg_crisis.180.d
+		custom_tooltip = borg_crisis.180.d.tt
+
+		#HRB_TODO_FACTIONS_REMOVAL: Removed materialist faction support
+		owner = {
+			add_resource = {
+				alloys = @crisis_resource_reward_mid
+			}
+		}
+	}
+
+	after = {
+		# Triggers Special Project: Contacting the Borg for specific Major Power	
+		if = {
+			limit = {
+				is_ufop = yes
+				NOT = {
+					has_country_flag = picard_not_selected
+				}
+			}
+			enable_special_project = {
+				name = "CONTACTING_BORG_UFOP"
+				location = event_target:borg_crisis_first_borg_cube_ship
+				owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				is_ufop = yes
+				has_country_flag = picard_not_selected
+			}
+			enable_special_project = {
+				name = "CONTACTING_BORG_UFOP_FAILSAFE"
+				location = event_target:borg_crisis_first_borg_cube_ship
+				owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				is_klingon = yes
+			}
+			enable_special_project = {
+				name = "CONTACTING_BORG_KLG"
+				location = event_target:borg_crisis_first_borg_cube_ship
+				owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				is_cardassian = yes
+			}
+			enable_special_project = {
+				name = "CONTACTING_BORG_CRD"
+				location = event_target:borg_crisis_first_borg_cube_ship
+				owner = ROOT
+			}
+		}
+		else_if = {
+			limit = {
+				is_romulan = yes
+			}
+			enable_special_project = {
+				name = "CONTACTING_BORG_RML"
+				location = event_target:borg_crisis_first_borg_cube_ship
+				owner = ROOT
+			}
+		}
+	}
+}
+
+### Hivemind Alerted
+# Called from Special Project "CONTACTING_BORG" on_success
+country_event = {
+	id = borg_crisis.181
+	title = "borg_crisis.181.name"
+	desc = "borg_crisis.181.desc"
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	is_triggered_only = yes
+
+	# Save current scope to define the correct leader
+	immediate = {
+		event_target:borg_crisis_observation_vessel = {
+			leader = {
+				save_global_event_target_as = borg_crisis_leader
+			}
+		}
+		if = {
+			limit = { is_ufop = yes }
+			event_target:borg_crisis_observation_vessel = {
+				leader = {
+					save_global_event_target_as = borg_crisis_leader_assimilated_official
+				}
+			}
+		}
+	}
+	
+	### Raise Shields
+	option = {
+		name = borg_crisis.181.a
+		custom_tooltip = borg_crisis.181.a.tt
+
+		trigger = {
+			owner = {
+				has_authority = auth_federated_democracy #Federation
+			}
+		}
+
+		owner = {
+			add_modifier = {
+				modifier = borg_crisis_shield_strength #Increases shield strength for 5 years
+				days = 1800
+			}
+		}
+	}
+
+	### Show No Fear
+	option = {
+		name = borg_crisis.181.b
+		custom_tooltip = borg_crisis.181.b.tt
+
+		trigger = {
+			owner = {
+				has_authority = auth_clan_empire #Klingon
+			}
+		}
+
+		owner = {
+			add_modifier = {
+				modifier = borg_crisis_ship_damage #Increases ship damage for 5 years
+				days = 1800
+			}
+		}
+	}
+
+	### No Match
+	option = {
+		name = borg_crisis.181.c
+		custom_tooltip = borg_crisis.181.c.tt
+
+		trigger = {
+			owner = {
+				has_authority = auth_state_senate #Romulan
+			}
+		}
+
+		owner = {
+			add_resource = {
+				influence = @crisis_influence_reward_mid
+			}
+		}
+	}
+
+	### Protect The State
+	option = {
+		name = borg_crisis.181.d
+		custom_tooltip = borg_crisis.181.d.tt
+
+		trigger = {
+			owner = {
+				has_authority = auth_central_command #Cardassian
+			}
+		}
+
+		owner = {
+			add_modifier = {
+				modifier = borg_crisis_worker_jobs_production #Increases Worker Jobs Production for 5 years
+				days = 1800
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			# HRB_TODO: let's check this approach
+			country_event = { id = borg_crisis.190 days = 1 } #Triggers Assimilation
+		}
+	}
+}
+
+#########################################################################
+# Assimilation (BC-ASSIM7)
+# borg_crisis.190, borg_crisis.191, borg_crisis.192
+# GD_TAG: 3 STEP Lore
+#########################################################################
+
+### Assimilation
+country_event = {
+	id = borg_crisis.190
+	title = "borg_crisis.190.name"
+	show_sound = event_war_games 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_combat_onboard_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_combat_onboard_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_combat_onboard_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_combat_onboard_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+		
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.190.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.190.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.190.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.190.cardassian.desc"
+	}
+
+	immediate = {
+		event_target:borg_crisis_leader_assimilated_official = {
+			exile_leader_as = borg_crisis_leader_assimilated_official
+		}
+	}
+
+	### Rescue Party
+	option = {
+		name = borg_crisis.190.a
+		custom_tooltip = borg_crisis.190.a.tt
+	
+		trigger = {
+			owner = {
+				has_authority = auth_federated_democracy #Federation
+			}
+		}
+	}
+	
+	### Many Worthy Foes 
+	option = {
+		name = borg_crisis.190.b
+		custom_tooltip = borg_crisis.190.b.tt
+	
+		trigger = {
+			owner = {
+				has_authority = auth_clan_empire #Klingon
+			}
+		}
+	}
+	
+	### Top Security Matter
+	option = {
+		name = borg_crisis.190.c
+		custom_tooltip = borg_crisis.190.c.tt
+	
+		trigger = {
+			owner = {
+				has_authority = auth_state_senate #Romulan
+			}
+		}
+	}
+	
+	### Swift Vengeance
+	option = {
+		name = borg_crisis.190.d
+		custom_tooltip = borg_crisis.190.d.tt
+	
+		trigger = {
+			owner = {
+				has_authority = auth_central_command #Cardassian
+			}
+		}
+	}
+
+	after = {
+		owner = {
+			add_resource = {
+				officers = -50
+			}
+		}
+		hidden_effect = {
+			country_event = { id = borg_crisis.191 days = 7 } #Triggers Reclamation
+		}
+	}
+}
+
+### Reclamation
+country_event = {
+	id = borg_crisis.191
+	title = "borg_crisis.191.name"
+	show_sound = event_borg_crisis_cube_drone_leader 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+			owner = { is_ufop = yes } 
+			NOT = {
+				has_country_flag = picard_not_selected
+			}
+		}
+		picture = GFX_evt_borg_crisis_cube_drone_leader_ufop
+	} 
+	picture = {
+		trigger = {
+			owner = { is_ufop = yes } 
+			has_country_flag = picard_not_selected
+		}
+		picture = GFX_evt_borg_crisis_cube_combat_drones
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_borg_crisis_cube_drone_leader_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_borg_crisis_cube_drone_leader_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_borg_crisis_cube_drone_leader_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+		
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.191.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.191.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.191.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.191.cardassian.desc"
+	}
+
+	#HRB_TODO: Stationary neutral Borg Cube in system X moves to a different system and stays neutral there. 
+	#HRB_TODO: You don't have intel on this system. 
+	#HRB_TODO: Do we GO to the Borg Cube and interact with it?
+	# immediate = {
+	# }
+
+	### Beam [leader] to safety
+	option = {
+		name = borg_crisis.191.a
+		custom_tooltip = borg_crisis.191.a.tt
+
+		owner = {
+			add_monthly_resource_mult = { 
+				resource = unity
+				value = @tier4unityreward 
+				min = @tier4unitymin 
+				max = @tier4unitymax 
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = borg_crisis.192 days = 7 } #Triggers Emancipation
+		}
+	}
+}
+
+### Emancipation
+country_event = {
+	id = borg_crisis.192
+	title = "borg_crisis.192.name"
+	show_sound = event_borg_crisis_sickbay_hugh 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_sickbay_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_sickbay_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_sickbay_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_sickbay_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.192.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.192.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.192.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.192.cardassian.desc"
+	}
+	
+	#HRB_TODO: Borg Cube moves again to another system we don't have intel on yet.
+	#immediate = {		
+	#}
+
+	### Research Cybernetic Organs
+	option = {
+		name = borg_crisis.192.a
+		custom_tooltip = borg_crisis.192.a.tt
+
+		add_monthly_resource_mult = { 
+			resource = research 
+			value = @tier5researchreward 
+			min = @tier5researchmin 
+			max = @tier5researchmax 
+		}
+
+		hidden_effect = {
+			if = { # If observation vessel is alive
+				limit = {
+					exists = event_target:borg_crisis_observation_vessel
+				}
+				event_target:borg_crisis_observation_vessel = {
+					if = { # Unassing current Leader
+						limit = {
+							exists = leader
+						}
+						leader = { unassign_leader = this }
+					}
+					fleet = { set_leader = event_target:borg_crisis_leader_assimilated_official }
+				}
+			}
+			else = { # Reassing Picard to Country
+				root = { set_leader = event_target:borg_crisis_leader_assimilated_official }
+			}
+			# Add experience and new traits
+			event_target:borg_crisis_leader_assimilated_official = {
+				add_trait = leader_trait_hivemind_scar
+				add_experience = 1000
+			}
+		}
+	}
+	
+	### Leader Compromised (NOT Federation)
+	option = {
+		name = borg_crisis.192.b
+		custom_tooltip = borg_crisis.192.b.tt
+	
+		trigger = {
+			OR = {
+				has_authority = auth_clan_empire #Klingon
+				has_authority = auth_state_senate #Romulan
+				has_authority = auth_central_command #Cardassian
+			}
+		}
+
+		owner = {
+			add_resource = {
+				influence = 80
+			}
+			add_monthly_resource_mult = { 
+				resource = unity
+				value = @tier1unityreward 
+				min = @tier1unitymin 
+				max = @tier1unitymax 
+			}
+			add_modifier = {
+				modifier = borg_crisis_leader_experience #Increases Leader Experience for 5 years
+				days = 1800
+			}
+		}
+	}
+
+	after = { 
+		hidden_effect = {
+			country_event = { id = borg_crisis.280 days = @adbuction_to_queen_time } 
+		}
+	}
+}
+
+###############################
+##     BORG CRISIS LATE 1    ##
+###############################
+
+#########################################################################
+# Borg Queen (BC-QUEEN8)
+# borg_crisis.280, borg_crisis.281, borg_crisis.282, borg_crisis.290,
+# borg_crisis.300, borg_crisis.301, borg_crisis.310, borg_crisis.311,
+# borg_crisis.320, borg_crisis.330, borg_crisis.331, borg_crisis.340,
+# GD_TAG: 12 STEP Lore
+#########################################################################
+
+### Declaration of War
+country_event = {
+	id = borg_crisis.280
+	title = borg_crisis.280.name
+	desc = borg_crisis.280.desc
+	hide_window = no
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+	
+	immediate = {
+		# Current_player_homeworld scope enabled
+		define_crisis_current_event_targets = yes #HRB_TODO: Remove this after.
+	}
+
+	### On Screen
+	option = {
+		name = borg_crisis.280.a
+		custom_tooltip = borg_crisis.280.a.tt
+
+		owner = {
+			add_monthly_resource_mult = { 
+				resource = unity
+				value = @tier4unityreward 
+				min = @tier4unitymin 
+				max = @tier4unitymax 
+			}
+		}
+	}
+
+	### Red Alert
+	option = {
+		name = borg_crisis.280.b
+		custom_tooltip = borg_crisis.280.b.tt
+
+		owner = {
+			add_monthly_resource_mult = { 
+				resource = research 
+				value = @tier4researchreward 
+				min = @tier4researchmin 
+				max = @tier4researchmax 
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = borg_crisis.281
+			}
+		}
+	}
+}	
+
+### Borg Cube Enters Home System
+country_event = {
+	id = borg_crisis.281
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	immediate = {
+		event_target:borg_crisis_first_borg_cube_fleet = {
+			queue_actions = {
+				direct_move_to = event_target:current_player_primary_star
+			}
+		}
+	}
+}
+
+### Borg Cube Move Towards Homeworld
+fleet_event = {
+	id = borg_crisis.282
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	trigger = {
+		exists = event_target:borg_crisis_first_borg_cube_fleet
+		is_same_value = event_target:borg_crisis_first_borg_cube_fleet
+	}
+
+	immediate = {
+		event_target:borg_crisis_first_borg_cube_ship = {
+			set_disabled = no
+		}
+		
+		event_target:borg_crisis_first_borg_cube_fleet = {
+			queue_actions = {
+				orbit_planet = event_target:current_player_homeworld
+			}
+		}
+
+		event_target:current_player_country = {
+			# Triggers No, Queen!
+			country_event = { id = borg_crisis.290 }
+		}
+	}
+}
+
+### No, Queen!
+country_event = {
+	id = borg_crisis.290
+	title = borg_crisis.290.name
+	desc = borg_crisis.290.desc
+	hide_window = no
+	picture = GFX_evt_borg_crisis_cube_queen
+	show_sound = event_borg_crisis_cube_queen 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+
+	### Cut Transmission
+	option = {
+		name = borg_crisis.290.a
+		custom_tooltip = borg_crisis.290.a.tt
+
+		owner = {
+			add_monthly_resource_mult = { 
+				resource = unity
+				value = @tier4unityreward 
+				min = @tier4unitymin 
+				max = @tier4unitymax 
+			}
+		}
+	}
+
+	### Assemble All Fleets
+	option = {
+		name = borg_crisis.290.b
+		custom_tooltip = borg_crisis.290.b.tt
+
+		owner = {
+			add_monthly_resource_mult = { 
+				resource = research 
+				value = @tier4researchreward 
+				min = @tier4researchmin 
+				max = @tier4researchmax 
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			# Triggers I Heart Tractor Beams!
+			country_event = { id = borg_crisis.300 }
+		}
+	}
+}
+
+### I Heart Tractor Beams
+country_event = {
+	id = borg_crisis.300
+	title = borg_crisis.300.name
+	desc = borg_crisis.300.desc
+	hide_window = no
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+	
+	### Attempt Diversion
+	option = {
+		name = borg_crisis.300.a
+		custom_tooltip = borg_crisis.300.a.tt
+		
+		allow = {
+			owner = {
+				has_technology = tech_shield_5
+			}
+		}
+
+		enable_special_project = {
+			name = "THATS_BAIT"
+			location = event_target:current_player_primary_star
+			owner = ROOT
+		}
+	}
+
+	### Stand & Fight
+	option = {
+		name = borg_crisis.300.b
+		custom_tooltip = borg_crisis.300.b.tt
+
+		hidden_effect = {
+			event_target:borg_crisis_first_borg_cube_ship = {
+				set_disabled = no
+			}
+	
+			set_borg_hostile = yes	
+		}
+	}
+}
+
+### That's Bait
+# Called from Special Project "THATS_BAIT" on_success
+country_event = {
+	id = borg_crisis.301
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	immediate = {
+		random_list = {
+			50 = { country_event = { id = borg_crisis.310 days = 10 } } #Triggers I'm an Admiral, Not a Scientist on Fail
+			50 = { country_event = { id = borg_crisis.311 days = 10 } } #Triggers Narrow Escape on Escape
+		}
+
+		# We also move the Borg Cube
+		event_target:borg_crisis_first_borg_cube_fleet = {
+			queue_actions = {
+				move_to = event_target:current_player_primary_star
+			}
+		}
+	}
+}
+
+### I'm a Captain, Not a Scientist!
+# Called from Special Project "THATS_BAIT" on_failed
+country_event = {
+	id = borg_crisis.310
+	title = borg_crisis.310.name
+	hide_window = no
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.310.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.310.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.310.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.310.cardassian.desc"
+	}
+	
+	### To War
+	option = {
+		name = borg_crisis.310.a
+	}
+
+	after = {
+		hidden_effect = {
+			# Triggers Our Greatest Stand
+			country_event = { id = borg_crisis.330 }
+		}
+	}
+}
+
+### That's Bait Project SUCCESS
+# Called from borg_crisis.301
+country_event = {
+	id = borg_crisis.311
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	immediate = {
+		destroy_fleet = event_target:borg_crisis_first_borg_cube_fleet 
+		# Triggers Narrow Escape
+		country_event = { id = borg_crisis.320 }
+	}
+}
+
+### Narrow Escape - That's Bait Project SUCCESS
+country_event = {
+	id = borg_crisis.320
+	title = borg_crisis.320.name
+	desc = borg_crisis.320.desc
+	hide_window = no
+	show_sound = event_space_debris_crystals 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_debris_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_debris_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+	
+	### Smooth Getaway
+	option = {
+		name = borg_crisis.320.a
+		custom_tooltip = borg_crisis.320.a.tt
+
+		add_resource = {
+			influence = @crisis_influence_reward_high
+		}
+
+		add_resource = {
+			unity = @crisis_unity_reward_high
+		}
+
+		hidden_effect = {
+			# Triggers Grim Omen
+			country_event = { id = borg_crisis.340 }
+		}
+	}
+}
+
+### The Battle Joins
+# Called from borg_crisis.310
+country_event = {
+	id = borg_crisis.330
+	title = borg_crisis.330.name
+	desc = borg_crisis.330.desc
+	hide_window = no
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	location = event_target:borg_cube_system 
+	is_triggered_only = yes 
+	
+	### To War
+	option = {
+		name = borg_crisis.330.a
+
+		add_modifier = {
+			modifier = borg_crisis_ship_fire_rate_mid
+			months = 1
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			set_borg_hostile = yes	
+		}
+	}
+}
+
+### A Grim Omen - Trigger
+# Called from on_ship_destroyed_victim
+# This = owner of ship 1 (destroyed)
+# From = owner of ship 2 (combatant)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+country_event =  {
+	id = borg_crisis.331
+	is_triggered_only = yes 
+	hide_window = yes
+
+	trigger = {
+		exists = event_target:borg_crisis_first_borg_cube_ship
+		FromFrom = {
+			is_same_value = event_target:borg_crisis_first_borg_cube_ship
+		}
+	}
+
+	immediate = {
+		event_target:current_player_country = {
+			country_event = { id =  borg_crisis.340 }
+		}
+	}
+}
+
+### A Grim Omen
+country_event = {
+	id = borg_crisis.340
+	title = borg_crisis.340.name
+	desc = borg_crisis.340.desc
+	show_sound = event_civil_unrest 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_civil_unrest_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_civil_unrest_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_civil_unrest_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_civil_unrest_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	immediate = {
+		set_borg_neutral = yes
+	}
+	
+	### Clear Wreckage
+	option = {
+		name = borg_crisis.340.a
+		custom_tooltip = borg_crisis.340.a.tt
+
+		add_resource = {
+			alloys = @crisis_resource_reward_mid
+		}
+
+		add_resource = {
+			energy = @crisis_resource_reward_mid
+		}
+	}
+
+	### Let the wreckage fall on its own
+	option = {
+		name = borg_crisis.340.b
+		custom_tooltip = borg_crisis.340.b.tt
+
+		add_monthly_resource_mult = { 
+			resource = research 
+			value = @tier5researchreward 
+			min = @tier5researchmin 
+			max = @tier5researchmax 
+		}
+
+		add_monthly_resource_mult = { 
+			resource = unity
+			value = @tier5unityreward 
+			min = @tier5unitymin 
+			max = @tier5unitymax 
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			# Triggers The Borg Menace
+			country_event = { id = borg_crisis.350 days = 7 }
+		}
+	}
+}
+
+### The Borg Menace
+country_event = {
+	id = borg_crisis.350
+	title = borg_crisis.350.name
+	desc = borg_crisis.350.desc
+	show_sound = event_borg_warfare 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_combat_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_combat_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_combat_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_combat_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	### Worst Yet To Come
+	option = {
+		name = borg_crisis.350.a
+		custom_tooltip = borg_crisis.350.a.tt
+	}
+
+	after = {
+		hidden_effect = {
+			# Triggers Janeway Initializer
+			country_event = { id = borg_crisis.351 days = @queen_to_janeway_time }
+		}
+	}
+}
+
+
+###############################
+##     BORG CRISIS LATE 2    ##
+###############################
+
+#########################################################################
+# Return of the USS Voyager (BC-VOYAGER9)
+# borg_crisis.351, borg_crisis.360, borg_crisis.370, borg_crisis.380, 
+# borg_crisis.382, borg_crisis.386, borg_crisis.390, borg_crisis.391,
+# borg_crisis.392
+# GD_TAG: 9 STEP Lore
+#########################################################################
+
+### Janeway Initializer
+country_event = {
+	id = borg_crisis.351
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		define_crisis_current_event_targets = yes # HRB_TODO: Remove this after
+
+		random_system_within_warp_area = {
+			limit = {
+				is_star_class = sc_highway_node
+			}
+			
+			set_highway_node_open = no
+			
+			random_system_planet = {
+				limit = {
+					is_star = yes
+				}
+				save_global_event_target_as = first_highway_invaded
+			}
+		}
+
+		IF = {
+			limit = {
+				exists = event_target:first_highway_invaded
+			}
+
+			# Triggers Return of the USS Voyager
+			country_event = { id = borg_crisis.360 }
+		}
+
+		ELSE = {
+			country_event = {
+				id = borg_crisis.351 days = 30
+			}	
+		}
+	}
+}
+
+### Return of the USS Voyager
+country_event = {
+	id = borg_crisis.360
+	title = borg_crisis.360.name
+	desc = borg_crisis.360.desc
+	picture = GFX_evt_borg_crisis_voyager_return_janeway
+	show_sound = event_borg_crisis_voyager_return_janeway 
+	is_triggered_only = yes 
+
+	immediate = {
+		# Generates Janeway and Creates "crisis_leader_janeway" "crisis_janeway_fleet" Global Targets
+		spawn_janeway_and_ship = yes
+
+		# Creates the Borg Queen and adds the "crisis_borg_queen_fleet" Target
+		spawn_borg_cube_queen_at_location = {
+			LOCATION = event_target:first_highway_invaded
+		}
+	}
+
+	### On Screen
+	option = {
+		name = borg_crisis.360.a
+		
+		hidden_effect = {
+			# Triggers Captain Janeway
+			country_event = { id = borg_crisis.370 }
+		}
+	}
+}
+
+### Captain Janeway
+country_event = {
+	id = borg_crisis.370
+	title = borg_crisis.370.name
+	desc = borg_crisis.370.desc
+	picture = GFX_evt_borg_crisis_voyager_return_janeway
+	show_sound = event_borg_crisis_voyager_return_janeway 
+	is_triggered_only = yes 
+
+	### Use Pathogen
+	option = {
+		name = borg_crisis.370.a
+		custom_tooltip = borg_crisis.370.a.tt
+
+		hidden_effect = {
+			# Triggers It's Janeway or The Highway
+			country_event = { id = borg_crisis.380 }
+		}
+	}
+
+	# ### Use With Caution
+	# option = {
+	# 	name = borg_crisis.370.b
+	# 	custom_tooltip = borg_crisis.370.b.tt
+
+	# 	hidden_effect = {
+	# 		# Triggers It's Janeway or The Highway
+	# 		country_event = { id = borg_crisis.380 }
+	# 	}
+	# }
+
+	### Don't Trust Rogue Captain (Not Federation)
+	option = {
+		trigger = {	
+			OR = {
+				is_klingon = yes
+				is_romulan = yes	
+				is_cardassian = yes
+			}
+		}
+
+		name = borg_crisis.370.c
+		custom_tooltip = borg_crisis.370.c.tt
+
+		hidden_effect = {
+			country_event = { id = borg_crisis.400 days = @late_to_end_crisis_time }
+		}
+	}
+}
+
+### It's Janeway, or The Highway (Triggers Event Chain)
+country_event = {
+	id = borg_crisis.380
+	title = borg_crisis.380.name
+	desc = borg_crisis.380.desc
+	picture = GFX_evt_borg_crisis_voyager_return_janeway
+	show_sound = event_borg_crisis_voyager_return_janeway 
+	is_triggered_only = yes 
+
+	### Track In Log
+	option = {
+		name = borg_crisis.380.a
+
+		begin_event_chain = {
+			event_chain = "borg_crisis_end"
+			target = ROOT
+		}
+
+		enable_special_project = {
+			name = "PROBE_DEFENSES"
+			location = event_target:crisis_borg_queen_fleet
+			owner = ROOT
+		}
+		set_global_flag = janeways_gambit
+	}
+}
+
+# Called from Special Project "PROBE_DEFENSES" on_start
+country_event = {
+	id = borg_crisis.382
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		set_borg_hostile = yes
+	}
+}
+
+# Called from Special Project "PROBE_DEFENSES" on_success
+country_event = {
+	id = borg_crisis.383
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_event_chain_counter = {
+			event_chain = "borg_crisis_end"
+			counter = "janeway_gambit_steps"
+			amount = 1
+		}
+
+		event_target:first_highway_invaded = {
+			solar_system = {
+				every_fleet_in_system = {
+					limit = {
+						is_ship_class = shipclass_science_ship
+					}
+					set_mia = yes
+				}
+			}
+		}
+		while = {
+			count = 6
+			spawn_queens_guard_borg_cube = {
+				LOCATION = event_target:crisis_borg_queen_fleet
+			}
+		}
+	}
+}
+
+# Called from Special Project "COUNTERACT_MEASURES" on_success
+country_event = {
+	id = borg_crisis.384
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_event_chain_counter = {
+			event_chain = "borg_crisis_end"
+			counter = "janeway_gambit_steps"
+			amount = 1
+		}
+
+		event_target:first_highway_invaded = {
+			solar_system = {
+				every_fleet_in_system = {
+					limit = {
+						is_ship_class = shipclass_science_ship
+					}
+					set_mia = yes
+				}
+			}
+		}
+		while = {
+			count = 4
+			spawn_queens_guard_borg_cube = {
+				LOCATION = event_target:crisis_borg_queen_fleet
+			}
+		}
+		spawn_borg_cube_mid_at_location = {
+			LOCATION = event_target:crisis_borg_queen_fleet
+		}
+		last_created_ship = {
+			set_disabled = no
+		}
+	}
+}
+
+# Janeway Died while the Special Project was available
+# Called from on_leader_death
+# This = Country
+# From = Leader
+country_event = {
+	id = borg_crisis.386
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		FROM = {
+			has_trait = leader_trait_janeway
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { 
+				has_global_flag = janeways_gambit
+			}
+			country_event = { id = borg_crisis.390 }
+		}
+
+		if = {
+			limit = { has_special_project = "PROBE_DEFENSES" }
+			abort_special_project = { 
+				type = "PROBE_DEFENSES"
+				location = event_target:crisis_borg_queen_fleet
+			}			
+		}
+
+		if = {
+			limit = { has_special_project = "COUNTERACT_MEASURES" }
+			abort_special_project = { 
+				type = "COUNTERACT_MEASURES"
+				location = event_target:crisis_borg_queen_fleet
+			}			
+		}
+
+		if = {
+			limit = { has_special_project = "DELIVERANCE" }
+			abort_special_project = { 
+				type = "DELIVERANCE"
+				location = event_target:crisis_borg_queen_fleet
+			}			
+		}
+	}
+}
+
+# Janeway Died Pop-up
+# Called from on_leader_death
+# This = Country
+# From = Leader
+country_event = {
+	id = borg_crisis.387
+	title = borg_crisis.387.name
+	desc = borg_crisis.387.desc
+	picture = GFX_evt_space_burial_enterprise_ufop 
+	show_sound = event_janaways_passing 		
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_trait = leader_trait_janeway
+		}
+	}		
+	option = {
+		name = borg_crisis.387.a
+	}
+}
+
+# Probe Defenses pop up
+# Called from Special Project "PROBE_DEFENSES" on_success
+country_event = {
+	id = borg_crisis.388
+	title = borg_crisis.388.name
+	desc = borg_crisis.388.desc
+	picture = GFX_evt_borg_cubes_tactical
+	show_sound = event_borg_cube 		
+	is_triggered_only = yes
+
+	option = {
+		name = borg_crisis.388.a
+	}
+}
+
+# Counteract Measures pop up
+# Called from Special Project "COUNTERACT_MEASURES" on_success
+country_event = {
+	id = borg_crisis.389
+	title = borg_crisis.389.name
+	desc = borg_crisis.389.desc
+	picture = GFX_evt_borg_cubes_tactical
+	show_sound = event_borg_cube 		
+	is_triggered_only = yes
+
+	option = {
+		name = borg_crisis.389.a
+	}
+}
+
+### HRB_TODO: Check the localization
+### Probe Defenses Failed
+# Called from Special Project "PROBE_DEFENSES" on_fail
+country_event = {
+	id = borg_crisis.390
+	title = borg_crisis.390.name
+	desc = borg_crisis.390.desc
+	show_sound = event_space_travel 		
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_borg_janeway_failure_processed }
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = cp26_borg_janeway_failure_processed
+		}
+	}
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	option = {
+		name = borg_crisis.390.a
+		custom_tooltip = borg_crisis.390.a.tt
+	}
+
+	after = {
+		hidden_effect = {
+
+			end_event_chain = borg_crisis_end
+
+			if = {
+				limit = { 
+					has_global_flag = janeways_gambit
+				}
+				remove_global_flag = janeways_gambit
+			}
+
+			# Triggers Warp Highways Compromised
+			country_event = { id = borg_crisis.400 days = @late_to_end_crisis_time }
+
+		}
+	}
+}
+
+### Deliverance on_success
+# Called from Special Project "DELIVERANCE" on_success
+country_event = {
+	id = borg_crisis.391
+	title = "borg_crisis.391.name"
+	show_sound = event_space_travel 
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = "borg_crisis_end"
+				counter = "janeway_gambit_steps"
+				amount = 1
+			}
+		}
+	}
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_debris_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_debris_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.391.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.391.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.391.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.391.cardassian.desc"
+	}
+
+	### Resistance… was not futile.
+	option = {
+		name = borg_crisis.391.a
+
+		owner = {
+			add_resource = {
+				research = @crisis_resource_reward_mid
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = { 
+					has_global_flag = janeways_gambit
+				}
+				remove_global_flag = janeways_gambit
+			}
+
+			#Re-open the highway node:
+			event_target:first_highway_invaded = {
+				solar_system = {
+					set_highway_node_open = yes	
+				}
+			}
+
+			country_event = { id = borg_crisis.445 days = @janeway_success_to_victory_time }
+		}
+	}
+}
+
+###############################
+##      BORG CRISIS END      ##
+###############################
+
+#########################################################################
+# Warp Highways Compromised (BC-WARP10)
+# borg_crisis.400
+# GD_TAG: 1 STEP Lore
+#########################################################################
+
+### Warp Highways Compromised
+country_event = {
+	id = borg_crisis.400
+	title = borg_crisis.400.name
+	desc = borg_crisis.400.desc
+	show_sound = event_space_travel 
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+	
+	immediate = {	
+		every_system = {
+			limit = { is_star_class = sc_highway_node }
+			
+			set_highway_node_open = no
+			
+			random_system_planet = {
+				limit = { is_star = yes }
+				
+				# Create temporal variable
+				save_global_event_target_as = highway_node_center
+
+				spawn_imperatoris_borg_cube_at_location = {
+					LOCATION = event_target:highway_node_center
+				}
+
+				every_country = {
+					limit = { is_major = yes }
+					
+					if = {
+						limit = {						
+							NOR = { 
+								is_same_value = ROOT
+								has_event_chain = "borg_crisis_end_highways"
+							}
+						}
+						
+						begin_event_chain = {
+							event_chain = "borg_crisis_end_highways"
+							target = this
+						}
+					}
+
+					# HRB_TODO: check if we can add the name of the Highway Node
+					# in the TRANSWARP_CONDUIT_CUBE Special Project description
+					enable_special_project = {
+						name = "TRANSWARP_CONDUIT_CUBE"
+						location = prev
+						owner = this
+					}
+				}
+			}
+
+			# Delete temporal variable
+			clear_global_event_target = highway_node_center
+		}
+
+		set_borg_hostile = yes
+	}
+
+	### Track In Log
+	option = {
+		name = borg_crisis.400.a
+
+		begin_event_chain = {
+			event_chain = "borg_crisis_end_highways"
+			target = root
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = borg_crisis.401 days = @days_to_invasion }
+		}
+	}
+}
+
+#########################################################################
+# Total War (BC-TOTAL11)
+# borg_crisis.401, borg_crisis.402, borg_crisis.403, borg_crisis.404
+# borg_crisis.405, borg_crisis.410, borg_crisis.420
+# GD_TAG: 2 STEP Lore
+#########################################################################
+
+### Invasion Initializer
+country_event = {
+	id = borg_crisis.401
+	is_triggered_only = yes
+	hide_window = yes
+	fire_only_once = yes
+
+	immediate = {
+		save_colony_with_least_pops = yes
+
+		# Failsafe
+		if = {
+			limit = {
+				event_target:borg_crisis_country = {
+					# NOT = {
+					# 	any_owned_fleet = {
+					# 		NOR = {
+					# 			has_fleet_flag = imperatoris_borg_cube
+					# 		}
+					# 	}						
+					# }
+					any_owned_fleet = {
+						has_fleet_flag = imperatoris_borg_cube
+					}
+				}
+			}
+
+			event_target:borg_crisis_country = {
+				random_owned_fleet = {
+					limit = {
+						has_fleet_flag = imperatoris_borg_cube
+						is_in_combat = no
+					}
+				
+					save_event_target_as = highway_spawn_fleet
+				
+					spawn_borg_cube_mid_at_location = {
+						LOCATION = event_target:highway_spawn_fleet
+					}
+				
+					last_created_ship = {
+						set_disabled = no
+						save_global_event_target_as = borg_crisis_invasion_ship
+					}
+				
+					last_created_fleet = {
+						save_global_event_target_as = borg_crisis_invasion_fleet
+					}
+				}
+			}
+
+			# Move Borg Cube to the Colony
+			event_target:borg_crisis_invasion_fleet = {
+				queue_actions = {
+					direct_move_to = event_target:colony_with_least_pops
+				}
+			}
+
+		}
+		
+		else = {
+			# Borg Crisis Won early
+			every_country = {
+				limit = { is_major = yes }
+				end_event_chain = borg_crisis_end
+				end_event_chain = borg_crisis_end_highways
+				end_event_chain = borg_crisis_end_the_freed
+			}
+
+			set_borg_crisis_won = yes
+
+			# Launch Win Condition pop-up
+			play_country_event_for_all_major_powers = { ID = borg_crisis.450 }
+		}
+	}
+}
+
+### Borg Crisis Invasion Fleet enters Colony System
+# Called from on_entering_system_fleet
+# This = Fleet
+# From = System
+fleet_event = {
+	id = borg_crisis.402
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	trigger = {
+		exists = event_target:borg_crisis_invasion_fleet
+		exists = event_target:colony_with_least_pops
+
+		is_same_value = event_target:borg_crisis_invasion_fleet
+		from = { is_same_value = event_target:colony_with_least_pops.solar_system }
+	}
+
+	immediate = {
+		event_target:colony_with_least_pops = {
+			solar_system = {
+				random_fleet_in_system = {
+					limit = {
+						is_ship_class = shipclass_starbase
+					}
+					save_global_event_target_as = colony_with_least_pops_starbase_fleet
+				}
+
+				random_ship_in_system = {
+					limit = {
+						is_ship_class = shipclass_starbase
+					}
+					save_global_event_target_as = colony_with_least_pops_starbase_ship
+				}
+
+				# Send Fleets MIA
+				every_fleet_in_system = {
+					limit = {
+						NOR = { 
+							is_ship_class = shipclass_starbase
+							is_ship_class = shipclass_military_station
+							is_ship_class = shipclass_mining_station
+							is_ship_class = shipclass_research_station
+							is_ship_class = shipclass_observation_station
+
+							owner = {
+								is_same_value = event_target:borg_crisis_country 
+							}
+						}
+					}
+
+					set_mia = yes
+				}
+			}
+		}
+
+		event_target:borg_crisis_invasion_fleet = {
+			queue_actions = {
+				move_to = event_target:colony_with_least_pops_starbase_fleet
+			}
+		}
+	}
+}
+
+### Borg Crisis Invasion Fleet Destroys Colony System Starbase
+# Called from on_fleet_destroyed_victim
+# This = owner of fleet 1 	(destroyed)
+# From = owner of fleet 2 	(combatant)
+# FromFrom = fleet 1 		(destroyed)
+# FromFromFrom = fleet 2 	(combatant)
+country_event = {
+	id = borg_crisis.403
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		exists = event_target:colony_with_least_pops_starbase_fleet
+		FromFrom = {
+			is_same_value = event_target:colony_with_least_pops_starbase_fleet
+		}
+
+		exists = event_target:borg_crisis_invasion_fleet
+		FromFromFrom = {
+			is_same_value = event_target:borg_crisis_invasion_fleet
+		}
+	}
+	
+	immediate = {
+		event_target:borg_crisis_invasion_fleet = {
+			queue_actions = {
+				orbit_planet = event_target:colony_with_least_pops
+			}
+		}
+
+		# Triggers Borg Cube Orbits Colony Check
+		country_event = { id = borg_crisis.404 days = 1 } 
+	}
+}
+
+# Borg Cube Orbits Colony Check
+country_event = {
+	id = borg_crisis.404
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:borg_crisis_invasion_fleet
+		exists = event_target:colony_with_least_pops
+	}
+
+	immediate = {
+		event_target:borg_crisis_invasion_fleet = {
+			if = {
+				limit = {
+					exists = orbit
+					orbit = { is_same_value = event_target:colony_with_least_pops }
+				}
+
+				# Abduct Pops
+				event_target:colony_with_least_pops = {
+					set_owner = event_target:borg_crisis_country
+					set_controller = event_target:borg_crisis_country
+				}
+
+				# Triggers Invasion Begins
+				if = {
+					limit = {
+						NOT = { has_global_flag = borg_crisis_invasion_started }
+					}
+					ROOT = { country_event = { id = borg_crisis.410 days = 5 } }
+					set_global_flag = borg_crisis_invasion_started
+				}
+			}
+			else = {
+				# Loop itself
+				ROOT = { country_event = { id = borg_crisis.404 days = 1 } }
+			}
+	  	}
+	}
+}
+
+# Create special project on Borg Cube destruction
+# Check if the cube that destroyed the colony is destroyed
+# Called from on_fleet_destroyed_victim
+# This = owner of fleet 1 	(destroyed)
+# From = owner of fleet 2 	(combatant)
+# FromFrom = fleet 1 		(destroyed)
+# FromFromFrom = fleet 2 	(combatant)
+country_event = {
+	id = borg_crisis.405
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = event_target:borg_crisis_invasion_fleet
+		FromFrom = { is_same_value = event_target:borg_crisis_invasion_fleet }
+	}
+
+	immediate = {
+		from = {
+			# Triggers Invasion Begins
+			if = {
+				limit = {
+					NOT = { has_global_flag = borg_crisis_invasion_started }
+				}
+				# HRB_TODO: Rami -> The text of the Pop-up should be different 
+				# (maybe launch another event) as the Colony was not destroyed and doesn't lie wasted
+				# Rama: I think we could get away with using a flag and dynamic descriptions. The text of the options mostly works as-is
+				# Suggest making that call on the polish stage
+				country_event = { id = borg_crisis.410 days = 5 } # Change to borg_crisis.YYY
+				set_global_flag = borg_crisis_invasion_started
+			}
+
+			# Trigger Special Project First Invasion Pop Recovery
+			spawn_borg_debris_at_location = {
+				LOCATION = 	event_target:borg_crisis_invasion_fleet
+			}
+			
+			last_created_ambient_object = {
+				enable_special_project = {
+					name = "FIRST_INVASION_POP_RECOVERY"
+					location = this
+					owner = prev
+				}
+			}
+		}
+	}
+}
+
+### Invasion Begins
+# A colony has been assimilated
+country_event = {
+	id = borg_crisis.410
+	title = borg_crisis.410.name
+	desc = borg_crisis.410.desc # HRB_TODO: update
+	picture = GFX_evt_borg_crisis_cube_combat_drones
+	show_sound = event_borg_crisis_cube_combat_drones 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	immediate = {
+		define_crisis_current_event_targets = yes # HRB_TODO: Remove this after
+	}
+
+	### Engage (Federation)
+	option = {
+		name = borg_crisis.410.a
+		custom_tooltip = borg_crisis.410.a.tt
+
+		trigger = {
+			is_ufop = yes
+		}
+	}
+
+	### Chance for Glory (Klingon)
+	option = {
+		name = borg_crisis.410.b
+		custom_tooltip = borg_crisis.410.b.tt
+
+		trigger = {
+			is_klingon = yes
+		}
+	}
+
+	### Find Weakness (Romulan)
+	option = {
+		name = borg_crisis.410.c
+		custom_tooltip = borg_crisis.410.c.tt
+
+		trigger = {
+			is_romulan = yes
+		}
+	}
+
+	### Destroy All (Cardassian)
+	option = {
+		name = borg_crisis.410.d
+		custom_tooltip = borg_crisis.410.d.tt
+
+		trigger = {
+			is_cardassian = yes
+		}
+	}
+
+	###  Shields Up
+	option = {
+		name = borg_crisis.410.e
+		custom_tooltip = borg_crisis.410.e.tt
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = borg_crisis.420 days = @days_to_total_war }
+		}
+	}
+}
+
+### Total War
+# Triggers Waves, spawn every 6 months and attack
+country_event = {
+	id = borg_crisis.420
+	title = borg_crisis.420.name
+	desc = borg_crisis.420.desc
+	show_sound = event_borg_warfare 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_combat_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_combat_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_combat_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_combat_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	immediate = {
+		# Borg Cube Waves spawning
+		country_event = { id = borg_crisis.550 }
+	}
+
+	### Challenge for Final Frontier (Federation)
+	option = {
+		name = borg_crisis.420.a
+		custom_tooltip = borg_crisis.420.a.tt
+
+		trigger = {
+			is_ufop = yes
+		}
+	}
+
+	### Last Stand & Honor Kahless (Klingon)
+	option = {
+		name = borg_crisis.420.b
+		custom_tooltip = borg_crisis.420.b.tt
+
+		trigger = {
+			is_klingon = yes
+		}
+	}
+
+	### Out The Maze (Romulan)
+	option = {
+		name = borg_crisis.420.c
+		custom_tooltip = borg_crisis.420.c.tt
+
+		trigger = {
+			is_romulan = yes
+		}
+	}
+
+	### Fight & Win (Cardassian)
+	option = {
+		name = borg_crisis.420.d
+		custom_tooltip = borg_crisis.420.d.tt
+
+		trigger = {
+			is_cardassian = yes
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			country_event = { id = borg_crisis.430 days = @total_war_to_the_freed_first }
+		}
+	}
+}
+
+#########################################################################
+# The Freed / Saving The Assimilated (BC-FREED12)
+# borg_crisis.430, borg_crisis.440
+# GD_TAG: 2 STEP Lore
+#########################################################################
+
+### The Freed
+country_event = {
+	id = borg_crisis.430
+	title = borg_crisis.430.name
+	desc = borg_crisis.430.desc
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	is_triggered_only = yes 
+
+	trigger = {
+		NOR = {
+			has_global_flag = borg_crisis_lost
+			has_global_flag = borg_crisis_won
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_event_chain = "borg_crisis_end_the_freed" }
+			}
+			begin_event_chain = {
+				event_chain = "borg_crisis_end_the_freed"
+				target = ROOT
+			}
+		}
+	}
+
+	### Enemy of My Enemy
+	option = {
+		name = borg_crisis.430.a
+		custom_tooltip = borg_crisis.430.a.tt
+
+		hidden_effect = {
+			add_event_chain_counter = {
+				event_chain = "borg_crisis_end_the_freed"
+				counter = "freed_support_received"
+				amount = 1
+			}
+			country_event = { id = borg_crisis.440 days = 360 }
+		}
+	}
+
+	### Fight Own Battle
+	option = {
+		name = borg_crisis.430.b
+		custom_tooltip = borg_crisis.430.b.tt
+
+		add_resource = {
+			alloys = @crisis_resource_reward_high
+			research = @crisis_resource_reward_high
+			unity = @crisis_unity_reward_high
+		}
+
+		hidden_effect = {
+			end_event_chain = borg_crisis_end_the_freed
+		}
+	}
+}
+
+### The Ultimate Sacrifice
+country_event = {
+	id = borg_crisis.440
+	title = borg_crisis.440.name
+	desc = borg_crisis.440.desc
+	picture = GFX_evt_borg_cube
+	show_sound = event_borg_cube 
+	is_triggered_only = yes 
+	
+	trigger = {
+		NOR = {
+			has_global_flag = borg_crisis_lost
+			has_global_flag = borg_crisis_won
+		}
+	}
+
+	### So Be It
+	option = {
+		name = borg_crisis.440.a
+		custom_tooltip = borg_crisis.440.a.tt
+
+		allow = {
+			any_owned_planet = {
+				num_pops > @crisis_freed_min_pops_required
+			}
+		}
+
+		hidden_effect = {
+			while = {
+				count = @crisis_freed_amount_of_pops_taken
+
+				random_owned_planet = {
+					limit = {
+						num_pops > 1
+					}
+					save_event_target_as = borg_crisis_sacrifice_planet
+				}
+
+				event_target:borg_crisis_sacrifice_planet = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}
+
+			# Calls itself in a loop if you are still fighting the borg
+			country_event = { id = borg_crisis.440 days = @the_freed_loop_time }
+		}
+
+		spawn_freed_borg_cube_mid_at_location = { 
+			LOCATION = event_target:current_player_homeworld
+		}
+	}
+
+	### An Alternative
+	option = {
+		name = borg_crisis.440.b
+		custom_tooltip = borg_crisis.440.b.tt
+
+		allow = {
+			resource_stockpile_compare = {
+				resource = nanites
+				value >= 500
+			}
+		}
+
+		add_resource = {
+			nanites = @crisis_resource_cost_mid
+		}
+
+		hidden_effect = {
+			spawn_freed_borg_cube_mid_at_location = {
+				LOCATION = event_target:current_player_homeworld
+			}
+			
+			# Calls itself in a loop if you are still fighting the Borg
+			country_event = { id = borg_crisis.440 days = @the_freed_loop_time }
+		}
+	}
+
+	### Not The Time
+	option = {
+		name = borg_crisis.440.c
+		custom_tooltip = borg_crisis.440.c.tt
+
+		hidden_effect = {
+			# Note: Calls itself in a loop if you are still fighting the Borg
+			country_event = { id = borg_crisis.440 days = @the_freed_loop_time_short }
+		}
+	}
+}
+
+#########################################################################
+# End of The Borg / VICTORY (BC-ENDBORG13)
+# borg_crisis.450
+# GD_TAG: 1 STEP Lore
+#########################################################################
+
+# Janeway Path victory
+country_event = {
+	id = borg_crisis.445
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		every_country = {
+			limit = { is_major = yes }
+			end_event_chain = borg_crisis_end
+			end_event_chain = borg_crisis_end_highways
+			end_event_chain = borg_crisis_end_the_freed
+		}
+
+		set_borg_crisis_won = yes
+		country_event = { id = borg_crisis.450 } # Only for the current player
+	}
+}
+
+### End of The Borg
+country_event = {
+	id = borg_crisis.450
+	title = borg_crisis.450.name
+	# picture = GFX_evt_ending_victory_ufop
+	show_sound = event_end_of_the_borg 
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+			owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_ending_victory_ufop
+	} 
+	picture = {
+		trigger = {
+			owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_ending_victory_klingon
+	}
+	picture = {
+		trigger = {
+			owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_ending_victory_romulan
+	} 
+	picture = {
+		trigger = {
+			owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_ending_victory_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.450.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.450.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.450.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.450.cardassian.desc"
+	}
+
+	### Not Impossible (Federation)
+	option = {
+		name = borg_crisis.450.a
+		trigger = {	is_ufop = yes }
+		
+	}
+
+	### We are Klingons! (Klingon)
+	option = {
+		trigger = { is_klingon = yes }
+
+		name = borg_crisis.450.b
+	}
+
+	### Misdirection (Romulan)
+	option = {
+		trigger = {	is_romulan = yes }
+		name = borg_crisis.450.c
+	}
+
+	### Work Hard (Cardassian)
+	option = {
+		trigger = { is_cardassian = yes }
+		name = borg_crisis.450.d
+	}
+}
+
+#########################################################################
+# Resistance Is Futile / DEFEAT (BC-FUTILE14)
+# borg_crisis.460
+# GD_TAG: 1 STEP Lore
+#########################################################################
+
+### Resistance Is Futile
+country_event = {
+	id = borg_crisis.460
+	title = borg_crisis.460.name
+	picture = GFX_evt_borg_crisis_cube_combat_drones
+	show_sound = event_borg_crisis_cube_combat_drones 
+	is_triggered_only = yes 
+	
+	desc = {
+		trigger = {
+			is_ufop = yes
+		}
+		text =  "borg_crisis.460.ufop.desc"
+	}
+	desc = {
+		trigger = {
+			is_klingon = yes
+		}
+		text =  "borg_crisis.460.klingon.desc"
+	}
+	desc = {
+		trigger = {
+			is_romulan = yes
+		}
+		text =  "borg_crisis.460.romulan.desc"
+	}
+	desc = {
+		trigger = {
+			is_cardassian = yes
+		}
+		text =  "borg_crisis.460.cardassian.desc"
+	}
+
+	immediate = {
+		every_country = {
+			limit = { is_major = yes }
+			end_event_chain = borg_crisis_end
+			end_event_chain = borg_crisis_end_highways
+			end_event_chain = borg_crisis_end_the_freed
+		}
+
+		set_global_flag = borg_crisis_lost	
+	}
+
+	### We Are The Borg
+	option = {
+		name = borg_crisis.460.a
+	}
+}
+
+#########################################################################
+# Addendum - Pop-ups (BC-POPUP15)
+# borg_crisis.500, borg_crisis.505, borg_crisis.510, borg_crisis.515
+# GD_TAG: Borg Crisis Pop-ups
+#########################################################################
+
+# Highway Node Reopen -> Hidden-Event
+# Called from Special Project "TRANSWARP_CONDUIT_CUBE" on_success
+# From = Ship
+# Owner = Country
+ship_event = {
+	id = borg_crisis.500
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Save scopes
+		from = {
+			save_highway_node_planet_event_target = yes
+		}
+
+		owner = {
+			save_event_target_as = country
+		}
+
+		# Open Highway Node
+		event_target:planet = {
+			solar_system = { set_highway_node_open = yes }
+		}
+
+		if = {
+			limit = {
+				exists = event_target:planet
+			}
+			
+			# Abort the project for the rest of the countries, as it is already completed
+			every_country = {
+				limit = { 
+					is_major = yes
+					NOT = { is_same_value = event_target:country }
+					has_special_project = "TRANSWARP_CONDUIT_CUBE"
+				}
+				
+				abort_special_project = { 
+					type = "TRANSWARP_CONDUIT_CUBE" 
+					location = event_target:planet
+				}
+			}
+	
+			# Launch Pop-up event
+			play_country_event_for_all_major_powers = { ID = borg_crisis.505 }
+		}
+		else = {
+			log = "Invalid Highway Node planet event_target!"
+		}
+	}
+}
+
+### Highway Node Reopen Pop-up
+country_event = {
+	id = borg_crisis.505
+	title = borg_crisis.505.name
+	desc = borg_crisis.505.desc
+	show_sound = event_generic_success 		
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	option = {
+		name = borg_crisis.505.a
+	}
+}
+
+# Check if an Imperatoris Borg Cube has been destroyed
+# Called from on_fleet_destroyed_victim
+# This = owner of fleet 1 	(destroyed)
+# From = owner of fleet 2 	(combatant)
+# FromFrom = fleet 1 		(destroyed)
+# FromFromFrom = fleet 2 	(combatant)
+country_event = {
+	id = borg_crisis.510
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		FromFrom = { has_fleet_flag = imperatoris_borg_cube }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				event_target:borg_crisis_country = {
+					any_owned_fleet = {
+						has_fleet_flag = imperatoris_borg_cube
+						NOT = { is_same_value = FromFrom }
+					}
+				}
+			}
+
+			FromFrom = {
+				save_highway_node_planet_event_target = yes
+			}
+
+			# Launch Imperatoris Cube Destroyed pop-up
+			play_country_event_for_all_major_powers = { ID = borg_crisis.515 }
+		}
+		else = {
+			log = "Check if an Imperatoris Borg Cube has been destroyed"
+			every_country = {
+				limit = { is_major = yes }
+				end_event_chain = borg_crisis_end
+				end_event_chain = borg_crisis_end_highways
+				end_event_chain = borg_crisis_end_the_freed
+			}
+
+			set_borg_crisis_won = yes
+
+			# Launch Win Condition pop-up
+			play_country_event_for_all_major_powers = { ID = borg_crisis.450 }
+		}
+	}
+}
+
+### Imperatoris Cube Destroyed Pop-up
+country_event = {
+	id = borg_crisis.515
+	title = borg_crisis.515.name
+	desc = borg_crisis.515.desc
+	show_sound = event_generic_success 		
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_debris_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_debris_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	option = {
+		name = borg_crisis.515.a
+	}
+}
+
+#########################################################################
+# Borg Cubes AI
+#########################################################################
+
+# HRB_TODO: check if we need to add fleet@ to global flags to avoid duplicates
+
+# Waves spawner
+# Every 6 months an average of 8.5 cubes spawn divided into 5 fleets of 1 or 2 cubes
+country_event = {
+	id = borg_crisis.550
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Loop until borg crisis is won
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_global_flag = borg_crisis_won }
+			}
+
+			while = {
+				count = @brog_waves_per_tick # Currently 5
+				
+				# HRB_TODO: create a scripted effect
+				# Spawn a Borg Cube Wave
+				event_target:borg_crisis_country = {
+					random_owned_fleet = {
+						limit = {
+							has_fleet_flag = imperatoris_borg_cube
+							NOT = { has_fleet_flag = wave_spawned_here }
+							# is_in_combat = no # HRB: could be useful
+						}
+						save_global_event_target_as = imperatoris_fleet_spawner
+					}
+
+					# There's no spawner left
+					if = {
+						limit = {
+							NOT = { exists = event_target:imperatoris_fleet_spawner }
+						}
+
+						# Clean flags
+						every_owned_fleet = {
+							limit = {
+								has_fleet_flag = imperatoris_borg_cube
+							}
+							remove_fleet_flag = wave_spawned_here
+						}
+
+						# Try to select a new Spawner
+						random_owned_fleet = {
+							limit = {
+								has_fleet_flag = imperatoris_borg_cube
+								# is_in_combat = no
+							}
+							save_global_event_target_as = imperatoris_fleet_spawner
+						}
+					}
+
+					# Spawn Borg Cube Wave
+					if = {
+						limit = {
+							exists = event_target:imperatoris_fleet_spawner
+						}
+
+						event_target:imperatoris_fleet_spawner = {
+							set_fleet_flag = wave_spawned_here
+						
+							#HRB_TODO: Every time the event repeats it chooses the same outcome
+							random_list = {
+								30 = { 
+									spawn_borg_cube_small_wave_at_location = {
+										LOCATION = event_target:imperatoris_fleet_spawner
+									}
+								}
+								70 = {
+									spawn_borg_cube_mid_wave_at_location = {
+										LOCATION = event_target:imperatoris_fleet_spawner
+									}
+								}
+							}
+
+							last_created_fleet = {
+								set_fleet_flag = wave_invasion_fleet
+								fleet_event = { id = borg_crisis.560 }
+							}
+						}
+
+						clear_global_event_target = imperatoris_fleet_spawner
+					}
+				}
+			}
+
+
+			# Loop itself
+			country_event = { 
+				id = borg_crisis.550 
+				days = @days_to_borg_cube_reinforcements
+			}
+		}
+	}
+}
+
+# Destination Selector
+# Pick the closest system with a Colony owned by a Major Power to invade
+# HRB_TODO: fast and naive implementation
+fleet_event = {
+	id = borg_crisis.560
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# HRB_TODO: implement different approaches to select a target
+		# Pick the closest System with a Colony
+		closest_system = {
+			limit = {
+				NOT = { has_star_flag = target_for_invasion }
+				is_valid_borg_invasion_destination_system = yes 
+			}
+			
+			set_star_flag = target_for_invasion
+			save_global_event_target_as = aux_system_destination
+		}
+
+		if = {
+			limit = {
+				exists = event_target:aux_system_destination
+			}
+
+			event_target:aux_system_destination = {
+				save_event_target_as = current_system_destination
+			}
+
+			clear_global_event_target = aux_system_destination
+			
+			# Move to destination
+			fleet_event = { id = borg_crisis.565 }
+		}
+		else = {
+			# Loop if we didn't find a target
+			fleet_event = { id = borg_crisis.560 days = @days_to_retarget }
+		}
+	}
+}
+
+# Move to Target
+fleet_event = {
+	id = borg_crisis.565
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {			
+		queue_actions = {
+			direct_move_to = event_target:current_system_destination
+		}
+	
+		# Borg Cube Reached the System Check
+		fleet_event = { id = borg_crisis.570 days = 1 }
+	}
+}
+
+# Borg Cube Reached the System Check
+fleet_event = {
+	id = borg_crisis.570
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				exists = solar_system
+				solar_system = {
+					is_same_value = event_target:current_system_destination
+				}
+			}
+			
+			# Fleet reached the Target
+			fleet_event = { id = borg_crisis.575 }
+		}
+		else = {
+			# Loop itself
+			fleet_event = { id = borg_crisis.570 days = 1 }
+		}
+	}
+}
+
+# Fleet reached the Target
+# Attack Starbase if any
+fleet_event = {
+	id = borg_crisis.575
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	immediate = {
+		solar_system = {
+			random_fleet_in_system = {
+				limit = {
+					is_ship_class = shipclass_starbase
+				}
+				save_global_event_target_as = aux_starbase
+			}
+		}
+
+		# If a Starbase exists, go and attack it first
+		if = {
+			limit = {
+				exists = event_target:aux_starbase
+			}
+
+			queue_actions = {
+				move_to = event_target:aux_starbase
+			}
+
+			clear_global_event_target = aux_starbase
+		}
+
+		# Select a Colony to Invade if any
+		fleet_event = { id = borg_crisis.576 days = 1 }
+	}
+}
+
+# Select a Colony to Invade if any
+fleet_event = {
+	id = borg_crisis.576
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	immediate = {
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					is_colony = yes
+					has_owner = yes
+					NOT = { 
+						owner = {
+							is_same_value = event_target:borg_crisis_country
+						}
+					}
+				}
+				save_global_event_target_as = aux_colony_destination
+			}
+		}
+
+		if = { # Invade a Colony
+			limit = {
+				exists = event_target:aux_colony_destination
+			}
+		
+			event_target:aux_colony_destination = {
+				save_event_target_as = current_colony_destination
+			}
+			clear_global_event_target = aux_colony_destination
+			
+			queue_actions = {
+				orbit_planet = event_target:current_colony_destination
+			}
+		
+			# Borg Cube Orbits Colony Check
+			fleet_event = { id = borg_crisis.580 days = 1 }
+		}
+		else = { # No more Colonies to invade here, move to another System
+			solar_system = {
+				if = {
+					limit = { has_star_flag = target_for_invasion }
+					remove_star_flag = target_for_invasion
+				}
+			}
+
+			fleet_event = { id = borg_crisis.560 }
+		}
+	}
+}
+
+# Borg Cube Orbits Colony Check
+fleet_event = {
+	id = borg_crisis.580
+	hide_window = yes
+	is_triggered_only = yes 
+	
+	immediate = {
+		if = {
+			limit = {
+				exists = event_target:current_colony_destination
+				
+				event_target:current_colony_destination = {
+					has_owner = yes
+					
+					NOT = { 
+						owner = {
+							is_same_value = event_target:borg_crisis_country
+						}
+					}
+				}
+			}
+
+			# Colony is valid
+			# Check if orbiting the planet
+			if = {
+				limit = {
+					exists = orbit
+					orbit = { is_same_value = event_target:current_colony_destination }
+				}
+
+				# Initialize days_orbiting_colony Variable
+				if = {
+					limit = {
+						NOT = { is_variable_set = days_orbiting_colony } 
+					}
+	
+					set_variable = {
+						which = days_orbiting_colony
+						value = 0
+					}
+				}
+	
+				# +1 days orbiting
+				change_variable = {
+					which = days_orbiting_colony
+					value = 1
+				}
+
+				if = {
+					limit = {
+						check_variable = {
+							which = days_orbiting_colony
+							value > @days_to_assimilation
+						}
+					}
+	
+					clear_variable = days_orbiting_colony
+	
+					# Launch End-Game pop-up
+					event_target:current_colony_destination = {
+						if = {
+							limit = {
+								is_homeworld = yes
+							}
+
+							# HRB_TODO: flag Crisis as finished for that country?
+
+							owner = { country_event = { id = borg_crisis.460 } }
+						}
+					}
+
+					# Abduct Pops
+					event_target:current_colony_destination = {
+						set_owner = event_target:borg_crisis_country
+						set_controller = event_target:borg_crisis_country
+					}
+				}
+			}
+
+			# Loop itself
+			fleet_event = { id = borg_crisis.580 days = 1 }
+		}
+		else = {
+			# Check if there's another Colony in the System
+			fleet_event = { id = borg_crisis.576 }
+		}
+	}
+}
+
+# Invasion Wave Fleet Destroyed
+# Called from on_fleet_destroyed_victim
+# This = owner of fleet 1 	(destroyed)
+# From = owner of fleet 2 	(combatant)
+# FromFrom = fleet 1 		(destroyed)
+# FromFromFrom = fleet 2 	(combatant)
+country_event = {
+	id = borg_crisis.600
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		FromFrom = { has_fleet_flag = wave_invasion_fleet }
+	}
+
+	immediate = {
+		FromFrom = {
+			save_global_event_target_as = destroyed_fleet
+			solar_system = { remove_star_flag = target_for_invasion }
+		}
+
+		from = {
+			# Trigger Special Project Pop Recovery
+			spawn_borg_debris_at_location = {
+				LOCATION = 	event_target:destroyed_fleet
+			}
+
+			last_created_ambient_object = {
+				enable_special_project = {
+					name = "POP_RECOVERY"
+					location = this
+					owner = prev
+				}
+			}
+		}
+
+		clear_global_event_target = destroyed_fleet
+	}
+}
+
+# Borg Assimilates a Planet
+# Called from on_planet_transfer
+# This = Planet scope
+# From = Country scope (new owner)
+# HRB_NOTE: is_homeworld or is_capital wont't work here as the planet is already assimilated  
+planet_event = {
+	id = borg_crisis.610
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = event_target:borg_crisis_country
+		from = {
+			is_same_value = event_target:borg_crisis_country
+		}
+	}
+
+	# HRB_NOTE: launch any pop-up event if needed
+	# immediate = {
+	# }
+}
+
+# Clean Special Project Ambient Object
+# Called from Special Project "POP_RECOVERY" on_success
+# From = Ship
+# Owner = Country
+# FromFrom = Ambient Object
+ship_event = {
+	id = borg_crisis.650
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		fromfrom = {
+			destroy_ambient_object = this
+		}
+	}
+}
+
+#########################################################################
+# Special Project Failure/Timeout Pop-Ups
+#########################################################################
+
+### Meaningless Rubble
+# Called from Special Project "BATTLE_SITE" on_fail
+country_event = {
+	id = borg_crisis.660
+	title = "borg_crisis.660.name"
+	desc = "borg_crisis.660.desc"
+	show_sound = event_generic_fail
+	is_triggered_only = yes
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_debris_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_debris_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	option = {
+		name = borg_crisis.660.a
+	}
+
+	after = {
+
+		# Triggers Homecoming
+		hidden_effect = {
+			destroy_ambient_object = event_target:borg_crisis_ambient_debris
+			end_event_chain = borg_crisis_early
+			country_event = { id = borg_crisis.70 days = 30 }
+		}
+	}
+}
+
+### Forgotten Structure
+# Called from Special Project "ALLOY_STRUCTURE" on_fail
+country_event = {
+	id = borg_crisis.665
+	title = "borg_crisis.665.name"
+	desc = "borg_crisis.665.desc"
+	show_sound = event_generic_fail
+	is_triggered_only = yes
+	picture = GFX_evt_borg_cube
+
+	option = {
+		name = borg_crisis.665.a
+	}
+
+	after = {
+
+		###Ends/Removes Mysterious Structure Counter From Mission Log
+		end_event_chain = borg_crisis_mid_1
+
+		# Triggers The Borg
+		hidden_effect = {
+			country_event = { id = borg_crisis.160 days = @mid_to_abduction_time }
+		}
+	}
+}
+
+### Escaped Hivemind Ship
+# Called from Special Project "CRASHING_HIVEMIND_SHIP" on_fail
+country_event = {
+	id = borg_crisis.670
+	title = "borg_crisis.670.name"
+	desc = "borg_crisis.670.desc"
+	show_sound = event_generic_fail
+	is_triggered_only = yes
+	picture = GFX_evt_borg_cubes_tactical
+
+	option = {
+		name = borg_crisis.670.a
+	}
+
+	after = {
+
+		# Triggers The Borg
+		hidden_effect = {
+			country_event = { id = borg_crisis.160 days = @mid_to_abduction_time }
+		}
+	}
+}
+
+### Inefficient Official
+# Called from Special Project "ASSIMILATED_OFFICIAL" on_fail
+country_event = {
+	id = borg_crisis.675
+	title = "borg_crisis.675.name"
+	desc = "borg_crisis.675.desc"
+	show_sound = event_generic_fail
+	is_triggered_only = yes
+	picture = GFX_evt_borg_cube
+
+	option = {
+		name = borg_crisis.675.a
+	}
+
+	after = {
+
+		# Triggers Declaration of War
+		hidden_effect = {
+			country_event = { id = borg_crisis.280 days = @adbuction_to_queen_time }
+		}
+	}
+}
+
+### No Contact
+# Called from Special Project "CONTACTING_THE_BORG" (all mapos) on_fail
+country_event = {
+	id = borg_crisis.680
+	title = "borg_crisis.680.name"
+	desc = "borg_crisis.680.desc"
+	show_sound = event_generic_fail
+	is_triggered_only = yes
+	picture = GFX_evt_borg_cube
+
+	option = {
+		name = borg_crisis.680.a
+	}
+
+	after = {
+
+		# Triggers Declaration of War
+		hidden_effect = {
+			country_event = { id = borg_crisis.280 days = @adbuction_to_queen_time }
+		}
+	}
+}
+
+### Futile Gesture Trigger
+# Called from Special Project "TRANSWARP_CONDUIT_CUBE" on_fail
+
+country_event = {
+	id = borg_crisis.684
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = {
+			has_country_flag = futile_gesture_event_happened
+		}
+	}
+
+	immediate = {
+		end_event_chain = borg_crisis_end_highways
+		set_country_flag = futile_gesture_event_happened
+		country_event = { id = borg_crisis.685 days = 1 }
+	}
+}
+
+### Futile Gesture
+country_event = {
+	id = borg_crisis.685
+	title = "borg_crisis.685.name"
+	desc = "borg_crisis.685.desc"
+	show_sound = event_generic_fail
+	is_triggered_only = yes
+
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_highway_ftl_travel_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_highway_ftl_travel_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	option = {
+		name = borg_crisis.685.a
+	}
+
+	after = {
+
+		# Triggers Total War
+		hidden_effect = {
+			country_event = { id = borg_crisis.401 days = @days_to_invasion random = 360 }
+		}
+	}
+
+}
+
+### Casualties of the Borg
+# Called from Special Project "FIRST_INVASION_POP_RECOVERY" on_fail
+country_event = {
+	id = borg_crisis.690
+	title = "borg_crisis.690.name"
+	desc = "borg_crisis.690.desc"
+	show_sound = event_generic_fail
+	is_triggered_only = yes
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_debris_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_debris_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	option = {
+		name = borg_crisis.690.a
+	}
+}
+
+### Lost in the Hivemind
+# Called from Special Project "POP_RECOVERY" on_fail
+country_event = {
+	id = borg_crisis.695
+	title = "borg_crisis.695.name"
+	desc = "borg_crisis.695.desc"
+	show_sound = event_generic_fail
+	is_triggered_only = yes
+	
+	# Dynamic Images (Major Power variants)
+	picture = {
+		trigger = {
+		owner = { is_ufop = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_ufop
+	} 
+	picture = {
+		trigger = {
+		owner = { is_klingon = yes }
+		}
+		picture = GFX_evt_space_debris_borg_klingon
+	}
+	picture = {
+		trigger = {
+		owner = { is_romulan = yes } 
+		}
+		picture = GFX_evt_space_debris_borg_romulan
+	} 
+	picture = {
+		trigger = {
+		owner = { is_cardassian = yes }
+		}
+		picture = GFX_evt_space_debris_borg_cardassian
+	}
+	
+	# Default Image on Fail 
+	picture = GFX_evt_borg_cube_shadow
+
+	option = {
+		name = borg_crisis.695.a
+	}
+}

@@ -17,7 +17,7 @@
 ### Probe Defenses
 special_project = {
 	key = "PROBE_DEFENSES"
-	#event_chain = "borg_crisis_end"
+	event_chain = "borg_crisis_end"
 	tech_department = engineering_technology
 	picture = GFX_evt_borg_cube
 	days_to_research = @janeway_project_days_to_research
@@ -86,7 +86,7 @@ special_project = {
 ### Counteract Security Measures
 special_project = {
 	key = "COUNTERACT_MEASURES"
-	#event_chain = "borg_crisis_end"
+	event_chain = "borg_crisis_end"
 	tech_department = engineering_technology
 	picture = GFX_evt_borg_crisis_cube_combat_drones
 	days_to_research = @janeway_project_days_to_research
@@ -142,7 +142,7 @@ special_project = {
 ### Deliverance
 special_project = {
 	key = "DELIVERANCE"
-	#event_chain = "borg_crisis_end"
+	event_chain = "borg_crisis_end"
 	tech_department = engineering_technology
 	days_to_research = @janeway_project_days_to_research
 	timelimit = @counteract_measures_timelimit
