@@ -1,0 +1,58 @@
+# Ferengi Quest Tree - A7
+# Règle 7 : "Every once in a while, declare peace. It confuses the hell out of your enemies."
+# Condition : avoir déclaré un statu quo (flag set par on_status_quo)
+
+qt_ferengi_a7 = {
+	position = { x = 2 y = 2 }
+
+	potential = {
+		has_country_id = ferengi
+	}
+
+	parents = {
+	}
+
+	blocked_by = {
+	}
+
+	on_before_possible = {
+		if = {
+			limit = { has_country_flag = cp26_ferengi_a7_status_quo }
+			set_variable = { which = qt_ferengi_a7_peace_declared value = 1 }
+		}
+		else = {
+			set_variable = { which = qt_ferengi_a7_peace_declared value = 0 }
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			success_text = qt_ferengi_a7_peace_tooltip_success
+			fail_text    = qt_ferengi_a7_peace_tooltip_fail
+			check_variable = {
+				which = qt_ferengi_a7_peace_declared
+				value >= 1
+			}
+		}
+	}
+
+	on_started = {
+	}
+
+	on_blocked = {
+	}
+
+	on_finished = {
+		add_resource = {
+			energy    = 800
+			influence = 150
+		}
+	}
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

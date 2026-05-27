@@ -1,0 +1,20 @@
+# CP26 — Ferengi Quest Tree on_actions
+# Flags used by qt_ferengi_a7 (Rule 7 : status quo)
+
+# on_status_quo : Root = Recipient / From = Actor
+on_status_quo = {
+	effect = {
+		# Si les Ferengi sont l'acteur (initiateur du statu quo)
+		from = {
+			if = {
+				limit = { has_country_id = ferengi }
+				set_country_flag = cp26_ferengi_a7_status_quo
+			}
+		}
+		# Si les Ferengi sont le destinataire
+		if = {
+			limit = { has_country_id = ferengi }
+			set_country_flag = cp26_ferengi_a7_status_quo
+		}
+	}
+}

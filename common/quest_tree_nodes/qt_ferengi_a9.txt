@@ -1,0 +1,41 @@
+# Ferengi Quest Tree - A9
+# Règle 9 : "Keep your ears open."
+# Condition : avoir réussi 3 missions d'espionnage
+
+qt_ferengi_a9 = {
+	position = { x = 6 y = 2 }
+
+	potential = {
+		has_country_id = ferengi
+	}
+
+	parents = {
+	}
+
+	blocked_by = {
+	}
+
+	possible = {
+		successful_spy_mission_count >= 3
+	}
+
+	on_started = {
+	}
+
+	on_blocked = {
+	}
+
+	on_finished = {
+		add_resource = {
+			energy    = 800
+			influence = 150
+		}
+	}
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

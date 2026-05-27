@@ -1,0 +1,53 @@
+﻿l_english:
+
+ # ── Ferengi Quest Tree ──────────────────────────────────────────────────
+
+ # A1 — Rule 1
+ qt_ferengi_a1:0                "Rule 1"
+ qt_ferengi_a1_desc:0           "\"Once you have their money, never give it back.\"\n\nThe Rules of Acquisition are not mere proverbs — they are law. Establish three commercial pacts to anchor the Alliance in the galactic economy."
+
+ # A2 — Rule 2
+ qt_ferengi_a2:0                "Rule 2"
+ qt_ferengi_a2_desc:0           "\"Never allow family to stand in the way of opportunity.\"\n\nBlood ties are worthless against profit. Establish two migration pacts to show the Alliance knows how to exploit every available resource."
+
+ # A3 — Rule 3
+ qt_ferengi_a3:0                "Rule 3"
+ qt_ferengi_a3_desc:0           "\"War is good for business.\"\n\nWhile others fight for ideals, the Alliance fights for profit. Sell weapons to one of the factions involved in the Bajor crisis to validate this rule."
+ qt_ferengi_a3_weapons_tooltip_success:0 "£trigger_yes£ Weapons sold during the §YBajor§! crisis"
+ qt_ferengi_a3_weapons_tooltip_fail:0    "£trigger_no£ No weapons sold during the §YBajor§! crisis"
+
+ # A4 — Rule 4
+ qt_ferengi_a4:0                "Rule 4"
+ qt_ferengi_a4_desc:0           "\"Peace is good for business.\"\n\nWars close trade routes. A wise Ferengi knows when to negotiate peace — or when to send a fleet to speed things along. Offer peace in a conflict, or send a fleet to Bajor."
+ qt_ferengi_a4_peace_tooltip_success:0  "£trigger_yes£ Peace offered in a war, or a military fleet sent to §YBajor§!"
+ qt_ferengi_a4_peace_tooltip_fail:0     "£trigger_no£ No peace offer made, no fleet sent to §YBajor§!"
+
+ # A5 — Rule 5
+ qt_ferengi_a5:0                "Rule 5"
+ qt_ferengi_a5_desc:0           "\"Expand or die.\"\n\nStagnation is death. A Ferengi who stops growing stops earning. The Alliance must plant its flag on new worlds — three colonies beyond Ferenginar, to show the Galaxy that our appetite knows no bounds."
+
+ # A6 — Rule 6
+ qt_ferengi_a6:0                "Rule 6"
+ qt_ferengi_a6_desc:0           "\"Free advice is seldom cheap.\"\n\nEvery word of counsel has a price. The Alliance does not offer wisdom for nothing — it deploys envoys to extract information, forge deals, and keep rivals guessing. Recruit six envoys to put this rule into practice."
+
+ # A7 — Rule 7
+ qt_ferengi_a7:0                "Rule 7"
+ qt_ferengi_a7_desc:0           "\"Every once in a while, declare peace. It confuses the hell out of your enemies.\"\n\nUnpredictability is a weapon. A Ferengi who always fights is as predictable as a Klingon. Catch your rivals off guard — declare a status quo and let them wonder what you are planning."
+ qt_ferengi_a7_peace_tooltip_success:0  "£trigger_yes£ A status quo has been declared"
+ qt_ferengi_a7_peace_tooltip_fail:0     "£trigger_no£ No status quo declared yet"
+
+ # A8 — Rule 8
+ qt_ferengi_a8:0                "Rule 8"
+ qt_ferengi_a8_desc:0           "\"Every man has his price.\"\n\nKnow what your opponents want, and they are yours. The Alliance invests in the finest minds and the most decorated warriors — three scientists to unlock the secrets of the universe, and three admirals to enforce the terms of any deal."
+ qt_ferengi_a8_scientists_tooltip_success:0 "£trigger_yes£ Scientists: §Y[This.qt_ferengi_a8_scientists]§!/§Y3§!"
+ qt_ferengi_a8_scientists_tooltip_fail:0    "£trigger_no£ Scientists: §Y[This.qt_ferengi_a8_scientists]§!/§Y3§!"
+ qt_ferengi_a8_admirals_tooltip_success:0   "£trigger_yes£ Admirals: §Y[This.qt_ferengi_a8_admirals]§!/§Y3§!"
+ qt_ferengi_a8_admirals_tooltip_fail:0      "£trigger_no£ Admirals: §Y[This.qt_ferengi_a8_admirals]§!/§Y3§!"
+
+ # A9 — Rule 9
+ qt_ferengi_a9:0                "Rule 9"
+ qt_ferengi_a9_desc:0           "\"Keep your ears open.\"\n\nInformation is the most valuable currency in the Galaxy. While others wage war with fleets, the Alliance wages war with secrets. Complete three successful espionage missions to prove the Alliance knows how to listen."
+
+ # A10 — Rule 10
+ qt_ferengi_a10:0               "Rule 10"
+ qt_ferengi_a10_desc:0          "\"Opportunity plus instinct equals profit.\"\n\nThe greatest fortunes are built not by luck, but by recognizing opportunity before anyone else does, and acting on it without hesitation. Construct five megastructures — monuments to Ferengi ambition carved into the fabric of the Galaxy."

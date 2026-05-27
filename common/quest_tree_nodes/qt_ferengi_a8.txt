@@ -1,0 +1,85 @@
+# Ferengi Quest Tree - A8
+# Règle 8 : "Every man has his price."
+# Condition : avoir 3 scientifiques ET 3 amiraux
+
+qt_ferengi_a8 = {
+	position = { x = 4 y = 2 }
+
+	potential = {
+		has_country_id = ferengi
+	}
+
+	parents = {
+	}
+
+	blocked_by = {
+	}
+
+	on_before_possible = {
+		set_variable = {
+			which = qt_ferengi_a8_scientists
+			value = 0
+		}
+		set_variable = {
+			which = qt_ferengi_a8_admirals
+			value = 0
+		}
+		every_owned_leader = {
+			limit = { leader_class = scientist }
+			root = {
+				change_variable = {
+					which = qt_ferengi_a8_scientists
+					value = 1
+				}
+			}
+		}
+		every_owned_leader = {
+			limit = { leader_class = admiral }
+			root = {
+				change_variable = {
+					which = qt_ferengi_a8_admirals
+					value = 1
+				}
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			success_text = qt_ferengi_a8_scientists_tooltip_success
+			fail_text    = qt_ferengi_a8_scientists_tooltip_fail
+			check_variable = {
+				which = qt_ferengi_a8_scientists
+				value >= 3
+			}
+		}
+		custom_tooltip = {
+			success_text = qt_ferengi_a8_admirals_tooltip_success
+			fail_text    = qt_ferengi_a8_admirals_tooltip_fail
+			check_variable = {
+				which = qt_ferengi_a8_admirals
+				value >= 3
+			}
+		}
+	}
+
+	on_started = {
+	}
+
+	on_blocked = {
+	}
+
+	on_finished = {
+		add_resource = {
+			energy    = 1200
+			influence = 250
+		}
+	}
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}
