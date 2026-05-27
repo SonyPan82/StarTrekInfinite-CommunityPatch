@@ -14,16 +14,9 @@
 
 [list]
 [*] The Janeway / Voyager path is now properly tracked in the situation log. You can follow the three-step Voyager gambit (Probe Defenses → Counteract Measures → Deliverance) with a visible progress counter.
-[*] The Freed — liberated drones who can become unexpected allies against the Collective — now have their own dedicated situation log chain, with proper title, description and progress tracking.
+[*] The Freed — liberated drones who can become unexpected allies against the Collective - now have their own dedicated situation log chain, with proper title, description and progress tracking.
 [*] All Borg crisis chains (Janeway path, highways path, The Freed) now close cleanly on both victory and defeat — no more dangling entries in your situation log.
 [*] Added a safeguard to prevent the Janeway failure timer from firing multiple times in edge cases (e.g. death during a project). The 81-year delay before the final Borg assault is unchanged.
-[/list]
-
-[h2]Hero Ships[/h2]
-
-[list]
-[*] Voyager and the D'deridex Hero were practically unkillable — their hitpoints had been multiplied far beyond vanilla values. Both have been rebalanced to remain powerful flagship-class vessels without being invincible. Voyager goes from 7000 to 2500 HP, the D'deridex Hero from 10000 to 4500 HP.
-[*] Hero ships are still stronger and more durable than their standard counterparts — but a determined fleet can now threaten them if left unsupported.
 [/list]
 
 

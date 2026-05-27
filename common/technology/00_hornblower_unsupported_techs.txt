@@ -286,18 +286,10 @@ tech_destroyer_unlock = {
 	start_tech = no
 	prerequisites = { tech_corvette_unlock }
 	weight = @specialhullweight #@tier2weight2
-	triggered_config = {			
-		trigger = {		
-			is_ufop = yes	
-		}		
-		title = tech_intrepid		
-		desc = tech_intrepid_desc		
-		icon = tech_intrepid # HRB_TODO: placeholder		
-	}			
-	triggered_config = {			
-		trigger = {		
-			is_klingon = yes	
-		}		
+	triggered_config = {
+		trigger = {
+			is_klingon = yes
+		}
 		title = tech_warbird		
 		desc = tech_warbird_desc		
 		icon = tech_warbird # HRB_TODO: placeholder		
@@ -359,6 +351,11 @@ tech_destroyer_unlock = {
 			factor = 0
 			is_romulan = yes
 			NOT = { has_technology = tech_artificial_singularities_1 }
+		}
+		# UFOP uses tech_intrepid_unlock instead
+		modifier = {
+			factor = 0
+			is_ufop = yes
 		}
 	}
 	ai_weight = {

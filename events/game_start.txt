@@ -1128,9 +1128,7 @@ event = {
 			every_country = {
 				limit = { is_ufop = yes }
 				give_technology = { tech = tech_cp26_ufop_fleet_museum message = no }
-				give_technology = { tech = tech_destroyer_unlock message = no }
 				give_technology = { tech = tech_cruiser_unlock message = no }
-				give_technology = { tech = tech_constellation_unlock message = no }
 				give_technology = { tech = tech_lantree_unlock message = no }
 				give_technology = { tech = tech_ambassador_unlock message = no }
 				country_event = { id = country.2900 days = 1 }

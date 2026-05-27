@@ -167,7 +167,7 @@ intrepid = {
 
 	default_behavior = "hrb_interceptor"
 
-	prerequisites = { "tech_destroyer_unlock" }
+	prerequisites = { "tech_intrepid_unlock" }
 
 	potential_country = {
 		has_country_id = ufop

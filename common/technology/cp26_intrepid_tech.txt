@@ -1,0 +1,59 @@
+# CP26 - Intrepid class unlock (UFOP only)
+# Requires Excelsior-era research first, available ~year 25 (lore: 2371).
+# Sits parallel to the Galaxy/Nebula path as a dedicated explorer/escort hull.
+
+tech_intrepid_unlock = {
+	cost = @tier3cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = { is_ufop = yes }
+		title = tech_intrepid
+		desc = tech_intrepid_desc
+		icon = tech_intrepid
+	}
+
+	weight_modifier = {
+		# Not available before ~2368 (22 years in)
+		modifier = {
+			factor = 0
+			years_passed < 22
+		}
+		# Starts appearing around 2371
+		modifier = {
+			factor = 5
+			years_passed > 25
+		}
+		modifier = {
+			factor = 8
+			years_passed > 30
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_conquest_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_defense_adopt
+		}
+	}
+
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+			}
+		}
+	}
+}

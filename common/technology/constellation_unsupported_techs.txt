@@ -3,7 +3,7 @@ tech_constellation_unlock = {
 	area = engineering
 	category = { voidcraft }
 	tier = 1
-	start_tech = no
+	start_tech = yes
 	prerequisites = { tech_corvette_unlock }
 	weight = @specialhullweight
 
