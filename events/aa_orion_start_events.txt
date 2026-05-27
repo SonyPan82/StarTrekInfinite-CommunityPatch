@@ -355,10 +355,18 @@ event = {
 				}
 				event_target:orion_country = {
 					set_adjective = "Orion"
+					give_technology = { tech = tech_corvette_unlock message = no }
 					give_technology = { tech = tech_destroyer_unlock message = no }
-					give_technology = { tech = tech_cruiser_unlock message = no }
-				create_civilian_fleet = yes
-				
+					give_technology = { tech = tech_cp26_orion_interceptor_unlock message = no }
+					give_technology = { tech = tech_cp26_orion_wanderer_unlock message = no }
+
+				if = {
+					limit = {
+						NOT = { any_owned_fleet = { is_ship_class = shipclass_constructor } }
+					}
+					create_civilian_fleet = yes
+				}
+
 				every_planet_within_border = {
 					limit = {
 						has_deposit_for = shipclass_mining_station
@@ -368,36 +376,30 @@ event = {
 						owner = event_target:orion_country
 					}
 				}
-				
-				# Military
-				create_fleet = {
-					set_take_point = yes
-					effect = {
-						set_owner = event_target:orion_country
 
-						while = {
-							count = 2
+				# Military
+				if = {
+					limit = {
+						NOT = { any_owned_fleet = { is_ship_class = shipclass_military } }
+					}
+					create_fleet = {
+						set_take_point = yes
+						effect = {
+							set_owner = event_target:orion_country
+
 							create_ship = {
 								name = random
 								random_existing_design = orioncorvette
 								initial_officers_perc = 0.6
 							}
-						}
-						while = {
-							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = oriondestroyer
-								initial_officers_perc = 0.15
+								initial_officers_perc = 0.2
 							}
+
+							set_location = event_target:orion_country.capital_star
 						}
-						create_ship = {
-							name = random
-							random_existing_design = orionbattleship
-							initial_officers_perc = 0.1
-						}
-						
-						set_location = prev.capital_star
 					}
 				}
 				

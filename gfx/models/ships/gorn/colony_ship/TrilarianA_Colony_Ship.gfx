@@ -1,0 +1,9 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_ColonyShip_mesh"
+        file = "gfx/models/ships/gorn/colony_ship/MOOTR_ColonyShip.mesh"
+        scale = 1
+
+        meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Titan_A_D.dds" texture_normal = "Trilarian_Titan_A_N.dds" texture_specular = "Trilarian_Titan_A_S.dds" shader = "PdxMeshShip" }  
+	}
+}

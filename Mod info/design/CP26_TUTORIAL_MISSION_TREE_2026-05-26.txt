@@ -46,6 +46,10 @@ qt_example_node = {
         qt_example_parent
     }
 
+    dotted_parents = {
+        qt_example_thematic_link
+    }
+
     blocked_by = {
     }
 
@@ -87,6 +91,12 @@ Les blocs importants :
 - `parents`
   - les nœuds précédents obligatoires
   - c'est ce qui relie le nœud au reste de l'arbre
+
+- `dotted_parents`
+  - connexion visuelle en pointillé vers un autre nœud
+  - ne rend PAS le nœud inaccessible si ce parent n'est pas accompli
+  - utilisé pour indiquer un lien thématique ou narratif sans en faire un prérequis
+  - exemples dans CP26 : qt_cardassian_d1, qt_ufop_d1, qt_cardassian_c1, qt_ufop_e1
 
 - `blocked_by`
   - permet d'empêcher un nœud si un autre a été pris ou validé
@@ -131,7 +141,10 @@ Etape 2 - lui donner une nouvelle clé unique
   - `qt_cardassian_secure_bajor`
 
 Règle :
-- la clé du fichier et la clé du nœud doivent rester cohérentes
+- la clé du nœud doit être unique parmi tous les fichiers de common/quest_tree_nodes/
+- le nom du fichier n'a aucun rapport avec la clé du nœud
+- un seul fichier peut contenir un ou plusieurs nœuds
+- exemple concret : qt_ufop_d2.txt contient le nœud qt_ufop_liberate_the_oppressed
 
 Etape 3 - placer sa position
 - exemple :
@@ -188,11 +201,11 @@ custom_tooltip = {
 
 Etape 6 - écrire la récompense dans `on_finished`
 - exemples :
-  - `add_research_option = ...`
-  - `country_event = { id = ... }`
-  - `add_resource = { ... }`
-  - `add_modifier = ...`
-  - `set_country_flag = ...`
+  - `add_research_option = tech_xxx`
+  - `country_event = { id = cp26_example.1 }`
+  - `add_resource = { unity = 1000 influence = 250 }`
+  - `add_modifier = { modifier = nom_du_modifier days = 3600 }`
+  - `set_country_flag = mon_flag`
 
 Etape 7 - ajouter la localisation
 - au minimum :

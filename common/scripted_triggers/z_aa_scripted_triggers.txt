@@ -6,6 +6,24 @@ is_ferengi_empire = {
 	}
 }
 
+is_gorn_hegemony = {
+	OR = {
+		is_country_type = gorn_hegemony
+		has_country_flag = gorn_hegemony
+		has_country_flag = gorn
+		has_country_id = "gorn"
+	}
+}
+
+is_orion_syndicate = {
+	OR = {
+		is_country_type = orion_syndicate
+		has_country_flag = orion_syndicate
+		has_country_flag = orion
+		has_country_id = "orion"
+	}
+}
+
 is_regular_empire = {
 	or = {
 		is_country_type = default
@@ -14,6 +32,8 @@ is_regular_empire = {
 			is_ferengi_empire = yes
 			NOT = { has_authority = auth_corporate }
 		}
+		is_gorn_hegemony = yes
+		is_orion_syndicate = yes
 	}
 }
 

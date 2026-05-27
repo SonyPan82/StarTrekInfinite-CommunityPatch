@@ -1,0 +1,11 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_ship_counter_0"
+		textureFile = "gfx/interface/buttons/replace/button_transparent.dds"
+	}
+
+	spriteType = {
+		name = "GFX_ship_counter_1"
+		textureFile = "gfx/interface/buttons/replace/button_transparent.dds"
+	}
+}

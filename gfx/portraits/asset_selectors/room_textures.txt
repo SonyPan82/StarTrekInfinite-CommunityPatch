@@ -34,6 +34,9 @@ room_selector = {
 		"klingon_01_transmission_room"              = { always = yes }
 		"romulan_01_transmission_room"              = { always = yes }
 		"cardassian_01_transmission_room"           = { always = yes }
+		"ferengi_transmission_room"                 = { always = yes }
+		"gorn_transmission_room"                    = { always = yes }
+		"orion_transmission_room"                   = { always = yes }
 	}
 
 	ruler = {
@@ -45,6 +48,9 @@ room_selector = {
 		"klingon_01_transmission_room"              = { exists = owner owner = { is_klingon = yes } }
 		"romulan_01_transmission_room"              = { exists = owner owner = { is_romulan = yes } }
 		"cardassian_01_transmission_room"           = { exists = owner owner = { is_cardassian = yes } }
+		"ferengi_transmission_room"                 = { exists = owner owner = { is_ferengi_empire = yes } }
+		"gorn_transmission_room"                    = { exists = owner owner = { is_gorn_hegemony = yes } }
+		"orion_transmission_room"                   = { exists = owner owner = { is_orion_syndicate = yes } }
 		"lithoid_room"                              = { exists = owner owner = { lithoids_portrait = yes } }
 		"necroids_room"                             = { exists = owner owner = { necroids_portrait = yes } }
 		"personality_hegemonic_imperialists_room"   = { exists = owner owner = { has_ai_personality = hegemonic_imperialists } }
@@ -64,8 +70,6 @@ room_selector = {
 		"personality_ruthless_capitalists_room"     = { exists = owner owner = { has_ai_personality = ruthless_capitalists } }
 		"personality_honorbound_warriors_room"      = { exists = owner owner = { has_ai_personality = honorbound_warriors } }
 		"personality_fanatic_befrienders_room"      = { exists = owner owner = { has_ai_personality = fanatic_befrienders } }
-		"gorn_transmission_room"                    = { exists = owner owner = { has_country_flag = gorn } }
 		"tholian_transmission_room"                 = { exists = owner owner = { has_country_flag = tholian } }
-		"orion_transmission_room"                   = { exists = owner owner = { has_country_flag = orion } }
 	}
 }

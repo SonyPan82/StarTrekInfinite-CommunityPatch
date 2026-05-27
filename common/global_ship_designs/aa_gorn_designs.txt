@@ -2,197 +2,185 @@ ship_design = {
 	name = "NAME_GornCorvette"
 	ship_size = gorncorvette
 	is_event_design = yes
-
 	section = {
 		template = "GORNCORVETTE_MID"
 		slot = "mid"
-
-		#WEAPONS
-		component = {
-			slot = "SMALL_GUN_01"
-			template = "SMALL_PHASER_CANNON"
-		}
-
-		component = {
-			slot = "SMALL_GUN_02"
-			template = "SMALL_PHASER_CANNON"
-		}
-		
-		component = {
-			slot = "SMALL_GUN_03"
-			template = "SMALL_PHASER_CANNON"
-		}
-		
-		# ARMOR (UTILITIES)
-		component = {
-			slot = "SMALL_UTILITY_1"
-			template = "SMALL_DEFENSE_FIELD_SHIELDS"
-		}
-
-		component = {
-			slot = "SMALL_UTILITY_2"
-			template = "SMALL_TRITANIUM_HULLS"
-		}
-
-		component = {
-			slot = "SMALL_UTILITY_3"
-			template = "SMALL_TRITANIUM_HULLS"
-		}
-
-		component = {
-			slot = "SMALL_UTILITY_4"
-			template = "SMALL_TRITANIUM_HULLS"
-		}
-
-		component = {
-			slot = "AUX_UTILITY_1"
-			template = "SHIELD_BOOSTER"
-		}
+		component = { slot = "SMALL_GUN_01" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "SMALL_GUN_02" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "SMALL_GUN_03" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "SMALL_UTILITY_1" template = "SMALL_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "SMALL_UTILITY_2" template = "SMALL_TRITANIUM_HULLS" }
+		component = { slot = "SMALL_UTILITY_3" template = "SMALL_TRITANIUM_HULLS" }
+		component = { slot = "SMALL_UTILITY_4" template = "SMALL_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
 	}
-
-	required_component = "CORVETTE_FUSION_REACTOR"
+	required_component = "CORVETTE_FUSION_REACTOR_GORNCORVETTE"
 	required_component = "WARP_DRIVE_1"
-	required_component = "CORVETTE_IMPULSE_ENGINE"
+	required_component = "DESTROYER_IMPULSE_ENGINE_GORNCORVETTE"
 	required_component = "SENSOR_PROBES"
-	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_GORNCORVETTE"
 }
 
 ship_design = {
 	name = "NAME_GornDestroyer"
 	ship_size = gorndestroyer
 	is_event_design = yes
-
 	section = {
 		template = "GORNDESTROYER_MID"
 		slot = "mid"
-
-		#WEAPONS
-		component = {
-			slot = "SMALL_GUN_01"
-			template = "SMALL_PHASER_CANNON"
-		}
-
-		component = {
-			slot = "SMALL_GUN_02"
-			template = "SMALL_PHASER_CANNON"
-		}
-		
-		component = {
-			slot = "SMALL_GUN_03"
-			template = "SMALL_PHASER_CANNON"
-		}
-		
-		component = {
-			slot = "MEDIUM_GUN_01"
-			template = "MEDIUM_PHOTON_TORPEDOES_1"
-		}
-		
-		component = {
-			slot = "MEDIUM_GUN_02"
-			template = "MEDIUM_PHOTON_TORPEDOES_1"
-		}
-		
-		# ARMOR (UTILITIES)
-		component = {
-			slot = "SMALL_UTILITY_1"
-			template = "SMALL_TRITANIUM_HULLS"
-		}
-
-		component = {
-			slot = "SMALL_UTILITY_2"
-			template = "SMALL_TRITANIUM_HULLS"
-		}
-
-		component = {
-			slot = "SMALL_UTILITY_3"
-			template = "SMALL_TRITANIUM_HULLS"
-		}
-
-		component = {
-			slot = "SMALL_UTILITY_4"
-			template = "SMALL_TRITANIUM_HULLS"
-		}
-		
-		component = {
-			slot = "MEDIUM_UTILITY_1"
-			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
-		}
-
-		component = {
-			slot = "AUX_UTILITY_1"
-			template = "SHIELD_BOOSTER"
-		}
+		component = { slot = "SMALL_GUN_01" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "SMALL_GUN_02" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "SMALL_GUN_03" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_01" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "MEDIUM_GUN_02" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "SMALL_UTILITY_1" template = "SMALL_TRITANIUM_HULLS" }
+		component = { slot = "SMALL_UTILITY_2" template = "SMALL_TRITANIUM_HULLS" }
+		component = { slot = "SMALL_UTILITY_3" template = "SMALL_TRITANIUM_HULLS" }
+		component = { slot = "SMALL_UTILITY_4" template = "SMALL_TRITANIUM_HULLS" }
+		component = { slot = "MEDIUM_UTILITY_1" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
 	}
-
-	required_component = "DESTROYER_FUSION_REACTOR"
+	required_component = "DESTROYER_FUSION_REACTOR_GORNDESTROYER"
 	required_component = "WARP_DRIVE_1"
-	required_component = "DESTROYER_IMPULSE_ENGINE"
+	required_component = "DESTROYER_IMPULSE_ENGINE_GORNCORVETTE"
 	required_component = "SENSOR_PROBES"
-	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_GORNCORVETTE"
+}
+
+ship_design = {
+	name = "NAME_GornCruiser"
+	ship_size = gorncruiser
+	is_event_design = yes
+	section = {
+		template = "GORNCRUISER_MID"
+		slot = "mid"
+		component = { slot = "SMALL_GUN_01" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "SMALL_GUN_02" template = "SMALL_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_01" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "MEDIUM_GUN_02" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "MEDIUM_UTILITY_1" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_2" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_3" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_2" template = "SHIELD_BOOSTER" }
+	}
+	required_component = "BATTLESHIP_FUSION_REACTOR_GORNBATTLESHIP"
+	required_component = "WARP_DRIVE_1"
+	required_component = "DESTROYER_IMPULSE_ENGINE_GORNCORVETTE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_GORNCORVETTE"
 }
 
 ship_design = {
 	name = "NAME_GornBattleship"
 	ship_size = gornbattleship
 	is_event_design = yes
-
 	section = {
 		template = "GORNBATTLESHIP_MID"
 		slot = "mid"
-
-		#WEAPONS		
-		component = {
-			slot = "MEDIUM_GUN_01"
-			template = "MEDIUM_PHOTON_TORPEDOES_1"
-		}		
-		component = {
-			slot = "MEDIUM_GUN_02"
-			template = "MEDIUM_PHOTON_TORPEDOES_1"
-		}	
-		component = {
-			slot = "LARGE_GUN_01"
-			template = "LARGE_PHASER_CANNON"
-		}		
-		component = {
-			slot = "LARGE_GUN_02"
-			template = "LARGE_PHASER_CANNON"
-		}
-		
-		# ARMOR (UTILITIES)		
-		component = {
-			slot = "MEDIUM_UTILITY_1"
-			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
-		}
-		component = {
-			slot = "MEDIUM_UTILITY_2"
-			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
-		}
-		component = {
-			slot = "MEDIUM_UTILITY_3"
-			template = "MEDIUM_DEFENSE_FIELD_SHIELDS"
-		}
-		component = {
-			slot = "LARGE_UTILITY_1"
-			template = "LARGE_TRITANIUM_HULLS"
-		}
-		component = {
-			slot = "LARGE_UTILITY_2"
-			template = "LARGE_TRITANIUM_HULLS"
-		}
-		component = {
-			slot = "LARGE_UTILITY_3"
-			template = "LARGE_TRITANIUM_HULLS"
-		}
-
-		component = {
-			slot = "AUX_UTILITY_1"
-			template = "SHIELD_BOOSTER"
-		}
+		component = { slot = "MEDIUM_GUN_01" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "MEDIUM_GUN_02" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "MEDIUM_UTILITY_1" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_2" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_3" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
 	}
-
-	required_component = "BATTLESHIP_FUSION_REACTOR"
+	required_component = "BATTLESHIP_FUSION_REACTOR_GORNBATTLESHIP"
 	required_component = "WARP_DRIVE_1"
-	required_component = "BATTLESHIP_IMPULSE_ENGINE"
+	required_component = "DESTROYER_IMPULSE_ENGINE_GORNCORVETTE"
 	required_component = "SENSOR_PROBES"
-	required_component = "COMBAT_COMPUTER_HRB_ESCORT_DEFAULT"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_GORNCORVETTE"
+}
+
+ship_design = {
+	name = "NAME_GornTitan"
+	ship_size = gorntitan
+	is_event_design = yes
+	section = {
+		template = "GORNTITAN_MID"
+		slot = "mid"
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_03" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_04" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "XL_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_4" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_5" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_2" template = "SHIELD_BOOSTER" }
+	}
+	required_component = "BATTLESHIP_FUSION_REACTOR_GORNBATTLESHIP"
+	required_component = "WARP_DRIVE_1"
+	required_component = "DESTROYER_IMPULSE_ENGINE_GORNCORVETTE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_GORNCORVETTE"
+}
+
+ship_design = {
+	name = "NAME_GornJuggernaut"
+	ship_size = gornjuggernaut
+	is_event_design = yes
+	section = {
+		template = "GORNJUGGERNAUT_MID"
+		slot = "mid"
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_03" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "XL_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "XL_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_4" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_5" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_6" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_2" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_3" template = "SHIELD_BOOSTER" }
+	}
+	required_component = "BATTLESHIP_FUSION_REACTOR_GORNBATTLESHIP"
+	required_component = "WARP_DRIVE_1"
+	required_component = "DESTROYER_IMPULSE_ENGINE_GORNCORVETTE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_GORNCORVETTE"
+}
+
+ship_design = {
+	name = "NAME_GornColossus"
+	ship_size = gorncolossus
+	is_event_design = yes
+	section = {
+		template = "GORNCOLOSSUS_MID"
+		slot = "mid"
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "XL_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "XL_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_4" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_5" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_6" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_7" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_2" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_3" template = "SHIELD_BOOSTER" }
+	}
+	required_component = "BATTLESHIP_FUSION_REACTOR_GORNBATTLESHIP"
+	required_component = "WARP_DRIVE_1"
+	required_component = "DESTROYER_IMPULSE_ENGINE_GORNCORVETTE"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMBAT_COMPUTER_HRB_INTERCEPTOR_DEFAULT_GORNCORVETTE"
 }

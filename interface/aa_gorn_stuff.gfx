@@ -6,7 +6,17 @@ spriteTypes = {
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}
 	spriteType = {
+		name = "GFX_ST_empty_room_gorn_a"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
 		name = "GFX_ST_capital_empty_room_gorn"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_capital_empty_room_gorn_a"
 		texturefile = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_gorn.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
 	}
@@ -41,7 +51,17 @@ spriteTypes = {
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/smaller/capitalview_mask.dds"
 	}
 	spriteType = {
+		name = "GFX_ST_empty_room_gorn_loadgame"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
 		name = "GFX_ST_empty_room_Gorn_loadgame"
+		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_gorn.dds"
+		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
+	}
+	spriteType = {
+		name = "GFX_ST_empty_room_gorn_a_loadgame"
 		texturefile = "gfx/interface/diplomacy/empty_rooms/capitalview_gorn.dds"
 		masking_texture = "gfx/interface/diplomacy/empty_rooms/capitalview_mask.dds"
 	}
@@ -54,11 +74,6 @@ spriteTypes = {
 	# flags
 	spriteType = {
 		name = "GFX_flag_gorn_icon"
-		texturefile = "flags/emblem/bottombar/flag_gorn.dds"
-		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
-	}
-	spriteType = {
-		name = "GFX_flag_gorn_bottombar"
 		texturefile = "flags/emblem/bottombar/flag_gorn.dds"
 		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
 	}

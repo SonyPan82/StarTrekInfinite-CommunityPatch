@@ -109,7 +109,7 @@ event = {
 			limit = {
 				is_tiyanki_country_type = yes
 			}
-			every_country = {
+		every_country = {
 				limit = {
 					OR = {
 						is_amoeba_country_type = yes
@@ -220,6 +220,7 @@ event = {
 					has_country_id = klingon
 					has_country_id = romulan
 					has_country_id = cardassian
+					has_country_id = ferengi
 				}
 			}
 			country_event = { id = cp26_start_balance.1 }

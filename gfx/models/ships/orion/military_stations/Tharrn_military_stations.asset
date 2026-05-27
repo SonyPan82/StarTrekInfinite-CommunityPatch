@@ -1,0 +1,160 @@
+###################################################################################
+
+
+@general_scale = 0.85
+
+entity = {
+ 	name = "orion_military_station_small_entity"
+ 	pdxmesh = "orion_DefenseStation_Mesh"
+	game_data = { size = 6.0 }
+    
+    locator = { name = "root" 		position = { 0 0 0 } }
+    locator = { name = "part1" 		position = { 0 0 0 } }
+    locator = { name = "part2" 		position = { 0 0 0 } }
+}
+
+entity = {
+ 	name = "orion_military_station_section_heavy_entity"
+	pdxmesh = "empty_mesh"
+    
+    locator = { name = "large_gun_01" position = { 0 0 0 } }
+}
+entity = {
+ 	name = "orion_military_station_section_medium_entity"
+	pdxmesh = "empty_mesh"
+    
+    locator = { name = "medium_gun_01" position = { 0 0 0 } }
+    locator = { name = "medium_gun_02" position = { 0 0 0 } }
+}
+entity = {
+ 	name = "orion_military_station_section_light_entity"
+	pdxmesh = "empty_mesh"
+    
+    locator = { name = "small_gun_01" position = { 0 0 0 } }
+    locator = { name = "small_gun_02" position = { 0 0 0 } }
+    locator = { name = "small_gun_03" position = { 0 0 0 } }
+    locator = { name = "small_gun_04" position = { 0 0 0 } }
+}
+
+entity = {
+	name = "orion_military_station_section_hangar_entity"
+	pdxmesh = "empty_mesh"
+	scale = 0.1
+}
+
+entity = {
+ 	name = "orion_ion_cannon_section_entity"
+	pdxmesh = "empty_mesh"
+    
+    locator = { name = "xl_gun_01" position = { 0 0 0 } }
+}
+
+entity = {
+ 	name = "orion_ion_cannon_entity"
+ 	pdxmesh = "orion_IonCannon_Mesh"
+	game_data = { size = 6.0 }
+    
+    locator = { name = "root" 		position = { 0 0 0 } }
+}
+
+
+
+# entity = {
+ 	# name = "orion_military_station_section_small_entity"
+ 	# pdxmesh = "empty_mesh"
+	# default_state = "idle"
+ 	# locator = { name = "root" 		position = { 0 0 0 } }
+	# locator = { name = "part1" 		position = { 0 0 0 } }
+ 	# locator = { name = "part2" 		position = { 0 0 0 } }
+ 	# locator = { name = "part3" 		position = { 0 0 0 } }
+ 	# locator = { name = "part4" 		position = { 0 0 0 } }
+ 	# locator = { name = "part5" 		position = { 0 0 0 } }
+ 	# locator = { name = "part6" 		position = { 0 0 0 } }
+ 	# locator = { name = "part7" 		position = { 0 0 0 } }
+ 	# locator = { name = "part8" 		position = { 0 0 0 } }
+	# locator = { name = "point_gun_01" position = { 0 0 0 } }
+	# locator = { name = "point_gun_02" position = { 0 0 0 } }
+	# locator = { name = "point_gun_03" position = { 0 0 0 } }
+	# locator = { name = "point_gun_04" position = { 0 0 0 } }
+	# locator = { name = "small_gun_01" position = { 0 0 0 } }
+	# locator = { name = "small_gun_02" position = { 0 0 0 } }
+	# locator = { name = "small_gun_03" position = { 0 0 0 } }
+	# locator = { name = "small_gun_04" position = { 0 0 0 } }
+	# locator = { name = "medium_gun_01" position = { 0 0 0 } }
+	# locator = { name = "medium_gun_02" position = { 0 0 0 } }
+	# locator = { name = "medium_gun_03" position = { 0 0 0 } }
+	# locator = { name = "medium_gun_04" position = { 0 0 0 } }
+	# locator = { name = "large_gun_01" position = { 0 0 0 } }
+	# locator = { name = "large_gun_02" position = { 0 0 0 } }
+	# locator = { name = "large_gun_03" position = { 0 0 0 } }
+	# locator = { name = "large_gun_04" position = { 0 0 0 } }
+	# locator = { name = "torpedo_01" position = { 0 0 0 } }
+	# locator = { name = "torpedo_02" position = { 0 0 0 } }
+	# locator = { name = "torpedo_03" position = { 0 0 0 } }
+	# locator = { name = "torpedo_04" position = { 0 0 0 } }
+	# attach = { "root" = "orion_military_station_small_attach_entity" }
+ 	# state = { 
+		# name = "idle" state_time = 5
+ 		# start_event = { trigger_once = yes sound = { soundeffect = "amb_outpost_station_idle" } }
+ 	# }
+ 	# state = { name = "death" state_time = 2 looping = no
+ 		# event = { time = 0.0 node = "light_locator_01" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+ 		# event = { time = 0.5 node = "light_locator_02" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+ 	# }
+ 	# scale = 1.0
+# }
+
+
+entity = {
+ 	name = "orion_military_station_large_entity"
+ 	pdxmesh = "orion_IonCannon_Mesh"
+	game_data = { size = 6.0 }
+    
+    locator = { name = "root" 		position = { 0 0 0 } }
+}
+# entity = {
+ 	# name = "orion_military_station_section_large_entity"
+ 	# pdxmesh = "empty_mesh"
+ 	# locator = { name = "root" 		position = { 0 0 0 } }
+	# locator = { name = "part1" 		position = { 0 0 0 } }
+ 	# locator = { name = "part2" 		position = { 0 0 0 } }
+ 	# locator = { name = "part3" 		position = { 0 0 0 } }
+ 	# locator = { name = "part4" 		position = { 0 0 0 } }
+ 	# locator = { name = "part5" 		position = { 0 0 0 } }
+ 	# locator = { name = "part6" 		position = { 0 0 0 } }
+ 	# locator = { name = "part7" 		position = { 0 0 0 } }
+ 	# locator = { name = "part8" 		position = { 0 0 0 } }
+	# locator = { name = "point_gun_01" position = { 0 0 0 } }
+	# locator = { name = "point_gun_02" position = { 0 0 0 } }
+	# locator = { name = "point_gun_03" position = { 0 0 0 } }
+	# locator = { name = "point_gun_04" position = { 0 0 0 } }
+	# locator = { name = "small_gun_01" position = { 0 0 0 } }
+	# locator = { name = "small_gun_02" position = { 0 0 0 } }
+	# locator = { name = "small_gun_03" position = { 0 0 0 } }
+	# locator = { name = "small_gun_04" position = { 0 0 0 } }
+	# locator = { name = "medium_gun_01" position = { 0 0 0 } }
+	# locator = { name = "medium_gun_02" position = { 0 0 0 } }
+	# locator = { name = "medium_gun_03" position = { 0 0 0 } }
+	# locator = { name = "medium_gun_04" position = { 0 0 0 } }
+	# locator = { name = "large_gun_01" position = { 0 0 0 } }
+	# locator = { name = "large_gun_02" position = { 0 0 0 } }
+	# locator = { name = "large_gun_03" position = { 0 0 0 } }
+	# locator = { name = "large_gun_04" position = { 0 0 0 } }
+	# locator = { name = "torpedo_01" position = { 0 0 0 } }
+	# locator = { name = "torpedo_02" position = { 0 0 0 } }
+	# locator = { name = "torpedo_03" position = { 0 0 0 } }
+	# locator = { name = "torpedo_04" position = { 0 0 0 } }
+	# attach = { "root" = "orion_military_station_small_attach_entity" }
+	# attach = { "root" = "orion_military_station_large_attach_entity" }
+ 	# default_state = "idle"
+ 	# state = { 
+		# name = "idle" state_time = 5
+ 		# start_event = { trigger_once = yes sound = { soundeffect = "amb_outpost_station_idle" } }
+ 	# }
+ 	# state = { 
+		# name = "death" state_time = 2 looping = no
+ 		# event = { time = 0.0 node = "light_locator_01" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+ 		# event = { time = 0.5 node = "light_locator_02" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+ 	# }
+ 	# scale = 1.0
+# }

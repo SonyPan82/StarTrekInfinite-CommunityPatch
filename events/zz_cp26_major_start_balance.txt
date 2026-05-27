@@ -2,8 +2,8 @@ namespace = cp26_start_balance
 
 # CP26 - équilibrage départ (2346.01.01, même tick que game_start).
 # Tampons stockpile + petits ajustements ciblés ; les Romuliens restent la
-# référence « haute » (pas de buff). Féd : déficit énergie mensuel traité par
-# des stations minières sur les dépôts déjà présents + un petit filet temporaire.
+# référence « haute » (pas de buff). Féd : districts générateurs renforcés sur
+# les mondes fondateurs (Terre:6, Vulcan:4, Andoria:4, Tellar:5) + stations minières.
 # Admin UFP : charte sectorielle inchangée.
 
 country_event = {
@@ -12,23 +12,28 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		# United Federation of Planets - exploite les dépôts existants + léger filet énergie.
+		# United Federation of Planets - exploite les dépôts existants + réseau énergie.
 		if = {
 			limit = { has_country_id = ufop }
-			add_resource = {
-				energy = 5000
-				minerals = 900
-				food = 400
-			}
-			add_modifier = { modifier = cp26_ufop_sector_governance_charter }
-			add_modifier = {
-				modifier = cp26_ufop_federal_power_bootstrap
-				days = 2190
-			}
+				add_resource = {
+					energy = 5000
+					minerals = 900
+					food = 400
+				}
+				add_modifier = { modifier = cp26_ufop_sector_governance_charter }
+				add_modifier = {
+					modifier = cp26_ufop_federal_energy_grid
+					days = 5475
+				}
+				add_modifier = {
+					modifier = cp26_ufop_federal_power_bootstrap
+					days = 2190
+				}
 			add_modifier = {
 				modifier = cp26_ufop_early_unity_balance
 			}
 			country_event = { id = cp26_start_balance.2 }
+			country_event = { id = cp26_start_balance.3 }
 		}
 
 		# Klingon Empire - capture : 300 énergie +11, 100 minéraux ~0, 200 nourriture
@@ -64,6 +69,101 @@ country_event = {
 				energy = 400
 				minerals = 900
 				influence = 75
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_start_balance.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ufop = yes
+		NOT = { has_country_flag = cp26_ufop_starting_generator_grid_rebalanced }
+	}
+
+	immediate = {
+		set_country_flag = cp26_ufop_starting_generator_grid_rebalanced
+
+		random_owned_planet = {
+			limit = { has_planet_flag = planet_earth }
+			if = {
+				limit = {
+					NOR = {
+						has_building = building_energy_grid
+						has_building = building_energy_nexus
+					}
+				}
+				add_building = building_energy_grid
+			}
+			while = {
+				count = 6
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			}
+		}
+
+		random_owned_planet = {
+			limit = { has_planet_flag = planet_vulcan }
+			if = {
+				limit = {
+					NOR = {
+						has_building = building_energy_grid
+						has_building = building_energy_nexus
+					}
+				}
+				add_building = building_energy_grid
+			}
+			while = {
+				count = 4
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			}
+		}
+
+		random_owned_planet = {
+			limit = { has_planet_flag = planet_andoria }
+			if = {
+				limit = {
+					NOR = {
+						has_building = building_energy_grid
+						has_building = building_energy_nexus
+					}
+				}
+				add_building = building_energy_grid
+			}
+			while = {
+				count = 4
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			}
+		}
+
+		random_owned_planet = {
+			limit = { has_planet_flag = planet_tellar_prime }
+			if = {
+				limit = {
+					NOR = {
+						has_building = building_energy_grid
+						has_building = building_energy_nexus
+					}
+				}
+				add_building = building_energy_grid
+			}
+			while = {
+				count = 5
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			}
+		}
+
+		random_owned_planet = {
+			limit = { has_planet_flag = planet_risa }
+			while = {
+				count = 2
+				add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			}
+			while = {
+				count = 2
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 # CP26 — Mod Info Index
-Last updated: 2026-05-26
+Last updated: 2026-05-27
 
 This folder contains all design docs, fix notes, and reference material for the CP26 mod.
 Everything in `archive/` is historical (already implemented or superseded) — safe to ignore.
@@ -81,6 +81,7 @@ Everything in `archive/` is historical (already implemented or superseded) — s
 | [CP26_CONSTRUCTION_QUEUE_CRASH_FIX.txt](fixes/CP26_CONSTRUCTION_QUEUE_CRASH_FIX.txt) | Construction queue crash fix |
 | [CP26_BORG_AND_SHIP_SIZE_LOCALIZATION_FIX.txt](fixes/CP26_BORG_AND_SHIP_SIZE_LOCALIZATION_FIX.txt) | Borg + ship size loc fix |
 | [CP26_BORG_CRISIS_SAFE_CHAIN_PATCH_2026-05-27.txt](fixes/CP26_BORG_CRISIS_SAFE_CHAIN_PATCH_2026-05-27.txt) | Borg crisis situation log + The Freed chain patch |
+| [CP26_UFOP_START_ENERGY_REBALANCE_2026-05-27.txt](fixes/CP26_UFOP_START_ENERGY_REBALANCE_2026-05-27.txt) | UFP start energy rebalance: stations + energy grids + generator districts |
 | [CP26_HERO_SHIP_BALANCE_FIX.txt](fixes/CP26_HERO_SHIP_BALANCE_FIX.txt) | Hero ship balance fix |
 | [CP26_MINOR_BATTLESHIP_SLOT_FIX.txt](fixes/CP26_MINOR_BATTLESHIP_SLOT_FIX.txt) | Minor empire battleship slot fix |
 | [CP26_MISSION_EVENTS_MINOR_EMPIRES_FIX.txt](fixes/CP26_MISSION_EVENTS_MINOR_EMPIRES_FIX.txt) | Mission event fix for minor empires |

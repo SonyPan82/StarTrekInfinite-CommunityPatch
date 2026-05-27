@@ -1,0 +1,10 @@
+objectTypes = {
+    pdxmesh = {
+        name = "orion_ResearchStation_mesh"
+        file = "gfx/models/ships/orion/research_station/Tharrn_ResearchStation.mesh"
+        scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "ENV_SpaceStation_Tharrn_01_D.dds" texture_normal = "ENV_SpaceStation_Tharrn_01_N.dds" texture_specular = "ENV_SpaceStation_Tharrn_01_S.dds" shader = "PdxMeshShip" }
+    }
+}
+

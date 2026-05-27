@@ -1,0 +1,9 @@
+objectTypes = {
+	pdxmesh = {
+		name = "gorn_science_mesh"
+		file = "gfx/models/ships/gorn/science_ship/MOOTR_Science.mesh"
+		scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Fighter_D.dds" texture_normal = "Trilarian_Fighter_N.dds" texture_specular = "Trilarian_Fighter_S.dds" shader = "PdxMeshShip" }
+	}
+}

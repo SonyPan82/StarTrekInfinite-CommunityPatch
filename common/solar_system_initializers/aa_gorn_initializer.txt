@@ -245,7 +245,7 @@ gorn_system_initializer = {
 				create_country = {
 					species = "Gorn"
 					country_id = "gorn"
-					type = contender
+					type = gorn_hegemony
 					contact_rule = does_first_contact_sites
 				ship_prefix = "GHS"
 				name_list = "REP2"
@@ -277,10 +277,11 @@ gorn_system_initializer = {
 			}
 			last_created_country = {
 				set_name = "Hegemonie Gorn"
-				set_graphical_culture = gorn_01
+				set_graphical_culture = gorn
 				save_global_event_target_as = gorn_country
 				set_country_flag = gorn
 				set_country_flag = gorn_empire
+				set_country_flag = gorn_hegemony
 				set_custom_capital_location = prev
 
 				create_leader = {

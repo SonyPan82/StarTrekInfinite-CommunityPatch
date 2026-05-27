@@ -1,0 +1,72 @@
+CP26 - UFP start energy rebalance
+Date: 2026-05-27
+
+Objectif
+--------
+La Fédération démarrait avec un déficit énergie trop violent même avec le
+stockpile de départ. Le filet temporaire `cp26_ufop_federal_power_bootstrap`
+aidait seulement pendant quelques années et ne réglait pas la structure de
+l'économie.
+
+Décision
+--------
+Ne pas créer de dépôts énergie artificiels dans les systèmes UFP.
+
+Le correctif utilise uniquement des couches visibles et normales :
+
+1. Stations minières
+   - Au départ UFP, `cp26_start_balance.2` construit des mining stations sur les
+     dépôts déjà présents dans les frontières.
+   - Aucun `add_deposit = d_energy_*` n'est utilisé.
+
+2. Réseau énergétique planétaire
+   - Au départ UFP, `cp26_start_balance.3` ajoute `building_energy_grid` si le
+     monde n'a pas déjà `building_energy_grid` ou `building_energy_nexus`.
+   - Mondes ciblés :
+     - Earth
+     - Vulcan
+     - Andoria
+     - Tellar Prime
+
+3. Districts générateurs
+   - Earth : +4 `district_generator`
+   - Vulcan : +2 `district_generator`
+   - Andoria : +2 `district_generator`
+   - Tellar Prime : +3 `district_generator`
+
+4. Réseau énergétique fédéral
+   - Ajout du modificateur temporaire visible
+     `cp26_ufop_federal_energy_grid`.
+   - Durée : 15 ans (`days = 5475`).
+   - Effet : `country_energy_produces_add = 150`.
+   - Raison : les districts donnent surtout de la capacité et peuvent rester
+     sous-utilisés au tick initial selon l'affectation des pops. Ce filet plat
+     compense le déficit résiduel mesuré entre -46 et -61 énergie/mois sans
+     devenir un avantage permanent ou multiplicatif.
+
+Pourquoi cette approche
+-----------------------
+Vanilla utilise `district_generator` pour la production énergie planétaire.
+Dans Infinite, `building_energy_grid` ajoute un emploi de technicien et améliore
+les techniciens actifs via les jobs existants. C'est donc plus robuste qu'un
+bonus pays invisible : le joueur voit les bâtiments et les districts, peut les
+gérer, et l'économie reste lisible.
+
+Compatibilité
+-------------
+Ce patch est pensé pour les nouvelles parties. Il ne contient pas de migration
+mensuelle pour anciennes sauvegardes, volontairement.
+
+Fichiers modifiés
+-----------------
+- events/zz_cp26_major_start_balance.txt
+- common/static_modifiers/zz_cp26_starting_balance_static_modifiers.txt
+- localisation/french/zz_cp26_patch_l_french.yml
+- localisation/english/zz_cp26_patch_l_english.yml
+
+Contrôles effectués
+-------------------
+- Balance des accolades OK.
+- `git diff --check` OK.
+- Vérifié qu'aucun `add_deposit = d_energy_*` n'est présent dans les
+  initializers UFP ni dans l'événement de balance.

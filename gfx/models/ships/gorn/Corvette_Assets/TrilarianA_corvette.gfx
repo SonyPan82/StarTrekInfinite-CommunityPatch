@@ -1,0 +1,9 @@
+objectTypes = {
+	pdxmesh = {
+		name = "gorn_Frigate_A_mesh"
+		file = "gfx/models/ships/gorn/Corvette_Assets/MOOTR_Frigate_A.mesh"
+		scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Frigate_A_D.dds" texture_normal = "Trilarian_Frigate_A_N.dds" texture_specular = "Trilarian_Frigate_A_S.dds" shader = "PdxMeshShip" }  
+	}
+}

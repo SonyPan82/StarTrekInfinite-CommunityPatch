@@ -1,0 +1,21 @@
+objectTypes = {
+
+	
+	# pdxmesh = {
+		# name = "reptilian_01_orbital_station_frame_mesh"
+		# file = "gfx/models/ships/reptilian_01/reptilian_01_orbital_station_frame.mesh"
+		# scale = 1.0
+	# }
+	
+	pdxmesh = {
+		name = "orion_habitat_1_mesh"
+		file = "gfx/models/ships/orion/megastructures/Tharrn_habitat_1.mesh"
+        # file = "gfx/models/ships/reptilian_01/reptilian_01_orbital_station.mesh"
+		scale = 1.0
+        
+        meshsettings = { name = "mesh" texture_diffuse = "ENV_SpaceStation_Tharrn_01_D.dds" texture_normal = "ENV_SpaceStation_Tharrn_01_N.dds" texture_specular = "ENV_SpaceStation_Tharrn_01_S.dds" shader = "PdxMeshShip" }
+	}
+
+}
+
+	

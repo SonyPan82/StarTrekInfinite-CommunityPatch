@@ -1,5 +1,5 @@
 CP26 - Simple Tutorial for Adding or Modifying a Mission Tree Node
-Date: 2026-05-26
+Date: 2026-05-21
 
 Goal
 - Explain simply how to add a mission to the mission tree.
@@ -7,8 +7,6 @@ Goal
 - Provide a reusable method for CP26.
 
 This document is intentionally practical.
-- We are not trying to explain the entire engine.
-- We are trying to make CP26 missions clean, readable, and maintainable.
 
 
 ==================================================
@@ -44,6 +42,10 @@ qt_example_node = {
 
     parents = {
         qt_example_parent
+    }
+
+    dotted_parents = {
+        qt_example_thematic_link
     }
 
     blocked_by = {
@@ -88,6 +90,12 @@ The important blocks:
   - the required preceding nodes
   - this is what connects the node to the rest of the tree
 
+- `dotted_parents`
+  - visual dotted link to another node in the tree
+  - does NOT make the node inaccessible if that parent is not completed
+  - used to show a thematic or narrative connection without making it a prerequisite
+  - examples in CP26: qt_cardassian_d1, qt_ufop_d1, qt_cardassian_c1, qt_ufop_e1
+
 - `blocked_by`
   - prevents a node if another has been taken or completed
   - useful for exclusive branches
@@ -131,7 +139,10 @@ Step 2 - give it a new unique key
   - `qt_cardassian_secure_bajor`
 
 Rule:
-- the filename and the node key must stay consistent
+- the node key must be unique across all files in common/quest_tree_nodes/
+- the filename has no relation to the node key
+- a single file can contain one or several nodes
+- concrete example: qt_ufop_d2.txt contains the node qt_ufop_liberate_the_oppressed
 
 Step 3 - set its position
 - example:
@@ -188,11 +199,11 @@ custom_tooltip = {
 
 Step 6 - write the reward in `on_finished`
 - examples:
-  - `add_research_option = ...`
-  - `country_event = { id = ... }`
-  - `add_resource = { ... }`
-  - `add_modifier = ...`
-  - `set_country_flag = ...`
+  - `add_research_option = tech_xxx`
+  - `country_event = { id = cp26_example.1 }`
+  - `add_resource = { unity = 1000 influence = 250 }`
+  - `add_modifier = { modifier = modifier_key days = 3600 }`
+  - `set_country_flag = my_flag`
 
 Step 7 - add the localisation
 - at minimum:

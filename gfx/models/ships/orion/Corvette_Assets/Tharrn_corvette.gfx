@@ -1,0 +1,18 @@
+objectTypes = {
+	pdxmesh = {
+		name = "orion_Frigate_A_mesh"
+		file = "gfx/models/ships/orion/Corvette_Assets/Tharrn_Frigate_A.mesh"
+		scale = 1.0
+
+
+	}
+
+	pdxmesh = {
+		name = "orion_Frigate_A2_mesh"
+		file = "gfx/models/ships/orion/Corvette_Assets/Tharrn_Frigate_A2.mesh"
+		scale = 1.0
+
+
+	}
+
+}

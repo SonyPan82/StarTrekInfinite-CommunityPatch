@@ -1,0 +1,10 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_MiningStation_mesh"
+        file = "gfx/models/ships/gorn/mining_station/MOOTR_MiningStation.mesh"
+        scale = 1.5
+
+        meshsettings = { name = "mesh" texture_diffuse = "MiningStationTrilarian_D.dds" texture_normal = "MiningStation_N.dds" texture_specular = "MiningStation_S.dds" shader = "PdxMeshShip" }
+    }
+}
+

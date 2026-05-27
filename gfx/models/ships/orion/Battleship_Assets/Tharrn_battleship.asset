@@ -1,0 +1,157 @@
+###################################################################################
+
+
+@general_scale = 0.68
+@Tharrn_battleship_scale = 10
+
+entity = {
+	name = "orion_battleship_bow_L1M1S2_entity"
+	pdxmesh = "orion_Battleship_A_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+    locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+    # locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+    # locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+
+}
+entity = {
+	name = "orion_battleship_bow_L2_entity"
+	pdxmesh = "orion_Battleship_A_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+	    locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+	    locator = { name = "large_gun_02" rotation = { 0 0 0 } }
+	    locator = { name = "engine_medium_01" position = { 2.4 0 6 } }
+	    locator = { name = "engine_medium_02" position = { -2.4 0 6 } }
+		game_data = {
+			trail_width = 1.2
+			trail_locators = {
+				"engine_medium_01" = { width = 1.2 lenght = 15 height = 6 }
+				"engine_medium_02" = { width = 1.2 lenght = 15 height = 6 }
+			}
+		}
+	    
+	}
+entity = {
+	name = "orion_battleship_bow_M1S2SHB_entity"
+	pdxmesh = "orion_Battleship_A_mesh"
+    # pdxmesh = "orion_battleship_b_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+    # locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+    # locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+    locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
+    
+}
+entity = {
+	name = "orion_battleship_bow_XL1_entity"
+	pdxmesh = "orion_Battleship_A_mesh"
+    # pdxmesh = "orion_battleship_b_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "xl_gun_01" rotation = { 0 0 0 } }
+    
+}
+
+entity = {
+	name = "orion_battleship_mid_L2M2_entity"
+	pdxmesh = "empty_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+    locator = { name = "large_gun_02" rotation = { 0 0 0 } }
+    locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+    locator = { name = "medium_gun_02" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "orion_battleship_mid_L3_entity"
+	pdxmesh = "empty_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+    locator = { name = "large_gun_02" rotation = { 0 0 0 } }
+    locator = { name = "large_gun_03" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "orion_battleship_mid_M4SHB_entity"
+	pdxmesh = "empty_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+    locator = { name = "medium_gun_02" rotation = { 0 0 0 } }
+    locator = { name = "medium_gun_03" rotation = { 0 0 0 } }
+    locator = { name = "medium_gun_04" rotation = { 0 0 0 } }
+    locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "orion_battleship_mid_S4LHB_entity"
+	pdxmesh = "empty_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+    locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+    locator = { name = "small_gun_03" rotation = { 0 0 0 } }
+    locator = { name = "small_gun_04" rotation = { 0 0 0 } }
+    locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
+    locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } }
+}
+
+entity = {
+	name = "orion_battleship_stern_L1_entity"
+	pdxmesh = "empty_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "orion_battleship_stern_M2_entity"
+	pdxmesh = "empty_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+    locator = { name = "medium_gun_02" rotation = { 0 0 0 } }
+}
+
+entity = {
+	name = "orion_battleship_entity"	
+	pdxmesh = "molluscoid_01_corvette_frame_mesh"
+	default_state = "idle"
+	state = { name = "idle"	 animation = "idle" animation_blend_time = 4 }
+	state = { name = "moving"	animation = "idle" animation_blend_time = 2 }
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no 
+		event = { time = 4.63 node = "ship_main" particle = "avian_01_large_ship_explosion_particle" }
+	}
+	scale = 1.0
+	locator = { name = "engine_medium_01" position = { 2.4 0 6 } }
+	locator = { name = "engine_medium_02" position = { -2.4 0 6 } }
+	game_data = {
+		size = @Tharrn_battleship_scale
+		trail_width = 1.2
+		trail_locators = {
+			"engine_medium_01" = { width = 1.2 lenght = 15 height = 6 }
+			"engine_medium_02" = { width = 1.2 lenght = 15 height = 6 }
+		}
+	}
+}

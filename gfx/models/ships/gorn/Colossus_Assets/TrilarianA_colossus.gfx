@@ -1,0 +1,10 @@
+objectTypes = {
+	pdxmesh = {
+		name = "gorn_Colossus_mesh"
+		file = "gfx/models/ships/gorn/Colossus_Assets/MOOTR_Colossus.mesh"
+		scale = 1.0
+
+ 
+       meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Doomstar_D_1.dds" texture_normal = "Trilarian_Doomstar_N_1.dds" texture_specular = "Trilarian_Doomstar_S_1.dds" shader = "PdxMeshShip" }    
+	}
+}

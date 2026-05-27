@@ -9,7 +9,7 @@ AAGORN = {
 		"gorn"
 	}
 	
-	graphical_culture = gorn_01
+	graphical_culture = gorn
 	move_pop_sound_effect = "reptilian_pops_move"
 
 	resources = {}

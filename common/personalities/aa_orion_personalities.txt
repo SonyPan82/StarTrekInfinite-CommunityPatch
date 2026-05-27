@@ -46,7 +46,7 @@ hegemonic_imperialists_orion = {
 	}
 
 	allow = {
-		is_country_type = contender
+		is_country_type = orion_syndicate
 		has_country_id = "orion"
 	}
 

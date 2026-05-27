@@ -1,0 +1,10 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_ResearchStation_mesh"
+        file = "gfx/models/ships/gorn/research_station/MOOTR_ResearchStation.mesh"
+        scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "ResearchStationTrilarian_D.dds" texture_normal = "ResearchStation_N.dds" texture_specular = "ResearchStation_S.dds" shader = "PdxMeshShip" }
+    }
+}
+

@@ -2598,7 +2598,7 @@ borgcube_size_mid = {
 	max_hitpoints = 50000
 	operative_officers = 1000
 	officers_escape_perc = @base_officers_escape_perc
-	size_multiplier = 21
+	size_multiplier = 14
 	fleet_slot_size = 8
 	section_slots = { "mid" = { locator = "part1" } }
 	num_target_locators = 9
@@ -2641,7 +2641,7 @@ borgcube_size_large = {
 	max_hitpoints = 75000
 	operative_officers = 2500
 	officers_escape_perc = @base_officers_escape_perc
-	size_multiplier = 21
+	size_multiplier = 14
 	fleet_slot_size = 8
 	section_slots = { "mid" = { locator = "part1" } }
 	num_target_locators = 9
@@ -3035,7 +3035,7 @@ dreadnought = {
 		ship_evasion_add = 35
 	}
 	
-	size_multiplier = 21
+	size_multiplier = 14
 	fleet_slot_size = 8
 	graphical_culture = no
 	section_slots = { "mid" = { locator = "part1" } }

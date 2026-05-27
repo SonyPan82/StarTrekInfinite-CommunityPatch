@@ -1,0 +1,9 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_Construction_ship_mesh"
+        file = "gfx/models/ships/gorn/construction_ship/MOOTR_Construction.mesh"
+        scale = 1
+
+        meshsettings = { name = "mesh" texture_diffuse = "Worker_Trilarian_D.dds" texture_normal = "Worker_N.dds" texture_specular = "Worker_S.dds" shader = "PdxMeshShip" }  
+	}
+}

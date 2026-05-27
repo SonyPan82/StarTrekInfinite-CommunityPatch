@@ -1,0 +1,9 @@
+objectTypes = {
+	pdxmesh = {
+		name = "orion_science_mesh"
+		file = "gfx/models/ships/orion/science_ship/Tharrn_Science_A.mesh"
+		scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "SS_Tharrn_Fighter_01_D.dds" texture_normal = "SS_Tharrn_Fighter_01_N.dds" texture_specular = "SS_Tharrn_Fighter_01_S.dds" shader = "PdxMeshShip" }  
+	}
+}

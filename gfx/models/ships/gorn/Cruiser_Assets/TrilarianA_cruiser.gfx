@@ -1,0 +1,9 @@
+objectTypes = {
+	pdxmesh = {
+		name = "gorn_Cruiser_A_mesh"
+		file = "gfx/models/ships/gorn/Cruiser_Assets/MOOTR_Cruiser_A.mesh"
+		scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Cruiser_A_D.dds" texture_normal = "Trilarian_Cruiser_A_N.dds" texture_specular = "Trilarian_Cruiser_A_S.dds" shader = "PdxMeshShip" }  
+	}
+}

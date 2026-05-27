@@ -2,7 +2,7 @@
 @base_officers_escape_perc = 15
 @dderidex_formation_priority = 50
 @dderidex_speed = 28.8
-@dderidex_collision_radius = 6
+@dderidex_collision_radius = 8.0
 @dd_hp = 4500
 @dd_evasion = 8
 @battleship_size_icon_frame = 5

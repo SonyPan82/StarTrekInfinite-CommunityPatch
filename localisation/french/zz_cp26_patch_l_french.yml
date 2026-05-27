@@ -42,6 +42,8 @@
  cp26_ufop_sector_governance_charter_desc:0 "Assise administrative fédérale pour une Fédération multi-secteurs, atténuant l’étalement de l’empire en début de partie sans remplacer la bureaucratie des mondes membres."
  cp26_ufop_federal_power_bootstrap:0 "Stabilisation du réseau fédéral"
  cp26_ufop_federal_power_bootstrap_desc:0 "Allègement temporaire des contraintes de réseau et de comptabilité pendant que les mondes centraux et la logistique des bases stellaires retrouvent l'équilibre après la clôture fiscale de 2346. Augmente la production d'énergie à l'échelle de l'empire pendant plusieurs années."
+ cp26_ufop_federal_energy_grid:0 "Réseau énergétique fédéral"
+ cp26_ufop_federal_energy_grid_desc:0 "Les mondes fondateurs mutualisent temporairement leurs réseaux de distribution, leurs réserves d'antimatière et leurs contrats industriels pour stabiliser l'économie énergétique fédérale pendant la transition de départ."
  casus_belli_cb_liberation_war:0 "Indépendance"
  casus_belli_cb_liberation_war_acquire_hint:0 "Nous devons d'abord exiger que ce suzerain libère sa dépendance. En cas de refus, nous pourrons déclarer une guerre d'indépendance."
  ACTION_CP26_OFFER_WAR_GOAL_PEACE:0 "Demander la capitulation"

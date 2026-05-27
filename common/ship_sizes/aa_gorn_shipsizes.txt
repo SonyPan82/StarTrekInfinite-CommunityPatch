@@ -1,5 +1,5 @@
 @miranda_speed = 160
-@miranda_collision_radius = 2.0
+@miranda_collision_radius = 2.2
 @miranda_formation_priority = 20
 @miranda_hp = 750
 @miranda_evasion = 50
@@ -7,7 +7,7 @@
 @miranda_upkeep_deuterium = 0.1
 @miranda_upkeep_alloys = 0.1
 @intrepid_speed = 112
-@intrepid_collision_radius = 2.5
+@intrepid_collision_radius = 3.3
 @intrepid_formation_priority = 10
 @intrepid_hp = 1000
 @intrepid_evasion = 48
@@ -16,7 +16,7 @@
 @intrepid_upkeep_alloys = 0.2
 @galaxy_formation_priority = 50
 @Galaxy_speed = 28.8
-@galaxy_collision_radius = 6
+@galaxy_collision_radius = 7.8
 @galaxy_hp = 5400
 @galaxy_evasion = 9.6
 @galaxy_build_time = 480
@@ -75,7 +75,7 @@ gorncorvette = {
 
 	default_behavior = "hrb_escort"
 
-	prerequisites =	{ "tech_corvette_unlock" }
+	prerequisites =	{ "tech_cp26_gorn_makar_unlock" }
 
 	potential_country = {
 		has_country_id = gorn
@@ -168,7 +168,7 @@ gorndestroyer = {
 
 	default_behavior = "hrb_interceptor"
 
-	prerequisites = { "tech_destroyer_unlock" }
+	prerequisites = { "tech_cp26_gorn_ddraig_unlock" }
 
 	potential_country = {
 		has_country_id = gorn
@@ -261,7 +261,7 @@ gornbattleship = {
 
 	default_behavior = "hrb_line"
 
-	prerequisites = { "tech_cruiser_unlock" }
+	prerequisites = { "tech_cp26_gorn_balaur_unlock" }
 
 	potential_country = {
 		has_country_id = gorn

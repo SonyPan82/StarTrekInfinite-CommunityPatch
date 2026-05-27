@@ -1,0 +1,9 @@
+objectTypes = {
+    pdxmesh = {
+        name = "orion_ColonyShip_mesh"
+        file = "gfx/models/ships/orion/colony_ship/Tharrn_Colony_A.mesh"
+        scale = 1
+
+        meshsettings = { name = "mesh" texture_diffuse = "SS_Tharrn_Fighter_01_D.dds" texture_normal = "SS_Tharrn_Fighter_01_N.dds" texture_specular = "SS_Tharrn_Fighter_01_S.dds" shader = "PdxMeshShip" }  
+	}
+}

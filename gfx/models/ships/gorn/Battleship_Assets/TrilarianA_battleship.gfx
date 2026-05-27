@@ -1,0 +1,12 @@
+################
+# Battleship
+################
+objectTypes = {
+	pdxmesh = {
+		name = "gorn_Battleship_A_mesh"
+		file = "gfx/models/ships/gorn/Battleship_Assets/MOOTR_Battleship_A.mesh"
+		scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Battleship_A_D.dds" texture_normal = "Trilarian_Battleship_A_N.dds" texture_specular = "Trilarian_Battleship_A_S.dds" shader = "PdxMeshShip" }  
+	}
+}

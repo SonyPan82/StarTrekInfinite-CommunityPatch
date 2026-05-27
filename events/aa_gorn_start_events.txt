@@ -335,8 +335,10 @@ event = {
 
 			event_target:gorn_country = {
 				set_adjective = "Gorn"
+				give_technology = { tech = tech_corvette_unlock message = no }
 				give_technology = { tech = tech_destroyer_unlock message = no }
-				give_technology = { tech = tech_cruiser_unlock message = no }
+				give_technology = { tech = tech_cp26_gorn_makar_unlock message = no }
+				give_technology = { tech = tech_cp26_gorn_ddraig_unlock message = no }
 
 				if = {
 					limit = { exists = event_target:ufop_country }
@@ -366,36 +368,35 @@ event = {
 					establish_contact = { who = event_target:klingon_country hidden = yes }
 				}
 
-				create_civilian_fleet = yes
+				if = {
+					limit = {
+						NOT = { any_owned_fleet = { is_ship_class = shipclass_constructor } }
+					}
+					create_civilian_fleet = yes
+				}
 
-				create_fleet = {
-					set_take_point = yes
-					effect = {
-						set_owner = event_target:gorn_country
+				if = {
+					limit = {
+						NOT = { any_owned_fleet = { is_ship_class = shipclass_military } }
+					}
+					create_fleet = {
+						set_take_point = yes
+						effect = {
+							set_owner = event_target:gorn_country
 
-						while = {
-							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = gorncorvette
 								initial_officers_perc = 0.6
 							}
-						}
-						while = {
-							count = 2
 							create_ship = {
 								name = random
 								random_existing_design = gorndestroyer
-								initial_officers_perc = 0.15
+								initial_officers_perc = 0.2
 							}
-						}
-						create_ship = {
-							name = random
-							random_existing_design = gornbattleship
-							initial_officers_perc = 0.1
-						}
 
-						set_location = prev.capital_star
+							set_location = event_target:gorn_country.capital_star
+						}
 					}
 				}
 			}

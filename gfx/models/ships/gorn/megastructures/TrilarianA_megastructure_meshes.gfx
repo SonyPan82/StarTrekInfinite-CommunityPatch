@@ -1,0 +1,21 @@
+objectTypes = {
+
+	
+	# pdxmesh = {
+		# name = "reptilian_01_orbital_station_frame_mesh"
+		# file = "gfx/models/ships/reptilian_01/reptilian_01_orbital_station_frame.mesh"
+		# scale = 1.0
+	# }
+	
+	pdxmesh = {
+		name = "gorn_habitat_1_mesh"
+		file = "gfx/models/ships/gorn/megastructures/MOOTR_habitat_1.mesh"
+        # file = "gfx/models/ships/reptilian_01/reptilian_01_orbital_station.mesh"
+		scale = 1.0
+        
+        meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Garrison_D.dds" texture_normal = "Trilarian_Garrison_N.dds" texture_specular = "Trilarian_Garrison_S.dds" shader = "PdxMeshShip" }
+	}
+
+}
+
+	

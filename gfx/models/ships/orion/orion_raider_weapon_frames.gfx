@@ -1,8 +1,0 @@
-objectTypes = {
-		pdxmesh = {
-		name = "orion_raider_slots_mesh"
-		file = "gfx/models/ships/orion/orion_raider_slots.mesh"
-		scale = 1.0
-	}
-
-}

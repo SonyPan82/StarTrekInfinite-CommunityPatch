@@ -1,0 +1,41 @@
+###################################################################################
+
+
+@general_scale = 1.25
+
+@orbital_station = 17
+@research_station = 13
+@mining_station = 13
+@terraforming_station = 13
+
+entity = {
+ 	name = "orion_research_station_entity"
+ 	pdxmesh = "orion_ResearchStation_mesh"
+ 	locator = { name = "part1" 			position = { 0 	0 	0 } }
+ 	default_state = "idle"
+ 	state = { name = "idle" 
+ 		start_event = { trigger_once = yes sound = { soundeffect = "amb_research_station_signals" } }		
+ 	}
+ 	scale = @general_scale
+ 	game_data = { size = @research_station }
+}
+entity = {
+ 	name = "orion_research_station_section_entity"
+ 	pdxmesh = "empty_mesh"
+ 	locator = { name = "part1" 			position = { 0 	0 	0 } }
+ 	default_state = "idle"
+ 	state = { name = "idle" 
+ 		start_event = { trigger_once = yes sound = { soundeffect = "amb_research_station_signals" } }		
+ 	}
+ 	scale = @general_scale
+ 	game_data = { size = @research_station }
+}
+entity = {
+ 	name = "orion_research_station_construction_entity"
+ 	pdxmesh = "orion_ResearchStation_mesh"
+ 	default_state = "idle"
+ 	state = { name = "idle" 
+ 		event = { trigger_once = yes sound = { soundeffect = "place_construction" } } 			
+ 	}
+ 	scale = @general_scale
+ }

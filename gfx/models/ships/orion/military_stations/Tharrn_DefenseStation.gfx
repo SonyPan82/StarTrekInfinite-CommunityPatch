@@ -1,0 +1,9 @@
+objectTypes = {
+    pdxmesh = {
+        name = "orion_DefenseStation_Mesh"
+        file = "gfx/models/ships/orion/military_stations/Tharrn_DefenseStation.mesh"
+        scale = 1
+
+        meshsettings = { name = "mesh" texture_diffuse = "MDL_Wpn_Tharrn_Medium_D.dds" texture_normal = "MDL_Wpn_Tharrn_Medium_N.dds" texture_specular = "MDL_Wpn_Tharrn_Medium_S.dds" shader = "PdxMeshShip" }  
+	}
+}

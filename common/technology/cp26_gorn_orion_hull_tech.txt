@@ -1,0 +1,301 @@
+tech_cp26_gorn_makar_unlock = {
+	cost = @tier1cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 1
+	start_tech = no
+	prerequisites = { tech_corvette_unlock }
+	weight = @specialhullweight
+	potential = { is_gorn_hegemony = yes }
+	triggered_config = {
+		trigger = { is_gorn_hegemony = yes }
+		title = tech_cp26_gorn_makar
+		desc = tech_cp26_gorn_makar_desc
+		icon = tech_big_bomb_1
+	}
+	weight_modifier = { factor = 1 }
+	ai_weight = { factor = 10 }
+}
+
+tech_cp26_gorn_ddraig_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_destroyer_unlock tech_cp26_gorn_makar_unlock }
+	weight = @specialhullweight
+	potential = { is_gorn_hegemony = yes }
+	triggered_config = {
+		trigger = { is_gorn_hegemony = yes }
+		title = tech_cp26_gorn_ddraig
+		desc = tech_cp26_gorn_ddraig_desc
+		icon = tech_warbird
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 4 }
+		modifier = { factor = 5 years_passed > 5 }
+	}
+	ai_weight = { factor = 8 }
+}
+
+tech_cp26_gorn_sarath_unlock = {
+	cost = @tier3cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock tech_cp26_gorn_ddraig_unlock }
+	weight = @specialhullweight
+	potential = { is_gorn_hegemony = yes }
+	triggered_config = {
+		trigger = { is_gorn_hegemony = yes }
+		title = tech_cp26_gorn_sarath
+		desc = tech_cp26_gorn_sarath_desc
+		icon = tech_keldon
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 10 }
+		modifier = { factor = 7 years_passed > 12 }
+	}
+	ai_weight = { factor = 6 }
+}
+
+tech_cp26_gorn_balaur_unlock = {
+	cost = @tier4cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_battleship_unlock tech_cp26_gorn_sarath_unlock }
+	weight = @specialhullweight
+	potential = { is_gorn_hegemony = yes }
+	triggered_config = {
+		trigger = { is_gorn_hegemony = yes }
+		title = tech_cp26_gorn_balaur
+		desc = tech_cp26_gorn_balaur_desc
+		icon = tech_kazikai
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 18 }
+		modifier = { factor = 6 years_passed > 20 }
+	}
+	ai_weight = { factor = 5 }
+}
+
+tech_cp26_gorn_vazkoth_unlock = {
+	cost = @tier5cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_titan_unlock tech_cp26_gorn_balaur_unlock }
+	weight = @specialhullweight
+	potential = { is_gorn_hegemony = yes }
+	triggered_config = {
+		trigger = { is_gorn_hegemony = yes }
+		title = tech_cp26_gorn_vazkoth
+		desc = tech_cp26_gorn_vazkoth_desc
+		icon = tech_nokoram
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 28 }
+		modifier = { factor = 5 years_passed > 30 }
+	}
+	ai_weight = { factor = 4 }
+}
+
+tech_cp26_gorn_hegemony_bulwark_unlock = {
+	cost = @tier5cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_cp26_gorn_vazkoth_unlock }
+	weight = @specialhullweight
+	potential = { is_gorn_hegemony = yes }
+	triggered_config = {
+		trigger = { is_gorn_hegemony = yes }
+		title = tech_cp26_gorn_hegemony_bulwark
+		desc = tech_cp26_gorn_hegemony_bulwark_desc
+		icon = tech_nokoram
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 34 }
+		modifier = { factor = 4 years_passed > 36 }
+	}
+	ai_weight = { factor = 3 }
+}
+
+tech_cp26_gorn_kethar_command_unlock = {
+	cost = @tier5cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_cp26_gorn_hegemony_bulwark_unlock }
+	weight = @specialhullweight
+	potential = { is_gorn_hegemony = yes }
+	triggered_config = {
+		trigger = { is_gorn_hegemony = yes }
+		title = tech_cp26_gorn_kethar_command
+		desc = tech_cp26_gorn_kethar_command_desc
+		icon = tech_nokoram
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 38 }
+		modifier = { factor = 3 years_passed > 40 }
+	}
+	ai_weight = { factor = 2 }
+}
+
+tech_cp26_orion_interceptor_unlock = {
+	cost = @tier1cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 1
+	start_tech = no
+	prerequisites = { tech_corvette_unlock }
+	weight = @specialhullweight
+	potential = { is_orion_syndicate = yes }
+	triggered_config = {
+		trigger = { is_orion_syndicate = yes }
+		title = tech_cp26_orion_interceptor
+		desc = tech_cp26_orion_interceptor_desc
+		icon = tech_big_bomb_1
+	}
+	weight_modifier = { factor = 1 }
+	ai_weight = { factor = 10 }
+}
+
+tech_cp26_orion_wanderer_unlock = {
+	cost = @tier2cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 2
+	start_tech = no
+	prerequisites = { tech_destroyer_unlock tech_cp26_orion_interceptor_unlock }
+	weight = @specialhullweight
+	potential = { is_orion_syndicate = yes }
+	triggered_config = {
+		trigger = { is_orion_syndicate = yes }
+		title = tech_cp26_orion_wanderer
+		desc = tech_cp26_orion_wanderer_desc
+		icon = tech_warbird
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 4 }
+		modifier = { factor = 5 years_passed > 5 }
+	}
+	ai_weight = { factor = 8 }
+}
+
+tech_cp26_orion_corsair_unlock = {
+	cost = @tier3cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { tech_cruiser_unlock tech_cp26_orion_wanderer_unlock }
+	weight = @specialhullweight
+	potential = { is_orion_syndicate = yes }
+	triggered_config = {
+		trigger = { is_orion_syndicate = yes }
+		title = tech_cp26_orion_corsair
+		desc = tech_cp26_orion_corsair_desc
+		icon = tech_keldon
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 10 }
+		modifier = { factor = 7 years_passed > 12 }
+	}
+	ai_weight = { factor = 6 }
+}
+
+tech_cp26_orion_marauder_unlock = {
+	cost = @tier4cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 4
+	start_tech = no
+	prerequisites = { tech_battleship_unlock tech_cp26_orion_corsair_unlock }
+	weight = @specialhullweight
+	potential = { is_orion_syndicate = yes }
+	triggered_config = {
+		trigger = { is_orion_syndicate = yes }
+		title = tech_cp26_orion_marauder
+		desc = tech_cp26_orion_marauder_desc
+		icon = tech_kazikai
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 18 }
+		modifier = { factor = 6 years_passed > 20 }
+	}
+	ai_weight = { factor = 5 }
+}
+
+tech_cp26_orion_dreadnought_unlock = {
+	cost = @tier5cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_titan_unlock tech_cp26_orion_marauder_unlock }
+	weight = @specialhullweight
+	potential = { is_orion_syndicate = yes }
+	triggered_config = {
+		trigger = { is_orion_syndicate = yes }
+		title = tech_cp26_orion_dreadnought
+		desc = tech_cp26_orion_dreadnought_desc
+		icon = tech_nokoram
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 28 }
+		modifier = { factor = 5 years_passed > 30 }
+	}
+	ai_weight = { factor = 4 }
+}
+
+tech_cp26_orion_emerald_citadel_unlock = {
+	cost = @tier5cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_cp26_orion_dreadnought_unlock }
+	weight = @specialhullweight
+	potential = { is_orion_syndicate = yes }
+	triggered_config = {
+		trigger = { is_orion_syndicate = yes }
+		title = tech_cp26_orion_emerald_citadel
+		desc = tech_cp26_orion_emerald_citadel_desc
+		icon = tech_nokoram
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 34 }
+		modifier = { factor = 4 years_passed > 36 }
+	}
+	ai_weight = { factor = 3 }
+}
+
+tech_cp26_orion_black_ledger_unlock = {
+	cost = @tier5cost2
+	area = engineering
+	category = { voidcraft }
+	tier = 5
+	start_tech = no
+	prerequisites = { tech_cp26_orion_emerald_citadel_unlock }
+	weight = @specialhullweight
+	potential = { is_orion_syndicate = yes }
+	triggered_config = {
+		trigger = { is_orion_syndicate = yes }
+		title = tech_cp26_orion_black_ledger
+		desc = tech_cp26_orion_black_ledger_desc
+		icon = tech_nokoram
+	}
+	weight_modifier = {
+		modifier = { factor = 0 years_passed < 38 }
+		modifier = { factor = 3 years_passed > 40 }
+	}
+	ai_weight = { factor = 2 }
+}

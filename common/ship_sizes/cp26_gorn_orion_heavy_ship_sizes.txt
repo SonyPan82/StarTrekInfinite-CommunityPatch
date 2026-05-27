@@ -1,0 +1,463 @@
+@cp26_minor_cruiser_speed = 76
+@cp26_minor_cruiser_collision_radius = 4.5
+@cp26_minor_cruiser_hp = 2150
+@cp26_minor_cruiser_evasion = 22
+@cp26_minor_cruiser_build_time = 240
+@cp26_minor_cruiser_deuterium = 0.45
+@cp26_minor_cruiser_alloys = 0.45
+@cp26_minor_titan_speed = 52
+@cp26_minor_titan_collision_radius = 9.0
+@cp26_minor_titan_hp = 7600
+@cp26_minor_titan_evasion = 6
+@cp26_minor_titan_build_time = 720
+@cp26_minor_titan_deuterium = 1.6
+@cp26_minor_titan_alloys = 1.4
+@cp26_minor_juggernaut_speed = 30
+@cp26_minor_juggernaut_collision_radius = 9.2
+@cp26_minor_juggernaut_hp = 12000
+@cp26_minor_juggernaut_build_time = 1080
+@cp26_minor_colossus_speed = 24
+@cp26_minor_colossus_collision_radius = 9.4
+@cp26_minor_colossus_hp = 14000
+@cp26_minor_colossus_build_time = 1200
+
+gorncruiser = {
+	formation_priority = 18
+	entity = "gorn_cruiser_entity"
+	max_speed = @cp26_minor_cruiser_speed
+	acceleration = 0.22
+	rotation_speed = 0.2
+	collision_radius = @cp26_minor_cruiser_collision_radius
+	max_hitpoints = @cp26_minor_cruiser_hp
+	operative_officers = 20
+	officers_escape_perc = 15
+	fleet_view_background = "military_gornbattleship"
+	ship_modifier = {
+		ship_fire_rate_mult = -0.1
+		ship_shield_mult = -0.1
+		ship_tracking_mult = -0.1
+		ship_evasion_add = @cp26_minor_cruiser_evasion
+	}
+	size_multiplier = 6
+	fleet_slot_size = 3
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = 4
+	base_buildtime = @cp26_minor_cruiser_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_line"
+	prerequisites = { "tech_cp26_gorn_sarath_unlock" }
+	potential_country = { has_country_id = gorn }
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+	combat_disengage_chance = 1.15
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	resources = {
+		category = ships
+		upkeep = { deuterium = @cp26_minor_cruiser_deuterium }
+		upkeep = { alloys = @cp26_minor_cruiser_alloys }
+	}
+	min_upgrade_cost = { alloys = 1 }
+}
+
+gorntitan = {
+	formation_priority = 14
+	entity = "gorn_titan_entity"
+	max_speed = @cp26_minor_titan_speed
+	acceleration = 0.18
+	rotation_speed = 0.14
+	collision_radius = @cp26_minor_titan_collision_radius
+	max_hitpoints = @cp26_minor_titan_hp
+	operative_officers = 45
+	officers_escape_perc = 12
+	fleet_view_background = "military_gornbattleship"
+	ship_modifier = {
+		ship_fire_rate_mult = -0.1
+		ship_shield_mult = -0.1
+		ship_tracking_mult = -0.1
+		ship_evasion_add = @cp26_minor_titan_evasion
+	}
+	size_multiplier = 14
+	fleet_slot_size = 8
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon_frame = 6
+	text_icon = military_size_16
+	base_buildtime = @cp26_minor_titan_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_artillery"
+	prerequisites = { "tech_cp26_gorn_vazkoth_unlock" }
+	potential_country = { has_country_id = gorn }
+	possible_construction = {
+		custom_tooltip = {
+			is_scope_type = starbase
+			has_starbase_building = titan_yards
+			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+	empire_limit = { base = 1 max = 6 naval_cap_div = 250 }
+	combat_disengage_chance = 1.20
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	resources = {
+		category = ships
+		upkeep = { deuterium = @cp26_minor_titan_deuterium }
+		upkeep = { alloys = @cp26_minor_titan_alloys }
+	}
+	min_upgrade_cost = { alloys = 1 }
+}
+
+gornjuggernaut = {
+	formation_priority = 8
+	entity = "gorn_juggernaut_entity"
+	max_speed = @cp26_minor_juggernaut_speed
+	acceleration = 0.1
+	rotation_speed = 0.08
+	collision_radius = @cp26_minor_juggernaut_collision_radius
+	max_hitpoints = @cp26_minor_juggernaut_hp
+	operative_officers = 80
+	officers_escape_perc = 8
+	fleet_view_background = "military_gornbattleship"
+	ship_modifier = { ship_evasion_add = 2 }
+	size_multiplier = 14
+	fleet_slot_size = 8
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 6
+	is_space_station = no
+	icon_frame = 7
+	text_icon = military_size_16
+	base_buildtime = @cp26_minor_juggernaut_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_artillery"
+	prerequisites = { "tech_cp26_gorn_hegemony_bulwark_unlock" }
+	potential_country = { has_country_id = gorn }
+	possible_construction = {
+		custom_tooltip = {
+			is_scope_type = starbase
+			has_starbase_building = titan_yards
+			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+	empire_limit = { base = 1 max = 2 naval_cap_div = 500 }
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	resources = {
+		category = ships
+		upkeep = { deuterium = 2.4 }
+		upkeep = { alloys = 2.2 }
+	}
+	min_upgrade_cost = { alloys = 1 }
+}
+
+gorncolossus = {
+	formation_priority = 6
+	entity = "gorn_colossus_entity"
+	max_speed = @cp26_minor_colossus_speed
+	acceleration = 0.08
+	rotation_speed = 0.06
+	collision_radius = @cp26_minor_colossus_collision_radius
+	max_hitpoints = @cp26_minor_colossus_hp
+	operative_officers = 100
+	officers_escape_perc = 5
+	fleet_view_background = "military_gornbattleship"
+	ship_modifier = { ship_evasion_add = 1 }
+	size_multiplier = 14
+	fleet_slot_size = 8
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon_frame = 7
+	text_icon = military_size_16
+	base_buildtime = @cp26_minor_colossus_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_artillery"
+	prerequisites = { "tech_cp26_gorn_kethar_command_unlock" }
+	potential_country = { has_country_id = gorn }
+	possible_construction = {
+		custom_tooltip = {
+			is_scope_type = starbase
+			has_starbase_building = titan_yards
+			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+	empire_limit = { base = 1 max = 1 naval_cap_div = 800 }
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	resources = {
+		category = ships
+		upkeep = { deuterium = 3.0 }
+		upkeep = { alloys = 2.8 }
+	}
+	min_upgrade_cost = { alloys = 1 }
+}
+
+orioncruiser = {
+	formation_priority = 18
+	entity = "orion_cruiser_entity"
+	max_speed = @cp26_minor_cruiser_speed
+	acceleration = 0.24
+	rotation_speed = 0.24
+	collision_radius = @cp26_minor_cruiser_collision_radius
+	max_hitpoints = @cp26_minor_cruiser_hp
+	operative_officers = 20
+	officers_escape_perc = 18
+	fleet_view_background = "military_orionbattleship"
+	ship_modifier = {
+		ship_fire_rate_mult = -0.05
+		ship_shield_mult = -0.12
+		ship_tracking_mult = -0.05
+		ship_evasion_add = 28
+	}
+	size_multiplier = 6
+	fleet_slot_size = 3
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = 4
+	base_buildtime = @cp26_minor_cruiser_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_line"
+	prerequisites = { "tech_cp26_orion_corsair_unlock" }
+	potential_country = { has_country_id = orion }
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+	combat_disengage_chance = 1.25
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	resources = {
+		category = ships
+		upkeep = { deuterium = @cp26_minor_cruiser_deuterium }
+		upkeep = { alloys = @cp26_minor_cruiser_alloys }
+	}
+	min_upgrade_cost = { alloys = 1 }
+}
+
+oriontitan = {
+	formation_priority = 14
+	entity = "orion_titan_entity"
+	max_speed = @cp26_minor_titan_speed
+	acceleration = 0.2
+	rotation_speed = 0.16
+	collision_radius = @cp26_minor_titan_collision_radius
+	max_hitpoints = @cp26_minor_titan_hp
+	operative_officers = 45
+	officers_escape_perc = 14
+	fleet_view_background = "military_orionbattleship"
+	ship_modifier = {
+		ship_fire_rate_mult = -0.05
+		ship_shield_mult = -0.12
+		ship_tracking_mult = -0.05
+		ship_evasion_add = 10
+	}
+	size_multiplier = 14
+	fleet_slot_size = 8
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon_frame = 6
+	text_icon = military_size_16
+	base_buildtime = @cp26_minor_titan_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_artillery"
+	prerequisites = { "tech_cp26_orion_dreadnought_unlock" }
+	potential_country = { has_country_id = orion }
+	possible_construction = {
+		custom_tooltip = {
+			is_scope_type = starbase
+			has_starbase_building = titan_yards
+			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+	empire_limit = { base = 1 max = 6 naval_cap_div = 250 }
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	resources = {
+		category = ships
+		upkeep = { deuterium = @cp26_minor_titan_deuterium }
+		upkeep = { alloys = @cp26_minor_titan_alloys }
+	}
+	min_upgrade_cost = { alloys = 1 }
+}
+
+orionjuggernaut = {
+	formation_priority = 8
+	entity = "orion_juggernaut_entity"
+	max_speed = @cp26_minor_juggernaut_speed
+	acceleration = 0.12
+	rotation_speed = 0.1
+	collision_radius = @cp26_minor_juggernaut_collision_radius
+	max_hitpoints = @cp26_minor_juggernaut_hp
+	operative_officers = 80
+	officers_escape_perc = 10
+	fleet_view_background = "military_orionbattleship"
+	ship_modifier = { ship_evasion_add = 4 }
+	size_multiplier = 14
+	fleet_slot_size = 8
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 6
+	is_space_station = no
+	icon_frame = 7
+	text_icon = military_size_16
+	base_buildtime = @cp26_minor_juggernaut_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_artillery"
+	prerequisites = { "tech_cp26_orion_emerald_citadel_unlock" }
+	potential_country = { has_country_id = orion }
+	possible_construction = {
+		custom_tooltip = {
+			is_scope_type = starbase
+			has_starbase_building = titan_yards
+			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+	empire_limit = { base = 1 max = 2 naval_cap_div = 500 }
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	resources = {
+		category = ships
+		upkeep = { deuterium = 2.4 }
+		upkeep = { alloys = 2.2 }
+	}
+	min_upgrade_cost = { alloys = 1 }
+}
+
+orioncolossus = {
+	formation_priority = 6
+	entity = "orion_colossus_entity"
+	max_speed = @cp26_minor_colossus_speed
+	acceleration = 0.1
+	rotation_speed = 0.08
+	collision_radius = @cp26_minor_colossus_collision_radius
+	max_hitpoints = @cp26_minor_colossus_hp
+	operative_officers = 100
+	officers_escape_perc = 8
+	fleet_view_background = "military_orionbattleship"
+	ship_modifier = { ship_evasion_add = 2 }
+	size_multiplier = 14
+	fleet_slot_size = 8
+	graphical_culture = no
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon_frame = 7
+	text_icon = military_size_16
+	base_buildtime = @cp26_minor_colossus_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	default_behavior = "hrb_artillery"
+	prerequisites = { "tech_cp26_orion_black_ledger_unlock" }
+	potential_country = { has_country_id = orion }
+	possible_construction = {
+		custom_tooltip = {
+			is_scope_type = starbase
+			has_starbase_building = titan_yards
+			fail_text = starbase_titan_yards_trigger
+		}
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+	empire_limit = { base = 1 max = 1 naval_cap_div = 800 }
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	resources = {
+		category = ships
+		upkeep = { deuterium = 3.0 }
+		upkeep = { alloys = 2.8 }
+	}
+	min_upgrade_cost = { alloys = 1 }
+}

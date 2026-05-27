@@ -1,0 +1,9 @@
+objectTypes = {
+    pdxmesh = {
+        name = "gorn_starfortress_mesh"
+        file = "gfx/models/ships/gorn/starbase/MOOTR_Starfortress.mesh"
+        scale = 1
+
+        meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Starbases_D.dds" texture_normal = "Trilarian_Starbases_N.dds" texture_specular = "Trilarian_Starbases_S.dds" shader = "PdxMeshShip" }  
+	}
+}

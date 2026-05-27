@@ -1,0 +1,11 @@
+objectTypes = {
+	pdxmesh = {
+		name = "orion_Destroyer_A_mesh"
+		file = "gfx/models/ships/orion/Destroyer_Assets/Tharrn_Destroyer_A.mesh"
+		scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "SS_UE_Small_02_ID1_D.dds" texture_normal = "SS_UE_Small_02_ID1_N.dds" texture_specular = "SS_UE_Small_02_ID1_S.dds" shader = "PdxMeshShip" }  
+        meshsettings = { name = "mesh" texture_diffuse = "SS_UE_Small_02_ID2_D.dds" texture_normal = "SS_UE_Small_02_ID2_N.dds" texture_specular = "SS_UE_Small_02_ID2_S.dds" shader = "PdxMeshShip" }  
+
+	}
+}

@@ -1,0 +1,14 @@
+part = {
+	location = 0
+	localization = "START_SCREEN_ORION"
+
+	trigger = {
+		has_country_flag = custom_start_screen
+		OR = {
+			has_country_flag = orion
+			has_country_flag = orion_syndicate
+			has_country_id = "orion"
+			is_country_type = orion_syndicate
+		}
+	}
+}

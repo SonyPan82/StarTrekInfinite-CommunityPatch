@@ -1,0 +1,9 @@
+objectTypes = {
+    pdxmesh = {
+        name = "orion_Construction_ship_mesh"
+        file = "gfx/models/ships/orion/construction_ship/Tharrn_Construction_A.mesh"
+        scale = 1
+
+        meshsettings = { name = "mesh" texture_diffuse = "SS_Tharrn_Bomber_01_D.dds" texture_normal = "SS_Tharrn_Bomber_01_N.dds" texture_specular = "SS_Tharrn_Bomber_01_S.dds" shader = "PdxMeshShip" }  
+	}
+}

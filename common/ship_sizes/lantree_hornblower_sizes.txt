@@ -18,7 +18,7 @@
 @intrepid_upkeep_alloys = 0.2
 @galaxy_formation_priority = 50
 @Galaxy_speed = 28.8
-@galaxy_collision_radius = 6
+@galaxy_collision_radius = 7.8
 @galaxy_hp = 5400
 @galaxy_evasion = 9.6
 @galaxy_build_time = 480

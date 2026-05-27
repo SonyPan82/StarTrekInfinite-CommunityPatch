@@ -15,6 +15,8 @@ utility_component_template = {
 	ship_behavior = "hrb_escort"
 	class_restriction = { shipclass_military }
 
+	prerequisites = { "tech_computer_1" }
+
 	size_restriction = {
 		gorndestroyer
 	}
@@ -49,14 +51,20 @@ utility_component_template = {
 	ship_behavior = "hrb_interceptor"
 	class_restriction = { shipclass_military }
 
-	size_restriction = {
-		gorncorvette
-		gorndestroyer
-		gornbattleship
-	}
+	prerequisites = { "tech_computer_1" }
+
+		size_restriction = {
+			gorncorvette
+			gorndestroyer
+			gorncruiser
+			gornbattleship
+			gorntitan
+			gornjuggernaut
+			gorncolossus
+		}
 
 	component_set = "combat_computers"
-	upgrades_to = "COMBAT_COMPUTER_HRB_INTERCEPTOR_BASIC"
+	upgrades_to = "COMBAT_COMPUTER_HRB_INTERCEPTOR_BASIC_GORNCORVETTE"
 
 	ship_modifier = {
 		ship_speed_mult = 0.1
@@ -86,11 +94,15 @@ utility_component_template = {
 
 	prerequisites = { "tech_computer_2" }
 
-	size_restriction = {
-		gorncorvette
-		gorndestroyer
-		gornbattleship
-	}
+		size_restriction = {
+			gorncorvette
+			gorndestroyer
+			gorncruiser
+			gornbattleship
+			gorntitan
+			gornjuggernaut
+			gorncolossus
+		}
 	
 	component_set = "combat_computers"
 
@@ -123,11 +135,15 @@ utility_component_template = {
 
 	prerequisites = { "tech_computer_2" }
 	
-	size_restriction = {
-		gorncorvette
-		gorndestroyer
-		gornbattleship
-	}
+		size_restriction = {
+			gorncorvette
+			gorndestroyer
+			gorncruiser
+			gornbattleship
+			gorntitan
+			gornjuggernaut
+			gorncolossus
+		}
 	
 	component_set = "combat_computers"
 

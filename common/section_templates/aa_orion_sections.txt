@@ -3,51 +3,16 @@ ship_section_template = {
 	ship_size = orioncorvette
 	fits_on_slot = mid
 	should_draw_components = no
-	#entity = "corvette_S3_entity"
-	#entity = "avian_01_corvette_S3_entity"
-	entity = "orion_interceptor_entity"
+	entity = "orion_corvette_S3_entity"
 	icon = "GFX_ship_part_core_mid"
-	
-	prerequisites = { tech_big_bomb_1 }
-	
-	ai_weight = {
-		modifier = {
-			factor = 10.0
-			is_preferred_weapons = weapon_type_explosive
-		}
-		modifier = {
-			factor = 0.1
-			NOT = { is_preferred_weapons = weapon_type_explosive }
-		}		
-	}
-	
-	component_slot = {
-		name = "SMALL_GUN_01"
-		template = "invisible_small_turret"
-		locatorname = "part1"
-	}
-
-	component_slot = {
-		name = "SMALL_GUN_02"
-		template = "invisible_small_turret"
-		locatorname = "part1"
-	}
-
-	component_slot = {
-		name = "SMALL_GUN_03"
-		template = "invisible_small_turret"
-		locatorname = "part1"
-	}
-
+	prerequisites = { tech_cp26_orion_interceptor_unlock }
+	ai_weight = { modifier = { factor = 10.0 is_preferred_weapons = weapon_type_explosive } }
+	component_slot = { name = "SMALL_GUN_01" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_02" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_03" template = "invisible_small_turret" locatorname = "part1" }
 	small_utility_slots = 4
 	aux_utility_slots = 1
-	
-	resources = {
-		category = ship_sections
-		cost = {
-			alloys = 10
-		}
-	}
+	resources = { category = ship_sections cost = { alloys = 10 } }
 }
 
 ship_section_template = {
@@ -55,59 +20,38 @@ ship_section_template = {
 	ship_size = oriondestroyer
 	fits_on_slot = mid
 	should_draw_components = no
-	#entity = "avian_01_corvette_M1S1_entity"
-	entity = "orion_raider_entity"
+	entity = "orion_destroyer_bow_M1S2_entity"
 	icon = "GFX_ship_part_core_mid"
-	
-	prerequisites = { tech_big_bomb_1 }
-	
-	ai_weight = {
-		modifier = {
-			factor = 10.0
-			NOR = {
-				has_ai_personality = peaceful_traders
-				has_ai_personality = slaving_despots
-				has_ai_personality = migrating_flock
-				has_ai_personality = evangelising_zealots
-				has_ai_personality = hive_mind
-			}
-		}
-	}
-	
-	component_slot = {
-		name = "SMALL_GUN_01"
-		template = "invisible_small_turret"
-		locatorname = "part1"
-	}
-	
-	component_slot = {
-		name = "SMALL_GUN_02"
-		template = "invisible_small_turret"
-		locatorname = "part1"
-	}
-
-	component_slot = {
-		name = "MEDIUM_GUN_01"
-		template = "invisible_medium_turret"
-		locatorname = "part1"
-	}
-	
-	component_slot = {
-		name = "MEDIUM_GUN_02"
-		template = "invisible_medium_turret"
-		locatorname = "part1"
-	}
-	
+	prerequisites = { tech_cp26_orion_wanderer_unlock }
+	ai_weight = { modifier = { factor = 10.0 } }
+	component_slot = { name = "SMALL_GUN_01" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_02" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_01" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_02" template = "invisible_medium_turret" locatorname = "part1" }
 	small_utility_slots = 4
 	medium_utility_slots = 1
 	aux_utility_slots = 1
-	
-	resources = {
-		category = ship_sections
-		cost = {
-			alloys = 15
-		}
-	}
+	resources = { category = ship_sections cost = { alloys = 15 } }
+}
+
+ship_section_template = {
+	key = "ORIONCRUISER_MID"
+	ship_size = orioncruiser
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "orion_cruiser_bow_M2_entity"
+	icon = "GFX_ship_part_core_mid"
+	prerequisites = { tech_cp26_orion_corsair_unlock }
+	ai_weight = { modifier = { factor = 10.0 } }
+	component_slot = { name = "SMALL_GUN_01" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_02" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_01" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_02" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	large_utility_slots = 2
+	medium_utility_slots = 3
+	aux_utility_slots = 2
+	resources = { category = ship_sections cost = { alloys = 28 } }
 }
 
 ship_section_template = {
@@ -115,56 +59,72 @@ ship_section_template = {
 	ship_size = orionbattleship
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "avian_01_juggernaut_core_section_entity"
+	entity = "orion_battleship_bow_L2_entity"
 	icon = "GFX_ship_part_core_mid"
-	
-	prerequisites = { tech_big_bomb_1 }
-	
-	ai_weight = {
-		modifier = {
-			factor = 10.0
-			NOR = {
-				has_ai_personality = peaceful_traders
-				has_ai_personality = slaving_despots
-				has_ai_personality = migrating_flock
-				has_ai_personality = evangelising_zealots
-				has_ai_personality = hive_mind
-			}
-		}
-	}
-	
-	component_slot = {
-		name = "MEDIUM_GUN_01"
-		template = "invisible_medium_turret"
-		locatorname = "gun_1"
-	}
-	
-	component_slot = {
-		name = "MEDIUM_GUN_02"
-		template = "invisible_medium_turret"
-		locatorname = "gun_2"
-	}
-
-	component_slot = {
-		name = "LARGE_GUN_01"
-		template = "invisible_large_turret"
-		locatorname = "xl_gun_01"
-	}
-	
-	component_slot = {
-		name = "LARGE_GUN_02"
-		template = "invisible_large_turret"
-		locatorname = "xl_gun_02"
-	}
-	
+	prerequisites = { tech_cp26_orion_marauder_unlock }
+	ai_weight = { modifier = { factor = 10.0 } }
+	component_slot = { name = "MEDIUM_GUN_01" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_02" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
 	large_utility_slots = 3
 	medium_utility_slots = 3
 	aux_utility_slots = 1
-	
-	resources = {
-		category = ship_sections
-		cost = {
-			alloys = 40
-		}
-	}
+	resources = { category = ship_sections cost = { alloys = 40 } }
+}
+
+ship_section_template = {
+	key = "ORIONTITAN_MID"
+	ship_size = oriontitan
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "orion_titan_bow_entity"
+	icon = "GFX_ship_part_core_mid"
+	prerequisites = { tech_cp26_orion_dreadnought_unlock }
+	ai_weight = { modifier = { factor = 10.0 } }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_03" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_04" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	large_utility_slots = 5
+	aux_utility_slots = 2
+	resources = { category = ship_sections cost = { alloys = 80 } }
+}
+
+ship_section_template = {
+	key = "ORIONJUGGERNAUT_MID"
+	ship_size = orionjuggernaut
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "orion_juggernaut_core_section_entity"
+	icon = "GFX_ship_part_core_mid"
+	prerequisites = { tech_cp26_orion_emerald_citadel_unlock }
+	ai_weight = { modifier = { factor = 5.0 } }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_03" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	large_utility_slots = 6
+	aux_utility_slots = 3
+	resources = { category = ship_sections cost = { alloys = 120 } }
+}
+
+ship_section_template = {
+	key = "ORIONCOLOSSUS_MID"
+	ship_size = orioncolossus
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "orion_colossus_ship_entity"
+	icon = "GFX_ship_part_core_mid"
+	prerequisites = { tech_cp26_orion_black_ledger_unlock }
+	ai_weight = { modifier = { factor = 3.0 } }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	large_utility_slots = 7
+	aux_utility_slots = 3
+	resources = { category = ship_sections cost = { alloys = 150 } }
 }

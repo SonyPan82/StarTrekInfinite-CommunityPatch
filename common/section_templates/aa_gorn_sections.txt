@@ -3,50 +3,16 @@ ship_section_template = {
 	ship_size = gorncorvette
 	fits_on_slot = mid
 	should_draw_components = no
-	#entity = "corvette_S3_entity"
-	entity = "gorn_01_corvette_entity"
+	entity = "gorn_corvette_S3_entity"
 	icon = "GFX_ship_part_core_mid"
-	
-	prerequisites = { tech_big_bomb_1 }
-	
-	ai_weight = {
-		modifier = {
-			factor = 10.0
-			is_preferred_weapons = weapon_type_explosive
-		}
-		modifier = {
-			factor = 0.1
-			NOT = { is_preferred_weapons = weapon_type_explosive }
-		}		
-	}
-	
-	component_slot = {
-		name = "SMALL_GUN_01"
-		template = "invisible_small_turret"
-		locatorname = "small_gun_01"
-	}
-
-	component_slot = {
-		name = "SMALL_GUN_02"
-		template = "invisible_small_turret"
-		locatorname = "small_gun_02"
-	}
-
-	component_slot = {
-		name = "SMALL_GUN_03"
-		template = "invisible_small_turret"
-		locatorname = "small_gun_03"
-	}
-
+	prerequisites = { tech_cp26_gorn_makar_unlock }
+	ai_weight = { modifier = { factor = 10.0 is_preferred_weapons = weapon_type_explosive } }
+	component_slot = { name = "SMALL_GUN_01" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_02" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_03" template = "invisible_small_turret" locatorname = "part1" }
 	small_utility_slots = 4
 	aux_utility_slots = 1
-	
-	resources = {
-		category = ship_sections
-		cost = {
-			alloys = 10
-		}
-	}
+	resources = { category = ship_sections cost = { alloys = 10 } }
 }
 
 ship_section_template = {
@@ -54,64 +20,39 @@ ship_section_template = {
 	ship_size = gorndestroyer
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "gorn_01_destroyer_entity"
+	entity = "gorn_destroyer_bow_M1S2_entity"
 	icon = "GFX_ship_part_core_mid"
-	
-	prerequisites = { tech_big_bomb_1 }
-	
-	ai_weight = {
-		modifier = {
-			factor = 10.0
-			NOR = {
-				has_ai_personality = peaceful_traders
-				has_ai_personality = slaving_despots
-				has_ai_personality = migrating_flock
-				has_ai_personality = evangelising_zealots
-				has_ai_personality = hive_mind
-			}
-		}
-	}
-	
-	component_slot = {
-		name = "SMALL_GUN_01"
-		template = "invisible_small_turret"
-		locatorname = "small_gun_01"
-	}
-	
-	component_slot = {
-		name = "SMALL_GUN_02"
-		template = "invisible_small_turret"
-		locatorname = "small_gun_02"
-	}
-	
-	component_slot = {
-		name = "SMALL_GUN_03"
-		template = "invisible_small_turret"
-		locatorname = "small_gun_03"
-	}
-
-	component_slot = {
-		name = "MEDIUM_GUN_01"
-		template = "invisible_medium_turret"
-		locatorname = "medium_gun_01"
-	}
-	
-	component_slot = {
-		name = "MEDIUM_GUN_02"
-		template = "invisible_medium_turret"
-		locatorname = "medium_gun_02"
-	}
-	
+	prerequisites = { tech_cp26_gorn_ddraig_unlock }
+	ai_weight = { modifier = { factor = 10.0 } }
+	component_slot = { name = "SMALL_GUN_01" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_02" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_03" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_01" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_02" template = "invisible_medium_turret" locatorname = "part1" }
 	small_utility_slots = 4
 	medium_utility_slots = 1
 	aux_utility_slots = 1
-	
-	resources = {
-		category = ship_sections
-		cost = {
-			alloys = 15
-		}
-	}
+	resources = { category = ship_sections cost = { alloys = 15 } }
+}
+
+ship_section_template = {
+	key = "GORNCRUISER_MID"
+	ship_size = gorncruiser
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "gorn_cruiser_bow_M2_entity"
+	icon = "GFX_ship_part_core_mid"
+	prerequisites = { tech_cp26_gorn_sarath_unlock }
+	ai_weight = { modifier = { factor = 10.0 } }
+	component_slot = { name = "SMALL_GUN_01" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "SMALL_GUN_02" template = "invisible_small_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_01" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_02" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	large_utility_slots = 2
+	medium_utility_slots = 3
+	aux_utility_slots = 2
+	resources = { category = ship_sections cost = { alloys = 28 } }
 }
 
 ship_section_template = {
@@ -119,56 +60,72 @@ ship_section_template = {
 	ship_size = gornbattleship
 	fits_on_slot = mid
 	should_draw_components = no
-	entity = "gorn_01_battleship_entity"
+	entity = "gorn_battleship_bow_L2_entity"
 	icon = "GFX_ship_part_core_mid"
-	
-	prerequisites = { tech_big_bomb_1 }
-	
-	ai_weight = {
-		modifier = {
-			factor = 10.0
-			NOR = {
-				has_ai_personality = peaceful_traders
-				has_ai_personality = slaving_despots
-				has_ai_personality = migrating_flock
-				has_ai_personality = evangelising_zealots
-				has_ai_personality = hive_mind
-			}
-		}
-	}
-	
-	component_slot = {
-		name = "MEDIUM_GUN_01"
-		template = "invisible_medium_turret"
-		locatorname = "gun_1"
-	}
-	
-	component_slot = {
-		name = "MEDIUM_GUN_02"
-		template = "invisible_medium_turret"
-		locatorname = "gun_2"
-	}
-
-	component_slot = {
-		name = "LARGE_GUN_01"
-		template = "invisible_large_turret"
-		locatorname = "xl_gun_01"
-	}
-	
-	component_slot = {
-		name = "LARGE_GUN_02"
-		template = "invisible_large_turret"
-		locatorname = "xl_gun_02"
-	}
-	
+	prerequisites = { tech_cp26_gorn_balaur_unlock }
+	ai_weight = { modifier = { factor = 10.0 } }
+	component_slot = { name = "MEDIUM_GUN_01" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "MEDIUM_GUN_02" template = "invisible_medium_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
 	large_utility_slots = 3
 	medium_utility_slots = 3
 	aux_utility_slots = 1
-	
-	resources = {
-		category = ship_sections
-		cost = {
-			alloys = 40
-		}
-	}
+	resources = { category = ship_sections cost = { alloys = 40 } }
+}
+
+ship_section_template = {
+	key = "GORNTITAN_MID"
+	ship_size = gorntitan
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "gorn_titan_bow_entity"
+	icon = "GFX_ship_part_core_mid"
+	prerequisites = { tech_cp26_gorn_vazkoth_unlock }
+	ai_weight = { modifier = { factor = 10.0 } }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_03" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_04" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	large_utility_slots = 5
+	aux_utility_slots = 2
+	resources = { category = ship_sections cost = { alloys = 80 } }
+}
+
+ship_section_template = {
+	key = "GORNJUGGERNAUT_MID"
+	ship_size = gornjuggernaut
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "gorn_juggernaut_core_section_entity"
+	icon = "GFX_ship_part_core_mid"
+	prerequisites = { tech_cp26_gorn_hegemony_bulwark_unlock }
+	ai_weight = { modifier = { factor = 5.0 } }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_03" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	large_utility_slots = 6
+	aux_utility_slots = 3
+	resources = { category = ship_sections cost = { alloys = 120 } }
+}
+
+ship_section_template = {
+	key = "GORNCOLOSSUS_MID"
+	ship_size = gorncolossus
+	fits_on_slot = mid
+	should_draw_components = no
+	entity = "gorn_colossus_ship_entity"
+	icon = "GFX_ship_part_core_mid"
+	prerequisites = { tech_cp26_gorn_kethar_command_unlock }
+	ai_weight = { modifier = { factor = 3.0 } }
+	component_slot = { name = "LARGE_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "LARGE_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_01" template = "invisible_large_turret" locatorname = "part1" }
+	component_slot = { name = "XL_GUN_02" template = "invisible_large_turret" locatorname = "part1" }
+	large_utility_slots = 7
+	aux_utility_slots = 3
+	resources = { category = ship_sections cost = { alloys = 150 } }
 }

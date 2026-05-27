@@ -1,0 +1,15 @@
+part = {
+	location = 0
+	localization = "START_SCREEN_GORN"
+
+	trigger = {
+		has_country_flag = custom_start_screen
+		OR = {
+			has_country_flag = gorn
+			has_country_flag = gorn_empire
+			has_country_flag = gorn_hegemony
+			has_country_id = "gorn"
+			is_country_type = gorn_hegemony
+		}
+	}
+}

@@ -32,7 +32,7 @@ utility_component_template = {
 		
 	prerequisites = { "tech_engine_1" }
 	component_set = "thruster_components"
-	size_restriction = { gorncorvette gorndestroyer gornbattleship }
+	size_restriction = { gorncorvette gorndestroyer gorncruiser gornbattleship gorntitan gornjuggernaut gorncolossus }
 	upgrades_to = "DESTROYER_ADVANCED_IMPULSE_ENGINE_GORNCORVETTE"
 	
 	ai_weight = {
@@ -61,7 +61,7 @@ utility_component_template = {
 
 	prerequisites = { "tech_engine_2" }
 	component_set = "thruster_components"
-	size_restriction = { gorncorvette gorndestroyer gornbattleship }
+	size_restriction = { gorncorvette gorndestroyer gorncruiser gornbattleship gorntitan gornjuggernaut gorncolossus }
 	upgrades_to = "DESTROYER_HIGH_ENERGY_IMPULSE_ENGINE_GORNCORVETTE"
 	
 	ai_weight = {
@@ -90,7 +90,7 @@ utility_component_template = {
 
 	prerequisites = { "tech_engine_3" }
 	component_set = "thruster_components"
-	size_restriction = { gorncorvette gorndestroyer gornbattleship }
+	size_restriction = { gorncorvette gorndestroyer gorncruiser gornbattleship gorntitan gornjuggernaut gorncolossus }
 	upgrades_to = "DESTROYER_OMEGA_ENGINE_GORNCORVETTE"
 	
 	ai_weight = {
@@ -119,7 +119,7 @@ utility_component_template = {
 
 	prerequisites = { "tech_engine_4" }
 	component_set = "thruster_components"
-	size_restriction = { gorncorvette gorndestroyer gornbattleship }
+	size_restriction = { gorncorvette gorndestroyer gorncruiser gornbattleship gorntitan gornjuggernaut gorncolossus }
 	
 	ai_weight = {
 		weight = 4

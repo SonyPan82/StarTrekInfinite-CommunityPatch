@@ -1,0 +1,9 @@
+objectTypes = {
+	pdxmesh = {
+		name = "gorn_Destroyer_A_mesh"
+		file = "gfx/models/ships/gorn/Destroyer_Assets/MOOTR_Destroyer_A.mesh"
+		scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "Trilarian_Destroyer_A_D.dds" texture_normal = "Trilarian_Destroyer_A_N.dds" texture_specular = "Trilarian_Destroyer_A_S.dds" shader = "PdxMeshShip" }  
+	}
+}

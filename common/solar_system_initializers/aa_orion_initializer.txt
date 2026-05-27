@@ -76,7 +76,7 @@ orion_system_initializer = {
 				create_country = {
 					species = "Orion"
 					country_id = "orion"
-					type = contender
+					type = orion_syndicate
 					contact_rule = does_first_contact_sites
 				ship_prefix = "ORS"
 				name_list = "MAM1"
@@ -109,10 +109,11 @@ orion_system_initializer = {
 			}
 			last_created_country = {
 				set_name = "Orion Empire"
-				set_graphical_culture = orion_01
+				set_graphical_culture = orion
 				save_global_event_target_as = orion_country
 				set_country_flag = orion
 				set_country_flag = orion_empire
+				set_country_flag = orion_syndicate
 				set_custom_capital_location = prev
 
 				create_leader = {

@@ -1,0 +1,91 @@
+CP26 - Remplacement shipsets Gorn et Orion - 2026-05-27
+
+Objectif
+- Remplacer les anciens shipsets Gorn/Orion par les assets fournis dans:
+  /Users/yohanmbp/Desktop/dossier sans titre
+- Integrer les classes militaires manquantes en restant compatible avec les patterns Infinite/CP26.
+
+Assets integres
+- Gorn:
+  - TrilarianA
+  - TrilarianB
+- Orion:
+  - Tharrn
+
+Fichiers principaux modifies/ajoutes
+- gfx/models/ships/TrilarianA/
+- gfx/models/ships/TrilarianB/
+- gfx/models/ships/Tharrn/
+- common/graphical_culture/aa_gorn_culture.txt
+- common/graphical_culture/aa_orion_culture.txt
+- common/species_classes/aa_gorn_species.txt
+- common/species_classes/aa_orion_species.txt
+- common/solar_system_initializers/aa_gorn_initializer.txt
+- common/solar_system_initializers/aa_orion_initializer.txt
+- common/section_templates/aa_gorn_sections.txt
+- common/section_templates/aa_orion_sections.txt
+- common/global_ship_designs/aa_gorn_designs.txt
+- common/global_ship_designs/aa_orion_designs.txt
+- common/ship_sizes/cp26_gorn_orion_heavy_ship_sizes.txt
+- localisation/english/cp26_gorn_orion_shipsets_l_english.yml
+- localisation/french/cp26_gorn_orion_shipsets_l_french.yml
+
+Classes ajoutees
+- Gorn:
+  - gorncruiser
+  - gorntitan
+  - gornjuggernaut
+  - gorncolossus
+- Orion:
+  - orioncruiser
+  - oriontitan
+  - orionjuggernaut
+  - orioncolossus
+
+Classes existantes recablees
+- gorncorvette
+- gorndestroyer
+- gornbattleship
+- orioncorvette
+- oriondestroyer
+- orionbattleship
+
+Notes d'integration
+- Les anciennes references directes aux dossiers gfx/models/ships/gorn, gfx/models/ships/orion et gfx/models/ships/orion_01 ont ete retirees des couches Gorn/Orion recablees.
+- Les cultures graphiques gorn_01 et orion_01 restent presentes comme alias/fallback pour eviter de casser d'eventuelles references existantes, mais elles pointent maintenant vers les nouveaux shipsets.
+- Les composants reacteurs/moteurs/ordinateurs Gorn et Orion ont ete etendus aux nouvelles tailles.
+- Les designs globaux utilisent les composants CP26 specifiques Gorn/Orion afin que les nouvelles tailles puissent generer des designs valides.
+- Les fichiers de tourelles des assets source referencaient des meshes invisibles absents du pack. Ils ont ete recables vers les meshes mammalian_01 fournis par Infinite, qui existent dans le jeu de base.
+
+Validation effectuee
+- Equilibrage syntaxique des accolades sur les fichiers modifies.
+- Verification des entites referencees par les sections et tailles de vaisseaux.
+- Verification des composants CP26 specifiques utilises par les designs.
+- Verification des sections utilisees par les designs.
+- Verification des chemins de meshes contre le mod et le jeu de base.
+
+Complement Gorn majeur / visuels
+- Les titans Gorn TrilarianA/TrilarianB ont ete reduits visuellement pour mieux tenir leur place face aux gros hulls romuliens.
+- Les avant-postes Gorn TrilarianA/TrilarianB ont ete reduits uniquement sur les entites outpost/attach.
+- Des trails ont ete ajoutes aux entites militaires Gorn utilisees par les designs CP26:
+  - corvette
+  - destroyer
+  - cruiser
+  - battleship
+  - titan
+  - juggernaut
+  - colossus
+- Un country_type gorn_hegemony a ete ajoute sur le modele Ferengi:
+  - playable = yes
+  - counts_for_victory = yes
+  - modules majeurs actifs
+  - AI ship_data dedie aux tailles Gorn
+- Le create_country Gorn utilise maintenant gorn_hegemony au lieu de contender.
+- La flotte de depart Gorn est alignee sur le format Ferengi:
+  - 1 corvette
+  - 1 destroyer
+  - pas de battleship offert au depart
+- La technologie de depart Gorn est resserree:
+  - tech_destroyer_unlock offerte
+  - tech_cruiser_unlock n'est plus offerte gratuitement au spawn
+- La capital view Gorn est branchee sur les cultures graphiques TrilarianA et TrilarianB via aliases de sprites.

@@ -1,0 +1,11 @@
+objectTypes = {
+	pdxmesh = {
+		name = "orion_Cruiser_A_mesh"
+		file = "gfx/models/ships/orion/Cruiser_Assets/Tharrn_Cruiser_A.mesh"
+		scale = 1.0
+
+        meshsettings = { name = "mesh" texture_diffuse = "SS_Tharrn_Small_03_ID01_D.dds" texture_normal = "SS_Tharrn_Small_03_ID01_N.dds" texture_specular = "SS_Tharrn_Small_03_ID01_S.dds" shader = "PdxMeshShip" }  
+        meshsettings = { name = "mesh" texture_diffuse = "SS_Tharrn_Small_03_ID02_D.dds" texture_normal = "SS_Tharrn_Small_03_ID02_N.dds" texture_specular = "SS_Tharrn_Small_03_ID02_S.dds" shader = "PdxMeshShip" }  
+
+	}
+}

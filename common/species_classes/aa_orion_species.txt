@@ -9,7 +9,7 @@ AAORION = {
 		"orion"
     }
 	
-	graphical_culture = orion_01
+	graphical_culture = orion
 	move_pop_sound_effect = "reptilian_pops_move"
 
 	resources = {}

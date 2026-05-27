@@ -51,7 +51,10 @@ hegemonic_imperialists_gorn = {
 
 
 	allow = {
-		is_country_type = contender
+		OR = {
+			is_country_type = contender
+			is_country_type = gorn_hegemony
+		}
 		has_country_id = "gorn"
 	}
 

@@ -1,0 +1,90 @@
+###################################################################################
+
+
+@general_scale = 0.74
+@TrilarianA_destroyer_scale = 6
+
+entity = {
+	name = "gorn_destroyer_bow_L1_entity"
+	pdxmesh = "gorn_Destroyer_A_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "gorn_destroyer_bow_M1S2_entity"
+	pdxmesh = "gorn_Destroyer_A_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+	locator = { name = "engine_small_01" position = { 1.2 0 4 } }
+	locator = { name = "engine_small_02" position = { -1.2 0 4 } }
+    
+    # locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+    # locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+	game_data = {
+		trail_width = 0.75
+		trail_locators = {
+			"engine_small_01" = { width = 0.75 lenght = 10 height = 4 }
+			"engine_small_02" = { width = 0.75 lenght = 10 height = 4 }
+		}
+	}
+}
+entity = {
+	name = "gorn_destroyer_bow_S3_entity"
+	pdxmesh = "gorn_Destroyer_A_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    # locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+    # locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+    locator = { name = "small_gun_03" rotation = { 0 0 0 } }
+}
+
+entity = {
+	name = "gorn_destroyer_stern_S2_entity"
+	pdxmesh = "empty_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+    locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+}
+entity = {
+	name = "gorn_destroyer_stern_M1_entity"
+	pdxmesh = "empty_mesh"
+	scale = @general_scale
+    locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" rotation = { 0 0 0 } }
+    
+    locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+}
+
+
+
+
+entity = {
+	name = "gorn_destroyer_entity"	
+	pdxmesh = "molluscoid_01_corvette_frame_mesh"
+	default_state = "idle"
+	state = { name = "idle"	 animation = "idle" animation_blend_time = 4 }
+	state = { name = "moving"	animation = "idle" animation_blend_time = 2 }
+		state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no 
+			event = { time = 4.63 node = "ship_main" particle = "avian_01_large_ship_explosion_particle" }
+		}
+		scale = 1.0
+		locator = { name = "engine_small_01" position = { 1.2 0 4 } }
+		locator = { name = "engine_small_02" position = { -1.2 0 4 } }
+		game_data = {
+			size = @TrilarianA_destroyer_scale
+			trail_width = 0.75
+			trail_locators = {
+				"engine_small_01" = { width = 0.75 lenght = 10 height = 4 }
+				"engine_small_02" = { width = 0.75 lenght = 10 height = 4 }
+			}
+		}
+	}

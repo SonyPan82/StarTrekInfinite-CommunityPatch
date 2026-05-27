@@ -56,7 +56,7 @@ utility_component_template = {
 
 	#prerequisites = { "tech_reactor_1" }
 	component_set = "power_core"
-	size_restriction = { gornbattleship }
+	size_restriction = { gorncruiser gornbattleship gorntitan gornjuggernaut gorncolossus }
 
 	ai_weight = {
 		weight = 1
