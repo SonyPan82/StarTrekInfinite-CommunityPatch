@@ -1,25 +1,32 @@
-[h1]Community Patch 2026 - Version 1.7.3[/h1]
+[h1]Community Patch 2026 - Version 1.7.5[/h1]
 
-[h2]Technology and Ship Progression[/h2]
-
-[list]
-[*] Reworked the major faction technology flow into a more coherent, lore-friendly progression.
-[*] Federation, Klingon, Romulan, Cardassian, and Ferengi ship unlock paths now follow a clearer chronological order instead of random or immersion-breaking jumps.
-[*] Major factions now start with technologies that better match their 2346 situation, doctrine, and lore identity.
-[*] Several ship technologies were restructured into a more controlled progression, so earlier hulls unlock before later prestige classes.
-[*] Romulans and Klingons now follow a more lore-friendly cloaking progression, with both factions properly tied to cloaking technology and distinct military identity.
-[*] Ferengi progression has been expanded with new military ships: Nandi, Galin, and Ooron.
-[*] Klingons and Romulans received new late-game visible ship branches: Jach and Praetor.
-[*] The Romulan Scimitar has been integrated as a special late-game unlock tied to the mission tree and alloy investment.
-[*] Multiple unlock conditions, prerequisites, and ship-related technologies were updated to better fit faction flavor and era progression.
-[/list]
-
-[h2]General Fixes[/h2]
+[h2]Factions[/h2]
 
 [list]
-[*] Continued cleanup of mission tree presentation, branching, and localization.
+[*] Gorn and Orion are now treated as major factions, with their own starting technologies.
+[*] New shipsets for Gorn and Orion.
+[*] Federation and Ferengi opening progression received additional balance cleanup.
+[*] Large and late-game ship classes across multiple factions were rescaled and normalized for better visual consistency.
+[*] Ferengi now have a mission tree, currently still under construction and testing.
 [/list]
+
+[h2]Borg Crisis[/h2]
+
+[list]
+[*] The Janeway / Voyager path is now properly tracked in the situation log. You can follow the three-step Voyager gambit (Probe Defenses → Counteract Measures → Deliverance) with a visible progress counter.
+[*] The Freed — liberated drones who can become unexpected allies against the Collective — now have their own dedicated situation log chain, with proper title, description and progress tracking.
+[*] All Borg crisis chains (Janeway path, highways path, The Freed) now close cleanly on both victory and defeat — no more dangling entries in your situation log.
+[*] Added a safeguard to prevent the Janeway failure timer from firing multiple times in edge cases (e.g. death during a project). The 81-year delay before the final Borg assault is unchanged.
+[/list]
+
+[h2]Hero Ships[/h2]
+
+[list]
+[*] Voyager and the D'deridex Hero were practically unkillable — their hitpoints had been multiplied far beyond vanilla values. Both have been rebalanced to remain powerful flagship-class vessels without being invincible. Voyager goes from 7000 to 2500 HP, the D'deridex Hero from 10000 to 4500 HP.
+[*] Hero ships are still stronger and more durable than their standard counterparts — but a determined fleet can now threaten them if left unsupported.
+[/list]
+
 
 As always, your feedback is extremely valuable for improving the project.
 
-1.7.3
+1.7.5
