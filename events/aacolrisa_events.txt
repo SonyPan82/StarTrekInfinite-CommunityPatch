@@ -51,6 +51,15 @@ event = {
 				add_district_and_planet_size_if_needed_effect = {
 					district = district_farming
 				}
+				# CP26 - infrastructure de départ : mines + énergie
+				while = {
+					count = 2
+					add_district_and_planet_size_if_needed_effect = { district = district_mining }
+				}
+				while = {
+					count = 2
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+				}
 			}
 		}
 	}

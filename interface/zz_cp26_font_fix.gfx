@@ -1,0 +1,7 @@
+bitmapfonts = {
+	bitmapfont = {
+		name = "cg_16mbs"
+		path = "gfx/fonts/hoi_16mbs"
+		color = -1
+	}
+}
