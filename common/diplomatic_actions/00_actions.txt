@@ -51,12 +51,16 @@ action_improve_relation = {
 				is_country_type = default
 				is_country_type = contender
 				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
 			}
 			from = {
 				or = {
 					is_country_type = default
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 				not = { has_ethic = ethic_fanatic_xenophobe }
 			}
@@ -140,12 +144,16 @@ action_harm_relation = {
 				is_country_type = default
 				is_country_type = contender
 				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
 			}
 			from = {
 				or = {
 					is_country_type = default
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
@@ -155,6 +163,8 @@ action_harm_relation = {
 					is_major = yes
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
@@ -377,6 +387,8 @@ action_form_defensive_pact = {
 			or = {
 				is_country_type = contender
 				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
 				is_major = yes
 			}
 			from = {
@@ -384,6 +396,8 @@ action_form_defensive_pact = {
 					is_major = yes
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 				not = { has_ethic = ethic_fanatic_xenophobe }
 				not = { has_ethic = ethic_fanatic_militarist }
@@ -464,6 +478,8 @@ action_break_defensive_pact = {
 			or = {
 				is_country_type = contender
 				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
 				is_major = yes
 			}
 			from = {
@@ -471,6 +487,8 @@ action_break_defensive_pact = {
 					is_major = yes
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
@@ -513,6 +531,8 @@ action_form_non_aggression_pact = {
 					is_major = yes
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 				not = { has_ethic = ethic_fanatic_militarist }
 			}
@@ -568,6 +588,8 @@ action_break_non_aggression_pact = {
 					is_major = yes
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
@@ -1431,6 +1453,8 @@ action_embassy = {
 					is_major = yes
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
@@ -1467,6 +1491,8 @@ action_recall_embassy = {
 					is_major = yes
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}

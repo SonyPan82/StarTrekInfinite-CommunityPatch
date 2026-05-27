@@ -59,11 +59,15 @@ action_send_gift = {
 			OR = {
 				is_country_type = default
 				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
 			}
 			from = {
 				OR = {
 					is_country_type = default
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
@@ -111,11 +115,15 @@ action_request_mission = {
 			OR = {
 				is_country_type = default
 				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
 			}
 			from = {
 				OR = {
 					is_country_type = default
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
@@ -257,8 +265,12 @@ action_intervene_in_war = {
 		hidden_trigger = {
 			OR = {
 				from = {
-					is_country_type = contender
-					is_ferengi_empire = yes
+					OR = {
+						is_country_type = contender
+						is_ferengi_empire = yes
+						is_gorn_hegemony = yes
+						is_orion_syndicate = yes
+					}
 				}
 				is_major_minor_relation = yes
 				is_major_major_relation = yes
@@ -654,12 +666,16 @@ action_cp26_offer_war_goal_peace = {
 				is_country_type = default
 				is_country_type = contender
 				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
 			}
 			from = {
 				OR = {
 					is_country_type = default
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
@@ -957,12 +973,16 @@ action_start_puppet_state_process = {
 				is_country_type = default
 				is_country_type = contender
 				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
 			}
 			from = {
 				OR = {
 					is_country_type = default
 					is_country_type = contender
 					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
 				}
 			}
 		}
