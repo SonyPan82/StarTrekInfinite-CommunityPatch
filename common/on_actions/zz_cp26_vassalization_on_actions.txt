@@ -16,3 +16,16 @@ on_releasing_subject = {
 		cp26_vassalization.22
 	}
 }
+
+on_subject_integrated = {
+	events = {
+		cp26_integration.1
+	}
+}
+
+on_assimilation_completed = {
+	events = {
+		cp26_integration.1
+	}
+}
+

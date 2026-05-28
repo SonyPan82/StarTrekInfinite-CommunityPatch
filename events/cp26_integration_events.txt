@@ -1,0 +1,27 @@
+namespace = cp26_integration
+
+# Fires on on_subject_integrated and on_assimilation_completed
+# THIS = overlord, FROM = integrated subject
+country_event = {
+	id = cp26_integration.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			save_global_event_target_as = cp26_integrated_country
+		}
+		# Delete fleets of the integrated country (before or after transfer)
+		event_target:cp26_integrated_country = {
+			every_owned_fleet = {
+				delete_fleet = this
+			}
+		}
+		# Also destroy any flagged fleets that transferred to overlord
+		every_owned_fleet = {
+			limit = { has_fleet_flag = cp26_integration_pending }
+			delete_fleet = this
+		}
+		clear_global_event_target = cp26_integrated_country
+	}
+}

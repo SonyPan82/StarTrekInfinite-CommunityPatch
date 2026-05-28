@@ -20,6 +20,11 @@ country_event = {
 			set_global_flag = cp26_bajor_arc_initialized
 			set_global_flag = cp26_block_bajor_arc
 		}
+		# Default: diplomatic occupied states disabled
+		if = {
+			limit = { NOT = { has_global_flag = cp26_diplomacy_options_set } }
+			set_global_flag = cp26_diplo_vassalization_disabled
+		}
 	}
 
 	option = {

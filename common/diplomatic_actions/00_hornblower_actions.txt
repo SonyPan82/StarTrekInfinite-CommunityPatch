@@ -521,6 +521,14 @@ action_ask_to_start_integration_process = {
 		}
 	}
 
+	on_accept = {
+		from = {
+			every_owned_fleet = {
+				set_fleet_flag = cp26_integration_pending
+			}
+		}
+	}
+
 	proposable = {
 		hidden_trigger = {
 			if = {
@@ -553,7 +561,7 @@ action_ask_to_start_integration_process = {
 				}
 			}
 			else_if = {
-				limit = { 
+				limit = {
 					is_ai = yes
 					years_passed >= 160
 				}
@@ -588,9 +596,17 @@ action_start_integration_process = {
 		custom_tooltip = {
 			fail_text = "NOT_A_POSSITIVE_RELATION"
 			opinion_level = { who = from level >= good }
-		}	
+		}
 		from = {
 			is_at_war = no
+		}
+	}
+
+	on_accept = {
+		from = {
+			every_owned_fleet = {
+				set_fleet_flag = cp26_integration_pending
+			}
 		}
 	}
 
@@ -619,6 +635,12 @@ action_request_integration_process = {
 			opinion_level = { who = from level = excellent }
 		}
 		is_at_war = no
+	}
+
+	on_accept = {
+		every_owned_fleet = {
+			set_fleet_flag = cp26_integration_pending
+		}
 	}
 }
 
