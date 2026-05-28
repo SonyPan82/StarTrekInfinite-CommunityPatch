@@ -91,6 +91,7 @@ country_event = {
 			#New MiPo Missions
 			1 = { modifier = { factor = 0 has_country_flag = shipping_it_not_triggered } country_event = { id = mission.200 } } # SHIPPING IT
 			1 = { modifier = { factor = 0 has_country_flag = demanding_dignatary_not_triggered } country_event = { id = mission.212 } } # DEMANDING DIGNITARY
+			1 = { modifier = { factor = 0 has_country_flag = cp26_colony_escort_not_triggered } country_event = { id = mission.2200 } } # CP26 DIPLOMATIC COLONY VISIT
 			1 = { country_event = { id = mission.192 } } # PHYSICS 101 /// NOTE: THIS ONE ALWAYS TRIGGERS
 		}
 	}
@@ -111,6 +112,7 @@ country_event = {
 			1 = { modifier = { factor = 0 has_country_flag = war_games_not_triggered } country_event = { id = mission.92 } } # WAR GAMES 
 			1 = { modifier = { factor = 0 has_country_flag = shipping_it_not_triggered } country_event = { id = mission.200 } } # SHIPPING IT
 			1 = { modifier = { factor = 0 has_country_flag = demanding_dignatary_not_triggered } country_event = { id = mission.212 } } # DEMANDING DIGNITARY
+			1 = { modifier = { factor = 0 has_country_flag = cp26_colony_escort_not_triggered } country_event = { id = mission.2200 } } # CP26 DIPLOMATIC COLONY VISIT
 		}
 	}
 }
@@ -8002,3 +8004,226 @@ country_event = {
 # 		}
 # 	}
 # }
+
+
+##########################
+# CP26 DIPLOMATIC COLONY VISIT
+##########################
+
+# Pick Colony for the Event
+country_event = {
+	id = mission.2200
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				is_colony = yes
+				owner = ROOT
+				solar_system = {
+					has_access_fleet = ROOT
+					has_access_fleet = event_target:minor_state_event_country
+					NOT = {
+						any_fleet_in_system = {
+							owner = {
+								is_hostile = ROOT
+								is_hostile = event_target:minor_state_event_country
+							}
+						}
+					}
+				}
+			}
+			save_event_target_as = minor_state_event_planet
+			solar_system = {
+				save_event_target_as = minor_state_event_system
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:minor_state_event_planet }
+			country_event = { id = mission.2201 }
+			remove_all_mipo_mission_flags = yes
+		}
+		else = {
+			country_event = { id = mission.02 days = 1 }
+			set_country_flag = cp26_colony_escort_not_triggered
+		}
+	}
+}
+
+# Diplomatic Colony Visit - Offer
+country_event = {
+	id = mission.2201
+	title = "mission.221.name"
+	desc = "mission.221.desc"
+	show_sound = event_positive_sound
+	location = event_target:minor_state_event_planet
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_star_chart_meeting_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_star_chart_meeting_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_star_chart_meeting_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_star_chart_meeting_cardassian
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_ambient_object = {
+			type = "mipo_diplomatic_vessel"
+			entity_offset_height = { min = 10 max = -10 }
+			location = event_target:minor_state_event_planet
+		}
+		last_created_ambient_object = {
+			save_event_target_as = minor_state_vessel
+		}
+	}
+
+	option = {
+		name = mission.221.a
+		custom_tooltip = mission.221.a.tt
+		enable_special_project = {
+			name = "DIPLOMATIC_COLONY_ESCORT"
+			location = event_target:minor_state_vessel
+			owner = ROOT
+		}
+	}
+
+	option = {
+		name = mission.221.b
+		custom_tooltip = mission.221.b.tt
+		hidden_effect = {
+			set_country_flag = cp26_colony_escort_declined
+			country_event = { id = mission.2203 days = 30 }
+		}
+	}
+}
+
+# Diplomatic Colony Visit - Success
+country_event = {
+	id = mission.2202
+	title = "mission.222.name"
+	desc = "mission.222.desc"
+	show_sound = event_galactic_peace_summit
+	location = event_target:minor_state_event_planet
+
+	picture = {
+		trigger = { is_ufop = yes }
+		picture = GFX_evt_black_hole_enterprise_ufop
+	}
+	picture = {
+		trigger = { is_klingon = yes }
+		picture = GFX_evt_black_hole_vorcha_klingon
+	}
+	picture = {
+		trigger = { is_romulan = yes }
+		picture = GFX_evt_black_hole_valdore_romulan
+	}
+	picture = {
+		trigger = { is_cardassian = yes }
+		picture = GFX_evt_black_hole_keldon_cardassian
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = yes
+			}
+			destroy_ambient_object = event_target:minor_state_vessel
+		}
+	}
+
+	option = {
+		trigger = { is_ufop = yes }
+		name = mission.222.a
+		custom_tooltip = mission.222.a.tt
+	}
+	option = {
+		trigger = { is_klingon = yes }
+		name = mission.222.b
+		custom_tooltip = mission.222.b.tt
+	}
+	option = {
+		trigger = { is_romulan = yes }
+		name = mission.222.c
+		custom_tooltip = mission.222.c.tt
+	}
+	option = {
+		trigger = { is_cardassian = yes }
+		name = mission.222.d
+		custom_tooltip = mission.222.d.tt
+	}
+
+	after = {
+		event_target:minor_state_event_country = {
+			add_opinion_modifier = {
+				who = event_target:major_state_country
+				modifier = opinion_mipo_mission_success
+			}
+		}
+		first_contact_mission_extra_rewards = yes
+		mission_successful_gt_decrease = yes
+	}
+}
+
+# Diplomatic Colony Visit - Failure / Declined
+country_event = {
+	id = mission.2203
+	title = "mission.223.name"
+	picture = GFX_evt_pc_black_hole_sky
+	show_sound = event_generic_popup
+	location = event_target:minor_state_event_planet
+
+	desc = {
+		trigger = { is_ufop = yes }
+		text = "mission.223.ufop.desc"
+	}
+	desc = {
+		trigger = { is_klingon = yes }
+		text = "mission.223.klingon.desc"
+	}
+	desc = {
+		trigger = { is_romulan = yes }
+		text = "mission.223.romulan.desc"
+	}
+	desc = {
+		trigger = { is_cardassian = yes }
+		text = "mission.223.cardassian.desc"
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { exists = event_target:minor_state_vessel }
+				destroy_ambient_object = event_target:minor_state_vessel
+			}
+			finished_major_minor_mission = {
+				minor_country = event_target:minor_state_event_country
+				finished_successfully = no
+			}
+		}
+	}
+
+	option = {
+		name = mission.223.a
+		hidden_effect = {
+			remove_country_flag = cp26_colony_escort_declined
+		}
+	}
+}

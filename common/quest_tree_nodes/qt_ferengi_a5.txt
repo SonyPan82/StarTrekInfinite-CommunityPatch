@@ -16,8 +16,12 @@ qt_ferengi_a5 = {
 	}
 
 	possible = {
-		count_owned_planet = {
-			count >= 4
+		custom_tooltip = {
+			success_text = qt_ferengi_a5_colonies_tooltip_success
+			fail_text    = qt_ferengi_a5_colonies_tooltip_fail
+			count_owned_planet = {
+				count >= 4
+			}
 		}
 	}
 

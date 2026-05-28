@@ -14,8 +14,34 @@ qt_ufop_doctors_orders_27 = {
 
 	}
 
+	on_before_possible = {
+		set_variable = {
+			which = qt_ufop_b6_clinics
+			value = 0
+		}
+		every_owned_planet = {
+			limit = {
+				is_colony = yes
+				has_building = building_clinic
+			}
+			root = {
+				change_variable = {
+					which = qt_ufop_b6_clinics
+					value = 1
+				}
+			}
+		}
+	}
+
 	possible = {
-		systems_in_hazards_surveyed_count = { flag = enterprise value >= 3  }
+		custom_tooltip = {
+			success_text = qt_ufop_b6_clinics_tooltip_success
+			fail_text    = qt_ufop_b6_clinics_tooltip_fail
+			check_variable = {
+				which = qt_ufop_b6_clinics
+				value >= 12
+			}
+		}
 	}
 
 	on_started = {

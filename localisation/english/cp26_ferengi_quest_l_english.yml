@@ -51,3 +51,17 @@
  # A10 — Rule 10
  qt_ferengi_a10:0               "Rule 10"
  qt_ferengi_a10_desc:0          "\"Opportunity plus instinct equals profit.\"\n\nThe greatest fortunes are built not by luck, but by recognizing opportunity before anyone else does, and acting on it without hesitation. Construct five megastructures — monuments to Ferengi ambition carved into the fabric of the Galaxy."
+
+ # Condition tooltips
+ qt_ferengi_a1_pacts_tooltip_success:0  "Active commercial pacts: §Y[This.GetNumCommercialPacts]§!/§Y3§!"
+ qt_ferengi_a1_pacts_tooltip_fail:0     "Active commercial pacts: §Y[This.GetNumCommercialPacts]§!/§Y3§!"
+ qt_ferengi_a2_pacts_tooltip_success:0  "Active migration pacts: §Y[This.GetNumMigrationPacts]§!/§Y2§!"
+ qt_ferengi_a2_pacts_tooltip_fail:0     "Active migration pacts: §Y[This.GetNumMigrationPacts]§!/§Y2§!"
+ qt_ferengi_a5_colonies_tooltip_success:0 "Colonized planets: §Y[This.NumOwnedPlanets]§!/§Y4§!"
+ qt_ferengi_a5_colonies_tooltip_fail:0    "Colonized planets: §Y[This.NumOwnedPlanets]§!/§Y4§!"
+ qt_ferengi_a6_envoys_tooltip_success:0 "Recruited envoys: §Y[This.NumEnvoys]§!/§Y6§!"
+ qt_ferengi_a6_envoys_tooltip_fail:0    "Recruited envoys: §Y[This.NumEnvoys]§!/§Y6§!"
+ qt_ferengi_a9_spy_tooltip_success:0    "Successful spy missions: §Y[This.GetSuccessfulSpyMissionCount]§!/§Y3§!"
+ qt_ferengi_a9_spy_tooltip_fail:0       "Successful spy missions: §Y[This.GetSuccessfulSpyMissionCount]§!/§Y3§!"
+ qt_ferengi_a10_mega_tooltip_success:0  "Megastructures built: §Y[This.NumOwnedMegastructures]§!/§Y5§!"
+ qt_ferengi_a10_mega_tooltip_fail:0     "Megastructures built: §Y[This.NumOwnedMegastructures]§!/§Y5§!"

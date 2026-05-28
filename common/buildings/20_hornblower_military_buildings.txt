@@ -423,6 +423,14 @@ building_stronghold = {
 		}
 		unity = 2
 	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { used_command_capacity_percent > 0.6 }
+		}
+		officers = 2
+	}
 }
 
 
@@ -578,6 +586,14 @@ building_fortress = {
 			owner = { has_tradition = tr_defense_oath_citizenship }
 		}
 		unity = 2
+	}
+
+	ai_resource_production = {
+		trigger = {
+			exists = owner
+			owner = { used_command_capacity_percent > 0.6 }
+		}
+		officers = 2
 	}
 
 	show_tech_unlock_if = {

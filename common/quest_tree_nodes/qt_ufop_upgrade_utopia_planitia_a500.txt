@@ -34,7 +34,6 @@ qt_ufop_upgrade_utopia_planitia_a500 = {
 
 	possible = {
 		has_quest_tree_node = qt_ufop_upgrade_the_enterprise
-		has_country_flag = cp26_a500_utopia_modernization_unlocked
 
 		custom_tooltip = {
 			success_text = qt_ufop_upgrade_utopia_planitia_a500_colonies_success

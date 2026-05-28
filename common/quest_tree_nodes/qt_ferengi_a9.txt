@@ -16,7 +16,11 @@ qt_ferengi_a9 = {
 	}
 
 	possible = {
-		successful_spy_mission_count >= 3
+		custom_tooltip = {
+			success_text = qt_ferengi_a9_spy_tooltip_success
+			fail_text    = qt_ferengi_a9_spy_tooltip_fail
+			successful_spy_mission_count >= 3
+		}
 	}
 
 	on_started = {

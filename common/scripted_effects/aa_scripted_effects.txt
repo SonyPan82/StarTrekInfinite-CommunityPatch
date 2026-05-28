@@ -65,3 +65,22 @@ create_civilian_fleet = {
 	# Spy ships
 	create_spy_and_ship = yes
 }
+
+remove_all_mipo_mission_flags = {
+	remove_country_flag = vessel_adrift_not_triggered
+	remove_country_flag = disaster_relief_not_triggered
+	remove_country_flag = growth_spurt_not_triggered
+	remove_country_flag = unusual_gravity_not_triggered
+	remove_country_flag = particle_spill_not_triggered
+	remove_country_flag = rebellion_not_triggered
+	remove_country_flag = buildup_of_forces_not_triggered
+	remove_country_flag = war_games_not_triggered
+	remove_country_flag = not_secret_weapons_not_triggered
+	remove_country_flag = assassination_attempt_not_triggered
+	remove_country_flag = know_listening_not_triggered
+	remove_country_flag = perks_diplomacy_not_triggered
+	remove_country_flag = galactic_summit_not_triggered
+	remove_country_flag = calories_supply_not_triggered
+	remove_country_flag = demanding_dignatary_not_triggered
+	remove_country_flag = cp26_colony_escort_not_triggered
+}

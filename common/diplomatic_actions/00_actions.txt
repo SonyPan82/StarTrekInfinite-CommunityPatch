@@ -631,6 +631,19 @@ action_form_commercial_pact = {
 	AI_acceptance_base_value = -50
 	action_type = positive
 	auto_accepted = no
+
+	ai_acceptance = {
+		modifier = {
+			add = 60
+			opinion_level = { who = root level >= good }
+			desc = "OPINION_GOOD"
+		}
+		modifier = {
+			add = 40
+			opinion_level = { who = root level >= excellent }
+			desc = "OPINION_EXCELLENT"
+		}
+	}
 	#potential = {
 	#	hidden_trigger = {
 	#		is_major = yes
@@ -874,6 +887,19 @@ action_form_research_agreement = {
 	AI_acceptance_base_value = -50
 	action_type = positive
 	auto_accepted = no
+
+	ai_acceptance = {
+		modifier = {
+			add = 60
+			opinion_level = { who = root level >= good }
+			desc = "OPINION_GOOD"
+		}
+		modifier = {
+			add = 40
+			opinion_level = { who = root level >= excellent }
+			desc = "OPINION_EXCELLENT"
+		}
+	}
 	#potential = {
 	#	hidden_trigger = {
 	#		is_major = yes

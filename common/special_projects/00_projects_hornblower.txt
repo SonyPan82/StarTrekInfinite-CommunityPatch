@@ -2372,3 +2372,39 @@ special_project = {
 		owner = { country_event = { id = country.3140 days = 2 } }
 	}
 }
+
+# CP26 - Diplomatic Colony Visit
+special_project = {
+	key = "DIPLOMATIC_COLONY_ESCORT"
+	cost = 0
+	days_to_research = 30
+	timelimit = 720
+	tech_department = society_technology
+	picture = GFX_evt_star_chart_meeting_ufop
+
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		if = {
+			limit = { exists = OWNER }
+			enterprise_mipo_mission_completed_success_effect = yes
+			OWNER = { country_event = { id = mission.2202 } }
+		}
+	}
+
+	on_fail = {
+		if = {
+			limit = { exists = OWNER }
+			OWNER = {
+				set_country_flag = cp26_colony_escort_declined
+				country_event = { id = mission.2203 }
+			}
+		}
+	}
+}

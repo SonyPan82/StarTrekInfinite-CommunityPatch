@@ -21,16 +21,12 @@ militaires stagnerait à 45 — environ 11 croiseurs maximum. Les grandes factio
 avec 15-25 colonies atteignent 100-145 points (techs + bâtiments), ce qui est
 acceptable. Les petits empires sont potentiellement sous-puissants.
 
-A TESTER EN JEU : regarder la taille des flottes IA après 50-100 ans de partie.
-
-Si les flottes IA semblent trop petites, correctif à appliquer sur
-building_stronghold dans CP26/common/buildings/20_hornblower_military_buildings.txt :
+IMPLÉMENTÉ (2026-05-28) sur building_stronghold ET building_fortress dans
+CP26/common/buildings/20_hornblower_military_buildings.txt :
 
     ai_resource_production = {
         trigger = {
-            owner = {
-                used_command_capacity_percent > 0.6
-            }
+            owner = { used_command_capacity_percent > 0.6 }
         }
         officers = 2
     }

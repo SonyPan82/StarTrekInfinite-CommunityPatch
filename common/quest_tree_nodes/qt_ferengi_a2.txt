@@ -16,7 +16,11 @@ qt_ferengi_a2 = {
 	}
 
 	possible = {
-		num_migration_pacts >= 2
+		custom_tooltip = {
+			success_text = qt_ferengi_a2_pacts_tooltip_success
+			fail_text    = qt_ferengi_a2_pacts_tooltip_fail
+			num_migration_pacts >= 2
+		}
 	}
 
 	on_started = {
