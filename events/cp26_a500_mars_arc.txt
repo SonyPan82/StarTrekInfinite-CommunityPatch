@@ -133,14 +133,6 @@ country_event = {
 				name = "NAME_A500_Rebels"
 				type = global_event
 				auto_delete = yes
-
-				effect = {
-					set_faction_hostility = {
-						set_hostile = yes
-						set_neutral = no
-						set_friendly = no
-					}
-				}
 			}
 
 			last_created_country = {

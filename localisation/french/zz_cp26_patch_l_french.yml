@@ -971,9 +971,9 @@ cp26_synth_rom.27.a:0 "Sécuriser la planète et rétablir l'ordre."
 
  # Arc A500 - Journal de mission (chaîne d'événements)
  event_chain_cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
- event_chain_cp26_a500_rebellion_chain_desc:0 "Des anomalies graves touchent les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars, puis, si l'insurrection éclate, envoyez un transport de troupes pour reprendre le contrôle du chantier."
+ event_chain_cp26_a500_rebellion_chain_desc:0 "Des anomalies inhabituelles ont été signalées parmi les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars afin d'investiguer la situation et comprendre ce qui se passe."
  cp26_a500_rebellion_chain_title:0 "A500 - Utopia Planitia"
- cp26_a500_rebellion_chain_desc:0 "Des anomalies graves touchent les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars, puis, si l'insurrection éclate, envoyez un transport de troupes pour reprendre le contrôle du chantier."
+ cp26_a500_rebellion_chain_desc:0 "Des anomalies inhabituelles ont été signalées parmi les synthétiques A500 d'Utopia Planitia. Dépêchez le type de vaisseau demandé vers Mars afin d'investiguer la situation et comprendre ce qui se passe."
  qt_ufop_upgrade_utopia_planitia_a500:0 "Modernisation d'Utopia Planitia"
  qt_ufop_upgrade_utopia_planitia_a500_desc:0 "Starfleet doit standardiser l'intégration des unités A500 dans ses chantiers fédéraux. Établissez une présence A500 durable sur trois colonies pour faire d'Utopia Planitia le nouveau centre de modernisation de la flotte."
  qt_ufop_upgrade_utopia_planitia_a500_colonies_success:0 "£trigger_yes£ Colonies A500 : §Y[This.qt_ufop_upgrade_utopia_planitia_a500_colonies]§!/§Y3§!"
