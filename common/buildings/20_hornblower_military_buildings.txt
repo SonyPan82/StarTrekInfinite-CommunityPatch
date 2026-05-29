@@ -427,7 +427,6 @@ building_stronghold = {
 	ai_resource_production = {
 		trigger = {
 			exists = owner
-			owner = { used_command_capacity_percent > 0.6 }
 		}
 		officers = 2
 	}
@@ -591,7 +590,6 @@ building_fortress = {
 	ai_resource_production = {
 		trigger = {
 			exists = owner
-			owner = { used_command_capacity_percent > 0.6 }
 		}
 		officers = 2
 	}

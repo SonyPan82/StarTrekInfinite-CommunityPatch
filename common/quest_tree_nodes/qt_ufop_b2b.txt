@@ -1,0 +1,93 @@
+# B2b — Cerritos (sous Troi)
+qt_ufop_cerritos_lower_decks = {
+	position = { x = 6 y = 3 }
+
+	potential = {
+		has_country_id = ufop
+	}
+
+	parents = {
+		qt_ufop_empathic_diplomacy_26
+	}
+
+	blocked_by = {
+	}
+
+	on_before_possible = {
+		set_variable = {
+			which = qt_ufop_cerritos_surveyed
+			value = 0
+		}
+		if = {
+			limit = {
+				exists = event_target:enterprise_ship
+			}
+			event_target:enterprise_ship = {
+				set_variable = {
+					which = qt_ufop_cerritos_surveyed
+					value = surveyed_systems_count
+				}
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			success_text = qt_ufop_cerritos_survey_tooltip_success
+			fail_text    = qt_ufop_cerritos_survey_tooltip_fail
+			check_variable = {
+				which = qt_ufop_cerritos_surveyed
+				value >= 10
+			}
+		}
+		custom_tooltip = {
+			success_text = qt_ufop_cerritos_observation_tooltip_success
+			fail_text    = qt_ufop_cerritos_observation_tooltip_fail
+			any_galaxy_planet = {
+				has_observation_outpost = yes
+				observation_outpost_owner = { is_same_value = ROOT }
+			}
+		}
+	}
+
+	on_started = {
+	}
+
+	on_blocked = {
+	}
+
+	on_finished = {
+		set_country_flag = cp26_cerritos_quest_unlocked
+		give_technology = { tech = tech_cp26_california_unlock message = no }
+
+		create_fleet = {
+			name = "NAME_uss_cerritos_fleet"
+			effect = {
+				set_owner = ROOT
+				create_ship = {
+					name = "NAME_uss_cerritos"
+					random_existing_design = california_hero
+					initial_officers_perc = 1
+				}
+				set_location = {
+					target = event_target:ufop_homeworld
+					distance = 10
+					angle = random
+				}
+			}
+			settings = {
+				can_change_composition = no
+				can_upgrade = yes
+				can_change_leader = yes
+				can_disband = no
+			}
+		}
+	}
+
+	modifier = {
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

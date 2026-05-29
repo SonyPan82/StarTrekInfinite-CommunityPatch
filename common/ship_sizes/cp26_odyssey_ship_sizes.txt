@@ -110,3 +110,86 @@ odyssey = {
 		alloys = 1
 	}
 }
+
+enterprise_odyssey = {
+	formation_priority = @odyssey_formation_priority
+	entity = odyssey_entity
+	max_speed = @odyssey_speed
+	acceleration = 0.20
+	rotation_speed = 0.15
+	collision_radius = @odyssey_collision_radius
+	max_hitpoints = @odyssey_hp
+	operative_officers = 45
+	officers_escape_perc = 12
+	fleet_view_background = "military_large"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @odyssey_no_admiral_fire_rate_mult
+		ship_shield_mult = @odyssey_no_admiral_shield_mult
+		ship_tracking_mult = @odyssey_no_admiral_tracking_mult
+		ship_evasion_add = @odyssey_evasion
+	}
+
+	size_multiplier = 14
+	fleet_slot_size = 8
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 4
+	is_space_station = no
+	icon_frame = 6
+	base_buildtime = @odyssey_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	can_also_survey = yes
+	is_destroyable = no
+
+	default_behavior = "hrb_artillery"
+
+	prerequisites = { "tech_odyssey_unlock" }
+
+	potential_country = {
+		has_country_id = ufop
+		has_quest_tree_node = qt_ufop_upgrade_enterprise_odyssey
+	}
+
+	combat_disengage_chance = 1.20
+
+	class = shipclass_military
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @odyssey_upkeep_deuterium
+		}
+
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+
+		upkeep = {
+			alloys = @odyssey_upkeep_alloys
+		}
+	}
+}

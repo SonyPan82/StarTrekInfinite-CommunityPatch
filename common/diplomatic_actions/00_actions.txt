@@ -628,22 +628,9 @@ action_form_commercial_pact = {
 	diplo_view_acceptance_icon = yes
 	should_notify_all_communications = yes
 	requires_actor_independence = no
-	AI_acceptance_base_value = -50
+	AI_acceptance_base_value = 20
 	action_type = positive
 	auto_accepted = no
-
-	ai_acceptance = {
-		modifier = {
-			add = 60
-			opinion_level = { who = root level >= good }
-			desc = "OPINION_GOOD"
-		}
-		modifier = {
-			add = 40
-			opinion_level = { who = root level >= excellent }
-			desc = "OPINION_EXCELLENT"
-		}
-	}
 	#potential = {
 	#	hidden_trigger = {
 	#		is_major = yes
@@ -660,6 +647,19 @@ action_form_commercial_pact = {
 			FROM = {
 				is_subject = no
 				not = { has_ethic = ethic_fanatic_xenophobe }
+			}
+		}
+		OR = {
+			is_ai = no
+			AND = {
+				is_ai = yes
+				OR = {
+					opinion_level = { who = from level >= good }
+					AND = {
+						opinion_level = { who = from level >= neutral }
+						is_improving_relations_with = from
+					}
+				}
 			}
 		}
 		# custom_tooltip = {
@@ -884,22 +884,9 @@ action_form_research_agreement = {
 	diplo_view_acceptance_icon = yes
 	should_notify_all_communications = yes
 	requires_actor_independence = no
-	AI_acceptance_base_value = -50
+	AI_acceptance_base_value = 20
 	action_type = positive
 	auto_accepted = no
-
-	ai_acceptance = {
-		modifier = {
-			add = 60
-			opinion_level = { who = root level >= good }
-			desc = "OPINION_GOOD"
-		}
-		modifier = {
-			add = 40
-			opinion_level = { who = root level >= excellent }
-			desc = "OPINION_EXCELLENT"
-		}
-	}
 	#potential = {
 	#	hidden_trigger = {
 	#		is_major = yes
@@ -910,6 +897,19 @@ action_form_research_agreement = {
 		custom_tooltip = {
 			fail_text = "ACTION_ACTOR_MUST_BE_INDEPENDENT"
 			is_subject = no
+		}
+		OR = {
+			is_ai = no
+			AND = {
+				is_ai = yes
+				OR = {
+					opinion_level = { who = from level >= good }
+					AND = {
+						opinion_level = { who = from level >= neutral }
+						is_improving_relations_with = from
+					}
+				}
+			}
 		}
 		# custom_tooltip = {
 		# 	fail_text = "requires_actor_not_fanatic_purifiers"

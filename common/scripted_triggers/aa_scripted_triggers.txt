@@ -53,8 +53,20 @@ cp26_is_non_hero_military_ship = {
 # plus de 3 flottes si les coques sont plus petites. possible_construction +
 # cp26_military_fleet_cap_fail (localisation). Civils : empire_limit → SHIP_SIZE_LIMIT.
 cp26_under_reduced_fleet_military_cap = {
-	count_owned_ship = {
-		count < 37
-		limit = { cp26_is_non_hero_military_ship = yes }
+	OR = {
+		AND = {
+			has_global_flag = cp26_naval_cap_100
+			count_owned_ship = {
+				count < 101
+				limit = { cp26_is_non_hero_military_ship = yes }
+			}
+		}
+		AND = {
+			NOT = { has_global_flag = cp26_naval_cap_100 }
+			count_owned_ship = {
+				count < 49
+				limit = { cp26_is_non_hero_military_ship = yes }
+			}
+		}
 	}
 }

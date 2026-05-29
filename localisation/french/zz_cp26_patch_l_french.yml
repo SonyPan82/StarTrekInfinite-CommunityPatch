@@ -458,7 +458,7 @@
  col_pleasure_desc:0 "La quasi-totalité de la colonie est une destination de vacances consacrée au plaisir des touristes."
  constellation:0 "Constellation"
  constellation_plural:0 "Constellation"
- cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : la libération de Bajor est scriptée et demande certains choix.\n§HProjet Synth§! : offre du gameplay à la Fédération et aux Romuliens, inspiré de Star Trek : Picard."
+ cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HFleet Cap§! : nombre maximum de vaisseaux militaires constructibles par empire. §Y48§! est recommandé pour l’équilibre et les performances ; §Y100§! se rapproche du comportement vanilla.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : la libération de Bajor est scriptée et demande certains choix.\n§HProjet Synth§! : offre du gameplay à la Fédération et aux Romuliens, inspiré de Star Trek : Picard."
  cp26_options.1.pirates_on:0 "Pirates : §Gactivés§!"
  cp26_options.1.pirates_on.tt:0 "Cliquez pour désactiver les pirates pour cette campagne."
  cp26_options.1.pirates_off:0 "Pirates : §Rdésactivés§!"
@@ -475,6 +475,11 @@ cp26_options.1.vassalization_off.tt:0 "Cliquez pour réactiver les propositions 
  cp26_options.1.supernova_quest_on.tt:0 "Cliquez pour désactiver la quête Supernova pour cette campagne."
  cp26_options.1.supernova_quest_off:0 "Quête Supernova : §Rdésactivée§!"
  cp26_options.1.supernova_quest_off.tt:0 "Cliquez pour activer la quête Supernova pour cette campagne."
+
+ cp26_options.1.naval_cap_48:0 "Flotte : §Gcap 48§! vaisseaux"
+ cp26_options.1.naval_cap_48.tt:0 "Cliquez pour passer au cap §Y100§! vaisseaux (style vanilla, flottes massives)."
+ cp26_options.1.naval_cap_100:0 "Flotte : §Rcap 100§! vaisseaux"
+ cp26_options.1.naval_cap_100.tt:0 "Cliquez pour revenir au cap §Y48§! vaisseaux (recommandé — équilibre et performance)."
 
  cp26_options.1.confirm:0 "OK - commencer la campagne"
  cp26_options.1.confirm.tt:0 "Valide ces paramètres pour toute la partie."
@@ -1273,3 +1278,19 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
  # Quest tree Crusher B6 - condition cliniques
  qt_ufop_b6_clinics_tooltip_success:0 "£trigger_yes£ Cliniques médicales : §Y[This.qt_ufop_b6_clinics]§!/§Y12§!"
  qt_ufop_b6_clinics_tooltip_fail:0    "£trigger_no£ Cliniques médicales : §Y[This.qt_ufop_b6_clinics]§!/§Y12§!"
+
+ # Quest tree — Cerritos (B2b) + Worf conditions
+ qt_ufop_cerritos_lower_decks:0      "Cerritos - Pont inférieur"
+ qt_ufop_cerritos_lower_decks_desc:0 "Le vaisseau de soutien U.S.S. Cerritos et ses équipages de \"Pont inférieur\" ont démontré leur valeur lors des missions de second contact. L'Enterprise leur ouvre la voie : 20 systèmes topographiés suffisent à justifier leur déploiement opérationnel."
+ qt_ufop_cerritos_survey_tooltip_success:0 "£trigger_yes£ Systèmes topographiés par l'Enterprise : §Y[This.qt_ufop_cerritos_surveyed]§!/§Y10§!"
+ qt_ufop_cerritos_survey_tooltip_fail:0    "£trigger_no£ Systèmes topographiés par l'Enterprise : §Y[This.qt_ufop_cerritos_surveyed]§!/§Y10§!"
+ qt_ufop_worf_battle_tooltip_success:0  "£trigger_yes£ Bataille remportée par l'Enterprise"
+ qt_ufop_worf_battle_tooltip_fail:0     "£trigger_no£ Aucune bataille remportée par l'Enterprise"
+ qt_ufop_worf_luna_tooltip_success:0    "£trigger_yes£ Vaisseaux classe Luna : §Y[This.qt_ufop_worf_luna_count]§!/§Y5§!"
+ qt_ufop_worf_luna_tooltip_fail:0       "£trigger_no£ Vaisseaux classe Luna : §Y[This.qt_ufop_worf_luna_count]§!/§Y5§!"
+ qt_ufop_cerritos_observation_tooltip_success:0 "£trigger_yes£ Poste d'observation sur une civilisation pré-FTL"
+ qt_ufop_cerritos_observation_tooltip_fail:0    "£trigger_no£ Aucun poste d'observation sur une civilisation pré-FTL"
+
+ # Localisation taille vaisseau — Enterprise Odyssey
+ enterprise_odyssey:0 "Odyssey"
+ enterprise_odyssey_plural:0 "Odysseys"

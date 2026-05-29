@@ -44,7 +44,7 @@ bajoran = {
 	planet_subclass = psc_class_m
 	initializer = "bajoran_bajor_initializer"
 
-	graphical_culture = "minor_01"
+	graphical_culture = "bajoran_01"
 	city_graphical_culture = "minor_01"
 
 	emblem_key = "flag_Bajoran_15"

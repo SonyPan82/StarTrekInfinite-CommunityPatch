@@ -54,8 +54,9 @@ entity = {
 
 entity = {
 	name = "sti_museum_enterprise_galaxy_raw_entity"
-	pdxmesh = "cp26_museum_galaxy_mesh"
-	scale = 0.50
+	pdxmesh = "ufop_01_enterprise_ship_mesh"
+	scale = 0.38
+
 	default_state = "idle"
 	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
 	state = { name = "death" state_time = 2 looping = no
@@ -67,7 +68,7 @@ entity = {
 	name = "sti_museum_enterprise_galaxy_entity"
 	locator = {
 		name = "root"
-		position = { -2 0 0 }
+		position = { -2 1.5 0 }
 		rotation = { 0 0 0 }
 	}
 	attach = { "root" = "sti_museum_enterprise_galaxy_raw_entity" }
@@ -79,8 +80,8 @@ entity = {
 
 entity = {
 	name = "sti_museum_enterprise_sovereign_raw_entity"
-	pdxmesh = "cp26_museum_sovereign_mesh"
-	scale = 0.85
+	pdxmesh = "ufop_01_enterprise_sovereign_ship_mesh"
+	scale = 0.48
 	default_state = "idle"
 	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
 	state = { name = "death" state_time = 2 looping = no
@@ -92,7 +93,7 @@ entity = {
 	name = "sti_museum_enterprise_sovereign_entity"
 	locator = {
 		name = "root"
-		position = { 0 2 0 }
+		position = { 0 1.5 0 }
 		rotation = { 0 0 0 }
 	}
 	attach = { "root" = "sti_museum_enterprise_sovereign_raw_entity" }

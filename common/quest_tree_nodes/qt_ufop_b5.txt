@@ -14,8 +14,36 @@ qt_ufop_worf_klingon_might_28 = {
 
 	}
 
+	on_before_possible = {
+		set_variable = {
+			which = qt_ufop_worf_luna_count
+			value = 0
+		}
+		every_owned_ship = {
+			limit = { is_ship_size = luna }
+			root = {
+				change_variable = {
+					which = qt_ufop_worf_luna_count
+					value = 1
+				}
+			}
+		}
+	}
+
 	possible = {
-		victorious_space_battles_count = { flag = enterprise value >= 3 }
+		custom_tooltip = {
+			success_text = qt_ufop_worf_battle_tooltip_success
+			fail_text    = qt_ufop_worf_battle_tooltip_fail
+			victorious_space_battles_count = { flag = enterprise value >= 1 }
+		}
+		custom_tooltip = {
+			success_text = qt_ufop_worf_luna_tooltip_success
+			fail_text    = qt_ufop_worf_luna_tooltip_fail
+			check_variable = {
+				which = qt_ufop_worf_luna_count
+				value >= 5
+			}
+		}
 	}
 
 	on_started = {

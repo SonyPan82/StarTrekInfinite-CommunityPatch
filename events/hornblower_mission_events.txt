@@ -8020,7 +8020,6 @@ country_event = {
 		random_planet_within_border = {
 			limit = {
 				is_colony = yes
-				owner = ROOT
 				solar_system = {
 					has_access_fleet = ROOT
 					has_access_fleet = event_target:minor_state_event_country

@@ -17,11 +17,11 @@ country_event = {
 		ai_chance = {
 			factor = 10
 			modifier = {
-				# Superior power + good opinion: very likely to submit
-				factor = 4
+				# Superior power + excellent opinion: likely to submit
+				factor = 2
 				AND = {
 					relative_power = { who = event_target:cp26_vassalization_actor value >= superior }
-					opinion_level = { who = event_target:cp26_vassalization_actor level >= good }
+					opinion_level = { who = event_target:cp26_vassalization_actor level >= excellent }
 				}
 			}
 			modifier = {

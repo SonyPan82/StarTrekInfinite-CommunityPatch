@@ -122,7 +122,7 @@ action.13.a.ferengi:0 "Open negotiations."
  cp26_ufop_federal_energy_grid_desc:0 "The founding worlds temporarily pool distribution networks, antimatter reserves, and industrial contracts to stabilize the Federation energy economy during the starting transition."
 
  cp26_options.1.name:0 "Community Patch 2026 - campaign setup"
- cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HSupernova§!: option to disable the Supernova quest.\n§HBajor Liberation§!: the liberation of Bajor is scripted and requires specific choices.\n§HSynth Project§!: offers gameplay for the Federation and Romulans, inspired by Star Trek: Picard."
+ cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HFleet Cap§!: maximum number of military ships that can be constructed per empire. §Y48§! is recommended for balance and performance; §Y100§! is closer to vanilla behaviour.\n\n§HSupernova§!: option to disable the Supernova quest.\n§HBajor Liberation§!: the liberation of Bajor is scripted and requires specific choices.\n§HSynth Project§!: offers gameplay for the Federation and Romulans, inspired by Star Trek: Picard."
  cp26_options.1.pirates_on:0 "Pirates: §Genabled§!"
  cp26_options.1.pirates_on.tt:0 "Click to disable the Nausicaan pirate crisis for this campaign."
  cp26_options.1.pirates_off:0 "Pirates: §Rdisabled§!"
@@ -139,6 +139,11 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_options.1.supernova_quest_on.tt:0 "Click to disable the Supernova quest for this campaign."
  cp26_options.1.supernova_quest_off:0 "Supernova quest: §RDisabled§!"
  cp26_options.1.supernova_quest_off.tt:0 "Click to enable the Supernova quest for this campaign."
+ cp26_options.1.naval_cap_48:0 "Fleet: §Gcap 48§! ships"
+ cp26_options.1.naval_cap_48.tt:0 "Click to switch to §Y100§! ship cap (vanilla-style, large fleets)."
+ cp26_options.1.naval_cap_100:0 "Fleet: §Rcap 100§! ships"
+ cp26_options.1.naval_cap_100.tt:0 "Click to return to §Y48§! ship cap (recommended — balance and performance)."
+
  cp26_options.1.confirm:0 "OK - start campaign"
  cp26_options.1.confirm.tt:0 "Confirms these settings for the whole campaign."
  casus_belli_cb_liberation_war:0 "Independence"
@@ -736,3 +741,19 @@ CP26_SYNTH_GROUND_ASSAULT_DESC:0 "An A500 rebellion is underway on this planet. 
  # Quest tree Crusher B6 - clinic condition
  qt_ufop_b6_clinics_tooltip_success:0 "£trigger_yes£ Medical clinics: §Y[This.qt_ufop_b6_clinics]§!/§Y12§!"
  qt_ufop_b6_clinics_tooltip_fail:0    "£trigger_no£ Medical clinics: §Y[This.qt_ufop_b6_clinics]§!/§Y12§!"
+
+ # Quest tree — Cerritos (B2b) + Worf conditions
+ qt_ufop_cerritos_lower_decks:0      "Cerritos - Lower Decks"
+ qt_ufop_cerritos_lower_decks_desc:0 "The support vessel U.S.S. Cerritos and her \"Lower Decks\" crews have proven their worth in second contact missions. The Enterprise paves the way: 20 surveyed systems are enough to justify their operational deployment."
+ qt_ufop_cerritos_survey_tooltip_success:0 "£trigger_yes£ Systems surveyed by the Enterprise: §Y[This.qt_ufop_cerritos_surveyed]§!/§Y10§!"
+ qt_ufop_cerritos_survey_tooltip_fail:0    "£trigger_no£ Systems surveyed by the Enterprise: §Y[This.qt_ufop_cerritos_surveyed]§!/§Y10§!"
+ qt_ufop_worf_battle_tooltip_success:0  "£trigger_yes£ Battle won by the Enterprise"
+ qt_ufop_worf_battle_tooltip_fail:0     "£trigger_no£ No battle won by the Enterprise yet"
+ qt_ufop_worf_luna_tooltip_success:0    "£trigger_yes£ Luna-class ships: §Y[This.qt_ufop_worf_luna_count]§!/§Y5§!"
+ qt_ufop_worf_luna_tooltip_fail:0       "£trigger_no£ Luna-class ships: §Y[This.qt_ufop_worf_luna_count]§!/§Y5§!"
+ qt_ufop_cerritos_observation_tooltip_success:0 "£trigger_yes£ Observation post on a pre-FTL civilisation"
+ qt_ufop_cerritos_observation_tooltip_fail:0    "£trigger_no£ No observation post on a pre-FTL civilisation"
+
+ # Ship size localisation — Enterprise Odyssey
+ enterprise_odyssey:0 "Odyssey"
+ enterprise_odyssey_plural:0 "Odysseys"

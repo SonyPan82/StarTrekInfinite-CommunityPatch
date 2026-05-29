@@ -47,8 +47,19 @@ Model and special thanks found in Workshop descriptions
 - The Gorn Hegemony: AlphaAsh credits Tiphias for the Ddraig model.
 - Canonized Map and Events: JeBuSBrian and JelleFly credit AlphaAsh for reuse/integration of Romulus & Remus content.
 
+Stellaris Shipset Integrations
+The following shipsets have been adapted and integrated into the mod:
+
+- Gorn : Master of Orion: Trilarian Shipset
+https://steamcommunity.com/sharedfiles/filedetails/?id=2871658763
+
+- Orion : Lord of Rigel: Tharrn Shipset
+https://steamcommunity.com/sharedfiles/filedetails/?id=2996779545
+
+- Federation : Star Trek: New Horizons
+https://steamcommunity.com/sharedfiles/filedetails/?id=688086068
+
+Special thanks to the original authors for their outstanding work and inspiration.
+
 CP26 original integration work
 - Compatibility merge, startup error fixes, French localisation cleanup, optional pirate start option, galaxy-size adjustments, California Class restoration, Luna Class integration, and CP26-specific fixes by yobsvhs the Community Patch 2026 project.
-
-Notes to maintainers
-- Some Workshop items have been removed or hidden by Steam, so older entries may need periodic re-checking.

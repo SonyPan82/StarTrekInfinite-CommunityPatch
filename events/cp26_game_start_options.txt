@@ -132,6 +132,26 @@ country_event = {
 	}
 
 	option = {
+		name = cp26_options.1.naval_cap_48
+		trigger = { has_global_flag = cp26_naval_cap_100 }
+		custom_tooltip = cp26_options.1.naval_cap_48.tt
+		remove_global_flag = cp26_naval_cap_100
+		hidden_effect = {
+			country_event = { id = cp26_options.1 }
+		}
+	}
+
+	option = {
+		name = cp26_options.1.naval_cap_100
+		trigger = { NOT = { has_global_flag = cp26_naval_cap_100 } }
+		custom_tooltip = cp26_options.1.naval_cap_100.tt
+		set_global_flag = cp26_naval_cap_100
+		hidden_effect = {
+			country_event = { id = cp26_options.1 }
+		}
+	}
+
+	option = {
 		name = cp26_options.1.confirm
 		custom_tooltip = cp26_options.1.confirm.tt
 		set_global_flag = cp26_diplomacy_options_set

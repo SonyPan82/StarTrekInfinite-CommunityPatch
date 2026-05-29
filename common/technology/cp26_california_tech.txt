@@ -9,6 +9,7 @@ tech_cp26_california_unlock = {
 
 	potential = {
 		is_ufop = yes
+		has_country_flag = cp26_cerritos_quest_unlocked
 	}
 
 	triggered_config = {
