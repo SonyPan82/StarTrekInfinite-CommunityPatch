@@ -544,6 +544,12 @@ country_event = {
 
 		set_global_flag = cp26_bajor_liberated
 
+		if = {
+			limit = { NOT = { has_country_flag = cp26_bajoran_wormhole_queued } }
+			set_country_flag = cp26_bajoran_wormhole_queued
+			country_event = { id = cp26_bajoran_wormhole.0 days = 365 }
+		}
+
 		# Tuer tous les pops cardassiens sur Bajor
 		every_owned_pop = {
 			limit = { planet = { is_same_value = event_target:bajoran_planet } }
@@ -583,6 +589,11 @@ country_event = {
 				exists = event_target:bajoran_country
 			}
 			set_global_flag = cp26_bajor_liberated
+			if = {
+				limit = { NOT = { has_country_flag = cp26_bajoran_wormhole_queued } }
+				set_country_flag = cp26_bajoran_wormhole_queued
+				country_event = { id = cp26_bajoran_wormhole.0 days = 365 }
+			}
 			remove_global_flag = cp26_bajor_rebellion_active
 			if = {
 				limit = { exists = event_target:bajoran_planet }
@@ -833,6 +844,13 @@ country_event = {
 
 	option = {
 		name = "cp26_bajor.33.a"
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = cp26_bajoran_wormhole_queued } }
+				set_country_flag = cp26_bajoran_wormhole_queued
+				country_event = { id = cp26_bajoran_wormhole.0 days = 365 }
+			}
+		}
 	}
 }
 
@@ -847,5 +865,12 @@ country_event = {
 
 	option = {
 		name = "cp26_bajor.34.a"
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = cp26_bajoran_wormhole_queued } }
+				set_country_flag = cp26_bajoran_wormhole_queued
+				country_event = { id = cp26_bajoran_wormhole.0 days = 365 }
+			}
+		}
 	}
 }

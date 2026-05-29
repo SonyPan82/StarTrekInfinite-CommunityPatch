@@ -24,3 +24,12 @@ cp26_synth_rebellion_chain = {
 	icon = "gfx/interface/icons/situation_log/situation_log_alert.dds"
 	picture = GFX_evt_civil_unrest_ufop
 }
+
+##########################################################################
+# Arc Wormhole Bajoran
+##########################################################################
+
+cp26_bajoran_wormhole_chain = {
+	icon = "gfx/interface/icons/situation_log/situation_log_radar.dds"
+	picture = GFX_evt_lab_research_ufop
+}

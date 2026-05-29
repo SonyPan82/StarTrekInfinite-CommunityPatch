@@ -476,10 +476,10 @@ cp26_options.1.vassalization_off.tt:0 "Cliquez pour réactiver les propositions 
  cp26_options.1.supernova_quest_off:0 "Quête Supernova : §Rdésactivée§!"
  cp26_options.1.supernova_quest_off.tt:0 "Cliquez pour activer la quête Supernova pour cette campagne."
 
- cp26_options.1.naval_cap_48:0 "Flotte : §Gcap 48§! vaisseaux"
- cp26_options.1.naval_cap_48.tt:0 "Cliquez pour passer au cap §Y100§! vaisseaux (style vanilla, flottes massives)."
- cp26_options.1.naval_cap_100:0 "Flotte : §Rcap 100§! vaisseaux"
- cp26_options.1.naval_cap_100.tt:0 "Cliquez pour revenir au cap §Y48§! vaisseaux (recommandé — équilibre et performance)."
+ cp26_options.1.naval_cap_48:0 "Flotte : §Gcap 56§! vaisseaux"
+ cp26_options.1.naval_cap_48.tt:0 "Cliquez pour passer au cap §Y130§! vaisseaux (style vanilla, flottes massives)."
+ cp26_options.1.naval_cap_100:0 "Flotte : §Rcap 130§! vaisseaux"
+ cp26_options.1.naval_cap_100.tt:0 "Cliquez pour revenir au cap §Y56§! vaisseaux (recommandé - équilibre et performance)."
 
  cp26_options.1.confirm:0 "OK - commencer la campagne"
  cp26_options.1.confirm.tt:0 "Valide ces paramètres pour toute la partie."
@@ -764,51 +764,18 @@ district_gorn_hunting:0 "Terrains de reproduction"
  cp26_klingon_raptor_upkeep_mult:0 "Entretien du Raptor"
  cp26_klingon_raptor_hull_mult:0 "Coque du Raptor"
  cp26_klingon_raptor_hull_add:0 "Coque du Raptor"
- cp26_bajoran_wormhole:0 "Trou de ver de Bajor"
- cp26_bajoran_wormhole_desc:0 "Une ouverture subspatiale stable reliant le système bajoran au Quadrant Gamma. Les instruments enregistrent du trafic dans le passage même lorsque les vaisseaux ne peuvent pas le traverser physiquement."
- cp26_bajoran_wormhole.2.name:0 "Trou de ver de Bajor confirmé"
- cp26_bajoran_wormhole.2.desc:0 "Les données des capteurs de la Ceinture Denorios sont sans ambiguïté. Une anomalie spatiale stable ouvre un corridor vers une région inconnue - que les explorateurs appellent déjà le Quadrant Gamma. Le passage ne peut être traversé physiquement, mais nos instruments peuvent détecter les vaisseaux qui s'y aventurent."
- cp26_bajoran_wormhole.2.ok:0 "Enregistrer la découverte."
 
- cp26_bajoran_wormhole.300.name:0 "Expédition dans le Quadrant Gamma"
- cp26_bajoran_wormhole.300.desc:0 "Une flotte est entrée dans le système Bajoran. Le Trou de ver de Bajor est actif. Le commandement doit décider de la marche à suivre - le Quadrant Gamma est vaste et ses habitants, inconnus."
- cp26_bajoran_wormhole.300.a:0 "Procéder avec prudence - chercher le contact."
- cp26_bajoran_wormhole.300.b:0 "Entrer avec une démonstration de force."
- cp26_bajoran_wormhole.300.c:0 "Tenir la position. Pas encore."
 
- cp26_bajoran_wormhole.310.name:0 "Premier contact dans le Quadrant Gamma"
- cp26_bajoran_wormhole.310.desc:0 "Nos vaisseaux émergent du trou de ver dans un système stellaire inconnu. Les capteurs longue portée détectent plusieurs vaisseaux d'un design inconnu qui maintiennent une distance prudente. Leur posture est vigilante, pas hostile - pour l'instant."
- cp26_bajoran_wormhole.310.a:0 "Tenter d'ouvrir un canal de communication."
- cp26_bajoran_wormhole.310.b:0 "Effectuer des relevés de capteurs et se retirer."
 
- cp26_bajoran_wormhole.311.name:0 "Échange diplomatique"
- cp26_bajoran_wormhole.311.desc:0 "L'échange est bref mais significatif. Les vaisseaux s'identifient comme serviteurs des Fondateurs - le Dominion. Ils sont curieux à l'égard des solides venus de l'autre côté. Ils se retirent sans hostilité. Pour l'instant, le Dominion observe."
- cp26_bajoran_wormhole.311.ok:0 "Une paix fragile, mais c'est la paix."
 
- cp26_bajoran_wormhole.320.name:0 "Confrontation dans le Quadrant Gamma"
- cp26_bajoran_wormhole.320.desc:0 "Notre flotte émerge du trou de ver en posture de combat. Les vaisseaux Jem'Hadar qui nous surveillaient passent immédiatement à l'interception. Leurs systèmes de ciblage sont verrouillés. Le commandement doit agir."
- cp26_bajoran_wormhole.320.a:0 "Poursuivre l'engagement."
- cp26_bajoran_wormhole.320.b:0 "Se mettre en veille et se retirer."
 
- cp26_bajoran_wormhole.321.name:0 "Représailles du Dominion"
- cp26_bajoran_wormhole.321.desc:0 "Nos vaisseaux ont forcé un repli - mais le Dominion n'oublie pas. Les renseignements confirment qu'une force d'assaut Jem'Hadar a émergé du Trou de ver de Bajor et opère dans le système Bajoran. Le Dominion n'entend pas rester dans le Quadrant Gamma."
- cp26_bajoran_wormhole.321.ok:0 "Préparer toutes les positions défensives."
 
- cp26_bajoran_wormhole.322.name:0 "Retrait enregistré"
- cp26_bajoran_wormhole.322.desc:0 "Nos vaisseaux ont interrompu le combat avant qu'il ne commence. Les Jem'Hadar maintiennent leur position à la sortie du trou de ver mais ne poursuivent pas. Une courte transmission est reçue : §I« Les Fondateurs observent. »§!"
- cp26_bajoran_wormhole.322.ok:0 "Compris. Maintenir l'état d'alerte."
 
  # --- Arc de découverte du trou de ver ---
  CP26_WORMHOLE_SURVEY:0 "Ceinture Denorios : Investigation des Neutrinos"
  CP26_WORMHOLE_SURVEY_DESC:0 "Stationnez un vaisseau scientifique avec un scientifique à bord sur le site de l'anomalie dans la Ceinture Denorios. Les perturbations de neutrinos sont extraordinaires - et pourraient indiquer quelque chose de bien plus grand qu'un simple phénomène stellaire."
 
- cp26_bajoran_wormhole.12.name:0 "Ceinture Denorios - Anomalies Détectées"
- cp26_bajoran_wormhole.12.desc:0 "Une flotte entrant dans le système Bajoran a détecté d'inhabituelles perturbations de neutrinos au sein de la Ceinture Denorios. La source est inconnue, mais les relevés ne correspondent à rien de précédemment enregistré.\n\nUne mission d'investigation scientifique est recommandée. Stationnez un vaisseau scientifique avec un scientifique à bord sur le site de l'anomalie pour commencer l'investigation."
- cp26_bajoran_wormhole.12.ok:0 "Dépêcher un vaisseau scientifique."
 
- cp26_bajoran_wormhole.21.name:0 "2369 - L'Anomalie de Denorios s'Intensifie"
- cp26_bajoran_wormhole.21.desc:0 "Les moniteurs scientifiques enregistrent une forte augmentation des émissions de neutrinos dans la Ceinture Denorios. Les relevés défient tous les modèles stellaires connus.\n\nLe Ministère des Sciences Bajoran a classé cela comme investigation prioritaire. Une mission d'investigation a été autorisée - stationnez un vaisseau scientifique avec un scientifique sur le site de l'anomalie dans le système Bajoran."
- cp26_bajoran_wormhole.21.ok:0 "Dépêcher immédiatement l'équipe d'investigation."
  cp26_minor_mission.ai_fallback:0 "Noter le rapport."
  cp26_minor_mission.ai_fallback.tt:0 "L'IA clôt cette étape sans choix narratif spécifique."
 
@@ -909,7 +876,7 @@ district_gorn_hunting:0 "Terrains de reproduction"
  cp26_a500.3.a:0 "L'insurrection continue..."
 
  cp26_a500.10.title:0 "L'insurrection est maîtrisée"
- cp26_a500.10.desc:0 "Les forces terrestres de Starfleet ont rétabli l'ordre à Utopia Planitia. Les unités A500 ont été neutralisées lors de combats rapprochés, mais le coût a été sévère : nous avons perdu nos chantiers navals martiens, et il nous faudra des années pour reconstruire l'appareil industriel de la Fédération.\n\nParmi les données, archives et plans techniques sauvés des décombres, nos ingénieurs ont toutefois retrouvé plusieurs programmes plus anciens, des variantes de coques et des lignées de conception laissées inachevées. En les réexaminant, nous pourrons jeter les bases d'une nouvelle génération de prototypes issus de l'héritage naval de Starfleet."
+ cp26_a500.10.desc:0 "Les forces terrestres de Starfleet ont rétabli l'ordre à Utopia Planitia. Les unités A500 ont été neutralisées lors de combats rapprochés, mais le coût a été sévère : nous avons perdu Utopia Planitia et les chantiers navals du système Sol. La capacité de construction navale de la Fédération est sévèrement compromise pour les années à venir.\n\nParmi les données, archives et plans techniques sauvés des décombres, nos ingénieurs ont toutefois retrouvé plusieurs programmes plus anciens, des variantes de coques et des lignées de conception laissées inachevées. En les réexaminant, nous pourrons jeter les bases d'une nouvelle génération de prototypes issus de l'héritage naval de Starfleet."
  cp26_a500.10.a:0 "Sécuriser les données et commencer la reconstruction."
 
  cp26_a500.11.title:0 "Une résolution pacifique"
@@ -1122,9 +1089,9 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
  cp26_options.1.bajor_arc_off.tt:0 "Cliquez pour activer l'arc Libération de Bajor pour cette campagne."
 
  # Libération de Bajor  -  projets spéciaux (entrées journal + tooltips)
- CP26_BAJOR_LIBERATION_MIL:0 "Opération Bajor — Flotte militaire"
+ CP26_BAJOR_LIBERATION_MIL:0 "Opération Bajor - Flotte militaire"
  CP26_BAJOR_LIBERATION_MIL_DESC:0 "Dépêchez un vaisseau militaire dans le système de Bajor avant que la fenêtre d'intervention ne se ferme."
- CP26_BAJOR_LIBERATION_ANY:0 "Opération Bajor — Mission spéciale"
+ CP26_BAJOR_LIBERATION_ANY:0 "Opération Bajor - Mission spéciale"
  CP26_BAJOR_LIBERATION_ANY_DESC:0 "Dépêchez un vaisseau militaire dans le système de Bajor avant que la fenêtre d'intervention ne se ferme."
  CP26_BAJOR_TROOPS:0 "Renforcement de la garnison de Bajor"
  CP26_BAJOR_TROOPS_DESC:0 "Un transport de troupes doit atteindre Bajor rapidement pour maintenir l'ordre sur la surface."
@@ -1232,15 +1199,15 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
 
  # Libération de Bajor  -  résolution autonome (cp26_bajor.33/.34)
  cp26_bajor.33.name:0 "Bajor : la résistance a triomphé"
- cp26_bajor.33.desc:0 "Sans intervention extérieure, les cellules de résistance bajoranes ont finalement eu raison de la garnison cardassienne. Bajor est libre — au prix d'un lourd tribut. Les derniers Cardassiens de la surface ont été tués ou chassés. Le Conseil de Bajor revendique son indépendance."
+ cp26_bajor.33.desc:0 "Sans intervention extérieure, les cellules de résistance bajoranes ont finalement eu raison de la garnison cardassienne. Bajor est libre - au prix d'un lourd tribut. Les derniers Cardassiens de la surface ont été tués ou chassés. Le Conseil de Bajor revendique son indépendance."
  cp26_bajor.33.a:0 "Un peuple qui refuse d'être esclave finit toujours par se libérer."
  cp26_bajor.34.name:0 "Bajor : Cardassia a écrasé la rébellion"
- cp26_bajor.34.desc:0 "La garnison cardassienne, renforcée depuis l'intérieur, a finalement brisé l'insurrection bajoranne. La résistance est décapitée. Bajor reste sous occupation — mais la répression a laissé des traces durables sur la population et les infrastructures."
+ cp26_bajor.34.desc:0 "La garnison cardassienne, renforcée depuis l'intérieur, a finalement brisé l'insurrection bajoranne. La résistance est décapitée. Bajor reste sous occupation - mais la répression a laissé des traces durables sur la population et les infrastructures."
  cp26_bajor.34.a:0 "La résistance survivra. Elle survit toujours."
 
  # Libération de Bajor  -  événement de résolution (cp26_bajor.10)
  cp26_bajor.10.name:0 "Libération de Bajor"
- cp26_bajor.10.desc:0 "L'occupation cardassienne a pris fin. Bajor est libre. Les Bajorans prennent désormais leur destin en main — le retrait des forces cardassines marque le début d'une nouvelle ère pour ce monde antique."
+ cp26_bajor.10.desc:0 "L'occupation cardassienne a pris fin. Bajor est libre. Les Bajorans prennent désormais leur destin en main - le retrait des forces cardassines marque le début d'une nouvelle ère pour ce monde antique."
  cp26_bajor.10.a:0 "Bajor est libre."
 
  # Fix : Notification de destruction de flotte Caravaneer (cara.1003) - loc manquante dans Infinite
@@ -1279,7 +1246,7 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
  qt_ufop_b6_clinics_tooltip_success:0 "£trigger_yes£ Cliniques médicales : §Y[This.qt_ufop_b6_clinics]§!/§Y12§!"
  qt_ufop_b6_clinics_tooltip_fail:0    "£trigger_no£ Cliniques médicales : §Y[This.qt_ufop_b6_clinics]§!/§Y12§!"
 
- # Quest tree — Cerritos (B2b) + Worf conditions
+ # Quest tree - Cerritos (B2b) + Worf conditions
  qt_ufop_cerritos_lower_decks:0      "Cerritos - Pont inférieur"
  qt_ufop_cerritos_lower_decks_desc:0 "Le vaisseau de soutien U.S.S. Cerritos et ses équipages de \"Pont inférieur\" ont démontré leur valeur lors des missions de second contact. L'Enterprise leur ouvre la voie : 20 systèmes topographiés suffisent à justifier leur déploiement opérationnel."
  qt_ufop_cerritos_survey_tooltip_success:0 "£trigger_yes£ Systèmes topographiés par l'Enterprise : §Y[This.qt_ufop_cerritos_surveyed]§!/§Y10§!"
@@ -1291,6 +1258,87 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
  qt_ufop_cerritos_observation_tooltip_success:0 "£trigger_yes£ Poste d'observation sur une civilisation pré-FTL"
  qt_ufop_cerritos_observation_tooltip_fail:0    "£trigger_no£ Aucun poste d'observation sur une civilisation pré-FTL"
 
- # Localisation taille vaisseau — Enterprise Odyssey
+ # Localisation taille vaisseau - Enterprise Odyssey
  enterprise_odyssey:0 "Odyssey"
  enterprise_odyssey_plural:0 "Odysseys"
+
+ CP26_A500_GROUND_ASSAULT_SCIENCE:0 "A500 - Intervention négociée sous escorte"
+ CP26_A500_GROUND_ASSAULT_SCIENCE_DESC:0 "L'équipe technique a établi un protocole de désescalade, mais les synthétiques refusent de se rendre sans pression militaire. Des troupes d'assaut doivent être déployées en orbite pour appuyer la négociation et forcer la reddition d'Utopia Planitia."
+
+ # ── Arc Wormhole Bajoran ──────────────────────────────────────────────
+ cp26_bajoran_wormhole_chain:0 "Anomalie de Bajor"
+ cp26_bajoran_wormhole_chain_title:0 "Anomalie de Bajor"
+ cp26_bajoran_wormhole_chain_desc:0 "Des perturbations inhabituelles ont été détectées dans la Ceinture Denorios. Une investigation est en cours."
+
+ cp26_bajoran_wormhole.10.name:0 "Anomalie dans la Ceinture Denorios"
+ cp26_bajoran_wormhole.10.desc:0 "Des instruments en orbite de Bajor ont capté des perturbations de neutrinos inhabituelles dans la Ceinture Denorios - une zone de l'espace généralement stable. L'origine est inconnue. Starfleet recommande une investigation."
+ cp26_bajoran_wormhole.10.a:0 "Dépêcher un vaisseau scientifique."
+ cp26_bajoran_wormhole.10.b:0 "Ne rien faire pour l'instant."
+
+ cp26_bajoran_wormhole.20.name:0 "Anomalie dans la Ceinture Denorios"
+ cp26_bajoran_wormhole.20.desc:0 "Des capteurs installés dans le secteur de Bajor ont détecté des perturbations énergétiques anormales dans la Ceinture Denorios. La nature de ces anomalies est inconnue, mais le Grand Conseil ne laissera pas passer une telle opportunité sans investigation."
+ cp26_bajoran_wormhole.20.a:0 "Envoyer un corps expéditionnaire - vaisseaux de science et militaire."
+ cp26_bajoran_wormhole.20.b:0 "Cela ne mérite pas notre attention."
+
+ cp26_bajoran_wormhole.30.name:0 "Anomalie dans la Ceinture Denorios"
+ cp26_bajoran_wormhole.30.desc:0 "Le Bureau Obsidien a transmis des données relatives à des anomalies neutrino anormales dans la Ceinture Denorios, à proximité de Bajor. Une perturbation de cette nature pourrait avoir des implications stratégiques."
+ cp26_bajoran_wormhole.30.a:0 "Envoyer un vaisseau scientifique d'investigation."
+ cp26_bajoran_wormhole.30.b:0 "Envoyer un vaisseau espion en reconnaissance discrète."
+ cp26_bajoran_wormhole.30.c:0 "Ne rien faire."
+
+ cp26_bajoran_wormhole.40.name:0 "Anomalie dans la Ceinture Denorios"
+ cp26_bajoran_wormhole.40.desc:0 "Le Sénat a été informé de perturbations spatiales inexpliquées dans la Ceinture Denorios, à proximité de Bajor. Des données préliminaires suggèrent une anomalie d'une nature inhabituelle. Le Tal Shiar est intéressé."
+ cp26_bajoran_wormhole.40.a:0 "Envoyer un vaisseau espion - étudier cela de près."
+ cp26_bajoran_wormhole.40.b:0 "Cela devrait suffire à occuper la Fédération."
+
+ cp26_bajoran_wormhole.50.name:0 "Anomalie dans la Ceinture Denorios"
+ cp26_bajoran_wormhole.50.desc:0 "Nos agents commerciaux dans le secteur de Bajor ont signalé des perturbations spatiales inhabituelles dans la Ceinture Denorios. Toute anomalie inexpliquée représente une opportunité - si tant est qu'on sache en tirer profit."
+ cp26_bajoran_wormhole.50.a:0 "Envoyer un prospecteur pour évaluer les possibilités."
+ cp26_bajoran_wormhole.50.b:0 "Organiser une colonie de touristes dans le secteur. §Y+1 000 §Gcrédits énergétiques§!"
+ cp26_bajoran_wormhole.50.c:0 "Ne rien faire."
+
+ cp26_bajoran_wormhole.100.name:0 "Trou de ver découvert dans la Ceinture Denorios"
+ cp26_bajoran_wormhole.100.desc:0 "Les instruments confirment l'existence d'une ouverture subspatiale stable au cœur de la Ceinture Denorios, entre Bajor IX et Bajor X. L'anomalie forme un corridor vers une région inconnue de la galaxie. Il est déjà question d'un \"Quadrant Gamma\"."
+
+ cp26_bajoran_wormhole.100.a_ufop:0 "Extraordinaire. Nous devons explorer."
+ cp26_bajoran_wormhole.100.b_ufop:0 "Restons prudents. Aucune action précipitée."
+ cp26_bajoran_wormhole.100.a_klingon:0 "Une porte vers Sto-vo-kor !"
+ cp26_bajoran_wormhole.100.b_klingon:0 "Cela ne nous regarde pas."
+ cp26_bajoran_wormhole.100.a_cardassian:0 "Intéressant. Nous devons reprendre le contrôle de Bajor."
+ cp26_bajoran_wormhole.100.b_cardassian:0 "Intéressant. Nous allons surveiller cela de loin."
+ cp26_bajoran_wormhole.100.a_romulan:0 "Nous allons étudier cela de très près."
+ cp26_bajoran_wormhole.100.b_romulan:0 "Cela devrait efficacement occuper la Fédération."
+ cp26_bajoran_wormhole.100.a_ferengi:0 "Un nouveau monde d'opportunités s'ouvre à nous !"
+ cp26_bajoran_wormhole.100.b_ferengi:0 "Étudions la possibilité de mettre un péage."
+
+ # Projets
+ CP26_BAJORAN_WORMHOLE_SURVEY_UFOP:0 "Investigation de l'anomalie Denorios"
+ CP26_BAJORAN_WORMHOLE_SURVEY_UFOP_DESC:0 "Stationner un vaisseau scientifique dans la Ceinture Denorios pour analyser les perturbations neutrino détectées. Les résultats pourraient révéler quelque chose d'extraordinaire."
+ CP26_BAJORAN_WORMHOLE_SURVEY_KLINGON:0 "Corps expéditionnaire - Ceinture Denorios"
+ CP26_BAJORAN_WORMHOLE_SURVEY_KLINGON_DESC:0 "Un vaisseau de science escorté d'un bâtiment militaire est déployé dans la Ceinture Denorios. L'Empire ne prend pas de risques."
+ CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SCIENCE:0 "Investigation scientifique - Ceinture Denorios"
+ CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SCIENCE_DESC:0 "Un vaisseau scientifique cardassien est envoyé analyser les perturbations dans la Ceinture Denorios."
+ CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SPY:0 "Reconnaissance discrète - Ceinture Denorios"
+ CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SPY_DESC:0 "Un vaisseau d'espionnage est déployé discrètement pour analyser l'anomalie sans attirer l'attention."
+ CP26_BAJORAN_WORMHOLE_SURVEY_ROMULAN:0 "Surveillance du Tal Shiar - Ceinture Denorios"
+ CP26_BAJORAN_WORMHOLE_SURVEY_ROMULAN_DESC:0 "Un vaisseau espion romain est chargé d'analyser l'anomalie dans l'ombre."
+ CP26_BAJORAN_WORMHOLE_SURVEY_FERENGI:0 "Prospection commerciale - Ceinture Denorios"
+ CP26_BAJORAN_WORMHOLE_SURVEY_FERENGI_DESC:0 "Un prospecteur Ferengi est envoyé évaluer le potentiel économique de l'anomalie dans la Ceinture Denorios."
+
+ # Arc A500 - Event intermédiaire cp26_a500.15
+ cp26_a500.15.title:0 "Utopia Planitia : Rapport préliminaire"
+ cp26_a500.15.desc_science:0 "Notre équipe d'ingénieurs est désormais sur place à Utopia Planitia. Les premières analyses des unités A500 sont en cours. Les données sont préoccupantes - les synthétiques semblent avoir développé des protocoles de communication autonomes non autorisés. Nos équipes maintiennent la situation sous contrôle pour l'instant."
+ cp26_a500.15.desc_military:0 "Nos troupes examinent activement les androïdes A500 qui montrent des comportements anormaux. Le périmètre de sécurité autour d'Utopia Planitia est établi. Cependant les unités A500 refusent de coopérer et la situation se dégrade. Nous avons besoin de renforts pour contenir l'escalade."
+ cp26_a500.15.desc_governor:0 "Le gouverneur supervise la situation à Utopia Planitia. Les unités A500 montrent une résistance croissante aux directives administratives. La situation requiert une attention immédiate de toutes les ressources disponibles."
+ cp26_a500.15.a:0 "Bien reçu. Nous surveillons la situation."
+
+ # Ground assault projets - nouveaux
+ CP26_A500_GROUND_ASSAULT_SCIENCE:0 "A500 - Analyse scientifique d'urgence"
+ CP26_A500_GROUND_ASSAULT_SCIENCE_DESC:0 "L'armée tient le périmètre mais ne peut pas désactiver les A500 sans comprendre leur architecture. Un vaisseau scientifique doit être dépêché à Mars pour analyser le réseau et identifier un protocole de désactivation."
+ CP26_A500_GROUND_ASSAULT_GOVERNOR:0 "A500 - Intervention coordonnée"
+ CP26_A500_GROUND_ASSAULT_GOVERNOR_DESC:0 "La rébellion nécessite une réponse coordonnée. Un vaisseau scientifique et des troupes d'assaut doivent être déployés conjointement pour reprendre Utopia Planitia."
+
+ CP26_A500_GROUND_ASSAULT_HARD:0 "A500 - Intervention d'urgence totale"
+ CP26_A500_GROUND_ASSAULT_HARD_DESC:0 "La situation à Utopia Planitia a dégénéré sans contrôle. Une force d'intervention massive est requise : trois vaisseaux militaires, un vaisseau scientifique et des troupes d'assaut doivent être déployés simultanément pour reprendre les chantiers navals martiens."
+
+ WORMHOLE_NAME:0 "Trou de ver de Bajor"

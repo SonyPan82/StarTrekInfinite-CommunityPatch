@@ -2,55 +2,55 @@
 
  # ── Ferengi Quest Tree ──────────────────────────────────────────────────
 
- # A1 — Règle 1
+ # A1 - Règle 1
  qt_ferengi_a1:0                "Règle 1"
- qt_ferengi_a1_desc:0           "« Une fois que tu as leur argent, ne le rends jamais. »\n\nLes Règles de l'Acquisition ne sont pas de simples proverbes — ce sont des lois. Établissez trois pactes commerciaux pour ancrer l'Alliance dans l'économie galactique."
+ qt_ferengi_a1_desc:0           "« Une fois que tu as leur argent, ne le rends jamais. »\n\nLes Règles de l'Acquisition ne sont pas de simples proverbes - ce sont des lois. Établissez trois pactes commerciaux pour ancrer l'Alliance dans l'économie galactique."
 
- # A2 — Règle 2
+ # A2 - Règle 2
  qt_ferengi_a2:0                "Règle 2"
  qt_ferengi_a2_desc:0           "« Ne laisse jamais la famille se mettre entre toi et une opportunité. »\n\nLes liens du sang ne valent rien face au profit. Établissez deux traités migratoires pour démontrer que l'Alliance sait exploiter chaque ressource disponible."
 
- # A3 — Règle 3
+ # A3 - Règle 3
  qt_ferengi_a3:0                "Règle 3"
  qt_ferengi_a3_desc:0           "« La guerre est bonne pour les affaires. »\n\nPendant que les autres se battent pour des idéaux, l'Alliance se bat pour le profit. Vendez des armes à l'un des camps impliqués dans la crise de Bajor pour valider cette règle."
  qt_ferengi_a3_weapons_tooltip_success:0 "£trigger_yes£ Armes vendues pendant la crise de §YBajor§!"
  qt_ferengi_a3_weapons_tooltip_fail:0    "£trigger_no£ Aucune vente d'armes réalisée pendant la crise de §YBajor§!"
 
- # A4 — Règle 4
+ # A4 - Règle 4
  qt_ferengi_a4:0                "Règle 4"
- qt_ferengi_a4_desc:0           "« La paix est bonne pour les affaires. »\n\nLes guerres ferment des routes commerciales. Un Ferengi avisé sait quand négocier la paix — ou envoyer une flotte pour accélérer les choses. Proposez la paix lors d'un conflit, ou envoyez une flotte à Bajor."
+ qt_ferengi_a4_desc:0           "« La paix est bonne pour les affaires. »\n\nLes guerres ferment des routes commerciales. Un Ferengi avisé sait quand négocier la paix - ou envoyer une flotte pour accélérer les choses. Proposez la paix lors d'un conflit, ou envoyez une flotte à Bajor."
  qt_ferengi_a4_peace_tooltip_success:0  "£trigger_yes£ Paix proposée lors d'une guerre, ou flotte militaire envoyée à §YBajor§!"
  qt_ferengi_a4_peace_tooltip_fail:0     "£trigger_no£ Aucune proposition de paix, aucune flotte envoyée à §YBajor§!"
 
- # A5 — Règle 5
+ # A5 - Règle 5
  qt_ferengi_a5:0                "Règle 5"
- qt_ferengi_a5_desc:0           "« Étends-toi ou meurs. »\n\nLa stagnation, c'est la mort. Un Ferengi qui cesse de croître cesse de gagner. L'Alliance doit planter son drapeau sur de nouveaux mondes — trois colonies au-delà de Ferenginar, pour montrer à la Galaxie que notre appétit ne connaît pas de limites."
+ qt_ferengi_a5_desc:0           "« Étends-toi ou meurs. »\n\nLa stagnation, c'est la mort. Un Ferengi qui cesse de croître cesse de gagner. L'Alliance doit planter son drapeau sur de nouveaux mondes - trois colonies au-delà de Ferenginar, pour montrer à la Galaxie que notre appétit ne connaît pas de limites."
 
- # A6 — Règle 6
+ # A6 - Règle 6
  qt_ferengi_a6:0                "Règle 6"
- qt_ferengi_a6_desc:0           "« Les conseils gratuits coûtent souvent cher. »\n\nChaque mot de conseil a un prix. L'Alliance ne prodigue pas la sagesse gratuitement — elle déploie des émissaires pour soutirer des informations, conclure des accords et garder les rivaux dans l'incertitude. Recrutez six émissaires pour mettre cette règle en pratique."
+ qt_ferengi_a6_desc:0           "« Les conseils gratuits coûtent souvent cher. »\n\nChaque mot de conseil a un prix. L'Alliance ne prodigue pas la sagesse gratuitement - elle déploie des émissaires pour soutirer des informations, conclure des accords et garder les rivaux dans l'incertitude. Recrutez six émissaires pour mettre cette règle en pratique."
 
- # A7 — Règle 7
+ # A7 - Règle 7
  qt_ferengi_a7:0                "Règle 7"
- qt_ferengi_a7_desc:0           "« De temps en temps, déclare la paix. Ça perturbe complètement tes ennemis. »\n\nL'imprévisibilité est une arme. Un Ferengi qui se bat toujours est aussi prévisible qu'un Klingon. Prenez vos rivaux par surprise — déclarez un statu quo et laissez-les se demander ce que vous préparez."
+ qt_ferengi_a7_desc:0           "« De temps en temps, déclare la paix. Ça perturbe complètement tes ennemis. »\n\nL'imprévisibilité est une arme. Un Ferengi qui se bat toujours est aussi prévisible qu'un Klingon. Prenez vos rivaux par surprise - déclarez un statu quo et laissez-les se demander ce que vous préparez."
  qt_ferengi_a7_peace_tooltip_success:0  "£trigger_yes£ Un statu quo a été déclaré"
  qt_ferengi_a7_peace_tooltip_fail:0     "£trigger_no£ Aucun statu quo déclaré"
 
- # A8 — Règle 8
+ # A8 - Règle 8
  qt_ferengi_a8:0                "Règle 8"
- qt_ferengi_a8_desc:0           "« Chaque homme a son prix. »\n\nConnaissez ce que veulent vos adversaires, et ils sont à vous. L'Alliance investit dans les meilleurs esprits et les guerriers les plus décorés — trois scientifiques pour percer les secrets de l'univers, et trois amiraux pour faire respecter les termes de n'importe quel accord."
+ qt_ferengi_a8_desc:0           "« Chaque homme a son prix. »\n\nConnaissez ce que veulent vos adversaires, et ils sont à vous. L'Alliance investit dans les meilleurs esprits et les guerriers les plus décorés - trois scientifiques pour percer les secrets de l'univers, et trois amiraux pour faire respecter les termes de n'importe quel accord."
  qt_ferengi_a8_scientists_tooltip_success:0 "£trigger_yes£ Scientifiques : §Y[This.qt_ferengi_a8_scientists]§!/§Y3§!"
  qt_ferengi_a8_scientists_tooltip_fail:0    "£trigger_no£ Scientifiques : §Y[This.qt_ferengi_a8_scientists]§!/§Y3§!"
  qt_ferengi_a8_admirals_tooltip_success:0   "£trigger_yes£ Amiraux : §Y[This.qt_ferengi_a8_admirals]§!/§Y3§!"
  qt_ferengi_a8_admirals_tooltip_fail:0      "£trigger_no£ Amiraux : §Y[This.qt_ferengi_a8_admirals]§!/§Y3§!"
 
- # A9 — Règle 9
+ # A9 - Règle 9
  qt_ferengi_a9:0                "Règle 9"
  qt_ferengi_a9_desc:0           "« Garde les oreilles ouvertes. »\n\nL'information est la monnaie la plus précieuse de la Galaxie. Pendant que les autres font la guerre avec des flottes, l'Alliance la fait avec des secrets. Réussissez trois missions d'espionnage pour prouver que l'Alliance sait écouter."
 
- # A10 — Règle 10
+ # A10 - Règle 10
  qt_ferengi_a10:0               "Règle 10"
- qt_ferengi_a10_desc:0          "« Opportunité plus instinct égale profit. »\n\nLes plus grandes fortunes ne sont pas bâties par chance, mais en reconnaissant une opportunité avant tout le monde et en agissant sans hésitation. Construisez cinq mégastructures — des monuments à l'ambition Ferengi gravés dans le tissu de la Galaxie."
+ qt_ferengi_a10_desc:0          "« Opportunité plus instinct égale profit. »\n\nLes plus grandes fortunes ne sont pas bâties par chance, mais en reconnaissant une opportunité avant tout le monde et en agissant sans hésitation. Construisez cinq mégastructures - des monuments à l'ambition Ferengi gravés dans le tissu de la Galaxie."
 
  # Condition tooltips
  qt_ferengi_a1_pacts_tooltip_success:0  "Pactes commerciaux actifs : §Y[This.GetNumCommercialPacts]§!/§Y3§!"

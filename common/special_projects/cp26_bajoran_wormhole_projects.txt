@@ -1,0 +1,143 @@
+##########################################################################
+# Arc Wormhole Bajoran - Projets spéciaux d'investigation
+# Durée : 360 jours — 1 projet par faction/option
+##########################################################################
+
+# UFOP — vaisseau scientifique
+special_project = {
+	key = "CP26_BAJORAN_WORMHOLE_SURVEY_UFOP"
+	cost = 0
+	days_to_research = 360
+	tech_department = physics_technology
+	picture = GFX_evt_lab_research_ufop
+	event_chain = "cp26_bajoran_wormhole_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajoran_wormhole.100 days = 1 } }
+		}
+	}
+}
+
+# Klingon — vaisseau scientifique + militaire
+special_project = {
+	key = "CP26_BAJORAN_WORMHOLE_SURVEY_KLINGON"
+	cost = 0
+	days_to_research = 360
+	tech_department = physics_technology
+	picture = GFX_evt_empire_fleet_klingon
+	event_chain = "cp26_bajoran_wormhole_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		shipclass_military = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajoran_wormhole.100 days = 1 } }
+		}
+	}
+}
+
+# Cardassien — science ship (si accès disponible)
+special_project = {
+	key = "CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SCIENCE"
+	cost = 0
+	days_to_research = 360
+	tech_department = physics_technology
+	picture = GFX_evt_empire_fleet_cardassian
+	event_chain = "cp26_bajoran_wormhole_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajoran_wormhole.100 days = 1 } }
+		}
+	}
+}
+
+# Cardassien — spy ship
+special_project = {
+	key = "CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SPY"
+	cost = 0
+	days_to_research = 360
+	tech_department = society_technology
+	picture = GFX_evt_empire_fleet_cardassian
+	event_chain = "cp26_bajoran_wormhole_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_spy_ship = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajoran_wormhole.100 days = 1 } }
+		}
+	}
+}
+
+# Romulien — spy ship
+special_project = {
+	key = "CP26_BAJORAN_WORMHOLE_SURVEY_ROMULAN"
+	cost = 0
+	days_to_research = 360
+	tech_department = society_technology
+	picture = GFX_evt_empire_fleet_romulan
+	event_chain = "cp26_bajoran_wormhole_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_spy_ship = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajoran_wormhole.100 days = 1 } }
+		}
+	}
+}
+
+# Ferengi — prospecteur (science ship)
+special_project = {
+	key = "CP26_BAJORAN_WORMHOLE_SURVEY_FERENGI"
+	cost = 0
+	days_to_research = 360
+	tech_department = engineering_technology
+	picture = GFX_evt_highway_ftl_travel_ufop
+	event_chain = "cp26_bajoran_wormhole_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_bajoran_wormhole.100 days = 1 } }
+		}
+	}
+}

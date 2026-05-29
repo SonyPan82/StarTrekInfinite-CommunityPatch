@@ -18,7 +18,6 @@ country_event = {
 		if = {
 			limit = { NOT = { has_global_flag = cp26_bajor_arc_initialized } }
 			set_global_flag = cp26_bajor_arc_initialized
-			set_global_flag = cp26_block_bajor_arc
 		}
 		# Default: diplomatic occupied states disabled
 		if = {

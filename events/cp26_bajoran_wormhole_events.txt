@@ -1,0 +1,339 @@
+##########################################################################
+# Arc Wormhole Bajoran
+#
+# cp26_bajoran_wormhole.0   - Dispatch (caché) 365j après arc Bajor
+# cp26_bajoran_wormhole.10  - Anomalie de Bajor — UFOP
+# cp26_bajoran_wormhole.20  - Anomalie de Bajor — Klingon
+# cp26_bajoran_wormhole.30  - Anomalie de Bajor — Cardassien
+# cp26_bajoran_wormhole.40  - Anomalie de Bajor — Romulien
+# cp26_bajoran_wormhole.50  - Anomalie de Bajor — Ferengi
+# cp26_bajoran_wormhole.55  - Touriste Ferengi : timer 360j → découverte
+# cp26_bajoran_wormhole.100 - Découverte du trou de ver (tous empires)
+##########################################################################
+
+namespace = cp26_bajoran_wormhole
+
+##########################################################################
+# 0 - Dispatch : choisit l'event faction approprié
+##########################################################################
+country_event = {
+	id = cp26_bajoran_wormhole.0
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_bajoran_wormhole_dispatched }
+		OR = {
+			is_ufop = yes
+			is_klingon = yes
+			is_cardassian = yes
+			is_romulan = yes
+			is_ferengi_empire = yes
+		}
+	}
+
+	immediate = {
+		set_country_flag = cp26_bajoran_wormhole_dispatched
+		if = {
+			limit = { is_ufop = yes }
+			country_event = { id = cp26_bajoran_wormhole.10 }
+		}
+		else_if = {
+			limit = { is_klingon = yes }
+			country_event = { id = cp26_bajoran_wormhole.20 }
+		}
+		else_if = {
+			limit = { is_cardassian = yes }
+			country_event = { id = cp26_bajoran_wormhole.30 }
+		}
+		else_if = {
+			limit = { is_romulan = yes }
+			country_event = { id = cp26_bajoran_wormhole.40 }
+		}
+		else_if = {
+			limit = { is_ferengi_empire = yes }
+			country_event = { id = cp26_bajoran_wormhole.50 }
+		}
+	}
+}
+
+##########################################################################
+# 10 - UFOP
+##########################################################################
+country_event = {
+	id = cp26_bajoran_wormhole.10
+	title = cp26_bajoran_wormhole.10.name
+	desc = cp26_bajoran_wormhole.10.desc
+	picture = GFX_evt_lab_research_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.10.a
+		begin_event_chain = {
+			event_chain = "cp26_bajoran_wormhole_chain"
+			target = THIS
+		}
+		enable_special_project = {
+			name = "CP26_BAJORAN_WORMHOLE_SURVEY_UFOP"
+			location = event_target:bajoran_planet
+			owner = this
+		}
+	}
+
+	option = {
+		name = cp26_bajoran_wormhole.10.b
+	}
+}
+
+##########################################################################
+# 20 - Klingon
+##########################################################################
+country_event = {
+	id = cp26_bajoran_wormhole.20
+	title = cp26_bajoran_wormhole.20.name
+	desc = cp26_bajoran_wormhole.20.desc
+	picture = GFX_evt_empire_fleet_klingon
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.20.a
+		begin_event_chain = {
+			event_chain = "cp26_bajoran_wormhole_chain"
+			target = THIS
+		}
+		enable_special_project = {
+			name = "CP26_BAJORAN_WORMHOLE_SURVEY_KLINGON"
+			location = event_target:bajoran_planet
+			owner = this
+		}
+	}
+
+	option = {
+		name = cp26_bajoran_wormhole.20.b
+	}
+}
+
+##########################################################################
+# 30 - Cardassien
+##########################################################################
+country_event = {
+	id = cp26_bajoran_wormhole.30
+	title = cp26_bajoran_wormhole.30.name
+	desc = cp26_bajoran_wormhole.30.desc
+	picture = GFX_evt_empire_fleet_cardassian
+	show_sound = event_default
+	is_triggered_only = yes
+
+	# Option A : Science ship — disponible si Bajor occupé OU si frontière ouverte
+	option = {
+		name = cp26_bajoran_wormhole.30.a
+		trigger = {
+			OR = {
+				NOT = { has_global_flag = cp26_bajor_liberated }
+				AND = {
+					has_global_flag = cp26_bajor_liberated
+					exists = event_target:bajoran_country
+					event_target:bajoran_country = { has_access_fleet = root }
+				}
+			}
+		}
+		begin_event_chain = {
+			event_chain = "cp26_bajoran_wormhole_chain"
+			target = THIS
+		}
+		enable_special_project = {
+			name = "CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SCIENCE"
+			location = event_target:bajoran_planet
+			owner = this
+		}
+	}
+
+	# Option B : Spy ship — toujours disponible
+	option = {
+		name = cp26_bajoran_wormhole.30.b
+		begin_event_chain = {
+			event_chain = "cp26_bajoran_wormhole_chain"
+			target = THIS
+		}
+		enable_special_project = {
+			name = "CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SPY"
+			location = event_target:bajoran_planet
+			owner = this
+		}
+	}
+
+	option = {
+		name = cp26_bajoran_wormhole.30.c
+	}
+}
+
+##########################################################################
+# 40 - Romulien
+##########################################################################
+country_event = {
+	id = cp26_bajoran_wormhole.40
+	title = cp26_bajoran_wormhole.40.name
+	desc = cp26_bajoran_wormhole.40.desc
+	picture = GFX_evt_empire_fleet_romulan
+	show_sound = event_default
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_bajoran_wormhole.40.a
+		begin_event_chain = {
+			event_chain = "cp26_bajoran_wormhole_chain"
+			target = THIS
+		}
+		enable_special_project = {
+			name = "CP26_BAJORAN_WORMHOLE_SURVEY_ROMULAN"
+			location = event_target:bajoran_planet
+			owner = this
+		}
+	}
+
+	option = {
+		name = cp26_bajoran_wormhole.40.b
+	}
+}
+
+##########################################################################
+# 50 - Ferengi
+##########################################################################
+country_event = {
+	id = cp26_bajoran_wormhole.50
+	title = cp26_bajoran_wormhole.50.name
+	desc = cp26_bajoran_wormhole.50.desc
+	picture = GFX_evt_highway_ftl_travel_ufop
+	show_sound = event_default
+	is_triggered_only = yes
+
+	# Option A : Prospecteur (science ship)
+	option = {
+		name = cp26_bajoran_wormhole.50.a
+		begin_event_chain = {
+			event_chain = "cp26_bajoran_wormhole_chain"
+			target = THIS
+		}
+		enable_special_project = {
+			name = "CP26_BAJORAN_WORMHOLE_SURVEY_FERENGI"
+			location = event_target:bajoran_planet
+			owner = this
+		}
+	}
+
+	# Option B : Colonie de touristes (+1000 énergie, découverte après 360j)
+	option = {
+		name = cp26_bajoran_wormhole.50.b
+		add_resource = { energy = 1000 }
+		begin_event_chain = {
+			event_chain = "cp26_bajoran_wormhole_chain"
+			target = THIS
+		}
+		country_event = { id = cp26_bajoran_wormhole.55 days = 360 }
+	}
+
+	option = {
+		name = cp26_bajoran_wormhole.50.c
+	}
+}
+
+##########################################################################
+# 55 - Ferengi touriste : timer découverte
+##########################################################################
+country_event = {
+	id = cp26_bajoran_wormhole.55
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		end_event_chain = cp26_bajoran_wormhole_chain
+		country_event = { id = cp26_bajoran_wormhole.100 }
+	}
+}
+
+##########################################################################
+# 100 - Découverte du trou de ver (tous empires)
+##########################################################################
+country_event = {
+	id = cp26_bajoran_wormhole.100
+	title = cp26_bajoran_wormhole.100.name
+	desc = cp26_bajoran_wormhole.100.desc
+	picture = GFX_evt_mysterious_event
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_bajoran_wormhole_discovered }
+	}
+
+	immediate = {
+		set_country_flag = cp26_bajoran_wormhole_discovered
+		end_event_chain = cp26_bajoran_wormhole_chain
+		# Spawner le trou de ver dans le système Bajoran (une seule fois)
+		if = {
+			limit = {
+				NOT = { has_global_flag = cp26_bajoran_wormhole_spawned }
+				exists = event_target:bajoran_system
+			}
+			set_global_flag = cp26_bajoran_wormhole_spawned
+			event_target:bajoran_system = {
+				spawn_natural_wormhole = {
+					bypass_type = wormhole
+					random_pos = yes
+				}
+			}
+		}
+	}
+
+	# ── UFOP ──────────────────────────────────────────────────────────────
+	option = {
+		name = cp26_bajoran_wormhole.100.a_ufop
+		trigger = { is_ufop = yes }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.100.b_ufop
+		trigger = { is_ufop = yes }
+	}
+
+	# ── Klingon ───────────────────────────────────────────────────────────
+	option = {
+		name = cp26_bajoran_wormhole.100.a_klingon
+		trigger = { is_klingon = yes }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.100.b_klingon
+		trigger = { is_klingon = yes }
+	}
+
+	# ── Cardassien ────────────────────────────────────────────────────────
+	option = {
+		name = cp26_bajoran_wormhole.100.a_cardassian
+		trigger = { is_cardassian = yes }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.100.b_cardassian
+		trigger = { is_cardassian = yes }
+	}
+
+	# ── Romulien ──────────────────────────────────────────────────────────
+	option = {
+		name = cp26_bajoran_wormhole.100.a_romulan
+		trigger = { is_romulan = yes }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.100.b_romulan
+		trigger = { is_romulan = yes }
+	}
+
+	# ── Ferengi ───────────────────────────────────────────────────────────
+	option = {
+		name = cp26_bajoran_wormhole.100.a_ferengi
+		trigger = { is_ferengi_empire = yes }
+	}
+	option = {
+		name = cp26_bajoran_wormhole.100.b_ferengi
+		trigger = { is_ferengi_empire = yes }
+	}
+}

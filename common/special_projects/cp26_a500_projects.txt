@@ -1,15 +1,22 @@
 ##########################################################################
 # Arc A500 - Projets spéciaux Utopia Planitia
 #
-# Les trois réponses initiales utilisent désormais un vrai projet limité
-# dans le temps, afin d'éviter le spoiler du timer caché sur Mars.
+# Réponses initiales (365j, timelimit 365j)
+#   on_success → cp26_a500.15 (popup intermédiaire) → cp26_a500.2 après 60j
+#   on_fail    → cp26_a500.2 immédiat + flag cp26_a500_no_response
+#
+# Ground assault (1000j) — selon voie initiale :
+#   GROUND_ASSAULT         : voie science-first → military + armies
+#   GROUND_ASSAULT_SCIENCE : voie military-first → science ship
+#   GROUND_ASSAULT_GOVERNOR: voie governor-first → science + military + armies
+#   GROUND_ASSAULT_HARD    : voie sans réponse   → 3 military + science (1800j)
 ##########################################################################
 
 special_project = {
 	key = "CP26_A500_SECURITY_RESPONSE"
 	cost = 0
-	days_to_research = 30
-	timelimit = 180
+	days_to_research = 360
+	timelimit = 365
 	tech_department = engineering_technology
 	picture = GFX_evt_cp26_a500_rebellion
 	event_chain = "cp26_a500_rebellion_chain"
@@ -24,7 +31,7 @@ special_project = {
 	on_success = {
 		hidden_effect = {
 			OWNER = {
-				country_event = { id = cp26_a500.2 days = 1 }
+				country_event = { id = cp26_a500.15 days = 1 }
 			}
 		}
 	}
@@ -32,6 +39,7 @@ special_project = {
 	on_fail = {
 		hidden_effect = {
 			OWNER = {
+				set_country_flag = cp26_a500_no_response
 				country_event = { id = cp26_a500.2 days = 1 }
 			}
 		}
@@ -41,8 +49,8 @@ special_project = {
 special_project = {
 	key = "CP26_A500_TECHNICIAN_RESPONSE"
 	cost = 0
-	days_to_research = 30
-	timelimit = 180
+	days_to_research = 360
+	timelimit = 365
 	tech_department = physics_technology
 	picture = GFX_evt_cp26_a500_rebellion
 	event_chain = "cp26_a500_rebellion_chain"
@@ -57,7 +65,7 @@ special_project = {
 	on_success = {
 		hidden_effect = {
 			OWNER = {
-				country_event = { id = cp26_a500.11 days = 1 }
+				country_event = { id = cp26_a500.15 days = 1 }
 			}
 		}
 	}
@@ -65,6 +73,7 @@ special_project = {
 	on_fail = {
 		hidden_effect = {
 			OWNER = {
+				set_country_flag = cp26_a500_no_response
 				country_event = { id = cp26_a500.2 days = 1 }
 			}
 		}
@@ -74,8 +83,8 @@ special_project = {
 special_project = {
 	key = "CP26_A500_GOVERNOR_RESPONSE"
 	cost = 0
-	days_to_research = 30
-	timelimit = 180
+	days_to_research = 360
+	timelimit = 365
 	tech_department = society_technology
 	picture = GFX_evt_cp26_a500_rebellion
 	event_chain = "cp26_a500_rebellion_chain"
@@ -90,7 +99,7 @@ special_project = {
 	on_success = {
 		hidden_effect = {
 			OWNER = {
-				country_event = { id = cp26_a500.2 days = 1 }
+				country_event = { id = cp26_a500.15 days = 1 }
 			}
 		}
 	}
@@ -98,16 +107,18 @@ special_project = {
 	on_fail = {
 		hidden_effect = {
 			OWNER = {
+				set_country_flag = cp26_a500_no_response
 				country_event = { id = cp26_a500.2 days = 1 }
 			}
 		}
 	}
 }
 
+# ── Voie science-first : l'ingénieur n'a pas suffi → intervention militaire
 special_project = {
 	key = "CP26_A500_GROUND_ASSAULT"
 	cost = 0
-	days_to_research = 20
+	days_to_research = 1000
 	tech_department = society_technology
 	picture = GFX_evt_cp26_a500_rebellion
 	event_chain = "cp26_a500_rebellion_chain"
@@ -116,7 +127,86 @@ special_project = {
 	delete_on_finish = yes
 
 	requirements = {
-		shipclass_transport = 1
+		shipclass_military = 1
+		assault_armies = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.10 days = 1 }
+			}
+		}
+	}
+}
+
+# ── Voie military-first : les troupes tiennent → les ingénieurs analysent
+special_project = {
+	key = "CP26_A500_GROUND_ASSAULT_SCIENCE"
+	cost = 0
+	days_to_research = 1000
+	tech_department = physics_technology
+	picture = GFX_evt_cp26_a500_rebellion
+	event_chain = "cp26_a500_rebellion_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.10 days = 1 }
+			}
+		}
+	}
+}
+
+# ── Voie governor-first : coordination administrative → science + militaire
+special_project = {
+	key = "CP26_A500_GROUND_ASSAULT_GOVERNOR"
+	cost = 0
+	days_to_research = 1000
+	tech_department = society_technology
+	picture = GFX_evt_cp26_a500_rebellion
+	event_chain = "cp26_a500_rebellion_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_science_ship = 1
+		shipclass_military = 1
+		assault_armies = 1
+	}
+
+	on_success = {
+		hidden_effect = {
+			OWNER = {
+				country_event = { id = cp26_a500.10 days = 1 }
+			}
+		}
+	}
+}
+
+# ── Sans réponse initiale : rébellion non maîtrisée → intervention lourde
+special_project = {
+	key = "CP26_A500_GROUND_ASSAULT_HARD"
+	cost = 0
+	days_to_research = 1800
+	tech_department = society_technology
+	picture = GFX_evt_cp26_a500_rebellion
+	event_chain = "cp26_a500_rebellion_chain"
+	location = yes
+	event_scope = ship_event
+	delete_on_finish = yes
+
+	requirements = {
+		shipclass_military = 3
+		shipclass_science_ship = 1
 		assault_armies = 1
 	}
 

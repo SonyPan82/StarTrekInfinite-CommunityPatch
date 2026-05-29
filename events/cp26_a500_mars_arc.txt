@@ -171,7 +171,7 @@ country_event = {
 						count = 3
 						create_army = {
 							owner = event_target:et_a500_rebel_country
-							type = rebel_army
+							type = assault_army
 							species = event_target:et_a500_species_global
 						}
 					}
@@ -181,21 +181,86 @@ country_event = {
 						count = 5
 						create_army = {
 							owner = event_target:et_a500_rebel_country
-							type = rebel_army
+							type = assault_army
 							species = event_target:et_a500_species_global
 						}
 					}
 				}
 			}
 
-			enable_special_project = {
-				name = "CP26_A500_GROUND_ASSAULT"
-				location = event_target:et_a500_mars
-				owner = this
+			# Voie sans réponse initiale → situation critique, intervention lourde
+				if = {
+					limit = { has_country_flag = cp26_a500_no_response }
+					enable_special_project = {
+						name = "CP26_A500_GROUND_ASSAULT_HARD"
+						location = event_target:et_a500_mars
+						owner = this
+					}
+				}
+				# Voie science-first → intervention militaire requise
+				else_if = {
+					limit = { event_target:et_a500_mars = { has_planet_flag = cp26_a500_science_response } }
+					enable_special_project = {
+						name = "CP26_A500_GROUND_ASSAULT"
+						location = event_target:et_a500_mars
+						owner = this
+					}
+				}
+				# Voie military-first → analyse scientifique requise
+				else_if = {
+					limit = { event_target:et_a500_mars = { has_planet_flag = cp26_a500_fleet_response } }
+					enable_special_project = {
+						name = "CP26_A500_GROUND_ASSAULT_SCIENCE"
+						location = event_target:et_a500_mars
+						owner = this
+					}
+				}
+				# Voie governor-first → science + militaire requis
+				else = {
+					enable_special_project = {
+						name = "CP26_A500_GROUND_ASSAULT_GOVERNOR"
+						location = event_target:et_a500_mars
+						owner = this
+					}
+				}
 			}
-		}
 
 		country_event = { id = cp26_a500.3 days = 30 }
+	}
+}
+
+##########################################################################
+# 15 - Popup intermédiaire (entre réponse initiale et rébellion, ~60j)
+##########################################################################
+country_event = {
+	id = cp26_a500.15
+	title = cp26_a500.15.title
+	desc = {
+		trigger = {
+			exists = event_target:et_a500_mars
+			event_target:et_a500_mars = { has_planet_flag = cp26_a500_science_response }
+		}
+		desc = cp26_a500.15.desc_science
+	}
+	desc = {
+		trigger = {
+			exists = event_target:et_a500_mars
+			event_target:et_a500_mars = { has_planet_flag = cp26_a500_fleet_response }
+		}
+		desc = cp26_a500.15.desc_military
+	}
+	desc = cp26_a500.15.desc_governor
+	picture = GFX_evt_cp26_a500_rebellion
+	show_sound = event_default
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = cp26_a500_resolved }
+	}
+
+	option = {
+		name = cp26_a500.15.a
+		country_event = { id = cp26_a500.2 days = 60 }
 	}
 }
 

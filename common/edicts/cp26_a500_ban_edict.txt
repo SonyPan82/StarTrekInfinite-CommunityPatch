@@ -27,6 +27,10 @@ cp26_ban_a500 = {
 			limit = { has_planet_flag = cp26_a500_installed }
 			remove_modifier = cp26_a500_installed
 			remove_planet_flag = cp26_a500_installed
+			every_owned_pop = {
+				limit = { species = { is_species_class = CP26_A500 } }
+				kill_pop = yes
+			}
 		}
 	}
 

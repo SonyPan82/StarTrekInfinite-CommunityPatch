@@ -122,7 +122,7 @@ action.13.a.ferengi:0 "Open negotiations."
  cp26_ufop_federal_energy_grid_desc:0 "The founding worlds temporarily pool distribution networks, antimatter reserves, and industrial contracts to stabilize the Federation energy economy during the starting transition."
 
  cp26_options.1.name:0 "Community Patch 2026 - campaign setup"
- cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HFleet Cap§!: maximum number of military ships that can be constructed per empire. §Y48§! is recommended for balance and performance; §Y100§! is closer to vanilla behaviour.\n\n§HSupernova§!: option to disable the Supernova quest.\n§HBajor Liberation§!: the liberation of Bajor is scripted and requires specific choices.\n§HSynth Project§!: offers gameplay for the Federation and Romulans, inspired by Star Trek: Picard."
+ cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HFleet Cap§!: maximum number of military ships that can be constructed per empire. §Y56§! is recommended for balance and performance; §Y130§! is closer to vanilla behaviour.\n\n§HSupernova§!: option to disable the Supernova quest.\n§HBajor Liberation§!: the liberation of Bajor is scripted and requires specific choices.\n§HSynth Project§!: offers gameplay for the Federation and Romulans, inspired by Star Trek: Picard."
  cp26_options.1.pirates_on:0 "Pirates: §Genabled§!"
  cp26_options.1.pirates_on.tt:0 "Click to disable the Nausicaan pirate crisis for this campaign."
  cp26_options.1.pirates_off:0 "Pirates: §Rdisabled§!"
@@ -134,15 +134,15 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_options.1.dominion_arc_on:0 "TESTING - Dominion arc: §GON§!"
  cp26_options.1.dominion_arc_on.tt:0 "§HCurrent§!: Dominion arc is §Gon§! (experimental CP26 content may run).\n\n§YClick§! to turn it §Roff§! for this whole save (ticker + Dominion special projects stop).\n\n§YTESTING§! Balance and scripts change often - use a throwaway save if you enable this."
  cp26_options.1.dominion_arc_off:0 "TESTING - Dominion arc: §ROFF§!"
- cp26_options.1.dominion_arc_off.tt:0 "§HCurrent§!: Dominion arc is §Roff§! (safe default).\n\n§YClick§! to turn it §Gon§! for this whole save (wormhole-side arc allowed when lore catches up).\n\n§YTESTING§! Expect rough edges; prefer off for serious campaigns."
+ cp26_options.1.dominion_arc_off.tt:0 "§HCurrent§!: Dominion arc is §Roff§! (safe default).\n\n§YClick§! to turn it §Gon§! for this whole save.\n\n§YTESTING§! Expect rough edges; prefer off for serious campaigns."
  cp26_options.1.supernova_quest_on:0 "Supernova quest: §GEnabled§!"
  cp26_options.1.supernova_quest_on.tt:0 "Click to disable the Supernova quest for this campaign."
  cp26_options.1.supernova_quest_off:0 "Supernova quest: §RDisabled§!"
  cp26_options.1.supernova_quest_off.tt:0 "Click to enable the Supernova quest for this campaign."
- cp26_options.1.naval_cap_48:0 "Fleet: §Gcap 48§! ships"
- cp26_options.1.naval_cap_48.tt:0 "Click to switch to §Y100§! ship cap (vanilla-style, large fleets)."
- cp26_options.1.naval_cap_100:0 "Fleet: §Rcap 100§! ships"
- cp26_options.1.naval_cap_100.tt:0 "Click to return to §Y48§! ship cap (recommended — balance and performance)."
+ cp26_options.1.naval_cap_48:0 "Fleet: §Gcap 56§! ships"
+ cp26_options.1.naval_cap_48.tt:0 "Click to switch to §Y130§! ship cap (vanilla-style, large fleets)."
+ cp26_options.1.naval_cap_100:0 "Fleet: §Rcap 130§! ships"
+ cp26_options.1.naval_cap_100.tt:0 "Click to return to §Y56§! ship cap (recommended - balance and performance)."
 
  cp26_options.1.confirm:0 "OK - start campaign"
  cp26_options.1.confirm.tt:0 "Confirms these settings for the whole campaign."
@@ -316,51 +316,18 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_klingon_raptor_upkeep_mult:0 "Raptor Upkeep"
  cp26_klingon_raptor_hull_mult:0 "Raptor Hull"
  cp26_klingon_raptor_hull_add:0 "Raptor Hull"
- cp26_bajoran_wormhole:0 "Bajoran Wormhole"
- cp26_bajoran_wormhole_desc:0 "A stable subspace aperture linking the Bajoran system to the Gamma Quadrant. Instruments register traffic through the passage even when ships cannot traverse it physically."
- cp26_bajoran_wormhole.2.name:0 "Bajoran Wormhole Confirmed"
- cp26_bajoran_wormhole.2.desc:0 "Sensor data from the Denorios Belt is unambiguous. A stable spatial anomaly opens a corridor into an unknown region of space - what explorers are already calling the Gamma Quadrant. The passage cannot be physically traversed, but our instruments can detect vessels moving through it."
- cp26_bajoran_wormhole.2.ok:0 "Log the discovery."
 
- cp26_bajoran_wormhole.300.name:0 "Gamma Quadrant Expedition"
- cp26_bajoran_wormhole.300.desc:0 "A fleet has entered the Bajoran system. The Bajoran Wormhole is active. Command must decide how to proceed - the Gamma Quadrant is vast and its inhabitants unknown."
- cp26_bajoran_wormhole.300.a:0 "Proceed with caution - seek contact."
- cp26_bajoran_wormhole.300.b:0 "Enter with a show of force."
- cp26_bajoran_wormhole.300.c:0 "Hold position. Not yet."
 
- cp26_bajoran_wormhole.310.name:0 "First Contact in the Gamma Quadrant"
- cp26_bajoran_wormhole.310.desc:0 "Our vessels emerge from the wormhole into an unknown star system. Long-range sensors detect several vessels of unfamiliar design maintaining a safe distance. Their posture is watchful, not hostile - for now."
- cp26_bajoran_wormhole.310.a:0 "Attempt to open a channel."
- cp26_bajoran_wormhole.310.b:0 "Complete sensor sweeps and withdraw."
 
- cp26_bajoran_wormhole.311.name:0 "Diplomatic Exchange"
- cp26_bajoran_wormhole.311.desc:0 "The exchange is brief but significant. The vessels identify themselves as servants of the Founders - the Dominion. They are curious about the solids who have come from the other side. They withdraw without hostility. For now, the Dominion watches."
- cp26_bajoran_wormhole.311.ok:0 "A fragile peace, but peace nonetheless."
 
- cp26_bajoran_wormhole.320.name:0 "Confrontation in the Gamma Quadrant"
- cp26_bajoran_wormhole.320.desc:0 "Our fleet emerges through the wormhole in full combat posture. The Jem'Hadar vessels that had been shadowing our approach immediately move to intercept. Their targeting systems are locked. Command must act."
- cp26_bajoran_wormhole.320.a:0 "Press the engagement."
- cp26_bajoran_wormhole.320.b:0 "Stand down and withdraw."
 
- cp26_bajoran_wormhole.321.name:0 "Dominion Retaliation"
- cp26_bajoran_wormhole.321.desc:0 "Our vessels forced a retreat - but the Dominion does not forget. Intelligence reports confirm a Jem'Hadar strike force has emerged from the Bajoran Wormhole and is operating in the Bajoran system. The Dominion is not content to remain in the Gamma Quadrant."
- cp26_bajoran_wormhole.321.ok:0 "Prepare all defensive positions."
 
- cp26_bajoran_wormhole.322.name:0 "Withdrawal Noted"
- cp26_bajoran_wormhole.322.desc:0 "Our vessels stood down before combat could begin. The Jem'Hadar hold position at the wormhole exit but do not pursue. A brief transmission is received: §I\"The Founders will be watching.\"§!"
- cp26_bajoran_wormhole.322.ok:0 "Understood. Maintain alert status."
 
  # --- Wormhole Discovery Arc ---
  CP26_WORMHOLE_SURVEY:0 "Denorios Belt: Neutrino Investigation"
  CP26_WORMHOLE_SURVEY_DESC:0 "Station a science vessel with a scientist at the anomaly site in the Denorios Belt. The neutrino disturbances are extraordinary - and may indicate something far greater than a simple stellar phenomenon."
 
- cp26_bajoran_wormhole.12.name:0 "Denorios Belt - Anomalous Readings"
- cp26_bajoran_wormhole.12.desc:0 "A fleet entering the Bajoran system has detected unusual neutrino disturbances within the Denorios Belt. The source is unclear, but the readings are unlike anything previously recorded.\n\nA scientific survey mission is recommended. Station a science vessel with a scientist aboard at the anomaly site to begin investigation."
- cp26_bajoran_wormhole.12.ok:0 "Dispatch a science vessel."
 
- cp26_bajoran_wormhole.21.name:0 "2369 - The Denorios Anomaly Intensifies"
- cp26_bajoran_wormhole.21.desc:0 "Scientific monitors have recorded a sharp increase in neutrino emissions from the Denorios Belt. The readings defy all known stellar models.\n\nThe Bajoran Science Ministry has classified this a priority investigation. A survey mission has been authorized - station a science vessel with a scientist at the anomaly site in the Bajoran system."
- cp26_bajoran_wormhole.21.ok:0 "Dispatch the survey team immediately."
  cp26_minor_mission.ai_fallback:0 "Acknowledge the report."
  cp26_minor_mission.ai_fallback.tt:0 "AI fallback option for mission events without a major-power-specific response."
 
@@ -602,10 +569,10 @@ CP26_SYNTH_GROUND_ASSAULT_DESC:0 "An A500 rebellion is underway on this planet. 
 
  # Bajor Liberation  -  autonomous resolution (cp26_bajor.33/.34)
  cp26_bajor.33.name:0 "Bajor: The Resistance Has Prevailed"
- cp26_bajor.33.desc:0 "Without outside intervention, the Bajoran resistance cells finally overwhelmed the Cardassian garrison. Bajor is free — at great cost. The last Cardassians on the surface have been killed or expelled. The Bajoran Council claims independence."
+ cp26_bajor.33.desc:0 "Without outside intervention, the Bajoran resistance cells finally overwhelmed the Cardassian garrison. Bajor is free - at great cost. The last Cardassians on the surface have been killed or expelled. The Bajoran Council claims independence."
  cp26_bajor.33.a:0 "A people who refuse to be enslaved will always find a way to be free."
  cp26_bajor.34.name:0 "Bajor: Cardassia Has Crushed the Rebellion"
- cp26_bajor.34.desc:0 "The Cardassian garrison, reinforced from within, has broken the Bajoran uprising. The resistance has been decapitated. Bajor remains under occupation — but the suppression has left deep scars on the population and infrastructure."
+ cp26_bajor.34.desc:0 "The Cardassian garrison, reinforced from within, has broken the Bajoran uprising. The resistance has been decapitated. Bajor remains under occupation - but the suppression has left deep scars on the population and infrastructure."
  cp26_bajor.34.a:0 "The resistance will survive. It always does."
 
  # Bajor Liberation  -  journal chain (legacy keys, kept for compatibility)
@@ -703,7 +670,7 @@ CP26_SYNTH_GROUND_ASSAULT_DESC:0 "An A500 rebellion is underway on this planet. 
 
  # Bajor Liberation  -  resolution event (cp26_bajor.10)
  cp26_bajor.10.name:0 "Liberation of Bajor"
- cp26_bajor.10.desc:0 "The Cardassian occupation has ended. Bajor is free. The Bajoran people now take their destiny into their own hands — the withdrawal of Cardassian forces marks the beginning of a new era for this ancient world."
+ cp26_bajor.10.desc:0 "The Cardassian occupation has ended. Bajor is free. The Bajoran people now take their destiny into their own hands - the withdrawal of Cardassian forces marks the beginning of a new era for this ancient world."
  cp26_bajor.10.a:0 "Bajor is free."
 
  # Fix: Caravaneer fleet destroyed notification (cara.1003) - missing loc in Infinite base game
@@ -742,7 +709,7 @@ CP26_SYNTH_GROUND_ASSAULT_DESC:0 "An A500 rebellion is underway on this planet. 
  qt_ufop_b6_clinics_tooltip_success:0 "£trigger_yes£ Medical clinics: §Y[This.qt_ufop_b6_clinics]§!/§Y12§!"
  qt_ufop_b6_clinics_tooltip_fail:0    "£trigger_no£ Medical clinics: §Y[This.qt_ufop_b6_clinics]§!/§Y12§!"
 
- # Quest tree — Cerritos (B2b) + Worf conditions
+ # Quest tree - Cerritos (B2b) + Worf conditions
  qt_ufop_cerritos_lower_decks:0      "Cerritos - Lower Decks"
  qt_ufop_cerritos_lower_decks_desc:0 "The support vessel U.S.S. Cerritos and her \"Lower Decks\" crews have proven their worth in second contact missions. The Enterprise paves the way: 20 surveyed systems are enough to justify their operational deployment."
  qt_ufop_cerritos_survey_tooltip_success:0 "£trigger_yes£ Systems surveyed by the Enterprise: §Y[This.qt_ufop_cerritos_surveyed]§!/§Y10§!"
@@ -754,6 +721,87 @@ CP26_SYNTH_GROUND_ASSAULT_DESC:0 "An A500 rebellion is underway on this planet. 
  qt_ufop_cerritos_observation_tooltip_success:0 "£trigger_yes£ Observation post on a pre-FTL civilisation"
  qt_ufop_cerritos_observation_tooltip_fail:0    "£trigger_no£ No observation post on a pre-FTL civilisation"
 
- # Ship size localisation — Enterprise Odyssey
+ # Ship size localisation - Enterprise Odyssey
  enterprise_odyssey:0 "Odyssey"
  enterprise_odyssey_plural:0 "Odysseys"
+
+ CP26_A500_GROUND_ASSAULT_SCIENCE:0 "A500 - Negotiated Intervention under Escort"
+ CP26_A500_GROUND_ASSAULT_SCIENCE_DESC:0 "The technical team has established a de-escalation protocol, but the synthetics refuse to stand down without military pressure. Assault troops must be deployed in orbit to support the negotiation and force the surrender of Utopia Planitia."
+
+ # ── Bajoran Wormhole Arc ──────────────────────────────────────────────
+ cp26_bajoran_wormhole_chain:0 "Bajoran Anomaly"
+ cp26_bajoran_wormhole_chain_title:0 "Bajoran Anomaly"
+ cp26_bajoran_wormhole_chain_desc:0 "Unusual disturbances have been detected in the Denorios Belt. An investigation is underway."
+
+ cp26_bajoran_wormhole.10.name:0 "Anomaly in the Denorios Belt"
+ cp26_bajoran_wormhole.10.desc:0 "Instruments in orbit around Bajor have detected unusual neutrino disturbances in the Denorios Belt - an otherwise stable region of space. The source is unknown. Starfleet recommends an investigation."
+ cp26_bajoran_wormhole.10.a:0 "Dispatch a science vessel."
+ cp26_bajoran_wormhole.10.b:0 "Do nothing for now."
+
+ cp26_bajoran_wormhole.20.name:0 "Anomaly in the Denorios Belt"
+ cp26_bajoran_wormhole.20.desc:0 "Sensors deployed in the Bajoran sector have detected abnormal energy disturbances in the Denorios Belt. The nature of these anomalies is unclear, but the High Council will not let such an opportunity pass uninvestigated."
+ cp26_bajoran_wormhole.20.a:0 "Send an expeditionary force - science and military vessels."
+ cp26_bajoran_wormhole.20.b:0 "This does not concern us."
+
+ cp26_bajoran_wormhole.30.name:0 "Anomaly in the Denorios Belt"
+ cp26_bajoran_wormhole.30.desc:0 "The Obsidian Order has forwarded data regarding anomalous neutrino disturbances in the Denorios Belt, near Bajor. A disturbance of this nature may carry strategic implications."
+ cp26_bajoran_wormhole.30.a:0 "Send a science vessel to investigate."
+ cp26_bajoran_wormhole.30.b:0 "Send a spy ship for covert reconnaissance."
+ cp26_bajoran_wormhole.30.c:0 "Do nothing."
+
+ cp26_bajoran_wormhole.40.name:0 "Anomaly in the Denorios Belt"
+ cp26_bajoran_wormhole.40.desc:0 "The Senate has been briefed on unexplained spatial disturbances in the Denorios Belt near Bajor. Preliminary data suggests an anomaly of unusual nature. The Tal Shiar is interested."
+ cp26_bajoran_wormhole.40.a:0 "Send a spy ship - study this closely."
+ cp26_bajoran_wormhole.40.b:0 "This should keep the Federation busy."
+
+ cp26_bajoran_wormhole.50.name:0 "Anomaly in the Denorios Belt"
+ cp26_bajoran_wormhole.50.desc:0 "Our commercial agents in the Bajoran sector have reported unusual spatial disturbances in the Denorios Belt. Any unexplained anomaly represents an opportunity - provided one knows how to profit from it."
+ cp26_bajoran_wormhole.50.a:0 "Send a prospector to assess the possibilities."
+ cp26_bajoran_wormhole.50.b:0 "Organise a tourist colony in the sector. §Y+1,000 §Genergy credits§!"
+ cp26_bajoran_wormhole.50.c:0 "Do nothing."
+
+ cp26_bajoran_wormhole.100.name:0 "Wormhole Discovered in the Denorios Belt"
+ cp26_bajoran_wormhole.100.desc:0 "Instruments confirm the existence of a stable subspace aperture at the heart of the Denorios Belt, between Bajor IX and Bajor X. The anomaly forms a corridor to an unknown region of the galaxy - already being called the \"Gamma Quadrant\"."
+
+ cp26_bajoran_wormhole.100.a_ufop:0 "Extraordinary. We must explore."
+ cp26_bajoran_wormhole.100.b_ufop:0 "Let us proceed with caution."
+ cp26_bajoran_wormhole.100.a_klingon:0 "A gateway to Sto-vo-kor!"
+ cp26_bajoran_wormhole.100.b_klingon:0 "This does not concern us."
+ cp26_bajoran_wormhole.100.a_cardassian:0 "Interesting. We must reclaim Bajor."
+ cp26_bajoran_wormhole.100.b_cardassian:0 "Interesting. We will monitor this from a distance."
+ cp26_bajoran_wormhole.100.a_romulan:0 "We will study this very closely."
+ cp26_bajoran_wormhole.100.b_romulan:0 "This should keep the Federation quite occupied."
+ cp26_bajoran_wormhole.100.a_ferengi:0 "A whole new world of opportunity!"
+ cp26_bajoran_wormhole.100.b_ferengi:0 "Let us explore the possibility of a toll."
+
+ # Projects
+ CP26_BAJORAN_WORMHOLE_SURVEY_UFOP:0 "Denorios Anomaly Investigation"
+ CP26_BAJORAN_WORMHOLE_SURVEY_UFOP_DESC:0 "Station a science vessel in the Denorios Belt to analyse the detected neutrino disturbances. The findings may reveal something extraordinary."
+ CP26_BAJORAN_WORMHOLE_SURVEY_KLINGON:0 "Expeditionary Force - Denorios Belt"
+ CP26_BAJORAN_WORMHOLE_SURVEY_KLINGON_DESC:0 "A science vessel escorted by a warship is deployed into the Denorios Belt. The Empire takes no chances."
+ CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SCIENCE:0 "Scientific Investigation - Denorios Belt"
+ CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SCIENCE_DESC:0 "A Cardassian science vessel is dispatched to analyse the disturbances in the Denorios Belt."
+ CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SPY:0 "Covert Reconnaissance - Denorios Belt"
+ CP26_BAJORAN_WORMHOLE_SURVEY_CARDASSIAN_SPY_DESC:0 "A spy ship is quietly deployed to analyse the anomaly without attracting attention."
+ CP26_BAJORAN_WORMHOLE_SURVEY_ROMULAN:0 "Tal Shiar Surveillance - Denorios Belt"
+ CP26_BAJORAN_WORMHOLE_SURVEY_ROMULAN_DESC:0 "A Romulan spy ship is tasked with analysing the anomaly from the shadows."
+ CP26_BAJORAN_WORMHOLE_SURVEY_FERENGI:0 "Commercial Prospecting - Denorios Belt"
+ CP26_BAJORAN_WORMHOLE_SURVEY_FERENGI_DESC:0 "A Ferengi prospector is sent to assess the economic potential of the Denorios Belt anomaly."
+
+ # Arc A500 - Intermediate event cp26_a500.15
+ cp26_a500.15.title:0 "Utopia Planitia: Preliminary Report"
+ cp26_a500.15.desc_science:0 "Our engineering team is now on-site at Utopia Planitia. Initial analysis of the A500 units is underway. The data is troubling - the synthetics appear to have developed unauthorised autonomous communication protocols. Our teams are maintaining the situation for now."
+ cp26_a500.15.desc_military:0 "Our troops are actively examining the A500 androids displaying abnormal behaviour. A security perimeter around Utopia Planitia has been established. However, the A500 units refuse to cooperate and the situation is deteriorating. Reinforcements will be needed to contain the escalation."
+ cp26_a500.15.desc_governor:0 "The governor is overseeing the situation at Utopia Planitia. The A500 units are showing increasing resistance to administrative directives. The situation requires the immediate attention of all available resources."
+ cp26_a500.15.a:0 "Understood. We are monitoring the situation."
+
+ # Ground assault projects - new
+ CP26_A500_GROUND_ASSAULT_SCIENCE:0 "A500 - Emergency Scientific Analysis"
+ CP26_A500_GROUND_ASSAULT_SCIENCE_DESC:0 "The army holds the perimeter but cannot deactivate the A500s without understanding their architecture. A science vessel must be dispatched to Mars to analyse the network and identify a shutdown protocol."
+ CP26_A500_GROUND_ASSAULT_GOVERNOR:0 "A500 - Coordinated Intervention"
+ CP26_A500_GROUND_ASSAULT_GOVERNOR_DESC:0 "The rebellion requires a coordinated response. A science vessel and assault troops must be deployed jointly to retake Utopia Planitia."
+
+ CP26_A500_GROUND_ASSAULT_HARD:0 "A500 - Full Emergency Intervention"
+ CP26_A500_GROUND_ASSAULT_HARD_DESC:0 "The situation at Utopia Planitia has spiralled out of control. A massive intervention force is required: three military vessels, one science ship, and assault troops must be deployed simultaneously to retake the Martian shipyards."
+
+ WORMHOLE_NAME:0 "Bajoran Wormhole"
