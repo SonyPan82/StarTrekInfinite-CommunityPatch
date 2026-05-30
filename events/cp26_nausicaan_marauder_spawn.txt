@@ -1,0 +1,70 @@
+##########################################################################
+# Nausicaan Marauders — Spawn conditionnel au démarrage
+# Activé via la popup de début de partie (désactivé par défaut - TEST)
+##########################################################################
+
+namespace = cp26_nausicaan
+
+country_event = {
+	id = cp26_nausicaan.1
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		is_ai = no
+		is_ufop = yes
+		NOT = { has_global_flag = cp26_block_nausicaan_marauders }
+		NOT = { has_global_flag = cp26_nausicaan_spawned }
+	}
+
+	immediate = {
+		set_global_flag = cp26_nausicaan_spawned
+
+		random_system = {
+			limit = {
+				NOT = { has_owner = yes }
+				NOT = { has_star_flag = primitive_system }
+				NOT = { is_inside_border = root }
+			}
+			save_event_target_as = nausicaan_home_system
+		}
+
+		if = {
+			limit = { exists = event_target:nausicaan_home_system }
+			create_country = {
+				name = "NAME_Nausicaan_Raiders"
+				type = dormant_marauders
+				origin = "origin_default"
+				flag = {
+					icon = {
+						category = "special"
+						file = "flag_nausicaan.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_grey"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					set_country_flag = nausicaan
+					set_country_flag = marauder_1
+					save_global_event_target_as = nausicaan_marauder_country
+				}
+			}
+			event_target:nausicaan_home_system = {
+				set_capital = yes
+				create_starbase = {
+					size = starbase_marauder
+					owner = event_target:nausicaan_marauder_country
+				}
+			}
+		}
+	}
+}

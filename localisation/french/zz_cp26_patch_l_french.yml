@@ -458,7 +458,7 @@
  col_pleasure_desc:0 "La quasi-totalité de la colonie est une destination de vacances consacrée au plaisir des touristes."
  constellation:0 "Constellation"
  constellation_plural:0 "Constellation"
- cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HFleet Cap§! : nombre maximum de vaisseaux militaires constructibles par empire. §Y48§! est recommandé pour l’équilibre et les performances ; §Y100§! se rapproche du comportement vanilla.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : la libération de Bajor est scriptée et demande certains choix.\n§HProjet Synth§! : offre du gameplay à la Fédération et aux Romuliens, inspiré de Star Trek : Picard."
+ cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HFleet Cap§! : nombre maximum de vaisseaux militaires constructibles par empire. §Y56§! est recommandé pour l’équilibre et les performances.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : arc narratif incluant la libération de Bajor et l’apparition du trou de ver bajoran.\n§HMaraudeurs Nausicaans§! : active un empire pirate Nausicaan comme faction indépendante sur la carte (bêta).\n§HProjet Synth§! : offre du gameplay à la Fédération et aux Romuliens, inspiré de Star Trek : Picard."
  cp26_options.1.pirates_on:0 "Pirates : §Gactivés§!"
  cp26_options.1.pirates_on.tt:0 "Cliquez pour désactiver les pirates pour cette campagne."
  cp26_options.1.pirates_off:0 "Pirates : §Rdésactivés§!"
@@ -1342,3 +1342,10 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
  CP26_A500_GROUND_ASSAULT_HARD_DESC:0 "La situation à Utopia Planitia a dégénéré sans contrôle. Une force d'intervention massive est requise : trois vaisseaux militaires, un vaisseau scientifique et des troupes d'assaut doivent être déployés simultanément pour reprendre les chantiers navals martiens."
 
  WORMHOLE_NAME:0 "Trou de ver de Bajor"
+
+ # Nausicaan Marauders toggle
+ cp26_options.1.nausicaan_on:0 "Maraudeurs Nausicaans (TEST) : §Gdésactivé§!"
+ cp26_options.1.nausicaan_on.tt:0 "Cliquez pour §Gactiver§! les Nausicaans comme maraudeurs (bêta - peut causer des bugs)."
+ cp26_options.1.nausicaan_off:0 "Maraudeurs Nausicaans (TEST) : §Ractivé§!"
+ cp26_options.1.nausicaan_off.tt:0 "Cliquez pour §Rdésactiver§! les Nausicaans comme maraudeurs."
+ NAME_Nausicaan_Raiders:0 "Raider Nausicaans"

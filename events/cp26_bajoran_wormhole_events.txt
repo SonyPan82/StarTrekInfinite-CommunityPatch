@@ -260,7 +260,7 @@ country_event = {
 	id = cp26_bajoran_wormhole.100
 	title = cp26_bajoran_wormhole.100.name
 	desc = cp26_bajoran_wormhole.100.desc
-	picture = GFX_evt_mysterious_event
+	picture = GFX_evt_highway_ftl_travel_ufop
 	show_sound = event_alien_nature
 	is_triggered_only = yes
 
