@@ -57,14 +57,14 @@ cp26_under_reduced_fleet_military_cap = {
 		AND = {
 			has_global_flag = cp26_naval_cap_100
 			count_owned_ship = {
-				count < 131
+				count < 201
 				limit = { cp26_is_non_hero_military_ship = yes }
 			}
 		}
 		AND = {
 			NOT = { has_global_flag = cp26_naval_cap_100 }
 			count_owned_ship = {
-				count < 57
+				count < 81
 				limit = { cp26_is_non_hero_military_ship = yes }
 			}
 		}
