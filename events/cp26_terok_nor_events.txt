@@ -14,3 +14,17 @@ country_event = {
 		cp26_spawn_terok_nor_at_bajor = yes
 	}
 }
+
+country_event = {
+	id = cp26_terok_nor.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = bajoran
+	}
+
+	immediate = {
+		cp26_transfer_terok_nor_to_bajor = yes
+	}
+}

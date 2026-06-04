@@ -215,7 +215,7 @@ utility_component_template = {
 	size_restriction = {
 		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
 		bird_of_prey warbird ktinga kvort kamarag cp26_klingon_raptor # KLINGON
-		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
+		gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
 		small_minor medium_minor # MINORS
@@ -1052,7 +1052,7 @@ utility_component_template = {
 	size_restriction = {
 		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
 		bird_of_prey warbird ktinga kvort kamarag cp26_klingon_raptor # KLINGON
-		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
+		gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
 		small_minor medium_minor # MINORS
@@ -1097,7 +1097,7 @@ utility_component_template = {
 	size_restriction = {
 		miranda defiant intrepid california excelsior ambassador constellation lantree # UFOP
 		bird_of_prey warbird ktinga kvort kamarag cp26_klingon_raptor # KLINGON
-		breenbattleship breencorvette breendestroyer gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
+		gornbattleship gorncorvette gorndestroyer orionbattleship orioncorvette oriondestroyer tholianbattleship tholiancorvette tholiandestroyer # Added species ships
 		ferrax vindius valdore # ROMULAN
 		hideki galor keldon # CARDASSIAN
 		small_minor medium_minor # MINORS

@@ -290,52 +290,6 @@ contender = {
 				}
 			}
 
-			### Breen ships ###
-			
-			breenbattleship = {
-				fraction = {
-					base = 0
-					modifier = {
-						add = 14
-						has_country_id = "breen"
-						OR = {
-							has_technology = tech_battleship_unlock
-							has_technology = tech_cruiser_unlock
-						}
-					}
-				}
-			}
-
-			breendestroyer = {
-				fraction = {
-					base = 0
-					modifier = {
-						add = 30
-						has_country_id = "breen"
-						has_technology = tech_destroyer_unlock
-					}
-					modifier = {
-						add = -5
-						has_country_id = "breen"
-						OR = {
-							has_technology = tech_battleship_unlock
-							has_technology = tech_cruiser_unlock
-						}
-					}
-				}
-			}
-
-			breencorvette = {
-				fraction = {
-					base = 55
-					modifier = {
-						add = -25
-						has_technology = tech_destroyer_unlock
-						has_country_id = "breen"
-					}
-				}
-			}
-
 			### Default for contenders without own shipset ###
 			large_nausicaan = {
 				fraction = {

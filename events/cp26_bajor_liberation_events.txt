@@ -564,6 +564,7 @@ country_event = {
 				event_target:bajoran_country = {
 					add_opinion_modifier = { who = root modifier = cp26_bajor_opposed_liberation }
 				}
+				cp26_transfer_terok_nor_to_bajor = yes
 			}
 		}
 	}
@@ -604,6 +605,7 @@ country_event = {
 			event_target:bajoran_country = {
 				set_subject_of = { who = none }
 			}
+			cp26_transfer_terok_nor_to_bajor = yes
 
 			# Frontieres permanentes avec l'empire liberateur
 			if = {
@@ -808,6 +810,7 @@ planet_event = {
 					kill_pop = yes
 				}
 				owner = { set_subject_of = { who = none } }
+				cp26_transfer_terok_nor_to_bajor = yes
 				every_country = {
 					limit = {
 						has_communications = owner

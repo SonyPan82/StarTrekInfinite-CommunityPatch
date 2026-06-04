@@ -71,6 +71,30 @@ cp26_spawn_terok_nor_at_bajor = {
 	}
 }
 
+
+cp26_transfer_terok_nor_to_bajor = {
+	cp26_bajor_bootstrap_targets_effect = yes
+	if = {
+		limit = {
+			exists = event_target:bajoran_country
+			exists = event_target:bajoran_planet
+			exists = event_target:bajoran_system
+			event_target:bajoran_planet = {
+				is_owned_by = event_target:bajoran_country
+			}
+		}
+		event_target:bajoran_system = {
+			every_system_megastructure = {
+				limit = { is_megastructure_type = cp26_terok_nor }
+				set_owner = event_target:bajoran_country
+			}
+		}
+		event_target:bajoran_country = {
+			set_country_flag = cp26_terok_nor_built
+		}
+	}
+}
+
 cp26_bajor_start_rebellion_setup = {
 	if = {
 		limit = { NOT = { has_global_flag = cp26_bajor_rebellion_active } }

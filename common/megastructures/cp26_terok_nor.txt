@@ -1,6 +1,6 @@
 cp26_terok_nor = {
-	entity = "cp26_terok_nor_starfortress_entity"
-	construction_entity = "cp26_terok_nor_starfortress_construction_entity"
+	entity = "cp26_terok_nor_starhold_entity"
+	construction_entity = "cp26_terok_nor_starhold_construction_entity"
 	portrait = GFX_megastructure_construction_background
 	place_entity_on_planet_plane = yes
 	entity_offset = { x = -4 y = 12 }

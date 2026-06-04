@@ -1,0 +1,5 @@
+on_monthly_pulse_country = {
+	events = {
+		cp26_terok_nor.2
+	}
+}
