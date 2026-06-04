@@ -9,7 +9,6 @@ tech_odyssey_unlock = {
 
 	potential = {
 		is_ufop = yes
-		has_country_flag = cp26_odyssey_unlocked
 	}
 
 	triggered_config = {
@@ -21,9 +20,7 @@ tech_odyssey_unlock = {
 		icon = tech_sovereign
 	}
 
-	weight_modifier = {
-		factor = 0
-	}
+	weight_modifier = { factor = 0 }
 
 	ai_weight = {
 		factor = 3

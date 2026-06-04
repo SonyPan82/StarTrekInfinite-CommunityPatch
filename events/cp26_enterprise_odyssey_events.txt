@@ -90,7 +90,7 @@ country_event = {
 
 				create_ship = {
 					name = "NAME_Enterprise_Odyssey"
-					design = NAME_Enterprise_Odyssey_Class
+					design = NAME_Odyssey_Class
 				}
 
 				set_location = event_target:ufop_sol_starbase_ship

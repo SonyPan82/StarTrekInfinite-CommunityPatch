@@ -11,7 +11,6 @@ tech_neo_constitution_unlock = {
 
 	potential = {
 		is_ufop = yes
-		has_country_flag = cp26_a500_resolved
 	}
 
 	triggered_config = {
@@ -22,6 +21,10 @@ tech_neo_constitution_unlock = {
 	}
 
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = { has_country_flag = cp26_a500_resolved }
+		}
 		modifier = {
 			factor = 1
 			years_passed < 8
@@ -58,7 +61,6 @@ tech_sagan_unlock = {
 
 	potential = {
 		is_ufop = yes
-		has_country_flag = cp26_a500_resolved
 	}
 
 	triggered_config = {
@@ -69,6 +71,10 @@ tech_sagan_unlock = {
 	}
 
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = { has_country_flag = cp26_a500_resolved }
+		}
 		modifier = {
 			factor = 0.5
 			years_passed < 12
@@ -105,7 +111,6 @@ tech_duderstadt_unlock = {
 
 	potential = {
 		is_ufop = yes
-		has_country_flag = cp26_a500_resolved
 	}
 
 	triggered_config = {
@@ -116,6 +121,10 @@ tech_duderstadt_unlock = {
 	}
 
 	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = { has_country_flag = cp26_a500_resolved }
+		}
 		modifier = {
 			factor = 0.25
 			years_passed < 18
