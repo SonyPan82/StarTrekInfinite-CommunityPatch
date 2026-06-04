@@ -12,5 +12,6 @@ on_game_start_country = {
 		cp26_spawn_repair.2
 		cp26_ai_shipyard.1
 		cp26_ai_pulse.1
+		cp26_terok_nor.1
 	}
 }

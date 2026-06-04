@@ -76,5 +76,42 @@ bajoran_bajor_initializer = {
 			size = starbase_starport
 			owner = event_target:bajoran_country
 		}
+		if = {
+			limit = { has_star_flag = bajoran_system }
+			every_country = {
+				if = {
+					limit = {
+						OR = {
+							has_country_flag = cardassia
+							is_cardassian = yes
+						}
+						NOT = { has_country_flag = cp26_terok_nor_built }
+					}
+					save_event_target_as = cp26_cardassian_country_for_terok_nor
+				}
+			}
+			every_system_planet = {
+				limit = { has_planet_flag = bajor }
+				save_event_target_as = cp26_bajor_planet_for_terok_nor
+			}
+			if = {
+				limit = {
+					exists = event_target:cp26_cardassian_country_for_terok_nor
+					exists = event_target:cp26_bajor_planet_for_terok_nor
+					NOT = { has_star_flag = cp26_terok_nor_system }
+				}
+				spawn_megastructure = {
+					type = "cp26_terok_nor"
+					planet = event_target:cp26_bajor_planet_for_terok_nor
+					owner = event_target:cp26_cardassian_country_for_terok_nor
+					orbit_distance = 8
+					orbit_angle = 45
+				}
+				set_star_flag = cp26_terok_nor_system
+				event_target:cp26_cardassian_country_for_terok_nor = {
+					set_country_flag = cp26_terok_nor_built
+				}
+			}
+		}
 	}
 }

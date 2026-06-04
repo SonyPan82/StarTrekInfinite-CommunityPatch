@@ -1,0 +1,44 @@
+entity = {
+	name = "cp26_terok_nor_starfortress_entity"
+
+	locator = { name = "root" position = { 0 0 0 } }
+	locator = { name = "explosion_effect" position = { 0 3 0 } }
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 }
+	state = { name = "construction" state_time = 5 }
+	state = { name = "death" state_time = 5 looping = no
+		event = { time = 4.9 node = "explosion_effect" particle = "large_player_ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 2.0
+	}
+
+	attach = { "root" = "cardassian_01_starbase_starfortress_section_entity" }
+
+	cull_radius = 500
+	scale = 0.75
+}
+
+entity = {
+	name = "cp26_terok_nor_starfortress_construction_entity"
+
+	locator = { name = "root" position = { 0 0 0 } }
+
+	default_state = "construction"
+	state = { name = "construction" state_time = 5
+		event = { trigger_once = yes sound = { soundeffect = "place_construction" } }
+	}
+
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 2.0
+	}
+
+	attach = { "root" = "cardassian_01_starbase_starfortress_section_entity" }
+
+	cull_radius = 500
+	scale = 0.75
+}

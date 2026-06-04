@@ -8,7 +8,12 @@ cp26_bajor_bootstrap_targets_effect = {
 		}
 	}
 	every_country = {
-		limit = { has_country_flag = cardassian }
+		limit = {
+			OR = {
+				has_country_flag = cardassia
+				is_cardassian = yes
+			}
+		}
 		save_global_event_target_as = cardassian_country
 	}
 	every_country = {
@@ -26,6 +31,43 @@ cp26_bajor_bootstrap_targets_effect = {
 	every_country = {
 		limit = { has_country_flag = ferengi }
 		save_global_event_target_as = ferengi_country
+	}
+}
+
+
+cp26_spawn_terok_nor_at_bajor = {
+	cp26_bajor_bootstrap_targets_effect = yes
+	if = {
+		limit = {
+			exists = event_target:bajoran_system
+			exists = event_target:bajoran_planet
+			exists = event_target:cardassian_country
+			event_target:cardassian_country = {
+				NOT = { has_country_flag = cp26_terok_nor_built }
+			}
+			event_target:bajoran_system = {
+				NOT = {
+					any_system_megastructure = {
+						is_megastructure_type = cp26_terok_nor
+					}
+				}
+			}
+		}
+		event_target:bajoran_system = {
+			spawn_megastructure = {
+				type = "cp26_terok_nor"
+				planet = event_target:bajoran_planet
+				owner = event_target:cardassian_country
+				orbit_distance = 8
+				orbit_angle = 45
+			}
+		}
+		event_target:cardassian_country = {
+			set_country_flag = cp26_terok_nor_built
+		}
+		event_target:bajoran_system = {
+			set_star_flag = cp26_terok_nor_system
+		}
 	}
 }
 

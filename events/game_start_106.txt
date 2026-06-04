@@ -52,6 +52,8 @@ event = {
 			}
 		}
 
+		cp26_spawn_terok_nor_at_bajor = yes
+
 		# HRB_DESIGN: TODO
 		# HRB_NOTE: this does not work and didn't work before
 		# At this stage of the game, the Minor Powers don't know each other or the Cardassians

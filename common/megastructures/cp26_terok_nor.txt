@@ -1,0 +1,70 @@
+cp26_terok_nor = {
+	entity = "cp26_terok_nor_starfortress_entity"
+	construction_entity = "cp26_terok_nor_starfortress_construction_entity"
+	portrait = GFX_megastructure_construction_background
+	place_entity_on_planet_plane = yes
+	entity_offset = { x = -4 y = 12 }
+	build_time = 720
+
+	potential = {
+		is_cardassian = yes
+	}
+
+	possible = {
+		solar_system = {
+			exists = owner
+			has_star_flag = bajoran_system
+			owner = {
+				is_cardassian = yes
+				NOT = { has_country_flag = cp26_terok_nor_built }
+			}
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = cp26_terok_nor_requires_planet_or_moon
+				NOT = { is_star = yes }
+			}
+			custom_tooltip = {
+				fail_text = cp26_terok_nor_requires_bajor_system
+				solar_system = { has_star_flag = bajoran_system }
+			}
+			custom_tooltip = {
+				fail_text = cp26_terok_nor_requires_no_megastructure
+				NOT = { has_planet_flag = has_megastructure }
+			}
+		}
+	}
+
+	resources = {
+		category = megastructures
+		produces = {
+			alloys = 4
+			minerals = 4
+		}
+		cost = {
+			alloys = 2500
+			influence = 100
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	country_modifier = {
+		country_admin_cap_add = 10
+	}
+
+	on_build_complete = {
+		from = {
+			set_country_flag = cp26_terok_nor_built
+		}
+		fromfrom = {
+			set_star_flag = cp26_terok_nor_system
+		}
+	}
+
+	ai_weight = { weight = 0 }
+}
