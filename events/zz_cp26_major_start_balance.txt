@@ -36,7 +36,7 @@ country_event = {
 			country_event = { id = cp26_start_balance.3 }
 		}
 
-		# Klingon Empire - capture : 300 énergie +11, 100 minéraux ~0, 200 nourriture
+		# Klingon Empire - cushion IA sobre pour relancer l'expansion sans gonfler le joueur.
 		if = {
 			limit = { has_country_id = klingon }
 			add_resource = {
@@ -44,12 +44,19 @@ country_event = {
 				minerals = 800
 				food = 200
 			}
+			if = {
+				limit = { is_ai = yes }
+				add_resource = {
+					alloys = 150
+					influence = 50
+				}
+			}
 		}
 
 		# Romulan Star Empire - capture : déjà le plus confortable (900 énergie +9, etc.)
 		# Aucun add_resource volontaire.
 
-		# Cardassian Union - capture : 700 énergie -1/mois, 100 nourriture, minéraux OK
+		# Cardassian Union - vrai sous-seed d'expansion, surtout pour l'IA.
 		if = {
 			limit = { has_country_id = cardassian }
 			add_resource = {
@@ -57,18 +64,28 @@ country_event = {
 				minerals = 200
 				food = 450
 			}
+			if = {
+				limit = { is_ai = yes }
+				add_resource = {
+					alloys = 200
+					influence = 75
+				}
+			}
 		}
 
-		# Ferengi Alliance - seed capital pour premières succursales.
-		# Minéraux : coût d'ouverture d'une succursale (400-500) × 2 premiers deals.
-		# Énergie : trésorerie d'exploitation (revenus faibles en early game).
-		# Influence : diplomatie commerciale, premier pacte commercial dès l'an 1.
+		# Ferengi Alliance - commerce OK, mais pas assez d'alloys pour réellement pousser l'expansion.
 		if = {
 			limit = { has_country_id = ferengi }
 			add_resource = {
 				energy = 400
 				minerals = 900
 				influence = 75
+			}
+			if = {
+				limit = { is_ai = yes }
+				add_resource = {
+					alloys = 200
+				}
 			}
 		}
 	}

@@ -813,8 +813,8 @@ CP26_SYNTH_GROUND_ASSAULT_DESC:0 "An A500 rebellion is underway on this planet. 
  WORMHOLE_NAME:0 "Bajoran Wormhole"
 
  # Nausicaan Marauders toggle
- cp26_options.1.nausicaan_on:0 "Nausicaan Marauders (TEST): §GDisabled§!"
- cp26_options.1.nausicaan_on.tt:0 "Click to §Genable§! Nausicaan marauders (beta - may cause bugs)."
- cp26_options.1.nausicaan_off:0 "Nausicaan Marauders (TEST): §REnabled§!"
- cp26_options.1.nausicaan_off.tt:0 "Click to §Rdisable§! Nausicaan marauders."
+ cp26_options.1.nausicaan_on:0 "Nausicaan Marauders (TEST): §GEnabled§!"
+ cp26_options.1.nausicaan_on.tt:0 "Click to §Rdisable§! Nausicaan marauders."
+ cp26_options.1.nausicaan_off:0 "Nausicaan Marauders (TEST): §RDisabled§!"
+ cp26_options.1.nausicaan_off.tt:0 "Click to §Genable§! Nausicaan marauders (beta - may cause bugs)."
  NAME_Nausicaan_Raiders:0 "Nausicaan Raiders"

@@ -1350,8 +1350,8 @@ ACTION_DISSOLVE_NEUTRAL_ZONE_COST:1 "$ACTION_DISSOLVE_NEUTRAL_ZONE_DESC$"
  WORMHOLE_NAME:0 "Trou de ver de Bajor"
 
  # Nausicaan Marauders toggle
- cp26_options.1.nausicaan_on:0 "Maraudeurs Nausicaans (TEST) : §Gdésactivé§!"
- cp26_options.1.nausicaan_on.tt:0 "Cliquez pour §Gactiver§! les Nausicaans comme maraudeurs (bêta - peut causer des bugs)."
- cp26_options.1.nausicaan_off:0 "Maraudeurs Nausicaans (TEST) : §Ractivé§!"
- cp26_options.1.nausicaan_off.tt:0 "Cliquez pour §Rdésactiver§! les Nausicaans comme maraudeurs."
+ cp26_options.1.nausicaan_on:0 "Maraudeurs Nausicaans (TEST) : §Gactivé§!"
+ cp26_options.1.nausicaan_on.tt:0 "Cliquez pour §Rdésactiver§! les Nausicaans comme maraudeurs."
+ cp26_options.1.nausicaan_off:0 "Maraudeurs Nausicaans (TEST) : §Rdésactivé§!"
+ cp26_options.1.nausicaan_off.tt:0 "Cliquez pour §Gactiver§! les Nausicaans comme maraudeurs (bêta - peut causer des bugs)."
  NAME_Nausicaan_Raiders:0 "Raider Nausicaans"
