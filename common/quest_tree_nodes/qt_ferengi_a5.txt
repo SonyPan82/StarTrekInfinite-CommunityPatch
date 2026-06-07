@@ -3,7 +3,7 @@
 # Condition : posséder 4 planètes colonisées (Ferenginar + 3 colonies)
 
 qt_ferengi_a5 = {
-	position = { x = 8 y = 0 }
+	position = { x = 0 y = 4 }
 
 	potential = {
 		has_country_id = ferengi

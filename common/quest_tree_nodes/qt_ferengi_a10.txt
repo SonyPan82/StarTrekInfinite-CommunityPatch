@@ -3,7 +3,7 @@
 # Condition : posséder 5 mégastructures
 
 qt_ferengi_a10 = {
-	position = { x = 8 y = 2 }
+	position = { x = 2 y = 3 }
 
 	potential = {
 		has_country_id = ferengi

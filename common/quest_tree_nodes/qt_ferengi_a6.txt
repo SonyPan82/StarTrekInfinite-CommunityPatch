@@ -3,7 +3,7 @@
 # Condition : avoir 6 émissaires
 
 qt_ferengi_a6 = {
-	position = { x = 0 y = 2 }
+	position = { x = 0 y = 5 }
 
 	potential = {
 		has_country_id = ferengi

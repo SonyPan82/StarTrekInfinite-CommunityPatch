@@ -6,7 +6,7 @@
 #   - aux deux camps (5.c)  → cp26_bajor_feren_both
 
 qt_ferengi_a3 = {
-	position = { x = 4 y = 0 }
+	position = { x = 0 y = 2 }
 
 	potential = {
 		has_country_id = ferengi

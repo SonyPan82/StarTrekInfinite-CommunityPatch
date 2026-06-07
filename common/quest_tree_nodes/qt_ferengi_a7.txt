@@ -3,7 +3,7 @@
 # Condition : avoir déclaré un statu quo (flag set par on_status_quo)
 
 qt_ferengi_a7 = {
-	position = { x = 2 y = 2 }
+	position = { x = 2 y = 0 }
 
 	potential = {
 		has_country_id = ferengi

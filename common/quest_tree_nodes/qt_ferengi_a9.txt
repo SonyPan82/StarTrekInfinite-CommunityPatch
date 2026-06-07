@@ -3,7 +3,7 @@
 # Condition : avoir réussi 3 missions d'espionnage
 
 qt_ferengi_a9 = {
-	position = { x = 6 y = 2 }
+	position = { x = 2 y = 2 }
 
 	potential = {
 		has_country_id = ferengi

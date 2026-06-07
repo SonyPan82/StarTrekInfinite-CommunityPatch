@@ -61,9 +61,7 @@ cp26_terok_nor = {
 		from = {
 			set_country_flag = cp26_terok_nor_built
 		}
-		fromfrom = {
-			set_star_flag = cp26_terok_nor_system
-		}
+		set_star_flag = cp26_terok_nor_system
 	}
 
 	ai_weight = { weight = 0 }
