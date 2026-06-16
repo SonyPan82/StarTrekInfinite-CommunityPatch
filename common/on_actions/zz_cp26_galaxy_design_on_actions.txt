@@ -1,0 +1,5 @@
+on_tech_increased = {
+	events = {
+		cp26_galaxy_design.1
+	}
+}

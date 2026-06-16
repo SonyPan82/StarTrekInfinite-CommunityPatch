@@ -119,15 +119,15 @@ ufop_sol_initializer = {
 		has_ring = no
 	}
 	
-	planet = {
-		name = "NAME_2_Pallas"
-		class = "pc_asteroid"
-		subclass = psc_class_h
-		orbit_distance = 0
-		orbit_angle = -95
-		size = 5
-		has_ring = no
-	}
+		planet = {
+			name = "NAME_2_Pallas"
+			class = "pc_asteroid"
+			subclass = psc_class_h
+			orbit_distance = 0
+			orbit_angle = -95
+			size = 5
+			has_ring = no
+		}
 	
 	planet = {
 		name = "NAME_3_Juno"
@@ -139,15 +139,15 @@ ufop_sol_initializer = {
 		has_ring = no
 	}
 	
-	planet = {
-		name = "NAME_4_Vesta"
-		class = "pc_asteroid"
-		subclass = psc_class_h
-		orbit_distance = 0
-		orbit_angle = -80
-		size = 5
-		has_ring = no
-	}
+		planet = {
+			name = "NAME_4_Vesta"
+			class = "pc_asteroid"
+			subclass = psc_class_h
+			orbit_distance = 0
+			orbit_angle = -80
+			size = 5
+			has_ring = no
+		}
 	
 	planet = {
 		name = "NAME_Jupiter"
@@ -304,11 +304,11 @@ ufop_sol_initializer = {
 		has_ring = no
 	}
 	
-	init_effect = {
-		generate_home_system_resources = yes
-		every_neighbor_system = { set_star_flag = empire_cluster }
+		init_effect = {
+			generate_home_system_resources = yes
+			every_neighbor_system = { set_star_flag = empire_cluster }
 
-		every_country = {
+			every_country = {
 			if = {
 				limit = {
 					has_country_flag = ufop

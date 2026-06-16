@@ -1,0 +1,22 @@
+namespace = cp26_galaxy_design
+
+country_event = {
+	id = cp26_galaxy_design.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ufop = yes
+		NOT = { has_existing_ship_design = galaxy }
+		has_technology = tech_battleship_unlock
+		has_technology = tech_nebula_unlock
+		OR = {
+			last_increased_tech = tech_battleship_unlock
+			last_increased_tech = tech_nebula_unlock
+		}
+	}
+
+	immediate = {
+		upgrade_ship_designs = yes
+	}
+}

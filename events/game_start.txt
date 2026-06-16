@@ -722,15 +722,15 @@ country_event = {
 		# 	}
 		# 	add_research_option = tech_planetary_unification
 		# }
-		every_planet_within_border = {
-			limit = {
-				has_deposit_for = shipclass_mining_station
-				has_planet_flag = starting_mining_target
-				has_mining_station = no
-			}
-			create_mining_station = {
-				owner = ROOT
-			}
+			every_planet_within_border = {
+				limit = {
+					has_deposit_for = shipclass_mining_station
+					has_planet_flag = starting_mining_target
+					has_mining_station = no
+				}
+				create_mining_station = {
+					owner = ROOT
+				}
 		}
 		every_planet_within_border = {
 			limit = {

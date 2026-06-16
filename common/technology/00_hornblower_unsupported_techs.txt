@@ -540,16 +540,21 @@ tech_battleship_unlock = {
 			factor = 1.25
 			is_ufop = yes
 		}
-		modifier = {
-			factor = 0
-			is_ufop = yes
-			NOT = { has_technology = tech_nebula_unlock }
-		}
-		modifier = {
-			factor = 0
-			is_klingon = yes
-			NOT = { has_technology = tech_cp26_kvort_unlock }
-		}
+			modifier = {
+				factor = 0
+				is_ufop = yes
+				NOT = { has_technology = tech_nebula_unlock }
+			}
+			modifier = {
+				factor = 8
+				is_ufop = yes
+				has_technology = tech_nebula_unlock
+			}
+			modifier = {
+				factor = 0
+				is_klingon = yes
+				NOT = { has_technology = tech_cp26_kvort_unlock }
+			}
 		modifier = {
 			factor = 0
 			is_romulan = yes

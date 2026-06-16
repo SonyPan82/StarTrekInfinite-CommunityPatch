@@ -464,7 +464,7 @@
  col_pleasure_desc:0 "La quasi-totalité de la colonie est une destination de vacances consacrée au plaisir des touristes."
  constellation:0 "Constellation"
  constellation_plural:0 "Constellation"
- cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HFleet Cap§! : nombre maximum de vaisseaux militaires constructibles par empire. §Y56§! est recommandé pour l’équilibre et les performances.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : arc narratif incluant la libération de Bajor et l’apparition du trou de ver bajoran.\n§HMaraudeurs Nausicaans§! : active un empire pirate Nausicaan comme faction indépendante sur la carte (bêta).\n§HProjet Synth§! : offre du gameplay à la Fédération et aux Romuliens, inspiré de Star Trek : Picard."
+ cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HFleet Cap§! : nombre maximum de vaisseaux militaires constructibles par empire. §Y80§! est recommandé pour l’équilibre et les performances.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : arc narratif incluant la libération de Bajor et l’apparition du trou de ver bajoran.\n§HMaraudeurs Nausicaans§! : active un empire pirate Nausicaan comme faction indépendante sur la carte (bêta).\n§HProjet Synth§! : offre du gameplay à la Fédération et aux Romuliens, inspiré de Star Trek : Picard."
  cp26_options.1.pirates_on:0 "Pirates : §Gactivés§!"
  cp26_options.1.pirates_on.tt:0 "Cliquez pour désactiver les pirates pour cette campagne."
  cp26_options.1.pirates_off:0 "Pirates : §Rdésactivés§!"

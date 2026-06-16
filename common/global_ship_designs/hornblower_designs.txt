@@ -362,16 +362,16 @@ ship_design = {
 			template = "LARGE_TRITANIUM_HULLS"
 		}
 
-		component = {
-			slot = "AUX_UTILITY_1"
-			template = "CLOAKING_DEVICE_1"
-		}
+			component = {
+				slot = "AUX_UTILITY_1"
+				template = "REACTOR_SUB_BATTERY"
+			}
 
-		component = {
-			slot = "AUX_UTILITY_2"
-			template = "SHIELD_BOOSTER"
+			component = {
+				slot = "AUX_UTILITY_2"
+				template = "REACTOR_SUB_BATTERY"
+			}
 		}
-	}
 
 	required_component = "BATTLESHIP_FUSION_REACTOR"
 	required_component = "WARP_DRIVE_1"

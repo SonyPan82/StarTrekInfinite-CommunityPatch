@@ -353,7 +353,7 @@ galaxy = {
 
 	default_behavior = "hrb_line"
 
-	prerequisites = { "tech_battleship_unlock" }
+		prerequisites = { "tech_battleship_unlock" }
 
 	potential_country = {
 		has_country_id = ufop

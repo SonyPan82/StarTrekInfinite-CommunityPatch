@@ -197,5 +197,21 @@ country_event = {
 				owner = root
 			}
 		}
+
+		event_target:ufop_homeworld.solar_system = {
+			random_system_planet = {
+				limit = {
+					has_mining_station = yes
+					OR = {
+						has_deposit = d_minerals_5
+						has_deposit = d_minerals_3
+						has_deposit = d_minerals_2
+					}
+				}
+				random_mining_station = { dismantle = yes }
+				remove_planet_flag = starting_mining_target
+				remove_planet_flag = starting_deposit
+			}
+		}
 	}
 }
