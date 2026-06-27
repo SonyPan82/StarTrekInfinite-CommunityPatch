@@ -1,65 +1,109 @@
-Community Patch 2026 Credits
-Star Trek: Infinite
+CREDITS
 
-This community patch integrates, adapts, fixes, and makes compatible work from
-multiple Star Trek: Infinite Workshop mods. Full credit for original mod content
-belongs to the original Workshop authors listed below.
+Community Patch 2026 is a fan-made project built upon the work, ideas, assets, and contributions of many members of the Star Trek: Infinite and Stellaris modding communities.
 
-Steam Workshop Credits
+Special thanks to all creators whose work inspired, influenced, or was integrated into this project.
 
-Core fixes and gameplay adjustments
-- Ongoing Bug Fixes / Chance (Kaedrin)
-- Integration Adjustments / Chance (Kaedrin)
-- Nebula Refinery and Ice Mining Station Expanded / Chance (Kaedrin)
-- Federation of War / Warnstaff
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Federation ships and hero ships
-- Ambassador Class / Tiphias
-- Akira Class / PhantomPumpkin / pumpkindude86
-- Constellation Class / Pureon
-- USS Lantree Class / Pureon
-- New Orleans Class / Muzual / Tiphias
-- USS Voyager - Event Ship Fix / Muzual
-- Enterprise E Fixed / AlphaAsh
-- Extended Name Lists / Muzual
+STAR TREK: INFINITE COMMUNITY
 
-Colonies, planets, map, and events
-- Canonized Map and Events / JeBuSBrian / JelleFly
-- Mars & Luna / AlphaAsh
-- Denobula & Denobulans / AlphaAsh
-- Data Is Immortal! / AlphaAsh
-- Remans and Remus / AlphaAsh
-- Risa & Risans / AlphaAsh
-- Colonized Terra Nova / Aris Vakh'Ba
-- Colonized Vega / Aris Vakh'Ba
+Core Fixes & Gameplay
 
-Additional civilizations and contenders
-- The Tholian Assembly / AlphaAsh
-- The Orion Empire / AlphaAsh
-- The Gorn Hegemony / AlphaAsh
-- The Breen Confederacy / AlphaAsh
+• Kaedrin
+  - Ongoing Bug Fixes
+  - Integration Adjustments
+  - Nebula Refinery and Ice Mining Station Expanded
 
-Model and special thanks found in Workshop descriptions
-- Akira Class: PhantomPumpkin credits Fractal, author of Star Trek: Renaissance.
-- USS Lantree Class: Pureon credits Muzual, AlphaAsh, Aris Vakh'Ba, and JelleFly.
-- New Orleans Class: Workshop description credits Tiphias and Muzual, with the model by Tiphias.
-- The Orion Empire: AlphaAsh credits Tiphias for the Interceptor and Raider models.
-- The Gorn Hegemony: AlphaAsh credits Tiphias for the Ddraig model.
-- Canonized Map and Events: JeBuSBrian and JelleFly credit AlphaAsh for reuse/integration of Romulus & Remus content.
+• Warnstaff
+  - Federation of War
 
-Stellaris Shipset Integrations
-The following shipsets have been adapted and integrated into the mod:
+• AlphaAsh
+  - Consortiums
 
-- Gorn : Master of Orion: Trilarian Shipset
-https://steamcommunity.com/sharedfiles/filedetails/?id=2871658763
+Ships
 
-- Orion : Lord of Rigel: Tharrn Shipset
-https://steamcommunity.com/sharedfiles/filedetails/?id=2996779545
+• Tiphias
+  - Ambassador Class
+  - New Orleans Class (co-author)
 
-- Federation : Star Trek: New Horizons
-https://steamcommunity.com/sharedfiles/filedetails/?id=688086068
+• PhantomPumpkin (pumpkindude86)
+  - Akira Class
 
-Special thanks to the original authors for their outstanding work and inspiration.
+• Pureon
+  - Constellation Class
+  - USS Lantree Class
 
-CP26 original integration work
-- Compatibility merge, startup error fixes, French localisation cleanup, optional pirate start option, galaxy-size adjustments, California Class restoration, Luna Class integration, and CP26-specific fixes by yobsvhs the Community Patch 2026 project.
+• Muzual
+  - New Orleans Class (co-author)
+  - USS Voyager Event Ship Fix
+  - Extended Name Lists
+
+• AlphaAsh
+  - Enterprise-E Fix
+
+Map, Colonies & Events
+
+• JeBuSBrian & JelleFly
+  - Canonized Map and Events
+
+• AlphaAsh
+  - Mars & Luna
+  - Denobula & Denobulans
+  - Data Is Immortal!
+  - Remans and Remus
+  - Risa & Risans
+
+• Aris Vakh'Ba
+  - Colonized Terra Nova
+  - Colonized Vega
+
+Civilizations
+
+• AlphaAsh
+  - The Tholian Assembly
+  - The Orion Empire
+  - The Gorn Hegemony
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STELLARIS MODDING COMMUNITY
+
+Special thanks to the creators and contributors behind:
+
+• Star Trek: New Horizons
+• Star Trek: New Civilisations
+• Star Trek: Renaissance
+
+Several concepts, ship assets, graphical assets, gameplay ideas, and design inspirations used throughout Community Patch 2026 were inspired by these projects and the wider Stellaris Star Trek modding community.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ADDITIONAL CREDITS
+
+• Fractal
+  - Credited by PhantomPumpkin for work related to the Akira Class and Star Trek: Renaissance.
+
+• Tiphias
+  - Credited by AlphaAsh for Orion ship models.
+  - Credited by AlphaAsh for the Gorn Ddraig model.
+
+• Muzual, AlphaAsh, Aris Vakh'Ba & JelleFly
+  - Additional credits referenced by Pureon for the USS Lantree Class.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EXTERNAL SOURCES
+
+• Star Trek Online
+  - Various visual references, meshes, and textures used as inspiration by original content creators.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FINAL NOTE
+
+Community Patch 2026 would not exist without the years of work invested by the Star Trek: Infinite and Stellaris modding communities.
+
+To all modders, artists, programmers, writers, testers, and players who continue to keep Star Trek gaming alive:
+
+Thank you.

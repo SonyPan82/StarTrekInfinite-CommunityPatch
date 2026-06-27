@@ -1,0 +1,373 @@
+namespace = cp26_daystrom
+
+country_event = {
+	id = cp26_daystrom.1
+	title = cp26_daystrom.1.title
+	desc = cp26_daystrom.1.desc
+	show_sound = event_default
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		has_country_flag = cp26_daystrom_station_built
+		NOT = { has_country_flag = cp26_daystrom_arc_ended }
+		NOT = { has_country_flag = cp26_daystrom_spawned_rift_empire }
+	}
+
+	option = {
+		name = cp26_daystrom.1.a
+		set_country_flag = cp26_daystrom_project_authorized
+		country_event = { id = cp26_daystrom.2 days = 180 }
+	}
+
+	option = {
+		name = cp26_daystrom.1.b
+		set_country_flag = cp26_daystrom_project_limited
+		country_event = { id = cp26_daystrom.2 days = 240 }
+	}
+
+	option = {
+		name = cp26_daystrom.1.c
+		set_country_flag = cp26_daystrom_arc_ended
+	}
+}
+
+country_event = {
+	id = cp26_daystrom.2
+	title = cp26_daystrom.2.title
+	desc = {
+		trigger = { has_country_flag = cp26_daystrom_project_limited }
+		desc = cp26_daystrom.2.desc_limited
+	}
+	desc = cp26_daystrom.2.desc
+	show_sound = event_generic_tension
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = cp26_daystrom_project_authorized
+			has_country_flag = cp26_daystrom_project_limited
+		}
+		NOT = { has_country_flag = cp26_daystrom_arc_ended }
+		NOT = { has_country_flag = cp26_daystrom_spawned_rift_empire }
+	}
+
+	option = {
+		name = cp26_daystrom.2.a
+		set_country_flag = cp26_daystrom_power_increased
+		country_event = { id = cp26_daystrom.3 days = 180 }
+	}
+
+	option = {
+		name = cp26_daystrom.2.b
+		set_country_flag = cp26_daystrom_power_maintained
+		country_event = { id = cp26_daystrom.3 days = 240 }
+	}
+
+	option = {
+		name = cp26_daystrom.2.c
+		set_country_flag = cp26_daystrom_power_suspended
+		country_event = { id = cp26_daystrom.3 days = 360 }
+	}
+}
+
+country_event = {
+	id = cp26_daystrom.3
+	title = cp26_daystrom.3.title
+	desc = {
+		trigger = { has_country_flag = cp26_daystrom_power_suspended }
+		desc = cp26_daystrom.3.desc_suspended
+	}
+	desc = cp26_daystrom.3.desc
+	show_sound = event_generic_tension
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		OR = {
+			has_country_flag = cp26_daystrom_power_increased
+			has_country_flag = cp26_daystrom_power_maintained
+			has_country_flag = cp26_daystrom_power_suspended
+		}
+		NOT = { has_country_flag = cp26_daystrom_arc_ended }
+		NOT = { has_country_flag = cp26_daystrom_spawned_rift_empire }
+	}
+
+	option = {
+		name = cp26_daystrom.3.a
+		set_country_flag = cp26_daystrom_final_test
+		country_event = { id = cp26_daystrom.4 days = 30 }
+	}
+
+	option = {
+		name = cp26_daystrom.3.b
+		set_country_flag = cp26_daystrom_arc_ended
+	}
+
+	option = {
+		name = cp26_daystrom.3.c
+		set_country_flag = cp26_daystrom_arc_ended
+	}
+}
+
+country_event = {
+	id = cp26_daystrom.4
+	title = cp26_daystrom.4.title
+	desc = cp26_daystrom.4.desc
+	show_sound = event_explosion_minor_ship
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		has_country_flag = cp26_daystrom_final_test
+		NOT = { has_country_flag = cp26_daystrom_spawned_rift_empire }
+		exists = event_target:cp26_daystrom_system
+	}
+
+	option = {
+		name = OK
+
+		hidden_effect = {
+			set_country_flag = cp26_daystrom_spawned_rift_empire
+			set_country_flag = cp26_daystrom_arc_ended
+
+			if = {
+				limit = {
+					NOT = { exists = event_target:cp26_daystrom_anchor_body }
+				}
+				event_target:cp26_daystrom_system = {
+					random_system_planet = {
+						limit = { NOT = { is_star = yes } }
+						save_global_event_target_as = cp26_daystrom_anchor_body
+					}
+				}
+			}
+
+			if = {
+				limit = { exists = event_target:cp26_daystrom_station_scope }
+				remove_megastructure = event_target:cp26_daystrom_station_scope
+			}
+
+			if = {
+				limit = { NOT = { has_built_species = "Subspatial Entity" } }
+				create_species = {
+					class = "ART"
+					portrait = "art1"
+					name = "Subspatial Entity"
+					plural = "Subspatial Entities"
+					adjective = "Subspatial"
+					name_list = "ART1"
+					traits = {
+						trait = trait_strong
+						trait = trait_nonadaptive
+						trait = trait_enduring
+					}
+				}
+				last_created_species = {
+					save_global_event_target_as = cp26_daystrom_rift_species
+				}
+			}
+
+			create_country = {
+				name = "NAME_CP26_DAYSTROM_RIFT_COUNTRY"
+				species = "Subspatial Entity"
+				country_id = "cp26_daystrom_rift"
+				type = default
+				ship_prefix = "SSI"
+				name_list = "ART1"
+				authority = auth_imperial
+				civics = { civic = civic_military_discipline }
+				civics = { civic = civic_secret_police }
+				origin = "origin_default"
+				flag = {
+					icon = {
+						category = "special"
+						file = "flag_borgcube.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"orange"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				ethos = {
+					ethic = ethic_fanatic_militarist
+					ethic = ethic_xenophobe
+				}
+				ignore_initial_colony_error = yes
+				effect = {
+					set_faction_hostility = {
+						set_hostile = yes
+						set_neutral = no
+						set_friendly = no
+					}
+				}
+			}
+
+			last_created_country = {
+				save_global_event_target_as = cp26_daystrom_rift_country
+				set_graphical_culture = arthropoid_01
+				set_country_flag = cp26_daystrom_rift_country
+				create_leader = {
+					class = ruler
+					species = this
+					name = random
+					skill = 5
+				}
+				set_leader = last_created_leader
+				give_technology = { tech = tech_destroyer_unlock message = no }
+				give_technology = { tech = tech_cruiser_unlock message = no }
+			}
+
+			event_target:cp26_daystrom_system = {
+				spawn_planet = {
+					class = "pc_tropical"
+					location = event_target:cp26_daystrom_anchor_body
+					orbit_location = yes
+					orbit_angle_offset = 18
+					orbit_distance_offset = 8
+					size = 18
+					has_ring = no
+					init_effect = {
+						save_global_event_target_as = cp26_daystrom_rift_world
+					}
+				}
+
+				if = {
+					limit = { exists = starbase }
+					starbase = {
+						set_owner = event_target:cp26_daystrom_rift_country
+					}
+				}
+				else = {
+					create_starbase = {
+						size = starbase_citadel
+						owner = event_target:cp26_daystrom_rift_country
+						module = shipyard
+						module = gun_battery
+						module = gun_battery
+					}
+				}
+			}
+
+			if = {
+				limit = { exists = event_target:cp26_daystrom_rift_world }
+				event_target:cp26_daystrom_rift_world = {
+					set_name = "NAME_CP26_DAYSTROM_RIFT_WORLD"
+					set_owner = event_target:cp26_daystrom_rift_country
+					set_colony_type = col_default
+					clear_blockers = yes
+					while = {
+						count = 12
+						create_pop = { species = "Subspatial Entity" }
+					}
+					add_district_and_planet_size_if_needed_effect = { district = district_city }
+					add_district_and_planet_size_if_needed_effect = { district = district_city }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
+					add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+					add_building = building_capital
+				}
+			}
+
+			event_target:cp26_daystrom_rift_country = {
+				if = {
+					limit = { exists = event_target:cp26_daystrom_rift_world }
+					set_custom_capital_location = event_target:cp26_daystrom_rift_world
+				}
+
+				create_fleet = {
+					name = "NAME_CP26_DAYSTROM_RIFT_FLEET"
+					effect = {
+						set_owner = event_target:cp26_daystrom_rift_country
+						while = {
+							count = 12
+							create_ship = {
+								name = random
+								random_existing_design = corvette
+								graphical_culture = "arthropoid_01"
+								initial_officers_perc = 0.8
+							}
+						}
+						set_location = {
+							target = event_target:cp26_daystrom_anchor_body
+							distance = 120
+							angle = random
+						}
+					}
+				}
+
+				create_fleet = {
+					name = "NAME_CP26_DAYSTROM_RIFT_FLEET"
+					effect = {
+						set_owner = event_target:cp26_daystrom_rift_country
+						while = {
+							count = 8
+							create_ship = {
+								name = random
+								random_existing_design = corvette
+								graphical_culture = "arthropoid_01"
+								initial_officers_perc = 0.8
+							}
+						}
+						set_location = {
+							target = event_target:cp26_daystrom_anchor_body
+							distance = 90
+							angle = random
+						}
+					}
+				}
+
+				create_fleet = {
+					name = "NAME_CP26_DAYSTROM_RIFT_GUARD"
+					effect = {
+						set_owner = event_target:cp26_daystrom_rift_country
+						create_ship = {
+							name = random
+							random_existing_design = military_station_small
+							graphical_culture = "arthropoid_01"
+							initial_officers_perc = 1
+						}
+						set_location = {
+							target = event_target:cp26_daystrom_anchor_body
+							distance = 50
+							angle = random
+						}
+					}
+				}
+
+				if = {
+					limit = {
+						NOT = { any_owned_fleet = { is_ship_class = shipclass_constructor } }
+					}
+					create_civilian_fleet = yes
+				}
+
+				if = {
+					limit = { exists = root }
+					establish_communications_no_message = root
+				}
+			}
+
+			play_country_event_for_all_major_powers = { ID = cp26_daystrom.100 }
+		}
+	}
+}
+
+country_event = {
+	id = cp26_daystrom.100
+	title = cp26_daystrom.100.title
+	desc = cp26_daystrom.100.desc
+	show_sound = event_generic_tension
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}

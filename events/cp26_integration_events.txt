@@ -22,6 +22,17 @@ country_event = {
 			limit = { has_fleet_flag = cp26_integration_pending }
 			delete_fleet = this
 		}
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_global_flag = cp26_late_spawn_farian_done }
+					NOT = { has_global_flag = cp26_late_spawn_idanian_done }
+					NOT = { has_global_flag = cp26_late_spawn_iyaaran_done }
+					NOT = { has_global_flag = cp26_late_spawn_lissepian_done }
+				}
+			}
+			country_event = { id = cp26_late_spawn.1 days = 5 }
+		}
 		clear_global_event_target = cp26_integrated_country
 	}
 }

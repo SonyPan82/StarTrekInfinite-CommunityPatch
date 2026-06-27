@@ -56,11 +56,17 @@ cp26_daystrom_station = {
 	}
 
 	on_build_complete = {
+		save_global_event_target_as = cp26_daystrom_station_scope
 		from = {
 			set_country_flag = cp26_daystrom_station_built
+			country_event = { id = cp26_daystrom.1 days = 120 }
 		}
 		fromfrom = {
 			set_star_flag = cp26_daystrom_station_system
+			save_global_event_target_as = cp26_daystrom_system
+		}
+		fromfrom.planet = {
+			save_global_event_target_as = cp26_daystrom_anchor_body
 		}
 	}
 
