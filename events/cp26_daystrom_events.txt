@@ -122,7 +122,6 @@ country_event = {
 	trigger = {
 		has_country_flag = cp26_daystrom_final_test
 		NOT = { has_country_flag = cp26_daystrom_spawned_rift_empire }
-		exists = event_target:cp26_daystrom_system
 	}
 
 	option = {
@@ -132,21 +131,9 @@ country_event = {
 			set_country_flag = cp26_daystrom_spawned_rift_empire
 			set_country_flag = cp26_daystrom_arc_ended
 
-			if = {
-				limit = {
-					NOT = { exists = event_target:cp26_daystrom_anchor_body }
-				}
-				event_target:cp26_daystrom_system = {
-					random_system_planet = {
-						limit = { NOT = { is_star = yes } }
-						save_global_event_target_as = cp26_daystrom_anchor_body
-					}
-				}
-			}
-
-			if = {
-				limit = { exists = event_target:cp26_daystrom_station_scope }
-				remove_megastructure = event_target:cp26_daystrom_station_scope
+			random_system = {
+				limit = { has_star_flag = cp26_daystrom_station_system }
+				save_global_event_target_as = cp26_daystrom_system
 			}
 
 			if = {
@@ -163,9 +150,6 @@ country_event = {
 						trait = trait_nonadaptive
 						trait = trait_enduring
 					}
-				}
-				last_created_species = {
-					save_global_event_target_as = cp26_daystrom_rift_species
 				}
 			}
 
@@ -214,54 +198,74 @@ country_event = {
 				save_global_event_target_as = cp26_daystrom_rift_country
 				set_graphical_culture = arthropoid_01
 				set_country_flag = cp26_daystrom_rift_country
-				create_leader = {
-					class = ruler
-					species = this
-					name = random
-					skill = 5
-				}
-				set_leader = last_created_leader
 				give_technology = { tech = tech_destroyer_unlock message = no }
 				give_technology = { tech = tech_cruiser_unlock message = no }
 			}
 
-			event_target:cp26_daystrom_system = {
-				spawn_planet = {
-					class = "pc_tropical"
-					location = event_target:cp26_daystrom_anchor_body
-					orbit_location = yes
-					orbit_angle_offset = 18
-					orbit_distance_offset = 8
-					size = 18
-					has_ring = no
-					init_effect = {
-						save_global_event_target_as = cp26_daystrom_rift_world
-					}
+			if = {
+				limit = {
+					exists = event_target:cp26_daystrom_target_world
+					exists = event_target:cp26_daystrom_rift_country
 				}
-
-				if = {
-					limit = { exists = starbase }
-					starbase = {
-						set_owner = event_target:cp26_daystrom_rift_country
-					}
-				}
-				else = {
-					create_starbase = {
-						size = starbase_citadel
-						owner = event_target:cp26_daystrom_rift_country
-						module = shipyard
-						module = gun_battery
-						module = gun_battery
+				event_target:cp26_daystrom_target_world = {
+					solar_system = {
+						spawn_megastructure = {
+							type = "cp26_daystrom_rift_habitat"
+							planet = event_target:cp26_daystrom_target_world
+							owner = event_target:cp26_daystrom_rift_country
+							orbit_distance = 9
+							orbit_angle = 45
+						}
 					}
 				}
 			}
 
 			if = {
-				limit = { exists = event_target:cp26_daystrom_rift_world }
+				limit = {
+					exists = event_target:cp26_daystrom_system
+					exists = event_target:cp26_daystrom_rift_country
+				}
+				event_target:cp26_daystrom_system = {
+					every_system_megastructure = {
+						set_owner = event_target:cp26_daystrom_rift_country
+					}
+					every_system_planet = {
+						limit = {
+							NOT = { is_star = yes }
+							exists = owner
+						}
+						set_owner = event_target:cp26_daystrom_rift_country
+						set_controller = event_target:cp26_daystrom_rift_country
+					}
+					if = {
+						limit = { exists = starbase }
+						starbase = {
+							set_owner = event_target:cp26_daystrom_rift_country
+						}
+					}
+					else = {
+						create_starbase = {
+							size = starbase_starport
+							owner = event_target:cp26_daystrom_rift_country
+						}
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					exists = event_target:cp26_daystrom_rift_world
+					exists = event_target:cp26_daystrom_rift_country
+				}
 				event_target:cp26_daystrom_rift_world = {
 					set_name = "NAME_CP26_DAYSTROM_RIFT_WORLD"
-					set_owner = event_target:cp26_daystrom_rift_country
+					set_planet_flag = cp26_daystrom_rift_world
+					create_colony = {
+						owner = event_target:cp26_daystrom_rift_country
+					}
+					set_controller = event_target:cp26_daystrom_rift_country
 					set_colony_type = col_default
+					set_capital = yes
 					clear_blockers = yes
 					while = {
 						count = 12
@@ -276,77 +280,58 @@ country_event = {
 				}
 			}
 
+			if = {
+				limit = {
+					exists = event_target:cp26_daystrom_rift_world
+					exists = event_target:cp26_daystrom_rift_country
+				}
+				create_fleet = {
+					name = "NAME_CP26_DAYSTROM_RIFT_FLEET"
+					effect = {
+						set_owner = event_target:cp26_daystrom_rift_country
+						while = {
+							count = 3
+							create_ship = {
+								name = random
+								design = "NAME_Small_Nausicaan"
+								prefix = no
+								graphical_culture = arthropoid_01
+								initial_officers_perc = 1
+							}
+						}
+						while = {
+							count = 2
+							create_ship = {
+								name = random
+								design = "NAME_Medium_Nausicaan"
+								prefix = no
+								graphical_culture = arthropoid_01
+								initial_officers_perc = 1
+							}
+						}
+						create_ship = {
+							name = random
+							design = "NAME_Large_Nausicaan"
+							prefix = no
+							graphical_culture = arthropoid_01
+							initial_officers_perc = 1
+						}
+						set_location = event_target:cp26_daystrom_rift_world
+					}
+					settings = {
+						can_upgrade = no
+						can_change_composition = no
+					}
+				}
+				last_created_fleet = {
+					save_global_event_target_as = cp26_daystrom_rift_fleet
+				}
+			}
+
 			event_target:cp26_daystrom_rift_country = {
 				if = {
 					limit = { exists = event_target:cp26_daystrom_rift_world }
 					set_custom_capital_location = event_target:cp26_daystrom_rift_world
-				}
-
-				create_fleet = {
-					name = "NAME_CP26_DAYSTROM_RIFT_FLEET"
-					effect = {
-						set_owner = event_target:cp26_daystrom_rift_country
-						while = {
-							count = 12
-							create_ship = {
-								name = random
-								random_existing_design = corvette
-								graphical_culture = "arthropoid_01"
-								initial_officers_perc = 0.8
-							}
-						}
-						set_location = {
-							target = event_target:cp26_daystrom_anchor_body
-							distance = 120
-							angle = random
-						}
-					}
-				}
-
-				create_fleet = {
-					name = "NAME_CP26_DAYSTROM_RIFT_FLEET"
-					effect = {
-						set_owner = event_target:cp26_daystrom_rift_country
-						while = {
-							count = 8
-							create_ship = {
-								name = random
-								random_existing_design = corvette
-								graphical_culture = "arthropoid_01"
-								initial_officers_perc = 0.8
-							}
-						}
-						set_location = {
-							target = event_target:cp26_daystrom_anchor_body
-							distance = 90
-							angle = random
-						}
-					}
-				}
-
-				create_fleet = {
-					name = "NAME_CP26_DAYSTROM_RIFT_GUARD"
-					effect = {
-						set_owner = event_target:cp26_daystrom_rift_country
-						create_ship = {
-							name = random
-							random_existing_design = military_station_small
-							graphical_culture = "arthropoid_01"
-							initial_officers_perc = 1
-						}
-						set_location = {
-							target = event_target:cp26_daystrom_anchor_body
-							distance = 50
-							angle = random
-						}
-					}
-				}
-
-				if = {
-					limit = {
-						NOT = { any_owned_fleet = { is_ship_class = shipclass_constructor } }
-					}
-					create_civilian_fleet = yes
 				}
 
 				if = {

@@ -1,0 +1,9 @@
+NGameplay = {
+	# CP26 - traditions/unity un peu trop rapides sur l'ensemble de la campagne.
+	# Réglage volontairement "medium" pour ralentir la complétion des arbres
+	# sans casser les events/scripts qui consomment ou donnent de l'unity en dur.
+	EMPIRE_SIZE_TRADITION_COST_PENALTY = 0.0075
+	TRADITION_COST_TRADITION = 3.6
+	TRADITION_COST_TRADITION_EXP = 3.9
+	TRADITION_COST_MULT_TRADITION_GROUP = 0.06
+}

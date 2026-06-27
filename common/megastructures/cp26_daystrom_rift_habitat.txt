@@ -1,0 +1,66 @@
+cp26_daystrom_rift_habitat = {
+	entity = "arthropoid_01_starbase_starport_entity"
+	construction_entity = "arthropoid_01_starbase_starport_construction_entity"
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	entity_offset = { x = -7 y = -7 }
+	build_time = 1
+
+	resources = {
+		category = megastructures_habitat
+		cost = {
+			alloys = 0
+			influence = 0
+		}
+	}
+
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+
+	potential = {
+		always = no
+	}
+
+	possible = {
+		always = yes
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_not_star"
+				is_star = no
+			}
+		}
+	}
+
+	on_build_complete = {
+		spawn_planet = {
+			class = "pc_habitat"
+			location = fromfrom.planet
+			orbit_location = yes
+			orbit_angle_offset = 45
+			orbit_distance_offset = 9.899
+			size = 6
+			has_ring = no
+
+			init_effect = {
+				set_name = "NAME_CP26_DAYSTROM_RIFT_WORLD"
+				set_planet_entity = {
+					entity = arthropoid_01_starbase_starport_entity
+				}
+				clear_blockers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = habitat
+				set_planet_flag = cp26_daystrom_rift_world
+				save_global_event_target_as = cp26_daystrom_rift_world
+			}
+		}
+
+		fromfrom.planet = {
+			set_planet_flag = has_megastructure
+		}
+	}
+
+	ai_weight = { weight = 0 }
+}

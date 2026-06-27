@@ -34,6 +34,22 @@ cp26_daystrom_station = {
 				}
 			}
 			custom_tooltip = {
+				fail_text = cp26_daystrom_requires_non_capital_system
+				solar_system = {
+					NOT = { is_same_value = owner.capital_scope.solar_system }
+				}
+			}
+			custom_tooltip = {
+				fail_text = cp26_daystrom_requires_empty_system
+				solar_system = {
+					NOT = {
+						any_system_megastructure = {
+							NOT = { is_megastructure_type = cp26_daystrom_station }
+						}
+					}
+				}
+			}
+			custom_tooltip = {
 				fail_text = cp26_daystrom_requires_no_megastructure
 				NOT = { has_planet_flag = has_megastructure }
 			}
@@ -66,7 +82,7 @@ cp26_daystrom_station = {
 			save_global_event_target_as = cp26_daystrom_system
 		}
 		fromfrom.planet = {
-			save_global_event_target_as = cp26_daystrom_anchor_body
+			save_global_event_target_as = cp26_daystrom_target_world
 		}
 	}
 
