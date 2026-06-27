@@ -1,0 +1,14 @@
+# CP26 override of Infinite's bespoke procedural shape.
+# Keep Infinite's exact schema, but soften the spiral into a broader,
+# more circular distribution inspired by Stellaris' elliptical feel.
+
+core_radius_perc = 0.24
+num_stars_core_perc = 0
+stars_min_dist = 11.0
+
+arms = {
+	tightness_winding = 0.18
+	width = 140.0
+	fuzz = 32.0
+	seperation = 90.0
+}
