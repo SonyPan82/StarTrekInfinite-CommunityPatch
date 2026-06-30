@@ -112,8 +112,10 @@ country_event = {
 
 	option = {
 		name = cp26_daystrom.3.a
-		set_country_flag = cp26_daystrom_final_test
-		country_event = { id = cp26_daystrom.4 days = 30 }
+		hidden_effect = {
+			set_country_flag = cp26_daystrom_final_test
+			country_event = { id = cp26_daystrom.4 days = 30 }
+		}
 	}
 
 	option = {
@@ -169,14 +171,15 @@ country_event = {
 				create_species = {
 					class = "ART"
 					portrait = "art1"
-					name = "Subspatial Entity"
-					plural = "Subspatial Entities"
-					adjective = "Subspatial"
+					name = "Umbral"
+					plural = "Umbrals"
+					adjective = "Umbral"
 					name_list = "ART1"
 					traits = {
 						trait = trait_strong
 						trait = trait_nonadaptive
 						trait = trait_enduring
+						trait = trait_pc_habitat_preference
 					}
 				}
 			}
@@ -227,9 +230,16 @@ country_event = {
 						save_global_event_target_as = cp26_daystrom_rift_country
 						set_graphical_culture = arthropoid_01
 						set_country_flag = cp26_daystrom_rift_country
+					give_technology = { tech = tech_megastructure_1 message = no }
 					give_technology = { tech = tech_corvette_unlock message = no }
 					give_technology = { tech = tech_destroyer_unlock message = no }
 					give_technology = { tech = tech_cruiser_unlock message = no }
+					create_ship_design = { design = "NAME_CP26_UmbralCorvette" }
+					add_ship_design = last_created_design
+					create_ship_design = { design = "NAME_CP26_UmbralDestroyer" }
+					add_ship_design = last_created_design
+					create_ship_design = { design = "NAME_CP26_UmbralCruiser" }
+					add_ship_design = last_created_design
 				}
 
 					if = {
@@ -319,12 +329,21 @@ country_event = {
 						count = 12
 						create_pop = { species = "Subspatial Entity" }
 					}
+					while = {
+						count = 2
+						create_pop = { species = "Subspatial Entity" }
+					}
 					add_district_and_planet_size_if_needed_effect = { district = district_city }
 					add_district_and_planet_size_if_needed_effect = { district = district_city }
+					add_district_and_planet_size_if_needed_effect = { district = district_city }
+					add_district_and_planet_size_if_needed_effect = { district = district_generator }
 					add_district_and_planet_size_if_needed_effect = { district = district_generator }
 					add_district_and_planet_size_if_needed_effect = { district = district_generator }
 					add_district_and_planet_size_if_needed_effect = { district = district_industrial }
+					add_district_and_planet_size_if_needed_effect = { district = district_industrial }
 					add_building = building_capital
+					add_building = building_foundry_1
+					add_building = building_research_lab_1
 				}
 			}
 
@@ -352,7 +371,7 @@ country_event = {
 								count = 16
 								create_ship = {
 									name = random
-									random_existing_design = corvette
+									design = "NAME_CP26_UmbralCorvette"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -362,7 +381,7 @@ country_event = {
 								count = 8
 								create_ship = {
 									name = random
-									random_existing_design = destroyer
+									design = "NAME_CP26_UmbralDestroyer"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -372,7 +391,7 @@ country_event = {
 								count = 4
 								create_ship = {
 									name = random
-									random_existing_design = cruiser
+									design = "NAME_CP26_UmbralCruiser"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -392,7 +411,7 @@ country_event = {
 								count = 12
 								create_ship = {
 									name = random
-									random_existing_design = corvette
+									design = "NAME_CP26_UmbralCorvette"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -402,7 +421,7 @@ country_event = {
 								count = 6
 								create_ship = {
 									name = random
-									random_existing_design = destroyer
+									design = "NAME_CP26_UmbralDestroyer"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -412,7 +431,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									random_existing_design = cruiser
+									design = "NAME_CP26_UmbralCruiser"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -432,7 +451,7 @@ country_event = {
 								count = 8
 								create_ship = {
 									name = random
-									random_existing_design = corvette
+									design = "NAME_CP26_UmbralCorvette"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -442,7 +461,7 @@ country_event = {
 								count = 4
 								create_ship = {
 									name = random
-									random_existing_design = destroyer
+									design = "NAME_CP26_UmbralDestroyer"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -452,7 +471,7 @@ country_event = {
 								count = 2
 								create_ship = {
 									name = random
-									random_existing_design = cruiser
+									design = "NAME_CP26_UmbralCruiser"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -472,7 +491,7 @@ country_event = {
 								count = 6
 								create_ship = {
 									name = random
-									random_existing_design = corvette
+									design = "NAME_CP26_UmbralCorvette"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -482,7 +501,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									random_existing_design = destroyer
+									design = "NAME_CP26_UmbralDestroyer"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -490,7 +509,7 @@ country_event = {
 							}
 							create_ship = {
 								name = random
-								random_existing_design = cruiser
+								design = "NAME_CP26_UmbralCruiser"
 								prefix = no
 								graphical_culture = arthropoid_01
 								initial_officers_perc = 1
@@ -501,7 +520,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									random_existing_design = corvette
+									design = "NAME_CP26_UmbralCorvette"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -511,7 +530,7 @@ country_event = {
 								count = 2
 								create_ship = {
 									name = random
-									random_existing_design = destroyer
+									design = "NAME_CP26_UmbralDestroyer"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -519,7 +538,7 @@ country_event = {
 							}
 							create_ship = {
 								name = random
-								random_existing_design = cruiser
+								design = "NAME_CP26_UmbralCruiser"
 								prefix = no
 								graphical_culture = arthropoid_01
 								initial_officers_perc = 1
@@ -579,6 +598,14 @@ country_event = {
 			}
 
 				event_target:cp26_daystrom_rift_country = {
+					add_resource = {
+						energy = 1500
+						minerals = 1000
+						food = 300
+						alloys = 800
+						consumer_goods = 400
+					}
+
 					if = {
 						limit = { exists = event_target:cp26_daystrom_rift_world }
 						set_custom_capital_location = event_target:cp26_daystrom_rift_world

@@ -1,21 +1,7 @@
 arthropoid_01 = {
-	ship_kinds = {
-		default_ship
-		space_amoeba
-		tiyanki
-		voidworm
-		cutholoid
-		crystalline_entity
-	}
 	fallback = mammalian_01
+	has_city_graphics = no
 	ship_color = yes
-	ship_selection_weight = {
-		base = 0
-		modifier = {
-			set = 10
-			graphical_culture = from
-		}
-	}
 
 	ship_lighting = {
 		cam_light_1_dir = { 0.6 -0.2 0.1 }
