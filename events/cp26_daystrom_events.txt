@@ -181,8 +181,8 @@ country_event = {
 				}
 			}
 
-				create_country = {
-					name = "NAME_CP26_DAYSTROM_RIFT_COUNTRY"
+					create_country = {
+						name = "Les Umbrals"
 					species = "Subspatial Entity"
 					country_id = "cp26_daystrom_rift"
 					type = default
@@ -222,28 +222,33 @@ country_event = {
 				}
 			}
 
-				last_created_country = {
-					save_global_event_target_as = cp26_daystrom_rift_country
-					set_graphical_culture = arthropoid_01
-					set_country_flag = cp26_daystrom_rift_country
+					last_created_country = {
+						set_name = "Les Umbrals"
+						save_global_event_target_as = cp26_daystrom_rift_country
+						set_graphical_culture = arthropoid_01
+						set_country_flag = cp26_daystrom_rift_country
+					give_technology = { tech = tech_corvette_unlock message = no }
 					give_technology = { tech = tech_destroyer_unlock message = no }
 					give_technology = { tech = tech_cruiser_unlock message = no }
 				}
 
-				if = {
-					limit = {
-						exists = event_target:cp26_daystrom_target_world
-						exists = event_target:cp26_daystrom_rift_country
-					}
 					if = {
-						limit = { exists = event_target:cp26_daystrom_station_scope }
-						event_target:cp26_daystrom_station_scope = {
-							remove_megastructure = this
+						limit = {
+							exists = event_target:cp26_daystrom_target_world
+							exists = event_target:cp26_daystrom_rift_country
 						}
-					}
-					event_target:cp26_daystrom_target_world = {
-						solar_system = {
-							spawn_megastructure = {
+						if = {
+							limit = { exists = event_target:cp26_daystrom_system }
+							event_target:cp26_daystrom_system = {
+								every_system_megastructure = {
+									limit = { is_megastructure_type = cp26_daystrom_station }
+									remove_megastructure = this
+								}
+							}
+						}
+						event_target:cp26_daystrom_target_world = {
+							solar_system = {
+								spawn_megastructure = {
 								type = "cp26_daystrom_rift_habitat"
 								planet = event_target:cp26_daystrom_target_world
 								owner = event_target:cp26_daystrom_rift_country
@@ -347,7 +352,7 @@ country_event = {
 								count = 16
 								create_ship = {
 									name = random
-									design = "NAME_Small_Minor"
+									random_existing_design = corvette
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -357,7 +362,7 @@ country_event = {
 								count = 8
 								create_ship = {
 									name = random
-									design = "NAME_Medium_Minor"
+									random_existing_design = destroyer
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -367,7 +372,7 @@ country_event = {
 								count = 4
 								create_ship = {
 									name = random
-									design = "NAME_Large_Minor"
+									random_existing_design = cruiser
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -387,7 +392,7 @@ country_event = {
 								count = 12
 								create_ship = {
 									name = random
-									design = "NAME_Small_Minor"
+									random_existing_design = corvette
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -397,7 +402,7 @@ country_event = {
 								count = 6
 								create_ship = {
 									name = random
-									design = "NAME_Medium_Minor"
+									random_existing_design = destroyer
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -407,7 +412,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									design = "NAME_Large_Minor"
+									random_existing_design = cruiser
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -427,7 +432,7 @@ country_event = {
 								count = 8
 								create_ship = {
 									name = random
-									design = "NAME_Small_Minor"
+									random_existing_design = corvette
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -437,7 +442,7 @@ country_event = {
 								count = 4
 								create_ship = {
 									name = random
-									design = "NAME_Medium_Minor"
+									random_existing_design = destroyer
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -447,7 +452,7 @@ country_event = {
 								count = 2
 								create_ship = {
 									name = random
-									design = "NAME_Large_Minor"
+									random_existing_design = cruiser
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -467,7 +472,7 @@ country_event = {
 								count = 6
 								create_ship = {
 									name = random
-									design = "NAME_Small_Minor"
+									random_existing_design = corvette
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -477,7 +482,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									design = "NAME_Medium_Minor"
+									random_existing_design = destroyer
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -485,7 +490,7 @@ country_event = {
 							}
 							create_ship = {
 								name = random
-								design = "NAME_Large_Minor"
+								random_existing_design = cruiser
 								prefix = no
 								graphical_culture = arthropoid_01
 								initial_officers_perc = 1
@@ -496,7 +501,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									design = "NAME_Small_Minor"
+									random_existing_design = corvette
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -506,7 +511,7 @@ country_event = {
 								count = 2
 								create_ship = {
 									name = random
-									design = "NAME_Medium_Minor"
+									random_existing_design = destroyer
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -514,7 +519,7 @@ country_event = {
 							}
 							create_ship = {
 								name = random
-								design = "NAME_Large_Minor"
+								random_existing_design = cruiser
 								prefix = no
 								graphical_culture = arthropoid_01
 								initial_officers_perc = 1
@@ -529,6 +534,47 @@ country_event = {
 				}
 				last_created_fleet = {
 					save_global_event_target_as = cp26_daystrom_rift_fleet
+				}
+			}
+
+			if = {
+				limit = {
+					exists = event_target:cp26_daystrom_rift_world
+					exists = event_target:cp26_daystrom_rift_country
+				}
+				create_fleet = {
+					effect = {
+						set_owner = event_target:cp26_daystrom_rift_country
+						create_ship = {
+							name = random
+							random_existing_design = science
+							graphical_culture = arthropoid_01
+						}
+						set_fleet_stance = evasive
+						set_location = event_target:cp26_daystrom_rift_world
+						owner = {
+							create_leader = {
+								class = scientist
+								sub_type = survey
+								name = random
+								species = owner_main_species
+							}
+						}
+						set_leader = last_created_leader
+					}
+				}
+
+				create_fleet = {
+					effect = {
+						set_owner = event_target:cp26_daystrom_rift_country
+						create_ship = {
+							name = random
+							random_existing_design = constructor
+							graphical_culture = arthropoid_01
+						}
+						set_fleet_stance = evasive
+						set_location = event_target:cp26_daystrom_rift_world
+					}
 				}
 			}
 
