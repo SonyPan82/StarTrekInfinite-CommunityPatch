@@ -15,8 +15,9 @@ qt_ufop_ds9_station = {
 
 	possible = {
 		custom_tooltip = {
-			any_system_within_border = {
-				has_star_flag = bajoran_system
+			any_country = {
+				has_country_flag = bajoran
+				NOT = { is_subject = yes }
 			}
 			fail_text = qt_ufop_ds9_station_fail_tooltip
 			success_text = qt_ufop_ds9_station_possible_tooltip
@@ -32,24 +33,20 @@ qt_ufop_ds9_station = {
 	}
 
 	on_finished = {	
+		cp26_transfer_terok_nor_to_ufop_ds9 = yes
 
-		every_country = {
-
-			random_system_within_border = {
-				limit = {
-					has_star_flag = bajoran_system
-				}
-				every_system_planet = {
-					limit = {
-						has_planet_flag = bajor							
-					}
-					
-					add_modifier = {
-						modifier = qt_ufop_ds9_station_effect
-					}
-				}				
+		random_system = {
+			limit = {
+				has_star_flag = bajoran_system
 			}
-
+			every_system_planet = {
+				limit = {
+					has_planet_flag = bajor
+				}
+				add_modifier = {
+					modifier = qt_ufop_ds9_station_effect
+				}
+			}
 		}
 
 		add_resource = {

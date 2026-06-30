@@ -16,7 +16,6 @@ cp26_daystrom_station = {
 			exists = owner
 			owner = {
 				has_country_flag = ufop
-				NOT = { has_country_flag = cp26_daystrom_station_built }
 			}
 		}
 	}
@@ -75,7 +74,15 @@ cp26_daystrom_station = {
 		save_global_event_target_as = cp26_daystrom_station_scope
 		from = {
 			set_country_flag = cp26_daystrom_station_built
-			country_event = { id = cp26_daystrom.1 days = 120 }
+			if = {
+				limit = {
+					NOT = { has_country_flag = cp26_daystrom_arc_initialized }
+					NOT = { has_country_flag = cp26_daystrom_arc_ended }
+					NOT = { has_country_flag = cp26_daystrom_spawned_rift_empire }
+				}
+				set_country_flag = cp26_daystrom_arc_initialized
+				country_event = { id = cp26_daystrom.1 days = 120 }
+			}
 		}
 		fromfrom.solar_system = {
 			set_star_flag = cp26_daystrom_station_system

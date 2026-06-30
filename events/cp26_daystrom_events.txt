@@ -16,12 +16,24 @@ country_event = {
 
 	option = {
 		name = cp26_daystrom.1.a
+		if = {
+			limit = { NOT = { has_event_chain = cp26_daystrom_chain } }
+			begin_event_chain = {
+				event_chain = "cp26_daystrom_chain"
+			}
+		}
 		set_country_flag = cp26_daystrom_project_authorized
 		country_event = { id = cp26_daystrom.2 days = 180 }
 	}
 
 	option = {
 		name = cp26_daystrom.1.b
+		if = {
+			limit = { NOT = { has_event_chain = cp26_daystrom_chain } }
+			begin_event_chain = {
+				event_chain = "cp26_daystrom_chain"
+			}
+		}
 		set_country_flag = cp26_daystrom_project_limited
 		country_event = { id = cp26_daystrom.2 days = 240 }
 	}
@@ -29,6 +41,10 @@ country_event = {
 	option = {
 		name = cp26_daystrom.1.c
 		set_country_flag = cp26_daystrom_arc_ended
+		if = {
+			limit = { has_event_chain = cp26_daystrom_chain }
+			end_event_chain = cp26_daystrom_chain
+		}
 	}
 }
 
@@ -103,11 +119,19 @@ country_event = {
 	option = {
 		name = cp26_daystrom.3.b
 		set_country_flag = cp26_daystrom_arc_ended
+		if = {
+			limit = { has_event_chain = cp26_daystrom_chain }
+			end_event_chain = cp26_daystrom_chain
+		}
 	}
 
 	option = {
 		name = cp26_daystrom.3.c
 		set_country_flag = cp26_daystrom_arc_ended
+		if = {
+			limit = { has_event_chain = cp26_daystrom_chain }
+			end_event_chain = cp26_daystrom_chain
+		}
 	}
 }
 
@@ -130,6 +154,10 @@ country_event = {
 		hidden_effect = {
 			set_country_flag = cp26_daystrom_spawned_rift_empire
 			set_country_flag = cp26_daystrom_arc_ended
+			if = {
+				limit = { has_event_chain = cp26_daystrom_chain }
+				end_event_chain = cp26_daystrom_chain
+			}
 
 			random_system = {
 				limit = { has_star_flag = cp26_daystrom_station_system }
@@ -164,21 +192,21 @@ country_event = {
 					civics = { civic = civic_military_discipline }
 					civics = { civic = civic_secret_police }
 				origin = "origin_default"
-				flag = {
-					icon = {
-						category = "special"
-						file = "flag_borgcube.dds"
+					flag = {
+						icon = {
+							category = "special"
+							file = "flag_borgcube.dds"
 					}
 					background = {
 						category = "backgrounds"
 						file = "00_solid.dds"
 					}
-					colors = {
-						"orange"
-						"black"
-						"null"
-						"null"
-					}
+						colors = {
+							"purple"
+							"black"
+							"null"
+							"null"
+						}
 				}
 				ethos = {
 					ethic = ethic_fanatic_militarist
@@ -231,29 +259,41 @@ country_event = {
 						exists = event_target:cp26_daystrom_system
 						exists = event_target:cp26_daystrom_rift_country
 					}
-					event_target:cp26_daystrom_system = {
-						every_system_planet = {
-							limit = {
-								NOT = { is_star = yes }
-								exists = owner
-							}
-							set_owner = event_target:cp26_daystrom_rift_country
-							set_controller = event_target:cp26_daystrom_rift_country
-						}
-						if = {
-							limit = { exists = starbase }
-							starbase = {
+						event_target:cp26_daystrom_system = {
+							every_system_planet = {
+								limit = {
+									NOT = { is_star = yes }
+									exists = owner
+								}
 								set_owner = event_target:cp26_daystrom_rift_country
+								set_controller = event_target:cp26_daystrom_rift_country
 							}
-						}
-						else = {
-							create_starbase = {
-								size = starbase_starport
-								owner = event_target:cp26_daystrom_rift_country
+							if = {
+								limit = { exists = starbase }
+								starbase = {
+									set_owner = event_target:cp26_daystrom_rift_country
+									if = {
+										limit = { has_starbase_size = starbase_outpost }
+										set_starbase_size = starbase_starport
+									}
+									if = {
+										limit = { NOT = { has_starbase_module = shipyard } }
+										set_starbase_module = {
+											slot = 1
+											module = shipyard
+										}
+									}
+								}
+							}
+							else = {
+								create_starbase = {
+									size = starbase_starport
+									owner = event_target:cp26_daystrom_rift_country
+									module = shipyard
+								}
 							}
 						}
 					}
-				}
 
 			if = {
 				limit = {
@@ -507,10 +547,10 @@ country_event = {
 							set_neutral = no
 							set_friendly = no
 						}
-						declare_war = {
-							target = root
-							attacker_war_goal = wg_humiliation
-						}
+							declare_war = {
+								target = root
+								attacker_war_goal = wg_conquest
+							}
 						root = {
 							country_event = { id = cp26_daystrom.5 }
 						}

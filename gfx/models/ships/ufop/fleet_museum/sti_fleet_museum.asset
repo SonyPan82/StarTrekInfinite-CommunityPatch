@@ -81,7 +81,7 @@ entity = {
 entity = {
 	name = "sti_museum_enterprise_sovereign_raw_entity"
 	pdxmesh = "ufop_01_enterprise_sovereign_ship_mesh"
-	scale = 0.31
+	scale = 0.29
 	default_state = "idle"
 	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
 	state = { name = "death" state_time = 2 looping = no
@@ -105,8 +105,8 @@ entity = {
 	name = "sti_museum_enterprise_sovereign_part6_entity"
 	locator = {
 		name = "root"
-		position = { 0.95 1.25 0 }
-		rotation = { 0 0 0 }
+		position = { 1.05 1.10 0 }
+		rotation = { 0 180 0 }
 	}
 	attach = { "root" = "sti_museum_enterprise_sovereign_raw_entity" }
 	default_state = "idle"
@@ -116,7 +116,7 @@ entity = {
 entity = {
 	name = "sti_museum_voyager_a_raw_entity"
 	pdxmesh = "ufop_01_intrepid_ship_mesh"
-	scale = 0.46
+	scale = 0.43
 	default_state = "idle"
 	state = { name = "idle" animation = "idle" animation_blend_time = 0.0 }
 	state = { name = "death" state_time = 2 looping = no

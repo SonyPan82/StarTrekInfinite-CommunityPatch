@@ -1,5 +1,5 @@
 ﻿l_french:
- NAME_CP26_DAYSTROM_RIFT_COUNTRY:0 "L'Incursion subspatiale"
+ NAME_CP26_DAYSTROM_RIFT_COUNTRY:0 "Les Umbrals"
  NAME_CP26_DAYSTROM_RIFT_WORLD:0 "Cicatrice subspatiale"
  NAME_CP26_DAYSTROM_RIFT_FLEET:0 "Essaim d'incursion"
  NAME_CP26_DAYSTROM_RIFT_GUARD:0 "Garde de la faille"
@@ -21,8 +21,8 @@
  cp26_daystrom.3.b:0 "Réduire la puissance et poursuivre les recherches."
  cp26_daystrom.3.c:0 "Fermer définitivement le projet."
  cp26_daystrom.4.title:0 "La Déchirure"
- cp26_daystrom.4.desc:0 "Les premières secondes du test final semblent justifier tous les risques.\n\nLe rendement dépasse immédiatement toutes les prévisions. Pendant un bref instant, l'impossible paraît à portée de main.\n\nPuis tout cède.\n\nLes mesures deviennent incohérentes, les capteurs se contredisent, les communications tombent et l'espace autour de la Station Daystrom semble perdre sa stabilité. Au coeur de l'installation, une fissure sombre s'ouvre là où il ne devrait y avoir que du vide et de l'acier. Les instruments refusent d'en mesurer la profondeur.\n\nLa station est ravagée, éventrée par la brèche.\n\nPuis viennent les signatures : des signatures de distorsion inconnues, nettes, organisées, qui émergent de l'autre côté de la faille.\n\nCe qui paraissait être une source d'énergie inépuisable n'était pas un réservoir.\n\nC'était une frontière.\n\nEt nous venons de l'ouvrir."
+ cp26_daystrom.4.desc:0 "Les premières secondes du test final semblent justifier tous les risques.\n\nLe rendement dépasse immédiatement toutes les prévisions. Pendant un bref instant, l'impossible paraît à portée de main.\n\nPuis tout cède.\n\nLes mesures deviennent incohérentes, les capteurs se contredisent, les communications tombent et l'espace autour de la Station Daystrom semble perdre sa stabilité. Au coeur de l'installation, une fissure sombre s'ouvre là où il ne devrait y avoir que du vide et de l'acier. Les instruments refusent d'en mesurer la profondeur.\n\nLa station est détruite, engloutie par la brèche dans une tempête de coque disloquée, de sections arrachées et de champs de confinement en cascade.\n\nPuis viennent les signatures : des signatures de distorsion inconnues, nettes, organisées, qui émergent de l'autre côté de la faille.\n\nCe qui paraissait être une source d'énergie inépuisable n'était pas un réservoir.\n\nC'était une frontière.\n\nEt nous venons de l'ouvrir."
  cp26_daystrom.5.title:0 "Transmission depuis la faille"
  cp26_daystrom.5.desc:0 "Le signal traverse nos canaux dans une cacophonie de parasites avant de se stabiliser.\n\n« Vous avez frappé notre domaine sans le comprendre. Vos expériences ont lacéré notre espace, tué les nôtres et ouvert un passage là où il ne devait pas en exister.\n\nVous avez tenté de nous détruire.\n\nNous allons répliquer.\n\nPeu importe qui vous êtes. »"
  cp26_daystrom.100.title:0 "La Brèche de Daystrom"
- cp26_daystrom.100.desc:0 "Une défaillance catastrophique à la Station Daystrom a ouvert une rupture subspatiale. La station a été ravagée, le système est tombé aux mains d'une puissance hostile, et une force inconnue émerge désormais de la faille."
+ cp26_daystrom.100.desc:0 "Une défaillance catastrophique à la Station Daystrom a ouvert une rupture subspatiale. La station a été détruite, le système est tombé aux mains d'une puissance hostile, et une force inconnue émerge désormais de la faille."

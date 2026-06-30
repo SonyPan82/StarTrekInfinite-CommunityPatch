@@ -735,6 +735,11 @@ CP26_SYNTH_GROUND_ASSAULT_DESC:0 "An A500 rebellion is underway on this planet. 
  qt_ufop_worf_luna_tooltip_fail:0       "£trigger_no£ Luna-class ships: §Y[This.qt_ufop_worf_luna_count]§!/§Y5§!"
  qt_ufop_cerritos_observation_tooltip_success:0 "£trigger_yes£ Observation post on a pre-FTL civilisation"
  qt_ufop_cerritos_observation_tooltip_fail:0    "£trigger_no£ No observation post on a pre-FTL civilisation"
+ cp26_daystrom_chain:0 "Daystrom Project"
+ cp26_daystrom_chain_title:0 "Daystrom Project"
+ cp26_daystrom_chain_desc:0 "Research at the Daystrom Station is ongoing. Scientific teams are pushing increasingly unstable protocols, and the situation will need close monitoring."
+ qt_ufop_ds9_station_fail_tooltip:0 "$TRIGGER_FAIL$ The §YBajoran§! empire must be free and no longer a subject."
+ qt_ufop_ds9_station_possible_tooltip:0 "$TRIGGER_PASS$ The §YBajoran§! empire is free."
 
  # Ship size localisation - Enterprise Odyssey
  enterprise_odyssey:0 "Odyssey"

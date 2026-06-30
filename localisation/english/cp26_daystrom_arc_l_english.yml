@@ -1,5 +1,5 @@
 ﻿l_english:
- NAME_CP26_DAYSTROM_RIFT_COUNTRY:0 "The Subspatial Incursion"
+ NAME_CP26_DAYSTROM_RIFT_COUNTRY:0 "The Umbrals"
  NAME_CP26_DAYSTROM_RIFT_WORLD:0 "Subspatial Scar"
  NAME_CP26_DAYSTROM_RIFT_FLEET:0 "Incursion Swarm"
  NAME_CP26_DAYSTROM_RIFT_GUARD:0 "Rift Guard"
@@ -21,8 +21,8 @@
  cp26_daystrom.3.b:0 "Reduce power and continue only theoretical work."
  cp26_daystrom.3.c:0 "Shut the project down permanently."
  cp26_daystrom.4.title:0 "The Tear"
- cp26_daystrom.4.desc:0 "The opening seconds of the final test seem to justify every risk.\n\nOutput immediately exceeds all projections. For one brief moment, the impossible appears within reach.\n\nThen everything breaks.\n\nMeasurements collapse into contradiction, communications fail, and space itself around Daystrom Station seems to lose coherence. At the heart of the installation, a dark fracture forms where there should be only steel and vacuum. Instruments refuse to measure its depth.\n\nThe station is ravaged, torn open by the breach.\n\nThen come the signatures: unknown warp signatures, clear and organized, emerging from the far side of the rift.\n\nWhat seemed to be an inexhaustible source of energy was never a reservoir.\n\nIt was a boundary.\n\nAnd we have just opened it."
+ cp26_daystrom.4.desc:0 "The opening seconds of the final test seem to justify every risk.\n\nOutput immediately exceeds all projections. For one brief moment, the impossible appears within reach.\n\nThen everything breaks.\n\nMeasurements collapse into contradiction, communications fail, and space itself around Daystrom Station seems to lose coherence. At the heart of the installation, a dark fracture forms where there should be only steel and vacuum. Instruments refuse to measure its depth.\n\nThe station is destroyed, consumed by the breach in a storm of ruptured hull plating, collapsing sections and failing containment fields.\n\nThen come the signatures: unknown warp signatures, clear and organized, emerging from the far side of the rift.\n\nWhat seemed to be an inexhaustible source of energy was never a reservoir.\n\nIt was a boundary.\n\nAnd we have just opened it."
  cp26_daystrom.5.title:0 "Transmission from the Rift"
  cp26_daystrom.5.desc:0 "The signal claws its way through our channels in a storm of static before finally stabilizing.\n\n\"You struck our domain without understanding it. Your experiments tore through our space, killed our own, and forced open a passage that should never have existed.\n\nYou tried to destroy us.\n\nWe will answer in kind.\n\nWhoever you are, it changes nothing.\""
  cp26_daystrom.100.title:0 "The Daystrom Breach"
- cp26_daystrom.100.desc:0 "A catastrophic failure at Daystrom Station has torn open a subspace rupture. The station has been ravaged, the system has fallen into hostile hands, and an unknown power is now emerging through the breach."
+ cp26_daystrom.100.desc:0 "A catastrophic failure at Daystrom Station has torn open a subspace rupture. The station has been destroyed, the system has fallen into hostile hands, and an unknown power is now emerging through the breach."
