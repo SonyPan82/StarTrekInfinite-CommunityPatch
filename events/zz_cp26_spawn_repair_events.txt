@@ -171,6 +171,7 @@ country_event = {
 
 	immediate = {
 		country_event = { id = cp26_spawn_repair.3 days = 5 }
+		country_event = { id = cp26_spawn_repair.4 days = 5 }
 	}
 }
 
@@ -223,6 +224,214 @@ country_event = {
 				}
 			}
 			set_global_flag = cp26_rura_penthe_global_repaired
+		}
+	}
+}
+
+country_event = {
+	id = cp26_spawn_repair.4
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		OR = {
+			is_ufop = yes
+			is_klingon = yes
+			is_romulan = yes
+			is_cardassian = yes
+			is_ferengi_empire = yes
+		}
+	}
+
+	immediate = {
+		# Hard recovery for majors that occasionally lose their homeworld/system
+		# during startup. Restores capital ownership and the starting starbase.
+		if = {
+			limit = { is_ufop = yes }
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_earth }
+				if = {
+					limit = { is_colony = no }
+					create_colony = { owner = root }
+				}
+				else = {
+					set_owner = root
+					set_controller = root
+					set_colony_type = col_default
+				}
+				set_capital = yes
+				if = {
+					limit = { NOT = { has_building = building_capital } }
+					add_building = building_capital
+				}
+				solar_system = {
+					if = {
+						limit = { exists = starbase }
+						starbase = { set_owner = root }
+					}
+					else = {
+						create_starbase = {
+							size = starbase_outpost
+							owner = root
+						}
+					}
+					set_star_flag = outpost
+					set_star_flag = ufop_system
+					set_star_flag = ufop
+				}
+			}
+		}
+
+		if = {
+			limit = { is_klingon = yes }
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_qonos }
+				if = {
+					limit = { is_colony = no }
+					create_colony = { owner = root }
+				}
+				else = {
+					set_owner = root
+					set_controller = root
+					set_colony_type = col_default
+				}
+				set_capital = yes
+				if = {
+					limit = { NOT = { has_building = building_capital } }
+					add_building = building_capital
+				}
+				solar_system = {
+					if = {
+						limit = { exists = starbase }
+						starbase = { set_owner = root }
+					}
+					else = {
+						create_starbase = {
+							size = starbase_outpost
+							owner = root
+						}
+					}
+					set_star_flag = outpost
+					set_star_flag = klingon_system
+					set_star_flag = klingon
+					set_star_flag = qonos_system
+					set_star_flag = qonos
+				}
+			}
+		}
+
+		if = {
+			limit = { is_romulan = yes }
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_romulus }
+				if = {
+					limit = { is_colony = no }
+					create_colony = { owner = root }
+				}
+				else = {
+					set_owner = root
+					set_controller = root
+					set_colony_type = col_default
+				}
+				set_capital = yes
+				if = {
+					limit = { NOT = { has_building = building_capital } }
+					add_building = building_capital
+				}
+				solar_system = {
+					if = {
+						limit = { exists = starbase }
+						starbase = { set_owner = root }
+					}
+					else = {
+						create_starbase = {
+							size = starbase_outpost
+							owner = root
+						}
+					}
+					set_star_flag = outpost
+					set_star_flag = romulan_system
+					set_star_flag = romulan
+					set_star_flag = romula_system
+					set_star_flag = romula
+				}
+			}
+		}
+
+		if = {
+			limit = { is_cardassian = yes }
+			random_galaxy_planet = {
+				limit = { has_planet_flag = planet_cardassia }
+				if = {
+					limit = { is_colony = no }
+					create_colony = { owner = root }
+				}
+				else = {
+					set_owner = root
+					set_controller = root
+					set_colony_type = col_default
+				}
+				set_capital = yes
+				if = {
+					limit = { NOT = { has_building = building_capital } }
+					add_building = building_capital
+				}
+				solar_system = {
+					if = {
+						limit = { exists = starbase }
+						starbase = { set_owner = root }
+					}
+					else = {
+						create_starbase = {
+							size = starbase_outpost
+							owner = root
+						}
+					}
+					set_star_flag = outpost
+					set_star_flag = cardassian_system
+					set_star_flag = cardassian
+					set_star_flag = cardassia_system
+					set_star_flag = cardassia
+				}
+			}
+		}
+
+		if = {
+			limit = { is_ferengi_empire = yes }
+			random_galaxy_planet = {
+				limit = { has_planet_flag = ferengi_capital }
+				if = {
+					limit = { is_colony = no }
+					create_colony = { owner = root }
+				}
+				else = {
+					set_owner = root
+					set_controller = root
+					set_colony_type = col_default
+				}
+				set_capital = yes
+				if = {
+					limit = { NOT = { has_building = building_capital } }
+					add_building = building_capital
+				}
+				solar_system = {
+					if = {
+						limit = { exists = starbase }
+						starbase = { set_owner = root }
+					}
+					else = {
+						create_starbase = {
+							size = starbase_starport
+							owner = root
+						}
+					}
+					set_star_flag = outpost
+					set_star_flag = ferengi_home_system
+					set_star_flag = ferengi_system
+					set_star_flag = ferengi
+				}
+			}
 		}
 	}
 }

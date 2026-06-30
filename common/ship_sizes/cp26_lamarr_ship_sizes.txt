@@ -1,0 +1,100 @@
+@lamarr_speed = 108
+@lamarr_hp = 3000
+@lamarr_evasion = 16
+@lamarr_build_time = 420
+@lamarr_upkeep_deuterium = 0.95
+@lamarr_upkeep_alloys = 0.80
+@lamarr_no_admiral_mult = -0.08
+
+lamarr = {
+	formation_priority = 12
+	entity = lamarr_entity
+	max_speed = @lamarr_speed
+	acceleration = 0.24
+	rotation_speed = 0.18
+	collision_radius = 3.9
+	max_hitpoints = @lamarr_hp
+	operative_officers = 24
+	officers_escape_perc = 15
+	fleet_view_background = "military_large"
+
+	ship_modifier = {
+		ship_fire_rate_mult = @lamarr_no_admiral_mult
+		ship_shield_mult = @lamarr_no_admiral_mult
+		ship_tracking_mult = @lamarr_no_admiral_mult
+		ship_evasion_add = @lamarr_evasion
+		ship_hyperlane_range_add = 1
+	}
+
+	size_multiplier = 7
+	fleet_slot_size = 5
+	graphical_culture = no
+
+	section_slots = { "mid" = { locator = "part1" } }
+
+	num_target_locators = 3
+	is_space_station = no
+	icon_frame = 5
+	text_icon = military_size_8
+	base_buildtime = @lamarr_build_time
+	can_have_federation_design = yes
+	enable_default_design = yes
+	enable_3dview_in_ship_browser = yes
+	can_also_survey = yes
+
+	default_behavior = "hrb_artillery"
+
+	prerequisites = { "tech_lamarr_unlock" }
+
+	potential_country = {
+		has_country_id = ufop
+	}
+
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = cp26_military_fleet_cap_fail
+			owner = { cp26_under_reduced_fleet_military_cap = yes }
+		}
+	}
+
+	combat_disengage_chance = 1.25
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	resources = {
+		category = ships
+		upkeep = {
+			trigger = {
+				NOT = {
+					ROOT = {
+						exists = FROM
+						original_owner_uses_artificial_singularities = FROM
+					}
+				}
+			}
+			deuterium = @lamarr_upkeep_deuterium
+		}
+		upkeep = {
+			trigger = {
+				ROOT = {
+					exists = FROM
+					original_owner_uses_artificial_singularities = FROM
+				}
+			}
+			artificial_singularities = 0
+		}
+		upkeep = {
+			alloys = @lamarr_upkeep_alloys
+		}
+	}
+
+	min_upgrade_cost = {
+		alloys = 1
+	}
+}

@@ -1,0 +1,69 @@
+ship_design = {
+	name = "NAME_Lamarr_Class"
+	ship_size = lamarr
+	is_event_design = yes
+
+	section = {
+		template = "LAMARR_MID"
+		slot = "mid"
+
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_01" template = "MEDIUM_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_02" template = "MEDIUM_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_03" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "MEDIUM_GUN_04" template = "MEDIUM_PHASER_ARRAY" }
+		component = { slot = "SMALL_GUN_01" template = "SMALL_PHASER_ARRAY" }
+		component = { slot = "SMALL_GUN_02" template = "PHOTON_TORPEDOES" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_4" template = "LARGE_TRITANIUM_HULLS" }
+		component = { slot = "MEDIUM_UTILITY_1" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_2" template = "MEDIUM_TRITANIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_2" template = "ADVANCED_AUXILIARY_IMPULSE_ENGINE" }
+		component = { slot = "AUX_UTILITY_3" template = "COMPUTER_ASSISTED_TARGETING" }
+	}
+
+	required_component = "REACTOR_LAMARR_1"
+	required_component = "WARP_DRIVE_1"
+	required_component = "ENGINE_LAMARR_1"
+	required_component = "SENSOR_PROBES"
+	required_component = "COMPUTER_LAMARR_DEFAULT"
+}
+
+ship_design = {
+	name = "NAME_Voyager_A"
+	ship_size = lamarr
+	is_event_design = yes
+
+	section = {
+		template = "LAMARR_MID"
+		slot = "mid"
+
+		component = { slot = "LARGE_GUN_01" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "LARGE_GUN_02" template = "LARGE_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_01" template = "MEDIUM_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_02" template = "MEDIUM_PHASER_CANNON" }
+		component = { slot = "MEDIUM_GUN_03" template = "MEDIUM_PHOTON_TORPEDOES_1" }
+		component = { slot = "MEDIUM_GUN_04" template = "MEDIUM_PHASER_ARRAY" }
+		component = { slot = "SMALL_GUN_01" template = "SMALL_PHASER_ARRAY" }
+		component = { slot = "SMALL_GUN_02" template = "PHOTON_TORPEDOES" }
+		component = { slot = "LARGE_UTILITY_1" template = "LARGE_METAPHASIC_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_2" template = "LARGE_METAPHASIC_SHIELDS" }
+		component = { slot = "LARGE_UTILITY_3" template = "LARGE_NEUTRONIUM_HULLS" }
+		component = { slot = "LARGE_UTILITY_4" template = "LARGE_NEUTRONIUM_HULLS" }
+		component = { slot = "MEDIUM_UTILITY_1" template = "MEDIUM_DEFENSE_FIELD_SHIELDS" }
+		component = { slot = "MEDIUM_UTILITY_2" template = "MEDIUM_NEUTRONIUM_HULLS" }
+		component = { slot = "AUX_UTILITY_1" template = "SHIELD_BOOSTER" }
+		component = { slot = "AUX_UTILITY_2" template = "ADVANCED_AUXILIARY_IMPULSE_ENGINE" }
+		component = { slot = "AUX_UTILITY_3" template = "COMPUTER_ASSISTED_TARGETING" }
+	}
+
+	required_component = "REACTOR_LAMARR_4"
+	required_component = "WARP_DRIVE_3"
+	required_component = "ENGINE_LAMARR_4"
+	required_component = "MULTIPHASIC_SENSORS"
+	required_component = "COMPUTER_LAMARR_BASIC"
+}

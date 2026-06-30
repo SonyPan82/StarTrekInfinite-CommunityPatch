@@ -77,11 +77,12 @@ cp26_daystrom_station = {
 			set_country_flag = cp26_daystrom_station_built
 			country_event = { id = cp26_daystrom.1 days = 120 }
 		}
-		fromfrom = {
+		fromfrom.solar_system = {
 			set_star_flag = cp26_daystrom_station_system
 			save_global_event_target_as = cp26_daystrom_system
 		}
 		fromfrom.planet = {
+			set_planet_flag = has_megastructure
 			save_global_event_target_as = cp26_daystrom_target_world
 		}
 	}

@@ -1,0 +1,28 @@
+tech_lamarr_unlock = {
+	cost = @tier3cost1
+	area = engineering
+	category = { voidcraft }
+	tier = 3
+	start_tech = no
+	prerequisites = { }
+	weight = @specialhullweight
+
+	potential = {
+		is_ufop = yes
+	}
+
+	triggered_config = {
+		trigger = { is_ufop = yes }
+		title = tech_lamarr
+		desc = tech_lamarr_desc
+		icon = tech_sovereign
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}

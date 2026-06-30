@@ -1,5 +1,5 @@
-qt_ufop_upgrade_enterprise_odyssey = {
-	position = { x = 13 y = 5 }
+qt_ufop_upgrade_voyager_lamarr = {
+	position = { x = 9 y = 5 }
 
 	potential = {
 		has_country_id = ufop
@@ -14,6 +14,8 @@ qt_ufop_upgrade_enterprise_odyssey = {
 
 	possible = {
 		has_quest_tree_node = qt_ufop_upgrade_utopia_planitia_a500
+		exists = event_target:crisis_janeway_fleet
+		exists = event_target:crisis_leader_janeway
 	}
 
 	on_started = {
@@ -23,9 +25,9 @@ qt_ufop_upgrade_enterprise_odyssey = {
 	}
 
 	on_finished = {
-		set_country_flag = cp26_odyssey_unlocked
-		give_technology = { tech = tech_odyssey_unlock message = no }
-		country_event = { id = cp26_enterprise_odyssey.1 }
+		set_country_flag = cp26_lamarr_unlocked
+		give_technology = { tech = tech_lamarr_unlock message = no }
+		country_event = { id = cp26_voyager_lamarr.1 }
 	}
 
 	modifier = {

@@ -1,0 +1,150 @@
+@cp26_lamarr_officers = 14
+
+utility_component_template = {
+	key = "REACTOR_LAMARR_1"
+	size = small
+	icon = "GFX_ship_part_fusion_reactor"
+	icon_frame = 1
+	power = 520
+	operative_officers = @cp26_lamarr_officers
+	prerequisites = { "tech_reactor_1" }
+	component_set = "power_core"
+	size_restriction = { lamarr }
+	upgrades_to = "REACTOR_LAMARR_2"
+	resources = { category = ship_components cost = { alloys = 85 } upkeep = { deuterium = 1.10 } upkeep = { alloys = 0.11 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "REACTOR_LAMARR_2"
+	size = small
+	icon = "GFX_ship_part_matter_antimatter_reactor"
+	icon_frame = 1
+	power = 700
+	operative_officers = @cp26_lamarr_officers
+	prerequisites = { "tech_reactor_2" }
+	component_set = "power_core"
+	size_restriction = { lamarr }
+	upgrades_to = "REACTOR_LAMARR_3"
+	resources = { category = ship_components cost = { alloys = 120 } upkeep = { deuterium = 1.45 } upkeep = { alloys = 0.15 } }
+	ai_weight = { weight = 2 }
+}
+utility_component_template = {
+	key = "REACTOR_LAMARR_3"
+	size = small
+	icon = "GFX_ship_part_tetryon_reactor"
+	icon_frame = 1
+	power = 920
+	operative_officers = @cp26_lamarr_officers
+	prerequisites = { "tech_reactor_3" }
+	component_set = "power_core"
+	size_restriction = { lamarr }
+	upgrades_to = "REACTOR_LAMARR_4"
+	resources = { category = ship_components cost = { alloys = 160 } upkeep = { deuterium = 1.85 } upkeep = { alloys = 0.19 } }
+	ai_weight = { weight = 3 }
+}
+utility_component_template = {
+	key = "REACTOR_LAMARR_4"
+	size = small
+	icon = "GFX_ship_part_anti_tetryon_reactor"
+	icon_frame = 1
+	power = 1180
+	operative_officers = @cp26_lamarr_officers
+	prerequisites = { "tech_reactor_4" }
+	component_set = "power_core"
+	size_restriction = { lamarr }
+	resources = { category = ship_components cost = { alloys = 210 } upkeep = { deuterium = 2.25 } upkeep = { alloys = 0.23 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "ENGINE_LAMARR_1"
+	size = small
+	icon = "GFX_ship_part_impulse_engine"
+	icon_frame = 1
+	power = -55
+	operative_officers = @cp26_lamarr_officers
+	prerequisites = { "tech_engine_1" }
+	component_set = "thruster_components"
+	size_restriction = { lamarr }
+	upgrades_to = "ENGINE_LAMARR_2"
+	resources = { category = ship_components cost = { alloys = 20 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "ENGINE_LAMARR_2"
+	size = small
+	icon = "GFX_ship_part_advanced_impulse_engine"
+	icon_frame = 1
+	power = -80
+	operative_officers = @cp26_lamarr_officers
+	modifier = { ship_base_speed_mult = 0.25 ship_evasion_add = 2 }
+	prerequisites = { "tech_engine_2" }
+	component_set = "thruster_components"
+	size_restriction = { lamarr }
+	upgrades_to = "ENGINE_LAMARR_3"
+	resources = { category = ship_components cost = { alloys = 40 } }
+	ai_weight = { weight = 2 }
+}
+utility_component_template = {
+	key = "ENGINE_LAMARR_3"
+	size = small
+	icon = "GFX_ship_part_high_energy_impulse_engine"
+	icon_frame = 1
+	power = -110
+	operative_officers = @cp26_lamarr_officers
+	modifier = { ship_base_speed_mult = 0.50 ship_evasion_add = 4 }
+	prerequisites = { "tech_engine_3" }
+	component_set = "thruster_components"
+	size_restriction = { lamarr }
+	upgrades_to = "ENGINE_LAMARR_4"
+	resources = { category = ship_components cost = { alloys = 60 } }
+	ai_weight = { weight = 3 }
+}
+utility_component_template = {
+	key = "ENGINE_LAMARR_4"
+	size = small
+	icon = "GFX_ship_part_omega_engine"
+	icon_frame = 1
+	power = -145
+	operative_officers = @cp26_lamarr_officers
+	modifier = { ship_base_speed_mult = 0.75 ship_evasion_add = 6 }
+	prerequisites = { "tech_engine_4" }
+	component_set = "thruster_components"
+	size_restriction = { lamarr }
+	resources = { category = ship_components cost = { alloys = 80 } }
+	ai_weight = { weight = 4 }
+}
+
+utility_component_template = {
+	key = "COMPUTER_LAMARR_DEFAULT"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_default_artillery"
+	icon_frame = 1
+	power = -10
+	operative_officers = @cp26_lamarr_officers
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_1" }
+	size_restriction = { lamarr }
+	component_set = "combat_computers"
+	upgrades_to = "COMPUTER_LAMARR_BASIC"
+	ship_modifier = { ship_fire_rate_mult = 0.10 ship_weapon_range_mult = 0.10 }
+	resources = { category = ship_components cost = { alloys = 0 } }
+	ai_weight = { weight = 1 }
+}
+utility_component_template = {
+	key = "COMPUTER_LAMARR_BASIC"
+	size = small
+	icon = "GFX_ship_part_computer_hrb_basic_artillery"
+	icon_frame = 1
+	power = -20
+	operative_officers = @cp26_lamarr_officers
+	ship_behavior = "hrb_artillery"
+	class_restriction = { shipclass_military }
+	prerequisites = { "tech_computer_2" }
+	size_restriction = { lamarr }
+	component_set = "combat_computers"
+	ship_modifier = { ship_fire_rate_mult = 0.20 ship_weapon_range_mult = 0.20 }
+	resources = { category = ship_components cost = { alloys = 10 } }
+	ai_weight = { weight = 2 }
+}

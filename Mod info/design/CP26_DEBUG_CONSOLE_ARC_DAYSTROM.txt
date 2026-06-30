@@ -1,0 +1,138 @@
+CP26 Console de test (Arc Station Daystrom)
+=============================================
+
+RÉSUMÉ RAPIDE - CHEMIN LE PLUS SÛR
+----------------------------------
+Le plus simple pour tester l'arc correctement :
+
+1) Construire la station Daystrom normalement en jeu.
+   Important : la station sauvegarde plusieurs event_target utiles.
+
+2) Attendre l'event d'ouverture
+   ou le forcer avec :
+
+    event cp26_daystrom.1
+
+3) Choisir les options dans les popups
+   ou forcer la suite avec :
+
+    event cp26_daystrom.2
+    event cp26_daystrom.3
+    event cp26_daystrom.4
+
+4) La rupture finale est :
+
+    event cp26_daystrom.4
+
+5) Le message de contact / suite de l'incursion est :
+
+    event cp26_daystrom.5
+
+
+RÉSUMÉ RAPIDE
+--------------------------------
+Si la station Daystrom est déjà construite et que tu veux juste voir l'arrivée :
+
+    effect add_country_flag = cp26_daystrom_project_authorized
+    effect add_country_flag = cp26_daystrom_power_increased
+    effect add_country_flag = cp26_daystrom_final_test
+    event cp26_daystrom.4
+
+Ça saute les étapes de récit et force la rupture.
+
+
+ÉVÉNEMENTS UTILES
+-----------------
+event cp26_daystrom.1
+    Début de l'arc. Autoriser, limiter ou annuler le projet.
+
+event cp26_daystrom.2
+    Deuxième étape. Réglage de puissance de l'expérience.
+
+event cp26_daystrom.3
+    Dernière décision. Test final ou arrêt du projet.
+
+event cp26_daystrom.4
+    Incident majeur. La station est endommagée, l'empire ennemi arrive,
+    l'habitat apparaît et la guerre démarre.
+
+event cp26_daystrom.5
+    Communication hostile de l'empire apparu par la faille.
+
+event cp26_daystrom.100
+    Event technique de nettoyage / suite interne si besoin de debug.
+
+
+FLAGS UTILES
+------------
+effect add_country_flag = cp26_daystrom_station_built
+    Simule que la station existe côté pays.
+
+effect add_country_flag = cp26_daystrom_project_authorized
+    Simule l'acceptation du projet.
+
+effect add_country_flag = cp26_daystrom_project_limited
+    Simule la version prudente du projet.
+
+effect add_country_flag = cp26_daystrom_power_increased
+    Simule l'augmentation de puissance.
+
+effect add_country_flag = cp26_daystrom_power_maintained
+    Simule le maintien de puissance.
+
+effect add_country_flag = cp26_daystrom_power_suspended
+    Simule la suspension.
+
+effect add_country_flag = cp26_daystrom_final_test
+    Débloque le déclenchement de la rupture finale.
+
+effect remove_country_flag = cp26_daystrom_spawned_rift_empire
+effect remove_country_flag = cp26_daystrom_arc_ended
+    Permet de rejouer l'arc si tu veux retester.
+
+
+RESET SIMPLE POUR REJOUER
+-------------------------
+Depuis l'empire UFOP :
+
+    effect remove_country_flag = cp26_daystrom_project_authorized
+    effect remove_country_flag = cp26_daystrom_project_limited
+    effect remove_country_flag = cp26_daystrom_power_increased
+    effect remove_country_flag = cp26_daystrom_power_maintained
+    effect remove_country_flag = cp26_daystrom_power_suspended
+    effect remove_country_flag = cp26_daystrom_final_test
+    effect remove_country_flag = cp26_daystrom_spawned_rift_empire
+    effect remove_country_flag = cp26_daystrom_arc_ended
+
+Ensuite :
+
+    event cp26_daystrom.1
+
+
+IMPORTANT
+---------
+- Le meilleur test reste de construire la station en vrai.
+  Sans ça, certains event_target peuvent manquer.
+
+- `cp26_daystrom.4` utilise la planète ciblée par la station pour faire apparaître
+  l'habitat ennemi et récupérer le système. Si tu lances l'event sans station déjà posée,
+  le spawn peut être partiel ou cassé.
+
+- Si tu veux uniquement vérifier le texte et les popups, les events `.1`, `.2`, `.3`
+  et `.5` peuvent être testés plus librement.
+
+
+PETIT WORKFLOW CONSEILLÉ
+------------------------
+1. Construire la station Daystrom
+2. `event cp26_daystrom.1`
+3. Choisir la branche voulue
+4. `event cp26_daystrom.2`
+5. `event cp26_daystrom.3`
+6. `event cp26_daystrom.4`
+7. `event cp26_daystrom.5`
+
+
+sources :
+    common/megastructures/cp26_daystrom_station.txt
+    events/cp26_daystrom_events.txt

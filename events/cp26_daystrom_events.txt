@@ -160,6 +160,8 @@ country_event = {
 				type = default
 				ship_prefix = "SSI"
 				name_list = "ART1"
+				graphical_culture = "arthropoid_01"
+				city_graphical_culture = "arthropoid_01"
 				authority = auth_imperial
 				civics = { civic = civic_military_discipline }
 				civics = { civic = civic_secret_police }
@@ -194,63 +196,66 @@ country_event = {
 				}
 			}
 
-			last_created_country = {
-				save_global_event_target_as = cp26_daystrom_rift_country
-				set_graphical_culture = arthropoid_01
-				set_country_flag = cp26_daystrom_rift_country
-				give_technology = { tech = tech_destroyer_unlock message = no }
-				give_technology = { tech = tech_cruiser_unlock message = no }
-			}
+				last_created_country = {
+					save_global_event_target_as = cp26_daystrom_rift_country
+					set_graphical_culture = arthropoid_01
+					set_country_flag = cp26_daystrom_rift_country
+					give_technology = { tech = tech_destroyer_unlock message = no }
+					give_technology = { tech = tech_cruiser_unlock message = no }
+				}
 
-			if = {
-				limit = {
-					exists = event_target:cp26_daystrom_target_world
-					exists = event_target:cp26_daystrom_rift_country
-				}
-				event_target:cp26_daystrom_target_world = {
-					solar_system = {
-						spawn_megastructure = {
-							type = "cp26_daystrom_rift_habitat"
-							planet = event_target:cp26_daystrom_target_world
-							owner = event_target:cp26_daystrom_rift_country
-							orbit_distance = 9
-							orbit_angle = 45
-						}
-					}
-				}
-			}
-
-			if = {
-				limit = {
-					exists = event_target:cp26_daystrom_system
-					exists = event_target:cp26_daystrom_rift_country
-				}
-				event_target:cp26_daystrom_system = {
-					every_system_megastructure = {
-						set_owner = event_target:cp26_daystrom_rift_country
-					}
-					every_system_planet = {
-						limit = {
-							NOT = { is_star = yes }
-							exists = owner
-						}
-						set_owner = event_target:cp26_daystrom_rift_country
-						set_controller = event_target:cp26_daystrom_rift_country
+				if = {
+					limit = {
+						exists = event_target:cp26_daystrom_target_world
+						exists = event_target:cp26_daystrom_rift_country
 					}
 					if = {
-						limit = { exists = starbase }
-						starbase = {
-							set_owner = event_target:cp26_daystrom_rift_country
+						limit = { exists = event_target:cp26_daystrom_station_scope }
+						event_target:cp26_daystrom_station_scope = {
+							remove_megastructure = this
 						}
 					}
-					else = {
-						create_starbase = {
-							size = starbase_starport
-							owner = event_target:cp26_daystrom_rift_country
+					event_target:cp26_daystrom_target_world = {
+						solar_system = {
+							spawn_megastructure = {
+								type = "cp26_daystrom_rift_habitat"
+								planet = event_target:cp26_daystrom_target_world
+								owner = event_target:cp26_daystrom_rift_country
+								orbit_distance = 9
+								orbit_angle = 45
+							}
 						}
 					}
 				}
-			}
+
+				if = {
+					limit = {
+						exists = event_target:cp26_daystrom_system
+						exists = event_target:cp26_daystrom_rift_country
+					}
+					event_target:cp26_daystrom_system = {
+						every_system_planet = {
+							limit = {
+								NOT = { is_star = yes }
+								exists = owner
+							}
+							set_owner = event_target:cp26_daystrom_rift_country
+							set_controller = event_target:cp26_daystrom_rift_country
+						}
+						if = {
+							limit = { exists = starbase }
+							starbase = {
+								set_owner = event_target:cp26_daystrom_rift_country
+							}
+						}
+						else = {
+							create_starbase = {
+								size = starbase_starport
+								owner = event_target:cp26_daystrom_rift_country
+							}
+						}
+					}
+				}
 
 			if = {
 				limit = {
@@ -289,32 +294,193 @@ country_event = {
 					name = "NAME_CP26_DAYSTROM_RIFT_FLEET"
 					effect = {
 						set_owner = event_target:cp26_daystrom_rift_country
-						while = {
-							count = 3
+						# Vanilla-style scaling: increase the incursion fleet in power bands
+						# based on the player's strongest military fleet.
+						if = {
+							limit = {
+								root = {
+									any_owned_fleet = {
+										is_ship_class = shipclass_military
+										fleet_power >= 6500
+									}
+								}
+							}
+							while = {
+								count = 16
+								create_ship = {
+									name = random
+									design = "NAME_Small_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+							while = {
+								count = 8
+								create_ship = {
+									name = random
+									design = "NAME_Medium_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+							while = {
+								count = 4
+								create_ship = {
+									name = random
+									design = "NAME_Large_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+						}
+						else_if = {
+							limit = {
+								root = {
+									any_owned_fleet = {
+										is_ship_class = shipclass_military
+										fleet_power >= 3500
+									}
+								}
+							}
+							while = {
+								count = 12
+								create_ship = {
+									name = random
+									design = "NAME_Small_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+							while = {
+								count = 6
+								create_ship = {
+									name = random
+									design = "NAME_Medium_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+							while = {
+								count = 3
+								create_ship = {
+									name = random
+									design = "NAME_Large_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+						}
+						else_if = {
+							limit = {
+								root = {
+									any_owned_fleet = {
+										is_ship_class = shipclass_military
+										fleet_power >= 2500
+									}
+								}
+							}
+							while = {
+								count = 8
+								create_ship = {
+									name = random
+									design = "NAME_Small_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+							while = {
+								count = 4
+								create_ship = {
+									name = random
+									design = "NAME_Medium_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+							while = {
+								count = 2
+								create_ship = {
+									name = random
+									design = "NAME_Large_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+						}
+						else_if = {
+							limit = {
+								root = {
+									any_owned_fleet = {
+										is_ship_class = shipclass_military
+										fleet_power >= 1500
+									}
+								}
+							}
+							while = {
+								count = 6
+								create_ship = {
+									name = random
+									design = "NAME_Small_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+							while = {
+								count = 3
+								create_ship = {
+									name = random
+									design = "NAME_Medium_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
 							create_ship = {
 								name = random
-								design = "NAME_Small_Nausicaan"
+								design = "NAME_Large_Minor"
 								prefix = no
 								graphical_culture = arthropoid_01
 								initial_officers_perc = 1
 							}
 						}
-						while = {
-							count = 2
+						else = {
+							while = {
+								count = 3
+								create_ship = {
+									name = random
+									design = "NAME_Small_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
+							while = {
+								count = 2
+								create_ship = {
+									name = random
+									design = "NAME_Medium_Minor"
+									prefix = no
+									graphical_culture = arthropoid_01
+									initial_officers_perc = 1
+								}
+							}
 							create_ship = {
 								name = random
-								design = "NAME_Medium_Nausicaan"
+								design = "NAME_Large_Minor"
 								prefix = no
 								graphical_culture = arthropoid_01
 								initial_officers_perc = 1
 							}
-						}
-						create_ship = {
-							name = random
-							design = "NAME_Large_Nausicaan"
-							prefix = no
-							graphical_culture = arthropoid_01
-							initial_officers_perc = 1
 						}
 						set_location = event_target:cp26_daystrom_rift_world
 					}
@@ -328,20 +494,55 @@ country_event = {
 				}
 			}
 
-			event_target:cp26_daystrom_rift_country = {
-				if = {
-					limit = { exists = event_target:cp26_daystrom_rift_world }
-					set_custom_capital_location = event_target:cp26_daystrom_rift_world
+				event_target:cp26_daystrom_rift_country = {
+					if = {
+						limit = { exists = event_target:cp26_daystrom_rift_world }
+						set_custom_capital_location = event_target:cp26_daystrom_rift_world
+					}
+
+					if = {
+						limit = { exists = root }
+						establish_communications_no_message = root
+						set_faction_hostility = {
+							target = root
+							set_hostile = yes
+							set_neutral = no
+							set_friendly = no
+						}
+						declare_war = {
+							target = root
+							attacker_war_goal = wg_humiliation
+						}
+						root = {
+							country_event = { id = cp26_daystrom.5 }
+						}
+					}
 				}
 
 				if = {
-					limit = { exists = root }
-					establish_communications_no_message = root
+					limit = { exists = event_target:cp26_daystrom_rift_country }
+					set_faction_hostility = {
+						target = event_target:cp26_daystrom_rift_country
+						set_hostile = yes
+						set_neutral = no
+						set_friendly = no
+					}
 				}
+
+				play_country_event_for_all_major_powers = { ID = cp26_daystrom.100 }
 			}
-
-			play_country_event_for_all_major_powers = { ID = cp26_daystrom.100 }
 		}
+}
+
+country_event = {
+	id = cp26_daystrom.5
+	title = cp26_daystrom.5.title
+	desc = cp26_daystrom.5.desc
+	show_sound = event_hail_frequency
+	is_triggered_only = yes
+
+	option = {
+		name = OK
 	}
 }
 

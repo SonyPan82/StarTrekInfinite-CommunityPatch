@@ -1,0 +1,102 @@
+@lamarr_scale = 1.28
+
+entity = {
+	name = "lamarr_entity"
+	pdxmesh = "lamarr_ship_mesh"
+	scale = @lamarr_scale
+	default_state = "idle"
+
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" position = { 0 0 0 } }
+	locator = { name = "engine_small_01" position = { 5.8 1.8 2.8 } }
+	locator = { name = "engine_small_02" position = { -5.8 1.8 2.8 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_03" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_04" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_05" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_06" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_04" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } }
+
+	state = {
+		name = "idle"
+		state_time = 3
+		start_event = { trigger_once = yes sound = { soundeffect = "ufop_01_sovereign_entity" } }
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 1 node = "light_locator_03" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 1 node = "light_locator_04" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_05" particle = "ship_light_red_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_06" particle = "ship_light_green_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_07" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_08" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_09" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_10" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_11" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_12" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+	}
+
+	game_data = {
+		trail_width = 1.0
+		size = 29
+	}
+}
+
+entity = {
+	name = "lamarr_section_1_entity"
+	pdxmesh = "lamarr_ship_mesh"
+	scale = @lamarr_scale
+	default_state = "idle"
+
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" position = { 0 0 0 } }
+	locator = { name = "engine_small_01" position = { 5.8 1.8 2.8 } }
+	locator = { name = "engine_small_02" position = { -5.8 1.8 2.8 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_03" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_04" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_05" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_06" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_04" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } }
+}
+
+entity = {
+	name = "lamarr_section_2_entity"
+	pdxmesh = "lamarr_ship_mesh"
+	scale = @lamarr_scale
+	default_state = "idle"
+
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "root" position = { 0 0 0 } }
+	locator = { name = "engine_small_01" position = { 5.8 1.8 2.8 } }
+	locator = { name = "engine_small_02" position = { -5.8 1.8 2.8 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_03" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_04" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_05" rotation = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_06" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } }
+	locator = { name = "medium_gun_04" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } }
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } }
+}

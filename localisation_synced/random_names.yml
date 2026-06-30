@@ -1,4 +1,8 @@
 ﻿l_default:
+ NAME_CP26_DAYSTROM_RIFT_COUNTRY: "L'Incursion subspatiale"
+ NAME_CP26_DAYSTROM_RIFT_WORLD: "Cicatrice subspatiale"
+ NAME_CP26_DAYSTROM_RIFT_FLEET: "Essaim d'incursion"
+ NAME_CP26_DAYSTROM_RIFT_GUARD: "Garde de la faille"
  NewCivilization: "New Civilization"
  Empty: ""
  Aleph: "Aleph"

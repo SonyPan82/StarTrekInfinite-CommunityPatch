@@ -1,0 +1,80 @@
+namespace = cp26_voyager_lamarr
+namespace = cp26_museum
+
+country_event = {
+	id = cp26_voyager_lamarr.1
+	title = "cp26_voyager_lamarr.1.name"
+	desc = "cp26_voyager_lamarr.1.desc"
+	picture = GFX_evt_highway_ftl_travel_ufop
+	show_sound = event_generic_success
+
+	is_triggered_only = yes
+
+	option = {
+		name = "cp26_voyager_lamarr.1.a"
+		custom_tooltip = "cp26_voyager_lamarr.1.a.tt"
+
+		if = {
+			limit = { has_country_flag = cp26_fleet_museum_spawned }
+			country_event = { id = cp26_museum.5 days = 30 }
+		}
+
+		create_fleet = {
+			name = "NAME_Voyager_A_Fleet"
+			effect = {
+				set_owner = ROOT
+
+				create_ship = {
+					name = "NAME_Voyager_A"
+					design = NAME_Voyager_A
+				}
+
+				set_location = event_target:crisis_janeway_fleet
+				assign_leader = event_target:crisis_leader_janeway
+				set_fleet_flag = cp26_voyager_a
+			}
+			settings = {
+				can_upgrade = no
+				can_change_leader = no
+				can_change_composition = no
+				can_disband = no
+			}
+		}
+
+		event_target:crisis_janeway_fleet = {
+			delete_fleet = {
+				target = this
+				destroy_template = yes
+				ignore_is_destroyable = yes
+			}
+		}
+
+		last_created_ship = {
+			set_name = "U.S.S. Voyager-A"
+			save_global_event_target_as = cp26_voyager_a_ship
+		}
+
+		last_created_fleet = {
+			save_global_event_target_as = crisis_janeway_fleet
+		}
+	}
+}
+
+country_event = {
+	id = cp26_museum.5
+	title = "cp26_museum.5.name"
+	desc = "cp26_museum.5.desc"
+	picture = GFX_evt_highway_ftl_travel_ufop
+	show_sound = event_bridge_decision
+
+	is_triggered_only = yes
+
+	option = {
+		name = "cp26_museum.5.a"
+		set_country_flag = cp26_museum_voyager_unlock
+	}
+
+	option = {
+		name = "cp26_museum.5.b"
+	}
+}
