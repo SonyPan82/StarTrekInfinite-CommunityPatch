@@ -1,0 +1,66 @@
+CP26_UMBRAL = {
+	category = "Arthropoid"
+	should_name_home_system_planets = no
+
+	ship_names = {
+		generic = {
+			"Voile noire" "Pointe du Voile" "Morsure du Vide" "Lame du Rift"
+			"Ombre froide" "Éclat obscur" "Veilleur du Seuil" "Croc du Silence"
+			"Nuit pourpre" "Fracture noire" "Faim du Néant" "Griffe ombrale"
+		}
+	}
+
+	fleet_names = {
+		random_names = {
+			"Essaim ombral" "Flottille du Rift" "Avant-garde ombrale" "Cohorte du Voile"
+		}
+		sequential_name = "Flotte ombrale %CC%"
+	}
+
+	army_names = {
+		defense_army = {
+			sequential_name = "Garnison ombrale %O%"
+		}
+		assault_army = {
+			sequential_name = "Cohorte ombrale %O%"
+		}
+		robotic_army = {
+			sequential_name = "Drone ombral %O%"
+		}
+	}
+
+	planet_names = {
+		generic = {
+			names = {
+				"Voile-Rupture" "Nexus Ombre" "Seuil Noir" "Faille Violette"
+				"Orbite du Vide" "Bastion du Rift" "Creuset ombral"
+			}
+		}
+	}
+
+	character_names = {
+		default = {
+			full_names = {
+				"Ul-Tavar" "Sha-Vorim" "Kor-Embal" "Vor-Ithis" "Naq-Ulren"
+				"Tal-Umbris" "Vel-Korath" "Ish-Torev" "Qal-Morun" "Ser-Vhal"
+				"Or-Talis" "Ven-Drakar" "Sul-Mareth" "Ith-Vorak" "Kel-Umor"
+			}
+			first_names = {}
+			second_names = {}
+			regnal_first_names = {
+				"Ul" "Vor" "Tal" "Ith" "Kel"
+			}
+			regnal_second_names = {
+				"l'Ombre" "du Rift" "du Voile"
+			}
+		}
+	}
+
+	ruler_names = {
+		default = {
+			full_names = {
+				"Ul-Tavar" "Tal-Umbris" "Ith-Vorak" "Kel-Umor" "Vor-Ithis"
+			}
+		}
+	}
+}

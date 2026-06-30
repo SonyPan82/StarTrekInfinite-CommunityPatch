@@ -166,31 +166,31 @@ country_event = {
 				save_global_event_target_as = cp26_daystrom_system
 			}
 
-			if = {
-				limit = { NOT = { has_built_species = "Subspatial Entity" } }
-				create_species = {
-					class = "ART"
-					portrait = "art1"
-					name = "Umbral"
-					plural = "Umbrals"
-					adjective = "Umbral"
-					name_list = "ART1"
-					traits = {
-						trait = trait_strong
-						trait = trait_nonadaptive
-						trait = trait_enduring
-						trait = trait_pc_habitat_preference
-					}
+			create_species = {
+				class = "CP26_UMBRAL"
+				portrait = "art8"
+				name = "Umbral"
+				plural = "Umbrals"
+				adjective = "Umbral"
+				name_list = "CP26_UMBRAL"
+				traits = {
+					trait = trait_strong
+					trait = trait_nonadaptive
+					trait = trait_enduring
+					trait = trait_pc_habitat_preference
 				}
+			}
+			last_created_species = {
+				save_global_event_target_as = cp26_umbral_species
 			}
 
 					create_country = {
 						name = "Les Umbrals"
-					species = "Subspatial Entity"
+					species = event_target:cp26_umbral_species
 					country_id = "cp26_daystrom_rift"
 					type = default
 					ship_prefix = "SSI"
-					name_list = "ART1"
+					name_list = "CP26_UMBRAL"
 					authority = auth_imperial
 					civics = { civic = civic_military_discipline }
 					civics = { civic = civic_secret_police }
@@ -327,11 +327,11 @@ country_event = {
 					clear_blockers = yes
 					while = {
 						count = 12
-						create_pop = { species = "Subspatial Entity" }
+						create_pop = { species = event_target:cp26_umbral_species }
 					}
 					while = {
 						count = 2
-						create_pop = { species = "Subspatial Entity" }
+						create_pop = { species = event_target:cp26_umbral_species }
 					}
 					add_district_and_planet_size_if_needed_effect = { district = district_city }
 					add_district_and_planet_size_if_needed_effect = { district = district_city }

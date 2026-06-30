@@ -1,0 +1,19 @@
+CP26_UMBRAL = {
+	archetype = BIOLOGICAL
+
+	playable = { always = no }
+	randomized = no
+
+	portraits = {
+		"art8"
+	}
+
+	non_randomized_portraits = {
+		"art8"
+	}
+
+	graphical_culture = arthropoid_01
+	move_pop_sound_effect = "arthopoid_pops_move"
+
+	resources = {}
+}
