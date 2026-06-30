@@ -153,18 +153,16 @@ country_event = {
 				}
 			}
 
-			create_country = {
-				name = "NAME_CP26_DAYSTROM_RIFT_COUNTRY"
-				species = "Subspatial Entity"
-				country_id = "cp26_daystrom_rift"
-				type = default
-				ship_prefix = "SSI"
-				name_list = "ART1"
-				graphical_culture = "arthropoid_01"
-				city_graphical_culture = "arthropoid_01"
-				authority = auth_imperial
-				civics = { civic = civic_military_discipline }
-				civics = { civic = civic_secret_police }
+				create_country = {
+					name = "NAME_CP26_DAYSTROM_RIFT_COUNTRY"
+					species = "Subspatial Entity"
+					country_id = "cp26_daystrom_rift"
+					type = default
+					ship_prefix = "SSI"
+					name_list = "ART1"
+					authority = auth_imperial
+					civics = { civic = civic_military_discipline }
+					civics = { civic = civic_secret_police }
 				origin = "origin_default"
 				flag = {
 					icon = {

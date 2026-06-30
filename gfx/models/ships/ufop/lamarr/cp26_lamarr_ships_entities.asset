@@ -1,15 +1,14 @@
-@lamarr_scale = 1.28
+@lamarr_scale = 1.58
 
 entity = {
 	name = "lamarr_entity"
-	pdxmesh = "lamarr_ship_mesh"
-	scale = @lamarr_scale
+	pdxmesh = "molluscoid_01_corvette_frame_mesh"
 	default_state = "idle"
 
 	locator = { name = "part1" position = { 0 0 0 } }
 	locator = { name = "root" position = { 0 0 0 } }
-	locator = { name = "engine_small_01" position = { 5.8 1.8 2.8 } }
-	locator = { name = "engine_small_02" position = { -5.8 1.8 2.8 } }
+	locator = { name = "engine_small_01" position = { 3.2 0.75 2.7 } }
+	locator = { name = "engine_small_02" position = { -3.2 0.75 2.7 } }
 	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
 	locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } }
 	locator = { name = "strike_craft_locator_03" rotation = { 0 0 0 } }
@@ -45,7 +44,7 @@ entity = {
 
 	game_data = {
 		trail_width = 1.0
-		size = 29
+		size = 40
 	}
 }
 
@@ -57,8 +56,8 @@ entity = {
 
 	locator = { name = "part1" position = { 0 0 0 } }
 	locator = { name = "root" position = { 0 0 0 } }
-	locator = { name = "engine_small_01" position = { 5.8 1.8 2.8 } }
-	locator = { name = "engine_small_02" position = { -5.8 1.8 2.8 } }
+	locator = { name = "engine_small_01" position = { 5.8 1.35 2.8 } }
+	locator = { name = "engine_small_02" position = { -5.8 1.35 2.8 } }
 	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
 	locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } }
 	locator = { name = "strike_craft_locator_03" rotation = { 0 0 0 } }
@@ -83,8 +82,8 @@ entity = {
 
 	locator = { name = "part1" position = { 0 0 0 } }
 	locator = { name = "root" position = { 0 0 0 } }
-	locator = { name = "engine_small_01" position = { 5.8 1.8 2.8 } }
-	locator = { name = "engine_small_02" position = { -5.8 1.8 2.8 } }
+	locator = { name = "engine_small_01" position = { 5.8 1.35 2.8 } }
+	locator = { name = "engine_small_02" position = { -5.8 1.35 2.8 } }
 	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } }
 	locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } }
 	locator = { name = "strike_craft_locator_03" rotation = { 0 0 0 } }

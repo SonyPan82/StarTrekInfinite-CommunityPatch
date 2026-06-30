@@ -269,8 +269,7 @@ gorn_system_initializer = {
 						"null"
 					}
 				}
-				room = "gorn_transmission_room"
-				ethos = {
+					ethos = {
 					ethic = ethic_fanatic_militarist
 					ethic = ethic_xenophobe
 				}

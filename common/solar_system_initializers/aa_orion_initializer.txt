@@ -100,8 +100,7 @@ orion_system_initializer = {
 						"null"
 					}
 				}
-				room = "orion_transmission_room"
-				ethos = {
+					ethos = {
 					ethic = ethic_militarist
 					ethic = ethic_egalitarian
 					ethic = ethic_materialist

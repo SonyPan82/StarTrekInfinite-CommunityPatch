@@ -112,6 +112,7 @@ country_event = {
 			}
 
 			last_created_fleet = {
+				set_fleet_flag = cp26_voyager_hero
 				save_global_event_target_as = crisis_janeway_fleet
 			}
 		}

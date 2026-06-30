@@ -2,6 +2,13 @@
 entity = {
 	name = "voyager_slots_entity"
 	pdxmesh = "intrepid_slots_mesh"
+	locator = { name = "part1" position = { 0 0 0 } }
+	locator = { name = "small_gun_01" position = { 0 0 0 } }
+	locator = { name = "small_gun_02" position = { 0 0 0 } }
+	locator = { name = "small_gun_03" position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" position = { 0 0 0 } }
+	locator = { name = "medium_gun_03" position = { 0 0 0 } }
 }
 
 entity = {

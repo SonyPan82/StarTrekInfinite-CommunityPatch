@@ -6,13 +6,34 @@ country_event = {
 	title = "cp26_voyager_lamarr.1.name"
 	desc = "cp26_voyager_lamarr.1.desc"
 	picture = GFX_evt_highway_ftl_travel_ufop
+	show_sound = event_space_travel
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		event_target:ufop_sol_starbase_ship = {
+			enable_special_project = {
+				name = "UPGRADE_VOYAGER_LAMARR"
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_voyager_lamarr.2
+	title = "cp26_voyager_lamarr.2.name"
+	desc = "cp26_voyager_lamarr.2.desc"
+	picture = GFX_evt_highway_ftl_travel_ufop
 	show_sound = event_generic_success
 
 	is_triggered_only = yes
 
 	option = {
-		name = "cp26_voyager_lamarr.1.a"
-		custom_tooltip = "cp26_voyager_lamarr.1.a.tt"
+		name = "cp26_voyager_lamarr.2.a"
+		custom_tooltip = "cp26_voyager_lamarr.2.a.tt"
 
 		if = {
 			limit = { has_country_flag = cp26_fleet_museum_spawned }
@@ -26,10 +47,10 @@ country_event = {
 
 				create_ship = {
 					name = "NAME_Voyager_A"
-					design = NAME_Voyager_A
+					design = "U.S.S. Voyager-A"
 				}
 
-				set_location = event_target:crisis_janeway_fleet
+				set_location = event_target:ufop_sol_starbase_ship
 				assign_leader = event_target:crisis_leader_janeway
 				set_fleet_flag = cp26_voyager_a
 			}
@@ -55,6 +76,7 @@ country_event = {
 		}
 
 		last_created_fleet = {
+			set_name = "U.S.S. Voyager-A"
 			save_global_event_target_as = crisis_janeway_fleet
 		}
 	}

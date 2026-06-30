@@ -170,10 +170,11 @@ country_event = {
 					remove_modifier = minor_power_starting_buffs_01
 					remove_modifier = minor_civic_debuff
 				}
-				solar_system = {
-					set_surveyed = { surveyed = yes surveyor = root }
-					set_star_flag = outpost
-				set_star_flag = ferengi_home_system
+					solar_system = {
+						save_event_target_as = ferengi_capital_system
+						set_surveyed = { surveyed = yes surveyor = root }
+						set_star_flag = outpost
+					set_star_flag = ferengi_home_system
 				set_star_flag = ferengi_system
 				set_star_flag = ferengi
 				if = {
@@ -279,7 +280,7 @@ country_event = {
 					}
 
 					set_fleet_stance = evasive
-					set_location = event_target:ferengi_country.capital_star
+					set_location = event_target:ferengi_capital_system
 
 					owner = {
 						create_leader = {
@@ -303,7 +304,7 @@ country_event = {
 					}
 
 					set_fleet_stance = evasive
-					set_location = event_target:ferengi_country.capital_star
+					set_location = event_target:ferengi_capital_system
 				}
 			}
 
@@ -317,7 +318,7 @@ country_event = {
 					}
 
 					set_fleet_stance = passive
-					set_location = event_target:ferengi_country.capital_star
+					set_location = event_target:ferengi_capital_system
 
 					owner = {
 						create_leader = {
@@ -355,7 +356,7 @@ country_event = {
 								random_existing_design = ferengi_destroyer
 								initial_officers_perc = 0.2
 							}
-							set_location = event_target:ferengi_country.capital_star
+								set_location = event_target:ferengi_capital_system
 						}
 					}
 				}

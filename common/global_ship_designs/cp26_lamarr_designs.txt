@@ -34,7 +34,7 @@ ship_design = {
 }
 
 ship_design = {
-	name = "NAME_Voyager_A"
+	name = "U.S.S. Voyager-A"
 	ship_size = lamarr
 	is_event_design = yes
 

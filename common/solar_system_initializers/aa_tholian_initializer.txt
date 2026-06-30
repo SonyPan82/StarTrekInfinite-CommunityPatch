@@ -101,8 +101,7 @@ tholian_system_initializer = {
 						"null"
 					}
 				}
-				room = "tholian_transmission_room"
-				ethos = {
+					ethos = {
 					ethic = ethic_fanatic_militarist
 					ethic = ethic_xenophobe
 				}

@@ -1,0 +1,38 @@
+special_project = {
+	key = "UPGRADE_VOYAGER_LAMARR"
+	cost = 0
+	days_to_research = 10
+	tech_department = engineering_technology
+	picture = GFX_evt_highway_ftl_travel_ufop
+
+	event_scope = ship_event
+	requirements = {
+		has_fleet_flag = cp26_voyager_hero
+		resources = {
+			alloys = 3500
+			dilithium = 20
+		}
+	}
+
+	on_start = {
+	}
+
+	on_success = {
+		OWNER = {
+			country_event = { id = cp26_voyager_lamarr.2 }
+		}
+		if = {
+			limit = { exists = event_target:ufop_country }
+			event_target:ufop_country = {
+				add_resource = { alloys = -3500 }
+				add_resource = { dilithium = -20 }
+			}
+		}
+	}
+
+	on_cancel = {
+	}
+
+	on_fail = {
+	}
+}
