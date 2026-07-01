@@ -1,0 +1,27 @@
+cp26_daystrom_umbral_bootstrap = {
+	icon = "GFX_modifier_ship_hull"
+	icon_frame = 1
+
+	country_base_energy_produces_add = 120
+	country_minerals_produces_add = 80
+	country_alloys_produces_add = 24
+	country_base_influence_produces_add = 2
+	shipsize_corvette_build_speed_mult = 0.25
+	shipsize_destroyer_build_speed_mult = 0.25
+	shipsize_cruiser_build_speed_mult = 0.25
+}
+
+cp26_daystrom_defense_mobilization = {
+	icon = "GFX_modifier_ship_fire_rate"
+	icon_frame = 1
+
+	country_base_energy_produces_add = 80
+	country_minerals_produces_add = 60
+	country_alloys_produces_add = 16
+	country_base_influence_produces_add = 1
+	ship_fire_rate_mult = 0.10
+	ship_weapon_damage = 0.05
+	shipsize_corvette_build_speed_mult = 0.15
+	shipsize_destroyer_build_speed_mult = 0.15
+	shipsize_cruiser_build_speed_mult = 0.15
+}

@@ -230,17 +230,23 @@ country_event = {
 						save_global_event_target_as = cp26_daystrom_rift_country
 						set_graphical_culture = arthropoid_01
 						set_country_flag = cp26_daystrom_rift_country
+					give_technology = { tech = tech_shipyard message = no }
 					give_technology = { tech = tech_megastructure_1 message = no }
 					give_technology = { tech = tech_corvette_unlock message = no }
 					give_technology = { tech = tech_destroyer_unlock message = no }
 					give_technology = { tech = tech_cruiser_unlock message = no }
-					create_ship_design = { design = "NAME_CP26_UmbralCorvette" }
+					add_resource = { alloys = 3500 energy = 2500 minerals = 2000 influence = 300 }
+					add_modifier = { modifier = cp26_daystrom_umbral_bootstrap days = 5400 }
+					create_ship_design = { design = "Corvette ombrale" }
 					add_ship_design = last_created_design
-					create_ship_design = { design = "NAME_CP26_UmbralDestroyer" }
+					create_ship_design = { design = "Destroyer ombral" }
 					add_ship_design = last_created_design
-					create_ship_design = { design = "NAME_CP26_UmbralCruiser" }
+					create_ship_design = { design = "Croiseur ombral" }
 					add_ship_design = last_created_design
 				}
+
+			add_resource = { alloys = 1200 energy = 1500 minerals = 1200 influence = 150 }
+			add_modifier = { modifier = cp26_daystrom_defense_mobilization days = 3600 }
 
 					if = {
 						limit = {
@@ -287,16 +293,10 @@ country_event = {
 								limit = { exists = starbase }
 								starbase = {
 									set_owner = event_target:cp26_daystrom_rift_country
-									if = {
-										limit = { has_starbase_size = starbase_outpost }
-										set_starbase_size = starbase_starport
-									}
-									if = {
-										limit = { NOT = { has_starbase_module = shipyard } }
-										set_starbase_module = {
-											slot = 1
-											module = shipyard
-										}
+									set_starbase_size = starbase_starport
+									set_starbase_module = {
+										slot = 1
+										module = shipyard
 									}
 								}
 							}
@@ -304,7 +304,12 @@ country_event = {
 								create_starbase = {
 									size = starbase_starport
 									owner = event_target:cp26_daystrom_rift_country
-									module = shipyard
+								}
+								starbase = {
+									set_starbase_module = {
+										slot = 1
+										module = shipyard
+									}
 								}
 							}
 						}
@@ -371,7 +376,7 @@ country_event = {
 								count = 16
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralCorvette"
+									design = "Corvette ombrale"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -381,7 +386,7 @@ country_event = {
 								count = 8
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralDestroyer"
+									design = "Destroyer ombral"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -391,7 +396,7 @@ country_event = {
 								count = 4
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralCruiser"
+									design = "Croiseur ombral"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -411,7 +416,7 @@ country_event = {
 								count = 12
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralCorvette"
+									design = "Corvette ombrale"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -421,7 +426,7 @@ country_event = {
 								count = 6
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralDestroyer"
+									design = "Destroyer ombral"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -431,7 +436,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralCruiser"
+									design = "Croiseur ombral"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -451,7 +456,7 @@ country_event = {
 								count = 8
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralCorvette"
+									design = "Corvette ombrale"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -461,7 +466,7 @@ country_event = {
 								count = 4
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralDestroyer"
+									design = "Destroyer ombral"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -471,7 +476,7 @@ country_event = {
 								count = 2
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralCruiser"
+									design = "Croiseur ombral"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -491,7 +496,7 @@ country_event = {
 								count = 6
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralCorvette"
+									design = "Corvette ombrale"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -501,7 +506,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralDestroyer"
+									design = "Destroyer ombral"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -509,7 +514,7 @@ country_event = {
 							}
 							create_ship = {
 								name = random
-								design = "NAME_CP26_UmbralCruiser"
+								design = "Croiseur ombral"
 								prefix = no
 								graphical_culture = arthropoid_01
 								initial_officers_perc = 1
@@ -520,7 +525,7 @@ country_event = {
 								count = 3
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralCorvette"
+									design = "Corvette ombrale"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -530,7 +535,7 @@ country_event = {
 								count = 2
 								create_ship = {
 									name = random
-									design = "NAME_CP26_UmbralDestroyer"
+									design = "Destroyer ombral"
 									prefix = no
 									graphical_culture = arthropoid_01
 									initial_officers_perc = 1
@@ -538,7 +543,7 @@ country_event = {
 							}
 							create_ship = {
 								name = random
-								design = "NAME_CP26_UmbralCruiser"
+								design = "Croiseur ombral"
 								prefix = no
 								graphical_culture = arthropoid_01
 								initial_officers_perc = 1

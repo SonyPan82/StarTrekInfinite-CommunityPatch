@@ -1,0 +1,5 @@
+NGameplay = {
+	# CP26 - Déplace la date de victoire automatique par défaut vers l'an 2800.
+	# Infinite démarre en 2346, donc 2800 - 2346 = 454.
+	VICTORY_YEAR_DEFAULT = 454
+}

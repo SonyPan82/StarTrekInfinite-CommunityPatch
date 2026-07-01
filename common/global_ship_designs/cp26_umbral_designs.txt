@@ -1,5 +1,5 @@
 ship_design = {
-	name = "NAME_CP26_UmbralCorvette"
+	name = "Corvette ombrale"
 	ship_size = corvette
 	is_event_design = yes
 
@@ -24,7 +24,7 @@ ship_design = {
 }
 
 ship_design = {
-	name = "NAME_CP26_UmbralDestroyer"
+	name = "Destroyer ombral"
 	ship_size = destroyer
 	is_event_design = yes
 
@@ -60,7 +60,7 @@ ship_design = {
 }
 
 ship_design = {
-	name = "NAME_CP26_UmbralCruiser"
+	name = "Croiseur ombral"
 	ship_size = cruiser
 	is_event_design = yes
 
