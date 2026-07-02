@@ -1,0 +1,408 @@
+namespace = cp26_vger
+
+country_event = {
+	id = cp26_vger.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		years_passed >= 6
+		NOT = { has_global_flag = cp26_vger_spawned }
+		any_country = {
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+			}
+			any_owned_planet = {
+				is_colony = yes
+				NOT = { has_carrier_flag = cp26_vger_scanned }
+			}
+		}
+	}
+
+	immediate = {
+		set_global_flag = cp26_vger_spawned
+
+		random_country = {
+			limit = {
+				OR = {
+					is_country_type = default
+					is_country_type = contender
+				}
+				any_owned_planet = {
+					is_colony = yes
+					NOT = { has_carrier_flag = cp26_vger_scanned }
+				}
+			}
+			save_global_event_target_as = cp26_vger_initial_host
+			random_owned_planet = {
+				limit = {
+					is_colony = yes
+					NOT = { has_carrier_flag = cp26_vger_scanned }
+				}
+				save_global_event_target_as = cp26_vger_target_world
+			}
+		}
+
+		create_country = {
+			name = "NAME_CP26_VGER_COUNTRY"
+			type = cp26_vger_probe
+			flag = {
+				icon = {
+					category = spherical
+					file = flag_spherical_4.dds
+				}
+				background = {
+					category = backgrounds
+					file = "00_solid.dds"
+				}
+				colors = {
+					"black"
+					"null"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				save_global_event_target_as = cp26_vger_country
+			}
+		}
+
+		event_target:cp26_vger_country = {
+			set_graphical_culture = guardian_01
+			create_fleet = {
+				name = "NAME_CP26_VGER_FLEET"
+				effect = {
+					create_ship_design = {
+						design = "NAME_CP26_VGER_DESIGN"
+					}
+					create_ship = {
+						name = "NAME_CP26_VGER"
+						design = last_created_design
+						graphical_culture = "guardian_01"
+						prefix = no
+					}
+					set_owner = prev
+					set_fleet_stance = passive
+					set_location = {
+						target = event_target:cp26_vger_target_world
+						distance = 320
+						angle = 45
+					}
+					set_fleet_flag = cp26_vger_fleet
+					every_owned_ship = {
+						set_ship_flag = cp26_vger_ship
+					}
+					save_global_event_target_as = cp26_vger_fleet
+					auto_move_to_planet = {
+						target = event_target:cp26_vger_target_world
+						clear_auto_move_on_arrival = no
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_vger.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = cp26_vger_resolved
+		has_event_chain = cp26_vger_chain
+	}
+
+	immediate = {
+		end_event_chain = cp26_vger_chain
+	}
+}
+
+country_event = {
+	id = cp26_vger.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_fleet_flag = cp26_vger_fleet }
+		exists = fromfrom
+		fromfrom = { is_colony = yes }
+		NOT = { has_global_flag = cp26_vger_resolved }
+	}
+
+	immediate = {
+		fromfrom = {
+			save_global_event_target_as = cp26_vger_present_world
+			set_carrier_flag = cp26_vger_scanned
+			if = {
+				limit = { NOT = { has_modifier = cp26_vger_in_orbit } }
+				add_modifier = {
+					modifier = cp26_vger_in_orbit
+				}
+			}
+			if = {
+				limit = { exists = owner }
+				owner = {
+					save_event_target_as = cp26_vger_present_world
+					if = {
+						limit = { NOT = { has_event_chain = cp26_vger_chain } }
+						begin_event_chain = {
+							event_chain = cp26_vger_chain
+						}
+					}
+					country_event = { id = cp26_vger.5 }
+				}
+			}
+		}
+		country_event = { id = cp26_vger.4 days = 1440 }
+	}
+}
+
+country_event = {
+	id = cp26_vger.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = cp26_vger_resolved }
+		NOT = {
+			any_controlled_ship = {
+				has_ship_flag = cp26_vger_ship
+				exists = orbit
+				exists = orbit.owner
+				orbit.owner = {
+					is_researching_special_project = CP26_VGER_ANALYSIS
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_controlled_ship = {
+			limit = {
+				has_ship_flag = cp26_vger_ship
+				exists = orbit
+			}
+			orbit = {
+				if = {
+					limit = { has_modifier = cp26_vger_in_orbit }
+					remove_modifier = cp26_vger_in_orbit
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				any_playable_country = {
+					is_ai = no
+					is_at_war = no
+					any_owned_planet = {
+						is_colony = yes
+						NOT = { has_carrier_flag = cp26_vger_scanned }
+					}
+				}
+			}
+			random_controlled_ship = {
+				limit = { has_ship_flag = cp26_vger_ship }
+				solar_system = {
+					closest_system = {
+						use_bypasses = yes
+						limit = {
+							exists = owner
+							owner = {
+								is_ai = no
+								OR = {
+									is_country_type = default
+									is_country_type = contender
+								}
+								is_at_war = no
+							}
+							any_system_planet = {
+								is_colony = yes
+								NOT = { has_carrier_flag = cp26_vger_scanned }
+							}
+						}
+						random_system_planet = {
+							limit = {
+								is_colony = yes
+								NOT = { has_carrier_flag = cp26_vger_scanned }
+							}
+							save_event_target_as = cp26_vger_new_location
+						}
+					}
+				}
+				auto_move_to_planet = {
+					target = event_target:cp26_vger_new_location
+					clear_auto_move_on_arrival = no
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					OR = {
+						is_country_type = default
+						is_country_type = contender
+					}
+					is_at_war = no
+					any_owned_planet = {
+						is_colony = yes
+						NOT = { has_carrier_flag = cp26_vger_scanned }
+					}
+				}
+			}
+			random_controlled_ship = {
+				limit = { has_ship_flag = cp26_vger_ship }
+				solar_system = {
+					closest_system = {
+						use_bypasses = yes
+						limit = {
+							exists = owner
+							owner = {
+								OR = {
+									is_country_type = default
+									is_country_type = contender
+								}
+								is_at_war = no
+							}
+							any_system_planet = {
+								is_colony = yes
+								NOT = { has_carrier_flag = cp26_vger_scanned }
+							}
+						}
+						random_system_planet = {
+							limit = {
+								is_colony = yes
+								NOT = { has_carrier_flag = cp26_vger_scanned }
+							}
+							save_event_target_as = cp26_vger_new_location
+						}
+					}
+				}
+				auto_move_to_planet = {
+					target = event_target:cp26_vger_new_location
+					clear_auto_move_on_arrival = no
+				}
+			}
+		}
+		else = {
+			country_event = { id = cp26_vger.4 days = 360 }
+		}
+	}
+}
+
+country_event = {
+	id = cp26_vger.5
+	title = cp26_vger.5.title
+	desc = cp26_vger.5.desc
+	picture = GFX_evt_cp26_vger_probe
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+
+	option = {
+		name = cp26_vger.5.a
+		trigger = {
+			NOT = { has_global_flag = cp26_vger_resolved }
+			NOT = { has_special_project = CP26_VGER_ANALYSIS }
+			NOT = { has_country_flag = cp26_vger_project_done }
+			exists = event_target:cp26_vger_present_world
+		}
+		enable_special_project = {
+			name = CP26_VGER_ANALYSIS
+			location = event_target:cp26_vger_present_world
+			owner = root
+		}
+	}
+
+	option = {
+		name = cp26_vger.5.b
+	}
+}
+
+country_event = {
+	id = cp26_vger.6
+	title = cp26_vger.6.title
+	desc = cp26_vger.6.desc
+	picture = GFX_evt_cp26_vger_probe
+	show_sound = event_science_ship
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = cp26_vger_project_done
+		set_global_flag = cp26_vger_resolved
+
+		if = {
+			limit = { NOT = { exists = event_target:cp26_nereen_species } }
+			create_species = {
+				class = "CP26_NEREEN"
+				portrait = "nereen"
+				name = "Néréen"
+				plural = "Les Néréens"
+				adjective = "néréen"
+				traits = {
+					trait = trait_intelligent
+					trait = trait_communal
+					trait = trait_nonadaptive
+				}
+			}
+			last_created_species = {
+				save_global_event_target_as = cp26_nereen_species
+			}
+		}
+
+		if = {
+			limit = { exists = event_target:cp26_vger_present_world }
+			event_target:cp26_vger_present_world = {
+				if = {
+					limit = { has_modifier = cp26_vger_in_orbit }
+					remove_modifier = cp26_vger_in_orbit
+				}
+				random_list = {
+					34 = {
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+					}
+					33 = {
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+					}
+					33 = {
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+						create_pop = { species = event_target:cp26_nereen_species }
+					}
+				}
+			}
+		}
+
+		add_modifier = {
+			modifier = cp26_vger_afterglow
+			days = 3600
+		}
+
+		if = {
+			limit = { has_event_chain = cp26_vger_chain }
+			end_event_chain = cp26_vger_chain
+		}
+
+		if = {
+			limit = { exists = event_target:cp26_vger_fleet }
+			destroy_fleet = event_target:cp26_vger_fleet
+		}
+		if = {
+			limit = { exists = event_target:cp26_vger_country }
+			event_target:cp26_vger_country = { destroy_country = yes }
+		}
+	}
+
+	option = {
+		name = OK
+	}
+}

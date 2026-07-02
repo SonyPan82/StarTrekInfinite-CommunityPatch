@@ -1,0 +1,25 @@
+cp26_vger_probe = {
+	max_speed = 40
+	acceleration = 5
+	rotation_speed = 0.01
+	max_hitpoints = 75000
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_add = 75000
+	}
+	is_space_object = yes
+	size_multiplier = 25
+	fleet_slot_size = 1
+	num_target_locators = 2
+	is_space_station = no
+	icon_frame = 10
+	is_designable = no
+	components_add_to_cost = no
+	auto_upgrade = yes
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	section_slots = {
+		"stern" = { locator = "part1" }
+		"mid" = { locator = "part1" }
+	}
+}

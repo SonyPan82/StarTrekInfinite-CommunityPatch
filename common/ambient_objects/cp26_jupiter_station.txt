@@ -1,0 +1,6 @@
+ambient_object = {
+	name = "cp26_jupiter_station"
+	entity = "cp26_jupiter_station_entity"
+	selectable = no
+	show_name = no
+}

@@ -1,0 +1,82 @@
+portraits = {
+	aqu5_f_cp26 = {
+		entity = "cp26_portrait_aquatic_05_entity"
+		clothes_selector = "cp26_nereen_clothes"
+		attachment_selector = "no_texture"
+		greeting_sound = "aqu_portrait_05"
+		character_textures = {
+			"gfx/models/portraits/aquatic/aquatic_05_portrait_green_02.dds"
+			"gfx/models/portraits/aquatic/aquatic_05_portrait_brown_02.dds"
+			"gfx/models/portraits/aquatic/aquatic_05_portrait_blue_02.dds"
+			"gfx/models/portraits/aquatic/aquatic_05_portrait_purple_02.dds"
+		}
+	}
+	aqu5_m_cp26 = {
+		entity = "cp26_portrait_aquatic_05_entity"
+		clothes_selector = "cp26_nereen_clothes"
+		attachment_selector = "no_texture"
+		greeting_sound = "aqu_portrait_05"
+		character_textures = {
+			"gfx/models/portraits/aquatic/aquatic_05_portrait_green_01.dds"
+			"gfx/models/portraits/aquatic/aquatic_05_portrait_brown_01.dds"
+			"gfx/models/portraits/aquatic/aquatic_05_portrait_blue_01.dds"
+			"gfx/models/portraits/aquatic/aquatic_05_portrait_purple_01.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	nereen = {
+		default = aqu5_m_cp26
+		game_setup = {
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = { aqu5_m_cp26 }
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = { aqu5_f_cp26 }
+			}
+		}
+
+		species = {
+			add = {
+				portraits = {
+					aqu5_f_cp26
+					aqu5_m_cp26
+				}
+			}
+		}
+
+		pop = {
+			add = {
+				portraits = {
+					aqu5_f_cp26
+					aqu5_m_cp26
+				}
+			}
+		}
+
+		leader = {
+			add = {
+				trigger = { gender = female }
+				portraits = { aqu5_f_cp26 }
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = { aqu5_m_cp26 }
+			}
+		}
+
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = { aqu5_f_cp26 }
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = { aqu5_m_cp26 }
+			}
+		}
+	}
+}

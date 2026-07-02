@@ -1,0 +1,19 @@
+CP26_NEREEN = {
+	archetype = BIOLOGICAL
+
+	playable = { always = no }
+	randomized = no
+
+	portraits = {
+		"nereen"
+	}
+
+	non_randomized_portraits = {
+		"nereen"
+	}
+
+	graphical_culture = ufop_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+
+	resources = {}
+}

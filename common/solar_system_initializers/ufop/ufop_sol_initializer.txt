@@ -160,6 +160,21 @@ ufop_sol_initializer = {
 		has_ring = no
 		entity = "gas_giant_jupiter_entity"
 		change_orbit = 6
+
+		init_effect = {
+			create_ambient_object = {
+				type = "cp26_jupiter_station"
+				entity_offset_height = 0
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 14
+					angle = 235
+				}
+			}
+		}
 		
 		moon = {
 			name = "NAME_Io"

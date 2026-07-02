@@ -1,0 +1,12 @@
+animation = {
+	name = "cp26_aquatic_05_portrait_idle1_animation"
+	file = "aquatic_05_portrait_idle1.anim"
+}
+animation = {
+	name = "cp26_aquatic_05_portrait_idle2_animation"
+	file = "aquatic_05_portrait_idle2.anim"
+}
+animation = {
+	name = "cp26_aquatic_05_portrait_idle3_animation"
+	file = "aquatic_05_portrait_idle3.anim"
+}

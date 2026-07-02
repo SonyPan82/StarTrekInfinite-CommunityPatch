@@ -1,0 +1,10 @@
+cp26_vger_in_orbit = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_assist_research.dds"
+	planet_jobs_research_produces_mult = 0.20
+}
+
+cp26_vger_afterglow = {
+	icon = "gfx/interface/icons/modifiers/mod_resource_engineering_research_mult.dds"
+	country_base_unity_produces_add = 10
+	country_base_research_produces_add = 15
+}

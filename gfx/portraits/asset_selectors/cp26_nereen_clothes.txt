@@ -1,0 +1,34 @@
+cp26_nereen_clothes = {
+	default = "gfx/models/portraits/aquatic/aquatic_05_outfit_ruler.dds"
+
+	game_setup = {
+		default = "gfx/models/portraits/aquatic/aquatic_05_outfit_ruler.dds"
+	}
+
+	species = {
+		default = "gfx/models/portraits/aquatic/aquatic_05_outfit_ruler.dds"
+	}
+
+	pop = {
+		default = "gfx/models/portraits/aquatic/aquatic_05_outfit_governor.dds"
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_general.dds" = { OR = { is_pop_category = worker is_enslaved = yes is_pop_category = simple_drone } }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_scientist.dds" = { OR = { is_pop_category = specialist is_pop_category = complex_drone } }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_admiral.dds" = { is_pop_category = ruler }
+	}
+
+	leader = {
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_scientist.dds" = { leader_class = scientist }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_general.dds" = { leader_class = commander leader_should_wear_general_uniform = yes }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_admiral.dds" = { leader_class = commander leader_should_wear_general_uniform = no }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_governor.dds" = { leader_class = official }
+	}
+
+	ruler = {
+		default = "gfx/models/portraits/aquatic/aquatic_05_outfit_ruler.dds"
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_general.dds" = { owner = { has_militarist_government = yes } }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_ruler.dds" = { owner = { has_generic_government = yes } }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_governor.dds" = { owner = { has_pacifist_government = yes } }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_governor.dds" = { owner = { has_primitive_government = yes } }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_scientist.dds" = { owner = { has_materialist_government = yes } }
+	}
+}

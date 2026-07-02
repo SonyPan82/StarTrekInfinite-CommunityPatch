@@ -1,0 +1,88 @@
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_jupiter_station_mesh"
+		file = "gfx/models/ambient/jupiter_station/fed_jupiter_station.mesh"
+		scale = 1.0
+
+		meshsettings = {
+			name = "jupiter_station_white"
+			index = 0
+			texture_diffuse = "jupstatmat.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "jupiter_station_top"
+			index = 0
+			texture_diffuse = "jupstatsaucname.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "jupiter_station_red"
+			index = 0
+			texture_diffuse = "hull_fed_type_1_red_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "jupiter_station_bottom"
+			index = 0
+			texture_diffuse = "jupstatsauc.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "jupiter_station_solar"
+			index = 0
+			texture_diffuse = "solar.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "gold_panels"
+			index = 0
+			texture_diffuse = "hull_type_1_gold.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "jupiter_station_black"
+			index = 0
+			texture_diffuse = "hull_type_3_black_diffuse.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "escape_pods"
+			index = 0
+			texture_diffuse = "bronze_texture.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "jupiter_gold"
+			index = 0
+			texture_diffuse = "hull_type_1_gold.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "windows"
+			index = 0
+			texture_diffuse = "glow_white_diffuse.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShipTransp"
+		}
+	}
+}

@@ -1,0 +1,29 @@
+ship_section_template = {
+	key = "cp26_vger_probe_stern"
+	ship_size = cp26_vger_probe
+	fits_on_slot = stern
+	entity = "cp26_vger_probe_entity"
+	icon = "GFX_ship_part_core_mid"
+	icon_frame = 1
+	resources = { category = ship_sections cost = { alloys = 0 } }
+	small_utility_slots = 0
+	medium_utility_slots = 0
+	large_utility_slots = 0
+	aux_utility_slots = 0
+	ai_weight = { factor = 100 }
+}
+
+ship_section_template = {
+	key = "cp26_vger_probe_mid"
+	ship_size = cp26_vger_probe
+	fits_on_slot = mid
+	entity = "cp26_vger_probe_frame_entity"
+	icon = "GFX_ship_part_core_mid"
+	icon_frame = 1
+	resources = { category = ship_sections cost = { alloys = 0 } }
+	small_utility_slots = 0
+	medium_utility_slots = 0
+	large_utility_slots = 0
+	aux_utility_slots = 0
+	ai_weight = { factor = 100 }
+}

@@ -1,0 +1,61 @@
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_vger_probe_mesh"
+		file = "gfx/models/ships/other/vger_probe/other_vger_probe.mesh"
+		scale = 1
+
+		meshsettings = {
+			name = "vger_hull"
+			index = 0
+			texture_diffuse = "vger_hull2.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "dome"
+			index = 0
+			texture_diffuse = "vger_dome.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "front"
+			index = 0
+			texture_diffuse = "vger_front.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "ball"
+			index = 0
+			texture_diffuse = "vger_ball.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+		meshsettings = {
+			name = "lightening"
+			index = 0
+			texture_diffuse = "vger_lightning2.dds"
+			texture_normal = "glows_normal.dds"
+			texture_specular = "nospec.dds"
+			shader = "PdxMeshShip"
+		}
+	}
+}
+
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_vger_probe_frame_mesh"
+		file = "gfx/models/ships/other/doomsday_frame.mesh"
+		scale = 6.0
+
+		meshsettings = {
+			index = 0
+			shader = "PdxMeshShip"
+		}
+	}
+}

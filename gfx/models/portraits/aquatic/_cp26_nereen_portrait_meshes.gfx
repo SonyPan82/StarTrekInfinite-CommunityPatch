@@ -1,0 +1,10 @@
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_portrait_aquatic_05_mesh"
+		file = "gfx/models/portraits/aquatic/aquatic_05_portrait.mesh"
+		animation = { id = "idle1" type = "cp26_aquatic_05_portrait_idle1_animation" }
+		animation = { id = "idle2" type = "cp26_aquatic_05_portrait_idle2_animation" }
+		animation = { id = "idle3" type = "cp26_aquatic_05_portrait_idle3_animation" }
+		scale = 0.9
+	}
+}

@@ -1,0 +1,94 @@
+CP26 Console de test (Arc V'ger)
+
+RÉSUMÉ RAPIDE - CHEMIN LE PLUS SÛR
+
+1. Faire apparaître V'ger :
+event cp26_vger.1
+
+2. Laisser V'ger atteindre une colonie
+
+3. Si besoin, forcer la popup d'analyse :
+event cp26_vger.5
+
+4. Si V'ger doit repartir vers une autre colonie :
+event cp26_vger.4
+
+5. Si tu veux forcer directement la fin de l'arc :
+event cp26_vger.6
+
+
+RÉSUMÉ RAPIDE
+
+Spawn de V'ger :
+event cp26_vger.1
+
+Popup d'analyse :
+event cp26_vger.5
+
+Résolution finale :
+event cp26_vger.6
+
+
+ÉVÉNEMENTS UTILES
+
+event cp26_vger.1
+Fait apparaître V'ger si l'arc n'a pas encore commencé.
+
+event cp26_vger.4
+Force V'ger à chercher une nouvelle colonie à visiter.
+
+event cp26_vger.5
+Affiche la popup d'analyse si V'ger est déjà présent dans l'orbite d'un monde.
+
+event cp26_vger.6
+Force la fin de l'arc : arrivée des Néréens, bonus temporaires, puis départ de V'ger.
+
+
+FLAGS UTILES
+
+effect remove_global_flag = cp26_vger_spawned
+Permet de retester le spawn de V'ger.
+
+effect add_global_flag = cp26_vger_spawned
+Marque V'ger comme déjà apparu.
+
+effect remove_global_flag = cp26_vger_resolved
+Permet de retester la résolution finale.
+
+effect add_global_flag = cp26_vger_resolved
+Marque l'arc comme terminé.
+
+effect remove_country_flag = cp26_vger_project_done
+Retire la validation locale du projet spécial pour l'empire courant.
+
+effect add_country_flag = cp26_vger_project_done
+Simule un projet spécial déjà terminé pour l'empire courant.
+
+
+RESET SIMPLE
+
+effect remove_global_flag = cp26_vger_spawned
+effect remove_global_flag = cp26_vger_resolved
+effect remove_country_flag = cp26_vger_project_done
+
+Puis :
+event cp26_vger.1
+
+
+IMPORTANT
+
+Le test est plus fiable après l'an 2206, avec au moins une colonie possédée.
+
+La popup "event cp26_vger.5" a surtout du sens si V'ger est déjà dans l'orbite d'une de tes colonies.
+
+La fin "event cp26_vger.6" peut être forcée pour tester le texte et les récompenses, mais l'apparition des Néréens est plus propre si V'ger avait déjà atteint une planète.
+
+Le comportement visé est volontairement proche du Cache énigmatique vanilla : apparition unique, déplacement autonome, projet d'analyse, récompense finale.
+
+
+SOURCES
+
+events/cp26_vger_events.txt
+common/special_projects/cp26_vger_projects.txt
+common/event_chains/cp26_vger_chains.txt
+common/static_modifiers/cp26_vger_modifiers.txt
