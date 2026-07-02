@@ -1,7 +1,5 @@
 CP26 Console de test (Arc V'ger)
 
-RÉSUMÉ RAPIDE - CHEMIN LE PLUS SÛR
-
 1. Faire apparaître V'ger :
 event cp26_vger.1
 

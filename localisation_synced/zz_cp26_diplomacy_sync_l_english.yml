@@ -1,0 +1,11 @@
+﻿l_english:
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_TYPE: "Demand Surrender"
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE: "Demand Surrender"
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_TITLE: "Offer War Goal Peace"
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_DESC: "Ask §H[Recipient.GetName]§! to accept our war goal. The target empire may accept or refuse."
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_OFFER_DESC: "§H[Actor.GetName]§! asks us to accept their war goal."
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_COST: "$ACTION_CP26_OFFER_WAR_GOAL_PEACE_DESC$"
+ action_cp26_offer_war_goal_peace: "Demand Surrender"
+ action_cp26_offer_war_goal_peace_desc: "Ask §H[Recipient.GetName]§! to accept our war goal and end the war."
+ war_goal_wg_territorial_reparations: "Territorial Reparations"
+ war_goal_wg_territorial_reparations_desc: "Claims made as recompense for war being unjustly declared against us cost §Y50%§! less §YInfluence§!."

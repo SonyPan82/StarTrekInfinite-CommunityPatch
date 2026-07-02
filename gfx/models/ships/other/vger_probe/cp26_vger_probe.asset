@@ -1,26 +1,4 @@
 entity = {
-	name = "cp26_vger_probe_frame_entity"
-	pdxmesh = "cp26_vger_probe_frame_mesh"
-
-	default_state = "idle"
-	state = { name = "idle" state_time = 5 }
-	state = {
-		name = "death"
-		state_time = 2
-		looping = no
-		event = {
-			time = 1.9
-			particle = "medium_station_explosion_particle"
-			keep_particle = yes
-			trigger_once = yes
-			sound = { soundeffect = "station_explosion_large" }
-		}
-	}
-
-	scale = 1
-}
-
-entity = {
 	name = "cp26_vger_probe_entity"
 	pdxmesh = "cp26_vger_probe_mesh"
 

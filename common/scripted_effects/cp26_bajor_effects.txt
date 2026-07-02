@@ -148,7 +148,10 @@ cp26_transfer_terok_nor_to_ufop_ds9 = {
 					orbit_distance = 8
 					orbit_angle = 45
 				}
-				last_created_megastructure = {
+				every_system_megastructure = {
+					limit = {
+						is_megastructure_type = cp26_terok_nor
+					}
 					set_name = "Deep Space Nine"
 				}
 			}

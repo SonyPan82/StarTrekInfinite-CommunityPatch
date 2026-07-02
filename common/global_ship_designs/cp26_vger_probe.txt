@@ -8,11 +8,6 @@ ship_design = {
 		slot = "stern"
 	}
 
-	section = {
-		template = "cp26_vger_probe_mid"
-		slot = "mid"
-	}
-
 	required_component = "BIO_DRIVE"
 	required_component = "COMBAT_COMPUTER_ARTILLERY_BASIC"
 	required_component = "BIO_PROPULSION"

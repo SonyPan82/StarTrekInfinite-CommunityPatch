@@ -602,14 +602,13 @@ country_event = {
 				}
 			}
 
-				event_target:cp26_daystrom_rift_country = {
-					add_resource = {
-						energy = 1500
-						minerals = 1000
-						food = 300
-						alloys = 800
-						consumer_goods = 400
-					}
+					event_target:cp26_daystrom_rift_country = {
+						add_resource = {
+							energy = 1500
+							minerals = 1000
+							food = 300
+							alloys = 800
+						}
 
 					if = {
 						limit = { exists = event_target:cp26_daystrom_rift_world }

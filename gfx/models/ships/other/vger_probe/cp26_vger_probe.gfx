@@ -46,16 +46,3 @@ objectTypes = {
 		}
 	}
 }
-
-objectTypes = {
-	pdxmesh = {
-		name = "cp26_vger_probe_frame_mesh"
-		file = "gfx/models/ships/other/doomsday_frame.mesh"
-		scale = 6.0
-
-		meshsettings = {
-			index = 0
-			shader = "PdxMeshShip"
-		}
-	}
-}

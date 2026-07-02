@@ -17,10 +17,11 @@ cp26_nereen_clothes = {
 	}
 
 	leader = {
+		default = "gfx/models/portraits/aquatic/aquatic_05_outfit_governor.dds"
 		"gfx/models/portraits/aquatic/aquatic_05_outfit_scientist.dds" = { leader_class = scientist }
-		"gfx/models/portraits/aquatic/aquatic_05_outfit_general.dds" = { leader_class = commander leader_should_wear_general_uniform = yes }
-		"gfx/models/portraits/aquatic/aquatic_05_outfit_admiral.dds" = { leader_class = commander leader_should_wear_general_uniform = no }
-		"gfx/models/portraits/aquatic/aquatic_05_outfit_governor.dds" = { leader_class = official }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_admiral.dds" = { leader_class = admiral }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_general.dds" = { leader_class = general }
+		"gfx/models/portraits/aquatic/aquatic_05_outfit_governor.dds" = { leader_class = governor }
 	}
 
 	ruler = {

@@ -1,16 +1,23 @@
 special_project = {
 	key = CP26_VGER_ANALYSIS
-	cost = 2500
-	tech_department = engineering_technology
+	cost = 0
+	days_to_research = 180
+	tech_department = physics_technology
 	timelimit = -1
 	picture = GFX_evt_cp26_vger_probe
 	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
-	location = no
+	location = yes
 	event_chain = "cp26_vger_chain"
+	event_scope = ship_event
+	delete_on_finish = yes
 
-	event_scope = planet_event
+	requirements = {
+		shipclass_science_ship = 1
+	}
 
 	on_success = {
-		owner = { country_event = { id = cp26_vger.6 } }
+		hidden_effect = {
+			OWNER = { country_event = { id = cp26_vger.6 days = 1 } }
+		}
 	}
 }

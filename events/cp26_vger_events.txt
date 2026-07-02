@@ -16,7 +16,7 @@ country_event = {
 			}
 			any_owned_planet = {
 				is_colony = yes
-				NOT = { has_carrier_flag = cp26_vger_scanned }
+				NOT = { has_planet_flag = cp26_vger_scanned }
 			}
 		}
 	}
@@ -32,14 +32,14 @@ country_event = {
 				}
 				any_owned_planet = {
 					is_colony = yes
-					NOT = { has_carrier_flag = cp26_vger_scanned }
+					NOT = { has_planet_flag = cp26_vger_scanned }
 				}
 			}
 			save_global_event_target_as = cp26_vger_initial_host
 			random_owned_planet = {
 				limit = {
 					is_colony = yes
-					NOT = { has_carrier_flag = cp26_vger_scanned }
+					NOT = { has_planet_flag = cp26_vger_scanned }
 				}
 				save_global_event_target_as = cp26_vger_target_world
 			}
@@ -135,27 +135,54 @@ country_event = {
 	immediate = {
 		fromfrom = {
 			save_global_event_target_as = cp26_vger_present_world
-			set_carrier_flag = cp26_vger_scanned
+			set_planet_flag = cp26_vger_scanned
 			if = {
 				limit = { NOT = { has_modifier = cp26_vger_in_orbit } }
-				add_modifier = {
-					modifier = cp26_vger_in_orbit
-				}
+				add_modifier = { modifier = cp26_vger_in_orbit }
 			}
 			if = {
 				limit = { exists = owner }
 				owner = {
 					save_event_target_as = cp26_vger_present_world
 					if = {
+						limit = { NOT = { has_country_flag = cp26_vger_contact_notified } }
+						set_country_flag = cp26_vger_contact_notified
+						create_message = {
+							type = OBJECT_DETECTED_MESSAGE_TYPE
+							localization = cp26_vger_arrival_message
+							days = 20
+							target = event_target:cp26_vger_present_world
+							variable = {
+								type = name
+								localization = PLANET
+								scope = event_target:cp26_vger_present_world
+							}
+						}
+					}
+					if = {
 						limit = { NOT = { has_event_chain = cp26_vger_chain } }
 						begin_event_chain = {
 							event_chain = cp26_vger_chain
+							target = event_target:cp26_vger_present_world
+						}
+					}
+					if = {
+						limit = {
+							NOT = { has_special_project = CP26_VGER_ANALYSIS }
+							NOT = { has_country_flag = cp26_vger_project_done }
+							exists = event_target:cp26_vger_present_world
+						}
+						enable_special_project = {
+							name = CP26_VGER_ANALYSIS
+							location = event_target:cp26_vger_present_world
+							owner = this
 						}
 					}
 					country_event = { id = cp26_vger.5 }
 				}
 			}
 		}
+
 		country_event = { id = cp26_vger.4 days = 1440 }
 	}
 }
@@ -168,7 +195,7 @@ country_event = {
 	trigger = {
 		NOT = { has_global_flag = cp26_vger_resolved }
 		NOT = {
-			any_controlled_ship = {
+			any_owned_ship = {
 				has_ship_flag = cp26_vger_ship
 				exists = orbit
 				exists = orbit.owner
@@ -180,7 +207,7 @@ country_event = {
 	}
 
 	immediate = {
-		random_controlled_ship = {
+		random_owned_ship = {
 			limit = {
 				has_ship_flag = cp26_vger_ship
 				exists = orbit
@@ -200,11 +227,11 @@ country_event = {
 					is_at_war = no
 					any_owned_planet = {
 						is_colony = yes
-						NOT = { has_carrier_flag = cp26_vger_scanned }
+						NOT = { has_planet_flag = cp26_vger_scanned }
 					}
 				}
 			}
-			random_controlled_ship = {
+			random_owned_ship = {
 				limit = { has_ship_flag = cp26_vger_ship }
 				solar_system = {
 					closest_system = {
@@ -221,13 +248,13 @@ country_event = {
 							}
 							any_system_planet = {
 								is_colony = yes
-								NOT = { has_carrier_flag = cp26_vger_scanned }
+								NOT = { has_planet_flag = cp26_vger_scanned }
 							}
 						}
 						random_system_planet = {
 							limit = {
 								is_colony = yes
-								NOT = { has_carrier_flag = cp26_vger_scanned }
+								NOT = { has_planet_flag = cp26_vger_scanned }
 							}
 							save_event_target_as = cp26_vger_new_location
 						}
@@ -249,11 +276,11 @@ country_event = {
 					is_at_war = no
 					any_owned_planet = {
 						is_colony = yes
-						NOT = { has_carrier_flag = cp26_vger_scanned }
+						NOT = { has_planet_flag = cp26_vger_scanned }
 					}
 				}
 			}
-			random_controlled_ship = {
+			random_owned_ship = {
 				limit = { has_ship_flag = cp26_vger_ship }
 				solar_system = {
 					closest_system = {
@@ -269,13 +296,13 @@ country_event = {
 							}
 							any_system_planet = {
 								is_colony = yes
-								NOT = { has_carrier_flag = cp26_vger_scanned }
+								NOT = { has_planet_flag = cp26_vger_scanned }
 							}
 						}
 						random_system_planet = {
 							limit = {
 								is_colony = yes
-								NOT = { has_carrier_flag = cp26_vger_scanned }
+								NOT = { has_planet_flag = cp26_vger_scanned }
 							}
 							save_event_target_as = cp26_vger_new_location
 						}
@@ -312,7 +339,7 @@ country_event = {
 		enable_special_project = {
 			name = CP26_VGER_ANALYSIS
 			location = event_target:cp26_vger_present_world
-			owner = root
+			owner = this
 		}
 	}
 
@@ -326,7 +353,7 @@ country_event = {
 	title = cp26_vger.6.title
 	desc = cp26_vger.6.desc
 	picture = GFX_evt_cp26_vger_probe
-	show_sound = event_science_ship
+	show_sound = event_generic_success
 	is_triggered_only = yes
 
 	immediate = {
@@ -391,7 +418,6 @@ country_event = {
 			limit = { has_event_chain = cp26_vger_chain }
 			end_event_chain = cp26_vger_chain
 		}
-
 		if = {
 			limit = { exists = event_target:cp26_vger_fleet }
 			destroy_fleet = event_target:cp26_vger_fleet
@@ -404,5 +430,40 @@ country_event = {
 
 	option = {
 		name = OK
+	}
+}
+
+country_event = {
+	id = cp26_vger.900
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { exists = event_target:cp26_vger_present_world }
+			save_event_target_as = cp26_vger_present_world
+
+			if = {
+				limit = { NOT = { has_event_chain = cp26_vger_chain } }
+				begin_event_chain = {
+					event_chain = cp26_vger_chain
+					target = event_target:cp26_vger_present_world
+				}
+			}
+
+			if = {
+				limit = {
+					NOT = { has_special_project = CP26_VGER_ANALYSIS }
+					NOT = { has_country_flag = cp26_vger_project_done }
+				}
+				enable_special_project = {
+					name = CP26_VGER_ANALYSIS
+					location = event_target:cp26_vger_present_world
+					owner = this
+				}
+			}
+
+			country_event = { id = cp26_vger.5 days = 1 }
+		}
 	}
 }

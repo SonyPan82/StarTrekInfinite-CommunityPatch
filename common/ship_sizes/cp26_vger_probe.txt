@@ -20,6 +20,5 @@ cp26_vger_probe = {
 	construction_type = starbase_shipyard
 	section_slots = {
 		"stern" = { locator = "part1" }
-		"mid" = { locator = "part1" }
 	}
 }

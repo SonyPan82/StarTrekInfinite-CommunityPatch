@@ -1,0 +1,11 @@
+﻿l_french:
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_TYPE: "Demander la capitulation"
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE: "Demander la capitulation"
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_TITLE: "Proposer d'accepter le but de guerre"
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_DESC: "Propose à §H[Recipient.GetName]§! d'accepter notre but de guerre. L'empire ciblé peut accepter ou refuser."
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_OFFER_DESC: "§H[Actor.GetName]§! propose que nous acceptions son but de guerre."
+ ACTION_CP26_OFFER_WAR_GOAL_PEACE_COST: "$ACTION_CP26_OFFER_WAR_GOAL_PEACE_DESC$"
+ action_cp26_offer_war_goal_peace: "Demander la capitulation"
+ action_cp26_offer_war_goal_peace_desc: "Propose à §H[Recipient.GetName]§! d'accepter notre but de guerre et de mettre fin à la guerre."
+ war_goal_wg_territorial_reparations: "Réparations territoriales"
+ war_goal_wg_territorial_reparations_desc: "Les revendications formulées en réparation d'une guerre déclarée injustement contre nous coûtent §Y50%§! de §YInfluence§! en moins."
