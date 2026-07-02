@@ -1,4 +1,4 @@
-CP26_UMBRAL = {
+﻿CP26_UMBRAL = {
 	category = "Arthropoid"
 	should_name_home_system_planets = no
 

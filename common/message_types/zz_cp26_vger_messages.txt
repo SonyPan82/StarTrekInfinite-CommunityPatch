@@ -1,0 +1,10 @@
+message_type = {
+	key = "CP26_VGER_ARRIVAL_MESSAGE_TYPE"
+	icon = "GFX_message_fleet_detected"
+	icon_frame = 2
+
+	name = "MESSAGE_OBJECT_DETECTED_MESSAGE_TYPE_TITLE"
+	ping = "arrow_notification_yellow"
+	auto_opens = none
+	close_on_open = yes
+}

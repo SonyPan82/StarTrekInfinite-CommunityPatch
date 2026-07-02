@@ -148,7 +148,7 @@ country_event = {
 						limit = { NOT = { has_country_flag = cp26_vger_contact_notified } }
 						set_country_flag = cp26_vger_contact_notified
 						create_message = {
-							type = OBJECT_DETECTED_MESSAGE_TYPE
+							type = CP26_VGER_ARRIVAL_MESSAGE_TYPE
 							localization = cp26_vger_arrival_message
 							days = 20
 							target = event_target:cp26_vger_present_world
@@ -172,10 +172,12 @@ country_event = {
 							NOT = { has_country_flag = cp26_vger_project_done }
 							exists = event_target:cp26_vger_present_world
 						}
-						enable_special_project = {
-							name = CP26_VGER_ANALYSIS
-							location = event_target:cp26_vger_present_world
-							owner = this
+						event_target:cp26_vger_present_world = {
+							enable_special_project = {
+								name = CP26_VGER_ANALYSIS
+								location = this
+								owner = owner
+							}
 						}
 					}
 					country_event = { id = cp26_vger.5 }
@@ -336,10 +338,12 @@ country_event = {
 			NOT = { has_country_flag = cp26_vger_project_done }
 			exists = event_target:cp26_vger_present_world
 		}
-		enable_special_project = {
-			name = CP26_VGER_ANALYSIS
-			location = event_target:cp26_vger_present_world
-			owner = this
+		event_target:cp26_vger_present_world = {
+			enable_special_project = {
+				name = CP26_VGER_ANALYSIS
+				location = this
+				owner = owner
+			}
 		}
 	}
 
@@ -456,10 +460,12 @@ country_event = {
 					NOT = { has_special_project = CP26_VGER_ANALYSIS }
 					NOT = { has_country_flag = cp26_vger_project_done }
 				}
-				enable_special_project = {
-					name = CP26_VGER_ANALYSIS
-					location = event_target:cp26_vger_present_world
-					owner = this
+				event_target:cp26_vger_present_world = {
+					enable_special_project = {
+						name = CP26_VGER_ANALYSIS
+						location = this
+						owner = owner
+					}
 				}
 			}
 
