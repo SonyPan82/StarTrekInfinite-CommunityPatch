@@ -1,0 +1,14 @@
+objectTypes = {
+	pdxmesh = {
+		name = "Nexus_wisp2_mesh"
+		file = "gfx/models/effects/cosmic_storms/mesh/nexus_wisp2.mesh"
+
+		meshsettings = {
+			index = 0
+			shader = "PDXMeshWPO"
+			texture_diffuse = "nexus_wisp_test2.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			texture_wpo = "Celestial_wpo.dds"}
+		}
+	}

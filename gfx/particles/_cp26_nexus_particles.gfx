@@ -1,0 +1,7 @@
+objectTypes = {
+	pdxparticle = {
+		name = "cp26_nexus_particle"
+		type = "cp26_nexus_particle"
+		scale = 1.6
+	}
+}

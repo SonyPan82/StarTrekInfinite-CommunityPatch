@@ -8,3 +8,14 @@ message_type = {
 	auto_opens = none
 	close_on_open = yes
 }
+
+message_type = {
+	key = "CP26_NEXUS_ALERT_MESSAGE_TYPE"
+	icon = "GFX_message_fleet_detected"
+	icon_frame = 2
+
+	name = "cp26_nexus_alert_title"
+	ping = "arrow_notification_yellow"
+	auto_opens = none
+	close_on_open = yes
+}

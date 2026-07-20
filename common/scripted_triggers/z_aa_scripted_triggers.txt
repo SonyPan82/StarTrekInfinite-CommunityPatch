@@ -28,6 +28,7 @@ is_regular_empire = {
 	or = {
 		is_country_type = default
 		is_country_type = contender
+		is_cp26_major_mission_country = yes
 		AND = {
 			is_ferengi_empire = yes
 			NOT = { has_authority = auth_corporate }

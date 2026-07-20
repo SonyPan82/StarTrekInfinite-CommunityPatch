@@ -324,7 +324,7 @@ country_event = {
 	immediate = {
 		every_country = {
 			limit = {
-				is_country_type = default
+				is_regular_empire = yes
 				NOT = { is_same_value = from }
 				NOT = { has_country_flag = liberation_war_casus_belli_on_@root }
 				has_communications = from
@@ -354,7 +354,7 @@ country_event = {
 	immediate = {
 		every_country = {
 			limit = {
-				is_country_type = default
+				is_regular_empire = yes
 				has_country_flag = liberation_war_casus_belli_on_@root
 			}
 
@@ -379,7 +379,7 @@ country_event = {
 
 			every_country = {
 				limit = {
-					is_country_type = default
+					is_regular_empire = yes
 					NOT = { is_same_value = from }
 					has_communications = from
 				}
@@ -409,7 +409,7 @@ country_event = {
 	immediate = {
 		every_country = {
 			limit = {
-				is_country_type = default
+				is_regular_empire = yes
 				NOT = { is_same_value = from }
 				has_country_flag = liberation_war_casus_belli_on_@root
 			}

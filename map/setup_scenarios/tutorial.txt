@@ -357,11 +357,10 @@ bespoke_procedural_scenario = {
 		name = "NAME_Elaurian" position = { x = -434.0 y = 601.0 }
 		initializer = elaurian_curator_init spawn_weight = { base = 1 }
 	}
-	#system = {
-	#	name = "NAME_Thalos" position = { x = 64.5 y = 399.1 }
-	#	initializer = ferengi_thalos_initializer spawn_weight = { base = 1 }
-	#
-	#}
+	system = {
+		name = "NAME_Thalos" position = { x = 64.5 y = 399.1 }
+		initializer = ferengi_xuracorp_secondary_init spawn_weight = { base = 1 }
+	}
 
 	system = {
 		name = "Breenus" position = { x = 119.1 y = 375.7 }

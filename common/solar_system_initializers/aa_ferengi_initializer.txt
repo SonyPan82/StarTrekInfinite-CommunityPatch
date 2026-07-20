@@ -71,7 +71,14 @@ ferengi_player_initializer = {
 			}
 		}
 
-			late_init_effect = {
+				late_init_effect = {
+					if = {
+						limit = { exists = owner }
+						owner = {
+							save_global_event_target_as = ferengi_country
+							set_country_flag = ferengi
+						}
+					}
 				if = {
 					limit = { is_colony = no }
 					set_colony_type = col_default
@@ -158,7 +165,8 @@ ferengi_player_initializer = {
 		set_star_flag = ferengi
 		every_neighbor_system = { set_star_flag = empire_cluster }
 	}
-}
+
+	}
 
 ferengi_system_initializer = {
 	name = "NAME_Ferenginar"
@@ -307,11 +315,18 @@ ferengi_system_initializer = {
 			}
 		}
 
-		late_init_effect = {
-			if = {
-				limit = {
-					is_colony = no
-					exists = event_target:ferengi_country
+				late_init_effect = {
+					if = {
+						limit = { exists = owner }
+						owner = {
+							save_global_event_target_as = ferengi_country
+							set_country_flag = ferengi
+						}
+					}
+				if = {
+					limit = {
+						is_colony = no
+						exists = event_target:ferengi_country
 				}
 				set_owner = event_target:ferengi_country
 				set_colony_type = col_default

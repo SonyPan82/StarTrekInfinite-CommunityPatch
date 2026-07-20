@@ -1,0 +1,6 @@
+ambient_object = {
+	name = "cp26_nexus_storm"
+	entity = "cp26_nexus_storm_entity"
+	selectable = no
+	show_name = no
+}

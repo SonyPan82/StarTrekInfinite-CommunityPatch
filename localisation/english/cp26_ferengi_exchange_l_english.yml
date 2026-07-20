@@ -1,0 +1,8 @@
+﻿l_english:
+
+ action_cp26_ferengi_exchange:0 "Visit the Exchange"
+ action_cp26_ferengi_exchange_desc:0 "Do business with the Ferengi Alliance Exchange: buy latinum and review your current reserves."
+
+ cp26_ferengi_main.title:0 "Ferengi Alliance Exchange"
+ cp26_ferengi_main_direct1:0 "Welcome, welcome! The Grand Nagus sends his regards... and his price list.\n\nThe Ferengi Alliance Exchange offers profit in its purest form: latinum for energy, clean margins, and no wasted sentiment.\n\nRemember: opportunity only knocks once. If it knocks twice, there is a service fee."
+ cp26_ferengi_main_direct2:0 "Ah, a returning customer. The very best kind.\n\nSo then, more latinum today, or are you merely checking how much profit you have already stacked away?"

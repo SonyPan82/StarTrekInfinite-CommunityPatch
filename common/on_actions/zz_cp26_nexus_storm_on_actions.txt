@@ -1,0 +1,12 @@
+on_yearly_pulse_country = {
+	events = {
+		cp26_nexus.1
+	}
+}
+
+on_monthly_pulse_country = {
+	events = {
+		cp26_nexus.3
+		cp26_nexus.4
+	}
+}

@@ -1,0 +1,322 @@
+namespace = cp26_nexus
+
+country_event = {
+	id = cp26_nexus.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		years_passed >= 5
+		NOT = { has_global_flag = cp26_nexus_active }
+		any_system = {
+			OR = {
+				any_system_planet = {
+					is_colony = yes
+				}
+				is_not_used_space = yes
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			94 = { }
+			6 = {
+				set_global_flag = cp26_nexus_active
+				save_global_event_target_as = cp26_nexus_controller
+				set_timed_country_flag = {
+					flag = cp26_nexus_cleanup_timer
+					days = 360
+				}
+
+				random_system = {
+					limit = {
+						OR = {
+							any_system_planet = {
+								is_colony = yes
+							}
+							is_not_used_space = yes
+						}
+					}
+					save_global_event_target_as = cp26_nexus_target_system
+					random_system_planet = {
+						limit = { is_star = yes }
+						save_global_event_target_as = cp26_nexus_anchor
+					}
+					if = {
+						limit = {
+							any_system_planet = {
+								is_colony = yes
+							}
+						}
+						random_system_planet = {
+							limit = { is_colony = yes }
+							save_global_event_target_as = cp26_nexus_target_world
+						}
+					}
+
+					create_ambient_object = {
+						type = "cp26_nexus_storm"
+						location = this
+					}
+					last_created_ambient_object = {
+						set_location = {
+							target = event_target:cp26_nexus_anchor
+							distance = 0
+							angle = 0
+						}
+						save_global_event_target_as = cp26_nexus_ambient
+					}
+
+					every_system_planet = {
+						limit = { is_colony = yes }
+						add_modifier = {
+							modifier = cp26_nexus_storm_system
+							days = 360
+						}
+					}
+				}
+
+				country_event = { id = cp26_nexus.10 }
+				country_event = { id = cp26_nexus.2 days = 360 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_nexus.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { exists = event_target:cp26_nexus_target_system }
+			event_target:cp26_nexus_target_system = {
+				every_system_planet = {
+					limit = {
+						has_modifier = cp26_nexus_storm_system
+					}
+					remove_modifier = cp26_nexus_storm_system
+				}
+				every_fleet_in_system = {
+					remove_modifier = cp26_nexus_storm_ship
+				}
+			}
+		}
+		if = {
+			limit = { exists = event_target:cp26_nexus_ambient }
+			destroy_ambient_object = event_target:cp26_nexus_ambient
+		}
+		if = {
+			limit = {
+				exists = event_target:cp26_nexus_controller
+			}
+			event_target:cp26_nexus_controller = {
+				remove_country_flag = cp26_nexus_cleanup_timer
+			}
+		}
+		clr_global_flag = cp26_nexus_active
+	}
+}
+
+country_event = {
+	id = cp26_nexus.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		has_global_flag = cp26_nexus_active
+		exists = event_target:cp26_nexus_target_system
+	}
+
+	immediate = {
+		event_target:cp26_nexus_target_system = {
+			every_fleet_in_system = {
+				add_modifier = {
+					modifier = cp26_nexus_storm_ship
+					days = 35
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_nexus.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		has_global_flag = cp26_nexus_active
+		exists = event_target:cp26_nexus_controller
+		is_same_value = event_target:cp26_nexus_controller
+		NOT = { has_country_flag = cp26_nexus_cleanup_timer }
+	}
+
+	immediate = {
+		country_event = { id = cp26_nexus.2 }
+	}
+}
+
+country_event = {
+	id = cp26_nexus.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:cp26_nexus_target_system
+	}
+
+	immediate = {
+		create_message = {
+			type = OBJECT_DETECTED_MESSAGE_TYPE
+			localization = MESSAGE_OBJECT_DETECTED_WE
+			days = 30
+			target = event_target:cp26_nexus_target_system
+			variable = {
+				type = name
+				localization = TARGET
+				scope = event_target:cp26_nexus_target_system
+			}
+		}
+	}
+}
+
+country_event = {
+	id = cp26_nexus.99
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = cp26_nexus_active }
+		any_system = {
+			OR = {
+				any_system_planet = {
+					is_colony = yes
+				}
+				is_not_used_space = yes
+			}
+		}
+	}
+
+	immediate = {
+		set_global_flag = cp26_nexus_active
+		save_global_event_target_as = cp26_nexus_controller
+		set_timed_country_flag = {
+			flag = cp26_nexus_cleanup_timer
+			days = 360
+		}
+
+		random_system = {
+			limit = {
+				OR = {
+					any_system_planet = {
+						is_colony = yes
+					}
+					is_not_used_space = yes
+				}
+			}
+			save_global_event_target_as = cp26_nexus_target_system
+			random_system_planet = {
+				limit = { is_star = yes }
+				save_global_event_target_as = cp26_nexus_anchor
+			}
+			if = {
+				limit = {
+					any_system_planet = {
+						is_colony = yes
+					}
+				}
+				random_system_planet = {
+					limit = { is_colony = yes }
+					save_global_event_target_as = cp26_nexus_target_world
+				}
+			}
+
+			create_ambient_object = {
+				type = "cp26_nexus_storm"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:cp26_nexus_anchor
+					distance = 0
+					angle = 0
+				}
+				save_global_event_target_as = cp26_nexus_ambient
+			}
+
+			every_system_planet = {
+				limit = { is_colony = yes }
+				add_modifier = {
+					modifier = cp26_nexus_storm_system
+					days = 360
+				}
+			}
+		}
+
+		country_event = { id = cp26_nexus.10 }
+		country_event = { id = cp26_nexus.2 days = 360 }
+	}
+}
+
+planet_event = {
+	id = cp26_nexus.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_colony = yes
+		NOT = { has_global_flag = cp26_nexus_active }
+	}
+
+	immediate = {
+		set_global_flag = cp26_nexus_active
+		owner = {
+			save_global_event_target_as = cp26_nexus_controller
+			set_timed_country_flag = {
+				flag = cp26_nexus_cleanup_timer
+				days = 360
+			}
+		}
+		save_global_event_target_as = cp26_nexus_target_world
+
+		solar_system = {
+			save_global_event_target_as = cp26_nexus_target_system
+			random_system_planet = {
+				limit = { is_star = yes }
+				save_global_event_target_as = cp26_nexus_anchor
+			}
+
+			create_ambient_object = {
+				type = "cp26_nexus_storm"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:cp26_nexus_anchor
+					distance = 0
+					angle = 0
+				}
+				save_global_event_target_as = cp26_nexus_ambient
+			}
+
+			every_system_planet = {
+				limit = { is_colony = yes }
+				add_modifier = {
+					modifier = cp26_nexus_storm_system
+					days = 360
+				}
+			}
+		}
+
+		owner = {
+			country_event = { id = cp26_nexus.10 }
+			country_event = { id = cp26_nexus.2 days = 360 }
+		}
+	}
+}

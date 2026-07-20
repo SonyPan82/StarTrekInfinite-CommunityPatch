@@ -135,3 +135,160 @@ ferengi_xuracorp_init = {
 		}
 	}
 }
+
+ferengi_xuracorp_secondary_init = {
+	class = "rl_standard_stars"
+	flags = { ferengi ferengi_system enclave outpost }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = rl_all_no_gas
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+
+		init_effect = {
+			if = {
+				limit = {
+					NOT = { has_built_species = "Ferengi" }
+				}
+
+				create_species = {
+					class = "AAFERENGI"
+					portrait = "ferengi"
+					name = "PRESCRIPTED_species_name_ferengi"
+					plural = "PRESCRIPTED_species_plural_ferengi"
+					adjective = "PRESCRIPTED_species_adjective_ferengi"
+					name_list = "FERE"
+					traits = {
+						trait = trait_thrifty
+						trait = trait_eye_for_business_ferengi
+						trait = trait_traditionalists_ferengi
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:GuardiansTradersPlanet
+					}
+				}
+				save_event_target_as = GuardiansTradersPlanet
+				set_planet_flag = guardians_traders_planet
+
+				create_country = {
+					name = "NAME_XuraCorp"
+					species = "Ferengi"
+					country_id = "ferengi_xuracorp"
+					type = enclave
+					authority = "auth_oligarchic_ferengi_1"
+					civics = {
+						civic = civic_wealth_trust
+						civic = civic_cumulative_knowledge
+					}
+					origin = "origin_default"
+					flag = {
+						icon = {
+							category = "enclaves"
+							file = "enclaves_flag_trader.dds"
+						}
+						background = {
+							category = "backgrounds"
+							file = "00_solid.dds"
+						}
+						colors = {
+							"green"
+							"dark_green"
+							"null"
+							"null"
+						}
+					}
+					ethos = {
+						ethic = ethic_xenophile
+						ethic = ethic_fanatic_materialist
+					}
+					ignore_initial_colony_error = yes
+				}
+				last_created_country = {
+					set_country_flag = trader_enclave_country
+					set_country_flag = trader_enclave_country_1
+					set_country_flag = ferengi_xuracorp
+					save_global_event_target_as = ferengi_xuracorp_country
+					set_graphical_culture = ferengi
+					create_fleet = {
+						name = "NAME_XuraCorp_HQ"
+						settings = { spawn_debris = no }
+						effect = {
+							set_owner = prev
+							create_ship = {
+								name = random
+								design = "NAME_Trader_Enclave_Station"
+								initial_officers_perc = 1
+								graphical_culture = prev
+							}
+							set_location = {
+								target = prevprev
+								distance = 90
+							}
+							save_event_target_as = CustomCapital
+							prev = {
+								set_custom_capital_location = event_target:CustomCapital
+							}
+							set_fleet_flag = trader_enclave_station
+						}
+					}
+					create_leader = {
+						class = ruler
+						species = this
+						name = "PRESCRIPTED_ruler_name_ferengi_2"
+						skill = 5
+					}
+					set_leader = last_created_leader
+				}
+			}
+		}
+	}
+
+	late_init_effect = {
+		every_country = {
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = ferengi
+						has_country_id = "ferengi"
+					}
+				}
+				save_global_event_target_as = ferengi_country
+			}
+		}
+		if = {
+			limit = {
+				exists = event_target:ferengi_country
+				NOT = { exists = starbase }
+			}
+			create_starbase = {
+				size = starbase_outpost
+				owner = event_target:ferengi_country
+			}
+		}
+	}
+}

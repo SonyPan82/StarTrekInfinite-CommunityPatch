@@ -93,6 +93,7 @@ event = {
 			event_target:ferengi_country = {
 				set_adjective = "Ferengi"
 				give_technology = { tech = tech_destroyer_unlock message = no }
+				country_event = { id = cp26_ferengi_exchange.90 days = 5 }
 
 				if = {
 					limit = { is_ai = no }

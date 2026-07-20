@@ -1,0 +1,69 @@
+objectTypes = {
+	pdxmesh = {
+		name = "cp26_astral_rift_mesh_1"
+		file = "gfx/models/add_ons/astral_rift_1.mesh"
+		scale = 1
+		cull_distance = 99999999.0f
+
+		meshsettings = {
+			index = 0
+			shader = PdxMeshAlphaAdditiveAnimateUVErosion
+			texture_diffuse = "astral_rift_up_down.dds"
+		}
+	}
+
+	pdxmesh = {
+		name = "cp26_astral_rift_mesh_2"
+		file = "gfx/models/add_ons/astral_rift_2.mesh"
+		scale = 1
+		cull_distance = 99999999.0f
+
+		meshsettings = {
+			shader = PdxMeshAlphaAdditiveAnimateUVErosion
+		}
+	}
+
+	pdxmesh = {
+		name = "cp26_astral_rift_mesh_3"
+		file = "gfx/models/add_ons/astral_rift_3.mesh"
+		scale = 1
+		cull_distance = 99999999.0f
+
+		meshsettings = {
+			shader = PdxMeshAlphaAdditiveAnimateUVErosion
+		}
+	}
+
+	pdxmesh = {
+		name = "cp26_astral_rift_mesh_4"
+		file = "gfx/models/add_ons/astral_rift_4.mesh"
+		scale = 1
+		cull_distance = 99999999.0f
+
+		meshsettings = {
+			shader = PdxMeshAlphaAdditiveAnimateUVErosion
+		}
+	}
+
+	pdxmesh = {
+		name = "cp26_astral_rift_mesh_5"
+		file = "gfx/models/add_ons/astral_rift_5.mesh"
+		scale = 1
+		cull_distance = 99999999.0f
+
+		meshsettings = {
+			shader = PdxMeshAlphaAdditiveAnimateUVErosion
+		}
+	}
+
+	pdxmesh = {
+		name = "cp26_astral_rift_mesh_6"
+		file = "gfx/models/add_ons/astral_rift_6.mesh"
+		scale = 1
+		cull_distance = 99999999.0f
+
+		meshsettings = {
+			shader = PdxMeshAlphaAdditiveAnimateUVErosion
+		}
+	}
+}

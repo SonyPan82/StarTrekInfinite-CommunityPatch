@@ -1,0 +1,5 @@
+﻿l_english:
+ cp26_nexus_alert_title:0 "Subspace Nexus Detected"
+ cp26_nexus_alert_message:0 "Alert to all units. A subspace nexus has been detected in the $SYSTEM$ system. All civilian and military traffic must avoid the area. Emergency protocols are now in effect. Scientific and relief vessels are to await Command authorization before any intervention."
+ cp26_nexus_storm_system:0 "Nexus Disturbance"
+ cp26_nexus_storm_system_desc:0 "A violent subspace rift saturates the local system, sharply slowing movement and disrupting infrastructure and scientific operations."

@@ -1,0 +1,5 @@
+﻿l_french:
+ cp26_nexus_alert_title:0 "Nexus subspatial detecte"
+ cp26_nexus_alert_message:0 "Alerte a toutes les unites. Un nexus subspatial a ete detecte dans le systeme $SYSTEM$. Tous les batiments civils et militaires doivent eviter la zone. Les protocoles d'urgence sont desormais en vigueur. Les vaisseaux scientifiques et de secours sont pries d'attendre l'autorisation du Commandement pour toute intervention."
+ cp26_nexus_storm_system:0 "Perturbation du Nexus"
+ cp26_nexus_storm_system_desc:0 "Une violente faille subspatiale sature le systeme local, ralentit fortement les deplacements et perturbe les infrastructures comme les operations scientifiques."

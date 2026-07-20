@@ -126,7 +126,6 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		NOT = { has_global_flag = cp26_vger_resolved }
 		exists = event_target:cp26_vger_target_world
 		any_owned_ship = {
 			has_ship_flag = cp26_vger_ship
@@ -149,7 +148,6 @@ planet_event = {
 
 	trigger = {
 		is_colony = yes
-		NOT = { has_global_flag = cp26_vger_resolved }
 	}
 
 	immediate = {
@@ -165,7 +163,10 @@ planet_event = {
 				set_country_flag = cp26_vger_contact_notified
 			}
 			if = {
-				limit = { NOT = { has_event_chain = cp26_vger_chain } }
+				limit = {
+					NOT = { has_global_flag = cp26_vger_resolved }
+					NOT = { has_event_chain = cp26_vger_chain }
+				}
 				begin_event_chain = {
 					event_chain = cp26_vger_chain
 					target = prev
@@ -173,6 +174,7 @@ planet_event = {
 			}
 			if = {
 				limit = {
+					NOT = { has_global_flag = cp26_vger_resolved }
 					NOT = { has_special_project = CP26_VGER_ANALYSIS }
 					NOT = { has_country_flag = cp26_vger_project_done }
 				}
@@ -192,7 +194,6 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		NOT = { has_global_flag = cp26_vger_resolved }
 		exists = event_target:cp26_vger_present_world
 		NOT = {
 			event_target:cp26_vger_present_world = {
@@ -411,12 +412,11 @@ country_event = {
 			end_event_chain = cp26_vger_chain
 		}
 		if = {
-			limit = { exists = event_target:cp26_vger_fleet }
-			destroy_fleet = event_target:cp26_vger_fleet
-		}
-		if = {
-			limit = { exists = event_target:cp26_vger_country }
-			event_target:cp26_vger_country = { destroy_country = yes }
+			limit = {
+				exists = event_target:cp26_vger_fleet
+				exists = event_target:cp26_vger_present_world
+			}
+			country_event = { id = cp26_vger.4 days = 360 }
 		}
 	}
 

@@ -1,0 +1,12 @@
+cp26_nexus_storm_system = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_nexus_storm.dds"
+	planet_stability_add = -10
+	planet_jobs_research_produces_mult = -0.10
+	planet_building_build_speed_mult = -0.15
+}
+
+cp26_nexus_storm_ship = {
+	icon = "GFX_modifier_ship_speed"
+	icon_frame = 1
+	ship_speed_mult = -0.60
+}

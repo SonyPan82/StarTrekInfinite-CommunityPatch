@@ -1,0 +1,14 @@
+objectTypes = {
+	pdxmesh = {
+		name = "Nexus_storm_mesh"
+		file = "gfx/models/effects/cosmic_storms/mesh/nexus_storm_mesh.mesh"
+
+		meshsettings = {
+			index = 0
+			shader = "PDXMeshWPO"
+			texture_diffuse = "nexus_storm_tex2.dds"
+			texture_normal = "nonormal.dds"
+			texture_specular = "nospec.dds"
+			texture_wpo = "Shroud_wpo.dds"}
+		}
+	}
