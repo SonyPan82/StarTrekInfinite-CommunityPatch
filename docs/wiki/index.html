@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CP26 Wiki - Technical Documentation</title>
+<style>
+:root{
+  --bg:#000000; --bg-alt:#0c0c10; --text:#e8e8ec; --text-dim:#9a9aa8;
+  --border:#2a2a33; --code-bg:#111116;
+  --sidebar-bg:#050506;
+  --orange:#ff9c00; --blue:#6699ff; --lilac:#cc99cc; --gold:#ffcc66; --salmon:#cc6666; --pale:#ffd9a8;
+  --link:#ff9c00;
+  --tag-bg:#1c1c24;
+  --warn-bg:#241a08; --warn-border:#cc6666;
+}
+:root[data-theme="light"]{
+  --bg:#f4f2ec; --bg-alt:#ffffff; --text:#17161a; --text-dim:#5b5a63;
+  --border:#ded9cb; --code-bg:#eeece3;
+  --sidebar-bg:#eae6d8;
+  --orange:#cc7a00; --blue:#3a5fbf; --lilac:#8a5a9a; --gold:#a9770f; --salmon:#a83c3c; --pale:#7a4a1a;
+  --link:#a83c00;
+  --tag-bg:#e4dfcd;
+  --warn-bg:#fdf0e0; --warn-border:#c96a1f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;line-height:1.55;}
+body{display:flex;min-height:100vh;}
+code,pre,.mono{font-family:"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;}
+
+#sidebar{
+  width:300px;flex:0 0 300px;background:var(--sidebar-bg);
+  height:100vh;position:sticky;top:0;overflow-y:auto;padding:0 0 60px;
+  border-right:3px solid var(--border);
+}
+.lcars-cap{height:34px;background:var(--orange);border-radius:24px 0 0 0;margin-bottom:3px;}
+.lcars-bar2{height:14px;background:var(--blue);margin-bottom:3px;}
+.lcars-bar3{height:8px;background:var(--lilac);margin-bottom:18px;}
+#sidebar-inner{padding:0 16px;}
+#sidebar h1{font-size:1.15rem;margin:0 0 2px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;color:var(--orange);}
+#sidebar .subtitle{font-size:.72rem;color:var(--text-dim);margin-bottom:14px;letter-spacing:.03em;}
+#langswitch{display:flex;gap:6px;margin-bottom:14px;}
+#langswitch a{flex:1;text-align:center;padding:5px 0;border-radius:14px;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-decoration:none;background:var(--tag-bg);color:var(--text-dim);border:1px solid var(--border);}
+#langswitch a.current{background:var(--orange);color:#000;border-color:var(--orange);}
+#search{width:100%;padding:8px 12px;border-radius:14px;border:1px solid var(--border);background:var(--bg-alt);color:var(--text);font-size:.85rem;margin-bottom:14px;}
+#sidebar nav a{
+  display:block;padding:5px 10px;border-radius:0 14px 14px 0;color:var(--text-dim);text-decoration:none;font-size:.82rem;
+  border-left:4px solid transparent;margin-bottom:1px;
+}
+#sidebar nav a.lvl2{padding-left:22px;font-size:.76rem;}
+#sidebar nav a:hover{background:var(--tag-bg);color:var(--text);}
+#sidebar nav a.active{color:var(--orange);border-left-color:var(--orange);background:var(--tag-bg);font-weight:700;}
+#sidebar nav .navgroup-title{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--lilac);margin:18px 0 4px 10px;font-weight:700;}
+
+#main{flex:1;min-width:0;padding:40px 48px 120px;max-width:980px;}
+h1,h2,h3,h4{font-weight:700;line-height:1.25;}
+h2{
+  font-size:1.3rem;text-transform:uppercase;letter-spacing:.04em;margin-top:56px;
+  color:#000;background:var(--orange);display:inline-block;padding:8px 22px;border-radius:20px 4px 20px 4px;
+}
+:root[data-theme="light"] h2{color:#fff;}
+h3{font-size:1.15rem;margin-top:34px;color:var(--blue);border-bottom:2px solid var(--border);padding-bottom:6px;letter-spacing:.01em;}
+h4{font-size:.98rem;margin-top:22px;color:var(--lilac);text-transform:uppercase;letter-spacing:.03em;}
+p{color:var(--text);max-width:78ch;}
+ul,ol{max-width:80ch;padding-left:1.3em;}
+li{margin-bottom:4px;}
+a{color:var(--link);}
+.lede{font-size:1.05rem;color:var(--text-dim);max-width:70ch;}
+
+code{background:var(--code-bg);padding:.12em .4em;border-radius:4px;font-size:.86em;color:var(--gold);}
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;overflow-x:auto;font-size:.82rem;}
+pre code{background:none;padding:0;}
+
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.88rem;}
+th,td{border:1px solid var(--border);padding:6px 10px;text-align:left;vertical-align:top;}
+th{background:var(--tag-bg);color:var(--blue);text-transform:uppercase;font-size:.75rem;letter-spacing:.03em;}
+tr:nth-child(even) td{background:color-mix(in srgb, var(--bg-alt) 60%, var(--bg));}
+
+.tag{display:inline-block;background:var(--tag-bg);border-radius:12px;padding:2px 10px;font-size:.72rem;margin:0 4px 4px 0;color:var(--text-dim);border:1px solid var(--border);}
+.badge-new{background:#1f3a24;color:#8fd39a;border-color:#2c5233;}
+.badge-mod{background:#3a2c0f;color:var(--gold);border-color:#5a4318;}
+.badge-fix{background:#2a1f14;color:var(--salmon);border-color:#4a3020;}
+:root[data-theme="light"] .badge-new{background:#dcefdf;color:#1f5a2b;}
+:root[data-theme="light"] .badge-mod{background:#f5e6c8;color:#7a5716;}
+:root[data-theme="light"] .badge-fix{background:#f6dede;color:#8a2a2a;}
+
+.card{background:var(--bg-alt);border:1px solid var(--border);border-left:5px solid var(--blue);border-radius:4px 12px 12px 4px;padding:16px 20px;margin:14px 0;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media (max-width:800px){.grid2{grid-template-columns:1fr;}}
+
+.warn{background:var(--warn-bg);border:1px solid var(--warn-border);border-left:5px solid var(--salmon);border-radius:4px 12px 12px 4px;padding:12px 16px;margin:16px 0;font-size:.9rem;}
+.warn b{color:var(--salmon);}
+.file{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.83em;background:var(--code-bg);padding:1px 6px;border-radius:4px;color:var(--pale);}
+
+.toplink{position:fixed;bottom:24px;right:32px;background:var(--orange);color:#000;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5);font-weight:800;}
+.toplink:hover{opacity:.85;}
+
+#theme-toggle{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--border);border-radius:14px;padding:4px 10px;cursor:pointer;color:var(--text-dim);font-size:.72rem;}
+
+::-webkit-scrollbar{width:9px;height:9px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px;}
+
+.hidden{display:none !important;}
+hr{border:none;height:6px;background:linear-gradient(90deg, var(--orange), var(--blue), var(--lilac));border-radius:3px;margin:44px 0;}
+</style>
+</head>
+<body>
+
+<button id="theme-toggle" onclick="toggleTheme()">&#9680; theme</button>
+
+<aside id="sidebar">
+  <div class="lcars-cap"></div>
+  <div class="lcars-bar2"></div>
+  <div class="lcars-bar3"></div>
+  <div id="sidebar-inner">
+  <h1>CP26 Wiki</h1>
+  <div class="subtitle">Community Patch 2026 - Star Trek: Infinite</div>
+  <div id="langswitch">
+    <a href="index.html" class="current">EN</a>
+    <a href="index.fr.html">FR</a>
+  </div>
+  <input id="search" placeholder="Filter navigation..." oninput="filterNav(this.value)">
+  <nav id="nav"></nav>
+  </div>
+</aside>
+
+<main id="main">
+
+<h1 style="text-transform:uppercase;letter-spacing:.03em;">CP26 - Technical Documentation</h1>
+<p class="lede">Wiki generated from a direct audit of the <strong>Community Patch 2026 (CP26)</strong> source code, compared against the base game <strong>Star Trek: Infinite</strong> (Stellaris engine). Written for future contributors to the mod: what CP26 changes, how, and where.</p>
+
+<div class="warn">
+<b>&#9888; About the existing CHANGELOG.md</b><br>
+The repository's <span class="file">CHANGELOG.md</span> stops at version <code>1.6.9</code> (2026-05-25). The mod is currently at <code>1.8.8</code> (2026-07-24, see <span class="file">descriptor.mod</span> and the git history). Several major systems (the A500/synthetics arc, the Bajoran wormhole, V'Ger, Terok Nor, vassalization, complete quest trees, the Daystrom Institute) are <strong>not documented</strong> in the changelog. This page was built by reading the source code directly and diffing every overridden file against the vanilla installation - not by trusting existing documentation. Treat CHANGELOG.md as a partial history of the early versions only.
+</div>
+
+<h2 id="overview">1. Overview</h2>
+
+<p>CP26 is a community overhaul for <em>Star Trek: Infinite</em> (1.0.7). It works through two distinct Paradox modding mechanisms:</p>
+
+<div class="grid2">
+<div class="card">
+<h4 style="margin-top:0">Full replacement (<code>replace_path</code>)</h4>
+<p>43 vanilla files are entirely replaced by a modified CP26 copy (declared in <span class="file">descriptor.mod</span>). The original vanilla file is completely ignored, so CP26 must reproduce all of its useful content in addition to its own changes.</p>
+</div>
+<div class="card">
+<h4 style="margin-top:0">Pure addition</h4>
+<p>Everything else (hundreds of files) is simply added on top of normal game loading: new events, species, quests, megastructures, and so on. Paradox automatically loads every recognized <code>.txt</code>/<code>.gfx</code>/<code>.asset</code> file in the standard folders - no need to declare them in <code>descriptor.mod</code>.</p>
+</div>
+</div>
+
+<h3 id="stats">Repository statistics</h3>
+<table>
+<tr><th>Folder</th><th>Files</th><th>Content</th></tr>
+<tr><td class="file">common/</td><td>497</td><td>Game systems (buildings, techs, diplomacy, quests, personalities...)</td></tr>
+<tr><td class="file">gfx/</td><td>1527</td><td>3D models, textures, visual effects, portraits</td></tr>
+<tr><td class="file">events/</td><td>70</td><td>Narrative and systemic event chains</td></tr>
+<tr><td class="file">localisation/</td><td>80</td><td>EN/FR text</td></tr>
+<tr><td class="file">music/</td><td>66</td><td>Additional audio tracks</td></tr>
+<tr><td class="file">interface/</td><td>32</td><td>UI/GUI</td></tr>
+<tr><td class="file">prescripted_countries/</td><td>26</td><td>Prescripted playable and minor nations</td></tr>
+<tr><td class="file">flags/</td><td>21</td><td>Faction flags</td></tr>
+</table>
+<p>About 155 git commits, versions <code>1.5.x</code> through <code>1.8.8</code>, spanning May-July 2026.</p>
+
+<h3 id="conventions">Naming conventions</h3>
+<p>Understanding file prefixes is the key to navigating the mod:</p>
+<table>
+<tr><th>Prefix</th><th>Meaning</th></tr>
+<tr><td class="file">hornblower_*</td><td>Files from the base "Hornblower" mod (the foundation CP26 is built on) - appear in <code>replace_path</code> when modified</td></tr>
+<tr><td class="file">aa_*</td><td>"Ambient/AI" - non-player-startable AI major powers (Ferengi, Gorn, Orion, Tholian) and their subsystems (government, civics, personalities, system init)</td></tr>
+<tr><td class="file">cp26_*</td><td>CP26-original narrative/systemic content (quest arcs, megastructures, special projects)</td></tr>
+<tr><td class="file">zz_cp26_*</td><td>CP26 patches, fine-tuning, or late additions - often bugfixes for vanilla/Hornblower content or balance tweaks</td></tr>
+<tr><td class="file">zz_mm_*</td><td>Megastructures ported from a third-party "Mid-game Megastructures" mod (Dyson Swarm, Fusion Hub, Lifter)</td></tr>
+<tr><td class="file">00_*, 01_*, 02_*...</td><td>Numeric prefix = Paradox load order (files load alphabetically within a folder)</td></tr>
+</table>
+
+<h3 id="pattern-stub">The "stub + split" pattern</h3>
+<p>Several large vanilla files declared under <code>replace_path</code> have been reduced to a one-line comment (e.g. <span class="file">common/quest_tree_nodes/00_ufop_nodes.txt</span>, <span class="file">common/solar_system_initializers/hornblower_initializers.txt</span>, <span class="file">events/hornblower_game_start.txt</span>). Their real content was split into dozens of individual files in the same folder (e.g. <span class="file">qt_ufop_a1.txt</span>, <span class="file">game_start_101.txt</span>). Paradox automatically loads every <code>.txt</code> in a folder, so this split works without any extra declaration - and lets new nodes/events be added without ever touching the replaced file.</p>
+<div class="warn"><b>For future modders:</b> if you're looking for a UFOP quest node or a <code>game_start</code> event, don't search <code>00_ufop_nodes.txt</code> or <code>hornblower_game_start.txt</code> - they're empty. Look for the matching <code>qt_ufop_&lt;name&gt;.txt</code> or <code>game_start_&lt;id&gt;.txt</code> file instead.</div>
+
+<hr>
+
+<h2 id="overrides">2. Replaced vanilla files (43 <code>replace_path</code> entries)</h2>
+<p class="lede">Every entry below comes from an actual <code>diff</code> between the CP26 file and its counterpart in the vanilla Steam install - not from reading the changelog.</p>
+
+<h3 id="ov-components">Ship components</h3>
+<div class="card">
+<p><span class="file">common/component_templates/00_hornblower_utilities_roles.txt</span> <span class="tag badge-mod">balance</span></p>
+<ul>
+<li>Officer upkeep cost of combat computers: <code>-10 &rarr; 0</code> (no more officer upkeep).</li>
+<li><code>size_restriction</code> lists heavily expanded to include CP26's new hulls (Sovereign, Voyager, Ambassador, Constellation, Lantree, K'vort, Kamarag, Jach, Raptor, Praetor, Ferengi cruiser/battleship/titan, Gorn/Orion/Tholian).</li>
+<li><code>ai_weight</code> raised from 3 to 4 on several templates (stronger AI preference).</li>
+</ul>
+<p><span class="file">common/component_templates/00_hornblower_weapons_missiles.txt</span> <span class="tag badge-mod">balance</span></p>
+<ul>
+<li>Medium/large photon torpedoes (tier 2): alloy cost raised from tier-3 to tier-5, and a <strong>new tetryon cost</strong> added (now requires a strategic resource).</li>
+</ul>
+</div>
+
+<h3 id="ov-country">Country types</h3>
+<div class="card">
+<p><span class="file">common/country_types/00_country_types.txt</span> <span class="tag badge-mod">AI/balance</span></p>
+<ul>
+<li>Merges the former <code>zz_cp26_default_country_type.txt</code>; adds <code>ignores_warp_range = yes</code> to the <code>default</code> type and about 20 mobile country types (paired with <code>OUTPOST_WARP_RANGE_RADIUS = 0</code> in the defines - outposts no longer grant a warp-range bubble).</li>
+<li><code>min_navy_for_wars</code>: <code>0.01 &rarr; 0.14</code> (the AI waits for a larger navy fraction before declaring war).</li>
+<li>New dynamic support-fleet scaling system (constructors/science ships/colonizers) driven by <code>cp26_empire_size_small/medium/large/huge</code> flags, set yearly by an AI pulse based on planet count - replaces vanilla's static bounds.</li>
+<li>Base support-fleet counts roughly halved (e.g. <code>50&rarr;35</code>, <code>100&rarr;55</code>), offset by the new dynamic scaling.</li>
+</ul>
+<p><span class="file">common/country_types/03_country_types_megacorp.txt</span> - minor addition of the same <code>ignores_warp_range</code> flag.</p>
+</div>
+
+<h3 id="ov-diplo">Diplomacy</h3>
+<div class="card">
+<p><span class="file">common/diplomatic_actions/00_actions.txt</span> &amp; <span class="file">00_hornblower_actions.txt</span> <span class="tag badge-new">new system</span></p>
+<ul>
+<li>Systematic widening of triggers to include CP26's new country types: <code>is_country_type = contender / is_ferengi_empire / is_gorn_hegemony / is_orion_syndicate</code> - these empires can now use standard diplomatic actions previously gated to the <code>default</code> type only.</li>
+<li>A Ferengi-specific branch is added to an intel-sharing action (100 intel, open borders for 3600 days, survey of owned + subject planets).</li>
+<li><strong>Vassalization fully rewritten</strong>: the vanilla <code>action_start_puppet_state_process</code> action (requiring an envoy) is replaced by a CP26 system with no envoy requirement, custom tooltips (<code>CP26_VASSALIZATION_PENDING</code>), AI gating (cooldown, relative power, planet count, no federation/defensive pact/guarantee, no recent target, 50+ trust), <code>cp26_vassalization_pending_actor/target</code> flags, fires <code>country_event = cp26_vassalization.1</code>, 3-year AI cooldown after an offer.</li>
+<li>New action <code>action_cp26_offer_war_goal_peace</code>: a wartime negotiated-peace proposal (<code>cp26_vassalization.6</code>).</li>
+<li><code>action_support_independence</code>, <code>action_break_support</code>, <code>action_release_subject</code>, <code>action_liberate_subject</code>, <code>action_request_subject_liberation</code> moved here and rewritten to work on <code>is_regular_empire</code> subjects, not just vanilla's minor/occupied ones.</li>
+</ul>
+</div>
+
+<h3 id="ov-rules">Game rules</h3>
+<div class="card">
+<p><span class="file">common/game_rules/00_rules.txt</span></p>
+<ul>
+<li>The new <code>contender</code> country type (AI rival majors - Ferengi/Gorn/Orion) is treated like <code>default</code> in roughly a dozen game rules (colonization, war rules...).</li>
+</ul>
+</div>
+
+<h3 id="ov-ships">Ships &amp; designs</h3>
+<div class="card">
+<p><span class="file">common/global_ship_designs/hornblower_designs.txt</span></p>
+<ul><li>The "Enterprise Sovereign" event ship design is significantly modernized (upgraded reactor, weapons, shields, hull, sensor components).</li></ul>
+<p><span class="file">common/ship_sizes/00_ship_sizes.txt</span> <span class="tag badge-new">fleet cap</span></p>
+<ul>
+<li>All military hulls (corvette through titan) gain a <code>possible_construction</code> check tied to <code>cp26_under_reduced_fleet_military_cap</code> - enforces CP26's reduced military fleet cap (~36 ships, referenced in the design notes as <code>CP26_SHIP_FLEET_CAP_SYSTEM</code>).</li>
+<li>Titan: <code>size_multiplier 16 &rarr; 14</code>.</li>
+<li>Science/constructor ships: hard per-empire cap <code>empire_limit = { base = 3 max = 3 }</code> (previously uncapped/soft).</li>
+<li>Transport hull: gains <code>ignores_warp_range = yes</code> and +1 hyperlane range.</li>
+</ul>
+<p><span class="file">common/ship_sizes/21_hornblower_sizes.txt</span></p>
+<ul>
+<li><code>size_multiplier</code> rebalancing per class: Miranda 2&rarr;3, Intrepid 3&rarr;4, Galaxy 8&rarr;7, Sovereign 13&rarr;9, Bird-of-Prey 2&rarr;1, K'tinga 5&rarr;4, Vorcha 8&rarr;6, Neghvar 13&rarr;9, Valdore 5&rarr;7.</li>
+<li>Intrepid: prerequisite changed from <code>tech_destroyer_unlock</code> to a dedicated <code>tech_intrepid_unlock</code>.</li>
+<li>The California class was moved out into a separate CP26 file, outside the replace_path scope.</li>
+</ul>
+</div>
+
+<h3 id="ov-names">Name lists</h3>
+<div class="card">
+<p><span class="file">common/name_lists/{CRD1,KLG1,RML1,UFP1}.txt</span></p>
+<ul><li>Adds a previously-missing <code>generic</code> name pool (a latent vanilla bug); deduplicates roughly 14 repeated copies of the same name block per file - mostly a data-hygiene cleanup rather than new content.</li></ul>
+</div>
+
+<h3 id="ov-policies">Policies &amp; pop jobs</h3>
+<div class="card">
+<p><span class="file">common/policies/00_policies.txt</span></p>
+<ul>
+<li>Hard-coded species checks (<code>is_ufop/klingon/romulan/cardassian</code>) are systematically replaced with <code>is_country_type = default OR contender</code> plus <code>is_minor/is_major</code> guards - makes policies available to the new empires (Ferengi, Gorn, Orion, Tholian, Breen), which were silently excluded before.</li>
+</ul>
+<p><span class="file">common/pop_jobs/10{0,1,2,3,4}_hornblower_*_jobs.txt</span> (5 files, one per major faction)</p>
+<ul>
+<li>Consistent pattern: unity output of admin/specialist jobs trimmed about 20%; <code>exists = owner/planet</code> guards added to prevent script errors during galaxy generation.</li>
+</ul>
+</div>
+
+<h3 id="ov-quests">Quest tree roots</h3>
+<div class="card">
+<p><span class="file">common/quest_tree_nodes/00_cardassian_nodes.txt</span> / <span class="file">00_ufop_nodes.txt</span> - reduced to stubs (see the <a href="#pattern-stub">stub+split pattern</a>).</p>
+<ul>
+<li><strong>Cardassian</strong>: 15 vanilla nodes extracted verbatim into individual files; targeted fixes (invalid scope switches, diplomacy thresholds <code>2&rarr;4</code>, target systems Sheva/Setlik instead of Denobula/Cordian).</li>
+<li><strong>UFOP</strong>: 27 vanilla nodes extracted, plus <strong>4 brand-new nodes</strong> (<code>qt_ufop_cerritos_lower_decks</code>, <code>upgrade_enterprise_odyssey</code>, <code>upgrade_utopia_planitia_a500</code>, <code>upgrade_voyager_lamarr</code>). The Neutral Zone grows from 2 to about 11 systems; several thresholds loosened or tightened (e.g. battles <code>&ge;3&rarr;&ge;1</code>, academies <code>&ge;8&rarr;&ge;6</code>).</li>
+</ul>
+</div>
+
+<h3 id="ov-effects">Ambient visual effects</h3>
+<div class="card">
+<p><span class="file">common/scripted_effects/system_ambient_effects.txt</span></p>
+<ul><li>The 8 vanilla nebula effects (<code>create_nebula_1..4</code>, etc.) are gutted; 2 new CP26 effects (<code>create_orange_nebula_1</code>, <code>create_purple_nebula_1</code>) place several offset ambient objects in a loop instead of a single star-centered object.</li></ul>
+</div>
+
+<h3 id="ov-systems">Solar system initializers</h3>
+<div class="card">
+<p><span class="file">common/solar_system_initializers/hornblower_initializers.txt</span> - a stub (see the <a href="#pattern-stub">stub+split pattern</a>). A major structural rework:</p>
+<ul>
+<li>The 69 vanilla initializers are split into <strong>7 subfolders</strong> (~87 files): <span class="file">cardassian/</span>, <span class="file">klingon/</span>, <span class="file">romulan/</span>, <span class="file">ufop/</span>, <span class="file">other_owned/</span>, <span class="file">uncontrolled/</span>, <span class="file">zone_rom_ufop/</span>.</li>
+<li>Romulan border systems reassigned (Devron/Galador/Khitomer &rarr; Cheron/Dewa/Glintara/Hobus).</li>
+<li>New systems for the AI factions: Ferengi, Gorn, Orion, Tholian, Megacorp caravaneers, Elaurian curators.</li>
+<li><span class="file">zone_rom_ufop/</span>: 13 files implementing the expanded Federation-Romulan Neutral Zone (versus 4 systems in vanilla).</li>
+</ul>
+<p><span class="file">misc_system_initializers.txt</span> - 19 planets reclassified as <code>rl_unhabitable_planets</code>.</p>
+</div>
+
+<h3 id="ov-projects">Special projects</h3>
+<div class="card">
+<p><span class="file">common/special_projects/00_projects_hornblower.txt</span></p>
+<ul>
+<li>New project <code>UPGRADE_ENTERPRISE_ODYSSEY</code> (5000 alloys + 20 dilithium, 10 days, on ships flagged <code>enterprise</code>).</li>
+<li>New project <code>DIPLOMATIC_COLONY_ESCORT</code> (720-day time limit, requires a science ship + scientist leader).</li>
+<li>First-contact/dignitary projects: separate branches for minor powers (avoids reusing major-power events).</li>
+<li>Several scope fixes (<code>FROM = {...}</code> &rarr; root scope) and clarified war-occupation logic.</li>
+</ul>
+</div>
+
+<h3 id="ov-species">Species classes &amp; starbase buildings</h3>
+<div class="card">
+<p><span class="file">common/species_classes/02_hornblower_species_classes.txt</span> - adds a <code>CRD</code> species class (alternate Cardassian portraits).</p>
+<p><span class="file">common/starbase_buildings/00_starbase_buildings.txt</span> - removes the vanilla "Utopia Planitia Extra Shipyard" bonus; expands the eligible star/planet classes for certain buildings.</p>
+<p><span class="file">common/buildings/20_hornblower_military_buildings.txt</span> - <strong>fleet command-limit rework</strong>: Military Stronghold +4, Military Fortress +8 (<code>country_command_limit_add</code>), plus AI officer production.</p>
+</div>
+
+<h3 id="ov-tech">Technology</h3>
+<div class="card">
+<ul>
+<li><span class="file">00_hornblower_eng_techs.txt</span> - the vanilla tier-1 warp speed tech is removed (redefined in <code>zz_cp26_warp_techs.txt</code> to avoid a "Duplicate technology" engine error).</li>
+<li><span class="file">00_hornblower_repeatable_techs.txt</span> - fixes a circular fleet command-limit prerequisite.</li>
+<li><span class="file">00_hornblower_soc_techs.txt</span> - <strong>command-limit tech ladder shortened from 4 tiers to 2</strong> (T1 15&rarr;10, T2 25&rarr;15; T3/T4 removed). Summary:
+<table>
+<tr><th>Source</th><th>Value</th></tr>
+<tr><td>Base</td><td>+20</td></tr>
+<tr><td>Tech T1</td><td>+10</td></tr>
+<tr><td>Tech T2</td><td>+15</td></tr>
+<tr><td>Military Stronghold (per planet)</td><td>+4</td></tr>
+<tr><td>Military Fortress (per planet, minors)</td><td>+8</td></tr>
+<tr><td>Absolute cap</td><td>200</td></tr>
+</table>
+</li>
+<li><span class="file">00_hornblower_unsupported_techs.txt</span> - <code>years_passed</code> AI weight windows compressed to about a quarter of vanilla's span (the AI unlocks hulls much earlier); Ferengi-flavored variants added to shared hull techs; <code>factor = 0</code> gates for Romulan/UFOP/Klingon/Ferengi hulls based on dedicated prerequisite techs.</li>
+</ul>
+</div>
+
+<h3 id="ov-events-replace">Replaced events</h3>
+<div class="card">
+<p><span class="file">events/hornblower_colony_events.txt</span> - Ferengi dialogue options added; scope fixes (an event fired from an invalid planet scope).</p>
+<p><span class="file">events/hornblower_country_events.txt</span> (the largest file) -</p>
+<ul>
+<li>Removes a punitive vanilla outcome (killing a random Romulan homeworld pop).</li>
+<li>Several spawned fleet sizes reduced.</li>
+<li>Adds Ferengi branches and generic fallback text for factions vanilla didn't account for.</li>
+<li><strong>About 5 events are hard-disabled</strong> (<code>trigger = { always = no }</code>, comment "CP26 2026-05-15 PERF: emergency runtime disable during freeze hunt") - an emergency fix for a freeze/performance bug, with a proper fix still pending.</li>
+<li>California/Cerritos (Lower Decks) content migrated from a vanilla DLC-ownership check to a dedicated CP26 tech (<code>tech_cp26_california_unlock</code>).</li>
+</ul>
+<p><span class="file">events/hornblower_game_start.txt</span> - a stub (see the <a href="#pattern-stub">stub+split pattern</a>), split into <code>game_start_101.txt</code> through <code>280.txt</code>.</p>
+<p><span class="file">events/game_start.txt</span> - bootstraps the major-power targets as global event targets right away; new <code>cp26_start_balance.1</code> balance tick in 2346; fixes a documented construction-queue crash (<code>CP26_CONSTRUCTION_QUEUE_CRASH_FIX.txt</code>); expanded Rura Penthe logic (create vs. transfer colony); many defensive <code>exists = event_target</code> guards.</p>
+<p><span class="file">events/hornblower_borg_crisis_events.txt</span> + <span class="file">common/event_chains/00_hornblower_borg_crisis_chains.txt</span> - a "Janeway Gambit" counter system (max 3 steps) wired into the event flow; reactivates the dormant <code>borg_crisis_end_the_freed</code> chain.</p>
+<p><span class="file">events/hornblower_pirate_events.txt</span> - nearly identical, adds a <code>cp26_no_pirates</code> global flag for a full pirate-spawn toggle.</p>
+</div>
+
+<h3 id="ov-ui">Interface</h3>
+<div class="card">
+<p><span class="file">interface/game_setup/setup.gui</span> - shows the actual scenario name (CP26 Alpha-Beta_medium) instead of vanilla's hard-coded text; keyboard navigation fixes.</p>
+<p><span class="file">interface/outliner.gui</span> - purely visual row-height tuning (no functional changes).</p>
+</div>
+
+<hr>
+
+<h2 id="factions">3. New factions &amp; species</h2>
+<p class="lede">CP26 adds 4 major AI "ambient" powers (not player-startable, but active from galaxy generation onward) and about twenty prescripted minor civilizations, plus additional colonizable peoples (Denobulans, Remans, Risians...).</p>
+
+<h3 id="fac-ferengi">Ferengi Alliance <span class="tag badge-new">playable</span></h3>
+<div class="card">
+<ul>
+<li><strong>Species class</strong>: <code>AAFERENGI</code> (<span class="file">common/species_classes/aa_ferengi_species.txt</span>), biological archetype.</li>
+<li><strong>Government</strong>: civics <code>civic_ferengi_rules_of_acquisition</code>, <code>civic_ferengi_grand_nagus</code>; authority <code>auth_dictatorial_ferengi</code>; government type <code>gov_social_autocracy_ferengi</code>.</li>
+<li><strong>Traits</strong>: <code>trait_eye_for_business_ferengi</code>, <code>trait_traditionalists_ferengi</code>.</li>
+<li><strong>AI personality</strong>: <code>cp26_grand_nagus_merchants</code>.</li>
+<li><strong>Playable nation</strong>: <span class="file">prescripted_countries/_04_ferengi.txt</span> - fanatic materialist + xenophile ethics, home system "Ferenginar".</li>
+<li><strong>Game-start bring-up</strong>: <span class="file">events/aa_ferengi_start_events.txt</span> (colonizes the flagged capital, 16 pops, starting fleet, opens contact with Cardassia/Tholia).</li>
+<li><strong>Dedicated economy</strong>: "Consortium" buildings (<span class="file">common/buildings/cp26_ferengi_buildings.txt</span>), trade hub network (megastructures, see &sect;7), "Rules of Acquisition" quest chain (10 nodes, see &sect;5).</li>
+</ul>
+</div>
+
+<h3 id="fac-gorn">Gorn Hegemony <span class="tag badge-new">AI</span></h3>
+<div class="card">
+<ul>
+<li><strong>Class</strong>: <code>AAGORN</code>. Civics <code>civic_gorn_predatory</code>, <code>civic_gorn_supremacy</code>.</li>
+<li><strong>AI personality</strong>: <code>hegemonic_imperialists_gorn</code>, tuned so colony spending stays high enough for the Gorn to keep expanding despite their militarist bent.</li>
+<li><strong>Portraits</strong>: <span class="file">gfx/portraits/portraits/portraits_gorn.txt</span> - no more generic Stellaris uniforms (<code>clothes_selector = "no_texture"</code>).</li>
+<li><strong>Home systems</strong>: Galdonterre, Cestus, Finibus.</li>
+<li><strong>Hulls</strong>: Makar, Ddraig, Sarath, Balaur, Vazkoth, Hegemony Bulwark, Kethar Command (<span class="file">common/technology/cp26_gorn_orion_hull_tech.txt</span>).</li>
+</ul>
+</div>
+
+<h3 id="fac-orion">Orion Syndicate <span class="tag badge-new">AI</span></h3>
+<div class="card">
+<ul>
+<li><strong>Class</strong>: <code>AAORION</code>. Civics <code>civic_orion_matriarchs</code>, <code>civic_orion_competition</code>.</li>
+<li><strong>Home systems</strong>: Orion, Verex.</li>
+<li><strong>Hulls</strong>: Interceptor, Wanderer, Corsair, Marauder, Dreadnought, Emerald Citadel, Black Ledger.</li>
+<li><strong>Related content</strong>: optional Nausicaan marauders (<span class="file">events/cp26_nausicaan_marauder_spawn.txt</span>, off by default, toggled via the start-of-game options popup).</li>
+</ul>
+</div>
+
+<h3 id="fac-tholian">Tholian Assembly <span class="tag badge-new">AI</span></h3>
+<div class="card">
+<ul>
+<li><strong>Class</strong>: <code>AATHOLIAN</code>. Civics <code>civic_tholian_isolationism</code>, <code>civic_tholian_webspinners</code>.</li>
+<li><strong>Traits</strong>: <code>trait_tholian_crystalline</code>, <code>trait_tholian_disciplined</code>, <code>trait_tholian_prudent</code>.</li>
+<li><strong>Home systems</strong>: Tholia, Berellium.</li>
+<li><strong>Ready Room</strong>: <span class="file">interface/aa_gorn_stuff.gfx</span> - missing sprites added for the <code>_01</code> alias (contact room lookup).</li>
+</ul>
+</div>
+
+<h3 id="fac-minors">Prescripted minor civilizations</h3>
+<div class="card">
+<p>20 new files in <span class="file">prescripted_countries/</span>, each defining name, species, ethics, civics, and home system/planet:</p>
+<p>
+<span class="tag">Acamarian</span><span class="tag">Bajoran (Bajor)</span><span class="tag">Betazoid *TODO*</span><span class="tag">Bolian</span><span class="tag">Boslic</span><span class="tag">Cairn *TBD*</span><span class="tag">Farian</span><span class="tag">Hupyrian</span><span class="tag">Idanian *TBD*</span><span class="tag">Iyaaran</span><span class="tag">J'naii</span><span class="tag">Kaelon</span><span class="tag">Kesprytt *TBD*</span><span class="tag">Ktarian</span><span class="tag">Lissepian</span><span class="tag">Malcorian</span><span class="tag">Pelian</span><span class="tag">Talarian</span><span class="tag">Tanugan</span><span class="tag">Trill</span>
+</p>
+<div class="warn">Entries marked <code>*TODO*</code>/<code>*TBD*</code> in the source files (Betazoid, Cairn, Idanian, Kesprytt) are explicitly flagged as incomplete by comments in the code - verify before relying on them.</div>
+<p>Generic species classes reused by these minors: <code>HRB_DIPLO</code>, <code>HRB_TRADE</code>, <code>HRB_HARDY</code> (<span class="file">common/species_classes/zz_cp26_minor_species_classes.txt</span>) plus 60 traits (3 per species) in <span class="file">common/traits/zz_cp26_minor_species_traits.txt</span>.</p>
+</div>
+
+<h3 id="fac-colonizable">Additional colonizable peoples</h3>
+<div class="card">
+<p>Automatically seeded at game start via hidden, fire-once events:</p>
+<ul>
+<li><strong>Denobulans</strong> - <span class="file">events/aacoldenob_events.txt</span> (ns <code>aa_coldenob</code>): colonizes Denobula for the UFOP, 13 pops, farming districts, a clinic.</li>
+<li><strong>Remans</strong> - <span class="file">events/aacolremus_events.txt</span> (ns <code>aa_colremus</code>): colonizes Remus.</li>
+<li><strong>Risians</strong> - <span class="file">events/aacolrisa_events.txt</span> (ns <code>aa_colrisa</code>): colonizes Risa.</li>
+<li><strong>Luna/Mars</strong> - <span class="file">events/aalm_events.txt</span> (ns <code>aa_lm</code>): founder-species pops on Luna and Mars, flags a research habitat.</li>
+<li><strong>A500 (synthetics)</strong> - see the <a href="#arc-a500">dedicated narrative arc</a> in &sect;6.</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="diplomacy">4. Diplomacy &amp; vassalization</h2>
+<div class="card">
+<p>Beyond the diplomatic action menu itself (see &sect;2), CP26 adds new structural systems:</p>
+<ul>
+<li><span class="file">common/casus_belli/zz_cp26_contender_casus_belli.txt</span> - <code>cb_claim</code>, <code>cb_humiliation</code>, <code>cb_humiliation_animosity</code>, <code>cb_subjugation</code>, <code>cb_cp26_forced_occupation</code>: extends standard CBs to <code>contender</code>-type countries.</li>
+<li><span class="file">common/war_goals/zz_cp26_subjugation_war_goals.txt</span> - <code>wg_subjugation</code>: restores war-based vassalization (peace offers: status quo/surrender/demand surrender/neutral zone, <code>set_subject_of</code> on acceptance).</li>
+<li><span class="file">common/war_goals/zz_cp26_forced_occupation_war_goals.txt</span> - <code>wg_cp26_forced_occupation</code>.</li>
+<li><span class="file">common/on_actions/zz_cp26_vassalization_on_actions.txt</span> - new hooks: <code>on_becoming_subject</code>, <code>on_subject_change</code>, <code>on_releasing_subject</code>, <code>on_subject_integrated</code>, <code>on_assimilation_completed</code>.</li>
+<li><span class="file">events/zz_cp26_vassalization_events.txt</span> (ns <code>cp26_vassalization</code>) - keeps Liberation War CBs in sync for regular empires that become subjects.</li>
+<li><span class="file">events/cp26_integration_events.txt</span> (ns <code>cp26_integration</code>) - post-integration cleanup (THIS = overlord, FROM = integrated subject).</li>
+<li><span class="file">events/zz_cp26_war_negotiation_events.txt</span> + <span class="file">common/edicts/zz_cp26_war_negotiation_edicts.txt</span> (<code>cp26_open_war_negotiation</code>) - a new negotiated-peace/edict mechanic during wars.</li>
+<li><span class="file">events/zz_cp26_war_access_events.txt</span> + <span class="file">common/on_actions/zz_cp26_war_access_on_actions.txt</span> - wartime military access handling.</li>
+<li><strong>Opinion modifiers</strong>: <span class="file">common/opinion_modifiers/zz_cp26_ferengi_cardassian_opinions.txt</span>, <span class="file">cp26_bajor_opinions.txt</span> (see the Bajor arc below).</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="quests">5. Narrative quest trees</h2>
+<p class="lede"><span class="file">common/quest_tree_nodes/</span> holds 58 node files (2 root files under <code>replace_path</code>, the rest additive). 4 active chains.</p>
+
+<h3 id="qt-ufop">UFOP chain - 29 nodes, 5 acts</h3>
+<div class="card">
+<table>
+<tr><th>Act</th><th>Theme</th><th>Key nodes</th></tr>
+<tr><td>A</td><td>Exploration / founding</td><td><code>where_none_has_gone_before_1</code>, <code>understand_the_unknown_2</code>, <code>first_contacts_3</code>, <code>multilateral_accords</code></td></tr>
+<tr><td>B</td><td>Flagship / crew</td><td><code>build_the_enterprise_4</code>, <code>empathic_diplomacy_26</code>, <code>cerritos_lower_decks</code>, <code>worf_klingon_might_28</code>, <code>doctors_orders_27</code>, <code>upgrade_the_enterprise</code></td></tr>
+<tr><td>C</td><td>Borg / DS9 / AI threats</td><td><code>establish_trade_affiliations_11</code>, <code>expand_memory_alpha_8</code>, <code>ds9_station</code>, <code>inevitable</code>, <code>extermination_futile</code></td></tr>
+<tr><td>D</td><td>Bajor / expansion / refugees</td><td><code>grow_the_federation_5</code>, <code>liberate_the_oppressed</code>, <code>bajoran_membership</code>, <code>starburst</code>, <code>exodus</code></td></tr>
+<tr><td>E</td><td>Section 31 / DMZ / conflict</td><td><code>empower_section_31_9</code>, <code>reform_the_charters_12</code>, <code>control_demilitarized_zone_21</code>, <code>control_neutral_zone</code>, <code>major_strike</code></td></tr>
+<tr><td>Epilogue</td><td>Flagship refits</td><td><code>upgrade_enterprise_odyssey</code>, <code>upgrade_utopia_planitia_a500</code>, <code>upgrade_voyager_lamarr</code></td></tr>
+</table>
+</div>
+
+<h3 id="qt-cardassian">Cardassian chain - 14 nodes (4 sub-arcs A/B/C/D)</h3>
+<div class="card"><p>Nodes <code>qt_cardassian_a1</code> through <code>d4</code>. See each file's <code>key</code>/<code>icon</code>/<code>unlocks</code> fields for the exact theme - not individually summarized here (the source has few descriptive comments).</p></div>
+
+<h3 id="qt-ferengi">Ferengi chain - 10 nodes ("Rules of Acquisition")</h3>
+<div class="card"><p>Each node is themed around a specific Rule of Acquisition with a matching progress condition. Example documented in the code (<code>qt_ferengi_a1.txt</code>):</p>
+<pre><code># Ferengi Quest Tree - A1 / Rule 1: "Once you have their money, never give it back."
+# Condition: 3 active trade pacts</code></pre>
+</div>
+
+<h3 id="qt-romulan">Romulan chain - 2 nodes (tail end of an arc)</h3>
+<div class="card"><p><code>qt_romulan_a6</code>, <code>qt_romulan_a7</code> - an internal comment references an earlier "A5", suggesting the start of this chain lives in the replaced Hornblower files (&sect;2), not here.</p></div>
+
+<hr>
+
+<h2 id="events">6. Event catalog (70 files)</h2>
+<p class="lede">Grouped by narrative/systemic theme. The namespace (<code>ns</code>) is the technical key used by the matching localisation files.</p>
+
+<h3 id="ev-aa">AI faction bring-up ("AA" files)</h3>
+<div class="card">
+<p>Hidden, fire-once events that plant a capital/species/fleet:</p>
+<ul>
+<li><code>aa_ferengi_start_events.txt</code> (ns <code>aa_ferengi_game_start</code>), <code>aa_gorn_start_events.txt</code>, <code>aa_orion_start_events.txt</code>, <code>aa_tholian_events.txt</code> - capital/pops/districts/starbase/fleet bring-up for each faction.</li>
+<li><code>aacoldenob_events.txt</code>, <code>aacolremus_events.txt</code>, <code>aacolrisa_events.txt</code>, <code>aalm_events.txt</code> - colonies for additional peoples (see &sect;3).</li>
+</ul>
+</div>
+
+<h3 id="arc-a500">A500 arc - synthetics rebellion (Mars/Utopia Planitia)</h3>
+<div class="card">
+<ul>
+<li><code>cp26_a500_init.txt</code> (ns <code>cp26_a500_init</code>) - creates the A500 species for the UFOP at game start.</li>
+<li><code>cp26_a500_mars_arc.txt</code> (ns <code>cp26_a500</code>) - triggered by the <code>decision_deploy_a500</code> decision on Mars; branching security/technician/governor response chain and ground-assault resolutions.</li>
+<li>Associated special projects: <code>CP26_A500_SECURITY_RESPONSE</code>, <code>_TECHNICIAN_RESPONSE</code>, <code>_GOVERNOR_RESPONSE</code>, <code>_GROUND_ASSAULT</code> (<span class="file">common/special_projects/cp26_a500_projects.txt</span>).</li>
+<li><code>cp26_ban_a500</code> edict to outlaw synthetics; dedicated species and traits (<code>trait_a500_efficient_processors</code>, <code>_synthetic_body</code>, <code>_networked</code>).</li>
+</ul>
+</div>
+
+<h3 id="arc-bajor">Bajor arc</h3>
+<div class="card">
+<ul>
+<li><code>cp26_bajor_liberation_events.txt</code> (ns <code>cp26_bajor</code>) - one popup per major power reacting to Bajor's 2369 liberation from Cardassian occupation, off by default (<code>cp26_block_bajor_arc</code> flag).</li>
+<li><code>cp26_bajoran_wormhole_events.txt</code> (ns <code>cp26_bajoran_wormhole</code>) - 365 days after the liberation, each major surveys the Bajoran wormhole.</li>
+<li>Planet modifiers: <code>cp26_bajor_suppressed_garrison</code> (-20 stability / -15% production, 1800 days), <code>cp26_bajor_romulan_sabotage</code> (-10/-10%, 720 days).</li>
+</ul>
+</div>
+
+<h3 id="arc-flagships">Flagship refit arcs</h3>
+<div class="card">
+<ul>
+<li><code>cp26_enterprise_odyssey_events.txt</code> - Fleet Museum integration popups (Galaxy/Sovereign), Odyssey refit project enable/completion notifications.</li>
+<li><code>cp26_voyager_lamarr_events.txt</code> (ns <code>cp26_voyager_lamarr</code>) - Voyager/Lamarr unlock chain.</li>
+<li><code>mzl_voyager_hero_events.txt</code> (ns <code>voyager_hero_events</code>) - a unique hero vignette featuring the Kathryn Janeway portrait.</li>
+</ul>
+</div>
+
+<h3 id="arc-other">Other arcs</h3>
+<div class="card">
+<ul>
+<li><strong>Romulan synthetics</strong> - <code>cp26_romulan_synth_arc.txt</code> (ns <code>cp26_synth_rom</code>), triggered when the UFOP researches <code>tech_a500_synthetics</code>.</li>
+<li><strong>V'Ger</strong> - <code>cp26_vger_events.txt</code> (ns <code>cp26_vger</code>), a new <code>cp26_vger_probe.txt</code> country type, <code>CP26_VGER_ANALYSIS</code> project.</li>
+<li><strong>Daystrom Institute</strong> - <code>cp26_daystrom_events.txt</code> (ns <code>cp26_daystrom</code>), a research-station megastructure (&sect;7).</li>
+<li><strong>Terok Nor</strong> - <code>cp26_terok_nor_events.txt</code> (ns <code>cp26_terok_nor</code>), the DS9 station as a megastructure.</li>
+<li><strong>Ferengi trade branch</strong> - <code>cp26_ferengi_branch_events.txt</code> (ns <code>cp26_ferengi_branch</code>, 1200+ lines), the trade hub network; <code>cp26_ferengi_quest_events.txt</code> wires the "Rule 7" quest via <code>on_status_quo</code>.</li>
+<li><strong>Nexus storm</strong> - <code>cp26_nexus_storm_events.txt</code> (ns <code>cp26_nexus</code>): a phenomenon chain (&sect;7) around a spatial anomaly, with GFX assets covering its visual presentation in <span class="file">gfx/models/effects/cosmic_storms/</span>.</li>
+</ul>
+</div>
+
+<h3 id="ev-fixes">Utility / bugfix events</h3>
+<div class="card">
+<ul>
+<li><code>zz_cp26_spawn_repair_events.txt</code> (ns <code>cp26_spawn_repair</code>) - "hard recovery for majors that occasionally lose their homeworld/system during startup."</li>
+<li><code>zz_cp26_setlik_fix.txt</code> (ns <code>cp26_setlik</code>) - a 4-event fix chain for the Setlik III system/scenario.</li>
+<li><code>zz_cp26_ai_shipyard_fix.txt</code>, <code>zz_cp26_ai_pulse_events.txt</code> (ns <code>cp26_ai_pulse</code>) - annual pulse feeding the dynamic AI empire-size scaling (see <a href="#ov-country">&sect;2, country_types</a>).</li>
+<li><code>cp26_late_spawn_events.txt</code> - handles empires/species needing deferred spawning.</li>
+</ul>
+</div>
+
+<h3 id="ev-gamestart">Game start / initial diplomacy</h3>
+<div class="card">
+<p>Files <code>game_start_10{1,2,3,5,6}.txt</code>, <code>15{0,5}.txt</code>, <code>2{00,20,40,60,80}.txt</code>, <code>game_start_bolian_ufop.txt</code> - bespoke bilateral setup in 2346 (Neutral Zone, truce, defensive pacts, Bajor/Betazoid/Bolian relations with the UFOP). <code>zz_cp26_major_start_balance.txt</code> (ns <code>cp26_start_balance</code>) tunes starting stockpiles/districts per major power. <code>cp26_game_start_options.txt</code> (ns <code>cp26_options</code>) is the start-of-game options popup (Bajor arc, Nausicaan marauders, etc.).</p>
+</div>
+
+<hr>
+
+<h2 id="systems">7. Megastructures, projects, buildings, tech</h2>
+
+<h3 id="sys-mega">Megastructures</h3>
+<div class="card">
+<table>
+<tr><th>File</th><th>Content</th></tr>
+<tr><td class="file">cp26_daystrom_station.txt</td><td>Daystrom Institute research station plus its associated rift habitat</td></tr>
+<tr><td class="file">cp26_ferengi_branch_hubs.txt</td><td>Ferengi network: trade, mining, and leisure hubs</td></tr>
+<tr><td class="file">cp26_fleet_museum.txt</td><td>Fleet Museum, 4 progressive stages (base &rarr; Galaxy &rarr; Sovereign &rarr; Voyager/Lamarr)</td></tr>
+<tr><td class="file">cp26_terok_nor.txt</td><td>Terok Nor (DS9) station as a megastructure</td></tr>
+<tr><td class="file">zz_mm_dyson_swarm.txt / zz_mm_fusion_hub.txt / zz_mm_lifter.txt</td><td>3 generic megastructures (5 stages each) ported from a third-party "Mid-game Megastructures" mod, absent from the base game</td></tr>
+</table>
+</div>
+
+<h3 id="sys-projects">Additional special projects</h3>
+<div class="card">
+<p><code>cp26_a500_projects.txt</code>, <code>cp26_bajor_liberation_projects.txt</code>, <code>cp26_bajoran_wormhole_projects.txt</code>, <code>cp26_romulan_synth_projects.txt</code>, <code>cp26_vger_projects.txt</code>, <code>cp26_voyager_lamarr_projects.txt</code>, <code>mzl_voyager_hero_projects.txt</code>, <code>zz_cp26_fix_vanilla_colony_projects.txt</code> (2 vanilla colonization project fixes), <code>00_hornblower_colony_projects.txt</code> (6 additional colonization projects).</p>
+</div>
+
+<h3 id="sys-tech">Tech tree - new hull unlocks</h3>
+<div class="card">
+<p><code>cp26_a500_tech.txt</code>, <code>cp26_california_tech.txt</code>, <code>cp26_extra_major_hulls_tech.txt</code> (Klingon Jach, Romulan Praetor/Scimitar), <code>cp26_gorn_orion_hull_tech.txt</code> (13 Gorn+Orion hulls), <code>cp26_intrepid_tech.txt</code>, <code>cp26_klingon_unlocks_tech.txt</code>, <code>cp26_lamarr_tech.txt</code>, <code>cp26_luna_tech.txt</code>, <code>cp26_mars_arc_tech.txt</code> (Neo-Constitution, Sagan, Duderstadt), <code>cp26_nebula_tech.txt</code>, <code>cp26_odyssey_tech.txt</code>, <code>mzl_neworleans_tech.txt</code>, <code>pmkn_akira_tech.txt</code>. Dedicated warp tech line: <code>zz_cp26_warp_techs.txt</code>.</p>
+</div>
+
+<h3 id="sys-buildings">Buildings &amp; edicts</h3>
+<div class="card">
+<p><code>cp26_ferengi_buildings.txt</code> (Consortium economy), <code>zz_cp26_cardassian_building_fix.txt</code> (removes an "artificial" ethic prerequisite left as a TODO by Hornblower). Edicts: <code>cp26_ban_a500</code>, <code>cp26_manage_ferengi_branches</code>, <code>cp26_open_war_negotiation</code>.</p>
+</div>
+
+<hr>
+
+<h2 id="gov">8. Governments, traits, personalities</h2>
+<div class="card">
+<ul>
+<li><strong>Governments</strong>: civics/authority/government-type triads specific to each AI faction (&sect;3).</li>
+<li><strong>Species rights</strong>: <span class="file">common/species_rights/cp26_a500_species_profiles.txt</span> - default work profile for A500 synthetics (no migration, no housing consumption), gated to UFOP ownership only.</li>
+<li><strong>AI personalities of the playable majors</strong>: <span class="file">common/personalities/zz_cp26_major_personalities.txt</span> - <code>cp26_starfleet_command</code> (UFOP), <code>cp26_klingon_honor_guard</code>, <code>cp26_tal_shiar_doctrine</code> (Romulan), <code>cp26_central_command</code> (Cardassian).</li>
+<li><strong>Static/opinion modifiers</strong> supporting the narrative arcs above: <span class="file">common/static_modifiers/</span> (a500, bajor, daystrom, ferengi_branch, nexus_storm, occupied_state, vger...) and <span class="file">common/opinion_modifiers/</span>.</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="tips">9. For future contributors</h2>
+<div class="card">
+<ul>
+<li><strong>Never edit a vanilla file directly</strong> in the game folder - every change must go through a CP26 file, either via <code>replace_path</code> (the whole file is replaced, declared in <span class="file">descriptor.mod</span>) or as a standalone additive file.</li>
+<li><strong>Before searching a "root" file</strong> (<code>00_ufop_nodes.txt</code>, <code>hornblower_initializers.txt</code>, <code>hornblower_game_start.txt</code>), check whether it's been reduced to a stub - see the <a href="#pattern-stub">stub+split pattern</a> in &sect;1.</li>
+<li><strong>Follow the existing naming prefixes</strong> (&sect;1) to stay consistent: <code>cp26_*</code> for new narrative content, <code>zz_cp26_*</code> for late patches/tuning.</li>
+<li><strong>CHANGELOG.md is behind</strong> - if you update it, verify the actual code state first (as this page did) rather than trusting the latest entries.</li>
+<li><strong>Test scope guards</strong> (<code>exists = owner/planet/event_target:...</code>) - several CP26 fixes documented above exist purely to avoid scope-context errors caught in <code>error.log</code>. This pattern is common in the mod and should be reused for new content.</li>
+<li><strong>Watch for performance regressions</strong>: some events have been hard-disabled mid-development (<code>hornblower_country_events.txt</code>, &sect;2) after causing game freezes. Test new pulses/periodic events on long-running games before shipping them.</li>
+</ul>
+</div>
+
+<p style="margin-top:60px;color:var(--text-dim);font-size:.82rem;">Wiki generated by direct source-code audit (diffed against the vanilla Steam install of Star Trek: Infinite) - July 2026. Not a substitute for reading the code for fine implementation details.</p>
+
+</main>
+
+<a href="#top" class="toplink" title="Back to top">&uarr;</a>
+
+<script>
+const sections = [
+  {id:"overview", label:"Overview", group:"Introduction"},
+  {id:"stats", label:"Statistics", group:"Introduction", lvl:2},
+  {id:"conventions", label:"Naming conventions", group:"Introduction", lvl:2},
+  {id:"pattern-stub", label:"Stub + split pattern", group:"Introduction", lvl:2},
+  {id:"overrides", label:"Replaced vanilla files", group:"The code"},
+  {id:"factions", label:"New factions & species", group:"The code"},
+  {id:"diplomacy", label:"Diplomacy & vassalization", group:"The code"},
+  {id:"quests", label:"Quest trees", group:"The code"},
+  {id:"events", label:"Event catalog", group:"The code"},
+  {id:"systems", label:"Megastructures & projects", group:"The code"},
+  {id:"gov", label:"Governments & personalities", group:"The code"},
+  {id:"tips", label:"For contributors", group:"Reference"},
+];
+const nav = document.getElementById('nav');
+let curGroup = null;
+sections.forEach(s=>{
+  if(s.group !== curGroup){
+    curGroup = s.group;
+    const gt = document.createElement('div');
+    gt.className = 'navgroup-title';
+    gt.textContent = curGroup;
+    nav.appendChild(gt);
+  }
+  const a = document.createElement('a');
+  a.href = '#'+s.id;
+  a.textContent = s.label;
+  a.dataset.id = s.id;
+  if(s.lvl===2) a.classList.add('lvl2');
+  nav.appendChild(a);
+});
+const navLinks = [...nav.querySelectorAll('a')];
+function onScroll(){
+  let current = sections[0].id;
+  for(const s of sections){
+    const el = document.getElementById(s.id);
+    if(el && el.getBoundingClientRect().top - 90 <= 0) current = s.id;
+  }
+  navLinks.forEach(a=>a.classList.toggle('active', a.dataset.id===current));
+}
+document.addEventListener('scroll', onScroll);
+onScroll();
+function filterNav(q){
+  q = q.trim().toLowerCase();
+  navLinks.forEach(a=>{
+    a.classList.toggle('hidden', q && !a.textContent.toLowerCase().includes(q));
+  });
+}
+function toggleTheme(){
+  const root = document.documentElement;
+  const cur = root.getAttribute('data-theme');
+  root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+}
+</script>
+</body>
+</html>

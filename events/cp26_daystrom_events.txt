@@ -4,6 +4,7 @@ country_event = {
 	id = cp26_daystrom.1
 	title = cp26_daystrom.1.title
 	desc = cp26_daystrom.1.desc
+	picture = GFX_evt_lab_research_ufop
 	show_sound = event_default
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -56,6 +57,7 @@ country_event = {
 		desc = cp26_daystrom.2.desc_limited
 	}
 	desc = cp26_daystrom.2.desc
+	picture = GFX_evt_lab_research_ufop
 	show_sound = event_generic_tension
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -96,6 +98,7 @@ country_event = {
 		desc = cp26_daystrom.3.desc_suspended
 	}
 	desc = cp26_daystrom.3.desc
+	picture = GFX_evt_lab_research_ufop
 	show_sound = event_generic_tension
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -141,6 +144,7 @@ country_event = {
 	id = cp26_daystrom.4
 	title = cp26_daystrom.4.title
 	desc = cp26_daystrom.4.desc
+	picture = GFX_evt_red_alert_ufop
 	show_sound = event_explosion_minor_ship
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -653,6 +657,7 @@ country_event = {
 	id = cp26_daystrom.5
 	title = cp26_daystrom.5.title
 	desc = cp26_daystrom.5.desc
+	picture = GFX_evt_empire_fleet_ufop
 	show_sound = event_hail_frequency
 	is_triggered_only = yes
 
@@ -665,6 +670,7 @@ country_event = {
 	id = cp26_daystrom.100
 	title = cp26_daystrom.100.title
 	desc = cp26_daystrom.100.desc
+	picture = GFX_evt_red_alert_ufop
 	show_sound = event_generic_tension
 	is_triggered_only = yes
 

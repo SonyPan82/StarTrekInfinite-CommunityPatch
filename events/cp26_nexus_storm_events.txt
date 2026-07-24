@@ -61,10 +61,20 @@ country_event = {
 						location = this
 					}
 					last_created_ambient_object = {
-						set_location = {
-							target = event_target:cp26_nexus_anchor
-							distance = 0
-							angle = 0
+						# Keep the rift away from the star while varying its position each time.
+						random_list = {
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 70 angle = 15 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 95 angle = 50 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 125 angle = 85 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 160 angle = 120 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 200 angle = 155 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 250 angle = 190 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 300 angle = 225 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 80 angle = 260 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 115 angle = 295 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 150 angle = 330 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 190 angle = 350 } }
+							1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 240 angle = 310 } }
 						}
 						save_global_event_target_as = cp26_nexus_ambient
 					}
@@ -117,7 +127,7 @@ country_event = {
 				remove_country_flag = cp26_nexus_cleanup_timer
 			}
 		}
-		clr_global_flag = cp26_nexus_active
+		remove_global_flag = cp26_nexus_active
 	}
 }
 
@@ -242,10 +252,19 @@ country_event = {
 				location = this
 			}
 			last_created_ambient_object = {
-				set_location = {
-					target = event_target:cp26_nexus_anchor
-					distance = 0
-					angle = 0
+				random_list = {
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 70 angle = 15 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 95 angle = 50 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 125 angle = 85 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 160 angle = 120 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 200 angle = 155 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 250 angle = 190 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 300 angle = 225 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 80 angle = 260 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 115 angle = 295 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 150 angle = 330 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 190 angle = 350 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 240 angle = 310 } }
 				}
 				save_global_event_target_as = cp26_nexus_ambient
 			}
@@ -297,10 +316,19 @@ planet_event = {
 				location = this
 			}
 			last_created_ambient_object = {
-				set_location = {
-					target = event_target:cp26_nexus_anchor
-					distance = 0
-					angle = 0
+				random_list = {
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 70 angle = 15 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 95 angle = 50 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 125 angle = 85 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 160 angle = 120 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 200 angle = 155 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 250 angle = 190 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 300 angle = 225 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 80 angle = 260 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 115 angle = 295 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 150 angle = 330 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 190 angle = 350 } }
+					1 = { set_location = { target = event_target:cp26_nexus_anchor distance = 240 angle = 310 } }
 				}
 				save_global_event_target_as = cp26_nexus_ambient
 			}

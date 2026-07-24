@@ -9,7 +9,8 @@ hegemonic_imperialists_gorn = {
 	combat_bravery = 2.05
 
 	military_spending = 1.08
-	colony_spending = 0.5
+	# The Gorn remain militaristic, but now reserve enough of their economy to expand.
+	colony_spending = 0.85
 
 	federation_acceptance = -999
 	nap_acceptance = -999
