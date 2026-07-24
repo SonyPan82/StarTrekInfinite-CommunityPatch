@@ -127,12 +127,7 @@ hr{border:none;height:6px;background:linear-gradient(90deg, var(--orange), var(-
 <main id="main">
 
 <h1 style="text-transform:uppercase;letter-spacing:.03em;">CP26 - Documentation technique</h1>
-<p class="lede">Wiki genere par audit direct du code source de <strong>Community Patch 2026 (CP26)</strong>, compare au jeu de base <strong>Star Trek: Infinite</strong> (moteur Stellaris). Redige pour les futurs contributeurs du mod : que modifie CP26, comment, et ou.</p>
-
-<div class="warn">
-<b>&#9888; A propos du CHANGELOG.md existant</b><br>
-Le fichier <span class="file">CHANGELOG.md</span> du depot s'arrete a la version <code>1.6.9</code> (25 mai 2026). Le mod est actuellement en <code>1.8.8</code> (24 juillet 2026, voir <span class="file">descriptor.mod</span> et l'historique git). De nombreux systemes majeurs (arc A500/synthetiques, trou de ver bajoran, V'Ger, Terok Nor, vassalisation, arbres de quetes complets, Institut Daystrom) ne sont <strong>pas documentes</strong> dans le changelog. Cette page a ete construite en lisant directement le code source et en diffant chaque fichier remplace contre l'installation vanilla du jeu - pas en se fiant a la documentation existante. Considerez le CHANGELOG.md comme un historique partiel des premieres versions seulement.
-</div>
+<p class="lede">Documentation de reference pour <strong>Community Patch 2026 (CP26)</strong>, un overhaul communautaire pour <strong>Star Trek: Infinite</strong>. Redigee pour les contributeurs : que modifie CP26, comment, et ou.</p>
 
 <h2 id="overview">1. Vue d'ensemble</h2>
 
@@ -564,9 +559,49 @@ Le fichier <span class="file">CHANGELOG.md</span> du depot s'arrete a la version
 <p><code>cp26_a500_projects.txt</code>, <code>cp26_bajor_liberation_projects.txt</code>, <code>cp26_bajoran_wormhole_projects.txt</code>, <code>cp26_romulan_synth_projects.txt</code>, <code>cp26_vger_projects.txt</code>, <code>cp26_voyager_lamarr_projects.txt</code>, <code>mzl_voyager_hero_projects.txt</code>, <code>zz_cp26_fix_vanilla_colony_projects.txt</code> (2 correctifs de projets de colonisation vanilla), <code>00_hornblower_colony_projects.txt</code> (6 projets de colonisation additionnels).</p>
 </div>
 
-<h3 id="sys-tech">Arbre technologique - nouveaux debloquages de coques</h3>
+<h3 id="sys-tech">Systeme technologique &amp; deverrouillage</h3>
 <div class="card">
-<p><code>cp26_a500_tech.txt</code>, <code>cp26_california_tech.txt</code>, <code>cp26_extra_major_hulls_tech.txt</code> (Klingon Jach, Romulan Praetor/Scimitar), <code>cp26_gorn_orion_hull_tech.txt</code> (13 coques Gorn+Orion), <code>cp26_intrepid_tech.txt</code>, <code>cp26_klingon_unlocks_tech.txt</code>, <code>cp26_lamarr_tech.txt</code>, <code>cp26_luna_tech.txt</code>, <code>cp26_mars_arc_tech.txt</code> (Neo-Constitution, Sagan, Duderstadt), <code>cp26_nebula_tech.txt</code>, <code>cp26_odyssey_tech.txt</code>, <code>mzl_neworleans_tech.txt</code>, <code>pmkn_akira_tech.txt</code>. Ligne de tech warp dediee : <code>zz_cp26_warp_techs.txt</code>.</p>
+<p>Chaque technologie a un <code>area</code> (physique/societe/ingenierie), un <code>tier</code> (0-5) et une <code>category</code>. Les couts et poids de base reutilisent les variables scriptees vanilla par palier (<code>@tier1cost1</code>...<code>@tier5cost3</code>), sauf les technologies de deverrouillage de coque, qui utilisent toutes une seule variable partagee, <code>@specialhullweight</code>, au lieu du poids generique de palier.</p>
+<p><strong>Le verrouillage par faction</strong> passe par <code>potential</code> (retire completement la technologie de l'arbre si faux, pas seulement grisee), verifie contre des triggers scriptes definis dans <span class="file">common/scripted_triggers/z_aa_scripted_triggers.txt</span> :</p>
+<pre><code>is_ferengi_empire = { OR = { is_country_type = ferengi_alliance  has_country_flag = ferengi  has_country_id = "ferengi" } }
+is_gorn_hegemony  = { OR = { is_country_type = gorn_hegemony  has_country_flag = gorn_hegemony  has_country_flag = gorn  has_country_id = "gorn" } }
+is_orion_syndicate= { OR = { is_country_type = orion_syndicate  has_country_flag = orion_syndicate  has_country_flag = orion  has_country_id = "orion" } }</code></pre>
+<p><code>is_ufop</code>/<code>is_klingon</code>/<code>is_romulan</code>/<code>is_cardassian</code> sont les triggers equivalents fournis par Hornblower. <strong>Aucun trigger <code>is_tholian</code> n'existe</strong> - les Tholiens sont verrouilles uniquement au niveau des ship_sizes (<code>potential_country = { has_country_id = tholian }</code>), pas cote technologie, ce qui explique l'absence de technologies de coque dediees pour eux (voir le tableau par faction plus bas).</p>
+<p><strong>Le timing IA</strong> : les technologies de coque utilisent un <code>weight_modifier</code> indexe sur <code>years_passed</code> (facteur 0 avant une annee seuil, en hausse ensuite) plus un multiplicateur <code>ai_weight</code> separe reserve aux empires IA. C'est le mecanisme derriere l'acceleration de deverrouillage IA deja notee en &sect;2 (les fenetres de la chaine generique ont ete compressees a environ un quart de la duree vanilla).</p>
+<p><strong>Une technologie, plusieurs habillages par faction</strong> (<code>triggered_config</code>) : la chaine de coques generique a 5 paliers - <code>tech_corvette_unlock</code>, <code>tech_destroyer_unlock</code>, <code>tech_cruiser_unlock</code>, <code>tech_battleship_unlock</code>, <code>tech_titan_unlock</code> - est un seul identifiant de technologie par palier, sans restriction <code>potential</code>, portant un bloc <code>triggered_config</code> par faction qui ne change que le <code>title</code>/<code>desc</code>/<code>icon</code> affiche. Rechercher "Developpement de Croiseur" montre l'Excelsior a un joueur UFOP et le K'tinga a un joueur Klingon - meme technologie, memes prerequis, meme cout de recherche, vaisseau different a l'arrivee.</p>
+<p><strong>Sur mesure contre partage</strong> : les factions avec leur propre chaine de coques en plusieurs etapes (UFOP, Klingon, Gorn, Orion, Romulien) obtiennent un rythme <code>weight_modifier</code> propre, des prerequis coque-a-coque (la coque tardive d'une faction necessite sa propre coque precedente, pas seulement le palier generique), et des verrous par flag de quete - rien de tout cela n'est possible sur une technologie unique partagee avec seulement des icones cosmetiques differentes. Les Cardassiens et les Ferengi n'ont aucun fichier de coque dedie et s'appuient entierement sur l'habillage de la chaine partagee.</p>
+<p><strong>Technologies cachees/octroyees par quete</strong> : <code>tech_lamarr_unlock</code>, <code>tech_odyssey_unlock</code> et <code>tech_defiant</code> sont a <code>weight_modifier = { factor = 0 }</code> (jamais tirees naturellement) et sont octroyees directement via <code>give_technology</code> depuis des noeuds d'arbre de quete (<span class="file">qt_ufop_upgrade_voyager_lamarr.txt</span>, <span class="file">qt_ufop_upgrade_enterprise_odyssey.txt</span>, <span class="file">qt_ufop_b7.txt</span>) - <code>hidden = yes</code> posait probleme, donc <code>weight = 0</code> est utilise comme contournement.</p>
+<p><strong>Evitement des technologies dupliquees</strong> : <code>tech_warp_speed_increase_1</code> et <code>_2</code> ont ete retirees de leurs fichiers vanilla/Hornblower d'origine avec un commentaire expliquant qu'elles sont redefinies dans <span class="file">zz_cp26_warp_techs.txt</span> pour eviter une erreur moteur "Duplicate technology" (une nouvelle <code>tech_warp_speed_increase_3</code> a ete ajoutee au passage). C'est le seul endroit de <span class="file">common/technology/</span> ou une technologie est deliberement deplacee pour contourner cette erreur.</p>
+</div>
+
+<h3 id="sys-tech-factions">Technologies par faction</h3>
+<div class="card">
+<p>La chaine de coques generique partagee a 5 paliers (Corvette &rarr; Destroyer &rarr; Croiseur &rarr; Cuirasse &rarr; Titan), montree par faction la ou un <code>triggered_config</code> existe :</p>
+<table>
+<tr><th>Palier</th><th>UFOP</th><th>Klingon</th><th>Romulien</th><th>Cardassien</th><th>Ferengi</th></tr>
+<tr><td>Corvette</td><td>Miranda</td><td>Bird-of-Prey</td><td>Ferrax</td><td>Hideki</td><td><em>icone par defaut</em></td></tr>
+<tr><td>Destroyer</td><td><em>ignore (branche propre)</em></td><td>Warbird</td><td>Vindius</td><td>Galor</td><td>D'Kora</td></tr>
+<tr><td>Croiseur</td><td>Excelsior</td><td>K'tinga</td><td>Valdore</td><td>Keldon</td><td>Nandi</td></tr>
+<tr><td>Cuirasse</td><td>Galaxy</td><td>Vor'cha</td><td>D'deridex</td><td>Kazikai</td><td>Galleon</td></tr>
+<tr><td>Titan</td><td>Sovereign</td><td>Negh'Var</td><td>Majestus</td><td>Nokoram</td><td>Ooron</td></tr>
+</table>
+<p>Les Tholiens n'apparaissent pas dans ce tableau - ils utilisent les memes technologies sans habillage propre, le joueur voit donc l'icone par defaut sans titre dedie.</p>
+
+<p><strong>UFOP</strong> : ignore entierement le palier Destroyer partage (force a poids 0, "UFOP utilise tech_intrepid_unlock a la place") au profit d'une large branche originale : <code>tech_constellation_unlock</code> (technologie de depart) &rarr; <code>tech_lantree_unlock</code> &rarr; <code>tech_ambassador_unlock</code> / <code>tech_mzl_neworleans_unlock</code> (les deux necessitent Croiseur) &rarr; <code>tech_nebula_unlock</code> (necessite les deux) &rarr; <code>tech_luna_unlock</code> (necessite Cuirasse + Nebula) &rarr; <code>tech_cp26_california_unlock</code> (necessite Luna + le flag de quete Cerritos). Separement : <code>tech_intrepid_unlock</code> (necessite Croiseur) et <code>tech_pmkn_akira_unlock</code> (necessite Croiseur + New Orleans). Trio de l'arc Mars (tous necessitent <code>tech_odyssey_unlock</code> + l'arc A500 resolu) : <code>tech_neo_constitution_unlock</code>, <code>tech_sagan_unlock</code>, <code>tech_duderstadt_unlock</code>. Plus <code>tech_a500_synthetics</code>, <code>tech_cp26_daystrom_institute</code>, <code>tech_cp26_ufop_fleet_museum</code> (non lies aux coques).</p>
+
+<p><strong>Klingon</strong> : <code>tech_cp26_klingon_raptor_unlock</code> (necessite Destroyer) &rarr; <code>tech_cp26_kvort_unlock</code> (necessite Croiseur) &rarr; <code>tech_cp26_kamarag_unlock</code> (necessite K'Vort) &rarr; <code>tech_cp26_klingon_jach_unlock</code> (necessite Cuirasse + Kamarag).</p>
+
+<p><strong>Romulien</strong> : les paliers Destroyer et Croiseur restent a poids 0 jusqu'a ce que le <code>tech_artificial_singularities_1/2</code> correspondant soit recherche (la propre filiere physique romulienne, 3 paliers). <code>tech_cp26_romulan_praetor_unlock</code> (necessite Cuirasse + Singularities 3) et <code>tech_cp26_romulan_scimitar_unlock</code> (idem, plus un flag de quete) se situent au-dessus de la chaine partagee.</p>
+
+<p><strong>Cardassien</strong> : aucun fichier de coque dedie - chaine partagee uniquement, avec un petit bonus de poids IA de <code>+1.25</code> sur son propre palier Destroyer (Galor).</p>
+
+<p><strong>Ferengi</strong> : pas de technologies de coque dediees non plus (utilise les habillages D'Kora/Nandi/Galleon/Ooron de la chaine partagee, en reutilisant des icones cardassiennes, et n'a aucun habillage au palier Corvette). Obtient en revanche sa propre chaine economique non liee aux coques : <code>tech_cp26_ferengi_trade_platforms</code> &rarr; <code>tech_cp26_ferengi_mining_platforms</code> &rarr; <code>tech_cp26_ferengi_quark_platforms</code> (technologie rare). Explicitement exclu de la technologie generique de megastructure <code>tech_mm_mega_aspirations</code> puisqu'il a sa propre filiere de plateformes.</p>
+
+<p><strong>Gorn</strong> : ne touche pas du tout a la chaine partagee - une filiere entierement separee en 7 etapes, chaque coque necessitant la precedente : <code>tech_cp26_gorn_makar_unlock</code> &rarr; <code>_ddraig_</code> &rarr; <code>_sarath_</code> &rarr; <code>_balaur_</code> &rarr; <code>_vazkoth_</code> &rarr; <code>_hegemony_bulwark_</code> &rarr; <code>_kethar_command_unlock</code>, avec un poids IA qui decroit de 10 a 2 au fil de la chaine.</p>
+
+<p><strong>Orion</strong> : reproduit exactement la structure Gorn, memes 7 etapes : <code>tech_cp26_orion_interceptor_unlock</code> &rarr; <code>_wanderer_</code> &rarr; <code>_corsair_</code> &rarr; <code>_marauder_</code> &rarr; <code>_dreadnought_</code> &rarr; <code>_emerald_citadel_</code> &rarr; <code>_black_ledger_unlock</code>.</p>
+
+<p><strong>Tholien</strong> : aucune technologie n'existe pour cette faction - les coques se debloquent directement via la chaine generique partagee, sans trigger de faction ni habillage cosmetique, uniquement verrouillees par <code>has_country_id = tholian</code> dans les fichiers ship_sizes eux-memes.</p>
 </div>
 
 <h3 id="sys-buildings">Batiments &amp; edits</h3>
@@ -588,7 +623,189 @@ Le fichier <span class="file">CHANGELOG.md</span> du depot s'arrete a la version
 
 <hr>
 
-<h2 id="tips">9. Pour les futurs contributeurs</h2>
+<h2 id="balance">9. Decisions d'equilibrage</h2>
+<div class="card">
+<ul>
+<li><strong>Plafond de flotte militaire (~36 vaisseaux de ligne)</strong> : <code>cp26_under_reduced_fleet_military_cap</code> plafonne les coques de ligne a 36 par empire (<span class="file">common/scripted_triggers/aa_scripted_triggers.txt</span>) pour garder des combats lisibles, environ "3 flottes de 12", au lieu des amas de fin de partie vanilla. Le reglage complementaire par flotte (COMMAND_LIMIT base 24 / max 96) est ecrit mais actuellement desactive dans <span class="file">common/defines/zz_cp26_reduced_fleet_scale_defines.txt</span> en attente d'une verification de performance - seul le plafond global de 36 est actif.</li>
+<li><strong>Palier technologique de commandement raccourci (4 &rarr; 2 paliers)</strong> : avec le plafond de flotte en place, l'ancienne echelle +15/+25/+35/+45 permettait de depasser largement la capacite reelle. Reduite a +10/+15 via la technologie, la difference etant deplacee vers des batiments militaires par planete (Base Militaire +4, QG Militaire +8) pour que le commandement suive le territoire plutot que la seule recherche.</li>
+<li><strong>Palier des torpilles et cout en tetryons</strong> : les torpilles a photons passent d'un cout en alliages de tier 3 a tier 5, plus un nouveau cout en tetryons, pour que les ameliorations d'armes de fin de partie entrent en concurrence avec boucliers/reacteurs pour les memes ressources strategiques au lieu d'etre un puits d'alliages gratuit.</li>
+<li><strong>Buffs de ressources de depart IA (Klingon/Cardassien/Ferengi uniquement)</strong> : le code de budget IA vanilla ne construit pas d'avant-poste sous 75 influence ni de vaisseau colonisateur sous 2000 nourriture stockee, des seuils que ces trois departs n'atteignaient pas avant de nombreuses annees de jeu. Corrige par des injections de depart reservees a l'IA (<span class="file">events/zz_cp26_major_start_balance.txt</span>, <code>cp26_start_balance.1</code>) : Klingon +150 alliages/+50 influence, Cardassien +200 alliages/+75 influence, Ferengi +200 alliages. Les departs UFOP, Romulien, Tholien, Gorn et Orion n'ont pas ete touches - leurs budgets franchissent deja ces seuils naturellement.</li>
+<li><strong>Courbe de vitesse warp</strong> : la vitesse de deplacement interstellaire de base est reduite d'environ 35% (<code>WARP_INTERSTELLAR_TRAVEL_SPEED</code> 0.1 &rarr; 0.065) pour que la galaxie paraisse plus grande en debut de partie, recuperee progressivement via 3 technologies jusqu'a 120% de la valeur vanilla a "Warp 7" - une courbe deliberement lente au depart et rapide en fin de partie, pas un simple nerf plat.</li>
+<li><strong>Points de vie des vaisseaux heros divises par deux</strong> : le Voyager (7000 &rarr; 2500 PV) et le vaisseau heros D'deridex (10000 &rarr; 4500 PV) etaient quasiment increvables combines a leur chance de degagement vanilla deja elevee (1.50 / 1.20) - les deux valeurs de PV ont ete revues a la baisse, la chance de degagement laissee telle quelle.</li>
+<li><strong>Taille de slot de flotte des cuirasses corrigee</strong> : les cuirasses Tholiennes, Orion et Gorn avaient <code>size_multiplier = 8</code> mais seulement <code>fleet_slot_size = 3</code> contre 4 pour ce niveau de puissance selon le standard vanilla - un avantage cache d'environ 33% sur le plafond de flotte. Corrige a 4 pour les trois.</li>
+<li><strong>Civics des factions mineures reduits, pas redessines</strong> : les civics d'Infinite n'ont que des bonus, jamais de malus integre, donc les civics de factions mineures surdimensionnes (ex. bonus de stabilite de l'isolationnisme Tholien 10 &rarr; 5, reduction de l'usure de guerre du predatisme Gorn -30% &rarr; -25%) ont ete reduits numeriquement plutot que dotes de nouveaux malus, en restant plus forts que les civics des grandes puissances sans etre excessifs.</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="modder-notes">10. Systemes additionnels &amp; reference pour modders</h2>
+
+<h3 id="mn-rura">Rura Penthe</h3>
+<div class="card"><p>La reecriture complete de <span class="file">hornblower_initializers.txt</span> par CP26 avait fait disparaitre l'initialiseur vanilla de Rura Penthe. Restaure comme veritable systeme klingon (<span class="file">common/solar_system_initializers/klingon/cp26_beta_penthe_initializer.txt</span>) avec la colonie penitentiaire placee via <code>create_rura_penthe_colony</code>. Le placement statique seul laissait parfois le systeme vide/non decouvert, d'ou un evenement de securite <code>on_game_start_country</code> (<code>cp26_setlik.3</code> dans <span class="file">events/zz_cp26_setlik_fix.txt</span>) qui revalide la propriete apres le demarrage.</p></div>
+
+<h3 id="mn-solnova">Systeme Sol Nova</h3>
+<div class="card"><p>Le systeme "Suliban" sur mesure a ete remplace par un systeme statique "Sol Nova" contenant une planete non colonisee "Terra Nova" (<span class="file">common/solar_system_initializers/cp26_sol_nova_initializer.txt</span>), et l'ancien script dynamique de spawn de Terra Nova au demarrage a ete desactive car il provoquait un bug de planete dupliquee.</p></div>
+
+<h3 id="mn-radius">Rayon de la galaxie</h3>
+<div class="warn"><b>Zone de risque connue, non totalement resolue.</b> Le moteur Stellaris affiche la galaxie dans une boite fixe de &plusmn;500 unites ; la depasser dans les fichiers de scenario a provoque des crashs SIGSEGV lors du developpement (valeurs testees 900&rarr;460&rarr;500&rarr;570&rarr;650 avant de revenir a 500). <span class="file">map/setup_scenarios/Alpha-Beta_medium.txt</span> livre actuellement avec <code>radius = 800</code>, fixe dans un commit ulterieur sans revisiter la contrainte d'origine. Soit la limite de 500 etait trop prudente, soit il s'agit d'un risque de crash latent - a verifier avant toute nouvelle modification de carte.</div>
+
+<h3 id="mn-contender">Ajouter un nouvel empire majeur/regional (archetype "contender")</h3>
+<div class="card"><p>Recette complete : classe d'espece, culture graphique, autorite, civics (avec <code>potential = { always = no }</code> pour qu'ils ne soient pas selectionnables par le joueur), 3 tailles de vaisseau, templates de section/composant, designs de vaisseau globaux, fichiers <code>.asset</code>, un initialiseur de systeme stellaire, un evenement <code>on_game_start</code>, un hook on_actions, 2 entrees de fichier de scenario, des ajustements de fraction de vaisseaux dans le type de pays contender, et la localisation EN/FR.</p>
+<p>Deux pieges a connaitre avant de commencer :</p>
+<ul>
+<li><code>late_init_effect</code> dans un initialiseur de systeme n'est <strong>pas appele de maniere fiable</strong> pour les empires de type contender generes via setup_scenarios - la mise en place de la capitale doit passer par un evenement <code>on_game_start</code>, sinon l'empire se retrouve avec un pays et une espece mais aucune capitale possedee.</li>
+<li>Ne jamais appeler <code>create_ship_design</code>/<code>add_ship_design</code> dans un initialiseur de systeme - cela peut interrompre silencieusement <code>late_init_effect</code> en cours d'execution (c'est ainsi que le deuxieme vaisseau de depart des Ferengi avait disparu pendant le developpement).</li>
+</ul>
+<p>Utilisez <code>type = contender</code> pour un empire IA rival a visibilite normale, ou un type de pays dedie (comme <code>ferengi_alliance</code> pour les Ferengi) quand <code>observable = no</code> / <code>show_in_contacts_list = no</code> sont necessaires pour un empire cache jusqu'au premier contact.</p>
+</div>
+
+<h3 id="mn-minors">Classes et traits des especes mineures</h3>
+<div class="card"><p>La vingtaine de peuples mineurs partagent 3 classes d'especes purement cosmetiques, sans effet mecanique : <code>HRB_DIPLO</code> (Bajoran, Betazoid, Trill, Kaelon, Malcorian, Iyaaran), <code>HRB_TRADE</code> (Bolian, Boslic, Hupyrian, Lissepian, Pelian, Farian), <code>HRB_HARDY</code> (Acamarian, Cairn, Talarian, Tanugan, Kesprytt, Ktarian, Idanian). Separement, chacune des 20 mineures possede son propre jeu de 3 traits (60 traits au total, <span class="file">common/traits/zz_cp26_minor_species_traits.txt</span>) pour une vraie differenciation de gameplay.</p></div>
+
+<h3 id="mn-interface">References de personnalisation d'interface</h3>
+<div class="card">
+<ul>
+<li><strong>Icones de modificateurs de planete custom</strong> : DDS ARGB8888 60x60, references depuis les fichiers de modificateurs statiques (ex. <span class="file">common/static_modifiers/cp26_ferengi_branch_modifiers.txt</span> &rarr; <span class="file">gfx/interface/icons/planet_modifiers/</span>).</li>
+<li><strong>Boutons d'interface custom</strong> : le motif GUI <code>effectbuttonType</code> combine aux definitions de <span class="file">common/button_effects/cp26_button_effects.txt</span> - le moyen stable d'ajouter des boutons d'interface sans patcher le binaire.</li>
+<li><strong>Ecran de selection d'empire horizontal</strong> : <span class="file">interface/select_empire_design.gui</span> utilise <code>horizontal = 1</code> avec des noms <code>positionType</code> codes en dur et retro-ingenieres (<code>empire_list_width_min_max</code>, <code>back_button_offset_x_min_max</code>, <code>empire_list_margin_bottom</code>, <code>empire_list_fade_width</code>) pour faire tenir 5 cartes d'empire dans la largeur disponible au lieu de la liste verticale vanilla. L'inversion d'axe pour les listes horizontales n'est pas evidente a la seule lecture de la syntaxe GUI.</li>
+</ul>
+</div>
+
+<h3 id="mn-music">Integration de la bande-son</h3>
+<div class="card"><p>Le theme du menu principal vanilla est conserve tel quel ; la playlist en jeu est fusionnee avec un pack de bande-son Workshop externe (ses pistes OGG copiees dans <span class="file">CP26/music</span> et la localisation des noms de piste fusionnee) plutot que remplacee, car les fichiers <span class="file">songs.asset</span>/<span class="file">maintheme.asset</span> propres a ce pack auraient sinon silencieusement efface la musique vanilla s'il avait ete active directement.</p></div>
+
+<hr>
+
+<h2 id="bugfixes">11. Corrections de bugs a impact durable</h2>
+<div class="card">
+<ul>
+<li><strong>Chantier naval de capitale IA</strong> : les empires IA pouvaient demarrer sans chantier naval de capitale fonctionnel, une asymetrie face au joueur. Corrige par <code>cp26_ai_shipyard.1</code> (<span class="file">common/on_actions/zz_cp26_on_game_start.txt</span>), qui force la construction d'un starport de capitale et d'un module chantier naval pour les pays majeurs/mineurs/contender controles par l'IA.</li>
+<li><strong>Crash de file de construction</strong> : <code>create_colony</code> immediatement suivi du retrait de l'abri de colonie et de l'ajout du batiment de capitale dans le meme tick corrompait la file de construction du moteur au moment de la sauvegarde. Corrige en supprimant totalement le retrait d'abri au meme tick dans tous les scripts de colonie concernes (Luna, Mars, Tholia, Orion, Gorn, Denobula, Glintara).</li>
+<li><strong>Chaine "The Freed" de la crise Borg</strong> : le jeu de base livre la chaine finale de la crise Borg et les 3 evenements du projet special Voyager (<code>PROBE_DEFENSES</code>, <code>COUNTERACT_MEASURES</code>, <code>DELIVERANCE</code>) avec leur reference <code>event_chain</code> commentee, empechant le journal de situation de se resoudre. Decommente et cable a <code>borg_crisis_end</code> / <code>borg_crisis_end_the_freed</code>.</li>
+<li><strong>Evenement de bonus de premier contact UFOP (country.27500)</strong> : utilisait le scope invalide <code>root.from</code>, echouant silencieusement ou appliquant le bonus d'opinion au mauvais pays. Corrige en <code>who = from</code> avec des gardes anti-double-traitement.</li>
+<li><strong>Impasses de mission pour empires mineurs</strong> : plusieurs evenements <code>mission.*</code> reservaient toutes les options a <code>is_ufop/klingon/romulan/cardassian</code>, laissant les mineures IA (Bajoran, Farian, etc.) sans aucun choix valide et l'evenement bloque. Ajout d'une option de repli pour les empires ne correspondant a aucune des quatre grandes puissances.</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="credits">12. Credits</h2>
+<div class="card">
+<p>CP26 integre, adapte, corrige et rend compatible le travail de plusieurs auteurs Workshop de Star Trek: Infinite, credites ici comme liste dans <span class="file">Mod info/release/CREDITS.txt</span> :</p>
+<ul>
+<li><strong>Corrections/gameplay de base</strong> : Ongoing Bug Fixes, Integration Adjustments, Nebula Refinery and Ice Mining Station Expanded (Chance/Kaedrin) ; Federation of War (Warnstaff).</li>
+<li><strong>Vaisseaux federaux/vaisseaux heros</strong> : Ambassador Class (Tiphias) ; Akira Class (PhantomPumpkin/pumpkindude86, creditant Fractal - Star Trek: Renaissance) ; Constellation Class &amp; USS Lantree Class (Pureon, Lantree creditant Muzual, AlphaAsh, Aris Vakh'Ba, JelleFly) ; New Orleans Class (Muzual/Tiphias) ; USS Voyager Event Ship Fix, Enterprise E Fixed (AlphaAsh) ; Extended Name Lists (Muzual).</li>
+<li><strong>Colonies/planetes/carte/evenements</strong> : Canonized Map and Events (JeBuSBrian/JelleFly, creditant AlphaAsh pour la reutilisation de Romulus &amp; Remus) ; Mars &amp; Luna, Denobula &amp; Denobulans, Data Is Immortal!, Remans and Remus, Risa &amp; Risans (AlphaAsh) ; Colonized Terra Nova, Colonized Vega (Aris Vakh'Ba).</li>
+<li><strong>Civilisations additionnelles</strong> : The Tholian Assembly, The Orion Empire, The Gorn Hegemony, The Breen Confederacy (AlphaAsh ; modeles Orion Interceptor/Raider et Gorn Ddraig par Tiphias).</li>
+<li><strong>Travail d'integration original de CP26</strong> (fusion de compatibilite, corrections d'erreurs de demarrage, nettoyage de la localisation francaise, depart pirate optionnel, ajustements de taille de galaxie, restauration de la classe California, integration de la classe Luna, et tous les correctifs propres a CP26) : <strong>yobsvhs</strong>, mainteneur de Community Patch 2026.</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="testing">13. Tester avec la console de debug</h2>
+<p class="lede">Un guide pas a pas pour tester les arcs narratifs de CP26 sans devoir les declencher naturellement en jouant - ecrit pour quelqu'un qui n'a jamais ouvert la console de Stellaris/Infinite.</p>
+
+<h3 id="test-basics">Ouvrir la console</h3>
+<div class="card">
+<ol>
+<li>Lancez une partie normale (<strong>pas</strong> en Ironman - Ironman desactive completement la console).</li>
+<li>Appuyez sur la touche juste en dessous de <kbd>Echap</kbd>, a cote du <kbd>1</kbd> (generalement <kbd>&#96;</kbd>/<kbd>~</kbd> sur un clavier US, <kbd>&sect;</kbd> ou <kbd>&sup2;</kbd> sur certains claviers europeens/AZERTY) pour ouvrir la barre de console en bas de l'ecran.</li>
+<li>Tapez une commande puis Entree. La console reste ouverte - vous pouvez enchainer d'autres commandes.</li>
+<li>Sauvegardez votre partie <strong>avant</strong> de tester quoi que ce soit de destructif ; les commandes console peuvent desynchroniser une partie multijoueur et parfois corrompre une sauvegarde si elles sont mal utilisees (testez toujours sur une copie de sauvegarde, jamais sur votre campagne principale).</li>
+</ol>
+</div>
+
+<h3 id="test-basic-commands">Commandes generales (vanilla, pas specifiques a CP26)</h3>
+<div class="card">
+<table>
+<tr><th>Commande</th><th>Ce qu'elle fait</th></tr>
+<tr><td class="file">event &lt;id_evenement&gt;</td><td>Declenche immediatement un <code>country_event</code> sur le pays actuellement joue. C'est l'outil principal pour tester les evenements narratifs de CP26 - voir les tableaux d'arcs ci-dessous pour de vrais identifiants.</td></tr>
+<tr><td class="file">effect &lt;effet&gt;</td><td>Execute un effet script brut, ex. <code>effect add_country_flag = mon_flag</code> ou <code>effect remove_global_flag = mon_flag</code>. Sert a poser/retirer les flags qui verrouillent les arcs de CP26.</td></tr>
+<tr><td class="file">play &lt;id_pays&gt;</td><td>Change l'empire que vous jouez/controlez - permet de tester la reaction d'un meme arc pour chaque grande puissance sans relancer de partie.</td></tr>
+<tr><td class="file">debugtooltip</td><td>Active un affichage montrant les identifiants internes (ID pays, ID planete, ID flotte...) au survol de la carte - utile pour trouver le <code>&lt;id_pays&gt;</code> de la commande <code>play</code> ci-dessus.</td></tr>
+<tr><td class="file">research_technology &lt;id_tech&gt;</td><td>Termine et accorde instantanement une technologie donnee.</td></tr>
+<tr><td class="file">add_research_option &lt;id_tech&gt;</td><td>Ajoute une technologie au pool de recherche sans l'accorder (il faut ensuite la rechercher normalement).</td></tr>
+<tr><td class="file">research_all_technologies</td><td>Accorde toutes les technologies recherchables - utile pour sauter directement aux coques de fin de partie.</td></tr>
+<tr><td class="file">instant_build</td><td>Active/desactive la construction instantanee - batiments, vaisseaux et megastructures se terminent immediatement.</td></tr>
+</table>
+<p><code>event</code> ne fonctionne que pour un <strong>country_event</strong>. Un <strong>planet_event</strong> ne peut pas etre appele directement avec <code>event</code> - il faut l'envelopper dans un <code>effect</code> qui trouve d'abord la planete, ex. <code>effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } planet_event = { id = cp26_a500.1 } } }</code> (voir le tableau de l'arc Mars ci-dessous pour un exemple fonctionnel).</p>
+</div>
+
+<h3 id="test-bajor">Arc de liberation de Bajor (namespace <code>cp26_bajor</code>)</h3>
+<div class="card">
+<p>Desactive par defaut (le flag <code>cp26_block_bajor_arc</code> est pose au demarrage). Pour l'activer en cours de partie : <code>effect remove_global_flag = cp26_block_bajor_arc</code>.</p>
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td class="file">event cp26_bajor.1</td><td>Popup Federation (jouez UFOP)</td></tr>
+<tr><td class="file">event cp26_bajor.2</td><td>Popup Union Cardassienne</td></tr>
+<tr><td class="file">event cp26_bajor.3</td><td>Popup Empire Klingon</td></tr>
+<tr><td class="file">event cp26_bajor.4</td><td>Popup Empire Romulien</td></tr>
+<tr><td class="file">event cp26_bajor.5</td><td>Popup Alliance Ferengi</td></tr>
+<tr><td class="file">event cp26_bajor.10</td><td>Effet de liberation cache - transfere Bajor hors du controle cardassien et pose le flag global <code>cp26_bajor_liberated</code></td></tr>
+<tr><td class="file">effect remove_country_flag = cp26_bajor_event_fired</td><td>Permet au popup de ce pays de se redeclencher (le flag est par pays, retirez-le en jouant le pays que vous voulez retester)</td></tr>
+<tr><td class="file">effect remove_global_flag = cp26_bajor_liberated</td><td>Reinitialise l'etat de liberation pour retester tout l'arc</td></tr>
+</table>
+<p>Chaque popup ne se declenche qu'une fois par pays (garde via le flag pays <code>cp26_bajor_event_fired</code>) et seulement entre 2369 et 2370 par defaut - appeler <code>event</code> directement contourne a la fois la fenetre de dates et l'interrupteur on/off.</p>
+</div>
+
+<h3 id="test-daystrom">Arc Institut Daystrom (namespace <code>cp26_daystrom</code>)</h3>
+<div class="card">
+<p>Chemin de test le plus sur : construisez d'abord vraiment la station Daystrom (elle sauvegarde des references dont les evenements ont besoin), puis :</p>
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td class="file">event cp26_daystrom.1</td><td>Ouverture de l'arc - autoriser, limiter ou annuler le projet</td></tr>
+<tr><td class="file">event cp26_daystrom.2</td><td>Deuxieme etape - reglage de puissance de l'experience</td></tr>
+<tr><td class="file">event cp26_daystrom.3</td><td>Decision finale - lancer le test ou arreter le projet</td></tr>
+<tr><td class="file">event cp26_daystrom.4</td><td>Incident majeur - la station est endommagee, un empire ennemi arrive, la guerre commence</td></tr>
+<tr><td class="file">event cp26_daystrom.5</td><td>Communication hostile de l'empire arrive par la faille</td></tr>
+</table>
+<p>Pour sauter directement a l'incident sans construire la station ni jouer les etapes 1 a 3 (rapide mais moins fiable - certaines references peuvent manquer) :</p>
+<pre><code>effect add_country_flag = cp26_daystrom_project_authorized
+effect add_country_flag = cp26_daystrom_power_increased
+effect add_country_flag = cp26_daystrom_final_test
+event cp26_daystrom.4</code></pre>
+</div>
+
+<h3 id="test-mars">Arc rebellion A500 &amp; synthetiques romuliens (namespaces <code>cp26_a500</code> / <code>cp26_synth_rom</code>)</h3>
+<div class="card">
+<p><strong>Cote A500 (jouez UFOP)</strong> - l'evenement d'ouverture est un <code>planet_event</code>, il faut donc l'envelopper dans <code>effect</code>, pas un simple <code>event</code> :</p>
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td class="file">effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } planet_event = { id = cp26_a500.1 } } }</td><td>Alerte initiale - choisir la reponse securite / technicien / gouverneur</td></tr>
+<tr><td class="file">event cp26_a500.2</td><td>Sauter directement a l'insurrection (cree le pays rebelle A500 et les armees rebelles sur Mars)</td></tr>
+<tr><td class="file">event cp26_a500.10</td><td>Resolution militaire (apres avoir gagne le combat au sol) - ajoute les coques Neo-Constitution/Sagan/Duderstadt au pool de recherche</td></tr>
+<tr><td class="file">event cp26_a500.11</td><td>Resolution pacifique - Neo-Constitution seulement, chantier preserve</td></tr>
+</table>
+<p><strong>Cote Romulien (jouez Romulien)</strong> :</p>
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td class="file">event cp26_synth_rom.1</td><td>Fenetre d'opportunite - 90 jours pour envoyer un vaisseau espion sur Earth (necessite qu'Earth existe reellement dans le systeme Sol)</td></tr>
+<tr><td class="file">event cp26_synth_rom.10</td><td>Mission d'espionnage reussie - deverrouille le projet special Synth</td></tr>
+<tr><td class="file">event cp26_synth_rom.20</td><td>Projet Synth reussi - rebellion declenchee sur la planete cible</td></tr>
+<tr><td class="file">event cp26_synth_rom.21</td><td>Projet Synth echoue - vaisseau espion detecte</td></tr>
+</table>
+<p>Tout reinitialiser pour retester : <code>effect remove_country_flag = cp26_a500_resolved</code> puis, en jouant UFOP, <code>effect = { random_galaxy_planet = { limit = { has_planet_flag = planet_mars } remove_planet_flag = cp26_a500_rebellion_active remove_planet_flag = cp26_a500_installed } }</code>.</p>
+</div>
+
+<h3 id="test-vger">Arc V'Ger (namespace <code>cp26_vger</code>)</h3>
+<div class="card">
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td class="file">event cp26_vger.1</td><td>Fait apparaitre V'Ger (seulement si l'arc n'a pas encore commence)</td></tr>
+<tr><td class="file">event cp26_vger.4</td><td>Force V'Ger a se deplacer vers une nouvelle colonie a visiter</td></tr>
+<tr><td class="file">event cp26_vger.5</td><td>Affiche le popup d'analyse (n'a de sens que si V'Ger est deja en orbite d'une de vos colonies)</td></tr>
+<tr><td class="file">event cp26_vger.6</td><td>Force la fin de l'arc - arrivee des Nereens, bonus temporaire, depart de V'Ger</td></tr>
+</table>
+<p>Reinitialisation : <code>effect remove_global_flag = cp26_vger_spawned</code> et <code>effect remove_global_flag = cp26_vger_resolved</code>, puis redeclenchez <code>.1</code>. Le test fonctionne mieux apres 2206 avec au moins une colonie possedee.</p>
+</div>
+
+<div class="warn"><b>Avant de vous fier a un identifiant ci-dessus :</b> les identifiants d'evenements et noms de flags peuvent changer entre versions du mod. Verifiez contre le fichier source liste dans la description de chaque arc en &sect;6 avant de signaler un evenement "casse" - il a peut-etre simplement ete renumerote depuis la derniere verification de cette page contre le code.</div>
+
+<hr>
+
+<h2 id="tips">14. Pour les futurs contributeurs</h2>
 <div class="card">
 <ul>
 <li><strong>Ne modifiez jamais un fichier vanilla directement</strong> dans le dossier de jeu - toute modification doit passer par un fichier CP26, soit via <code>replace_path</code> (fichier entier remplace, declare dans <span class="file">descriptor.mod</span>), soit via un fichier additionnel autonome.</li>
@@ -599,8 +816,6 @@ Le fichier <span class="file">CHANGELOG.md</span> du depot s'arrete a la version
 <li><strong>Attention aux regressions de performance</strong> : certains evenements ont ete desactives en urgence en cours de developpement (<code>hornblower_country_events.txt</code>, &sect;2) suite a des gels de partie. Testez les nouveaux pulses/evenements periodiques sur de longues parties avant de les livrer.</li>
 </ul>
 </div>
-
-<p style="margin-top:60px;color:var(--text-dim);font-size:.82rem;">Wiki genere par audit direct du code source (diffe contre l'installation vanilla Steam de Star Trek: Infinite) - juillet 2026. Ne remplace pas une lecture du code pour les details d'implementation fins.</p>
 
 </main>
 
@@ -619,6 +834,11 @@ const sections = [
   {id:"events", label:"Catalogue des evenements", group:"Le code"},
   {id:"systems", label:"Megastructures & projets", group:"Le code"},
   {id:"gov", label:"Gouvernements & personnalites", group:"Le code"},
+  {id:"balance", label:"Decisions d'equilibrage", group:"Repere"},
+  {id:"modder-notes", label:"Systemes additionnels", group:"Repere"},
+  {id:"bugfixes", label:"Corrections notables", group:"Repere"},
+  {id:"credits", label:"Credits", group:"Repere"},
+  {id:"testing", label:"Tests / codes de triche", group:"Repere"},
   {id:"tips", label:"Pour les contributeurs", group:"Repere"},
 ];
 const nav = document.getElementById('nav');
