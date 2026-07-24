@@ -736,63 +736,6 @@ action_cp26_offer_war_goal_peace = {
 	}
 }
 
-action_cp26_ferengi_exchange = {
-	icon = "GFX_diplomacy_status_commercial_pact"
-	is_listed = yes
-	auto_accepted = yes
-	requires_actor_independence = no
-	requires_recipient_independence = no
-	should_show_auto_accept_message_recipient = no
-	should_show_auto_accept_message_actor = no
-	should_notify_all_communications = no
-	action_type = positive
-
-	potential = {
-		hidden_trigger = {
-			OR = {
-				is_country_type = default
-				is_country_type = contender
-				is_cp26_major_mission_country = yes
-				is_ferengi_empire = yes
-				is_gorn_hegemony = yes
-				is_orion_syndicate = yes
-			}
-			from = {
-				OR = {
-					is_country_type = default
-					is_country_type = contender
-					is_cp26_major_mission_country = yes
-					is_ferengi_empire = yes
-					is_gorn_hegemony = yes
-					is_orion_syndicate = yes
-				}
-			}
-		}
-		hidden_trigger = {
-			is_ferengi_empire = yes
-			from = { NOT = { is_same_value = root } }
-		}
-	}
-
-	possible = {
-		always = yes
-	}
-
-	proposable = {
-		hidden_trigger = {
-			always = yes
-		}
-	}
-
-	on_accept = {
-		save_global_event_target_as = cp26_ferengi_exchange_host
-		from = {
-			save_global_event_target_as = cp26_ferengi_exchange_customer
-			country_event = { id = cp26_ferengi_exchange.1 days = 1 }
-		}
-	}
-}
-
 # CP26: allow support independence for regular vassals as well as occupied/minor subjects.
 action_support_independence = {
 	icon = "GFX_diplomacy_status_support_independence"

@@ -359,11 +359,6 @@ bespoke_procedural_scenario = {
 		initializer = elaurian_curator_init spawn_weight = { base = 1 }
 	}
 	system = {
-		name = "NAME_Thalos" position = { x = 64.5 y = 399.1 }
-		initializer = ferengi_xuracorp_secondary_init spawn_weight = { base = 1 }
-	}
-
-	system = {
 		name = "Breenus" position = { x = 119.1 y = 375.7 }
 	#	initializer = breen_system_initializer spawn_weight = { base = 1 } # CP26: Breen removed from guaranteed setup
 	}

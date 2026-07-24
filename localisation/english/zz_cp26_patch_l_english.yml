@@ -418,12 +418,6 @@ CP26_A500_TECHNICIAN_RESPONSE_DESC:0 "Dispatch a science ship to Mars to investi
  CP26_A500_GROUND_ASSAULT:0 "A500 - Send Ground Troops to Mars"
  CP26_A500_GROUND_ASSAULT_DESC:0 "The uprising is now fully underway. Assign a transport carrying at least one assault army to this operation in order to project troops onto Mars and retake Utopia Planitia. Until this operation is completed, Mars will continue to suffer damage and civilian losses."
 
- # Game start popup - synthetic arc
- cp26_options.1.synth_arc_on:0 "Synth Project: §GEnabled§!"
- cp26_options.1.synth_arc_on.tt:0 "Click to disable the Synth Project arc for this campaign."
- cp26_options.1.synth_arc_off:0 "Synth Project: §RDisabled§!"
- cp26_options.1.synth_arc_off.tt:0 "Click to enable the Synth Project arc for this campaign."
-
  # Synthetic unrest modifier
  mod_cp26_synth_unrest:0 "Synthetic Revolt"
  mod_cp26_synth_unrest_desc:0 "A synthetic worker rebellion has left lasting damage: mistrust, residual sabotage, and demographic shock slow the planet's recovery."

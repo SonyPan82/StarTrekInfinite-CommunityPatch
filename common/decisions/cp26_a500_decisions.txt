@@ -63,7 +63,6 @@ decision_deploy_a500 = {
 		if = {
 			limit = {
 				has_planet_flag = planet_mars
-				NOT = { has_global_flag = cp26_block_synth_arc }
 			}
 			planet_event = { id = cp26_a500.1 days = 1825 }
 		}

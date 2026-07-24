@@ -1,0 +1,1776 @@
+
+##########################################
+##			Capital Buildings			##
+##########################################
+
+
+#################################
+## Capital buildings Variables ##
+#################################
+
+@buildings_t1 = 1
+@buildings_t2 = 2
+@buildings_t3 = 3
+@buildings_t4 = 4
+
+
+# Colony
+building_colony_shelter = {
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	category = government
+
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		# NOR = {
+		# 	has_modifier = resort_colony
+		# 	has_modifier = slave_colony
+		# }
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+		planet_amenities_add = 7
+		planet_max_buildings_add = @buildings_t1
+	}
+
+	# Every colony administration supports one additional ground command.
+	triggered_country_modifier = {
+		potential = { exists = owner }
+		generals_cap_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		job_colonist_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_klingon_capitals_followers_unity_bonus
+			}
+		}
+		job_follower_of_kahless_klingon_add = 1
+	}
+
+	#Amenities from Systematized Social Structure Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_civic = civic_systematized_structure }
+		}
+		modifier = {
+			planet_amenities_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @b1_upkeep
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_ufop_finish
+				}
+			}
+			officers = 2
+		}
+	}
+
+	upgrades = {
+		building_capital
+	}
+
+	triggered_desc = {
+		text = job_colonist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_klingon_capitals_followers_unity_bonus
+			}
+		}
+		text = job_follower_of_kahless_klingon_effect_desc
+	}
+}
+
+#################################
+##  Planetary Administration   ##
+#################################
+building_capital = {
+	base_buildtime = @b2_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	category = government
+
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+
+	allow = {
+		num_pops >= 10
+	}
+
+	upgrades = {
+		"building_major_capital"
+	}
+
+	prerequisites = {
+		"tech_planetary_government"
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_ufop_finish
+				}
+			}
+			officers = 2
+		}
+		produces = {
+			trigger = {
+				owner = {
+					has_active_tradition = tr_neo_traditional_romulan_r
+				}
+			}
+			unity = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		planet_amenities_add = 5
+		planet_max_buildings_add = @buildings_t2
+	}
+
+	triggered_country_modifier = {
+		potential = { exists = owner }
+		admirals_cap_add = 1
+		generals_cap_add = 1
+	}
+
+	#UFOP Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		modifier = {
+			job_civil_servant_ufop_add = 2
+			job_security_officer_ufop_add = 1
+			job_councilor_ufop_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+	
+	#Klingon Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		modifier = {
+			job_high_councilor_klingon_add = 2
+			job_imperial_guardian_klingon_add = 1
+			job_high_cleric_klingon_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_klingon_capitals_followers_unity_bonus
+			}
+		}
+		job_follower_of_kahless_klingon_add = 1
+	}
+
+	#Romulan Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		modifier = {
+			job_senator_romulan_add = 2
+			job_praetorian_guard_romulan_add = 1
+			job_imperial_kin_romulan_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+
+	#Cardassian Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		modifier = {
+			job_chairperson_cardassian_add = 2
+			job_inquisitor_cardassian_add = 1
+			job_censor_cardassian_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_cardassian = yes }
+			has_district = district_labor_camp
+		}
+		modifier = {
+			job_torturer_cardassian_add = 1
+		}
+	}
+
+	#Minors Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+			modifier = {
+			job_administrator_add = 2
+			job_enforcer_add = 1
+			job_adviser_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_ufop_material_abundance
+			}
+			planet = { is_capital = no }
+		}
+		country_admin_cap_add = 20
+	}
+
+	#Conditional Modifiers
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+			is_homeworld = no
+		}
+		modifier = {
+			job_farmer_add = 1
+			job_miner_add = 1
+			job_technician_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_klingon_finish }
+			is_homeworld = no
+		}
+		modifier = {
+			job_warrior_klingon_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_tradition = tr_defense_prison_colonies }
+		}
+		modifier = {
+			planet_crime_mult = -0.2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_tradition = tr_commerce_adopt }
+			is_capital = no
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		exists = owner
+    #         owner = { has_tradition = tr_commerce_adopt }
+	# 	}
+	# 	modifier = {
+	# 		job_artisan_add = 1
+	# 		job_foundry_add = 1
+	# 	}
+	# }
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_civic = civic_reparations
+			}
+		}
+		modifier = {
+			planet_stability_add = 5
+		}
+	}
+	
+	#Amenities from Systematized Social Structure Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_civic = civic_systematized_structure }
+		}
+		modifier = {
+			planet_amenities_add = 2
+		}
+	}
+
+	### Job Descriptions
+	# UFOP Job description
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_civil_servant_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_security_officer_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_councilor_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Klingon Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_high_councilor_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_imperial_guardian_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_high_cleric_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_klingon_capitals_followers_unity_bonus
+			}
+		}
+		text = job_follower_of_kahless_klingon_effect_desc
+	}
+
+	# Romulan Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_senator_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_praetorian_guard_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_imperial_kin_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Cardassian Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_chairperson_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_inquisitor_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_censor_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_cardassian = yes }
+			has_district = district_labor_camp
+		}
+		text = job_torturer_cardassian_effect_desc
+	}
+
+	# Minors Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_administrator_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_enforcer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_adviser_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Conditional Job Descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_technician_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_miner_effect_desc
+	}
+
+	# triggered_desc = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = {
+	# 			has_tradition = tr_commerce_adopt
+	# 		}
+	# 	}
+	# 	text = job_foundry_effect_desc
+	# }
+
+	# triggered_desc = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = {
+	# 			has_tradition = tr_commerce_adopt
+	# 		}
+	# 	}
+	# 	text = job_artisan_effect_desc
+	# }
+}
+
+#################################
+##        Major Capital        ##
+#################################
+building_major_capital = {
+	base_buildtime = @b3_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	category = government
+
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		# NOR = {
+		# 	has_modifier = resort_colony
+		# 	has_modifier = slave_colony
+		# }
+	}
+
+	allow = {
+		num_pops >= 25
+	}
+
+	upgrades = {
+		"building_system_capital"
+	}
+
+	prerequisites = {
+		"tech_colonial_centralization"
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b3_minerals
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_ufop_finish
+				}
+			}
+			officers = 2
+		}
+		produces = {
+			trigger = {
+				owner = {
+					has_active_tradition = tr_neo_traditional_romulan_r
+				}
+			}
+			unity = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_amenities_add = 8
+		planet_max_buildings_add = @buildings_t3
+	}
+
+	triggered_country_modifier = {
+		potential = { exists = owner }
+		admirals_cap_add = 1
+		generals_cap_add = 1
+		governors_cap_add = 1
+	}
+
+	#UFOP Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		modifier = {
+			job_civil_servant_ufop_add = 3
+			job_security_officer_ufop_add = 2
+			job_councilor_ufop_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+	
+	#Klingon Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		modifier = {
+			job_high_councilor_klingon_add = 3
+			job_imperial_guardian_klingon_add = 2
+			job_high_cleric_klingon_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_klingon_capitals_followers_unity_bonus
+			}
+		}
+		job_follower_of_kahless_klingon_add = 1
+	}
+
+	#Romulan Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		modifier = {
+			job_senator_romulan_add = 3
+			job_praetorian_guard_romulan_add = 2
+			job_imperial_kin_romulan_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+
+	#Cardassian Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		modifier = {
+			job_chairperson_cardassian_add = 3
+			job_inquisitor_cardassian_add = 2
+			job_censor_cardassian_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_cardassian = yes }
+			has_district = district_labor_camp
+
+		}
+		modifier = {
+			job_torturer_cardassian_add = 2
+		}
+	}
+
+	#Minors Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+			modifier = {
+			job_administrator_add = 3
+			job_enforcer_add = 2
+			job_adviser_add = 1
+			job_head_researcher_add = 1
+		}
+	}
+
+	# Additional Jobs Spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+			is_homeworld = no
+		}
+		modifier = {
+			job_farmer_add = 1
+			job_miner_add = 1
+			job_technician_add = 1
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_ufop_material_abundance
+			}
+			planet = { is_capital = no }
+		}
+		country_admin_cap_add = 20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_klingon_finish }
+			is_homeworld = no
+		}
+		modifier = {
+			job_warrior_klingon_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_tradition = tr_defense_prison_colonies }
+		}
+		modifier = {
+			planet_crime_mult = -0.2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_tradition = tr_commerce_adopt }
+			is_capital = no
+		}
+		modifier = {
+			trade_value_add = 4
+		}
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		exists = owner
+    #         owner = { has_tradition = tr_commerce_adopt }
+	# 	}
+	# 	modifier = {
+	# 		job_artisan_add = 1
+	# 		job_foundry_add = 1
+	# 	}
+	# }
+
+	#Amenities from Systematized Social Structure Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_civic = civic_systematized_structure }
+		}
+		modifier = {
+			planet_amenities_add = 4
+		}
+	}
+
+	### Job Descriptions
+	
+	# UFOP Job description
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_civil_servant_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_security_officer_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_councilor_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Klingon Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_high_councilor_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_imperial_guardian_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_high_cleric_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_klingon_capitals_followers_unity_bonus
+			}
+		}
+		text = job_follower_of_kahless_klingon_effect_desc
+	}
+
+	# Romulan Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_senator_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_praetorian_guard_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_imperial_kin_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Cardassian Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_chairperson_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_inquisitor_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_censor_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_cardassian = yes }
+			has_district = district_labor_camp
+		}
+		text = job_torturer_cardassian_effect_desc
+	}
+
+	# Minors Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_administrator_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_enforcer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_adviser_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Conditional Job Descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_technician_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_miner_effect_desc
+	}
+
+	# triggered_desc = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = {
+	# 			has_tradition = tr_commerce_adopt
+	# 		}
+	# 	}
+	# 	text = job_foundry_effect_desc
+	# }
+
+	# triggered_desc = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = {
+	# 			has_tradition = tr_commerce_adopt
+	# 		}
+	# 	}
+	# 	text = job_artisan_effect_desc
+	# }
+}
+
+#################################
+##        Star Capital         ##
+#################################
+building_system_capital = {
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	category = government
+
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		# NOR = {
+		# 	has_modifier = resort_colony
+		# 	has_modifier = slave_colony
+		# }
+	}
+
+	convert_to = {
+		building_major_capital
+	}
+
+	allow = {
+		num_pops >= 50
+	}
+
+	upgrades = {
+		building_imperial_capital
+		building_federation_headquarters_ufop
+		building_great_hall_klingon
+		building_hall_of_state_romulan
+		building_administrative_command_cardassian
+	}
+
+	prerequisites = {
+		"tech_galactic_administration"
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_ufop_finish
+				}
+			}
+			officers = 2
+		}
+		produces = {
+			trigger = {
+				owner = {
+					has_active_tradition = tr_neo_traditional_romulan_r
+				}
+			}
+			unity = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 12
+		planet_amenities_add = 12
+		planet_max_buildings_add = @buildings_t4
+	}
+
+	triggered_country_modifier = {
+		potential = { exists = owner }
+		admirals_cap_add = 2
+		generals_cap_add = 2
+		governors_cap_add = 1
+	}
+
+	#UFOP Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		modifier = {
+			job_civil_servant_ufop_add = 4
+			job_security_officer_ufop_add = 3
+			job_councilor_ufop_add = 2
+			job_head_researcher_add = 2
+		}
+	}
+	
+	#Klingon Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		modifier = {
+			job_high_councilor_klingon_add = 4
+			job_imperial_guardian_klingon_add = 3
+			job_high_cleric_klingon_add = 2
+			job_head_researcher_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_klingon_capitals_followers_unity_bonus
+			}
+		}
+		job_follower_of_kahless_klingon_add = 1
+	}
+
+	#Romulan Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		modifier = {
+			job_senator_romulan_add = 4
+			job_praetorian_guard_romulan_add = 3
+			job_imperial_kin_romulan_add = 2
+			job_head_researcher_add = 2
+		}
+	}
+
+	#Cardassian Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		modifier = {
+			job_chairperson_cardassian_add = 4
+			job_inquisitor_cardassian_add = 3
+			job_censor_cardassian_add = 2
+			job_head_researcher_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { is_cardassian = yes }
+			has_district = district_labor_camp
+		}
+		modifier = {
+			job_torturer_cardassian_add = 3
+		}
+	}
+
+	#Minors Job spawning
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+			modifier = {
+			job_administrator_add = 4
+			job_enforcer_add = 3
+			job_adviser_add = 2
+			job_head_researcher_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+			is_homeworld = no
+		}
+		modifier = {
+			job_farmer_add = 1
+			job_miner_add = 1
+			job_technician_add = 1
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_ufop_material_abundance
+			}
+			planet = { is_capital = no }
+		}
+		country_admin_cap_add = 20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_tradition = tr_klingon_finish }
+			is_homeworld = no
+		}
+		modifier = {
+			job_warrior_klingon_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_tradition = tr_defense_prison_colonies }
+		}
+		modifier = {
+			planet_crime_mult = -0.2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_tradition = tr_commerce_adopt }
+			is_capital = no
+		}
+		modifier = {
+			trade_value_add = 8
+		}
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		exists = owner
+    #         owner = { has_tradition = tr_commerce_adopt }
+	# 	}
+	# 	modifier = {
+	# 		job_artisan_add = 1
+	# 		job_foundry_add = 1
+	# 	}
+	# }
+
+	#Amenities from Systematized Social Structure Civic
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_civic = civic_systematized_structure }
+		}
+		modifier = {
+			planet_amenities_add = 6
+		}
+	}
+
+	### Job Descriptions
+	
+	# UFOP Job description
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_civil_servant_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_security_officer_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_councilor_ufop_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_ufop = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Klingon Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_high_councilor_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_imperial_guardian_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_high_cleric_klingon_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_klingon = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_klingon_capitals_followers_unity_bonus
+			}
+		}
+		text = job_follower_of_kahless_klingon_effect_desc
+	}
+
+	# Romulan Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_senator_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_praetorian_guard_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_imperial_kin_romulan_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_romulan = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Cardassian Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_chairperson_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_inquisitor_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_censor_cardassian_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+            owner = { is_cardassian = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_cardassian = yes }
+			has_district = district_labor_camp
+		}
+		text = job_torturer_cardassian_effect_desc
+	}
+
+	# Minors Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_administrator_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_enforcer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_adviser_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Conditional Job Descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_technician_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_miner_effect_desc
+	}
+
+	# triggered_desc = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = {
+	# 			has_tradition = tr_commerce_adopt
+	# 		}
+	# 	}
+	# 	text = job_foundry_effect_desc
+	# }
+
+	# triggered_desc = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = {
+	# 			has_tradition = tr_commerce_adopt
+	# 		}
+	# 	}
+	# 	text = job_artisan_effect_desc
+	# }
+}
+
+
+#################################
+##      Imperial Capital       ##
+#################################
+building_imperial_capital = {
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+	icon = default
+	
+	category = government
+
+	potential = {
+		exists = owner
+		owner = {
+			is_minor = yes 
+		}
+		planet = { is_capital = yes }
+	}
+
+	convert_to = {
+		building_system_capital
+	}
+
+	allow = {
+		num_pops >= 50
+	}
+
+	prerequisites = {
+		tech_imperial_capital
+	}
+
+	planet_modifier = {
+		job_administrator_add = 6
+		job_enforcer_add = 5
+		job_adviser_add = 3
+		job_head_researcher_add = 3
+		planet_housing_add = 18
+		planet_amenities_add = 18
+		planet_max_buildings_add = 11
+		planet_max_branch_office_buildings_add = 3
+	}
+
+	triggered_country_modifier = {
+		potential = { exists = owner }
+		admirals_cap_add = 3
+		generals_cap_add = 3
+		governors_cap_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+			is_homeworld = no
+		}
+		modifier = {
+			job_farmer_add = 1
+			job_miner_add = 1
+			job_technician_add = 1
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_tradition = tr_ufop_material_abundance
+			}
+			planet = { is_capital = no }
+		}
+		country_admin_cap_add = 20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_tradition = tr_defense_prison_colonies }
+		}
+		modifier = {
+			planet_crime_mult = -0.2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+            owner = { has_tradition = tr_commerce_adopt }
+			is_capital = no
+		}
+		modifier = {
+			trade_value_add = 8
+		}
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		exists = owner
+    #         owner = { has_tradition = tr_commerce_adopt }
+	# 	}
+	# 	modifier = {
+	# 		job_artisan_add = 1
+	# 		job_foundry_add = 1
+	# 	}
+	# }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_tradition = tr_ufop_finish
+				}
+			}
+			officers = 2
+		}
+		produces = {
+			trigger = {
+				owner = {
+					has_active_tradition = tr_neo_traditional_romulan_r
+				}
+			}
+			unity = 1
+		}
+	}
+
+	###
+
+	# Job descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_administrator_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_enforcer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_adviser_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_minor = yes }
+		}
+		text = job_head_researcher_effect_desc
+	}
+
+	# Conditional Job Descriptions
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_technician_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_tradition = tr_wellfare_finish
+			}
+		}
+		text = job_miner_effect_desc
+	}
+
+	# triggered_desc = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = {
+	# 			has_tradition = tr_commerce_adopt
+	# 		}
+	# 	}
+	# 	text = job_foundry_effect_desc
+	# }
+
+	# triggered_desc = {
+	# 	trigger = {
+	# 		exists = owner
+	# 		owner = {
+	# 			has_tradition = tr_commerce_adopt
+	# 		}
+	# 	}
+	# 	text = job_artisan_effect_desc
+	# }
+
+	show_tech_unlock_if = {
+		is_minor = yes
+  	}
+}

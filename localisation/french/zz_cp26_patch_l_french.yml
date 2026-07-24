@@ -908,12 +908,6 @@ district_gorn_hunting:0 "Terrains de reproduction"
  CP26_A500_GROUND_ASSAULT:0 "A500 - Envoyer des troupes au sol sur Mars"
  CP26_A500_GROUND_ASSAULT_DESC:0 "L'insurrection est désormais ouverte. Affectez à cette opération un transport contenant au moins une armée d'assaut pour projeter des troupes sur Mars et reprendre Utopia Planitia. Tant que cette opération n'est pas menée, Mars continuera de subir des dégâts et des pertes civiles."
 
- # Popup début de partie - arc synthétique
- cp26_options.1.synth_arc_on:0 "Projet Synth : §Gactivé§!"
- cp26_options.1.synth_arc_on.tt:0 "Cliquez pour désactiver l'arc Projet Synth pour cette campagne."
- cp26_options.1.synth_arc_off:0 "Projet Synth : §Rdésactivé§!"
- cp26_options.1.synth_arc_off.tt:0 "Cliquez pour activer l'arc Projet Synth pour cette campagne."
-
  # Modificateur instabilité synthétique
  mod_cp26_synth_unrest:0 "Révolte synthétique"
  mod_cp26_synth_unrest_desc:0 "Une rébellion de travailleurs synthétiques a laissé des séquelles profondes : méfiance, sabotages résiduels et choc démographique freinent la reprise."

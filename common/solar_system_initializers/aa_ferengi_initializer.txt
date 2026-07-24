@@ -71,14 +71,7 @@ ferengi_player_initializer = {
 			}
 		}
 
-				late_init_effect = {
-					if = {
-						limit = { exists = owner }
-						owner = {
-							save_global_event_target_as = ferengi_country
-							set_country_flag = ferengi
-						}
-					}
+			late_init_effect = {
 				if = {
 					limit = { is_colony = no }
 					set_colony_type = col_default
@@ -315,14 +308,7 @@ ferengi_system_initializer = {
 			}
 		}
 
-				late_init_effect = {
-					if = {
-						limit = { exists = owner }
-						owner = {
-							save_global_event_target_as = ferengi_country
-							set_country_flag = ferengi
-						}
-					}
+			late_init_effect = {
 				if = {
 					limit = {
 						is_colony = no

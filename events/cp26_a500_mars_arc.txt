@@ -23,10 +23,6 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
-	trigger = {
-		NOT = { has_global_flag = cp26_block_synth_arc }
-	}
-
 	immediate = {
 		save_global_event_target_as = et_a500_mars
 	}

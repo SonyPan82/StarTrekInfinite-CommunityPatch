@@ -44,23 +44,3 @@ action_cp26_offer_war_goal_peace = {
 		}
 	}
 }
-
-action_cp26_ferengi_exchange = {
-	opinion = {
-		01_CP26_FERENGI_EXCHANGE_CONSIDER = {
-			trigger = { always = yes }
-		}
-		01_CP26_FERENGI_EXCHANGE_SELECT = {
-			trigger = { always = yes }
-		}
-		01_CP26_FERENGI_EXCHANGE_PROPOSE = {
-			trigger = { always = yes }
-		}
-		01_CP26_FERENGI_EXCHANGE_ACCEPT = {
-			trigger = { always = yes }
-		}
-		01_CP26_FERENGI_EXCHANGE_REFUSE = {
-			trigger = { always = yes }
-		}
-	}
-}
