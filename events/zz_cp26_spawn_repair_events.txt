@@ -352,7 +352,6 @@ country_event = {
 				else = {
 					set_owner = root
 					set_controller = root
-					set_colony_type = col_default
 				}
 				set_capital = yes
 				if = {
