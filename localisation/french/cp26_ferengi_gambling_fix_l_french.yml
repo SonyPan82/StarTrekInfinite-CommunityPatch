@@ -1,0 +1,15 @@
+l_french:
+ # Retablit les textes de l'interface caravaniere livres comme placeholders de debogage.
+ cara_home_main.title:0 "Commission ferengi des jeux de hasard"
+ cara_home_main:0 "Retour au menu principal"
+ cara_home_slots.title:0 "Table de Dabo"
+ cara_home_exit:0 "Quitter"
+ slotscost_low:0 "2 784"
+ slotscost_high:0 "5 000"
+ slots_spin_allow_fail:0 "Nous ne possedons pas assez de $latinum$."
+ SCORE:0 "Recuperer les gains"
+ KACHING:0 "Reclamer le jackpot"
+ SCOREQ:0 "Continuer"
+ won_3000latinum:0 "Nous avons gagne §G3 000§! $latinum$."
+ won_500latinum:0 "Nous avons recupere §G500§! $latinum$."
+ no_win:0 "Pas de gain cette fois."

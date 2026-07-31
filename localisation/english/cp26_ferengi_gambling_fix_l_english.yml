@@ -1,0 +1,15 @@
+l_english:
+ # Restores the Caravaneer UI text that Infinite ships as debug placeholders.
+ cara_home_main.title:0 "Ferengi Gambling Commission"
+ cara_home_main:0 "Return to the main menu"
+ cara_home_slots.title:0 "Dabo Table"
+ cara_home_exit:0 "Leave"
+ slotscost_low:0 "2,784"
+ slotscost_high:0 "5,000"
+ slots_spin_allow_fail:0 "We do not have enough $latinum$."
+ SCORE:0 "Collect winnings"
+ KACHING:0 "Claim jackpot"
+ SCOREQ:0 "Continue"
+ won_3000latinum:0 "We won §G3,000§! $latinum$."
+ won_500latinum:0 "We recovered §G500§! $latinum$."
+ no_win:0 "No winnings this time."
