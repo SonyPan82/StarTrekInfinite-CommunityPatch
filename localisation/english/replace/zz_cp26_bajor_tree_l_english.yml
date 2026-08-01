@@ -1,3 +1,3 @@
-l_english:
+﻿l_english:
  qt_ufop_liberate_the_oppressed_fail_a_tooltip:0 "$TRIGGER_FAIL$ Free Bajor\na. Through a Liberation War\nb. Through requesting it from their Overlord\nc. Through the §HLiberation of Bajor§! event when it fires\n    The diplomatic action is called §HRequest Subject Liberation§!"
  qt_ufop_liberate_the_oppressed_success_a_tooltip:0 "$TRIGGER_PASS$ Free Bajor\na. Through a Liberation War\nb. Through requesting it from their Overlord\nc. Through the §HLiberation of Bajor§! event when it fires\n    The diplomatic action is called §HRequest Subject Liberation§!"

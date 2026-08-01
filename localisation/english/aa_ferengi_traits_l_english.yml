@@ -1,4 +1,4 @@
-l_english:
+﻿l_english:
  trait_thrifty:0 "Thrifty"
  trait_thrifty_desc:0 "§LMembers of this species are instinctively economical and are always looking to turn a profit.§!"
  TRAIT_THRIFTY_EFFECT:0 "£trade_value£ Trade Value from £job£ Jobs: §G+25%§!"
