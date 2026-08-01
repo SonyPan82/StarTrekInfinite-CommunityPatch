@@ -118,9 +118,15 @@ country_event = {
 	}
 
 	option = {
-		name = cp26_options.1.naval_cap_48
-		trigger = { has_global_flag = cp26_naval_cap_100 }
-		custom_tooltip = cp26_options.1.naval_cap_48.tt
+		name = cp26_options.1.naval_cap_120
+		trigger = {
+			OR = {
+				has_global_flag = cp26_naval_cap_500
+				has_global_flag = cp26_naval_cap_100 # Legacy 300-hull option.
+			}
+		}
+		custom_tooltip = cp26_options.1.naval_cap_120.tt
+		remove_global_flag = cp26_naval_cap_500
 		remove_global_flag = cp26_naval_cap_100
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
@@ -128,10 +134,15 @@ country_event = {
 	}
 
 	option = {
-		name = cp26_options.1.naval_cap_100
-		trigger = { NOT = { has_global_flag = cp26_naval_cap_100 } }
-		custom_tooltip = cp26_options.1.naval_cap_100.tt
-		set_global_flag = cp26_naval_cap_100
+		name = cp26_options.1.naval_cap_500
+		trigger = {
+			NOR = {
+				has_global_flag = cp26_naval_cap_500
+				has_global_flag = cp26_naval_cap_100 # Legacy 300-hull option.
+			}
+		}
+		custom_tooltip = cp26_options.1.naval_cap_500.tt
+		set_global_flag = cp26_naval_cap_500
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
 		}

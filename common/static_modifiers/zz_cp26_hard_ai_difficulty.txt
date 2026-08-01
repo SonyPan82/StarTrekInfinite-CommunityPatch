@@ -1,0 +1,42 @@
+# CP26 - Additional bonuses for the two high AI difficulty tiers.
+# These keys are selected by Infinite's difficulty system only for countries
+# with has_difficulty_bonuses = yes; lower difficulty tiers are untouched.
+
+# Admiral: a capable late-game opponent without overwhelming the player.
+difficulty_admiral = {
+	stations_produces_mult = 0.90
+	planet_jobs_produces_mult = 0.90
+	ships_upkeep_mult = -0.35
+	starbase_shipyard_build_cost_mult = -0.35
+	starbase_shipyard_build_speed_mult = 0.15
+	all_technology_research_speed = 0.10
+	pop_resettlement_cost_mult = -0.75
+	planet_stability_add = 15
+}
+
+# Covers the non-playable empires that use the NPC difficulty variant.
+difficulty_admiral_npc = {
+	ship_weapon_damage = 0.50
+	ship_hull_mult = 0.50
+	ship_armor_mult = 0.50
+	ship_shield_mult = 0.50
+}
+
+# Grand Admiral: deliberately stronger economy and fleet logistics than Admiral.
+difficulty_grand_admiral = {
+	stations_produces_mult = 1.15
+	planet_jobs_produces_mult = 1.15
+	ships_upkeep_mult = -0.50
+	starbase_shipyard_build_cost_mult = -0.50
+	starbase_shipyard_build_speed_mult = 0.25
+	all_technology_research_speed = 0.15
+	pop_resettlement_cost_mult = -1.0
+	planet_stability_add = 20
+}
+
+difficulty_grand_admiral_npc = {
+	ship_weapon_damage = 0.60
+	ship_hull_mult = 0.60
+	ship_armor_mult = 0.60
+	ship_shield_mult = 0.60
+}

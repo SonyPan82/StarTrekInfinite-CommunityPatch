@@ -53,16 +53,22 @@ cp26_is_non_hero_military_ship = {
 cp26_under_reduced_fleet_military_cap = {
 	OR = {
 		AND = {
-			has_global_flag = cp26_naval_cap_100
+			OR = {
+				has_global_flag = cp26_naval_cap_500
+				has_global_flag = cp26_naval_cap_100 # Legacy 300-hull option.
+			}
 			count_owned_ship = {
-				count < 301
+				count < 501
 				limit = { cp26_is_non_hero_military_ship = yes }
 			}
 		}
 		AND = {
-			NOT = { has_global_flag = cp26_naval_cap_100 }
+			NOR = {
+				has_global_flag = cp26_naval_cap_500
+				has_global_flag = cp26_naval_cap_100 # Legacy 300-hull option.
+			}
 			count_owned_ship = {
-				count < 101
+				count < 121
 				limit = { cp26_is_non_hero_military_ship = yes }
 			}
 		}

@@ -231,7 +231,7 @@ hr{border:none;height:6px;background:linear-gradient(90deg, var(--orange), var(-
 <ul><li>Le design d'evenement "Enterprise Sovereign" est significativement modernise (composants de tier superieur sur reacteur, armes, boucliers, coque, capteurs).</li></ul>
 <p><span class="file">common/ship_sizes/00_ship_sizes.txt</span> <span class="tag badge-new">plafond de flotte</span></p>
 <ul>
-<li>Tous les hulls militaires (corvette a titan) recoivent un <code>possible_construction</code> lie a <code>cp26_under_reduced_fleet_military_cap</code> - application du plafond militaire reduit (environ 36 vaisseaux) mentionne dans les notes de design CP26 (<code>CP26_SHIP_FLEET_CAP_SYSTEM</code>).</li>
+<li>Tous les hulls militaires (corvette a titan) recoivent un <code>possible_construction</code> lie a <code>cp26_under_reduced_fleet_military_cap</code> - application du plafond CP26 commun a la sauvegarde, choisi au lancement : 120 ou 500 vaisseaux par empire.</li>
 <li>Titan : <code>size_multiplier 16 &rarr; 14</code>.</li>
 <li>Vaisseaux science/constructeur : plafond dur <code>empire_limit = { base = 3 max = 3 }</code> par empire (auparavant non plafonne).</li>
 <li>Transport : <code>ignores_warp_range = yes</code> + portee hyperlane +1.</li>
@@ -637,6 +637,20 @@ is_orion_syndicate= { OR = { is_country_type = orion_syndicate  has_country_flag
 </ul>
 </div>
 
+<h3 id="ai-difficulty">IA en difficulte Amiral et Grand Amiral</h3>
+<div class="card">
+<p>Les difficultes inferieures ne sont pas modifiees. Ce reglage ne s'applique qu'aux pays avec <code>has_difficulty_bonuses = yes</code> lorsque la partie est lancee en <strong>Amiral</strong> ou <strong>Grand Amiral</strong>; il ne donne aucun bonus au joueur.</p>
+<table>
+<tr><th>Bonus IA total au palier</th><th>Amiral</th><th>Grand Amiral</th></tr>
+<tr><td>Production des emplois et stations</td><td>+90 %</td><td>+115 %</td></tr>
+<tr><td>Entretien des vaisseaux</td><td>-35 %</td><td>-50 %</td></tr>
+<tr><td>Cout / vitesse des chantiers navals</td><td>-35 % / +15 %</td><td>-50 % / +25 %</td></tr>
+<tr><td>Vitesse de recherche</td><td>+10 %</td><td>+15 %</td></tr>
+<tr><td>Degats, coque, blindage et boucliers des PNJ</td><td>+50 %</td><td>+60 %</td></tr>
+</table>
+<p>Fichier : <span class="file">common/static_modifiers/zz_cp26_hard_ai_difficulty.txt</span>. Les priorites et personnalites IA CP26 restent identiques a tous les niveaux; seuls les bonus de ce tableau sont verrouilles derriere la difficulte. Le plafond CP26 de 120 ou 500 coques militaires reste commun a tous les empires.</p>
+</div>
+
 <hr>
 
 <h2 id="modder-notes">10. Systemes additionnels &amp; reference pour modders</h2>
@@ -835,6 +849,7 @@ const sections = [
   {id:"systems", label:"Megastructures & projets", group:"Le code"},
   {id:"gov", label:"Gouvernements & personnalites", group:"Le code"},
   {id:"balance", label:"Decisions d'equilibrage", group:"Repere"},
+	{id:"ai-difficulty", label:"IA difficulte elevee", group:"Repere", lvl:2},
   {id:"modder-notes", label:"Systemes additionnels", group:"Repere"},
   {id:"bugfixes", label:"Corrections notables", group:"Repere"},
   {id:"credits", label:"Credits", group:"Repere"},

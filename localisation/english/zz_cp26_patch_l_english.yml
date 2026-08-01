@@ -35,7 +35,7 @@
  NAME_uss_cerritos:0 "Cerritos"
  NAME_uss_cerritos_fleet:0 "U.S.S. Cerritos"
 
- cp26_military_fleet_cap_fail:0 "Maximum combat hulls for your empire (100 by default; 300 with the expanded fleet option). Scuttle or decommission a ship to build another."
+ cp26_military_fleet_cap_fail:0 "Maximum combat hulls for your empire (120 by default; 500 with the expanded fleet option). Scuttle or decommission a ship to build another."
 
  cp26_merc_fleet_tt_small:0 "The mercenary flotilla will be a compact task force sized for empires with modest fleet command capacity."
  cp26_merc_fleet_tt_medium:0 "The mercenary flotilla will be a medium task force sized to match solid fleet command capacity."
@@ -137,7 +137,7 @@ action.13.a.ferengi:0 "Open negotiations."
  cp26_ufop_federal_energy_grid_desc:0 "The founding worlds temporarily pool distribution networks, antimatter reserves, and industrial contracts to stabilize the Federation energy economy during the starting transition."
 
  cp26_options.1.name:0 "Community Patch 2026 - campaign setup"
- cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HFleet Cap§!: maximum number of military ships that can be constructed per empire. You can choose between §Y100§! and §Y300§! hulls.\n\n§HSupernova§!: option to disable the Supernova quest.\n§HBajor Liberation§!: narrative arc including the liberation of Bajor and the appearance of the Bajoran wormhole.\n§HNausicaan Marauders§!: activates a Nausicaan pirate empire as an independent faction on the map (beta).\n§HSynth Project§!: offers gameplay for the Federation and Romulans, inspired by Star Trek: Picard."
+ cp26_options.1.desc:0 "§HThese settings last for this entire save.§!\n\nEach button shows the §Hcurrent§! state. Click to toggle it.\n\n§HFleet Cap§!: maximum number of military ships that can be constructed per empire. You can choose between §Y120§! and §Y500§! hulls.\n\n§HSupernova§!: option to disable the Supernova quest.\n§HBajor Liberation§!: narrative arc including the liberation of Bajor and the appearance of the Bajoran wormhole.\n§HNausicaan Marauders§!: activates a Nausicaan pirate empire as an independent faction on the map (beta).\n§HSynth Project§!: offers gameplay for the Federation and Romulans, inspired by Star Trek: Picard."
  cp26_options.1.pirates_on:0 "Pirates: §Genabled§!"
  cp26_options.1.pirates_on.tt:0 "Click to disable the Nausicaan pirate crisis for this campaign."
  cp26_options.1.pirates_off:0 "Pirates: §Rdisabled§!"
@@ -154,10 +154,10 @@ cp26_options.1.vassalization_off.tt:0 "Click to re-enable CP26 occupied state pr
  cp26_options.1.supernova_quest_on.tt:0 "Click to disable the Supernova quest for this campaign."
  cp26_options.1.supernova_quest_off:0 "Supernova quest: §RDisabled§!"
  cp26_options.1.supernova_quest_off.tt:0 "Click to enable the Supernova quest for this campaign."
- cp26_options.1.naval_cap_48:0 "Fleet: §Gcap 100§! ships"
- cp26_options.1.naval_cap_48.tt:0 "Click to switch to a §Y300§! ship cap."
- cp26_options.1.naval_cap_100:0 "Fleet: §Rcap 300§! ships"
- cp26_options.1.naval_cap_100.tt:0 "Click to return to a §Y100§! ship cap."
+ cp26_options.1.naval_cap_120:0 "Fleet: §Gcap 120§! ships"
+ cp26_options.1.naval_cap_120.tt:0 "Click to switch to a §Y500§! ship cap."
+ cp26_options.1.naval_cap_500:0 "Fleet: §Rcap 500§! ships"
+ cp26_options.1.naval_cap_500.tt:0 "Click to return to a §Y120§! ship cap."
 
  cp26_options.1.confirm:0 "OK - start campaign"
  cp26_options.1.confirm.tt:0 "Confirms these settings for the whole campaign."

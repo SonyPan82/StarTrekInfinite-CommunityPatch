@@ -231,7 +231,7 @@ hr{border:none;height:6px;background:linear-gradient(90deg, var(--orange), var(-
 <ul><li>The "Enterprise Sovereign" event ship design is significantly modernized (upgraded reactor, weapons, shields, hull, sensor components).</li></ul>
 <p><span class="file">common/ship_sizes/00_ship_sizes.txt</span> <span class="tag badge-new">fleet cap</span></p>
 <ul>
-<li>All military hulls (corvette through titan) gain a <code>possible_construction</code> check tied to <code>cp26_under_reduced_fleet_military_cap</code> - enforces CP26's reduced military fleet cap (~36 ships, referenced in the design notes as <code>CP26_SHIP_FLEET_CAP_SYSTEM</code>).</li>
+<li>All military hulls (corvette through titan) gain a <code>possible_construction</code> check tied to <code>cp26_under_reduced_fleet_military_cap</code> - enforces the campaign-wide CP26 military-hull cap selected at game start: 120 or 500 ships per empire.</li>
 <li>Titan: <code>size_multiplier 16 &rarr; 14</code>.</li>
 <li>Science/constructor ships: hard per-empire cap <code>empire_limit = { base = 3 max = 3 }</code> (previously uncapped/soft).</li>
 <li>Transport hull: gains <code>ignores_warp_range = yes</code> and +1 hyperlane range.</li>
@@ -637,6 +637,20 @@ is_orion_syndicate= { OR = { is_country_type = orion_syndicate  has_country_flag
 </ul>
 </div>
 
+<h3 id="ai-difficulty">Admiral and Grand Admiral AI</h3>
+<div class="card">
+<p>Lower difficulty tiers are unchanged. This tuning applies only to countries with <code>has_difficulty_bonuses = yes</code> when the game is started on <strong>Admiral</strong> or <strong>Grand Admiral</strong>; it does not grant bonuses to the player.</p>
+<table>
+<tr><th>Total AI bonus at tier</th><th>Admiral</th><th>Grand Admiral</th></tr>
+<tr><td>Job and station output</td><td>+90%</td><td>+115%</td></tr>
+<tr><td>Ship upkeep</td><td>-35%</td><td>-50%</td></tr>
+<tr><td>Shipyard cost / build speed</td><td>-35% / +15%</td><td>-50% / +25%</td></tr>
+<tr><td>Research speed</td><td>+10%</td><td>+15%</td></tr>
+<tr><td>NPC weapon damage, hull, armor and shields</td><td>+50%</td><td>+60%</td></tr>
+</table>
+<p>File: <span class="file">common/static_modifiers/zz_cp26_hard_ai_difficulty.txt</span>. CP26 AI priorities and personalities remain the same at every tier; only the bonuses in this table are difficulty-gated. CP26's 120- or 500-military-hull cap remains shared by every empire.</p>
+</div>
+
 <hr>
 
 <h2 id="modder-notes">10. Additional systems &amp; modder reference</h2>
@@ -835,6 +849,7 @@ const sections = [
   {id:"systems", label:"Megastructures & projects", group:"The code"},
   {id:"gov", label:"Governments & personalities", group:"The code"},
   {id:"balance", label:"Balance decisions", group:"Reference"},
+	{id:"ai-difficulty", label:"High difficulty AI", group:"Reference", lvl:2},
   {id:"modder-notes", label:"Additional systems", group:"Reference"},
   {id:"bugfixes", label:"Notable bugfixes", group:"Reference"},
   {id:"credits", label:"Credits", group:"Reference"},
