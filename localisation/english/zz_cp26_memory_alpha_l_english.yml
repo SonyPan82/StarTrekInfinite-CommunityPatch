@@ -1,0 +1,7 @@
+﻿l_english:
+ country.8091.name:0 "Memory Alpha Security Review"
+ country.8091.desc:0 "Professor §HEawood Full§! of §HStarfleet Academy§! has submitted security recommendations for the §HMemory Alpha§! library installation. Its personnel would receive a rigorous training program at §HDenobula IV§! to improve resistance to mind-control attempts, following the Zetarian massacre.\n\nThe project will be conducted at §HDenobula IV§!, not at a Memory Alpha colony."
+ country.8091.a:0 "Authorize the Denobula program"
+ country.8091.a.tt:0 "A Memory Alpha team will travel to §HDenobula IV§!. Assign a science ship to the §HDenobula IV§! special project after authorizing it.\n\n"
+ MIND_PROGRAM:0 "Denobula IV Mind-Defense Program"
+ MIND_PROGRAM_DESC:0 "Professor Full's program is conducted at §HDenobula IV§! for the personnel of the Memory Alpha library installation."

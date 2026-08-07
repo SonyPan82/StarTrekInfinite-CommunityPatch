@@ -1,0 +1,7 @@
+﻿l_french:
+ country.8091.name:0 "Audit de securite de Memory Alpha"
+ country.8091.desc:0 "Le professeur §HEawood Full§! de l'§HAcademie de Starfleet§! soumet des recommandations pour proteger l'installation-bibliotheque de §HMemory Alpha§!. Son personnel suivrait un programme rigoureux sur §HDenobula IV§! afin de mieux resister aux tentatives de controle mental, a la suite du massacre zetarien.\n\nLe projet se deroule sur §HDenobula IV§!, et non sur une colonie de Memory Alpha."
+ country.8091.a:0 "Autoriser le programme de Denobula"
+ country.8091.a.tt:0 "Une equipe de Memory Alpha se rendra sur §HDenobula IV§!. Apres l'autorisation, affectez un vaisseau scientifique au projet special de §HDenobula IV§!.\n\n"
+ MIND_PROGRAM:0 "Programme de defense mentale de Denobula IV"
+ MIND_PROGRAM_DESC:0 "Le programme du professeur Full se deroule sur §HDenobula IV§! pour le personnel de l'installation-bibliotheque de Memory Alpha."
