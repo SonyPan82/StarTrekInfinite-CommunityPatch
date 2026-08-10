@@ -79,6 +79,13 @@ event = {
 
 		spawn_borg_country = yes
 
+		# Vanilla creates the Borg country but never starts its crisis chain.
+		# The chain contains its own initial delay before the first encounter.
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = borg_crisis.10 }
+		}
+
 		# CP26 - bootstrap major country targets early so later start logic does
 		# not depend on a single flag spelling or a later recapture block.
 		every_country = {

@@ -66,6 +66,8 @@ country_event = {
 			}
 			effect = {
 				save_global_event_target_as = cp26_vger_country
+				# V'ger is an anomaly, not a diplomatic empire.
+				set_country_flag = suppress_first_contact_comms
 			}
 		}
 
@@ -117,6 +119,38 @@ country_event = {
 
 	immediate = {
 		end_event_chain = cp26_vger_chain
+	}
+}
+
+# Recovers saves created before the arrival hook used the correct fleet scope.
+country_event = {
+	id = cp26_vger.7
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ai = no
+		NOT = { has_global_flag = cp26_vger_resolved }
+		NOT = { has_special_project = CP26_VGER_ANALYSIS }
+		NOT = { has_country_flag = cp26_vger_project_done }
+		exists = event_target:cp26_vger_fleet
+		exists = event_target:cp26_vger_target_world
+		event_target:cp26_vger_target_world = {
+			exists = owner
+			owner = { is_same_value = root }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { exists = event_target:cp26_vger_country }
+			event_target:cp26_vger_country = {
+				set_country_flag = suppress_first_contact_comms
+			}
+		}
+		event_target:cp26_vger_target_world = {
+			planet_event = { id = cp26_vger.30 }
+		}
 	}
 }
 

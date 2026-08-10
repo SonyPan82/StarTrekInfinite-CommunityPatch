@@ -2,6 +2,7 @@ on_yearly_pulse_country = {
 	events = {
 		cp26_vger.1
 		cp26_vger.2
+		cp26_vger.7
 	}
 }
 

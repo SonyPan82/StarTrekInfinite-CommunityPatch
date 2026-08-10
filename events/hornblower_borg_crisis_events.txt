@@ -371,11 +371,11 @@ fleet_event = {
 			limit = {
 				is_ship_class = shipclass_science_ship
 
-				# Needs to be outside the Country's borders and also be a Highway
-				from = {
-					NOT = { is_inside_border = prev.owner }
-				    is_star_class = sc_highway_node 
-				}
+					# Infinite uses open-space travel. Any system outside our borders can
+					# trigger the missing science vessel incident.
+					from = {
+						NOT = { is_inside_border = prev.owner }
+					}
 			}
 
 			owner = { remove_country_flag = ship_can_go_MIA }
