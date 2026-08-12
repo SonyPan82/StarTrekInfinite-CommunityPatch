@@ -1,47 +1,75 @@
 namespace = cp26_neutral_zone
 
 # Rebuild the UFOP-Romulan Neutral Zone if vanilla start-up ran before all
-# bespoke systems were initialized. Safe for existing saves: runs only once.
+# bespoke systems were initialized. It also fills an incomplete vanilla zone.
 country_event = {
 	id = cp26_neutral_zone.1
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		is_ufop = yes
+		OR = {
+			is_ufop = yes
+			is_romulan = yes
+		}
 		NOT = { has_global_flag = cp26_romulan_neutral_zone_ready }
+		any_country = { is_ufop = yes }
 		any_country = { is_romulan = yes }
 	}
 
 	immediate = {
 		every_country = {
+			limit = { is_ufop = yes }
+			save_global_event_target_as = cp26_neutral_zone_ufop
+		}
+		every_country = {
 			limit = { is_romulan = yes }
 			save_global_event_target_as = cp26_neutral_zone_romulan
 		}
-		create_neutral_zone = {
-			target = event_target:cp26_neutral_zone_romulan
-			empty = yes
+		every_country = {
+			limit = { is_country_type = neutral_zone }
+			save_global_event_target_as = cp26_neutral_zone_existing
 		}
-		last_created_neutral_zone = {
-			every_system = {
-				limit = {
-					OR = {
-						has_star_flag = belcer
-						has_star_flag = devron
-						has_star_flag = draken
-						has_star_flag = eden
-						has_star_flag = epsilon_legato
-						has_star_flag = fenris
-						has_star_flag = galorndon_core
-						has_star_flag = iconia
-						has_star_flag = iota_pavonis
-						has_star_flag = moores_star
-						has_star_flag = nelvana
-						has_star_flag = nimbus
-						has_star_flag = theta_curry
-					}
+
+		if = {
+			limit = { exists = event_target:cp26_neutral_zone_existing }
+			event_target:cp26_neutral_zone_existing = {
+				if = { limit = { exists = event_target:eden_star } add_system_to_neutral_zone = event_target:eden_star.solar_system }
+				if = { limit = { exists = event_target:iconia_star } add_system_to_neutral_zone = event_target:iconia_star.solar_system }
+				if = { limit = { exists = event_target:draken_star } add_system_to_neutral_zone = event_target:draken_star.solar_system }
+				if = { limit = { exists = event_target:galorndon_core_system } add_system_to_neutral_zone = event_target:galorndon_core_system }
+				if = { limit = { exists = event_target:nelvana_star } add_system_to_neutral_zone = event_target:nelvana_star.solar_system }
+				if = { limit = { exists = event_target:devron_star } add_system_to_neutral_zone = event_target:devron_star.solar_system }
+				if = { limit = { exists = event_target:iota_pavonis_star } add_system_to_neutral_zone = event_target:iota_pavonis_star.solar_system }
+				if = { limit = { exists = event_target:fenris_star } add_system_to_neutral_zone = event_target:fenris_star.solar_system }
+				if = { limit = { exists = event_target:belcer_star } add_system_to_neutral_zone = event_target:belcer_star.solar_system }
+				if = { limit = { exists = event_target:moores_star_star } add_system_to_neutral_zone = event_target:moores_star_star.solar_system }
+				if = { limit = { exists = event_target:epsilon_legato_star } add_system_to_neutral_zone = event_target:epsilon_legato_star.solar_system }
+				if = { limit = { exists = event_target:theta_curry_star } add_system_to_neutral_zone = event_target:theta_curry_star.solar_system }
+				if = { limit = { exists = event_target:nimbus_star } add_system_to_neutral_zone = event_target:nimbus_star.solar_system }
+			}
+		}
+		else = {
+			event_target:cp26_neutral_zone_ufop = {
+				create_neutral_zone = {
+					target = event_target:cp26_neutral_zone_romulan
+					empty = yes
 				}
-				add_system_to_neutral_zone = this
+				last_created_neutral_zone = {
+					if = { limit = { exists = event_target:eden_star } add_system_to_neutral_zone = event_target:eden_star.solar_system }
+					if = { limit = { exists = event_target:iconia_star } add_system_to_neutral_zone = event_target:iconia_star.solar_system }
+					if = { limit = { exists = event_target:draken_star } add_system_to_neutral_zone = event_target:draken_star.solar_system }
+					if = { limit = { exists = event_target:galorndon_core_system } add_system_to_neutral_zone = event_target:galorndon_core_system }
+					if = { limit = { exists = event_target:nelvana_star } add_system_to_neutral_zone = event_target:nelvana_star.solar_system }
+					if = { limit = { exists = event_target:devron_star } add_system_to_neutral_zone = event_target:devron_star.solar_system }
+					if = { limit = { exists = event_target:iota_pavonis_star } add_system_to_neutral_zone = event_target:iota_pavonis_star.solar_system }
+					if = { limit = { exists = event_target:fenris_star } add_system_to_neutral_zone = event_target:fenris_star.solar_system }
+					if = { limit = { exists = event_target:belcer_star } add_system_to_neutral_zone = event_target:belcer_star.solar_system }
+					if = { limit = { exists = event_target:moores_star_star } add_system_to_neutral_zone = event_target:moores_star_star.solar_system }
+					if = { limit = { exists = event_target:epsilon_legato_star } add_system_to_neutral_zone = event_target:epsilon_legato_star.solar_system }
+					if = { limit = { exists = event_target:theta_curry_star } add_system_to_neutral_zone = event_target:theta_curry_star.solar_system }
+					if = { limit = { exists = event_target:nimbus_star } add_system_to_neutral_zone = event_target:nimbus_star.solar_system }
+				}
 			}
 		}
 		set_global_flag = cp26_romulan_neutral_zone_ready
