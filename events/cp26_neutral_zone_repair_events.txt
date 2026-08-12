@@ -1,0 +1,49 @@
+namespace = cp26_neutral_zone
+
+# Rebuild the UFOP-Romulan Neutral Zone if vanilla start-up ran before all
+# bespoke systems were initialized. Safe for existing saves: runs only once.
+country_event = {
+	id = cp26_neutral_zone.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_ufop = yes
+		NOT = { has_global_flag = cp26_romulan_neutral_zone_ready }
+		any_country = { is_romulan = yes }
+	}
+
+	immediate = {
+		every_country = {
+			limit = { is_romulan = yes }
+			save_global_event_target_as = cp26_neutral_zone_romulan
+		}
+		create_neutral_zone = {
+			target = event_target:cp26_neutral_zone_romulan
+			empty = yes
+		}
+		last_created_neutral_zone = {
+			every_system = {
+				limit = {
+					OR = {
+						has_star_flag = belcer
+						has_star_flag = devron
+						has_star_flag = draken
+						has_star_flag = eden
+						has_star_flag = epsilon_legato
+						has_star_flag = fenris
+						has_star_flag = galorndon_core
+						has_star_flag = iconia
+						has_star_flag = iota_pavonis
+						has_star_flag = moores_star
+						has_star_flag = nelvana
+						has_star_flag = nimbus
+						has_star_flag = theta_curry
+					}
+				}
+				add_system_to_neutral_zone = this
+			}
+		}
+		set_global_flag = cp26_romulan_neutral_zone_ready
+	}
+}

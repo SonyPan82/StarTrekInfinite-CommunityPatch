@@ -8,5 +8,6 @@
 on_yearly_pulse_country = {
 	events = {
 		cp26_ai_pulse.1
+		cp26_neutral_zone.1
 	}
 }

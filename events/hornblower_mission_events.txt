@@ -90,7 +90,8 @@ country_event = {
 			
 			#New MiPo Missions
 			1 = { modifier = { factor = 0 has_country_flag = shipping_it_not_triggered } country_event = { id = mission.200 } } # SHIPPING IT
-			1 = { modifier = { factor = 0 has_country_flag = demanding_dignatary_not_triggered } country_event = { id = mission.212 } } # DEMANDING DIGNITARY
+			# Disabled in CP26: the vanilla objective requires inaccessible Highway Nodes.
+			0 = { modifier = { factor = 0 has_country_flag = demanding_dignatary_not_triggered } country_event = { id = mission.212 } } # DEMANDING DIGNITARY
 			1 = { modifier = { factor = 0 has_country_flag = cp26_colony_escort_not_triggered } country_event = { id = mission.2200 } } # CP26 DIPLOMATIC COLONY VISIT
 			1 = { country_event = { id = mission.192 } } # PHYSICS 101 /// NOTE: THIS ONE ALWAYS TRIGGERS
 		}
@@ -111,7 +112,8 @@ country_event = {
 			1 = { modifier = { factor = 0 has_country_flag = buildup_of_forces_not_triggered } country_event = { id = mission.82 } } # BUILDUP OF FORCES 
 			1 = { modifier = { factor = 0 has_country_flag = war_games_not_triggered } country_event = { id = mission.92 } } # WAR GAMES 
 			1 = { modifier = { factor = 0 has_country_flag = shipping_it_not_triggered } country_event = { id = mission.200 } } # SHIPPING IT
-			1 = { modifier = { factor = 0 has_country_flag = demanding_dignatary_not_triggered } country_event = { id = mission.212 } } # DEMANDING DIGNITARY
+			# Disabled in CP26: the vanilla objective requires inaccessible Highway Nodes.
+			0 = { modifier = { factor = 0 has_country_flag = demanding_dignatary_not_triggered } country_event = { id = mission.212 } } # DEMANDING DIGNITARY
 			1 = { modifier = { factor = 0 has_country_flag = cp26_colony_escort_not_triggered } country_event = { id = mission.2200 } } # CP26 DIPLOMATIC COLONY VISIT
 		}
 	}

@@ -21,10 +21,10 @@ country_event = {
 			limit = { NOT = { has_global_flag = cp26_bajor_arc_initialized } }
 			set_global_flag = cp26_bajor_arc_initialized
 		}
-		# Default: diplomatic occupied states disabled
+		# Default: diplomatic occupied states enabled.
 		if = {
 			limit = { NOT = { has_global_flag = cp26_diplomacy_options_set } }
-			set_global_flag = cp26_diplo_vassalization_disabled
+			set_global_flag = cp26_diplo_vassalization_enabled
 		}
 		# Default: Nausicaan marauders disabled
 		if = {
