@@ -303,12 +303,14 @@ set_graphical_culture = caravaneer_01
 							create_ship = {
 								name = "NAME_Schooner"
 								design = NAME_Schooner
+								graphical_culture = "caravaneer_01"
 							}
 							while = {
 								count = 10
 								create_ship = {
 									name = "NAME_Yojimbo"
 									design = NAME_Yojimbo
+									graphical_culture = "caravaneer_01"
 								}
 							}
 							while = {
@@ -316,6 +318,7 @@ set_graphical_culture = caravaneer_01
 								create_ship = {
 									name = "NAME_Gunslinger"
 									design = NAME_Gunslinger
+									graphical_culture = "caravaneer_01"
 								}
 							}
 							set_location = {
@@ -397,12 +400,14 @@ set_graphical_culture = caravaneer_01
 							create_ship = {
 								name = "NAME_Schooner"
 								design = NAME_Schooner
+								graphical_culture = "caravaneer_01"
 							}
 							while = {
 								count = 10
 								create_ship = {
 									name = "NAME_Yojimbo"
 									design = NAME_Yojimbo
+									graphical_culture = "caravaneer_01"
 								}
 							}
 							while = {
@@ -410,6 +415,7 @@ set_graphical_culture = caravaneer_01
 								create_ship = {
 									name = "NAME_Gunslinger"
 									design = NAME_Gunslinger
+									graphical_culture = "caravaneer_01"
 								}
 							}
 							set_location = {
@@ -489,12 +495,14 @@ set_graphical_culture = caravaneer_01
 							create_ship = {
 								name = "NAME_Schooner"
 								design = NAME_Schooner
+								graphical_culture = "caravaneer_01"
 							}
 							while = {
 								count = 10
 								create_ship = {
 									name = "NAME_Yojimbo"
 									design = NAME_Yojimbo
+									graphical_culture = "caravaneer_01"
 								}
 							}
 							while = {
@@ -502,6 +510,7 @@ set_graphical_culture = caravaneer_01
 								create_ship = {
 									name = "NAME_Gunslinger"
 									design = NAME_Gunslinger
+									graphical_culture = "caravaneer_01"
 								}
 							}
 							set_location = {

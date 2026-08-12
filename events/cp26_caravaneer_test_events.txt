@@ -1,0 +1,45 @@
+namespace = cp26_caravaneer
+
+# Console-only helper: moves any spawned caravan fleets to the player's capital.
+country_event = {
+	id = cp26_caravaneer.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope = {
+			save_event_target_as = cp26_caravaneer_test_capital
+		}
+
+		if = {
+			limit = { exists = event_target:caravaneer_fleet1_fleet }
+			event_target:caravaneer_fleet1_fleet = {
+				set_location = {
+					target = event_target:cp26_caravaneer_test_capital
+					distance = 30
+					angle = random
+				}
+			}
+		}
+		if = {
+			limit = { exists = event_target:caravaneer_fleet2_fleet }
+			event_target:caravaneer_fleet2_fleet = {
+				set_location = {
+					target = event_target:cp26_caravaneer_test_capital
+					distance = 45
+					angle = random
+				}
+			}
+		}
+		if = {
+			limit = { exists = event_target:caravaneer_fleet3_fleet }
+			event_target:caravaneer_fleet3_fleet = {
+				set_location = {
+					target = event_target:cp26_caravaneer_test_capital
+					distance = 60
+					angle = random
+				}
+			}
+		}
+	}
+}
