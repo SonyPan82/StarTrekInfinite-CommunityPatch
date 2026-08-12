@@ -21,10 +21,11 @@ country_event = {
 			limit = { NOT = { has_global_flag = cp26_bajor_arc_initialized } }
 			set_global_flag = cp26_bajor_arc_initialized
 		}
-		# Default: diplomatic occupied states enabled.
+		# Default: generic CP26 occupied-state proposals disabled. Romulan
+		# puppet-state conversion is Vanilla and is not controlled here.
 		if = {
 			limit = { NOT = { has_global_flag = cp26_diplomacy_options_set } }
-			set_global_flag = cp26_diplo_vassalization_enabled
+			set_global_flag = cp26_diplo_vassalization_disabled
 		}
 		# Default: Nausicaan marauders disabled
 		if = {
@@ -57,7 +58,6 @@ country_event = {
 		name = cp26_options.1.vassalization_on
 		trigger = { NOT = { has_global_flag = cp26_diplo_vassalization_disabled } }
 		custom_tooltip = cp26_options.1.vassalization_on.tt
-		remove_global_flag = cp26_diplo_vassalization_enabled
 		set_global_flag = cp26_diplo_vassalization_disabled
 		set_global_flag = cp26_diplomacy_options_set
 		hidden_effect = {
@@ -70,7 +70,6 @@ country_event = {
 		trigger = { has_global_flag = cp26_diplo_vassalization_disabled }
 		custom_tooltip = cp26_options.1.vassalization_off.tt
 		remove_global_flag = cp26_diplo_vassalization_disabled
-		set_global_flag = cp26_diplo_vassalization_enabled
 		set_global_flag = cp26_diplomacy_options_set
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }

@@ -44,18 +44,12 @@ cp26_diplomacy_mode_allows_actor = {
 	always = yes
 }
 
-# Global gate for CP26 occupied-state diplomacy.
+# Global gate for CP26's generic occupied-state proposal. Romulan puppet-state
+# conversion remains Vanilla and does not use this setting.
 cp26_vassalization_mode_allows_actor = {
-	OR = {
-		AND = {
-			NOT = { has_global_flag = cp26_diplo_vassalization_disabled }
-			NOT = { has_global_flag = cp26_diplo_vassalization_enabled }
-			is_regular_empire = yes
-		}
-		AND = {
-			has_global_flag = cp26_diplo_vassalization_enabled
-			is_regular_empire = yes
-		}
+	AND = {
+		NOT = { has_global_flag = cp26_diplo_vassalization_disabled }
+		is_regular_empire = yes
 	}
 }
 

@@ -978,8 +978,56 @@ action_request_subject_liberation = {
 	}
 }
 
-# CP26: reuse this diplomatic action slot for optional occupied-state diplomacy.
+# Vanilla Romulan puppet-state conversion. This must remain separate from the
+# CP26 occupied-state proposal so the Romulan assimilation chain keeps working.
 action_start_puppet_state_process = {
+	icon = "GFX_diplomacy_status_start_puppet_state_process"
+	auto_accepted = yes
+	require_envoy = yes
+	envoy_assignment = puppet_state_conversion
+	requires_actor_independence = no
+	requires_recipient_independence = no
+	should_show_auto_accept_message_recipient = no
+	should_show_auto_accept_message_actor = no
+	should_notify_all_communications = no
+	action_type = aggressive
+
+	potential = {
+		hidden_trigger = {
+			is_major_minor_relation = yes
+			THIS = { has_country_id = romulan }
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "NOT_A_NEUTRAL_RELATION"
+			opinion_level = { who = FROM level >= neutral }
+		}
+		custom_tooltip = {
+			fail_text = "PUPPET_STATE_FAILED"
+			NOT = {
+				has_opinion_modifier = {
+					who = FROM
+					modifier = opinion_puppet_state_failed
+				}
+			}
+		}
+		FROM = { NOT = { is_subject_type = puppet_state } }
+		is_at_war = no
+	}
+
+	proposable = {
+		custom_tooltip = {
+			fail_text = "envoy_already_converting_puppet_state"
+			NOT = { is_conversion_puppet_state_with = FROM }
+		}
+	}
+}
+
+# CP26: generic occupied-state proposal. UFOP integration is a separate,
+# cooperative Vanilla path; only Romulan puppet-state conversion is excluded.
+action_cp26_propose_vassalization = {
 	icon = "GFX_diplomacy_status_has_vassal"
 	is_listed = yes
 	auto_accepted = yes
@@ -993,6 +1041,7 @@ action_start_puppet_state_process = {
 	potential = {
 		hidden_trigger = { cp26_vassalization_mode_allows_actor = yes }
 		hidden_trigger = {
+			NOT = { is_romulan = yes }
 			OR = {
 				is_country_type = default
 				is_country_type = contender
