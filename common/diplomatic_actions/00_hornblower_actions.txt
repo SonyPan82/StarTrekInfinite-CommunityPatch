@@ -480,23 +480,6 @@ action_break_protection_pact = {
 	}
 }
 
-# This was never implemented
-action_patronage = {
-	icon = "GFX_diplomacy_status_protection_pact"
-	requires_recipient_independence = yes
-	requires_actor_independence = yes
-	action_type = neutral
-
-	potential = {
-		always = no
-	}
-
-	# Always false
-	possible = {
-		
-	}
-}
-
 action_ask_to_start_integration_process = {
 	icon = "GFX_diplomacy_status_start_integration_process"
 	auto_accepted = no
@@ -1025,9 +1008,10 @@ action_start_puppet_state_process = {
 	}
 }
 
-# CP26: generic occupied-state proposal. UFOP integration is a separate,
-# cooperative Vanilla path; only Romulan puppet-state conversion is excluded.
-action_cp26_propose_vassalization = {
+# CP26: reuse Vanilla's unused patronage action slot for the generic
+# occupied-state proposal. New diplomatic-action identifiers are not supported
+# by Infinite's hard-coded token list.
+action_patronage = {
 	icon = "GFX_diplomacy_status_has_vassal"
 	is_listed = yes
 	auto_accepted = yes
@@ -1052,6 +1036,7 @@ action_cp26_propose_vassalization = {
 			}
 			from = {
 				OR = {
+					is_minor = yes
 					is_country_type = default
 					is_country_type = contender
 					is_cp26_major_mission_country = yes
