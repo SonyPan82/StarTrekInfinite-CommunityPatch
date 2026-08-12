@@ -1,5 +1,6 @@
 ﻿l_english:
  ACTION_PATRONAGE_TITLE:0 "Demand Occupation"
+ ACTION_PATRONAGE:0 "Demand Occupation"
  ACTION_PATRONAGE_DESC:0 "Propose that §H[Recipient.GetName]§! becomes an occupied state under our control. If they refuse, we gain a temporary Subjugation Casus Belli."
  ACTION_PATRONAGE_OFFER_DESC:0 "§H[Actor.GetName]§! proposes that we become an occupied state under our control."
  ACTION_PATRONAGE_COST:0 "$ACTION_PATRONAGE_DESC$"

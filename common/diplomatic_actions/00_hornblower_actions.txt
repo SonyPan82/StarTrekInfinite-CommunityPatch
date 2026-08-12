@@ -426,33 +426,114 @@ action_intervene_in_war = {
 }
 
 action_form_protection_pact = {
-	icon = "GFX_diplomacy_status_guarantee"
-	auto_accepted = no
-	requires_actor_independence = no
-	requires_recipient_independence = no
-	should_show_auto_accept_message_recipient = yes
-	should_notify_all_communications = yes
-	action_type = positive
+	# This is a fully implemented Infinite proposal slot. CP26 uses it for the
+	# generic occupied-state offer because Patronage is hard-coded as inert.
+	icon = "GFX_diplomacy_status_has_vassal"
+	is_listed = yes
+	auto_accepted = yes
+	requires_actor_independence = yes
+	requires_recipient_independence = yes
+	should_show_auto_accept_message_recipient = no
+	should_show_auto_accept_message_actor = no
+	should_notify_all_communications = no
+	action_type = aggressive
 
 	potential = {
+		hidden_trigger = { cp26_vassalization_mode_allows_actor = yes }
 		hidden_trigger = {
-			is_minor_major_relation = yes
+			NOT = { is_romulan = yes }
+			OR = {
+				is_country_type = default
+				is_country_type = contender
+				is_cp26_major_mission_country = yes
+				is_ferengi_empire = yes
+				is_gorn_hegemony = yes
+				is_orion_syndicate = yes
+			}
+			from = {
+				OR = {
+					is_minor = yes
+					is_country_type = default
+					is_country_type = contender
+					is_cp26_major_mission_country = yes
+					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
+				}
+			}
 		}
 	}
 
 	possible = {
 		custom_tooltip = {
-			fail_text = "requires_good_or_better_opinion"
-			opinion_level = { who = from level >= good }
+			fail_text = "CP26_VASSALIZATION_PENDING"
+			NOT = { has_country_flag = cp26_vassalization_pending_actor }
+			from = { NOT = { has_country_flag = cp26_vassalization_pending_target } }
+		}
+		custom_tooltip = {
+			fail_text = "DIPLOMACY_STATUS_WAR"
+			NOT = { is_at_war_with = from }
+		}
+		custom_tooltip = {
+			fail_text = "ACTION_RECIPIENT_MUST_BE_INDEPENDENT"
+			from = { is_subject = no }
+		}
+		custom_tooltip = {
+			fail_text = "ACTION_SUBJECT_OVERLORD_IS_SUBJECT"
+			is_subject = no
+		}
+		if = {
+			limit = { is_ai = yes }
+			custom_tooltip = {
+				fail_text = "CP26_VASSALIZATION_AI_COOLDOWN"
+				NOT = { has_country_flag = cp26_vassalization_ai_cooldown }
+			}
+			custom_tooltip = {
+				fail_text = "CP26_VASSALIZATION_AI_POWER"
+				relative_power = { who = from value >= superior }
+			}
+			custom_tooltip = {
+				fail_text = "CP26_VASSALIZATION_AI_MIN_PLANETS"
+				num_owned_planets >= 3
+			}
+			custom_tooltip = {
+				fail_text = "CP26_VASSALIZATION_AI_NO_SAME_FEDERATION"
+				NOT = { is_in_federation_with = from }
+			}
+			custom_tooltip = {
+				fail_text = "CP26_VASSALIZATION_AI_NO_DEFENSIVE_PACT"
+				NOT = { has_defensive_pact = from }
+			}
+			custom_tooltip = {
+				fail_text = "CP26_VASSALIZATION_AI_NO_GUARANTEE"
+				NOT = { is_guaranteeing = from }
+			}
+			custom_tooltip = {
+				fail_text = "CP26_VASSALIZATION_AI_RECENT_TARGET"
+				from = { NOT = { has_country_flag = cp26_vassalization_recent_target } }
+			}
+			custom_tooltip = {
+				fail_text = "requires_50_trust_or_excellent"
+				OR = {
+					opinion_level = { who = from level >= excellent }
+					from = { trust = { who = root value >= 50 } }
+				}
+			}
 		}
 	}
 
+	proposable = { hidden_trigger = { always = yes } }
+
 	on_accept = {
-		add_global_tension = {
-			amount = @gt_decrease_tier3
-			type = protection_pact
-			country = root
+		save_event_target_as = cp26_vassalization_actor
+		set_country_flag = cp26_vassalization_pending_actor
+		from = { set_country_flag = cp26_vassalization_pending_target }
+		if = {
+			limit = { is_ai = yes }
+			set_timed_country_flag = { flag = cp26_vassalization_ai_cooldown days = 1095 }
+			from = { set_timed_country_flag = { flag = cp26_vassalization_recent_target days = 1095 } }
 		}
+		from = { country_event = { id = cp26_vassalization.1 days = 3 } }
 	}
 }
 
@@ -1008,145 +1089,16 @@ action_start_puppet_state_process = {
 	}
 }
 
-# CP26: reuse Vanilla's unused patronage action slot for the generic
-# occupied-state proposal. New diplomatic-action identifiers are not supported
-# by Infinite's hard-coded token list.
+# Patronage is an unimplemented, hard-coded inert action in Infinite. The
+# generic CP26 offer is implemented above using the functional protection-pact
+# slot instead.
 action_patronage = {
-	icon = "GFX_diplomacy_status_has_vassal"
-	is_listed = yes
-	auto_accepted = yes
+	icon = "GFX_diplomacy_status_protection_pact"
 	requires_actor_independence = yes
 	requires_recipient_independence = yes
-	should_show_auto_accept_message_recipient = no
-	should_show_auto_accept_message_actor = no
-	should_notify_all_communications = no
-	action_type = aggressive
-
-	potential = {
-		hidden_trigger = { cp26_vassalization_mode_allows_actor = yes }
-		hidden_trigger = {
-			NOT = { is_romulan = yes }
-			OR = {
-				is_country_type = default
-				is_country_type = contender
-				is_cp26_major_mission_country = yes
-				is_ferengi_empire = yes
-				is_gorn_hegemony = yes
-				is_orion_syndicate = yes
-			}
-			from = {
-				OR = {
-					is_minor = yes
-					is_country_type = default
-					is_country_type = contender
-					is_cp26_major_mission_country = yes
-					is_ferengi_empire = yes
-					is_gorn_hegemony = yes
-					is_orion_syndicate = yes
-				}
-			}
-		}
-	}
-
-	possible = {
-		custom_tooltip = {
-			fail_text = "CP26_VASSALIZATION_PENDING"
-			NOT = { has_country_flag = cp26_vassalization_pending_actor }
-			from = {
-				NOT = { has_country_flag = cp26_vassalization_pending_target }
-			}
-		}
-		custom_tooltip = {
-			fail_text = "DIPLOMACY_STATUS_WAR"
-			NOT = { is_at_war_with = from }
-		}
-		custom_tooltip = {
-			fail_text = "ACTION_RECIPIENT_MUST_BE_INDEPENDENT"
-			from = { is_subject = no }
-		}
-		custom_tooltip = {
-			fail_text = "ACTION_SUBJECT_OVERLORD_IS_SUBJECT"
-			is_subject = no
-		}
-		OR = {
-			is_ai = no
-			AND = {
-				is_ai = yes
-				custom_tooltip = {
-					fail_text = "CP26_VASSALIZATION_AI_COOLDOWN"
-					NOT = { has_country_flag = cp26_vassalization_ai_cooldown }
-				}
-				custom_tooltip = {
-					fail_text = "CP26_VASSALIZATION_AI_POWER"
-					relative_power = { who = from value >= superior }
-				}
-				custom_tooltip = {
-					fail_text = "CP26_VASSALIZATION_AI_MIN_PLANETS"
-					num_owned_planets >= 3
-				}
-				custom_tooltip = {
-					fail_text = "CP26_VASSALIZATION_AI_NO_SAME_FEDERATION"
-					NOT = { is_in_federation_with = from }
-				}
-				custom_tooltip = {
-					fail_text = "CP26_VASSALIZATION_AI_NO_DEFENSIVE_PACT"
-					NOT = { has_defensive_pact = from }
-				}
-				custom_tooltip = {
-					fail_text = "CP26_VASSALIZATION_AI_NO_GUARANTEE"
-					NOT = { is_guaranteeing = from }
-				}
-				custom_tooltip = {
-					fail_text = "CP26_VASSALIZATION_AI_RECENT_TARGET"
-					from = {
-						NOT = { has_country_flag = cp26_vassalization_recent_target }
-					}
-				}
-				custom_tooltip = {
-					fail_text = "requires_50_trust_or_excellent"
-					OR = {
-						opinion_level = { who = from level >= excellent }
-						from = {
-							trust = {
-								who = root
-								value >= 50
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	proposable = {
-		hidden_trigger = {
-			always = yes
-		}
-	}
-
-	on_accept = {
-		save_event_target_as = cp26_vassalization_actor
-		set_country_flag = cp26_vassalization_pending_actor
-		from = {
-			set_country_flag = cp26_vassalization_pending_target
-		}
-		if = {
-			limit = { is_ai = yes }
-			set_timed_country_flag = {
-				flag = cp26_vassalization_ai_cooldown
-				days = 1095
-			}
-			from = {
-				set_timed_country_flag = {
-					flag = cp26_vassalization_recent_target
-					days = 1095
-				}
-			}
-		}
-		from = {
-			country_event = { id = cp26_vassalization.1 days = 3 }
-		}
-	}
+	action_type = neutral
+	potential = { always = no }
+	possible = { }
 }
 # Start the Assimilation process to the Occupied State
 action_start_assimilation_occupied_state = {
