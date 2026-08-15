@@ -1,0 +1,6 @@
+l_english:
+ # Expansion Pressure feature - see project wiki, page "Expansion Pressure".
+ cp26_expansion_pressure_tier_1:0 "Expansion Pressure — Frontier"
+ cp26_expansion_pressure_tier_2:0 "Expansion Pressure — Overreach"
+ cp26_expansion_pressure_tier_3:0 "Expansion Pressure — Sprawl"
+ cp26_expansion_pressure_tier_4:0 "Expansion Pressure — Imperial Overextension"

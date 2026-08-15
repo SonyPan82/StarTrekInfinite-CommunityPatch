@@ -1,0 +1,6 @@
+l_french:
+ # Fonctionnalite Pression d'expansion - voir le wiki du projet, page "Expansion Pressure".
+ cp26_expansion_pressure_tier_1:0 "Pression d'expansion — Frontière"
+ cp26_expansion_pressure_tier_2:0 "Pression d'expansion — Surextension"
+ cp26_expansion_pressure_tier_3:0 "Pression d'expansion — Étalement impérial"
+ cp26_expansion_pressure_tier_4:0 "Pression d'expansion — Surextension impériale"

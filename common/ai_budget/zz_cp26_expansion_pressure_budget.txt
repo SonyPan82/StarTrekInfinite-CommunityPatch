@@ -1,0 +1,45 @@
+# CP26 - Expansion Pressure: AI Influence budget correction
+#
+# Overrides only `influence_expenditure_stations` from vanilla's
+# common/ai_budget/00_influence_budget.txt (key-based override - all other
+# entries in that file are untouched and still apply from vanilla).
+#
+# Vanilla hardcodes static_min/static_max at 75/150, matching
+# NEconomy.EXPANSION_COST_BASE (70) and EXPANSION_COST_MAX (150) - i.e. the
+# AI's assumption of "how much Influence should I reserve before trying to
+# expand" is baked to the un-modified vanilla cost range.
+#
+# With Expansion Pressure active, a country's real outpost cost can climb
+# well above that (up to roughly +180% Influence at Tier 4, before the
+# distance-based component and other cost modifiers). Left uncorrected,
+# the AI would under-reserve Influence for its expansion plan and stall or
+# behave erratically once it reaches the higher tiers - this file exists
+# specifically to prevent that, independent of difficulty.
+#
+# static_max is sized for the Tier 4 worst case with headroom; static_min
+# is nudged up modestly so the AI starts saving a bit earlier once it's
+# past Tier 0, without over-reserving during the free early game.
+#
+# See project wiki, page "Expansion Pressure", for the full cost table.
+
+influence_expenditure_stations = {
+	resource = influence
+	type = expenditure
+	category = stations
+
+	potential = {
+		has_ai_expansion_plan = yes
+	}
+
+	fraction = {
+		weight = 0.3
+	}
+
+	static_min = {
+		base = 90
+	}
+
+	static_max = {
+		base = 450
+	}
+}

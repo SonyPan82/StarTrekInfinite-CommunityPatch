@@ -1,6 +1,11 @@
 # CP26 - Additional bonuses for the two high AI difficulty tiers.
 # These keys are selected by Infinite's difficulty system only for countries
-# with has_difficulty_bonuses = yes; lower difficulty tiers are untouched.
+# with has_difficulty_bonuses = yes; lower difficulty tiers are untouched,
+# except for the single Expansion Pressure offset field
+# (country_starbase_influence_cost_mult), which is extended down to
+# Captain/Commodore in zz_cp26_expansion_pressure_difficulty.txt to keep
+# that one curve smooth across all 5 tiers. Everything else here is
+# unrelated to that feature.
 
 # Admiral: a capable late-game opponent without overwhelming the player.
 difficulty_admiral = {
@@ -12,6 +17,10 @@ difficulty_admiral = {
 	all_technology_research_speed = 0.10
 	pop_resettlement_cost_mult = -0.75
 	planet_stability_add = 15
+
+	# Expansion Pressure (see project wiki): partial offset so escalating
+	# outpost Influence cost doesn't outpace the AI's budgeting at this tier.
+	country_starbase_influence_cost_mult = -0.20
 }
 
 # Covers the non-playable empires that use the NPC difficulty variant.
@@ -32,6 +41,10 @@ difficulty_grand_admiral = {
 	all_technology_research_speed = 0.15
 	pop_resettlement_cost_mult = -1.0
 	planet_stability_add = 20
+
+	# Expansion Pressure (see project wiki): partial offset so escalating
+	# outpost Influence cost doesn't outpace the AI's budgeting at this tier.
+	country_starbase_influence_cost_mult = -0.35
 }
 
 difficulty_grand_admiral_npc = {

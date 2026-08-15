@@ -1,0 +1,100 @@
+# CP26 - Expansion Pressure Pulse
+#
+# Recomputes a country's "expansion pressure" tier every year, based on how
+# many starbases (outposts and upgraded starbases alike) it currently owns,
+# and applies the matching static modifier from
+# common/static_modifiers/zz_cp26_expansion_pressure_tiers.txt.
+#
+# This makes each new outpost/starbase progressively more expensive in
+# Influence (and, from tier 2 on, in Alloys) the more a country already
+# owns - on top of the vanilla distance-based Influence cost
+# (NEconomy.EXPANSION_COST_*) and the vanilla Empire Size / Admin Cap
+# overextension penalty. Applies to the player exactly like the AI: this
+# is a pacing/balance feature, not an AI-only handicap.
+#
+# Eligibility: real empires only (is_country_type = default, or CP26's
+# `contender` AI empires). Marauders, primitives, the Galactic Community,
+# extradimensional invaders, swarm, etc. are excluded on purpose - they
+# either don't expand the same way or aren't tuned/tested for this.
+#
+# AI compensation for this specific cost axis lives in
+# common/static_modifiers/zz_cp26_hard_ai_difficulty.txt (Admiral/Grand
+# Admiral) and zz_cp26_expansion_pressure_difficulty.txt (Captain/Commodore).
+# The AI's Influence budgeting expectations are corrected in
+# common/ai_budget/zz_cp26_expansion_pressure_budget.txt.
+#
+# Why on_yearly_pulse_country: matches the existing cp26_ai_pulse.1 pattern
+# for the same reason - starbase count changes slowly, annual granularity
+# is enough and keeps this off the more sensitive monthly tick.
+#
+# Full design rationale, tuning table, and test checklist: project wiki,
+# page "Expansion Pressure".
+
+namespace = cp26_expansion_pressure
+
+country_event = {
+	id = cp26_expansion_pressure.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			is_country_type = default
+			is_country_type = contender
+		}
+	}
+
+	immediate = {
+		remove_modifier = cp26_expansion_pressure_tier_1
+		remove_modifier = cp26_expansion_pressure_tier_2
+		remove_modifier = cp26_expansion_pressure_tier_3
+		remove_modifier = cp26_expansion_pressure_tier_4
+
+		remove_country_flag = cp26_expansion_pressure_tier_1
+		remove_country_flag = cp26_expansion_pressure_tier_2
+		remove_country_flag = cp26_expansion_pressure_tier_3
+		remove_country_flag = cp26_expansion_pressure_tier_4
+
+		if = {
+			limit = {
+				count_owned_ship = {
+					limit = { is_ship_class = shipclass_starbase }
+					count >= 19
+				}
+			}
+			add_modifier = { modifier = cp26_expansion_pressure_tier_4 }
+			set_country_flag = cp26_expansion_pressure_tier_4
+		}
+		else_if = {
+			limit = {
+				count_owned_ship = {
+					limit = { is_ship_class = shipclass_starbase }
+					count >= 13
+				}
+			}
+			add_modifier = { modifier = cp26_expansion_pressure_tier_3 }
+			set_country_flag = cp26_expansion_pressure_tier_3
+		}
+		else_if = {
+			limit = {
+				count_owned_ship = {
+					limit = { is_ship_class = shipclass_starbase }
+					count >= 8
+				}
+			}
+			add_modifier = { modifier = cp26_expansion_pressure_tier_2 }
+			set_country_flag = cp26_expansion_pressure_tier_2
+		}
+		else_if = {
+			limit = {
+				count_owned_ship = {
+					limit = { is_ship_class = shipclass_starbase }
+					count >= 4
+				}
+			}
+			add_modifier = { modifier = cp26_expansion_pressure_tier_1 }
+			set_country_flag = cp26_expansion_pressure_tier_1
+		}
+		# else: 3 or fewer starbases - Tier 0, no modifier, nothing to set.
+	}
+}

@@ -14,5 +14,6 @@ on_game_start_country = {
 		cp26_ai_pulse.1
 		cp26_neutral_zone.1
 		cp26_terok_nor.1
+		cp26_expansion_pressure.1
 	}
 }

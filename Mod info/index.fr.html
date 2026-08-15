@@ -651,6 +651,31 @@ is_orion_syndicate= { OR = { is_country_type = orion_syndicate  has_country_flag
 <p>Fichier : <span class="file">common/static_modifiers/zz_cp26_hard_ai_difficulty.txt</span>. Les priorites et personnalites IA CP26 restent identiques a tous les niveaux; seuls les bonus de ce tableau sont verrouilles derriere la difficulte. Le plafond CP26 de 120 ou 500 coques militaires reste commun a tous les empires.</p>
 </div>
 
+<h3 id="expansion-pressure">Pression d'expansion (cout croissant des avant-postes) <span class="tag badge-new">pas encore teste en jeu</span></h3>
+<div class="card">
+<p>Construire une nouvelle base stellaire (Avant-poste a Forteresse stellaire) devient progressivement plus cher en <strong>Influence</strong>, et a partir du palier 2 aussi en <strong>Alliages</strong>, en fonction du nombre de bases stellaires deja possedees par le pays. S'applique de la meme facon au joueur et aux empires IA (type <code>default</code> et le type <code>contender</code> de CP26) - c'est une fonctionnalite de rythme de jeu, pas un nerf reserve au joueur ni un handicap reserve a l'IA. Elle s'additionne au cout en Influence deja present dans le jeu de base, base sur la distance (<code>NEconomy.EXPANSION_COST_*</code>), et a la penalite de surextension Taille d'Empire/Capacite administrative (<code>empire_size_over_cap</code>) - aucune interaction particuliere, les modificateurs du meme type s'additionnent simplement.</p>
+<p>Compte via <code>count_owned_ship = { limit = { is_ship_class = shipclass_starbase } }</code> - toute base stellaire, quel que soit son niveau, pas seulement les avant-postes non ameliores (compter par <code>is_ship_size</code> sous-compterait une fois une base amelioree). Recalcule chaque annee par pays via <code>cp26_expansion_pressure.1</code> (namespace <code>cp26_expansion_pressure</code>, accroche a <code>on_yearly_pulse_country</code> et declenche une fois a <code>on_game_start_country</code>), qui applique le modificateur de palier correspondant ci-dessous.</p>
+<table>
+<tr><th>Palier</th><th>Bases stellaires possedees</th><th>Cout Influence</th><th>Cout Alliages</th></tr>
+<tr><td>0</td><td>1-3</td><td>+0 %</td><td>+0 %</td></tr>
+<tr><td>1</td><td>4-7</td><td>+25 %</td><td>+0 %</td></tr>
+<tr><td>2</td><td>8-12</td><td>+60 %</td><td>+15 %</td></tr>
+<tr><td>3</td><td>13-18</td><td>+110 %</td><td>+30 %</td></tr>
+<tr><td>4</td><td>19+</td><td>+180 %</td><td>+50 %</td></tr>
+</table>
+<p>Les 3 premieres bases stellaires sont volontairement sans malus (protege la consolidation de la frontiere en debut de partie). Les paliers sont non lineaires et regroupes par tranches de 4 a 6 bases plutot qu'un increment fixe par base, pour rester lisible ("je suis au palier X") plutot qu'un chiffre qui grimpe en continu. Sur la fourchette de cout de base du jeu vanilla (70-150 Influence avant modificateur), le palier 4 donne environ 200-420 Influence par nouvel avant-poste.</p>
+<p><strong>Correctif du budget IA (toutes difficultes) :</strong> le fichier vanilla <span class="file">common/ai_budget/00_influence_budget.txt</span> fige le montant d'Influence que l'IA reserve avant de tenter une expansion a <code>static_min = 75</code> / <code>static_max = 150</code> - correspondant exactement aux valeurs vanilla non modifiees <code>EXPANSION_COST_BASE</code>/<code>EXPANSION_COST_MAX</code> (70/150). Sans correctif, l'IA sous-provisionnerait des que le cout reel depasse le palier 1-2, et se bloquerait/agirait de facon erratique. Corrige independamment de la difficulte dans <span class="file">common/ai_budget/zz_cp26_expansion_pressure_budget.txt</span> (surcharge par cle de cette seule entree ; toutes les autres entrees du fichier vanilla restent actives) : releve a 90/450.</p>
+<p><strong>Compensation IA par difficulte (levier de challenge optionnel, distinct du correctif de bug ci-dessus) :</strong> etend le meme axe <code>country_starbase_influence_cost_mult</code> deja utilise par <a href="#ai-difficulty">le tableau de difficulte ci-dessus</a> jusqu'aux paliers Capitaine et Commodore, pour que la courbe soit lisse sur les 5 paliers au lieu de sauter directement de 0 % a -20 %/-35 %.</p>
+<table>
+<tr><th>Difficulte</th><th>Enseigne</th><th>Capitaine</th><th>Commodore</th><th>Amiral</th><th>Grand Amiral</th></tr>
+<tr><td>Compensation</td><td>aucune (volontaire)</td><td>-5 %</td><td>-10 %</td><td>-20 %</td><td>-35 %</td></tr>
+</table>
+<p>Fichiers : <span class="file">common/static_modifiers/zz_cp26_hard_ai_difficulty.txt</span> (Amiral/Grand Amiral, ajoute aux blocs existants) et <span class="file">common/static_modifiers/zz_cp26_expansion_pressure_difficulty.txt</span> (Capitaine/Commodore - redefinition complete incluant tous les champs vanilla, car les blocs de modificateurs statiques Paradox sont remplaces en bloc par leur nom, pas fusionnes champ par champ). La compensation n'annule que partiellement le malus (5 a 35 % de celui-ci) ; elle evite que l'IA soit desavantagee face a un joueur humain qui peut anticiper, elle ne supprime pas la pression.</p>
+<p>L'eligibilite est restreinte a <code>is_country_type = default</code> ou <code>contender</code> dans le declencheur de l'evenement de pulsation - maraudeurs, primitifs, Communaute Galactique, envahisseurs extradimensionnels, essaim, etc. ne recoivent jamais ces modificateurs.</p>
+<div class="warn"><b>Non verifie completement.</b> Les blocs <code>difficulty_*</code> sont supposes - par analogie forte avec le moteur sous-jacent, coherent avec le fait que <code>has_difficulty_bonuses</code> soit verrouille par le systeme de difficulte - ne s'appliquer qu'aux pays controles par l'IA, jamais au joueur humain, meme si le drapeau se trouve sur le type de pays <code>default</code> partage par les deux. A verifier en jeu : confirmer que les couts en Influence du joueur ne changent pas juste en choisissant une difficulte plus elevee.</div>
+<p>Envisage puis ecarte pour cette premiere iteration : un cout en dilithium au palier 4 (aucun point d'accroche scriptable pour ajouter une ressource a la formule native <code>EXPANSION_COST</code>, qui ne gere qu'alliages+influence - necessiterait un mecanisme different, par exemple un entretien recurrent plutot qu'un cout de construction ponctuel) et une politique activable en jeu (Desactive/Leger/Modere/Severe, sur le modele de <code>diplomatic_stance</code> dans <span class="file">common/policies/00_policies.txt</span>) - reporte pour livrer d'abord une v1 ciblee et testable. Un plafond dur sur les colonies via <code>can_colonize_planet</code> dans <span class="file">common/game_rules/00_rules.txt</span> a aussi ete envisage comme limite complementaire plus stricte, mais non implemente ici - il ne bloque que la colonisation de systemes deja fondes, pas la construction d'avant-postes elle-meme, donc il ne repond pas au meme probleme.</p>
+</div>
+
 <hr>
 
 <h2 id="modder-notes">10. Systemes additionnels &amp; reference pour modders</h2>
@@ -850,6 +875,7 @@ const sections = [
   {id:"gov", label:"Gouvernements & personnalites", group:"Le code"},
   {id:"balance", label:"Decisions d'equilibrage", group:"Repere"},
 	{id:"ai-difficulty", label:"IA difficulte elevee", group:"Repere", lvl:2},
+	{id:"expansion-pressure", label:"Pression d'expansion", group:"Repere", lvl:2},
   {id:"modder-notes", label:"Systemes additionnels", group:"Repere"},
   {id:"bugfixes", label:"Corrections notables", group:"Repere"},
   {id:"credits", label:"Credits", group:"Repere"},

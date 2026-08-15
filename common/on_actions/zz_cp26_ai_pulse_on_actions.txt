@@ -2,12 +2,17 @@
 #
 # Annual update of cp26_empire_size_* for all AI (drapeaux lus par ship_data du type `default`).
 #
-# We also fire it once on game start so the AI doesn't wait a full in-game
-# year before its flag is set.
+# cp26_expansion_pressure.1 (added for the Expansion Pressure feature, see
+# project wiki) recomputes a country's escalating-outpost-cost tier the same
+# way, for both AI and player.
+#
+# We also fire these once on game start so nobody waits a full in-game
+# year before their flag/tier is set.
 
 on_yearly_pulse_country = {
 	events = {
 		cp26_ai_pulse.1
 		cp26_neutral_zone.1
+		cp26_expansion_pressure.1
 	}
 }
