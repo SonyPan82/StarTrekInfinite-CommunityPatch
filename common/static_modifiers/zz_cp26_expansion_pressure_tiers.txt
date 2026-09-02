@@ -24,15 +24,15 @@ cp26_expansion_pressure_tier_1 = {
 
 cp26_expansion_pressure_tier_2 = {
 	starbase_outpost_influence_cost_mult = 0.60
-	starbase_outpost_alloys_cost_mult = 0.20
+	starbase_outpost_alloys_cost_mult = 0.25
 }
 
 cp26_expansion_pressure_tier_3 = {
 	starbase_outpost_influence_cost_mult = 1.10
-	starbase_outpost_alloys_cost_mult = 0.35
+	starbase_outpost_alloys_cost_mult = 0.50
 }
 
 cp26_expansion_pressure_tier_4 = {
 	starbase_outpost_influence_cost_mult = 1.80
-	starbase_outpost_alloys_cost_mult = 0.50
+	starbase_outpost_alloys_cost_mult = 1.00
 }

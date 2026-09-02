@@ -659,12 +659,12 @@ is_orion_syndicate= { OR = { is_country_type = orion_syndicate  has_country_flag
 <tr><th>Tier</th><th>Starbases owned</th><th>Influence cost</th><th>Alloys cost</th></tr>
 <tr><td>0</td><td>1</td><td>+0%</td><td>+0%</td></tr>
 <tr><td>1</td><td>2-4</td><td>+25%</td><td>+10%</td></tr>
-<tr><td>2</td><td>5-9</td><td>+60%</td><td>+20%</td></tr>
-<tr><td>3</td><td>10-15</td><td>+110%</td><td>+35%</td></tr>
-<tr><td>4</td><td>16+</td><td>+180%</td><td>+50%</td></tr>
+<tr><td>2</td><td>5-9</td><td>+60%</td><td>+25%</td></tr>
+<tr><td>3</td><td>10-15</td><td>+110%</td><td>+50%</td></tr>
+<tr><td>4</td><td>16+</td><td>+180%</td><td>+100%</td></tr>
 </table>
-<p>The first starbase is free of any malus. Bands are non-linear to keep the effect readable while making expansion pressure visible from the second completed outpost. On Infinite's base cost range (70-150 Influence before modifiers), Tier 4 works out to roughly 200-420 Influence per new outpost.</p>
-<p><strong>AI budget fix (all difficulties):</strong> vanilla's <span class="file">common/ai_budget/00_influence_budget.txt</span> hardcodes how much Influence the AI reserves before attempting to expand at <code>static_min = 75</code> / <code>static_max = 150</code> - matching vanilla's un-modified <code>EXPANSION_COST_BASE</code>/<code>EXPANSION_COST_MAX</code> (70/150). Left alone, the AI would under-reserve once real costs climb past Tier 1-2 and stall/behave erratically. Fixed independently of difficulty in <span class="file">common/ai_budget/zz_cp26_expansion_pressure_budget.txt</span> (key-based override of that one entry; every other budget entry in the vanilla file still applies): raised to 90/450.</p>
+<p>The first starbase is free of any malus. Bands are non-linear to keep the effect readable while making expansion pressure visible from the second completed outpost. CP26 raises Infinite's outpost Influence ceiling from 150 to 200, so Tier 4 reaches a meaningful but bounded maximum of 200 Influence and 200 Alloys.</p>
+<p><strong>AI budget fix (all difficulties):</strong> vanilla's <span class="file">common/ai_budget/00_influence_budget.txt</span> hardcodes how much Influence the AI reserves before attempting to expand at <code>static_min = 75</code> / <code>static_max = 150</code>. CP26 overrides only this entry in <span class="file">common/ai_budget/zz_cp26_expansion_pressure_budget.txt</span>, raising it to 90/250 so the AI can afford the new 200-Influence ceiling without excessively hoarding Influence.</p>
 <p><strong>AI difficulty compensation (optional challenge lever, separate from the bug fix above):</strong> extends the same <code>country_starbase_influence_cost_mult</code> axis already used by <a href="#ai-difficulty">the difficulty table above</a> down through Captain and Commodore, so the curve is smooth across all 5 tiers instead of jumping straight from 0% to -20%/-35%.</p>
 <table>
 <tr><th>Difficulty</th><th>Ensign</th><th>Captain</th><th>Commodore</th><th>Admiral</th><th>Grand Admiral</th></tr>

@@ -9,16 +9,15 @@
 # AI's assumption of "how much Influence should I reserve before trying to
 # expand" is baked to the un-modified vanilla cost range.
 #
-# With Expansion Pressure active, a country's real outpost cost can climb
-# well above that (up to roughly +180% Influence at Tier 4, before the
-# distance-based component and other cost modifiers). Left uncorrected,
-# the AI would under-reserve Influence for its expansion plan and stall or
-# behave erratically once it reaches the higher tiers - this file exists
+# With Expansion Pressure active, a country's real outpost cost can reach
+# CP26's 200 Influence ceiling at Tier 4. Left uncorrected, the AI would
+# under-reserve Influence for its expansion plan and stall or behave
+# erratically once it reaches the higher tiers - this file exists
 # specifically to prevent that, independent of difficulty.
 #
-# static_max is sized for the Tier 4 worst case with headroom; static_min
-# is nudged up modestly so the AI starts saving a bit earlier once it's
-# past Tier 0, without over-reserving during the free early game.
+# static_max is sized for the 200 Influence cap with modest headroom;
+# static_min is nudged up so the AI starts saving a little earlier once
+# it is past Tier 0, without hoarding Influence during the early game.
 #
 # See project wiki, page "Expansion Pressure", for the full cost table.
 
@@ -40,6 +39,6 @@ influence_expenditure_stations = {
 	}
 
 	static_max = {
-		base = 450
+		base = 250
 	}
 }

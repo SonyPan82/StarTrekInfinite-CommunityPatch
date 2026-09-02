@@ -1,0 +1,6 @@
+NEconomy = {
+	# Vanilla clamps every outpost's Influence cost at 150 before CP26's
+	# expansion-pressure tiers can be fully expressed. 200 keeps late-game
+	# expansion meaningful without making a single system prohibitively costly.
+	EXPANSION_COST_MAX = 200.0
+}

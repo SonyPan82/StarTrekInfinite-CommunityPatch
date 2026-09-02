@@ -659,12 +659,12 @@ is_orion_syndicate= { OR = { is_country_type = orion_syndicate  has_country_flag
 <tr><th>Palier</th><th>Bases stellaires possedees</th><th>Cout Influence</th><th>Cout Alliages</th></tr>
 <tr><td>0</td><td>1</td><td>+0 %</td><td>+0 %</td></tr>
 <tr><td>1</td><td>2-4</td><td>+25 %</td><td>+10 %</td></tr>
-<tr><td>2</td><td>5-9</td><td>+60 %</td><td>+20 %</td></tr>
-<tr><td>3</td><td>10-15</td><td>+110 %</td><td>+35 %</td></tr>
-<tr><td>4</td><td>16+</td><td>+180 %</td><td>+50 %</td></tr>
+<tr><td>2</td><td>5-9</td><td>+60 %</td><td>+25 %</td></tr>
+<tr><td>3</td><td>10-15</td><td>+110 %</td><td>+50 %</td></tr>
+<tr><td>4</td><td>16+</td><td>+180 %</td><td>+100 %</td></tr>
 </table>
-<p>La premiere base stellaire ne subit aucun malus. Les paliers restent non lineaires pour etre lisibles, mais la pression devient visible des le deuxieme avant-poste termine. Sur la fourchette de cout de base d'Infinite (70-150 Influence avant modificateur), le palier 4 donne environ 200-420 Influence par nouvel avant-poste.</p>
-<p><strong>Correctif du budget IA (toutes difficultes) :</strong> le fichier vanilla <span class="file">common/ai_budget/00_influence_budget.txt</span> fige le montant d'Influence que l'IA reserve avant de tenter une expansion a <code>static_min = 75</code> / <code>static_max = 150</code> - correspondant exactement aux valeurs vanilla non modifiees <code>EXPANSION_COST_BASE</code>/<code>EXPANSION_COST_MAX</code> (70/150). Sans correctif, l'IA sous-provisionnerait des que le cout reel depasse le palier 1-2, et se bloquerait/agirait de facon erratique. Corrige independamment de la difficulte dans <span class="file">common/ai_budget/zz_cp26_expansion_pressure_budget.txt</span> (surcharge par cle de cette seule entree ; toutes les autres entrees du fichier vanilla restent actives) : releve a 90/450.</p>
+<p>La premiere base stellaire ne subit aucun malus. Les paliers restent non lineaires pour etre lisibles, mais la pression devient visible des le deuxieme avant-poste termine. CP26 releve le plafond d'Influence des avant-postes d'Infinite de 150 a 200 : le palier 4 atteint donc un maximum significatif mais borne de 200 Influence et 200 Alliages.</p>
+<p><strong>Correctif du budget IA (toutes difficultes) :</strong> le fichier vanilla <span class="file">common/ai_budget/00_influence_budget.txt</span> fige le montant d'Influence que l'IA reserve avant de tenter une expansion a <code>static_min = 75</code> / <code>static_max = 150</code>. CP26 ne surcharge que cette entree dans <span class="file">common/ai_budget/zz_cp26_expansion_pressure_budget.txt</span>, relevee a 90/250, afin que l'IA puisse payer le nouveau plafond de 200 sans accumuler trop d'Influence.</p>
 <p><strong>Compensation IA par difficulte (levier de challenge optionnel, distinct du correctif de bug ci-dessus) :</strong> etend le meme axe <code>country_starbase_influence_cost_mult</code> deja utilise par <a href="#ai-difficulty">le tableau de difficulte ci-dessus</a> jusqu'aux paliers Capitaine et Commodore, pour que la courbe soit lisse sur les 5 paliers au lieu de sauter directement de 0 % a -20 %/-35 %.</p>
 <table>
 <tr><th>Difficulte</th><th>Enseigne</th><th>Capitaine</th><th>Commodore</th><th>Amiral</th><th>Grand Amiral</th></tr>
