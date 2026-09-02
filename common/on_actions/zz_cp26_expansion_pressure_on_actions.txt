@@ -1,0 +1,7 @@
+# This hook is provided by Infinite for a completed outpost.
+# `this` is the new starbase; its owner is the empire to recalculate.
+on_building_starbase_outpost = {
+	events = {
+		cp26_expansion_pressure.2
+	}
+}

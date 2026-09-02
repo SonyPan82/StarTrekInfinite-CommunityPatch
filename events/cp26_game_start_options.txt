@@ -32,6 +32,18 @@ country_event = {
 			limit = { NOT = { has_global_flag = cp26_nausicaan_options_set } }
 			set_global_flag = cp26_block_nausicaan_marauders
 		}
+		# Default: preserve Infinite's normal expansion costs unless the player
+		# explicitly enables CP26's escalating outpost costs for this campaign.
+		if = {
+			limit = { NOT = { has_global_flag = cp26_expansion_pressure_options_set } }
+			set_global_flag = cp26_expansion_pressure_disabled
+			every_country = {
+				remove_modifier = cp26_expansion_pressure_tier_1
+				remove_modifier = cp26_expansion_pressure_tier_2
+				remove_modifier = cp26_expansion_pressure_tier_3
+				remove_modifier = cp26_expansion_pressure_tier_4
+			}
+		}
 	}
 
 	option = {
@@ -142,6 +154,37 @@ country_event = {
 		}
 		custom_tooltip = cp26_options.1.naval_cap_500.tt
 		set_global_flag = cp26_naval_cap_500
+		hidden_effect = {
+			country_event = { id = cp26_options.1 }
+		}
+	}
+
+	option = {
+		name = cp26_options.1.expansion_cost_on
+		trigger = { NOT = { has_global_flag = cp26_expansion_pressure_disabled } }
+		custom_tooltip = cp26_options.1.expansion_cost_on.tt
+		set_global_flag = cp26_expansion_pressure_disabled
+		set_global_flag = cp26_expansion_pressure_options_set
+		every_country = {
+			remove_modifier = cp26_expansion_pressure_tier_1
+			remove_modifier = cp26_expansion_pressure_tier_2
+			remove_modifier = cp26_expansion_pressure_tier_3
+			remove_modifier = cp26_expansion_pressure_tier_4
+		}
+		hidden_effect = {
+			country_event = { id = cp26_options.1 }
+		}
+	}
+
+	option = {
+		name = cp26_options.1.expansion_cost_off
+		trigger = { has_global_flag = cp26_expansion_pressure_disabled }
+		custom_tooltip = cp26_options.1.expansion_cost_off.tt
+		remove_global_flag = cp26_expansion_pressure_disabled
+		set_global_flag = cp26_expansion_pressure_options_set
+		every_country = {
+			country_event = { id = cp26_expansion_pressure.1 }
+		}
 		hidden_effect = {
 			country_event = { id = cp26_options.1 }
 		}

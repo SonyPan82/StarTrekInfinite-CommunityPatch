@@ -653,17 +653,17 @@ is_orion_syndicate= { OR = { is_country_type = orion_syndicate  has_country_flag
 
 <h3 id="expansion-pressure">Expansion Pressure (escalating outpost cost) <span class="tag badge-new">not yet playtested</span></h3>
 <div class="card">
-<p>Building a new starbase (Outpost through Starfortress) becomes progressively more expensive in <strong>Influence</strong>, and from Tier 2 onward also in <strong>Alloys</strong>, the more starbases a country already owns. Applies identically to the player and to AI empires (<code>default</code> and CP26's <code>contender</code> type) - this is a pacing feature, not a player-only nerf or an AI-only handicap. It stacks on top of vanilla's own distance-based Influence expansion cost (<code>NEconomy.EXPANSION_COST_*</code>) and the vanilla Empire Size/Admin Cap overextension penalty (<code>empire_size_over_cap</code>) - no special interaction, modifiers of the same type simply sum.</p>
-<p>Counted via <code>count_owned_ship = { limit = { is_ship_class = shipclass_starbase } }</code> - any starbase level, not just un-upgraded outposts (counting by <code>is_ship_size</code> instead would under-count once a base upgrades). Recomputed yearly per country by <code>cp26_expansion_pressure.1</code> (namespace <code>cp26_expansion_pressure</code>, hooked into <code>on_yearly_pulse_country</code> and fired once at <code>on_game_start_country</code>), which swaps in the matching tier modifier below.</p>
+<p>This optional campaign setting is <strong>disabled by default</strong>. When enabled in the start-of-game setup, building a new starbase becomes progressively more expensive in <strong>Influence</strong> and construction resources, the more starbases a country already owns. It applies identically to the player and to AI empires (<code>default</code> and CP26's <code>contender</code> type), and stacks on top of Infinite's distance-based Influence expansion cost (<code>NEconomy.EXPANSION_COST_*</code>) and Empire Size/Admin Cap overextension penalty (<code>empire_size_over_cap</code>).</p>
+<p>Counted via Infinite's dedicated <code>count_owned_starbase</code> trigger - any starbase level, not just un-upgraded outposts. While the setting is enabled, <code>cp26_expansion_pressure.1</code> recalculates each country's tier after every completed outpost, yearly, and immediately when the option is enabled.</p>
 <table>
 <tr><th>Tier</th><th>Starbases owned</th><th>Influence cost</th><th>Alloys cost</th></tr>
-<tr><td>0</td><td>1-3</td><td>+0%</td><td>+0%</td></tr>
-<tr><td>1</td><td>4-7</td><td>+25%</td><td>+0%</td></tr>
-<tr><td>2</td><td>8-12</td><td>+60%</td><td>+15%</td></tr>
-<tr><td>3</td><td>13-18</td><td>+110%</td><td>+30%</td></tr>
-<tr><td>4</td><td>19+</td><td>+180%</td><td>+50%</td></tr>
+<tr><td>0</td><td>1</td><td>+0%</td><td>+0%</td></tr>
+<tr><td>1</td><td>2-4</td><td>+25%</td><td>+10%</td></tr>
+<tr><td>2</td><td>5-9</td><td>+60%</td><td>+20%</td></tr>
+<tr><td>3</td><td>10-15</td><td>+110%</td><td>+35%</td></tr>
+<tr><td>4</td><td>16+</td><td>+180%</td><td>+50%</td></tr>
 </table>
-<p>First 3 starbases are deliberately free of any malus (protects opening-game border consolidation). Bands are non-linear and grouped by 4-6 starbases rather than a flat per-starbase increment, to stay readable ("I'm now in Tier X") instead of a creeping number. On vanilla's base cost range (70-150 Influence pre-modifier), Tier 4 works out to roughly 200-420 Influence per new outpost.</p>
+<p>The first starbase is free of any malus. Bands are non-linear to keep the effect readable while making expansion pressure visible from the second completed outpost. On Infinite's base cost range (70-150 Influence before modifiers), Tier 4 works out to roughly 200-420 Influence per new outpost.</p>
 <p><strong>AI budget fix (all difficulties):</strong> vanilla's <span class="file">common/ai_budget/00_influence_budget.txt</span> hardcodes how much Influence the AI reserves before attempting to expand at <code>static_min = 75</code> / <code>static_max = 150</code> - matching vanilla's un-modified <code>EXPANSION_COST_BASE</code>/<code>EXPANSION_COST_MAX</code> (70/150). Left alone, the AI would under-reserve once real costs climb past Tier 1-2 and stall/behave erratically. Fixed independently of difficulty in <span class="file">common/ai_budget/zz_cp26_expansion_pressure_budget.txt</span> (key-based override of that one entry; every other budget entry in the vanilla file still applies): raised to 90/450.</p>
 <p><strong>AI difficulty compensation (optional challenge lever, separate from the bug fix above):</strong> extends the same <code>country_starbase_influence_cost_mult</code> axis already used by <a href="#ai-difficulty">the difficulty table above</a> down through Captain and Commodore, so the curve is smooth across all 5 tiers instead of jumping straight from 0% to -20%/-35%.</p>
 <table>

@@ -10,28 +10,29 @@
 # Full design rationale, tuning table and testing notes: see project wiki,
 # page "Expansion Pressure".
 #
-# Tier thresholds (owned starbases of any level, is_ship_class = shipclass_starbase):
-#   Tier 0 (no modifier) : 1-3 starbases  - free, protects early border consolidation
-#   Tier 1               : 4-7 starbases
-#   Tier 2               : 8-12 starbases
-#   Tier 3               : 13-18 starbases
-#   Tier 4               : 19+ starbases
+# Tier thresholds (owned starbases of any level, count_owned_starbase):
+#   Tier 0 (no modifier) : 1 starbase
+#   Tier 1               : 2-4 starbases
+#   Tier 2               : 5-9 starbases
+#   Tier 3               : 10-15 starbases
+#   Tier 4               : 16+ starbases
 
 cp26_expansion_pressure_tier_1 = {
-	country_starbase_influence_cost_mult = 0.25
+	starbase_outpost_influence_cost_mult = 0.25
+	starbase_outpost_alloys_cost_mult = 0.10
 }
 
 cp26_expansion_pressure_tier_2 = {
-	country_starbase_influence_cost_mult = 0.60
-	starbase_outpost_alloys_cost_mult = 0.15
+	starbase_outpost_influence_cost_mult = 0.60
+	starbase_outpost_alloys_cost_mult = 0.20
 }
 
 cp26_expansion_pressure_tier_3 = {
-	country_starbase_influence_cost_mult = 1.10
-	starbase_outpost_alloys_cost_mult = 0.30
+	starbase_outpost_influence_cost_mult = 1.10
+	starbase_outpost_alloys_cost_mult = 0.35
 }
 
 cp26_expansion_pressure_tier_4 = {
-	country_starbase_influence_cost_mult = 1.80
+	starbase_outpost_influence_cost_mult = 1.80
 	starbase_outpost_alloys_cost_mult = 0.50
 }

@@ -1,4 +1,6 @@
 ﻿l_french:
+ SHIP_SIZE_LIMIT_REACHED:0 "£trigger_no£ Limite de taille de vaisseaux atteinte : notre empire ne peut prendre en charge que $NUM|Y$ vaisseaux de taille $SIZE$."
+ FED_SHIP_SIZE_LIMIT_REACHED:0 "£trigger_no£ Limite de taille de vaisseaux atteinte : notre Fédération ne peut prendre en charge que $NUM|Y$ vaisseaux de taille $SIZE$."
  EMPIRE_DESIGN_BREEN:0 "Confédération Breen"
  EMPIRE_DESIGN_GORN:0 "Hégémonie Gorn"
  EMPIRE_DESIGN_ORION:0 "Empire Orion"
@@ -473,7 +475,7 @@
  col_pleasure_desc:0 "La quasi-totalité de la colonie est une destination de vacances consacrée au plaisir des touristes."
  constellation:0 "Constellation"
  constellation_plural:0 "Constellation"
- cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HFleet Cap§! : nombre maximum de vaisseaux militaires constructibles par empire. Vous pouvez choisir entre §Y120§! et §Y500§! coques.\n\n§HÉtats occupés diplomatiques CP26§! : ajoute aux empires éligibles une proposition d'État occupé. La cible doit être indépendante et en paix. Elle peut accepter ou refuser ; un refus donne un casus belli temporaire de subjugation. §YCette option est désactivée par défaut.§! Elle ne concerne jamais les Romuliens, qui conservent leur conversion Vanilla en État fantoche avec émissaire.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : arc narratif incluant la libération de Bajor et l’apparition du trou de ver bajoran.\n§HMaraudeurs Nausicaans§! : active un empire pirate Nausicaan comme faction indépendante sur la carte (bêta).\n§HProjet Synth§! : offre du gameplay à la Fédération et aux Romuliens, inspiré de Star Trek : Picard."
+ cp26_options.1.desc:0 "Ces réglages valent pour §Htoute la sauvegarde§!.\n\nChaque bouton affiche l’§Hétat actuel§!. Cliquez pour inverser l’option.\n\n§HPlafond de flotte§! : nombre maximum de vaisseaux militaires constructibles par empire. Vous pouvez choisir entre §Y120§! et §Y500§! coques.\n§HCoût d'expansion§! : lorsqu'il est activé, chaque palier d'expansion augmente le coût des futurs avant-postes en Influence et en Alliages. Désactivé, les coûts normaux d'Infinite sont conservés.\n\n§HÉtats occupés diplomatiques CP26§! : ajoute aux empires éligibles une proposition d'État occupé. La cible doit être indépendante et en paix. Elle peut accepter ou refuser ; un refus donne un casus belli temporaire de subjugation. §YCette option est désactivée par défaut.§! Elle ne concerne jamais les Romuliens, qui conservent leur conversion Vanilla en État fantoche avec émissaire.\n\n§HSupernova§! : possibilité de désactiver la quête Supernova.\n§HLibération de Bajor§! : arc narratif incluant la libération de Bajor et l’apparition du trou de ver bajoran.\n§HMaraudeurs Nausicaans§! : active un empire pirate Nausicaan comme faction indépendante sur la carte (bêta)."
  cp26_options.1.pirates_on:0 "Pirates : §Gactivés§!"
  cp26_options.1.pirates_on.tt:0 "Cliquez pour désactiver les pirates pour cette campagne."
  cp26_options.1.pirates_off:0 "Pirates : §Rdésactivés§!"
@@ -495,6 +497,10 @@ cp26_options.1.vassalization_off:0 "États occupés diplomatiques : §Rdésactiv
  cp26_options.1.naval_cap_120.tt:0 "Cliquez pour passer au cap §Y500§! vaisseaux."
  cp26_options.1.naval_cap_500:0 "Flotte : §Rcap 500§! vaisseaux"
  cp26_options.1.naval_cap_500.tt:0 "Cliquez pour revenir au cap §Y120§! vaisseaux."
+ cp26_options.1.expansion_cost_on:0 "Coût d'expansion : §Gactivé§!"
+ cp26_options.1.expansion_cost_on.tt:0 "Le coût des avant-postes augmente actuellement avec l'expansion. Cliquez pour rétablir les coûts normaux d'Infinite."
+ cp26_options.1.expansion_cost_off:0 "Coût d'expansion : §Rdésactivé§!"
+ cp26_options.1.expansion_cost_off.tt:0 "Les avant-postes utilisent actuellement les coûts normaux d'Infinite. Cliquez pour activer le coût d'expansion progressif de CP26 pour tous les empires."
 
  cp26_options.1.confirm:0 "OK - commencer la campagne"
  cp26_options.1.confirm.tt:0 "Valide ces paramètres pour toute la partie."

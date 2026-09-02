@@ -38,10 +38,8 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			is_country_type = default
-			is_country_type = contender
-		}
+		NOT = { has_global_flag = cp26_expansion_pressure_disabled }
+		is_regular_empire = yes
 	}
 
 	immediate = {
@@ -56,45 +54,41 @@ country_event = {
 		remove_country_flag = cp26_expansion_pressure_tier_4
 
 		if = {
-			limit = {
-				count_owned_ship = {
-					limit = { is_ship_class = shipclass_starbase }
-					count >= 19
-				}
-			}
+			limit = { count_owned_starbase = { count >= 16 } }
 			add_modifier = { modifier = cp26_expansion_pressure_tier_4 }
 			set_country_flag = cp26_expansion_pressure_tier_4
 		}
 		else_if = {
-			limit = {
-				count_owned_ship = {
-					limit = { is_ship_class = shipclass_starbase }
-					count >= 13
-				}
-			}
+			limit = { count_owned_starbase = { count >= 10 } }
 			add_modifier = { modifier = cp26_expansion_pressure_tier_3 }
 			set_country_flag = cp26_expansion_pressure_tier_3
 		}
 		else_if = {
-			limit = {
-				count_owned_ship = {
-					limit = { is_ship_class = shipclass_starbase }
-					count >= 8
-				}
-			}
+			limit = { count_owned_starbase = { count >= 5 } }
 			add_modifier = { modifier = cp26_expansion_pressure_tier_2 }
 			set_country_flag = cp26_expansion_pressure_tier_2
 		}
 		else_if = {
-			limit = {
-				count_owned_ship = {
-					limit = { is_ship_class = shipclass_starbase }
-					count >= 4
-				}
-			}
+			limit = { count_owned_starbase = { count >= 2 } }
 			add_modifier = { modifier = cp26_expansion_pressure_tier_1 }
 			set_country_flag = cp26_expansion_pressure_tier_1
 		}
-		# else: 3 or fewer starbases - Tier 0, no modifier, nothing to set.
+		# else: one starbase - Tier 0, no modifier, nothing to set.
+	}
+}
+
+# Vanilla fires this after an outpost has been completed. Updating here means
+# the very next outpost uses the new tier instead of waiting for the yearly pulse.
+ship_event = {
+	id = cp26_expansion_pressure.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { exists = owner }
+
+	immediate = {
+		owner = {
+			country_event = { id = cp26_expansion_pressure.1 }
+		}
 	}
 }

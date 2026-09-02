@@ -263,6 +263,107 @@ country_event = {
 	immediate = {
 		country_event = { id = cp26_spawn_repair.3 days = 5 }
 		country_event = { id = cp26_spawn_repair.4 days = 5 }
+		# All start countries already exist here. Establish their diplomacy now,
+		# rather than leaving fleets in a first-contact limbo for ten days.
+		country_event = { id = cp26_spawn_repair.5 }
+	}
+}
+
+# Establish reciprocal communications for the CP26 major powers introduced by
+# custom country types. Their fleets can otherwise be encountered while the
+# diplomacy/contact UI has no valid counterpart to display.
+country_event = {
+	id = cp26_spawn_repair.5
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		NOT = { has_global_flag = cp26_cp26_contacts_repaired }
+	}
+
+	immediate = {
+		every_country = {
+			limit = {
+				OR = {
+					is_cp26_major_mission_country = yes
+					is_ferengi_empire = yes
+					is_gorn_hegemony = yes
+					is_orion_syndicate = yes
+					has_country_flag = tholian
+				}
+			}
+			save_event_target_as = cp26_contact_source
+
+			every_country = {
+				limit = {
+					OR = {
+						is_gorn_hegemony = yes
+						is_orion_syndicate = yes
+						has_country_flag = tholian
+					}
+					NOT = { is_same_value = event_target:cp26_contact_source }
+				}
+				save_event_target_as = cp26_contact_target
+
+				event_target:cp26_contact_source = {
+					if = {
+						limit = { NOT = { has_communications = event_target:cp26_contact_target } }
+						establish_contact = { who = event_target:cp26_contact_target hidden = yes }
+						establish_communications_no_message = event_target:cp26_contact_target
+					}
+				}
+				event_target:cp26_contact_target = {
+					if = {
+						limit = { NOT = { has_communications = event_target:cp26_contact_source } }
+						establish_contact = { who = event_target:cp26_contact_source hidden = yes }
+						establish_communications_no_message = event_target:cp26_contact_source
+					}
+				}
+			}
+		}
+
+		every_country = {
+			if = {
+				limit = { is_ufop = yes }
+				save_global_event_target_as = ufop_country
+			}
+			if = {
+				limit = { is_klingon = yes }
+				save_global_event_target_as = klingon_country
+			}
+		}
+
+		# game_start.103 and game_start.260 define this relationship but are not
+		# called by Infinite's start on_actions. Restore their intended effect once.
+		if = {
+			limit = {
+				exists = event_target:ufop_country
+				exists = event_target:klingon_country
+			}
+			event_target:ufop_country = {
+				if = {
+					limit = { NOT = { has_communications = event_target:klingon_country } }
+					establish_contact = { who = event_target:klingon_country hidden = yes }
+					establish_communications_no_message = event_target:klingon_country
+				}
+				set_closed_borders = { who = event_target:klingon_country status = no }
+				if = {
+					limit = { NOT = { has_defensive_pact = event_target:klingon_country } }
+					set_defensive_pact = { target = event_target:klingon_country }
+				}
+			}
+			event_target:klingon_country = {
+				if = {
+					limit = { NOT = { has_communications = event_target:ufop_country } }
+					establish_contact = { who = event_target:ufop_country hidden = yes }
+					establish_communications_no_message = event_target:ufop_country
+				}
+				set_closed_borders = { who = event_target:ufop_country status = no }
+			}
+		}
+
+		set_global_flag = cp26_cp26_contacts_repaired
 	}
 }
 
